@@ -1,0 +1,3341 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request
+END
+AlipayMarketingCampaignDiscountQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDiscountQueryRequest.php
+END
+AlipayOpenPublicLabelUserCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLabelUserCreateRequest.php
+END
+AlipayDaoweiSpModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiSpModifyRequest.php
+END
+AlipayMarketingCashlessvoucherTemplateCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCashlessvoucherTemplateCreateRequest.php
+END
+AlipayMarketingToolFengdieTemplateQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingToolFengdieTemplateQueryRequest.php
+END
+AlipayTradeCloseRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeCloseRequest.php
+END
+KoubeiMarketingDataDishdiagnosetypeBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataDishdiagnosetypeBatchqueryRequest.php
+END
+AlipayFlashsalesStockSyncUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayFlashsalesStockSyncUpdateRequest.php
+END
+AlipayOpenPublicLifeMsgRecallRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLifeMsgRecallRequest.php
+END
+ZhimaMerchantSingleDataUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaMerchantSingleDataUploadRequest.php
+END
+AlipayMarketingCardBenefitCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardBenefitCreateRequest.php
+END
+AlipayOpenPublicGroupDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicGroupDeleteRequest.php
+END
+AlipayMarketingCardConsumeSyncRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardConsumeSyncRequest.php
+END
+AlipayOfflineProviderMonitorLogSyncRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineProviderMonitorLogSyncRequest.php
+END
+AlipayEcoCplifeBillModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeBillModifyRequest.php
+END
+KoubeiMarketingCampaignActivityModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignActivityModifyRequest.php
+END
+AlipayEcoCplifeResidentinfoUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeResidentinfoUploadRequest.php
+END
+AlipayTrustUserScoreGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTrustUserScoreGetRequest.php
+END
+AlipayMobileBeaconDeviceQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileBeaconDeviceQueryRequest.php
+END
+ZhimaCreditScoreGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaCreditScoreGetRequest.php
+END
+AlipayMarketingCashlessvoucherTemplateModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCashlessvoucherTemplateModifyRequest.php
+END
+AlipayOpenServicemarketCommodityShopOfflineRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenServicemarketCommodityShopOfflineRequest.php
+END
+AlipayBossProdArrangementOfflineQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayBossProdArrangementOfflineQueryRequest.php
+END
+AlipayCommerceTransportOfflinepayRecordVerifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceTransportOfflinepayRecordVerifyRequest.php
+END
+AlipayOpenPublicMessageCustomSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMessageCustomSendRequest.php
+END
+AlipayMarketingCampaignDiscountBudgetQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDiscountBudgetQueryRequest.php
+END
+AlipayEcoCplifeBillDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeBillDeleteRequest.php
+END
+KoubeiMemberBrandownerNameQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMemberBrandownerNameQueryRequest.php
+END
+AlipayMarketingCardBenefitModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardBenefitModifyRequest.php
+END
+AlipayAppTokenGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAppTokenGetRequest.php
+END
+AlipayOpenPublicMessageTotalSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMessageTotalSendRequest.php
+END
+AlipayOpenPublicLifeLabelCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLifeLabelCreateRequest.php
+END
+AlipayDaoweiServicePriceModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiServicePriceModifyRequest.php
+END
+AlipayZmscoreZrankGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayZmscoreZrankGetRequest.php
+END
+AntMerchantExpandContractFacetofaceQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AntMerchantExpandContractFacetofaceQueryRequest.php
+END
+AlipayEcapiprodDataPutRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcapiprodDataPutRequest.php
+END
+AlipayOpenServicemarketOrderItemCompleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenServicemarketOrderItemCompleteRequest.php
+END
+AlipayDataDataexchangeSfasdfRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDataDataexchangeSfasdfRequest.php
+END
+ZhimaCreditWatchlistBriefGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaCreditWatchlistBriefGetRequest.php
+END
+AlipayOpenPublicPersonalizedExtensionCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicPersonalizedExtensionCreateRequest.php
+END
+KoubeiMarketingToolPointsQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingToolPointsQueryRequest.php
+END
+AlipayPassInstanceAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassInstanceAddRequest.php
+END
+KoubeiCraftsmanDataProviderCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiCraftsmanDataProviderCreateRequest.php
+END
+AlipayCommerceCityfacilitatorVoucherUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorVoucherUploadRequest.php
+END
+AlipayFundAuthOperationDetailQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayFundAuthOperationDetailQueryRequest.php
+END
+KoubeiMarketingDataActivityReportQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataActivityReportQueryRequest.php
+END
+AlipayMobilePublicAccountQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicAccountQueryRequest.php
+END
+KoubeiMarketingDataCustomreportDetailQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataCustomreportDetailQueryRequest.php
+END
+AlipayMobilePublicMessageCustomSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMessageCustomSendRequest.php
+END
+AlipayPassVerifyQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassVerifyQueryRequest.php
+END
+AlipayMarketingCampaignDrawcampWhitelistCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDrawcampWhitelistCreateRequest.php
+END
+AlipayOpenPublicShortlinkCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicShortlinkCreateRequest.php
+END
+AlipayOpenPublicLabelUserDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLabelUserDeleteRequest.php
+END
+KoubeiMarketingDataCustomreportDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataCustomreportDeleteRequest.php
+END
+ZhimaCustomerCertificationQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaCustomerCertificationQueryRequest.php
+END
+AlipayDataDataserviceChinaremodelQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDataDataserviceChinaremodelQueryRequest.php
+END
+AlipayPassCodeVerifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassCodeVerifyRequest.php
+END
+AlipayOpenPublicLifeLabelBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLifeLabelBatchqueryRequest.php
+END
+AlipayMarketingCardBenefitDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardBenefitDeleteRequest.php
+END
+AlipayOpenPublicGroupCrowdQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicGroupCrowdQueryRequest.php
+END
+AlipayMobilePublicMockListsmlistApiRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMockListsmlistApiRequest.php
+END
+AlipayOfflineMarketShopCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketShopCreateRequest.php
+END
+AlipayCommerceCityfacilitatorVoucherRefundRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorVoucherRefundRequest.php
+END
+AlipayMarketingCdpAdvertiseQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCdpAdvertiseQueryRequest.php
+END
+AlipayOpenPublicPartnerMenuQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicPartnerMenuQueryRequest.php
+END
+AlipayOpenPublicLifeLabelModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLifeLabelModifyRequest.php
+END
+AlipayDataDataserviceSdfsdfRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDataDataserviceSdfsdfRequest.php
+END
+AlipayMobilePublicMenuUserQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMenuUserQueryRequest.php
+END
+AlipayMarketingCardActivateurlApplyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardActivateurlApplyRequest.php
+END
+AlipaySecurityInfoAnalysisRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityInfoAnalysisRequest.php
+END
+KoubeiMarketingDataSmartmanagementDiagnoseRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataSmartmanagementDiagnoseRequest.php
+END
+KoubeiCraftsmanDataProviderModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiCraftsmanDataProviderModifyRequest.php
+END
+AlipayMobileStdPublicMessageCustomSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileStdPublicMessageCustomSendRequest.php
+END
+AlipayOfflineMarketingVoucherUseRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketingVoucherUseRequest.php
+END
+AlipayEcapiprodCreditGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcapiprodCreditGetRequest.php
+END
+KoubeiCraftsmanDataWorkBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiCraftsmanDataWorkBatchqueryRequest.php
+END
+AlipayTradeRefundRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeRefundRequest.php
+END
+AlipayMobilePublicMenuAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMenuAddRequest.php
+END
+AlipayOfflineMarketShopBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketShopBatchqueryRequest.php
+END
+ZhimaCreditWatchlistiiGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaCreditWatchlistiiGetRequest.php
+END
+AlipayMarketingCampaignDiscountOperateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDiscountOperateRequest.php
+END
+AlipayOpenPublicFollowBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicFollowBatchqueryRequest.php
+END
+AlipayMobilePublicMenuDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMenuDeleteRequest.php
+END
+KoubeiItemExtitemQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemExtitemQueryRequest.php
+END
+AlipayOpenPublicLifeLabelDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLifeLabelDeleteRequest.php
+END
+AlipayMarketingCampaignActivityOfflineCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignActivityOfflineCreateRequest.php
+END
+AlipayEcoMycarTradeRefundRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarTradeRefundRequest.php
+END
+AlipayEbppPdeductSignCancelRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppPdeductSignCancelRequest.php
+END
+KoubeiMarketingDataCustomreportQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataCustomreportQueryRequest.php
+END
+AlipayOfflineMarketShopModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketShopModifyRequest.php
+END
+KoubeiMarketingDataCustomreportBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataCustomreportBatchqueryRequest.php
+END
+AlipayEbppBillGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppBillGetRequest.php
+END
+MybankFinanceYulibaoAccountQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/MybankFinanceYulibaoAccountQueryRequest.php
+END
+KoubeiMarketingCampaignRecruitShopQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignRecruitShopQueryRequest.php
+END
+AlipayPointOrderAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPointOrderAddRequest.php
+END
+AlipayOpenPublicPersonalizedExtensionDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicPersonalizedExtensionDeleteRequest.php
+END
+AlipayMarketingCdpAdvertiseReportQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCdpAdvertiseReportQueryRequest.php
+END
+AlipayMobileRecommendGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileRecommendGetRequest.php
+END
+ZhimaCreditScoreBriefGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaCreditScoreBriefGetRequest.php
+END
+AntMerchantExpandMapplyorderQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AntMerchantExpandMapplyorderQueryRequest.php
+END
+AlipayPassTemplateAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassTemplateAddRequest.php
+END
+AlipayFundAuthOrderFreezeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayFundAuthOrderFreezeRequest.php
+END
+AlipayOfflineMarketShopPublicUnbindRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketShopPublicUnbindRequest.php
+END
+AlipayMarketingVoucherTemplatedetailQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingVoucherTemplatedetailQueryRequest.php
+END
+AlipayEcoMycarPromoTicketPushRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarPromoTicketPushRequest.php
+END
+AntMerchantExpandContractFacetofaceSignRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AntMerchantExpandContractFacetofaceSignRequest.php
+END
+AlipayMobilePublicFollowListRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicFollowListRequest.php
+END
+AlipaySecurityProdFacerepoSearchRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityProdFacerepoSearchRequest.php
+END
+AlipayOpenPublicPartnerSubscribeSyncRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicPartnerSubscribeSyncRequest.php
+END
+AlipayEcoMycarCarlibInfoPushRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarCarlibInfoPushRequest.php
+END
+AlipaySecurityRiskRainscoreQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityRiskRainscoreQueryRequest.php
+END
+AlipayOpenPublicAccountCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicAccountCreateRequest.php
+END
+AlipayMobileShakeUserQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileShakeUserQueryRequest.php
+END
+AlipayEcoCplifeUseridentityStatusUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeUseridentityStatusUpdateRequest.php
+END
+AlipayUserUserinfoShareRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserUserinfoShareRequest.php
+END
+AlipayUserInfoShareRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserInfoShareRequest.php
+END
+AlipayUserGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserGetRequest.php
+END
+KoubeiItemExtitemCategoryQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemExtitemCategoryQueryRequest.php
+END
+AlipayEcoCplifeNoticePublishRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeNoticePublishRequest.php
+END
+MybankFinanceYulibaoCapitalPurchaseRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/MybankFinanceYulibaoCapitalPurchaseRequest.php
+END
+AlipayOpenPublicLabelUserQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLabelUserQueryRequest.php
+END
+AlipayPcreditLoanRefundCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPcreditLoanRefundCreateRequest.php
+END
+AlipayOfflineMarketProductQuerydetailRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketProductQuerydetailRequest.php
+END
+AlipayEcoMycarDataserviceViolationinfoShareRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarDataserviceViolationinfoShareRequest.php
+END
+AlipayEbppInvoiceTitleListGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppInvoiceTitleListGetRequest.php
+END
+AlipayCommerceTransportOfflinepayUserblacklistQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceTransportOfflinepayUserblacklistQueryRequest.php
+END
+AlipayEcoCplifeRooominfoQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeRooominfoQueryRequest.php
+END
+AlipayMarketingVoucherAuthSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingVoucherAuthSendRequest.php
+END
+AlipayMobilePublicLabelUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicLabelUpdateRequest.php
+END
+KoubeiMarketingCampaignActivityQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignActivityQueryRequest.php
+END
+AlipayCommerceCityfacilitatorDepositQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorDepositQueryRequest.php
+END
+AlipayOfflineProviderEquipmentAuthQuerybypageRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineProviderEquipmentAuthQuerybypageRequest.php
+END
+AlipayMobilePublicInfoModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicInfoModifyRequest.php
+END
+MybankCreditLoanapplyDataUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/MybankCreditLoanapplyDataUploadRequest.php
+END
+AlipayOpenPublicMessageGroupSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMessageGroupSendRequest.php
+END
+AlipayAssetAccountGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAssetAccountGetRequest.php
+END
+AlipayEcoCplifeRepairStatusUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeRepairStatusUpdateRequest.php
+END
+ZhimaMerchantTestPracticeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaMerchantTestPracticeRequest.php
+END
+AlipayPassSyncUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassSyncUpdateRequest.php
+END
+AlipayCommerceCityfacilitatorVoucherCancelRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorVoucherCancelRequest.php
+END
+AlipayAssetPointOrderCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAssetPointOrderCreateRequest.php
+END
+AlipayZdatafrontCommonQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayZdatafrontCommonQueryRequest.php
+END
+AlipayEbppBillSearchRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppBillSearchRequest.php
+END
+AlipayOperatorMobileBindRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOperatorMobileBindRequest.php
+END
+AlipayEbppPdeductBillPayStatusRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppPdeductBillPayStatusRequest.php
+END
+AlipayOfflineProviderShopactionRecordRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineProviderShopactionRecordRequest.php
+END
+AlipayEcoCplifeBasicserviceModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeBasicserviceModifyRequest.php
+END
+AlipayEcoMycarMaintainOrderstatusUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarMaintainOrderstatusUpdateRequest.php
+END
+AlipayFundTransOrderQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayFundTransOrderQueryRequest.php
+END
+AlipayMobileBksigntokenVerifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileBksigntokenVerifyRequest.php
+END
+KoubeiContentCommentReplyCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiContentCommentReplyCreateRequest.php
+END
+AlipayTradeCustomsDeclareRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeCustomsDeclareRequest.php
+END
+KoubeiTradeItemBuyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiTradeItemBuyRequest.php
+END
+AlipayOpenPublicAccountDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicAccountDeleteRequest.php
+END
+AlipayOpenPublicInfoQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicInfoQueryRequest.php
+END
+AlipayTradeCancelRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeCancelRequest.php
+END
+AlipayEbppPdeductSignQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppPdeductSignQueryRequest.php
+END
+AlipayDaoweiOrderModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiOrderModifyRequest.php
+END
+AlipayOpenAppQrcodeCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenAppQrcodeCreateRequest.php
+END
+KoubeiMarketingDataSmartactivityForecastRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataSmartactivityForecastRequest.php
+END
+KoubeiItemBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemBatchqueryRequest.php
+END
+AlipayEcoMycarParkingEnterinfoSyncRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingEnterinfoSyncRequest.php
+END
+AlipayAssetAccountBindRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAssetAccountBindRequest.php
+END
+AlipayDaoweiOrderQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiOrderQueryRequest.php
+END
+AlipayFundAuthOrderVoucherCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayFundAuthOrderVoucherCreateRequest.php
+END
+AlipayMobilePublicAccountAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicAccountAddRequest.php
+END
+AlipayEbppMerchantConfigGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppMerchantConfigGetRequest.php
+END
+AlipayOpenPublicMenuCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMenuCreateRequest.php
+END
+AlipayMemberCouponQuerylistRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMemberCouponQuerylistRequest.php
+END
+AlipayFundAuthOrderUnfreezeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayFundAuthOrderUnfreezeRequest.php
+END
+AlipayOpenServicemarketOrderRejectRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenServicemarketOrderRejectRequest.php
+END
+ZhimaDataFeedbackurlQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaDataFeedbackurlQueryRequest.php
+END
+KoubeiMemberDataOauthQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMemberDataOauthQueryRequest.php
+END
+KoubeiMarketingCampaignCrowdCountRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignCrowdCountRequest.php
+END
+AlipayDaoweiSpScheduleModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiSpScheduleModifyRequest.php
+END
+KoubeiMarketingDataAlisisReportQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataAlisisReportQueryRequest.php
+END
+AlipayCommerceCityfacilitatorFunctionQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorFunctionQueryRequest.php
+END
+AlipayEcoMycarParkingOrderstatusQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingOrderstatusQueryRequest.php
+END
+KoubeiCraftsmanDataProviderBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiCraftsmanDataProviderBatchqueryRequest.php
+END
+AlipayOpenAuthIndustryPlatformCreateTokenRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenAuthIndustryPlatformCreateTokenRequest.php
+END
+AlipayMicropayOrderFreezeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMicropayOrderFreezeRequest.php
+END
+ZhimaCustomerCertificationInitializeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaCustomerCertificationInitializeRequest.php
+END
+AlipayPassTplContentUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassTplContentUpdateRequest.php
+END
+AlipayOfflineProviderStaffUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineProviderStaffUpdateRequest.php
+END
+AlipayOpenPublicContactFollowBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicContactFollowBatchqueryRequest.php
+END
+AlipayMarketingCdpRecommendQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCdpRecommendQueryRequest.php
+END
+AlipayOpenPublicMenuModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMenuModifyRequest.php
+END
+AlipayOpenAppCodetesttestRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenAppCodetesttestRequest.php
+END
+AlipayMobilePublicMenuUserUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMenuUserUpdateRequest.php
+END
+AlipayMobilePublicTemplateMessageQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicTemplateMessageQueryRequest.php
+END
+AlipayPromorulecenterRuleAnalyzeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPromorulecenterRuleAnalyzeRequest.php
+END
+AlipayEcoMycarMaintainOrderCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarMaintainOrderCreateRequest.php
+END
+AlipayMarketingCampaignDrawcampUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDrawcampUpdateRequest.php
+END
+AlipayMarketingCdpAdvertiseCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCdpAdvertiseCreateRequest.php
+END
+AlipayPassTemplateUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassTemplateUpdateRequest.php
+END
+AlipayMarketingCardUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardUpdateRequest.php
+END
+AlipayOpenServicemarketOrderItemConfirmRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenServicemarketOrderItemConfirmRequest.php
+END
+AlipayMobilePublicMenuQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMenuQueryRequest.php
+END
+AlipayPointBudgetGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPointBudgetGetRequest.php
+END
+AlipayMobileStdPublicAccountQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileStdPublicAccountQueryRequest.php
+END
+AlipayExscUserCurrentsignGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayExscUserCurrentsignGetRequest.php
+END
+AlipayDataDataserviceBillDownloadurlQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDataDataserviceBillDownloadurlQueryRequest.php
+END
+AlipaySecurityProdFingerprintVerifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityProdFingerprintVerifyRequest.php
+END
+AlipaySecurityProdFingerprintApplyInitializeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityProdFingerprintApplyInitializeRequest.php
+END
+AlipayAssetAccountUnbindRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAssetAccountUnbindRequest.php
+END
+AlipayMarketingCashvoucherTemplateCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCashvoucherTemplateCreateRequest.php
+END
+AlipayInsSceneCouponReceiveRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayInsSceneCouponReceiveRequest.php
+END
+AlipayPassTplAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassTplAddRequest.php
+END
+KoubeiMarketingCampaignActivityOfflineRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignActivityOfflineRequest.php
+END
+MybankFinanceYulibaoPriceQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/MybankFinanceYulibaoPriceQueryRequest.php
+END
+AlipayEcoMycarParkingOrderSyncRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingOrderSyncRequest.php
+END
+AlipayMobilePublicMessagePushRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMessagePushRequest.php
+END
+AlipayOfflineMaterialImageModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMaterialImageModifyRequest.php
+END
+AlipayMarketingCampaignDiscountBudgetAppendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDiscountBudgetAppendRequest.php
+END
+AlipayOfflineMarketShopDiscountQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketShopDiscountQueryRequest.php
+END
+AlipayOfflineMarketProductBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketProductBatchqueryRequest.php
+END
+AlipayOfflineMarketingVoucherCodeUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketingVoucherCodeUploadRequest.php
+END
+KoubeiTradeOrderQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiTradeOrderQueryRequest.php
+END
+AlipayTradeWapPayRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeWapPayRequest.php
+END
+AlipayDaoweiOrderConfirmRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiOrderConfirmRequest.php
+END
+AlipayCommerceCityfacilitatorCityQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorCityQueryRequest.php
+END
+AlipayEcoCplifeRoominfoDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeRoominfoDeleteRequest.php
+END
+ZhimaMerchantOrderRentCancelRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaMerchantOrderRentCancelRequest.php
+END
+AlipayEcoCplifeCommunityBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeCommunityBatchqueryRequest.php
+END
+ZhimaCreditAntifraudVerifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaCreditAntifraudVerifyRequest.php
+END
+AlipayMarketingCdpAdvertiseModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCdpAdvertiseModifyRequest.php
+END
+ZhimaMerchantBorrowEntityUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaMerchantBorrowEntityUploadRequest.php
+END
+AlipayOfflineProviderUseractionRecordRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineProviderUseractionRecordRequest.php
+END
+AlipayEcapiprodDrawndnFeerecordQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcapiprodDrawndnFeerecordQueryRequest.php
+END
+AlipayOfflineMaterialImageQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMaterialImageQueryRequest.php
+END
+KoubeiQualityTestCloudacptItemQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiQualityTestCloudacptItemQueryRequest.php
+END
+KoubeiMarketingCampaignCrowdBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignCrowdBatchqueryRequest.php
+END
+AlipayTradeAppPayRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeAppPayRequest.php
+END
+AlipayTrustUserReportGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTrustUserReportGetRequest.php
+END
+AlipayTrustUserAuthSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTrustUserAuthSendRequest.php
+END
+AlipayMobilePublicTemplateMessageModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicTemplateMessageModifyRequest.php
+END
+AlipayMarketingCashvoucherTemplateModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCashvoucherTemplateModifyRequest.php
+END
+AlipayPlatformOpenidGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPlatformOpenidGetRequest.php
+END
+ZhimaCustomerCertificationCertifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaCustomerCertificationCertifyRequest.php
+END
+AlipayEcoCplifeRoominfoQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeRoominfoQueryRequest.php
+END
+AlipayMobilePublicMenuGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMenuGetRequest.php
+END
+KoubeiItemCategoryChildrenBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemCategoryChildrenBatchqueryRequest.php
+END
+AlipayMobileBeaconMessageSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileBeaconMessageSendRequest.php
+END
+AlipayEcoMycarPromoVoucherVerifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarPromoVoucherVerifyRequest.php
+END
+AlipayOpenPublicTemplateMessageGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicTemplateMessageGetRequest.php
+END
+AlipayMobilePublicContactFollowListRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicContactFollowListRequest.php
+END
+AlipayMarketingCampaignCashCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignCashCreateRequest.php
+END
+AlipayOpenPublicMultimediaDownloadProxyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMultimediaDownloadProxyRequest.php
+END
+KoubeiMarketingCampaignRecruitApplyQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignRecruitApplyQueryRequest.php
+END
+AlipayUserTestRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserTestRequest.php
+END
+ZhimaAuthInfoAuthqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaAuthInfoAuthqueryRequest.php
+END
+AlipayOfflineMarketApplyorderBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketApplyorderBatchqueryRequest.php
+END
+AlipayCommerceTransportOfflinepayKeyQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceTransportOfflinepayKeyQueryRequest.php
+END
+AlipayUserTradeSearchRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserTradeSearchRequest.php
+END
+AlipayEcoCplifeBillBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeBillBatchqueryRequest.php
+END
+AlipayPointOrderGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPointOrderGetRequest.php
+END
+AlipaySecurityProdFingerprintDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityProdFingerprintDeleteRequest.php
+END
+AlipayDataDataserviceCodeRecoRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDataDataserviceCodeRecoRequest.php
+END
+AlipayPassTplUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassTplUpdateRequest.php
+END
+AlipayOpenPublicPersonalizedMenuCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicPersonalizedMenuCreateRequest.php
+END
+AlipayMicropayOrderConfirmpayurlGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMicropayOrderConfirmpayurlGetRequest.php
+END
+AlipayMobilePublicTemplateMessageDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicTemplateMessageDeleteRequest.php
+END
+AlipayEcoCplifeBasicserviceInitializeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeBasicserviceInitializeRequest.php
+END
+AlipayEcapiprodDrawndnPaymentscheduleGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcapiprodDrawndnPaymentscheduleGetRequest.php
+END
+AlipayAccountExrateAllclientrateQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAccountExrateAllclientrateQueryRequest.php
+END
+KoubeiItemExtitemUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemExtitemUpdateRequest.php
+END
+AlipayCommerceCityfacilitatorDepositCancelRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorDepositCancelRequest.php
+END
+AlipayTradePagePayRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradePagePayRequest.php
+END
+AlipayOfflineMarketItemStateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketItemStateRequest.php
+END
+AlipayMarketingCardFormtemplateSetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardFormtemplateSetRequest.php
+END
+AlipayMobileBeaconDeviceAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileBeaconDeviceAddRequest.php
+END
+ZhimaMerchantOrderRentCompleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaMerchantOrderRentCompleteRequest.php
+END
+AlipayMarketingCampaignDiscountBudgetCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDiscountBudgetCreateRequest.php
+END
+AlipayMobilePublicGisGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicGisGetRequest.php
+END
+AlipaySecurityProdFingerprintVerifyInitializeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityProdFingerprintVerifyInitializeRequest.php
+END
+AlipayOpenPublicTemplateMessageIndustryModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicTemplateMessageIndustryModifyRequest.php
+END
+AlipayMicropayOrderGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMicropayOrderGetRequest.php
+END
+AlipayOpenPublicAccountResetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicAccountResetRequest.php
+END
+AlipayEcoMycarPromoTicketSyncRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarPromoTicketSyncRequest.php
+END
+KoubeiMarketingDataRetailDmQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataRetailDmQueryRequest.php
+END
+AlipayOpenPublicInfoModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicInfoModifyRequest.php
+END
+KoubeiItemExtitemBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemExtitemBatchqueryRequest.php
+END
+AlipayMobilePublicAppinfoUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicAppinfoUpdateRequest.php
+END
+AlipayEcoMycarParkingParkinglotinfoUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingParkinglotinfoUpdateRequest.php
+END
+AlipayOfflineMaterialImageDownloadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMaterialImageDownloadRequest.php
+END
+AlipayMarketingExchangevoucherUseRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingExchangevoucherUseRequest.php
+END
+AlipayZdataassetsFcdatalabZdatamergetaskRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayZdataassetsFcdatalabZdatamergetaskRequest.php
+END
+AlipayUserFinanceinfoShareRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserFinanceinfoShareRequest.php
+END
+AlipayMarketingCampaignDiscountStatusUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDiscountStatusUpdateRequest.php
+END
+KoubeiMarketingCampaignCrowdCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignCrowdCreateRequest.php
+END
+AlipayTradeVendorpayDevicedataUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeVendorpayDevicedataUploadRequest.php
+END
+MybankFinanceYulibaoCapitalRansomRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/MybankFinanceYulibaoCapitalRansomRequest.php
+END
+AlipayEbppPdeductPayRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppPdeductPayRequest.php
+END
+AlipayOpenServicemarketCommodityShopOnlineRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenServicemarketCommodityShopOnlineRequest.php
+END
+SsdataDataserviceRiskRainscoreQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/SsdataDataserviceRiskRainscoreQueryRequest.php
+END
+AlipayExscUserFirstfundinpourGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayExscUserFirstfundinpourGetRequest.php
+END
+KoubeiMarketingCampaignTagsQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignTagsQueryRequest.php
+END
+AlipayEcoMycarParkingConfigQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingConfigQueryRequest.php
+END
+AlipayUserAccountGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserAccountGetRequest.php
+END
+AlipayCommerceCityfacilitatorStationQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorStationQueryRequest.php
+END
+AlipayMarketingCardTemplateQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardTemplateQueryRequest.php
+END
+AlipayMsaasPromotionCpainfoCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMsaasPromotionCpainfoCreateRequest.php
+END
+AlipayMarketingCdpAdvertiseOperateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCdpAdvertiseOperateRequest.php
+END
+AlipayOpenPublicLifeAccountCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLifeAccountCreateRequest.php
+END
+AlipayDaoweiServiceModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiServiceModifyRequest.php
+END
+AlipayEcoCplifeBillBatchUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeBillBatchUploadRequest.php
+END
+AlipayOpenPublicGroupBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicGroupBatchqueryRequest.php
+END
+AlipayMobilePublicAccountDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicAccountDeleteRequest.php
+END
+AlipayTradeFastpayRefundQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeFastpayRefundQueryRequest.php
+END
+AlipayOpenPublicLifeMsgSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLifeMsgSendRequest.php
+END
+AlipayEcapiprodDrawndnContractGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcapiprodDrawndnContractGetRequest.php
+END
+AlipayInsSceneApplicationIssueConfirmRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayInsSceneApplicationIssueConfirmRequest.php
+END
+KoubeiMarketingDataMemberReportQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataMemberReportQueryRequest.php
+END
+AlipayOfflineMarketShopSummaryBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketShopSummaryBatchqueryRequest.php
+END
+KoubeiMarketingCampaignCrowdModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignCrowdModifyRequest.php
+END
+AlipayInsAutoCarSaveRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayInsAutoCarSaveRequest.php
+END
+AlipayOpenPublicPersonalizedMenuDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicPersonalizedMenuDeleteRequest.php
+END
+AlipayCommerceEducateStudentinfoShareRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceEducateStudentinfoShareRequest.php
+END
+AlipayMarketingCardTemplateCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardTemplateCreateRequest.php
+END
+AlipayMobilePublicLabelQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicLabelQueryRequest.php
+END
+AlipayMarketingCardQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardQueryRequest.php
+END
+AlipayOfflineMarketShopCategoryQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketShopCategoryQueryRequest.php
+END
+AlipaySecurityProdAmlriskQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityProdAmlriskQueryRequest.php
+END
+ZhimaMerchantOrderRentQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaMerchantOrderRentQueryRequest.php
+END
+AlipayPassCodeAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassCodeAddRequest.php
+END
+AntMerchantExpandImageUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AntMerchantExpandImageUploadRequest.php
+END
+KoubeiMarketingDataCustomreportSaveRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataCustomreportSaveRequest.php
+END
+AlipayEcoMycarViolationCityPushRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarViolationCityPushRequest.php
+END
+AlipayMdataTagGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMdataTagGetRequest.php
+END
+KoubeiMarketingDataSmartactivityConfigRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataSmartactivityConfigRequest.php
+END
+AlipayEcapiprodDrawndnDrawndnlistQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcapiprodDrawndnDrawndnlistQueryRequest.php
+END
+KoubeiMarketingCampaignActivityBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignActivityBatchqueryRequest.php
+END
+AlipayMobilePublicAccountResetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicAccountResetRequest.php
+END
+AlipayMarketingVoucherSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingVoucherSendRequest.php
+END
+AlipayEbppPdeductSignValidateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppPdeductSignValidateRequest.php
+END
+AlipayUserAccountFreezeGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserAccountFreezeGetRequest.php
+END
+AlipayPassInstanceUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassInstanceUpdateRequest.php
+END
+AlipayOpenPublicMatchuserLabelCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMatchuserLabelCreateRequest.php
+END
+KoubeiMarketingCampaignCrowdDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignCrowdDeleteRequest.php
+END
+AlipayTradeCustomsQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeCustomsQueryRequest.php
+END
+AlipayEcoMycarParkingVehicleQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingVehicleQueryRequest.php
+END
+AlipayMarketingToolFengdieActivityQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingToolFengdieActivityQueryRequest.php
+END
+AlipayDaoweiOrderRefundRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiOrderRefundRequest.php
+END
+AlipaySecurityProdAlipaySecurityProdTestRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityProdAlipaySecurityProdTestRequest.php
+END
+ZhimaMerchantCloseloopDataUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaMerchantCloseloopDataUploadRequest.php
+END
+AlipayAssetPointBudgetQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAssetPointBudgetQueryRequest.php
+END
+AlipayMarketingCardTemplateModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardTemplateModifyRequest.php
+END
+AlipayMobilePublicLabelAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicLabelAddRequest.php
+END
+AlipayCommerceCityfacilitatorScriptQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorScriptQueryRequest.php
+END
+KoubeiRetailShopitemBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiRetailShopitemBatchqueryRequest.php
+END
+KoubeiItemCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemCreateRequest.php
+END
+AlipayDataDataserviceUserlevelZrankGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDataDataserviceUserlevelZrankGetRequest.php
+END
+AlipayOpenPublicQrcodeCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicQrcodeCreateRequest.php
+END
+AlipayEcoCplifeCommunityCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeCommunityCreateRequest.php
+END
+AlipayMicropayOrderDirectPayRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMicropayOrderDirectPayRequest.php
+END
+AlipayExscUserFirstsignGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayExscUserFirstsignGetRequest.php
+END
+AlipayAcquireRefundRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAcquireRefundRequest.php
+END
+KoubeiItemStateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemStateRequest.php
+END
+KoubeiRetailShopitemModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiRetailShopitemModifyRequest.php
+END
+AlipayInsSceneCouponSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayInsSceneCouponSendRequest.php
+END
+AlipayTradePayRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradePayRequest.php
+END
+AlipayEcoMycarDataExternalSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarDataExternalSendRequest.php
+END
+AlipayOfflineMarketMcommentQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketMcommentQueryRequest.php
+END
+KoubeiQualityTestCloudacptBatchQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiQualityTestCloudacptBatchQueryRequest.php
+END
+AlipayAcquireQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAcquireQueryRequest.php
+END
+KoubeiMarketingDataActivityBillDownloadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataActivityBillDownloadRequest.php
+END
+AlipayMarketingCampaignCertCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignCertCreateRequest.php
+END
+KoubeiMarketingDataDishdiagnoseBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataDishdiagnoseBatchqueryRequest.php
+END
+AlipayOpenPublicLabelCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLabelCreateRequest.php
+END
+AlipayMobilePublicMessageLabelSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMessageLabelSendRequest.php
+END
+AlipayOpenPublicPersonalizedExtensionSetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicPersonalizedExtensionSetRequest.php
+END
+AlipayMobilePublicLabelDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicLabelDeleteRequest.php
+END
+AlipayMarketingVoucherTemplatelistQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingVoucherTemplatelistQueryRequest.php
+END
+AlipayMobilePublicLabelUserQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicLabelUserQueryRequest.php
+END
+AlipayMobileStdPublicMenuQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileStdPublicMenuQueryRequest.php
+END
+AlipayMobilePublicMenuUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMenuUpdateRequest.php
+END
+AlipayMarketingVoucherListQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingVoucherListQueryRequest.php
+END
+AlipayOpenPublicPartnerMenuOperateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicPartnerMenuOperateRequest.php
+END
+AlipayOpenServicemarketOrderAcceptRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenServicemarketOrderAcceptRequest.php
+END
+AlipayMarketingCampaignCashTriggerRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignCashTriggerRequest.php
+END
+KoubeiItemModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemModifyRequest.php
+END
+AlipayEcoCplifeCommunityModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeCommunityModifyRequest.php
+END
+AlipayEcoCplifeRoominfoUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeRoominfoUploadRequest.php
+END
+AlipayMobilePublicTemplateMessageGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicTemplateMessageGetRequest.php
+END
+AlipayEcardEduPublicBindRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcardEduPublicBindRequest.php
+END
+AlipayMpointprodBenefitDetailGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMpointprodBenefitDetailGetRequest.php
+END
+AlipayUserInfoAuthRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserInfoAuthRequest.php
+END
+AlipayMicropayOrderFreezepayurlGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMicropayOrderFreezepayurlGetRequest.php
+END
+AlipayAcquireCloseRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAcquireCloseRequest.php
+END
+AlipayAssetPointBalanceQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAssetPointBalanceQueryRequest.php
+END
+AlipayOfflineMarketShopQuerydetailRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketShopQuerydetailRequest.php
+END
+AlipayEbppPdeductSignAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppPdeductSignAddRequest.php
+END
+AlipayOpenPublicMatchuserLabelDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMatchuserLabelDeleteRequest.php
+END
+AlipayPlatformUseridGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPlatformUseridGetRequest.php
+END
+MonitorHeartbeatSynRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/MonitorHeartbeatSynRequest.php
+END
+AlipayTrustUserRiskidentifyGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTrustUserRiskidentifyGetRequest.php
+END
+AlipayOpenPublicPersonalizedExtensionBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicPersonalizedExtensionBatchqueryRequest.php
+END
+AlipayAccountExrateRatequeryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAccountExrateRatequeryRequest.php
+END
+AlipayOpenPublicLabelModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLabelModifyRequest.php
+END
+SsdataDataserviceRiskAlixiaohaoQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/SsdataDataserviceRiskAlixiaohaoQueryRequest.php
+END
+AlipayOfflineMaterialImageUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMaterialImageUploadRequest.php
+END
+AlipayDaoweiOrderTransferRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiOrderTransferRequest.php
+END
+AlipayBossCsChannelQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayBossCsChannelQueryRequest.php
+END
+AlipayCommerceCityfacilitatorVoucherGenerateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorVoucherGenerateRequest.php
+END
+AlipayMarketingCampaignDiscountWhitelistQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDiscountWhitelistQueryRequest.php
+END
+AlipayOfflineMarketReporterrorCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketReporterrorCreateRequest.php
+END
+AlipayMobileStdPublicExpressUserQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileStdPublicExpressUserQueryRequest.php
+END
+AlipayTradeCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeCreateRequest.php
+END
+AlipayMarketingCampaignDrawcampCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDrawcampCreateRequest.php
+END
+AlipaySystemOauthTokenRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySystemOauthTokenRequest.php
+END
+AlipayEcoCplifeResidentinfoDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeResidentinfoDeleteRequest.php
+END
+AlipayMobilePublicLabelUserDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicLabelUserDeleteRequest.php
+END
+AlipayMobilePublicQrcodeCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicQrcodeCreateRequest.php
+END
+AlipayMobilePublicShortlinkCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicShortlinkCreateRequest.php
+END
+AlipayOfflineMarketItemCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketItemCreateRequest.php
+END
+AlipayFundTransToaccountTransferRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayFundTransToaccountTransferRequest.php
+END
+KoubeiMarketingDataMessageDeliverRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataMessageDeliverRequest.php
+END
+KoubeiItemExtitemBrandQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemExtitemBrandQueryRequest.php
+END
+AlipayPassTplContentAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassTplContentAddRequest.php
+END
+AlipayZdatafrontDatatransferedSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayZdatafrontDatatransferedSendRequest.php
+END
+AlipayEcoMycarParkingExitinfoSyncRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingExitinfoSyncRequest.php
+END
+AlipayOfflineMarketReportGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketReportGetRequest.php
+END
+AlipayOpenPublicLabelDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLabelDeleteRequest.php
+END
+KoubeiQualityTestCloudacptActivityQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiQualityTestCloudacptActivityQueryRequest.php
+END
+AlipayPcreditLoanApplyCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPcreditLoanApplyCreateRequest.php
+END
+AlipayEcapiprodDrawndnRepaymentrecordQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcapiprodDrawndnRepaymentrecordQueryRequest.php
+END
+AlipayPointBalanceGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPointBalanceGetRequest.php
+END
+AlipayMarketingCampaignPrizeAmountQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignPrizeAmountQueryRequest.php
+END
+AlipayMarketingCardActivateformQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardActivateformQueryRequest.php
+END
+AlipayMarketingCampaignDrawcampStatusUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDrawcampStatusUpdateRequest.php
+END
+AlipayEcapiprodDrawndnLendingrecordQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcapiprodDrawndnLendingrecordQueryRequest.php
+END
+AlipayAcquireCreateandpayRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAcquireCreateandpayRequest.php
+END
+AlipayDaoweiOrderCancelRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiOrderCancelRequest.php
+END
+AlipayAssetPointOrderQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAssetPointOrderQueryRequest.php
+END
+AlipayTradeOrderSettleRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeOrderSettleRequest.php
+END
+AlipayOfflineMarketItemModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketItemModifyRequest.php
+END
+AlipayMobilePublicLabelUserAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicLabelUserAddRequest.php
+END
+AlipayCommerceCityfacilitatorVoucherConfirmRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorVoucherConfirmRequest.php
+END
+AlipayEcoMycarMaintainDataUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarMaintainDataUpdateRequest.php
+END
+AlipayTrustUserTokenGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTrustUserTokenGetRequest.php
+END
+AlipayAcquirePrecreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAcquirePrecreateRequest.php
+END
+AlipayTransferThirdpartyBillCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTransferThirdpartyBillCreateRequest.php
+END
+AlipayMobileCodeCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileCodeCreateRequest.php
+END
+KoubeiMarketingCampaignCrowdDetailQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignCrowdDetailQueryRequest.php
+END
+KoubeiMarketingDataIndicatorQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataIndicatorQueryRequest.php
+END
+AlipayMarketingCardOpenRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardOpenRequest.php
+END
+AlipayUserAccountUseridBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserAccountUseridBatchqueryRequest.php
+END
+AlipayAcquireCancelRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAcquireCancelRequest.php
+END
+AlipayMobileStdPublicFollowListRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileStdPublicFollowListRequest.php
+END
+AlipayEbppBillAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEbppBillAddRequest.php
+END
+AlipayMobilePublicInfoQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicInfoQueryRequest.php
+END
+MybankFinanceYulibaoTransHistoryQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/MybankFinanceYulibaoTransHistoryQueryRequest.php
+END
+AntMerchantExpandEnterpriseApplyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AntMerchantExpandEnterpriseApplyRequest.php
+END
+AlipayEcoCplifeNoticeDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeNoticeDeleteRequest.php
+END
+AlipayOpenPublicMessageLabelSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMessageLabelSendRequest.php
+END
+AlipayEcoMycarCarmodelModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarCarmodelModifyRequest.php
+END
+AlipayOfflineMarketLeadsQrcodeQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketLeadsQrcodeQueryRequest.php
+END
+AlipayMicropayOrderUnfreezeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMicropayOrderUnfreezeRequest.php
+END
+AlipayZdataassetsEasyserviceRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayZdataassetsEasyserviceRequest.php
+END
+KoubeiMarketingDataTradeHabbitQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataTradeHabbitQueryRequest.php
+END
+AlipayTradePrecreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradePrecreateRequest.php
+END
+KoubeiCraftsmanDataWorkCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiCraftsmanDataWorkCreateRequest.php
+END
+AlipayOpenPublicThirdCustomerServiceRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicThirdCustomerServiceRequest.php
+END
+AlipayMarketingCardDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardDeleteRequest.php
+END
+AlipayMarketingToolFengdieEditorQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingToolFengdieEditorQueryRequest.php
+END
+AlipayFundAuthOperationCancelRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayFundAuthOperationCancelRequest.php
+END
+AlipayOpenServicemarketOrderItemCancelRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenServicemarketOrderItemCancelRequest.php
+END
+AlipayMobileBeaconDeviceModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileBeaconDeviceModifyRequest.php
+END
+AlipayOfflineMarketingVoucherStatusQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketingVoucherStatusQueryRequest.php
+END
+AlipayPcreditHuabeiPromoQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPcreditHuabeiPromoQueryRequest.php
+END
+AlipayOpenPublicMenuQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMenuQueryRequest.php
+END
+AlipayEcoMycarParkingCardbarcodeCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingCardbarcodeCreateRequest.php
+END
+AntMerchantExpandPersonalApplyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AntMerchantExpandPersonalApplyRequest.php
+END
+AlipayDaoweiOrderRefuseRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiOrderRefuseRequest.php
+END
+KoubeiMarketingToolPointsUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingToolPointsUpdateRequest.php
+END
+KoubeiItemExtitemCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemExtitemCreateRequest.php
+END
+AlipayUserAccountSearchRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserAccountSearchRequest.php
+END
+KoubeiMarketingToolPrizesendAuthRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingToolPrizesendAuthRequest.php
+END
+AlipayEcoMycarDataExternalQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarDataExternalQueryRequest.php
+END
+AlipayOpenPublicLabelQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicLabelQueryRequest.php
+END
+AlipayZdataassetsMetadataRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayZdataassetsMetadataRequest.php
+END
+AlipayCommerceCityfacilitatorVoucherQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorVoucherQueryRequest.php
+END
+AlipayCommerceCityfacilitatorVoucherBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorVoucherBatchqueryRequest.php
+END
+AlipayOfflineProviderDishQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineProviderDishQueryRequest.php
+END
+AlipayEcoMycarParkingLotbarcodeCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingLotbarcodeCreateRequest.php
+END
+AlipayMarketingToolFengdieActivityCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingToolFengdieActivityCreateRequest.php
+END
+ZhimaMerchantOrderRentCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaMerchantOrderRentCreateRequest.php
+END
+AlipayOfflineMarketingVoucherCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketingVoucherCreateRequest.php
+END
+AlipayEcoMycarParkingParkinglotinfoCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingParkinglotinfoCreateRequest.php
+END
+ZhimaDataBatchFeedbackRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaDataBatchFeedbackRequest.php
+END
+AlipayOpenServicemarketOrderNotifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenServicemarketOrderNotifyRequest.php
+END
+AlipayUserContractGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayUserContractGetRequest.php
+END
+AlipayOfflineMarketShopPublicBindRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketShopPublicBindRequest.php
+END
+KoubeiCraftsmanDataWorkModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiCraftsmanDataWorkModifyRequest.php
+END
+AlipayMobileBeaconDeviceDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileBeaconDeviceDeleteRequest.php
+END
+KoubeiMemberRetailerQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMemberRetailerQueryRequest.php
+END
+AlipayMarketingCampaignActivityOfflineTriggerRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignActivityOfflineTriggerRequest.php
+END
+AlipayEcoMycarOrderStatusQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarOrderStatusQueryRequest.php
+END
+AlipayMarketingCampaignCashDetailQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignCashDetailQueryRequest.php
+END
+AlipayMobilePublicMessageTotalSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMessageTotalSendRequest.php
+END
+AlipayMarketingCampaignDiscountWhitelistUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDiscountWhitelistUpdateRequest.php
+END
+AlipayMarketingVoucherTemplateDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingVoucherTemplateDeleteRequest.php
+END
+AlipayMobilePublicMessagespecifyPushRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMessagespecifyPushRequest.php
+END
+AlipayOpenPublicGroupCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicGroupCreateRequest.php
+END
+KoubeiMarketingDataAlisisReportBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingDataAlisisReportBatchqueryRequest.php
+END
+KoubeiItemExtitemExistedQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiItemExtitemExistedQueryRequest.php
+END
+AlipayOpenAuthTokenAppQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenAuthTokenAppQueryRequest.php
+END
+AlipayCommerceCityfacilitatorDepositConfirmRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayCommerceCityfacilitatorDepositConfirmRequest.php
+END
+ZhimaMerchantDataUploadInitializeRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaMerchantDataUploadInitializeRequest.php
+END
+AlipayEcoMycarParkingOrderUpdateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingOrderUpdateRequest.php
+END
+AlipayMobilePublicMessagebatchPushRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMessagebatchPushRequest.php
+END
+KoubeiContentCommentDataBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiContentCommentDataBatchqueryRequest.php
+END
+AlipayZdataserviceUnidataQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayZdataserviceUnidataQueryRequest.php
+END
+AlipayOpenPublicMessageSingleSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMessageSingleSendRequest.php
+END
+AlipayOfflineMarketingVoucherOfflineRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketingVoucherOfflineRequest.php
+END
+AlipayOpenAuthTokenAppRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenAuthTokenAppRequest.php
+END
+AlipayOfflineProviderEquipmentAuthRemoveRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineProviderEquipmentAuthRemoveRequest.php
+END
+AlipayOpenPublicDefaultExtensionCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicDefaultExtensionCreateRequest.php
+END
+AlipayMarketingCampaignDrawcampQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignDrawcampQueryRequest.php
+END
+ZhimaMerchantOrderRentModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/ZhimaMerchantOrderRentModifyRequest.php
+END
+AlipayOfflineMarketingVoucherModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketingVoucherModifyRequest.php
+END
+AlipayMobileCodeQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobileCodeQueryRequest.php
+END
+AlipayZdatafrontDatatransferedFileuploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayZdatafrontDatatransferedFileuploadRequest.php
+END
+AlipaySecurityRiskDetectRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityRiskDetectRequest.php
+END
+AlipayEcoCplifeCommunityDetailsQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeCommunityDetailsQueryRequest.php
+END
+AlipayMarketingVoucherConfirmRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingVoucherConfirmRequest.php
+END
+AlipayMarketingCampaignCashStatusModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignCashStatusModifyRequest.php
+END
+KoubeiCraftsmanDataWorkDeleteRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiCraftsmanDataWorkDeleteRequest.php
+END
+AlipayMarketingCardBenefitQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCardBenefitQueryRequest.php
+END
+AlipayMsaasMediarecogVoiceMediaaudioUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMsaasMediarecogVoiceMediaaudioUploadRequest.php
+END
+AlipayEcoMycarViolationInfoPushRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarViolationInfoPushRequest.php
+END
+KoubeiQualityTestCloudacptCheckresultSubmitRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiQualityTestCloudacptCheckresultSubmitRequest.php
+END
+AlipayOpenServicemarketOrderQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenServicemarketOrderQueryRequest.php
+END
+AlipayPassSyncAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassSyncAddRequest.php
+END
+AlipaySecurityRiskHideDeviceidQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityRiskHideDeviceidQueryRequest.php
+END
+AlipayOpenAppPackagetestRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenAppPackagetestRequest.php
+END
+AlipayPassFileAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayPassFileAddRequest.php
+END
+AlipayEcoMycarParkingConfigSetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoMycarParkingConfigSetRequest.php
+END
+KoubeiMarketingCampaignActivityCreateRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiMarketingCampaignActivityCreateRequest.php
+END
+AlipayTradeQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayTradeQueryRequest.php
+END
+AlipayOpenPublicGroupModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicGroupModifyRequest.php
+END
+AlipayDataBillDownloadurlGetRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDataBillDownloadurlGetRequest.php
+END
+AlipayMobilePublicMessageSingleSendRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicMessageSingleSendRequest.php
+END
+AlipayOfflineMarketShopApplyorderCancelRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOfflineMarketShopApplyorderCancelRequest.php
+END
+AlipayOpenPublicGisQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicGisQueryRequest.php
+END
+AlipayEcoCplifeBillSyncRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoCplifeBillSyncRequest.php
+END
+KoubeiRetailShopitemUploadRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/KoubeiRetailShopitemUploadRequest.php
+END
+AlipayAccountExrateAdviceAcceptRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayAccountExrateAdviceAcceptRequest.php
+END
+AlipayMarketingCampaignCashListQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMarketingCampaignCashListQueryRequest.php
+END
+AlipayOpenPublicAccountQueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicAccountQueryRequest.php
+END
+AlipayEcoWelfareCodeSyncRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayEcoWelfareCodeSyncRequest.php
+END
+AlipaySecurityProdFingerprintApplyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityProdFingerprintApplyRequest.php
+END
+AlipaySecurityProdFacerepoAddRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipaySecurityProdFacerepoAddRequest.php
+END
+AlipayOpenPublicMenuBatchqueryRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayOpenPublicMenuBatchqueryRequest.php
+END
+AlipayMobilePublicStdMockListsmlistApiRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayMobilePublicStdMockListsmlistApiRequest.php
+END
+AlipayDaoweiOrderSpModifyRequest.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/aop/request/AlipayDaoweiOrderSpModifyRequest.php
+END

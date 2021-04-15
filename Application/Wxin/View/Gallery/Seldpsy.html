@@ -1,0 +1,252 @@
+<include file="Public:header"/>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="user_left">
+          <div class="user_tx">
+            <div class="user_tx_img"> <img src="__IMAGES__/user_tx.jpg" width="100"> <span><img src="__IMAGES__/user_tx1.png" width="22"></span> </div>
+            <span>店铺名称</span><a href="/Home/Gallery/dianpu">店铺预览</a>
+          <div class="user_nav">
+            <ul>
+              <h5>店铺管理</h5>
+              </a> <a href="{:U('Home/Gallery/seldpsy')}/detail/6">
+              <li class="user_nav_on" >店铺收益</li>
+              </a> <a  href="{:U('Home/Gallery/seldpsy')}/detail/7">
+              <li <eq name="_GET['detail']" value="7">class="actived"</eq>>推荐收益</li>
+              </a>
+              <div class="user_nav_line"></div>
+              <h5>交易管理</h5>
+              <a href="{:U('Home/Gallery/seldpsy')}/status/4"><!--selSellout.html-->
+              <li>已卖出作品</li>
+              </a> <a href="{:U('Home/Gallery/seldpsy')}/status/5"><!--SelEvaluate.html-->
+              <li>已评价</li>
+              </a>
+              <div class="user_nav_line"></div>
+              <h5>物流管理</h5>
+              <a href="{:U('Home/Gallery/seldpsy')}/status/2"><!--SelDeliver.html-->
+              <li>发货</li>
+              </a> <a href="SelBill.html">
+              <li>单据查询</li>
+              </a>
+              <div class="user_nav_line"></div>
+              <h5>作品管理</h5>
+              <a href="SelRelease.html">
+              <li>发布作品</li>
+              </a> <a href="SelChushou.html">
+              <li>出售中的作品</li>
+              </a> <a href="SelInwarehouse.html">
+              <li >仓库中的作品</li>
+              </a>
+              <div class="user_nav_line"></div>
+              <h5>客户服务</h5>
+              <a href="SelTuikuan.html">
+              <li>维权管理</li>
+              </a> <a href="SelReport.html">
+              <li>举报管理</li>
+              </a> <a href="#">
+              <li>违规管理</li>
+              </a> <a href="Selqyzl.html">
+              <li>企业资料</li>
+              </a>
+            </ul>
+          </div>
+          <script>
+
+          </script>
+          
+
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <div class="user_r">
+          <div class="SeldpsyCon">
+            <if condition="$Think.get.detail eq 6"><h3>店铺收益</h3>
+              <elseif condition="$Think.get.detail eq 7"/><h3>推荐收益</h3>
+              <else />
+            </if>
+            <div class="SeldpsyUl" style="text-align:center;">
+              
+              <ul>
+                <if condition="$Think.get.detail neq null">
+                <li>
+                  <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI1.png" /></div>
+                  <div class="SeldpsyUl_right">
+                    <h3>总收益</h3>
+                    <h6><b>{$summoney|default=0}</b>元</h6>
+                  </div>
+                </li>
+                 <else/>
+                   <li>
+                  <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI1.png" /></div>
+                  <div class="SeldpsyUl_right">
+                    <h3>收益</h3>
+                    <h6><b>{$summoney|default=0}</b>元</h6>
+                  </div>
+                </li>
+                 </if>
+                <li>
+                  <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI2.png" /></div>
+                  <div class="SeldpsyUl_right">
+                    <h3>总订单</h3>
+                    <h6><b>{$count|default=0}</b>单</h6>
+                  </div>
+                </li>
+                <li>
+                  <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI3.png" /></div>
+                  <div class="SeldpsyUl_right">
+                    <h3>总访客</h3>
+                    <h6><b>{$artists['browser']|default=0}</b>次</h6>
+                  </div>
+                </li>
+              </ul>
+             
+            </div>
+          </div>
+          <div class="user_r" style="width:1150px;margin-left:65px;">
+           <!-- <ul class="user_all"> -->
+             <!--  <li <eq name="_GET['status']" value=""></eq> ><a href="{:U('Home/Gallery/seldpsy',array('t'=>'seldpsy1'))}">全部订单</a></li>
+              <li <eq name="_GET['detail']" value="6">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/6/status/{$status}">店铺订单</a></li> -->
+              <!-- <li <eq name="_GET['detail']" value="7">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/7/status/{$status}">推荐订单</a></li> -->
+              <!-- <li <eq name="_GET['status']" value="1">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/{$detail}/status/1">待付款</a></li>
+              <li <eq name="_GET['status']" value="2">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/{$detail}/status/2">待发货</a></li>
+              <li <eq name="_GET['status']" value="3">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/{$detail}/status/3">待收货</a></li>
+              <li <eq name="_GET['status']" value="4">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/{$detail}/status/4">待评价</a></li>
+              <li <eq name="_GET['status']" value="5">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/{$detail}/status/5">已完成</a></li> -->
+           <!--  </ul> -->
+          </div>
+          <div class="SeldpsyCon">
+            <h3>收益明细</h3>
+            <volist name="order" id="vo">
+            <div class="user_r_list">
+              <h5><span>时间：{$vo.order_time|date='Y-m-d H:i:s',###}</span><span>订单号：{$vo.order_no}</span></h5>
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:40%;">商品名称</th>
+                    <th style="width:12%;"><if condition="$vo.is_recommend eq 1">数量<else />租赁天数</if></th>
+                    <th style="width:12%;"><if condition="$vo.is_recommend eq 1">出售价格<else />押金</if></th>
+                    <th style="width:12%;">运费</th>
+                    <th style="width:12%;">状态</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="{$vo.index_pic}" target = "_bank"><img src="{$vo.index_pic}" width="100"><span>{$vo.index_name}</span></a></td>
+                    <td>{$vo.goods_nums}</td>
+                    <td>¥{$vo.price}</td>
+                    <td>¥{$vo.express_fee}</td>
+
+                      <td>
+                      <switch name="vo.order_status">
+                        <case value="1">未付款</br>(付款时间24小时)</case>
+                        <case value="2">已付款待发货</case>
+                        <case value="3">已发货待收货</case>
+                        <case value="4">已收货待评价</case>
+                        <case value="5">已完成</case>
+                        <case value="6">退款中</case>
+                        <case value="7">已关闭</case>
+                      </switch>
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </volist>
+          <!--   <div class="user_r_list">
+              <h5><span>时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:40%;">商品名称</th>
+                    <th style="width:12%;">数量</th>
+                    <th style="width:12%;">出售价格</th>
+                    <th style="width:12%;">提成收益</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="#"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>¥800.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="user_r_list">
+              <h5><span>时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:40%;">商品名称</th>
+                    <th style="width:12%;">数量</th>
+                    <th style="width:12%;">出售价格</th>
+                    <th style="width:12%;">提成收益</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="#"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>¥800.00</td>
+                  </tr>
+                </tbody>
+              </table> -->
+           <!--  </div>
+            <div class="user_r_list">
+              <h5><span>时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:40%;">商品名称</th>
+                    <th style="width:12%;">数量</th>
+                    <th style="width:12%;">出售价格</th>
+                    <th style="width:12%;">提成收益</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="#"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>¥800.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+        <!--     <div class="user_r_list">
+              <h5><span>时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:40%;">商品名称</th>
+                    <th style="width:12%;">数量</th>
+                    <th style="width:12%;">出售价格</th>
+                    <th style="width:12%;">提成收益</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="#"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>¥800.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+      <div >{$page}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<!--  / warpper  --> 
+
+<!--  / footer  -->
+<include file="Public/footer" />
+
+<!--  / footer  -->
+
+</body>
+</html>

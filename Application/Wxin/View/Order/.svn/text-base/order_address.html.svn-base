@@ -1,0 +1,61 @@
+<include file="Public:header" />
+<!--  / warpper  -->
+<div class="warpper">
+
+
+<!--  / user  -->
+<div class="user">
+  
+  <div class="user5">
+    <h5>收货地址</h5>
+    
+    <div class="user5_list clearfix">
+      <a href="order1.html"><div class="user5_list1">
+        <p>李亮</p>
+        <span>默认</span>
+      </div></a>
+      <a href="order1.html"><div class="user5_list2">
+        <p>18674001723</p>
+        <span>浙江省杭州市西湖区文三路华星时代广场</span>
+      </div></a>  
+      <a href="use/shop06.html"><div class="user5_list3">
+        <img src="images/bianj.svg" width="30">   
+      </div></a>    
+    </div>
+    
+    <div class="user5_list clearfix">
+      <a href="order1.html"><div class="user5_list1">
+        <p>李亮</p>
+      </div></a>
+      <a href="order1.html"><div class="user5_list2">
+        <p>18674001723</p>
+        <span>浙江省杭州市滨江区联庄二区167号</span>
+      </div></a>  
+      <a href="use/shop06.html"><div class="user5_list3">
+        <img src="images/bianj.svg" width="30">   
+      </div></a>     
+    </div>
+        
+  </div>  
+   
+</div>
+<!--  / user  -->
+
+<div class="user5_xj">
+  <a href="use/shop06.html">新建</a>    
+</div>
+
+
+</div>
+<!--  / warpper  -->
+
+
+<!--  / footer  -->
+
+<!--  / footer  -->
+
+</body>
+<script>
+
+</script>
+</html>

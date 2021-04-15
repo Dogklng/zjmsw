@@ -1,0 +1,175 @@
+<include file="Public:header" />
+<!--  / header  -->
+<div class="galleryClass" style="margin-top:60px;">
+  <div class="galleryScroll">
+    <a href="{:U('/Wxin/News/process')}" class="active">大赛流程</a>
+    <a href="{:U('/Wxin/News/processDetails')}">大赛详情</a>
+    <a href="{:U('/Wxin/News/works')}">在线作品</a>
+    <a href="{:U('/Wxin/News/win')}">获奖作品</a>
+  <a id="zggA" class="zgg" href="javascript:void(0);" >我要投稿</a>
+  </div>
+  <input type="hidden" id="nid" name="nid" value="{$Think.session.nid}"/>
+</div>
+<style>
+  .zggLcPlate {
+    margin-top: 20px;
+    border-bottom: 1px dashed #ddd;
+    overflow: hidden;
+  }
+  .zggLcUl {
+    margin-top: 30px;
+  }
+  .zggLcUl li {
+    margin-right: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .zggLcUl li>img {
+    width: 60px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .zggLcLine img {
+    width: 15px;
+  }
+</style>
+<style>
+  .zggLcPlate1 h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .zggA {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  .zggA a {
+    margin: 10px 22% 0 22%;
+    display: inline-block;
+    background: #d70000;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+    padding: 7px 60px;
+    border-radius: 3px;
+  }
+  .zggLcPlate h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .zggLcUlJx li {
+    margin: 0 auto 20px;
+    width: 240px;
+    border: 1px solid #eee;
+    padding: 20px;
+    text-align: center;
+  }
+  .zggLcUlJx li img {
+    width: 90px;
+    margin-bottom: 10px;
+  }
+  .zhenggLcCon {
+    overflow: hidden;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 30px;
+  }
+  .zggLcPlate {
+    margin-top: 20px;
+    border-bottom: 1px dashed #ddd;
+    overflow: hidden;
+  }
+</style>
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:50px;">
+  <!-- <div class="zhenggLcTitle">
+    <h3>第六期艺术主题大赛征稿进行中...</h3>
+  </div> -->
+  <div class="zhenggLcCon">
+    <div class="zggLcPlate1">
+      <h3>大赛引言</h3>
+      <h6>{$prizes['contonts']|htmlspecialchars_decode|stripslashes}</h6>
+    </div>
+    <div class="zggLcPlate">
+      <h3>大赛时间</h3>
+      <ul class="zggLcUl">
+        <li><img src="__IMAGES__/zggLc1.png" />
+          <h6>作品征集</h6>
+          <span>{$prizes['start_time']|date='Y-m-d',###} - {$prizes['collectiontime']|date='Y-m-d',###}</span></li>
+        <li>
+          <div class="zggLcLine"><img src="__IMAGES__/zggLc0.png" /></div>
+        </li>
+        <li><img src="__IMAGES__/zggLc2.png" />
+          <h6>作品评选</h6>
+          <span>{$prizes['collectiontime']|date='Y-m-d',###} - {$prizes['selectiontime']|date='Y-m-d',###}</span></li>
+        <li>
+          <div class="zggLcLine"><img src="__IMAGES__/zggLc0.png" /></div>
+        </li>
+        <li><img src="__IMAGES__/zggLc3.png" />
+          <h6>结果公布</h6>
+          <span>{$prizes['selectiontime']|date='Y-m-d',###}<notempty name="prizes['end_time']"> - {$prizes['end_time']|date='Y-m-d',###}</notempty></span></li>
+      </ul>
+    </div>
+    <div class="zggLcPlate">
+      <h3>大赛奖项</h3>
+      <if condition="$prize neq ''">
+        <ul class="zggLcUlJx">
+          <li><img src="{$prizes['first_picture']}" />
+            <div class="zggLcJx">
+              <h6>一等奖（{$prizes['first_number']}名）</h6>
+            <span>{$prizes['first_name']}<br />
+            （价值约¥{$prizes['first_money']}）</span></div>
+          </li>
+          <li><img src="{$prizes['second_picture']}" />
+            <div class="zggLcJx">
+              <h6>二等奖（{$prizes['second_number']}名）</h6>
+            <span>{$prizes['second_name']}<br />
+            （价值约¥{$prizes['second_money']}）</span></div>
+          </li>
+          <li><img src="{$prizes['third_picture']}" />
+            <div class="zggLcJx">
+              <h6>三等奖（{$prizes['third_number']}名）</h6>
+            <span>{$prizes['third_name']}<br />
+            （价值约¥{$prizes['third_money']}）</span></div>
+          </li>
+          <li><img src="{$prizes['create_picture']}" />
+            <div class="zggLcJx">
+              <h6>创意奖（{$prizes['create_number']}名）</h6>
+            <span>{$prizes['create_name']}<br />
+            （价值约¥{$prizes['create_money']}）</span></div>
+          </li>
+        </ul></if>
+    </div>
+    <div class="zggLcPlate">
+      <h3>大赛评委</h3>
+      <div class="row">
+        <volist name="judges" id="vo">
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="zgpw">
+              <div class="zgpwimg">
+                <img src="{$vo['picj']}"/>
+              </div>
+              <div class="zgpwtxt">
+                <h3>{$vo['aname']}</h3>
+                <h4>{$vo['school']}</h4>
+                <h6>{$vo['adetail']|htmlspecialchars_decode|stripslashes}</h6>
+              </div>
+            </div>
+          </div>
+        </volist>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+
+</body>
+</html>

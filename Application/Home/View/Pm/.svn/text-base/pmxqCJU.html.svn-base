@@ -1,0 +1,208 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM">
+  <div class="buy">
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+          <include file="Public:images" />
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="buy_con_text pm_con_text" style=" float:left; width:90%;">
+              <h3>{$res.goods_name}</h3>
+              <div class="buyDel">
+                <ul>
+                  <li><b>作品的上架时间 :</b>{$res['shang_time']|date="Y-m-d",###}</li>
+                  <!--<li><b>编号 :</b> {$res.goods_mel}</li>
+                  <li><b>作者 :</b> {$res.goods_cap}</li>-->
+                  <li><b>材质 ：</b>{$res.goods_skin}</li>
+                  <li><b>尺寸 ：</b> {$res.goods_range}</li>
+                  <li><b>创作年代 :</b> {$res.goods_care}年</li>
+                  <li><b>品相 ：</b>{$res.goods_com}</li>
+                  <!--<li><b>版本 ：</b>{$res.goods_version}</li>-->
+                </ul>
+              </div>
+              <h4><i style="background:#999;">已结束</i> 结束时间：<span>{$res['end']|date="Y年m月d日 H:i",###}</span></h4>
+              <div class="qpxx">
+                <div class="qpxx1" style="padding-left:50px;">
+                  <h6>当前价成交加：<span style="font-size:24px;">¥{$res.dangqian}</span>   您已出局</h6>
+                </div>
+
+                <ul class="qpxx2">
+                  <li><span>{$res.baomin|default=0}</span>人报名 </li>
+                  <li><span>{$tx|default=0}</span>人设置提醒 </li>
+                  <li><span>{$res.weiguan|default=0}</span>次围观</li>
+                  <div class="clear"></div>
+                </ul>
+                <ul class="qpxx3">
+                  <li>起拍价: <span>¥{$res.start_price}</span></li>
+                  <li>加价幅度: <span>¥{$res.fudu}</span></li>
+                  <li>保证金: <span>¥{$res.baoding}</span></li>
+                  <li>佣金: <span>{$res.yongjin}%</span></li>
+                  <!--<li>延时周期: {$res.zhouqi}天</li>-->
+                  <!--<li>保留价:<span>¥{$res.baoliu}</span></li>-->
+                  <div class="clear"></div>
+                  <input type="hidden" id="goods_id" value="{$res.id}">
+                </ul>
+                <div class="qpxx4">特色服务：<span>假一赔三</span> <span>拍前预展</span> </div>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <include file="Public/pmxq" />
+    </div>
+    <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+
+
+$(document).ready(function(){
+
+$(".jpxz").click(function(e){
+		    $(".popBox").css({"display":"block"})
+	})
+	
+	
+$(".closejp").click(function(e){
+		    $(".popBox").css({"display":"none"})
+	})
+	
+});
+</script>
+<script>
+function GetRTime(){    
+	var EndTime= new Date('2017/9/8 10:00:00');    
+	var NowTime = new Date();    
+	var t =EndTime.getTime() - NowTime.getTime();    
+	var h=0;    
+	var m=0;    
+	var s=0;   
+	if(t>=0){      
+		d=Math.floor(t/1000/60/60/24);      
+		h=Math.floor(t/1000/60/60%24);
+		console.log(h) 
+		//h=Math.floor(t/1000/60/60);      
+		m=Math.floor(t/1000/60%60);      
+		s=Math.floor(t/1000%60);    
+	}        
+	document.getElementById("t_h").innerHTML = h<10? "0"+h : h;    
+	document.getElementById("t_m").innerHTML = m<10? "0"+m : m;    
+	document.getElementById("t_s").innerHTML = s<10? "0"+s : s;  
+}  
+setInterval(GetRTime,0);
+  
+</script>
+<script>
+$(window).load(function(){
+
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  // console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  // console.log(showmagnifierWidth);
+  // console.log(showmagnifierHeight);
+  
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  // console.log(hiddenmagnifierWidth);
+  // console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  // console.log(bigmagnifierWidth);
+  // console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  // console.log(xiaohuangWidth);
+  // console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+
+
+})
+
+$(window).resize(function(){
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  // console.log(showmagnifierWidth);
+  // console.log(showmagnifierHeight);
+  
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  // console.log(hiddenmagnifierWidth);
+  // console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  // console.log(bigmagnifierWidth);
+  // console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  // console.log(xiaohuangWidth);
+  // console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+});
+
+
+</script>
+<script src="__JS__/detail.js"></script>
+<script>
+  
+  $(".jian").click(function () {
+            var gm_num = $(this).next().find("input").val();
+            if(gm_num <= 0){
+              gm_num=1;
+              $(this).next().find("input").val(gm_num);
+            }
+            if (gm_num >= 1) {
+              gm_num-=1;
+              if(gm_num <= 0){
+                gm_num=1;
+              }
+                
+                $(this).next().find("input").val(gm_num);
+            }
+        })
+    $(".jia").click(function () {
+        var gm_num2 = parseInt($(this).prev().find("input").val());
+        if(gm_num2 < 1000){
+            gm_num2 += 100;
+            $(this).prev().find("input").val(gm_num2);
+        }
+    })
+
+</script>
+</html>

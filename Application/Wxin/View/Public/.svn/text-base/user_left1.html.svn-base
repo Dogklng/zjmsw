@@ -1,0 +1,116 @@
+<style>
+    .pages {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+    }
+    .pages .current {
+        background: #ff6801 !important;
+        border: 1px solid #ff6801 !important;
+        color: #fff !important;
+    }
+    .pages a,.pages span {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+        background: #fff;
+        font-size: 14px;
+        border: 1px solid #dbdbdb;
+        color: #666;
+        padding: 0 20px;
+        cursor: pointer;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+</style>
+<div class="user_left">
+    <div class="user_tx">
+        <div class="user_tx_img">
+           <empty name="headimg.person_img">
+                <img src="__IMAGES__/user_tx.jpg">
+                <else/>
+                <img src="{$headimg.person_img}" width="100">
+            </empty>
+           <input id="imgOne" name="imgOne" type="hidden" />
+            <input style="width: 108px;height: 100px; background: red;border-radius: 50%; position: absolute; top: 3px;left: -15px;padding: 0;z-index: 10;cursor: pointer;opacity: 0;" type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="xuanze" />
+        </div>
+        <span>{$headimg.person_name}</span></br>
+        <a href="{:U('/Home/User/login')}">切换帐号</a>
+    </div>
+    <div class="user_nav">
+        <ul>
+            <h5>交易管理</h5>
+            <a href="{:U('/Home/PersonalCenter/myOrder/tag/myOrder')}"><li <eq name="Think.get.tag" value="myOrder">class="user_nav_on"</eq> >我的订单</li></a>
+            <a href="{:U('/Home/PersonalCenter/lease/tag/lease')}"><li <eq name="Think.get.tag" value="lease">class="user_nav_on"</eq> >我的租赁</li></a>
+            <a href="{:U('/Home/PersonalCenter/returnGoods/tag/returnGoods')}"><li <eq name="Think.get.tag" value="returnGoods">class="user_nav_on"</eq> >退款/退货</li></a>
+            <div class="user_nav_line"></div>
+            <h5>我的拍卖</h5>
+            <!--<a href="buyerCan.html"><li class="user_nav_on">参拍宝贝</li></a>
+            <a href="buyerXia.html"><li>已拍下</li></a>
+            <a href="buyerJin.html"><li>保证金</li></a>
+            <a href="buyerMy.html"><li>我的提醒</li></a>-->
+            <a href="{:U('/Home/PersonalCenter/buyerCan/tag/buyerCan')}"><li <eq name="Think.get.tag" value="buyerCan">class="user_nav_on"</eq>>参拍宝贝</li></a>
+            <a href="{:U('/Home/PersonalCenter/buyerXia/tag/buyerXia')}"><li <eq name="Think.get.tag" value="buyerXia">class="user_nav_on"</eq>>已拍下</li></a>
+            <a href="{:U('/Home/PersonalCenter/buyerJin/tag/buyerJin')}"><li <eq name="Think.get.tag" value="buyerJin">class="user_nav_on"</eq>>保证金</li></a>
+            <a href="{:U('/Home/PersonalCenter/buyerMy/tag/buyerMy')}"><li <eq name="Think.get.tag" value="buyerMy">class="user_nav_on"</eq>>我的提醒</li></a>
+            <a href="{:U('/Home/PersonalCenter/buyerListPm/tag/buyerListPm')}"><li <eq name="Think.get.tag" value="buyerListPm">class="user_nav_on"</eq>>拍卖列表</li></a>
+            <!--<a href="{:U('/Home/PersonalCenter/buyerAddPm/tag/buyerAddPm')}"><li <eq name="Think.get.tag" value="buyerAddPm">class="user_nav_on"</eq>>入驻拍卖</li></a>-->
+            <div class="user_nav_line"></div>
+            <!--<h5>评论管理</h5>
+            <a href="{:U('/Home/PersonalCenter/pendEvaluate/tag/pendEvaluate')}"><li <eq name="Think.get.tag" value="pendEvaluate">class="user_nav_on"</eq> >待评价 <span>3 </span></li></a>
+            <a href="{:U('/Home/PersonalCenter/haveEvaluate/tag/haveEvaluate')}"><li <eq name="Think.get.tag" value="haveEvaluate">class="user_nav_on"</eq> >已评价</li></a>
+            <div class="user_nav_line"></div>-->
+            <h5>我的展览</h5>
+            <a href="{:U('/Home/PersonalCenter/canzhan/tag/canzhan')}"><li <eq name="Think.get.tag" value="canzhan">class="user_nav_on"</eq> >我的参展</li></a>
+            <a href="{:U('/Home/PersonalCenter/banzhan/tag/banzhan')}"><li <eq name="Think.get.tag" value="banzhan">class="user_nav_on"</eq> >我的办展</li></a>
+            <!-- <a href="user11.html"><li>积分兑换记录</li></a>
+            <a href="user3.html"><li>我的优惠卷</li></a>
+            <a href="user9.html"><li>邀请好友</li></a> -->
+            <div class="user_nav_line"></div>
+            <h5>我的账户</h5>
+            <!--<a href="{:U('/Home/PersonalCenter/cashGift/tag/cashGift')}"><li <eq name="Think.get.tag" value="cashGift">class="user_nav_on"</eq> >我的礼金劵</li></a>-->
+            <a href="{:U('/Home/PersonalCenter/bank/tag/bank')}"><li <eq name="Think.get.tag" value="bank">class="user_nav_on"</eq> >我的银行卡</li></a>
+            <!-- <a href="user11.html"><li>积分兑换记录</li></a>
+            <a href="user3.html"><li>我的优惠卷</li></a>
+            <a href="user9.html"><li>邀请好友</li></a> -->
+            <div class="user_nav_line"></div>
+            <h5>个人信息</h5>
+            <a href="{:U('/Wxin/PersonalCenter/userInfo/tag/userInfo')}"><li <eq name="Think.get.tag" value="userInfo">class="user_nav_on"</eq> >我的资料</li></a>
+
+            <a href="{:U('/Home/PersonalCenter/invoice/tag/invoice')}"><li <eq name="Think.get.tag" value="invoice">class="user_nav_on"</eq> >我的增值税发票</li></a>
+            <a href="{:U('/Home/PersonalCenter/address/tag/address')}"><li <eq name="Think.get.tag" value="address">class="user_nav_on"</eq> >收货地址</li></a>
+            <a href="{:U('/Home/PersonalCenter/password/tag/password')}"><li <eq name="Think.get.tag" value="password">class="user_nav_on"</eq> >修改密码</li></a>
+            <a href="{:U('/Home/PersonalCenter/favorite/tag/favorite')}"><li <eq name="Think.get.tag" value="favorite">class="user_nav_on"</eq> >我的收藏夹</li></a>
+
+
+        </ul>
+    </div>
+</div>
+<script src="__JS__/jquery-form.js"></script>
+<script>
+    $(function () {
+        var progress = $('.xuanze_percent');
+        $("#xuanze").wrap("<form id='myupload1' action='{:U('/Home/PersonalCenter/headImg')}' method='post' enctype='multipart/form-data'></form>");
+        $("#xuanze").change(function(){ //选择文件
+            $("#myupload1").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="person_img" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    progress.html(img);
+                    window.location.reload();
+                },
+                error:function(xhr){ //上传失败
+                }
+            });
+
+        });
+    });
+</script>

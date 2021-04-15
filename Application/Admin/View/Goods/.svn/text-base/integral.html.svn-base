@@ -1,0 +1,159 @@
+<include file="Public:head"/>
+<style>
+.btn-success {
+	margin-top: 12px;
+}
+</style>
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/>
+  <!-- end content-left -->
+
+  <div class="content-right fl">
+    <h1 class="content-right-title">积分设置列表</h1>
+    <div class="alert alert-info disable-del">
+      <h4>提示</h4>
+      删除分类会删除分类下面所有的产品 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div>
+    <form action="" method="post">
+      <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加设置</a>
+
+        <!--<div class="tables-searchbox fr">
+                        <input type="text" placeholder="分类名称" class="input" name="class_name" value="">
+                        <button class="btn"><i class="gicon-search"></i>查询</button>
+                    </div>-->
+      </div>
+    </form>
+    <table class="wxtables mgt15">
+      <colgroup>
+      <!-- <col width="2%"> -->
+      <col width="20%">
+      <col width="10%">
+      <col width="15%">
+      <col width="20%">
+      <col width="38%">
+      </colgroup>
+      <thead>
+        <tr>
+          <!-- <td><i class="icon_check"></i></td> -->
+          <td>数量</td>
+          <td>积分设置</td>
+          <td>排序</td>
+          <td >创建时间</td>
+          <td class="center">操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="cache" item="vo" >
+          <tr>
+            <!-- <td class="center"><input type="checkbox" class="checkbox table-ckbs" data-id="9788"></td> -->
+            <td>{$vo.nums}</td>
+            <td>{$vo.integral}%</td>
+            <td>{$vo.sort}</td>
+            <td>{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+            <td class="center">
+            <a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}" data-nums="{$vo.nums}" data-integral="{$vo.integral}" data-sort="{$vo.sort}">编辑</a>
+            <a href="{:U('/Admin/Goods/delIntegral/id')}/{$vo.id}" class="btn btn-warning j-delClass" title="删除" onclick="return confirm('确定要删除吗？')">删除</a>
+            </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <div class="tables-btmctrl clearfix">
+          <div class="pages">
+            {$page}
+          </div>
+          <!-- end paginate -->
+        </div>
+      </div>
+      <!-- end tables-btmctrl -->
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+<include file="Public:foot"/>
+
+
+
+
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">添加设置</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 263px;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>商品数量：</label>
+      <div class="form-controls">
+        <input type="text" class="input classname" name="nums" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>赠送积分比例：</label>
+      <div class="form-controls">
+        <input type="text" class="input classname" name="integral" > %
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>分类排序：</label>
+      <div class="form-controls">
+        <input type="text" class="input" id="addsort" name="sort" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+
+
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addseriesgory">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+    $('.j-editClass').click(function(){
+      var nums = $(this).attr('data-nums');
+      var id = $(this).attr('data-id');
+      var integral = $(this).attr('data-integral');
+      var sort = $(this).attr('data-sort');
+      $('input[name=nums]').val(nums);
+      $('input[name=sort]').val(sort);
+      $('input[name=integral]').val(integral);
+      $('#addseriesgory').attr('data-id',id);
+
+      $('.addfenlei').show();
+      $('#albums-overlay').show();
+    })
+    $('#addseriesgory').click(function(){
+      var nums = $('input[name=nums]').val();
+      var integral = $('input[name=integral]').val();
+      var id = $(this).attr('data-id');
+      var sort = $('input[name=sort]').val();
+      if(!nums){
+        alert('请填写数量！');return false;
+      }
+      if(!integral){
+        alert('请填写比例！');return false;
+      }
+      $.ajax({
+        url:'/Admin/Goods/setIntegral',
+        data:{nums:nums,integral:integral,sort:sort,id:id},
+        dataType:'json',
+        type:'post',
+        success:function(data){
+          alert(data.info);
+          if(data.status){
+            window.location.reload();
+          }
+        }
+      })
+    })
+</script>
+
+<!--修改分类end-->

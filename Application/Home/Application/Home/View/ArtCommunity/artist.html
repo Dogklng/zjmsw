@@ -1,0 +1,157 @@
+<include file="Public:header" />
+<style>
+    .main_page {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+    }
+    .main_page .me {
+        background: #ff6801 !important;
+        border: 1px solid #ff6801 !important;
+        color: #fff !important;
+    }
+    .main_page span {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+        background: #fff;
+        font-size: 14px;
+        border: 1px solid #dbdbdb;
+        color: #666;
+        padding: 0 20px;
+        cursor: pointer;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+</style>
+<div class="ban1">
+  <div class="banner_img">
+    <img src="{$images.pic}" alt="" />
+  </div>
+</div>
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  
+  
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">The artist</p>
+    <h5>{$name}</h5>
+  </div>
+  <div class="col_main">
+  
+  <h3>{$name}<span class="alphabet_list"><a href="{:U('/home/ArtCommunity/artist',array('name'=>A))}">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a><a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#H">H</a><a href="#I">I</a><a href="#J">J</a><a href="#K">K</a><a href="#L">L</a><a href="#M">M</a><a href="#N">N</a><a href="#O">O</a><a href="#P">P</a><a href="#Q">Q</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a><a href="#U">U</a><a href="#V">V</a><a href="#W">W</a><a href="#X">X</a><a href="#Y">Y</a><a href="#Z">Z</a></span></h3>
+  
+  <div class="topic_list">
+      <div id="topic_switcher" class="switcher" >
+          <volist name="person_cate" id="p">
+          <a class="first" href="{:U('/home/ArtCommunity/artList',array('id'=>$p['id']))}">{$p.name}</a>&nbsp;
+          </volist>
+      </div>
+      
+  </div>
+</div>
+  
+  
+  <div class="row">
+ <div class="ysj-cont1">
+     <volist name="res" id="v">
+ <div class="col-lg-3 col-md-3 col-sm-3">
+     <div class="ysj_list"> <a href="{:U('/Home/ArtCommunity/designerdot',array('id'=>$v['id']))}">
+          <div class="ysj_list_wz">
+          <h5>{$v.auth_name} • {$v.auth}</h5>
+          <p>{$v.detail}</p>
+          <i>+</i>
+          </div>
+           <img src="{$v.index_pic2}" width="100%"> </a> </div>
+</div>
+
+     </volist>
+  </div>
+
+  </div>
+   
+
+
+
+ <div class="row">
+ <div class="rol-lg-12">
+    <div class="cont3-con">
+        {$slogan|htmlspecialchars_decode|stripslashes}
+    </div>
+ </div>
+
+
+  <div class="row">
+    <span class="more" style=" background:#000; margin:0 auto;"><a id="apply" href="javascript:;" style=" color:#fff;">申请成为艺术家</a><i></i></span>
+  </div>
+
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div> 
+  
+</div>
+  </div>
+     </div>
+
+
+
+  </div>
+
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<script>
+
+    $('#apply').click(function(){
+
+        var id = '{$member_id}';
+        /*console.log(id);
+         $.ajax({
+         url: "{:U('/Home/ArtCommunity/apply')}",
+         type: "post",
+         dataType: "json",
+         data: {
+         id:id
+         }
+         }).done(function (data) {
+
+         if(data.status==0){
+         window.location.href="{:U('Home/Shop/seldpsy')}"
+         }elseif(data.status ==1){
+         window.location.href="{:U('Home/Shop/ysjgl')}"
+         }elseif(data.status==2){
+         window.location.href="{:U('Home/Shop/selCenter')}"
+         }elseif(data.status==3){
+         window.location.href="{:U('Home/Shop/selAudit')}"
+         }
+
+
+         })*/
+        $.post("{:U('Home/ArtCommunity/apply')}",{id:id},function(data) {
+            console.log(data.status);
+            if (data.status == 0) {
+                window.location.href = "{:U('Home/Shop/seldpsy')}"
+            }
+            if(data.status == 1)
+            {
+                window.location.href = "{:U('Home/Shop/ysjgl')}"
+            }
+            if(data.status == 2)
+            {
+                window.location.href = "{:U('Home/Shop/selCenter')}"
+            }
+            if(data.status == 3)
+            {
+
+                window.location.href = "{:U('Home/Shop/selAudit')}"
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<include file="Public:header" />
+
+<div class="newsdot" id="newsdot">
+
+ 			<div class="newsdot_topimg">
+            	<img src="{$res.img}" width="100%">
+            </div>
+            
+            <div class="newsdot_main" style="bottom: 0px; opacity: 1;">
+            	
+                <div class="newsdot_right">
+                	<div class="newsdot_sectit">{$res.title}</div>
+                    <div class="newsdot_left">
+                	<h4>作者简介：<span>{$res.goods_cap||htmlspecialchars_decode|stripslashes}</span></h4>
+                    <h4>作品简介：<span>{$res.detail||htmlspecialchars_decode|stripslashes}</span></h4>
+                    </div>
+                </div>
+                
+                
+                <div class="clear"></div>
+            </div>
+            
+            <div class="newsdot_back">
+            	<a href="{:U('Wxin/Goods/ztzt/id')}/{$res['id']}" class="more_aa2">进入展厅</a>
+            </div>
+            
+          
+          </div>
+
+
+
+
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+
+</body>
+
+
+</html>

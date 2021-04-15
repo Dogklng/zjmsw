@@ -1,0 +1,371 @@
+<include file="Public:header" />
+
+<link href="__CSS__/city-picker.css" rel="stylesheet">
+<style>
+
+  .city-picker-span {width: 100% !important;}
+  .city-picker-dropdown {width: 100% !important;}
+  /*.dizhi_btn1_on {color: #fff !important;background: #4BA1C3 !important;}*/
+
+  .dizhi_btn1 span {
+    display: inline-block;
+    line-height: 40px;
+    padding: 0 40px;
+    border: 1px solid #e8e8e8;
+    background: #f5f5f5;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    color: #333;
+    cursor:pointer;
+    margin-right: 5px;
+  }
+  .user_right {
+    width: 100%;
+    border: 1px solid #e8e8e8;
+    padding: 20px;
+    background:#fff;
+  }
+  .user_no_con {
+    width: 100%;
+    margin-top: 10%;
+    text-align: center;
+  }
+  .user_no_con p {
+    margin: 0;
+    line-height: 60px;
+    font-size: 16px;
+    color: #999;
+    letter-spacing: 1px;
+  }
+</style>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  <div class="user">
+    <div class="container1">
+      <div class="row">
+        <div class="col-sm-2">
+          <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="user_right" style="border:none;">
+            <div class="user_r5">
+              <h5>已保存收货地址(地址最多10条，还能保存{$num}条) <a href="javascript:void(0);" class="add_new_address">+新建地址</a></h5>
+              <empty name="result">
+                <div class="user_no">
+                  <div class="user_no_con">
+                    <img src="__IMAGES__/user_no.png" width="120">
+                    <p style="cursor:default;">您还未有地址，请<span class="add_address_manually" style="color: #ff6801;cursor:pointer;">添加</span></p>
+                  </div>
+                </div>
+                <else/>
+                <table>
+                  <if condition="$result eq '' ">
+                    <div class="user_r_list" style="background:#ccc;">
+                      <h5><span>暂无</span></h5>
+                    </div>
+                    <else />
+                    <tr>
+                      <th style="width:10%;">收货人</th>
+                      <th style="width:35%;">地址</th>
+                      <th style="width:20%;">联系方式</th>
+                      <th style="width:35%;">操作</th>
+                    </tr>
+                    <volist name="result" id="vo">
+                      <tr>
+                        <td>{$vo.consignee}</td>
+                        <td>{$vo.province}{$vo.city}{$vo.district}{$vo.place}</td>
+                        <td>{$vo.telephone}</td>
+                        <td>
+                          <a class="dizhi_bj_lin dizhi_bj" data-default="{$vo.default}" data-consignee="{$vo.consignee}" data-id="{$vo.id}" data-province="{$vo.province}" data-city="{$vo.city}" data-district="{$vo.district}" data-place="{$vo.place}" data-telephone="{$vo.telephone}" href="javascript:;" >
+                            编辑
+                          </a>
+                          <a href="javascript:void(0);" data-id="{$vo.id}" class="address_del">
+                            删除
+                          </a>
+                          <eq name="vo.default" value="1">
+                            <a href="javascript:;" data-id="{$vo.id}"  class="moren moren_on">
+                              默认地址
+                            </a>
+                            <else />
+                            <a href="javascript:;" data-id="{$vo.id}"  class="moren address_do">
+                              设置默认地址
+                            </a>
+                          </eq>
+                        </td>
+                      </tr>
+                    </volist>
+                  </if>
+                </table>
+
+              </empty>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dizhi" style="z-index: 999 !important;">
+  <div class="dizhi_bg"></div>
+  <div class="dizhi_con" style="z-index: 999 !important;">
+    <img src="__IMAGES__/dizhi_close.png" width="24" />
+    <h5 id="h5">新建地址</h5>
+    <div class="dizhi_list clearfix">
+      <p class="dizhi_l">收货人：<input type="text" id="consignee" maxlength="50" /></p>
+      <p class="dizhi_r">手机号码：<input type="text" onkeyup="value=value.replace(/\s/g,'')" id="telephone" maxlength="11" /></p>
+    </div>
+    <div class="dizhi_list clearfix">
+      <span style="position:relative; top:8px;">所在地区:</span>
+      <div class="docs-methods" style="display:inline-block; width:82%;">
+        <form class="form-inline" style="width:100%;">
+          <div id="distpicker" style="width:100%;">
+            <div class="form-group" style="width:100%;">
+              <div style="position: relative; width:100%;">
+                <input id="city-picker3" style="width: auto" class="form-control" readonly type="text" value="" data-toggle="city-picker" /><!--浙江省/杭州市/西湖区-->
+              <input type="hidden" id="city-picker4" value="" >
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="dizhi_list clearfix">
+      <span>详细地址：</span>
+      <textarea  id="place" maxlength="120" style="resize: none;"></textarea>
+    </div>
+
+    <div class="dizhi_btn clearfix">
+      <!--<div class="w_chkbox"><input type="checkbox" name="dft" class="j_checkbox judge_default" ><span>设为默认</span></div>-->
+      <div class="dizhi_btn1">
+        <span class="dizhi_btn1_on confirm_addr" data-id="">确定</span>
+        <a href="##" class="">取消</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--  / warpper  -->
+
+<div class="jg"></div>
+
+
+<include file="Public:footer" />
+
+
+</body>
+
+<script language="javascript" src="__JS__/city-picker.data.js"></script>
+<script language="javascript" src="__JS__/city-picker.js"></script>
+
+<script language="javascript">
+    $('.add_address_manually').click(function(){
+        $('#h5').html('新增地址');
+        $('#consignee').val('');
+        $('#telephone').val('');
+        $('#place').val('');
+        $('.confirm_addr').attr('data-id','');
+        $(".judge_default").prop("checked", false);
+        $(".judge_default").removeClass('j_checkbox_on');
+        $('.dizhi').stop(true).fadeIn(1000);
+        setTimeout(function(){
+            $('.dizhi_con').addClass('dizhi_con_on');
+        },300)
+    })
+    //使用新地址
+    $('.add_new_address').click(function(){
+        $('#h5').html('新增地址');
+        $('#consignee').val('');
+        $('#telephone').val('');
+        $('#place').val('');
+        $('.confirm_addr').attr('data-id','');
+        $(".judge_default").prop("checked", false);
+        $(".judge_default").removeClass('j_checkbox_on');
+    })
+    //j_checkbox_on
+    $('.confirm_addr').click(function() {
+
+        var post = {};
+
+        var defaults = $(".judge_default").hasClass("j_checkbox_on");
+        if (defaults) {
+            post.defaults = 1;
+        }
+        post.id	  		= $(this).attr("data-id");
+        post.province 	= $.trim($('.title').find('.select-item').eq(0).html());
+        post.city 		= $.trim($('.title .select-item').eq(1).html());
+        post.district 	= $.trim($('.title .select-item').eq(2).html());
+        post.place 		= $.trim($('#place').val());
+        post.consignee 	= $.trim($('#consignee').val());
+        post.telephone 	= $.trim($('#telephone').val());
+
+
+        if(!post['consignee']) {
+            alert("请填写收货人！");return false;
+        }
+        if(!check_personname(post.consignee)){
+            alert("联系人格式错误,请填写2-30位字符");return false;
+        }
+        if(!post['telephone']) {
+            alert("请填写联系电话！");return false;
+        }
+        if(post['telephone'] && !post['telephone'].match(/^1[3-8][0-9]\d{8}$/)) {
+            alert("手机号码格式错误！");return false;
+        }
+
+        if (post['province'] == "请选择省份" || post['province'] == ''){
+            if (!($('#city-picker4').val())){
+                console.log($('#city-picker4').val());
+                if(post['province'] == "请选择省份" || post['province'] == ''){
+                    alert("请选择省！");return false;
+                }
+                if(post['city'] == "请选择城市" || post['city'] == '') {
+                    alert("请选择城市！");return false;
+                }
+
+                if(post['district'] == "请选择区域" || post['district'] == '') {
+                    alert("请选择区域！");return false;
+                }
+            }
+        }else {
+            if(post['city'] == "请选择城市" || post['city'] == '') {
+                alert("请选择城市！");return false;
+            }
+
+            if(post['district'] == "请选择区域" || post['district'] == '') {
+                alert("请选择区域！");return false;
+            }
+        }
+
+
+
+        // if(post['district'] == "请选择区域" || post['district'] == '') {
+        //     alert("请选择区域！");return false;
+        // }
+        if(!post['place']) {
+            alert("请填写详细地址！");return false;
+        }
+
+
+        $.post("{:U('Home/PersonalCenter/addressadd')}", post, function(data){
+            if (data.status == 1 ) {
+                dialog.showTips(data.info,'warn',function(){
+                    window.location.reload();
+                });
+            } else {
+                alert(data.info);
+            }
+        })
+    });
+
+
+    ////////////////////  修改地址  ///////////////////////
+
+    $('.dizhi_bj_lin').click(function() {
+
+        var consignee = $(this).attr("data-consignee");
+        var id 		  = $(this).attr("data-id");
+        var province  = $(this).attr("data-province");
+        var city 	  = $(this).attr("data-city");
+        var district  = $(this).attr("data-district");
+
+        $('.title').find('.select-item').eq(0).html(province);
+        $('.title .select-item').eq(1).html(city);
+
+        $('.title .select-item').eq(2).html(district);
+        //$('.title').find('.select-item').eq(0).html(province);
+        //$('.title .select-item').eq(1).html(city);
+        //$('.title .select-item').eq(2).html(district);
+        $('.l_xiugaidizhi').val(province+'/'+city+'/'+district);
+        $('#city-picker4').val(province+'/'+city+'/'+district);
+        $('[data-toggle="city-picker"]').citypicker();
+
+        var default_d = $(this).attr("data-default");
+        var place 	  = $(this).attr("data-place");
+        var telephone = $(this).attr("data-telephone");
+
+        $('#consignee')	.val(consignee);
+        $('#telephone')	.val(telephone);
+        $('#place')		.val(place);
+
+        /*console.log(province);
+        console.log(city);
+        console.log(district);
+        console.log(place);*/
+
+        $('.city-picker-span .placeholder').text(province+'/'+city+'/'+district);
+        $('[data-toggle="city-picker"]').citypicker();
+
+
+        if (default_d == 1) {
+            $(".judge_default").prop("checked", true);
+            $(".judge_default").addClass('j_checkbox_on');
+        } else {
+            $(".judge_default").prop("checked", false);
+            $(".judge_default").removeClass('j_checkbox_on');
+        }
+
+        $(".confirm_addr").attr("data-id", id);
+
+        $('#h5').html('修改地址');
+    });
+
+
+    ////////////// 删除地址  //////////////
+
+    $('.address_del').click(function() {
+        var id = $(this).attr("data-id");
+        dialog.showTips('确定删除地址吗','firm',function () {
+            $.ajax({
+                url: "{:U('Home/PersonalCenter/address_del')}",
+                data: {id:id},
+                type: 'post',
+                dataType: 'json',
+                success: function (content) {
+                    if (content.status == 1) {
+                        alert(content.info
+
+                        );
+                        window.location.reload();
+                    } else {
+                        alert(content.info
+
+                        );
+                    }
+                }
+            })
+        });
+    });
+
+
+
+
+
+    //////////////// 设置默认地址  //////////////////
+
+    $('.address_do').click(function() {
+        var id = $(this).attr("data-id");
+        $.post("{:U('Home/PersonalCenter/address_do')}", {id:id}, function(data){
+            if (data.status==1) {
+                dialog.showTips(data.info,'warn',function(){
+                    window.location.reload();
+                });
+            } else {
+                alert(data.info);
+            }
+        })
+    })
+
+    //验证姓名
+    function check_personname(text){
+        var reg = /^(([\u4e00-\u9fa5]{2,16})|([a-zA-Z]{2,16}))$/;//2到16个字的汉字,或者2到16个字的英文
+        return reg.test(text);
+    }
+</script>
+
+
+
+
+</html>

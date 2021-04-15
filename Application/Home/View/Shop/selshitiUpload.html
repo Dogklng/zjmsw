@@ -1,0 +1,539 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+        <include file="Public:shop_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+          <div class="upload_box">
+            <h3>1.作品基本信息</h3>
+            <div class="upload_input upload_input1"> *作品名称
+              <input type="text" maxlength="30" id="goods_name" value="{$goods.goods_name}"/>
+            </div>
+            <!--<div class="upload_input upload_input1">是否租赁：
+                  <label><input type="radio" name="is_groom" value="0" >是</label>
+                  <label><input type="radio" name="is_groom" value="1" checked>否</label>
+            </div>-->
+            <div class="upload_input" style="overflow:inherit"> *作品属性 <span class='upload_txt'>错误填写作品属性，可能会引起作品下架或搜索量减少，影响您的正常销售，请认真准确填写</span>
+              <div class="upload_input_box">
+                <div style="margin-left: -15%;">
+
+                  <table style="line-height:10px;border-collapse:   separate;   border-spacing:   10px; ">
+
+                     <!-- <volist name="attr" id="val" key="k">
+                        <tr><td>{$val.classname}：</td><td><volist name="val.data" id="v">
+                          <label><input type="radio" class="attrList" name="attr_id[{$k}]" value="{$v.id}">{$v.classname}</label>
+                        </volist></td></tr>
+                        &lt;!&ndash;<div class="formitems">
+                          <label class="fi-name"><span class="colorRed"></span>{$val.classname}：</label>
+                          <div class="form-controls">
+                            <div class="radio-group">
+
+                              <br>
+                            </div>
+                          </div>
+                        </div>&ndash;&gt;
+                      </volist>
+-->
+                    <!--<tr id="zujinbox" style="hidden:hidden"><td>租金（每天）：</td><td><input type="text" class="input mini" name="zujin" id="zujin" value="" onchange="num(this)" onkeyup="num(this)"></td></tr>
+                    <tr id="b_rent"  style="hidden:hidden"><td>押金：</td><td><input type="text" class="input mini" name="price" id="b_price" value="" onchange="num(this)" onkeyup="num(this)"></td></tr>
+                    <tr id="chushou"><td>市场价：</td><td><input type="text" class="input mini" name="oprice" id="oprice" value="" onchange="num(this)" onkeyup="num(this)"></td></tr>
+                    <tr id="a_rent"><td>价格：</td><td> <input type="text" class="input mini" name="price" id="a_price" value="" onchange="num(this)" onkeyup="num(this)"></td></tr>-->
+                    <tr><td>价格：</td><td><input type="text" onkeyup="num(this)" maxlength="20" id="price" value="{$goods.price}" style="width: 150px;height: 30px;"></td></tr>
+                    <tr><td>市场价：</td><td><input type="text" onkeyup="num(this)" maxlength="20" id="oprice" value="{$goods.oprice}" style="width: 150px;height: 30px;"></td></tr>
+                    <tr><td>材质：</td><td><input type="text" id="goods_skin" maxlength="10" value="{$goods.goods_skin}" style="width: 150px;height: 30px;"></td></tr>
+
+                    <tr><td>尺寸：</td><td><input type="text" id="goods_range" value="{$goods.goods_range}" maxlength="20" style="width: 150px;height: 30px;"></td></tr>
+                    <tr><td>类型：</td><td><select style="width: 150px;height: 30px;" id="series">
+                      <option>艺 • 术 • 品</option>
+					  <foreach name="res" item="v" key="k">						
+                        <option value="{$v.id}" <eq name="goods.series_id" value="$v.id">selected="selected"</eq>>&nbsp;&nbsp;&nbsp;&nbsp;|---{$v.classname}</option>
+                      </foreach>
+					  <option>创 • 意 • 商 • 店</option>
+					  <foreach name="res1" item="v" key="k">						
+                        <option value="{$v.id}" <eq name="goods.series_id" value="$v.id">selected="selected"</eq>>&nbsp;&nbsp;&nbsp;&nbsp;|---{$v.classname}</option>
+                      </foreach>
+                    </select>
+                    </td></tr>
+                    <tr><td>重量：</td><td><input type="text" maxlength="11" value="{$goods.weight}" onkeyup="num(this)" id="weight" style="width: 150px;height: 30px;">&nbsp;&nbsp;kg</td></tr>
+                    <tr><td>品相：</td><td>
+                      <!--<input type="text" id="goods_com" maxlength="20" style="width: 150px;height: 30px;">-->
+                      <select style="width: 182px;height: 30px;" name="goods_com"  id="goods_com">
+                        <!--<select name="goods_com"  style="width: 182px;height: 30px;" id="goods_com">-->
+                        <option value="一品" <eq name="goods.goods_com" value="一品">selected="selected"</eq>>一品</option>
+                        <option value="二品" <eq name="goods.goods_com" value="二品">selected="selected"</eq>>二品</option>
+                        <option value="三品" <eq name="goods.goods_com" value="三品">selected="selected"</eq>>三品</option>
+                        <option value="四品" <eq name="goods.goods_com" value="四品">selected="selected"</eq>>四品</option>
+                        <option value="五品" <eq name="goods.goods_com" value="五品">selected="selected"</eq>>五品</option>
+                        <option value="六品" <eq name="goods.goods_com" value="六品">selected="selected"</eq>>六品</option>
+                        <option value="七品" <eq name="goods.goods_com" value="七品">selected="selected"</eq>>七品</option>
+                        <option value="八品" <eq name="goods.goods_com" value="八品">selected="selected"</eq>>八品</option>
+                        <option value="九品" <eq name="goods.goods_com" value="九品">selected="selected"</eq>>九品</option>
+                        <option value="十品" <eq name="goods.goods_com" value="十品">selected="selected"</eq>>十品</option>
+                        <option value="完好" <eq name="goods.goods_com" value="完好">selected="selected"</eq>>完好</option>
+                        <option value="瑕疵" <eq name="goods.goods_com" value="瑕疵">selected="selected"</eq>>瑕疵</option>
+                      </select>
+                    </td></tr>
+                    <!--<tr><td>版本：</td><td><input type="text" id="version" maxlength="20" style="width: 150px;height: 30px;">&nbsp;&nbsp;</td></tr>-->
+                    <tr><td>创作年代：</td><td><input type="text" id="goods_care" value="{$goods.goods_care}" maxlength="10" style="width: 150px;height: 30px;"></td></tr>
+                    <tr><td>作品编号：</td><td><input type="text" id="goods_mel" value="{$goods.goods_mel}" maxlength="16" style="width: 150px;height: 30px;"></td></tr>
+                  </table>
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+            <div class="upload_input">
+              <div class="clear" >*上传作品图片 <span class='upload_txt'><!-- 作品主图大小不能超过3MB； -->建议大小（宽1050px高1000px）作品详情页自动提供放大镜功能。</span></div>
+              <div class="upPic">
+                <div class="baotuan_showimge fl mgr10">
+                </div>
+                <div class="SelIdPic-border">
+                    <empty name="goods">
+                        <img src="__IMAGES__/SeladdPic.png" width="100" height="60" id="preview">
+                        <else/>
+                        <input  type="hidden" name="index_pic" id="index_pic" value="{$goods.index_pic}"/>
+                        <img src="{$goods.index_pic}" width="100" height="60" id="preview">
+                    </empty>
+
+                  <h6>点此上传</h6>
+                  <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="baotuan">
+                </div>
+              </div>
+              <!--<div class="upPic">-->
+              <!--<div class="SelIdPic-border"> <img src="__IMAGES__/SeladdPic.png">-->
+              <!--<h6>点此上传</h6>-->
+              <!--<input type="file">-->
+              <!--</div>-->
+              <!--</div>-->
+            </div>
+
+           <!-- <div class="upload_input">
+              <div class="clear" >*上传作品图片 <span class='upload_txt'>&lt;!&ndash; 作品主图大小不能超过3MB； &ndash;&gt;700*700以上图片上传后作品详情页自动提供放大镜功能。</span></div>
+              <div class="upPic">
+                <div class="baotuan3_showimge fl mgr10">
+                </div>
+                <div class="SelIdPic-border"> <img src="__IMAGES__/SeladdPic.png" width="100" height="60" id="preview1">
+                  <h6>点此上传</h6>
+                  <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="baotuan2">
+                </div>
+              </div>
+            </div>-->
+
+            <div class="upload_input">
+              <label class="fi-name"><span class="colorRed">*</span>商品切换图片(多选)：</label>
+              <div class="SelIdPic-border"> <img src="__IMAGES__/SeladdPic.png" width="100" height="60"/>
+                <h6>点此上传</h6>
+                <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="duoxuan">
+              </div>
+              <span class="fi-help-text fl lh30 mgl10">建议大小（宽1050px高1000px）</span>
+              <div class="duoxuan_showimge mgr10">
+                  <foreach name="slide" item="vo">
+                      <img src="{$vo.pic}" height="80" date-slide_id="{$vo.id}" class="mgr10 mgt10 imgs" onclick="delImg(this)">
+                  </foreach>
+              </div>
+            </div>
+
+            <!--<div class="upload_input">
+              <div class="clear" >*上传作者图片 <span class='upload_txt'>&lt;!&ndash; 作品主图大小不能超过3MB； &ndash;&gt;700*700以上图片上传后作品详情页自动提供放大镜功能。</span></div>
+              <div class="upPic">
+                <div class="baotuan4_showimge fl mgr10">
+                </div>
+                <div class="SelIdPic-border"> <img src="__IMAGES__/SeladdPic.png" width="100" height="60" id="preview2">
+                  <h6>点此上传</h6>
+                  <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="baotuan4">
+                </div>
+              </div>
+            </div>-->
+
+          </div>
+          <div class="upload_input"> <span class='unload_bb' >*作品介绍</span>
+            <textarea name=""  cols="30" rows="10" id="goods_des">{$goods.goods_des}</textarea>
+          </div>
+          <!--<div class="upload_box">-->
+          <!--<h3>2.作品物流服务</h3>-->
+          <!--<div class="upload_input" style="overflow:inherit"> *物流设置 <span class='upload_txt'>为了提升消费消费者购物体验，美术网要求全网商品设置运费模板</span>-->
+          <!--<div class="upload_input_box"> <span class="upload_txt2">物流选择</span>-->
+          <!--<div class="upload_input_list2"> <span></span> <img src="__IMAGES__/xiangxia_upload.png" alt="" />-->
+          <!--<ul>-->
+          <!--<li>顺丰</li>-->
+          <!--<li>中通</li>-->
+          <!--</ul>-->
+          <!--</div>-->
+          <!--<div class="clear" ></div>-->
+          <!--</div>-->
+          <!--<div class="clear" ></div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <div class="upload_box">
+            <h3>2.售后保障信息</h3>
+            <div class="upload_input"> <span class='unload_bb' >*售后服务</span>
+              <div class="upload_input_box3">
+                <div>
+                  <input type="radio" name="shouhou" value="0" <empty name="goods.shouhou">checked</empty>  />
+                  提供发票 </div>
+                <div>
+                  <input type="radio" name="shouhou" value="1" <eq name="goods.shouhou" value="1">checked</eq>/>
+                  保修服务 </div>
+                <div>
+                  <input type="radio" name="shouhou" value="2" <eq name="goods.shouhou" value="2">checked</eq>/>
+                  保修服务退换货承诺：凡使用支付宝服务付款购买本店商品，若存在质量问题或与描述不符，本店将主动提供退换货服务并承担来回邮费 </div>
+                <div>
+                  <input type="radio" name="shouhou" value="3" <eq name="goods.shouhou" value="3">checked</eq>/>
+                  服务承诺：该类商品，必须支持【七天退货】服务 </div>
+              </div>
+            </div>
+          </div>
+          <div class="upload_box">
+            <!--<h3>4.作品其他信息</h3>
+            <div class="upload_input"> *库存计数
+              <input type="radio" name="jishu" value="0" checked="" />
+              买家拍下库存
+              <input type="radio" name="jishu" value="1" />
+              买家付款库存
+            </div>-->
+            <div class="SelNoticeStyle">
+                <empty name="goods">
+                    <h4><a href="javaScript:;" style="background:#ccc;" id="fabu" >发布</a>
+                    <else/>
+                    <h4><a href="javaScript:;" style="background:#ccc;" id="fabu" >修改</a>
+                </empty>
+
+                <!--<a href="javaScript:;" id="save">保存草稿</a>-->
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="upload_din1"> <span>发布成功</span> </div>
+  <div class="upload_din2"> <span>保存成功</span> </div>
+
+</div>
+<!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script>
+    function num(obj){
+        obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+    }
+    $('#fabu').mouseover(function(){
+        $(this).css('background-color','red');
+    })
+    $('#fabu').mouseout(function(){
+        $(this).css('background-color','#ccc');
+    })
+    $('#fabu').click(function () {
+        var post = {};
+        post.id = "{$goods.id}";
+        post.goods_name = $.trim($('#goods_name').val());
+        post.goods_skin = $.trim($('#goods_skin').val());
+        post.price = $.trim($('#price').val());
+        post.oprice = $.trim($('#oprice').val());
+        post.series_id = $('#series').val();
+        post.goods_range = $.trim($('#goods_range').val());
+        post.index_pic = $('#index_pic').val();
+       // post.index_pic = $('#index_pic').val();
+        post.goods_com = $.trim($('select[name="goods_com"]').val());
+        post.goods_care = $.trim($('#goods_care').val());
+        post.goods_mel =$.trim($('#goods_mel').val()) ;
+        post.version = $.trim($('#version').val());
+        post.weight = $.trim($('#weight').val());
+        post.goods_des = $.trim($('#goods_des').val());
+
+        post.shouhou =$('input:radio[name="shouhou"]:checked').val();
+        post.jishu =$('input:radio[name="jishu"]:checked').val();
+        post.shijian =$('input:radio[name="shijian"]:checked').val();
+
+        var qiehuan_pic = new Array;
+        $(".qiehuan_pic").each(function(){
+            qiehuan_pic.push($(this).val());
+        });
+        post.qiehuan_pic = qiehuan_pic;
+
+        if(post.goods_name == ''){
+            alert('作品名称必填');
+            return false;
+        }
+        if(post.goods_skin == ''){
+            alert('材质必填');
+            return false;
+        }
+        if(post.price == ''){
+            alert('价格必填');
+            return false;
+        }
+
+        if(isNaN(post.price)){
+            alert('价格必须是数字');
+            return false;
+        }
+
+        if(post.oprice == ''){
+            alert('市场价必填');
+            return false;
+        }
+        if(post.goods_range == ''){
+            alert('尺寸必填');
+            return false;
+        }
+        if(!post.series_id){
+            alert('类型必填');
+            return false;
+        }
+        if(post.weight ==''){
+            alert('重量必填');
+            return false;
+        }
+        if(isNaN(post.weight)){
+            alert('重量必须是数字');
+            return false;
+        }
+
+        if(post.goods_care == ''){
+            alert('创作年代必填');
+            return false;
+        }
+        var good_care = post.goods_care;
+        var time=new Date();
+        var time1 = time.getTime();
+        var good_care = new Date(good_care);
+        var good_care1 = good_care.getTime();
+        //alert(good_care);return false;
+        if(good_care1>time1){
+            alert('创作年代必需早于当前时间');
+            return false;
+        }
+
+
+        if(post.goods_mel == ''){
+            alert('作品编号必填');
+            return false;
+        }
+
+        /*if(post.version == ''){
+            alert('版本必填');
+            return false;
+        }*/
+        if(!post.index_pic){
+            alert('请上传作品图片');
+            return false;
+        }
+        var pic1 = $('input[name="pic1[]"').val();
+        if(post.id){
+            if(!$('.imgs').length){
+                alert("请上传作品切换图片！");return false;
+            }
+        }else {
+            if(pic1==undefined){
+                alert("请上传作品切换图片！");return false;
+            }
+        }
+
+
+        if(post.goods_des == ''){
+            alert('作品简介必填');
+            return false;
+        }
+        if(post.goods_com ==''){
+            alert('品相必填');
+            return false;
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Home/Shop/addshitiGoods')}",
+            data: post,
+            dataType: "json",
+            success :function(g){
+                console.log(g);
+                if (g.status == 1) {
+                    alert(g.info);
+                    window.location.href="/Home/Shop/selWarehouse/tag/selWarehouse";
+                } else {
+                    alert(g.info);
+                }
+
+            }
+        })
+    })
+</script>
+</body>
+<script>
+  $(document).ready(function(){
+      $("#zujinbox").hide();
+      $("#b_rent").hide();
+  })
+    $("input[name=is_groom]").click(function () {
+        //alert(qwe);return false;
+        var is_groom = $("input[name=is_groom]:checked").val();
+        //console.log(123);return false;
+        if (is_groom == 0) {
+            $('#chushou').hide()
+            $("#zujinbox").show();
+            $("#b_rent").show();
+            $("#a_rent").hide();
+            //$(".rent_price").html("押金 :&nbsp; ");
+        } else {
+          /*var a = $(".rent_price").html();
+           alert(a);
+           alert(a);return false;*/
+            $("#zujinbox").hide();
+            $("#chushou").show();
+            $("#a_rent").show();
+            $("#b_rent").hide();
+           // $(".rent_price").html(" 价格 : &nbsp;");
+        }
+
+    })
+</script>
+<script type="text/javascript">
+    function delImg(obj){
+        var id = "{$goods.id}";
+        if(id){
+           var slide_id = $(obj).attr('date-slide_id');
+        }
+        dialog.showTips('确定删除这张图片？', "firm", function () {
+            if(id && slide_id){
+                $.ajax({
+                    type: "POST",
+                    url: "{:U('/Home/Shop/delslide')}",
+                    data: {slide_id:slide_id},
+                    dataType: "json",
+                    success :function(g){
+                        if (g.status == 1) {
+                            $(obj).remove();
+                        } else {
+                            alert(g.info);
+                        }
+
+                    }
+                })
+            }else {
+                $(obj).next("input").remove();
+                $(obj).remove();
+            }
+        })
+    }
+    $(function(){
+        var percent = $('.duoxuan_percent');
+        var progress = $('.duoxuan_percent');
+        $("#duoxuan").wrap("<form id='myupload' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#duoxuan").change(function(){ //选择文件
+            $("#myupload").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80"  class="mgr10 mgt10 imgs" onclick="delImg(this)"><input type="hidden" name="pic1[]" class="qiehuan_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    console.log(img);
+                    $('.duoxuan_showimge').append(img);
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+        $("#baotuan").wrap("<form id='baotuan1' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#baotuan").change(function(){ //选择文件
+            $("#baotuan1").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<input  type="hidden" name="index_pic" id="index_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.baotuan_showimge').html(img);
+                    $("#preview").attr('src',data[0]["savepath"].substr(1)+data[0]["savename"]);
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+
+        /*$("#baotuan2").wrap("<form id='baotuan3' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#baotuan2").change(function(){ //选择文件
+            $("#baotuan3").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<input  type="hidden" name="index_pic" id="index_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.baotuan3_showimge').html(img);
+                    $("#preview1").attr('src',data[0]["savepath"].substr(1)+data[0]["savename"]);
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+
+        $("#baotuan4").wrap("<form id='baotuan5' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#baotuan4").change(function(){ //选择文件
+            $("#baotuan5").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<input  type="hidden" name="index_pic" id="index_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.baotuan4_showimge').html(img);
+                    $("#preview1").attr('src',data[0]["savepath"].substr(1)+data[0]["savename"]);
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });*/
+
+    })
+</script>
+</html>

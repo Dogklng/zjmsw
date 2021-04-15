@@ -1,0 +1,178 @@
+<include file="Public:header" />
+
+<style>
+    .pop-up_box .pop-up_box_close {
+        background: url(__IMAGES__/.pop-up_box_close.png) no-repeat center center;
+        background-color: #000;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .pop-up_box .pop-up_box_bottom {
+        display: block;
+        background-color: #e66c6a;
+        color: #FFFFFF;
+        height: 36px;
+        line-height: 36px;
+        margin: 0 auto;
+        width: 46%;
+        border: none;
+        margin-top: 20px;
+    }
+    .recommend_enter p{
+        width: 100px !important;
+    }
+    .recommend_enter p span{
+        float:left !important;
+    }
+</style>
+
+<!-- 大家都在赞 -->
+<div class="praise artworkP" style="margin-top:30px;">
+  
+  <div class="publish">
+   <div class="praise_title publishTop">
+    <h2><i></i>云推荐<!--<a href="javascript:vido(0);" class="publishA"><img src="__IMAGES__/groomP.png" /></a>-->
+   <!-- <div class="publishACon">
+     <a href="#"><img src="__IMAGES__/gr1.png" />发表动态</a>
+     <a href="groomNew.html"><img src="__IMAGES__/gr2.png" />推荐商品</a>
+    </div>-->
+    </h2>
+   </div>
+   <div class="userhomepagelist_list">
+    <ul>
+        <volist name="gift" id="vo">
+     <li> <!--<a href="">-->
+      <div class="userhomepagelist_list_img"> <img src="{$vo.pic}" alt="{$vo.name}" /> </div>
+      <div class="userhomepagelist_list_intro">
+       <p>{$vo.name}</p>
+       <p class="user_tuijian"> <span class="spanborder gift_bag_list_viewDetails" data-id="{$vo.id}" data-detail="{$vo.detail}" data-name="{$vo.name}">去购买</span> <span class="spanprice">￥{$vo.price}</span>  </p>
+      </div>
+      <!--</a>--> </li>
+            </volist>
+    </ul>
+   </div>
+   <div class="recommend_enter">
+       {$rule|htmlspecialchars_decode|stripslashes}
+   </div>
+  </div>
+</div>
+<!-- 大家都在赞 -->
+<div class="pop-up_box" style="display: none">
+  <div class="groom_bg">
+      <div class="pop-up_box_close"></div>
+    <h3>白金经纪人</h3>
+    <div class="groom_tkcontent">
+        <div class="pop-up_box_xiegang"><!--<img src="__IMAGES__/pop-up_box_xiegang.png"/>--></div>
+        <p class="pop-up_box_p">月销售额达3件产品云推荐商，销量额度达1万</p>
+        <button class="pop-up_box_bottom buy">购买</button>
+    </div>
+  </div>
+</div>
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+
+</body>
+
+
+<script>
+ $(".publishA").click(function(){
+    $(".publishACon").fadeToggle("slow");
+  });
+ /*$(".spanborder").click(function(){
+  
+  $(".groom_tankuang").fadeIn(200);
+
+ })*/
+/* $(".groom_tankuang").click(function(){
+    $(".groom_tankuang").fadeOut(200);
+    return false;
+  })*/
+ //点击关闭
+ $('.pop-up_box_close').on('click',function(){
+     $(this).parent().parent().hide();
+     //$('.pingz').hide();
+ })
+
+ $(".register").click(function(){
+     var userid =  "{$_SESSION['member_id']}";
+     var art = "{$art}";
+     if(art==1){
+         alert("您已入驻，不能成为云推荐");
+         return false;
+     }
+     if(!userid){
+         dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+         return false;
+     }
+     var step = "{$step}";
+     var id = $(this).attr("data-id");
+     if(step == 0||step == ''){
+         window.location.href="/Wxin/Index/yunIdentity/id/"+id;
+     }else{
+         window.location.href="/Wxin/Index/yunAudit";
+     }
+
+ })
+ $('.buy').click(function(){
+     var id = $(this).attr("data-id");
+     var art = "{$art}";
+     if(art==1){
+         alert("您已入驻，不能成为云推荐");
+         return false;
+     }
+     $.ajax({
+         url:"/Wxin/Index/cloud",
+         data:{id:id},
+         dataType:"json",
+         type:"post",
+         success:function(data){
+             if(data.stauts==0){
+                 alert(data.info);
+                 window.location.reload();
+                 return false;
+             }else{
+
+                 window.location.href="/Wxin/Index/pay/id/"+id;
+             }
+         }
+     })
+
+     //window.location.href="/Home/Index/pay/id/"+id;
+ })
+ //去注册点击事件
+ $('.gift_bag_list_viewDetails').on('click',function(){
+     var userid =  "{$_SESSION['member_id']}";
+
+     if(!userid){
+         dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+         return false;
+     }
+
+     var gift = $(this).attr("data-id");
+     var level = "{$user}";
+     if(level == 3){
+         alert("您已经是最高等级了!");
+         window.location.reload();
+         return false;
+     }
+     if(gift <= level){
+         alert("您的等级比当前礼包更高!");
+         //window.location.reload();
+         return false;
+     }
+     $('.pop-up_box').show();
+     //$('.pingz').show();
+     var name=$(this).attr("data-name");
+     var detail= $(this).attr("data-detail");
+     var id = $(this).attr("data-id");
+     $('.pop-up_box_h5').html(name);
+     $('.pop-up_box_p').html(detail);
+     $('.pop-up_box_bottom').attr("data-id",id);
+ });
+</script>
+
+</html>

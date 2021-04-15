@@ -1,0 +1,323 @@
+<include file="Public:header" />
+<!--移动端-->
+<!--<script type="text/javascript" src="__JS__/tools.js"></script>
+<script type="text/javascript" src="__JS__/pictureHandle.js"></script>
+<script type="text/javascript" src="__JS__/pictureHandle1.js"></script>
+<script type="text/javascript" src="__JS__/location.js"></script>
+<link href="__CSS__/uploadSingleImg.css" rel="stylesheet">
+<link href="__CSS__/sellerCss.css" rel="stylesheet">
+<style>
+    .SelIdentCon .SelNoticeStyle h4{text-align:left;margin-top:50px;}
+    .SelIdentCon .SelNoticeStyle h4 a{ text-align:center; margin:0 0 30px 97px;    margin-top: 100px;}
+</style> -->
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+            <div class="SellerCon">
+                <div class="SellerTop SelIdTop">
+                    <h3>证件验证</h3>
+                    <p>请上传证件，确保图片清晰，四角完整</p>
+                </div>
+                <div class="SelIdentCon">
+
+                    <div class="SelCertName">
+                        <span class='SelIdentCon1'>单位营业执照号：</span>
+                        <span><input type="text" value="" maxlength="30"  id="business"/> </span>
+                    </div>
+                    <div class="SelIdentAddPic">
+                        <span class='SelIdentCon1'>单位营业执照图片: </span>
+                        <div class="SelIdentPic">
+                            <div class="SelIdetPic-list">
+                                <div class="SelIdPic-border">
+                                    <img src="__IMAGES__/SeladdPic.png" />
+                                    <h6>点此上传</h6>
+                                    <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="business_img" id="upFile"/>
+                                </div>
+                                <a href="javascript:;"  onclick="fangda(this)" class="SelIdPic-A pic" id="s"  style="width:130px;height:100px;position:relative;">
+                                    <img src="__IMAGES__/timg3.jpg" id="preview"/>
+                                    <div class="SelIdPic-Atxt">
+                                        <i class="fa fa-search"></i>
+                                        <h3>示例</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="SelCertName">
+                        <span class='SelIdentCon1'>组织机构代码证号：</span>
+                        <span><input type="text" value="" maxlength="30" id="organize" /> </span>
+                    </div>
+                    <div class="SelIdentAddPic">
+                    <span class='SelIdentCon1'>组织机构代码证图片: </span>
+                    <div class="SelIdentPic">
+                        <div class="SelIdetPic-list">
+                            <div class="SelIdPic-border">
+                                <img src="__IMAGES__/SeladdPic.png" />
+                                <h6>点此上传</h6>
+                                <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="organize_img" id="upFile1"/>
+                            </div>
+                            <a href="javascript:;"  onclick="fangda(this)" class="SelIdPic-A pic1" id="ss"  style="width:130px;height:100px;position:relative;">
+                                <img src="__IMAGES__/timg.jpg" id="preview1"/>
+                                <div class="SelIdPic-Atxt">
+                                    <i class="fa fa-search"></i>
+                                    <h3>示例</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="clear"></div>
+                    <div class="SelNoticeStyle">
+                        <h4><a href="javascript:void(0)" id="btn" style="margin-left: 162px;">确定提交</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+    </div>
+
+   </div>
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+
+<!--  / footer  -->
+<!--放大图片-->
+<div id="albums-overlay" class="disshow"></div>
+<div id="img" style="display: none"> </div>
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<script src="__JS__/jquery-form.js"></script>
+<!-- 图片上传 -->
+<style>
+    #albums-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .3);
+        z-index: 998;
+    }
+    .disshow {
+        display: none;
+    }
+
+    #img{
+        position: fixed;
+        top: 30%;
+        left: 35%;
+        width: 600px;
+        height: 600px;
+        z-index: 99999;
+    }
+</style>
+<script>
+    $('#albums-overlay').click(function () {
+        $('#img').hide();
+        $('#albums-overlay').hide();
+    })
+    $('#img').click(function () {
+        $('#img').hide();
+        $('#albums-overlay').hide();
+    })
+    function fangda(obj) {
+        var src = $(obj).find('img').attr('src');
+        $('#albums-overlay').show();
+        var str='<img src="'+src+'" width="100%" height="100%" >';
+        $('#img').show();
+        $('#img').html(str);
+    }
+</script>
+<!--放大图片-->
+</body>
+
+<script src="__JS__/jquery-form.js"></script>
+<!-- 图片上传 -->
+<script>
+$(function(){
+
+      var percent = $('.xuanze_percent');
+      var progress = $('.xuanze_percent');
+      $("#upFile").wrap("<form id='upFiles' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+      $("#upFile").change(function(){ //选择文件
+        $("#upFiles").ajaxSubmit({
+          dataType:  'json', //数据格式为json
+          beforeSend: function() { //开始上传
+            progress.show(); //显示进度条
+            var percentVal = '0%';
+            percent.html(percentVal);
+          },
+          uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%'; //获得进度
+            percent.html(percentVal); //显示上传进度百分比
+          },
+          success: function(data) { //成功
+            var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="100" height="80" ><input type="hidden" name="business_img" id="sfpic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+           //$('.xuanze_showimge').html(img);
+            $('#s').html(img);
+            progress.hide();
+          },
+          error:function(xhr){ //上传失败
+            //console.log(xhr.status)
+          }
+        });
+      });
+
+       var percent = $('.xuanze_percent');
+      var progress = $('.xuanze_percent');
+      $("#upFile1").wrap("<form id='upFiles1' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+      $("#upFile1").change(function(){ //选择文件
+        $("#upFiles1").ajaxSubmit({
+          dataType:  'json', //数据格式为json
+          beforeSend: function() { //开始上传
+            progress.show(); //显示进度条
+            var percentVal = '0%';
+            percent.html(percentVal);
+          },
+          uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%'; //获得进度
+            percent.html(percentVal); //显示上传进度百分比
+          },
+          success: function(data) { //成功
+            var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="100" height="80" ><input type="hidden" name="organize_img" id="sfpic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+           //$('.xuanze_showimge').html(img);
+            $('#ss').html(img);
+            progress.hide();
+          },
+          error:function(xhr){ //上传失败
+            //console.log(xhr.status)
+          }
+        });
+      });
+
+
+})
+</script>
+<!-- 图片上传 -->
+<script>
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+// $('.pic').click(function () {
+//     var pic1 = $('#preview').attr('src');
+//     document.getElementById("s").href= pic1;
+// })
+
+// $('.pic1').click(function () {
+//     var pic2 = $('#preview1').attr('src');
+//     document.getElementById("ss").href= pic2;
+// })
+
+
+
+
+    $('#btn').click(function () {
+       var  business = $('#business').val().trim();
+         business = business.replace(/\s+/g,"");
+       var organize = $('#organize').val().trim();
+         organize = organize.replace(/\s+/g,"");
+       var pic1 = $('#sfpic1').val();
+        var pic2 = $('#sfpic2').val();
+       if(business==""){
+           alert("营业执照号必填");
+           return false;
+       }
+        if(organize==""){
+            alert("组织机构代码号必填");
+            return false;
+        }
+
+       /*if(pic1 == undefined){
+           alert("营业执照照片不能为空");
+           return false;
+        }*/
+         if(pic2 == undefined){
+           alert("组织机构照片不能为空");
+           return false;
+        }
+        $.ajax({
+            url: "{:U('/Wxin/Shop/selfSel')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                business: business,
+                organize:organize,
+                pic1:pic1,
+                pic2:pic2,
+                remind_type:2,
+                bus_status:3
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+               
+                dialog.showTips(g.info , "warn", function () {
+                    window.location.href = '/Wxin/PersonalCenter/userinfo';
+                });
+            } else if(g.status == 2){
+
+                dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+                return false;
+            }else {
+                alert(g.info);
+            }
+
+        })
+
+    })
+</script>
+
+
+</html>

@@ -1,0 +1,122 @@
+<include file="Public:head"/>
+
+
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">抽奖活动管理</h1>
+            <a href="{:U('/Admin/Activity/Guize')}" class="btn btn-success">添加抽奖规则</a>
+            <form action="" method="get">
+                <!-- <div class="tables-searchbox newcearchbox">
+                     <input type="text" placeholder="活动名称" class="input mini" name="title" value="{$title}" >
+                     <input type="text" autocomplete="off" name="starttime" id="starttime" value="{$starttime}" readonly placeholder="活动开始日期" class="input Wdate" >
+                     <input type="text" autocomplete="off" name="endtime" id="endtime" value="{$endtime}" readonly placeholder="兑换结束日期" class="input Wdate" >
+                     <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+                 </div>-->
+            </form>
+            <!-- end tabs -->
+
+            <table class="wxtables mgt10">
+                <colgroup>
+                    <col width="20%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="30%">
+                </colgroup>
+                <thead>
+                    <tr class="po_list" align="center">
+                        <td>活动标题<span></span></td>
+                        <td>logo图<span></span></td>
+                        <td>状态<span></span></td>
+                        <td>开始时间<span></span></td>
+                        <td>结束时间<span></span></td>
+                        <td>操作<span></span></td>
+                    </tr>
+                </thead>
+                <tbody>
+                <foreach name="luck_list" item="vo">
+                    <tr align="center">
+                        <td>{$vo.title}</td>
+                        <td><img src="{$vo.img}" alt="" width="80"></td>
+                        <td><if condition="$vo['status'] eq 1">使用中<else/>停用</if></td>
+                    <td>{$vo.start_time|date="Y-m-d H:i:s",###}</td>
+                    <td>{$vo.end_time|date="Y-m-d H:i:s",###}</td>
+                    <td>                        
+                    <a href="{:U('/Admin/Activity/luckdetail/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">查看详情</a>
+                    <if condition="$vo['end_time'] gt $time">
+                        <if condition="$vo['status'] eq 1 ">
+                            <a class="btn btn-primary j-editClass" onclick='enable(2,{$vo.id})'>禁用</a>
+                            <else />
+                            <a class="btn btn-primary j-editClass" onclick='enable(1,{$vo.id})'>启用</a>
+                        </if>
+                    <else />
+                    </if>
+<!--                    <empty name="$vo['notice']">   -->
+                        <a class="btn btn-primary j-editClass" href="{:U('/Admin/Activity/luckExport/id')}/{$vo.id}">生成</a>
+<!--                    <else />                   
+                    </empty>-->
+                    </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <!--<a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary btn_table_offshelf">下架</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary btn_table_groupAll">分组</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary btn_table_setLevel">开/关折扣</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary j_alibaba">导入1688</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary j_postfee">运费</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary batch_update_price">修改价格</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary batch_update_class">分类</a></div>-->
+
+                    <div class="fr">
+                        <div class="pages"> {$page} </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+    <!-- end container -->
+    <include file="Public:foot"/>
+    <script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+    <script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+    <script type="text/javascript">
+        function enable(status,id){                  
+         $.ajax({
+            url:"{:U('/Admin/Activity/Enable')}",
+            data:{status:status, id:id},
+            dataType:'json',
+            type:'post',
+            success:function(data){    
+                alert(data.info);
+                window.location.reload();
+            }
+          })
+        }        
+        J(function () {
+            J('#starttime').calendar();
+            J('#endtime').calendar();
+        });
+    </script>
+    <script type="text/javascript">
+
+        J(function () {
+
+            J('#baoxianendtime').calendar();
+
+        });
+
+    </script>

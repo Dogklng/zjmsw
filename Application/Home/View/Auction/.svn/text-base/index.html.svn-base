@@ -1,0 +1,210 @@
+<include file="Public:header" />
+
+<div class="ban1">
+ <volist name="res" id="vo">
+    <div class="banner_img"> <img src="{$vo.pic}" alt="" /> </div>
+  </volist>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Auction preview</p>
+    <h5>拍 • 卖 • 预 • 展</h5>
+  </div>
+  <div class="main">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="mainList">
+          <div class="mainL-calendar">
+            <h3 class="mainL-h3">按时间筛选</h3>
+            <input class="datainp" id="dateinfo" type="text" placeholder="请选择"  readonly>
+            <i><img src="__IMAGES__/xiajiantou.png" alt="" /></i> </div>
+          <div class="mainL-screen">
+            <h3 class="mainL-h3">按类目筛选</h3>
+            <ul class="mainL-screenUl">
+              <volist name="cate" id="vo" key="k">
+                <li>
+                  <input type="checkbox" name="screenS" id='screenS+{$k+1}' onchange="fun()" value="{$vo.id}"/>
+                  <label for='screenS+{$k+1}'>{$vo.classname}</label>
+                </li>
+              </volist>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9">
+        <div class="left-main">
+          <div class="event_list">
+            <ul>
+              <volist name="pm" id="v">
+                <li>
+                  <div class="pMd">
+                    <a href="{:U('/Home/Auction/details',array('id'=>$v['id']))}" class="image"><img src="{$v.index_pic}"></a>
+                    <a href="{:U('/Home/Auction/details',array('id'=>$v['id']))}" class="names">{$v.goods_name}</a>
+                    <span class="action"> <a href="javascript:eventRemind(1047,'sms');" class="sms icon tip" onclick="myFunction(this)" id="{$v.id}"> <span>短信提醒</span> </a> </span>
+                    <span class="time">{$v['start']|date="Y",###}年{$v['start']|date="m",###}月{$v['start']|date="d",###}日 {$v['start']|date="i:s",###}  - {$v['end']|date="Y",###}年{$v['end']|date="m",###}月{$v['end']|date="d",###}日 {$v['end']|date="i:s",###}</span>
+                    <span class="date"><span class="day">{$v['start']|date="d",###}</span><span class="month">{$v['start']|date="m",###}月</span><span class="year">{$v['start']|date="Y",###}</span></span>
+                    <span class="count"><span class="bid">0</span><b>出价次数</b>
+                    <span class="views">1</span><b>围观数</b></span>
+                  </div>
+                </li>
+              </volist>
+            </ul>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<!-- 关联计划弹框 -->
+<div class="relation">
+  <div class="relation_bg"></div>
+  <div class="relation_con" style="margin-top:-150px;overflow-y:auto;"> <img src="__IMAGES__/dizhi_close.png" width="24">
+    <h5>设置拍卖前提醒</h5>
+    <div class="relation_list">
+      <form action="relationForm">
+        <input type="hidden" id="goods_id"/>
+        <div class="reFormI reFormIdx"> <span>姓名：</span>
+          <input type="text" id="name"/>
+        </div>
+        <div class="reFormI reFormIdx"> <span>手机号码：</span>
+          <input type="text" id="tel"/>
+        </div>
+        <div class="reFormB">
+          <input type="button" value="确认" id="btn"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- 关联计划弹框 -->
+
+</body>
+<script type="text/javascript" src="__JEDATE__/jedate.js"></script>
+<script>
+    function fun() {
+        var start_time = $('#time').val();
+        obj = document.getElementsByName("screenS");
+        check_val = [];
+        for (k in obj) {
+            if (obj[k].checked)
+                check_val.push(obj[k].value);
+        }
+//        window.location.href="/Home/Auction/index/cate/"+check_val/;
+        window.location.href="{:U('/Home/Auction/index')}?cate="+check_val;
+    }
+
+    $('#btn').click(function () {
+        var member_id = '{$name}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+        var name = $('#name').val();
+        var tel  = $('#tel').val();
+        var goods_id   = $('#goods_id').val();
+        if(name == ""){
+            alert('姓名必填');
+            return false;
+        }
+        if(tel == ''){
+            alert('手机号必填');
+            return false;
+        }
+        if(!(/^1[34578]\d{9}$/.test(tel))){
+            alert('请输入正规手机号');
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Home/Auction/addRemind')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                name: name,
+                tel:  tel,
+                goods_id:goods_id
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+//              window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+
+
+    function myFunction(obj) {
+        var id = obj.id;
+        $('#goods_id').val(id);
+    }
+
+</script>
+<script>
+
+    $(document).ready(function(){
+
+        $(".jpxz").click(function(e){
+            $(".popBox").css({"display":"block"})
+        })
+
+
+        $(".closejp").click(function(e){
+            $(".popBox").css({"display":"none"})
+        })
+
+    });
+
+    jeDate.skin('gray');
+    jeDate({
+        dateCell:"#dateinfo",
+        format:"YYYY年MM月DD日 hh:mm:ss",
+        isinitVal:true,
+        isTime:true, //isClear:false,
+        minDate:"2014-09-19 00:00:00",
+        okfun:function(val){alert(val)}
+    })
+
+
+
+
+    // 鼠标移入事件
+    $('.event_list li .action  a').mouseenter(function(){
+        $(this).children().css("display","block");
+    }).mouseleave(function(){
+        $(this).children().css("display","none");
+    });
+
+
+
+
+    $('.action  a').click(function(){
+        $('.relation').stop(true).fadeIn(1000);
+        setTimeout(function(){
+            $('.relation_con').addClass('relation_con_on');
+        },300)
+    });
+    $('.relation_con>img').click(function(){
+        $('.relation').stop(true).fadeOut(1000);
+        $('.relation_con').removeClass('relation_con_on');
+    })
+    $('#reI1').click(function(){
+        $('.reFormIyx').slideToggle();
+    })
+    $('#reI2').click(function(){
+        $('.reFormIdx').slideToggle();
+    })
+
+
+</script>
+</html>

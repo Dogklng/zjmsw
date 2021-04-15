@@ -1,0 +1,434 @@
+<include file="Public:header" />
+<!----移动端----->
+<script type="text/javascript" src="__JS__/tools.js"></script>
+<script type="text/javascript" src="__JS__/pictureHandle.js"></script>
+<script type="text/javascript" src="__JS__/pictureHandle1.js"></script>
+<script type="text/javascript" src="__JS__/location.js"></script>
+<link href="__CSS__/uploadSingleImg.css" rel="stylesheet">
+<link href="__CSS__/sellerCss.css" rel="stylesheet">
+
+<!--  / warpper  -->
+<style>
+.SelIdPic-A {
+    display: block;
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+}
+</style>
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left1" />
+        </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+         <div class="SellerTop SelIdTop">
+          <h3>身份验证</h3>
+          <p>请上传本人身份证件，确保图片清晰，四角完整</p>
+         </div>
+         <div class="SelIdentCon">
+          <div class="SelCertName">
+           <span>姓名：</span>
+           <input type="text" value=""  id="name"/>
+          </div>
+          <div class="SelCertName">
+           <span>电话：</span>
+           <input type="text" value=""  id="tel"/> 
+          </div>
+          <div class="SelCertClass">
+           <span>证件类型：</span>
+           <span><input type="radio" name="SelCinput" checked value="0"/> 二代身份证</span>
+           <span><input type="radio" name="SelCinput" value="1"/> 临时身份证</span>
+          </div>
+          <div class="SelCertName SelCertName1">
+           <span>证件号：</span>
+       <input type="text" value=""  id="cardid" style="margin-left: 0px;" /> 
+          </div>
+          <div class="SelIdentAddPic">
+           <span>证件图片: </span>
+           <div class="SelIdentPic">
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border">
+               <img src="__IMAGES__/SeladdPic.png" />
+               <h6>点此上传</h6>
+               <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="upFile"  >
+              </div>
+              <a href="JavaScript:void();" class="SelIdPic-A pic" target="_blank" id="s" style="width:100%;position:relative;">
+               <img src="__IMAGES__/SeladdPic1.jpg"  id="preview"/>
+               <div class="SelIdPic-Atxt" id="SelIdPic-Atxt1">
+                <i class="fa fa-search"></i>
+                <h3>示例</h3>
+               </div>
+              </a>
+            </div>
+
+
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border">
+                  <img src="__IMAGES__/SeladdPic.png"/>
+               <h6>点此上传</h6>
+               <input type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="upFile1" />
+              </div>
+              <a href="JavaScript:void();" class="SelIdPic-A pic1" target="_blank" id="ss" style="width:100%;position:relative;">
+               <img src="__IMAGES__/SeladdPic1.jpg" id="preview1"/>
+               <div class="SelIdPic-Atxt" id="SelIdPic-Atxt2">
+                <i class="fa fa-search"></i>
+                <h3>示例</h3>
+               </div>
+              </a>
+            </div>
+           </div>
+          </div>
+          <div class="clear"></div>
+          <div class="SelIdentTime">
+            <span>居住地址：</span>
+            <div class="contact_sec1_top">
+              <ul>
+                <li>
+                  <div class="x_shengshi" id="pro_x" name="s_province">
+                    <span></span>
+                    <ul class="shengshi_lis"></ul>
+                  </div><span>省</span>
+                </li>
+                <li>
+                  <div class="x_shengshi" id="city_x" name="s_city" >
+                    <span></span>
+                  </div><span>市</span>
+                </li>
+                <li>
+                  <div class="x_shengshi" id="county_x" name="s_county">
+                    <span></span>
+                  </div><span>县</span>
+                </li>
+              </ul>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="SelIdentTime SelIdentTime1">
+           <span>详细地址：</span>
+           <span><input type="text" id="address"/> </span>
+          </div>
+          <div class="clear"></div>
+          <div class="SelNoticeStyle">
+           <h4><a href="javascript:void(0)" id="btn">确定提交</a></h4>
+          </div>
+         </div>
+        </div>
+      </div>
+    </div>
+
+   </div>
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<!--  / footer  -->
+<include file="Public:footer"/>
+
+<!--  / footer  -->
+
+</body>
+<script src="__JS__/jquery-form.js"></script>
+<!-- 图片上传 -->
+<script>
+$(function(){
+
+      var percent = $('.xuanze_percent');
+      var progress = $('.xuanze_percent');
+      $("#upFile").wrap("<form id='upFiles' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+      $("#upFile").change(function(){ //选择文件
+        $("#upFiles").ajaxSubmit({
+          dataType:  'json', //数据格式为json
+          beforeSend: function() { //开始上传
+            progress.show(); //显示进度条
+            var percentVal = '0%';
+            percent.html(percentVal);
+          },
+          uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%'; //获得进度
+            percent.html(percentVal); //显示上传进度百分比
+          },
+          success: function(data) { //成功
+            var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="100" height="80" ><input type="hidden" name="news_pic" id="sfpic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+           //$('.xuanze_showimge').html(img);
+            $('#s').html(img);
+            progress.hide();
+          },
+          error:function(xhr){ //上传失败
+            //console.log(xhr.status)
+          }
+        });
+      });
+
+       var percent = $('.xuanze_percent');
+      var progress = $('.xuanze_percent');
+      $("#upFile1").wrap("<form id='upFiles1' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+      $("#upFile1").change(function(){ //选择文件
+        $("#upFiles1").ajaxSubmit({
+          dataType:  'json', //数据格式为json
+          beforeSend: function() { //开始上传
+            progress.show(); //显示进度条
+            var percentVal = '0%';
+            percent.html(percentVal);
+          },
+          uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%'; //获得进度
+            percent.html(percentVal); //显示上传进度百分比
+          },
+          success: function(data) { //成功
+            var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="100" height="80" ><input type="hidden" name="news_pic" id="sfpic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+           //$('.xuanze_showimge').html(img);
+            $('#ss').html(img);
+            progress.hide();
+          },
+          error:function(xhr){ //上传失败
+            //console.log(xhr.status)
+          }
+        });
+      });
+
+
+})
+</script>
+<!-- 图片上传 -->
+<script>
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+// $('.pic').click(function () {
+//     var pic1 = $('#preview').attr('src');
+//     document.getElementById("s").href= pic1;
+// })
+
+// $('.pic1').click(function () {
+//     var pic2 = $('#preview1').attr('src');
+//     document.getElementById("ss").href= pic2;
+// })
+
+
+
+
+
+    $('#btn').click(function () {
+        var province = $.trim($('#pro_x span').eq(0).html()); //现居住地址
+        var city = $.trim($('#city_x span').eq(0).html());    //城市
+        var district = $.trim($('#county_x span').eq(0).html());
+       var name = $.trim($('#name').val());
+       var tel = $.trim($('#tel').val());
+       var cardid = $.trim($('#cardid').val());
+       var  type= $('input:radio[name="SelCinput"]:checked').val();
+       var pic1 = $('#sfpic1').val();
+        var pic2 = $('#sfpic2').val();
+       var address = $.trim($('#address').val());
+       if(name==""){
+           alert("姓名必填");
+           return false;
+       }
+        if(tel==""){
+            alert("手机必填");
+            return false;
+        }
+       if(!(/^1[34578]\d{9}$/.test(tel))){
+        alert('请输入正确的手机号');
+        $('#tel').focus();
+        return false;
+    }
+        if(!(/^1[34578]\d{9}$/.test(tel))){
+        alert('请输入正确的手机号');
+        $('#tel').focus();
+        return false;
+    }
+        if(cardid==""){
+            alert("身份证必填");
+            return false;
+        }
+        if(!(/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(cardid))){
+            alert("身份证不正确 必填");
+            return false;
+        }
+        // if(pic1 == "/Public/Home/Images/SeladdPic1.jpg"){
+        //     alert("请上传身份证照片（正面）");
+        //     return false;
+        // }
+        // if(pic2 == "/Public/Home/Images/SeladdPic1.jpg"){
+        //     alert("请上传身份证照片（反面）");
+        //     return false;
+        // }
+        if(pic1 == undefined){
+           alert("请上传身份证照片（正面）");
+           return false;
+        }
+         if(pic2 == undefined){
+           alert("请上传身份证照片（反面）");
+           return false;
+        }
+        if(province == "" || province == "请选择"){
+            alert('请选择省份');
+            return false;
+        }
+        if(city == ''){
+            alert('请选择市');
+            return false;
+        }
+        // if(district == ''){
+        //     alert('请选择县');
+        //     return false;
+        // }
+        if(address == ""){
+            alert("详细地址必填");
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Home/Shop/selfSel')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                name: name,
+                tel:tel,
+                cardID:cardid,
+                type:type,
+                address:address,
+                pic1:pic1,
+                pic2:pic2,
+                province:province,
+                city:city,
+                district:district,
+                remind_type:0
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.href="{:U('/Wxin/PersonalCenter/userinfo')}";
+            } else {
+                alert(g.info);
+            }
+
+        })
+
+    })
+</script>
+
+<script>
+    var pro = $('#pro_x');
+    var city = $('#city_x');
+    var county = $('#county_x');
+
+    // 给省设置默认样式
+    var str_Pro = "<li ss=''>请选择</li>";
+
+    // 遍历省
+    for(var i in citys[0]){
+
+        str_Pro += '<li ss="0,'+i+'">'+citys[0][i]+'</li>';
+        pro.find('.shengshi_lis')[0].innerHTML=str_Pro;
+    }
+
+    $(document).on('click','.shengshi_lis li',function(e){
+        var obj=$(e.target);
+        obj.parents('.x_shengshi').attr('ss',obj.attr('ss')).find('span').text(obj.text());
+
+    })
+    //省、市、区的id
+    var city_x=['#pro_x','#city_x','#county_x'];
+    var num=0;
+
+    function change(n){
+        if(n==1){
+            $(city_x[1]).find('span').text('');
+            $(city_x[1]).find('.shengshi_lis').remove();
+            $(city_x[2]).find('span').text('');
+            $(city_x[2]).find('.shengshi_lis').remove();
+        }
+        if(n==2){
+            $(city_x[2]).find('span').text('');
+            $(city_x[2]).find('.shengshi_lis').remove();
+        }
+        //省市区点击
+
+        // 插入地区
+        var ul='<ul class="shengshi_lis"></ul>';
+        if(city_x.length>n){
+            if($(city_x[n]).find('ul').length==0){
+                $(city_x[n]).append(ul);
+            }else{
+                return;
+            }
+        }else{
+            return;
+        }
+
+        var str_City = "<li ss=''>请选择</li>";
+
+        var ss=$('.x_shengshi').eq(n-1).attr('ss');
+
+        if(ss==''){
+            return;
+        }
+
+        for(var i in citys[ss]){
+            str_City += '<li ss="'+ss+','+i+'">'+citys[ss][i]+'</li>';
+        }
+        $(city_x[n]).find('.shengshi_lis')[0].innerHTML=str_City;
+
+    }
+
+
+    function _init_area(){  //初始化函数
+        for(i=0;i<city_x.length;i++){
+            $(document).on('click',city_x[i],function(){
+                $('.shengshi_lis').not($(this).find('.shengshi_lis')).slideUp();
+                $(this).find('.shengshi_lis').slideToggle();
+            });
+            $(city_x[i]).attr('index',i).find('span').on('DOMNodeInserted',function(){
+                change(parseInt($(this).parents('.x_shengshi').attr('index'))+1);
+            });
+        };
+        change(0)
+    }
+    _init_area()
+
+
+</script>
+</html>

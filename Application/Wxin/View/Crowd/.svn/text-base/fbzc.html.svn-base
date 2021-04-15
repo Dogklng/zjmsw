@@ -1,0 +1,431 @@
+<include file="Public:header" />
+<div class="dianpu_box">
+<div class="SellerCon">
+  <div class="SellerTop">
+    <h3>1.作品信息</h3>
+  </div>
+  <div class="SellerFlower">
+    <div class="pZlCon fbzp-pZlCon">
+      <form class="pZlConForm" aciton="{:U('/Wxin/Crowd/fbzc')}" enctype="multipart/form-data" method="post" id="add_step2">
+        <div class="pZlConI clearfix">
+          <label class="pzLs">作品名称：</label>
+          <input type="text" maxlength="30" name="goods_name" id="goods_name" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">作品描述：</label>
+          <textarea name="desc"  id="desc" rows="3" cols=""></textarea>
+        </div>
+        <div class="pZlConI clearfix">
+            <div class="pzLs">
+              <label class="pzLs">起始时间：</label>
+            </div>
+            <div class="hlCnr">
+              <input type="text" name="start" id="dateinfo">
+            </div>
+          </div>
+          <div class="pZlConI clearfix">
+            <div class="pzLs">
+              <label class="pzLs">结束时间：</label>
+            </div>
+            <div class="hlCnr">
+              <input type="text" name="end" id="dateinfo1">
+            </div>
+          </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">目标价：</label>
+          <input class="w90" type="text" name="total_price" id="total_price" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" value="">万元
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">估值：</label>
+          <input class="w90" type="text" name="gz" id="gz" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" value="">万元
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">出让股份：</label>
+          <input class="w90" type="text" name="crgf" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" id="crgf" value="">%
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">起投金额：</label>
+          <input class="w90" type="text" name="mini" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" id="mini" value="">元
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">分类：</label>
+          <!--<input type="text" value="">-->
+          <div class="hlCnr">
+            <select name="cate_id">
+              <volist name="crowd_cate" id="v">
+                <option value="{$v.id}">{$v.name}</option>
+              </volist>
+            </select>
+           </div>
+        </div>
+        <div class="pZlConI clearfix">
+          <div class="pZlConI-div">
+            <label class="pzLs">作品展示：</label>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border" id="s"> <img src="__IMAGES__/SeladdPic.png">
+                <h6>点此上传</h6>
+                <input type="file" accept="image/jpg,image/jpeg,image/png" name="logo_pic" id="upFile">
+              </div>
+            </div>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border" id="ss"> <img src="__IMAGES__/SeladdPic.png">
+                <h6>点此上传</h6>
+                <input type="file" accept="image/jpg,image/jpeg,image/png" name="index_pic" id="upFile1">
+              </div>
+            </div>
+          </div>
+          <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">材质：</label>
+          <input type="text" maxlength="20" name="goods_skin" id="goods_skin" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">尺寸：</label>
+          <input class="w90" type="text" maxlength="20" name="goods_range" id="goods_range" value="">cm
+        </div>
+        <div class="pZlConI clearfix">
+            <div class="pzLs">
+              <label class="pzLs">上市时间：</label>
+            </div>
+            <div class="hlCnr">
+              <input type="text" id="demo" name="goods_care">
+            </div>
+          </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">投资概述：</label>
+          <textarea name="tz_desc" id="tz_desc" rows="3" cols=""></textarea>
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">资产包介绍：</label>
+          <textarea name="zcb_desc" id="zcb_desc" rows="3" cols=""></textarea>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+  <div class="SellerTop">
+    <h3>2.作者信息</h3>
+  </div>
+  <div class="SellerFlower">
+  	<div class="pZlCon fbzp-pZlCon">
+      <form class="pZlConForm">
+      	<div class="pZlConI clearfix">
+          <label class="pzLs">作者：</label>
+          <input type="text" maxlength="10" name="goods_cap" id="goods_cap" value="">
+        </div>
+      	<div class="pZlConI clearfix">
+          <label class="pzLs">作者简介：</label>
+          <textarea name="goods_cap_des" id="des" rows="3" cols=""></textarea>
+        </div>
+        <div class="pZlConI clearfix">
+          <div class="pZlConI-div">
+            <label class="pzLs">作者头像：</label>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border baotuan_showimge"> <img src="__IMAGES__/SeladdPic.png">
+                <h6>点此上传</h6>
+                <input type="hidden" name="goods_cap_pic" id="goods_cap_pic" value=""/>
+                <input type="file" accept="image/jpg,image/jpeg,image/png" name="serial" id="baotuan">
+              </div>
+            </div>
+          </div>
+          <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，建议大小（宽434px高368px）</h5>
+        </div>
+      </form>
+  	</div>
+  </div>
+  <div class="SelNoticeStyle">
+    <h4><a href="javascript:;" style="color: rgb(255, 255, 255);background-color: rgb(40, 96, 144);border-color: rgb(32, 77, 116);" onclick="toVaild()">发布</a></h4>
+  </div>
+</div>
+<div class="indexbottom"></div>
+</div>
+<include file="Public:footer" />
+
+</body>
+</html>
+
+<script type="text/javascript" src="__JS__/jeDate/jedate.js"></script>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+
+  $(window).load(function(){
+    var widthshijin = $('#dateinfo').width();
+    $('.jedatebox').width(widthshijin-2);
+
+  })
+  jeDate({
+    dateCell:"#dateinfo",
+    format:"YYYY-MM-DD",
+    isinitVal:false,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+
+  jeDate({
+    dateCell:"#dateinfo1",
+    format:"YYYY-MM-DD",
+    isinitVal:false,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+</script>
+<script type="text/javascript">
+  function toVaild(){
+    var goods_name = $.trim($('#goods_name').val());
+    if(goods_name == ''){
+      alert('作品名不能为空！');
+      return false;
+    }
+    var desc = $.trim($('#desc').val());
+    if(desc == ''){
+      alert('作品描述不能为空！');
+      return false;
+    }
+    var start = $.trim($('#dateinfo').val());
+    if(start == ''){
+      alert('起始时间不能为空！');
+      return false;
+    }
+    var end = $.trim($('#dateinfo1').val());
+    if(end == ''){
+      alert('结束时间不能为空！');
+      return false;
+    }
+    if(start > end){
+      alert('起始时间必须早于结束时间！');
+      return false;
+    }
+    var time=new Date();
+    var time1 = time.getTime();
+    var dltime = new Date(end);
+    var dltime1 = dltime.getTime();
+    if(dltime1<=time1){
+      alert('结束时间必需大于当前时间');
+      return false;
+    }
+
+    //alert(end);return false;
+    /*    var now = new Date();
+     var date = now.toLocaleDateString();
+     if(end<=date){
+     alert('结束时间必须晚于当前时间！');
+     return false;
+     }*/
+
+    var total_price = $.trim($('#total_price').val());
+    if(total_price == ''){
+      alert('目标金额不能为空！');
+      return false;
+    }
+    if(!total_price.match(/^[0-9.]*$/)){
+      alert('目标金额只能为数字！');
+      return false;
+    }
+    var gz = $.trim($('#gz').val());
+    if(gz == ''){
+      alert('估值不能为空！');
+      return false;
+    }
+    if(!gz.match(/^[0-9]*$/)){
+      alert('估值只能为数字！');
+      return false;
+    }
+    var crgf = $.trim($('#crgf').val());
+    if(crgf == ''){
+      alert('出让股份不能为空！');
+      return false;
+    }
+    if(!crgf.match(/^[0-9]*$/)){
+      alert('出让股份只能为数字！');
+      return false;
+    }
+    var mini = $.trim($('#mini').val());
+    //alert(mini);return false;
+    if(mini == ''){
+      alert('起投金额不能为空！');
+      return false;
+    }
+    if(!mini.match(/^[0-9]*$/)){
+      alert('起投金额只能为数字！');
+      return false;
+    }
+
+    if(mini>(total_price*10000)){
+      alert('起投金额不能大于目标金额！');
+      return false;
+    }
+
+    var goods_skin = $.trim($('#goods_skin').val());
+    if(goods_skin == ''){
+      alert('材料不能为空！');
+      return false;
+    }
+    var goods_range = $.trim($('#goods_range').val());
+    if(goods_range == ''){
+      alert('尺寸不能为空！');
+      return false;
+    }
+
+    if(!goods_range.match(/^[0-9]*$/)){
+      alert('尺寸只能为数字！');
+      return false;
+    }
+
+
+
+    var goods_care = $.trim($('#demo').val());
+    if(goods_care == ''){
+      alert('上市时间不能为空！');
+      return false;
+    }
+    var date=new Date;
+    var year=date.getFullYear();
+    if(goods_care>year){
+      alert('上市时间不能晚于当前时间！');
+      return false;
+    }
+
+    if(!goods_care.match(/^[0-9]*$/)){
+      alert('上市时间只能为数字！');
+      return false;
+    }
+
+    var zcb_desc = $.trim($('#zcb_desc').val());
+    if(zcb_desc == ''){
+      alert('资产包介绍不能为空！');
+      return false;
+    }
+
+    var tz_desc = $.trim($('#tz_desc').val());
+    if(tz_desc == ''){
+      alert('投资概述不能为空！');
+      return false;
+    }
+
+
+    var goods_cap_pic = $('#goods_cap_pic').val();
+    //alert(goods_cap_pic);return false;
+
+    if(goods_cap_pic == ''){
+      alert('作者图片不能为空！');
+      return false;
+    }
+    /*var logo_pic = $('#upFile').val().trim();
+     if(logo_pic == ''){
+     alert('logo图片不能为空！');
+     return false;
+     }
+     var index_pic = $('#upFile1').val().trim();
+     if(index_pic == ''){
+     alert('作品展示图片不能为空！');
+     return false;
+     }*/
+    var goods_cap = $.trim($('#goods_cap').val());
+    if(goods_cap == ''){
+      alert('作者不能为空！');
+      return false;
+    }
+    var goods_cap_des = $.trim($('#des').val());
+    if(goods_cap_des == ''){
+      alert('作者简介不能为空！');
+      return false;
+    }
+
+    $("#add_step2").submit();
+  }
+</script>
+<script type="text/javascript">
+
+  function baotuan(){
+    var percent = $('.baotuan_percent');
+    var progress = $('.baotuan_percent');
+    $("#baotuan").wrap("<form id='baotuan1' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#baotuan").change(function(){ //选择文件
+      $("#baotuan1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="goods_cap_pic" id="index_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" accept="image/jpg,image/jpeg,image/png" name="serial" id="baotuan">';
+          $('.baotuan_showimge').html(img);
+          baotuan();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+
+  function upFile1(){
+    $("#upFile1").wrap("<form id='formupFiles1' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile1").change(function(){ //选择文件
+      $("#formupFiles1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+         // progress.show(); //显示进度条
+          var percentVal = '0%';
+         // percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          //percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="index_pic" id="sfpic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" accept="image/jpg,image/jpeg,image/png" name="index_pic" id="upFile1">';
+          //$('.xuanze_showimge').html(img);
+          $('#ss').html(img);
+          upFile1();
+          //progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+
+  function upFile(){
+    $("#upFile").wrap("<form id='formupFiles' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile").change(function(){ //选择文件
+      $("#formupFiles").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          //progress.show(); //显示进度条
+          var percentVal = '0%';
+          //percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          //percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="logo_pic" id="sfpic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" accept="image/jpg,image/jpeg,image/png" name="logo_pic" id="upFile">';
+          //$('.xuanze_showimge').html(img);
+          $('#s').html(img);
+          upFile();
+          //progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+  $(function () {
+    upFile();
+    upFile1();
+    baotuan();
+  });
+</script>

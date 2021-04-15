@@ -1,0 +1,186 @@
+<include file="Public:head"/>
+
+<style>
+        .imgnav{
+            max-height: 30px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .imgwrapper{
+            display: block;
+            width: 78px;
+            height: 78px;
+            overflow: hidden;
+        }
+        .imgwrapper img{
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border:0;
+        }
+				#l-map{height:300px;width:100%;}
+        .spanpd10{
+            margin:10px;
+        }
+        .wxtables.wxtables-sku.newtable{
+            width: 40%;
+            margin: 0;
+        }
+        .img-list li{
+            width: 60px;
+            height:60px;
+        }
+        .cst_h3 span{font-weight: normal;}
+    </style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=A607d61b18d43a1ff27abf4ac67da83c"></script>
+
+<div class="container">
+<div class="inner clearfix">
+        <include file="Public:left" />
+<!-- end content-left -->
+
+<div class="content-right fl">
+ 
+
+    <h1 class="content-right-title">查看详情</h1>
+    
+    
+<input type="hidden" id="j-isSid" value="0"><!-- 是否选择了淘宝类目 -->
+<input type="hidden" id="j-hasNorms" value="1"><!-- 淘宝类目下是否有属性 -->
+<input type="hidden" id="supplier" value="">
+
+<form aciton="{:U('/Admin/Member/edit')}" method="post" id="add_step2" onsubmit="return toVaild()">
+<div class="panel-single panel-single-light mgt20">
+    <h3 class="cst_h3 mgb20">个人信息</h3>
+    <div>
+        <div class="formitems">
+            <label class="fi-name">画廊主人用户名：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$user.person_name}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">画廊主人真实姓名：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$user.realname}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems" style="padding-top:-5px">
+            <label class="fi-name">手机号：</label>
+            <div class="form-controls" style="padding-top:-5px">{$user.telephone}<span class="fi-help-text"></span></div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">性别：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                <switch name="user.sex">
+                    <case value="1">男</case>
+                    <case value="2">女</case>
+                </switch>
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">地址：</label>
+            <div class="form-controls" style="padding-top:-5px">{$user.province}{$user.city}{$user.district}{$user.address}<span class="fi-help-text"></span></div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">生日：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$user.birth}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">邮箱：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$user.email}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">身份证号：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$user.card_id}
+                <span class="fi-help-text"></span>
+            </div>
+        </div> 
+        <div class="formitems">
+            <label class="fi-name">注册时间：</label>
+            <div class="form-controls" style="padding-top:-5px">{$user.addtime}<span class="fi-help-text"></span></div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name" >会员等级：</label>
+            <div class="form-controls" >{$user.vip}<span class="fi-help-text"></span></div>
+        </div> 
+        <div class="formitems">
+            <label class="fi-name">身份证(正面)：</label>
+            <div class="form-controls" style="padding-top:-5px"><img src="{$user.card_img}" width="50" alt=""></div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">身份证(反面)：</label>
+            <div class="form-controls" style="padding-top:-5px"><img src="{$user.card_img1}" width="50" alt=""></div>
+        </div>  
+	</div>
+</div>
+<!-- end 基本信息 -->
+<div class="panel-single panel-single-light mgt20">
+    <h3 class="cst_h3 mgb20">画廊信息</h3>
+    <div class="formitems">
+        <label class="fi-name">画廊名称：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$res.gallery_name}
+            <span class="fi-help-text"></span>
+        </div>
+    </div> 
+    <div class="formitems">
+        <label class="fi-name"><span class="colorRed"></span>成立时间：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$res.create_at|date="Y-m-d H:i:s",###}
+            <span class="fi-help-text"></span>
+        </div>
+    </div>      
+    <div class="formitems">
+        <label class="fi-name">画廊口号：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$res.detail}
+            <span class="fi-help-text"></span>
+        </div>
+    </div>
+    <div class="formitems">
+        <label class="fi-name">画廊描述：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$res.desc|htmlspecialchars_decode|stripslashes}
+            <span class="fi-help-text"></span>
+        </div>
+    </div>
+    <div class="formitems">
+        <label class="fi-name">画廊logo：</label>
+        <div class="form-controls" style="padding-top:-5px"><img src="{$res.logo_pic}" width="50" alt=""></div>
+    </div>
+    <div class="formitems">
+        <label class="fi-name">画廊环境：</label>
+        <div class="form-controls" style="padding-top:-5px"><img src="{$res.index_pic}" width="50" alt=""></div>
+    </div>
+</div>
+
+<!-- end 详情及其它 -->
+
+
+<div class="panel-single panel-single-light mgt20 txtCenter">
+    <a href="javascript:history.back(-1)" class="btn">返回</a>
+
+</div>
+</form>
+
+</div>
+<!-- end content-right -->
+</div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+

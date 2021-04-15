@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>评论</title>
+</head>
+<style scoped>
+    body,
+    html {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .coBox {
+        text-align: left;
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .comleft {
+        display: inline-block;
+        width: 88px;
+        font-size: 15px;
+        text-align: right;
+        vertical-align: top;
+    }
+
+    .comright {
+        display: inline-block;
+        width: 70%;
+        vertical-align: top;
+        font-size: 16px;
+    }
+
+    .bgbox {
+        background: url('__IMAGES__/denglu_bg.jpg')center no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        color: black;
+        opacity: .8;
+    }
+
+    .observer {
+        margin-top: 40%;
+    }
+</style>
+
+<body>
+    <include file="Public:header" />
+    <link rel="stylesheet" href="__CSS__/jquery.emoji.css">
+    <script src="__JS__/jquery.emoji.min.js"></script>
+    <script src="__JS__/emoji.list.js"></script>
+    <div class="bgbox">
+            <div class="coBox observer"><span class="comleft">评论者：</span><span class="comright">{$comment['realname']}</span></div>
+            <div class="coBox"><span class="comleft">内容：</span><span
+                    class="comright">{$comment['content']}</span></div>
+            <div class="coBox"><span class="comleft">评论日期：</span> <span class="comright">{$comment['created_at']}</span></div>
+            <div class="coBox"><span class="comleft">审批状态：</span> {$comment['status']}</div>
+            <div class="coBox"><span class="comleft">拒绝原因：</span><span class="comright">{$comment['reason']}</span> </div>
+    </div>
+</body>
+<script>
+    // $("textarea").emoji({
+    //     button: '.enj',
+    //     showTab: true,
+    //     animation: 'fade',
+    //     basePath: '__IMAGES__/emoji',// /images/emoji
+    //     icons: emojiLists
+    // });
+    $("span").emojiParse({
+        basePath: '__IMAGES__/emoji',// images/emoji
+        icons: emojiLists
+    });
+</script>
+</html>

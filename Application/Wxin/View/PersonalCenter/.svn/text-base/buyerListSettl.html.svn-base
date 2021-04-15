@@ -1,0 +1,119 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+          <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="buyerMy">
+            <ul class="user_all">
+              <li ><a href="{:U('/Home/PersonalCenter/buyerListPm/tag/buyerListPm/value/2')}">拍品列表</a></li>
+              <li class="actived"><a href="{:U('/Home/PersonalCenter/buyerListSettl/tag/buyerListPm/value/2')}">拍卖结算列表</a></li>
+            </ul>
+            <div class="buyerXia">
+              <div id="TabShow1" class="TabHide2">
+                <div class="buyerXia_list">
+                  <div class="buyerXia_sec1">
+                    <div class="buyerXia_sec1_li">
+                      <h5><span>浙江美术网</span></h5>
+                    </div>
+
+                    <volist name="res1" id="vo">
+                      <div class="buyerXia_sec1_li">
+                        <table>
+                          <tr>
+                            <th style="width:20%;">作品名称</th>
+                            <th style="width:15%;">拍品价格</th>
+                            <th style="width:15%;">佣金价格</th>
+                            <th style="width:15%;">收益价格</th>
+                            <th style="width:15%;">是否结算</th>
+                            <th style="width:20%;">结算时间</th>
+                          </tr>
+                          <tr>
+                            <td class="buyerXia_sec1">{$vo.goods_name}</td>
+                            <td class="buyerXia_sec1">￥{$vo.price}</td>
+                            <td class="buyerXia_sec1">￥{$vo.yongjin_price}</td>
+                            <td class="buyerXia_sec1">￥{$vo.huode_price}</td>
+
+                            <td class="buyerXia_sec1 ">
+                              <eq name="vo.is_settl" value="0">
+                                未结算
+                                <else/>
+                                已结算
+                              </eq>
+                            </td>
+                            <td class="buyerXia_sec1">
+                              <if condition="$vo.settl_time eq ''">
+
+                                <else/>
+                                {$vo.settl_time|date='Y-m-d H:i:s',###}
+                              </if>
+
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </volist>
+                  </div>
+                  <div class="pages">
+                    {$page}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--  / user  --> 
+  
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+    function remindDel(obj) {
+        if(!confirm('确定删除吗?')){
+            return false;
+        }
+
+        var id = $(obj).attr('data-id');
+        $.ajax({
+            url: "{:U('/Home/PersonalCenter/remindDel')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id: id
+            },
+            success:function(msg){
+                if (msg.status==1){
+                    alert( msg.info);
+                    location.reload();
+                }else{
+                    alert( msg.info);
+                }
+            }
+        })
+
+
+    }
+
+  function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+</script>
+</html>

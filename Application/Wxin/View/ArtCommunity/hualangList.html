@@ -1,0 +1,67 @@
+<include file="Public:header" />
+
+
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:0;">
+
+  <div class="buy">
+    <div class="buy_con"> </div>
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+          <div class="col-lg-6"> <img src="{$res.index_pic}" style="width:100%"> </div>
+          <div class="col-lg-6">
+            <div class="buy_con_text" style="margin-top:20px; width:100%;"> 
+              <img src="{$res.logo_pic}" style="width:150px;float: left;" />
+              <div class="example">
+               <!-- <p><span> 粉丝:</span>88</p>-->
+                <p> <span>成立时间:</span>{$res.shop_at}</p>
+                <p><span> 访问量:</span> {$res.browser}</p>
+                <!--<p><span> 喜欢:</span> 96</p>-->
+                <p><span> 藏品:</span> {$num}</p>
+              </div>
+              <h3 class="con_title">{$res.artist_name}</h3>
+              <p class="buy_con_text2"><span>{$name}简介:</span>{$res.desc|htmlspecialchars_decode|stripslashes}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {$v.auth}
+    <div class="nav-ft" style="width:90%;margin-left: 5%;">
+      <h3>{$name}收藏品展示</h3>
+      <div class="row">
+        <div class="buy-sec2-cont">
+          <volist name="res1" id="v">
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="nav-ft-ig" ><a href="{:U('/Wxin/Products/buy',array('id'=>$v['id']))}"> <img src="{$v.index_pic}" style="width:100%"></a>
+              <div class="nav-ft-text">
+                <div class="nav-ft-text2"> <span>{$v.goods_name}</span>
+                  <p>{$v.goods_cap}</p>
+                  <empty name="member_id">
+                    <h5 class="Price-h3"><span><a href="{:U('Wxin/User/login')}">登录</a>可查看价格</span></h5>
+                    <else/>
+                    <i class="price">￥</i><span class="price" style="font-size: 20px !important;">{$v.price}</span>
+                  </empty>
+                  <div class="htx"> <a href="{:U('/Wxin/Products/buy',array('id'=>$v['id']))}"> 查看详情 </a> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            </volist>
+
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+
+</body>
+
+</html>

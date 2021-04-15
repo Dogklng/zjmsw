@@ -1,0 +1,149 @@
+<include file="Public:head"/>
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">退货详情</h1>
+      <div class="panel-single panel-single-light">订单编号： <span class="order-title">{$order.order_no}</span></div>
+      <div class="chartBox mgt30">
+        <div class="cb-title">订单信息</div>
+        <div class="cb-contain">
+          <ul class="info-table mgl15">
+            <li class="long"> <span class="bold">订单状态：</span> <span> <span class="colorRed">
+              <!-- 0待接受 1 申请中 2 任务开始 3任务完成  4确认任务完成 5 取消任务 6退款 7任务结束 -->
+              <switch name="refund.refund_type">
+                <case value="1">待受理</case>
+                <case value="2">已受理</case>
+                <case value="3">已拒绝</case>
+                <case value="4">完  成</case>
+                <case value="6">退货中</case>
+              </switch>
+            </span> </span>
+          </li>
+          <li class="long"> <span class="bold">用户姓名：</span> <span><a href="{:U('Admin/Member/detail',array('id'=>$cache['user_id']))}"> {$user.realname}</a> </span> </li>
+          <li class="long"> <span class="bold">用户昵称：</span> <span><a href="{:U('Admin/Member/detail',array('id'=>$cache['user_id']))}"> {$user.person_name}</a> </span> </li>
+          <li class="long"> <span class="bold">联系方式：</span> <span><a href="javascript:void(0);"> {$order.mobile}</a> </span> </li>
+         <!--  <li class="long"> <span class="bold">支付类型：</span> <span><a href="javascript:void(0);">
+            0 微信支付 1 支付宝支付 2余额
+            <switch name="cache.pay_way">
+              <case value="1">微信支付</case>
+              <case value="2">支付宝支付</case>
+              <case value="3">货到付款</case>
+              <case value="4">积分支付</case>
+              <case value="5">积分+微信</case>
+            </switch>
+          </a> </span> </li> -->
+          <!-- <li class="long"> <span class="bold">用户留言：</span> <span><a href="javascript:void(0);"> {$cache.liuyan}</a> </span> </li> -->
+        </ul>
+      </div>
+    </div>
+        <table class="wxtables mgt15">
+          <colgroup>
+          <col width="30%">
+          <col width="20%">
+          <col width="20%">
+          <col width="10%">
+          <col width="10%">
+        </colgroup>
+        <thead>
+          <tr>
+            <td>商品名</td>
+            <td>退货数量</td>
+            <td>申请时间</td>
+            <td>单价</td>
+            <td>退款金额</td>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><a href="javascript:void(0)" class="block" target="_blank" title="">
+                <div class="table-item-img"><img src="{$refund.goods_spic}" alt=""></div>
+                <div class="table-item-info">
+                  <p>商品名称：{$refund.goods_name}</p>
+                </div>
+              </a></td>
+              <td>{$refund.return_num}</td>
+              <td>{$refund.refund_time|date='Y-m-d H:i:s',###}</td>
+              <td>{$refund.goods_price}</td>
+              <td>
+                <empty name="refund.return_price">
+                待协商
+                <else/>
+                {$refund.return_price}￥
+                </empty>
+              </td>
+            </tr>
+            
+      </tbody>
+    </table>
+
+
+
+    <div class="chartBox mgt30">
+      <div class="cb-title">物流信息</div>
+      <div class="cb-contain">
+        <ul class="info-table mgl15">
+          <li class="long"> <span class="bold">物流公司：</span> <span><a href="javascript:void(0);">
+            {$refund.express_name}</a> </span> </li>
+            <li class="long"> <span class="bold">物流单号：</span> <span><a href="javascript:void(0);">
+              {$refund.express_num}</a> </span> </li>
+                <li class="long">
+                  <span class="bold">物流详情：</span>
+                  <foreach name="express" item="v">
+                    <p>{$v['AcceptTime']} {$v['AcceptStation']}</p>
+                  </foreach>
+                </li>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="clearfix">
+        <ul class="cache-statistics fr">
+    <!--       <neq name="cache.total_integral" value="0">
+            <li class="formitems" style="text-align:right">
+              <div class="form-controls" style="text-align:right;margin-right:10px;">
+                <b>订单总积分： </b>{$cache.total_integral}积分</div>
+              </li>
+            </neq>
+
+            <neq name="cache.total_fee" value="0">
+              <li class="formitems" style="text-align:right">
+                <div class="form-controls" style="text-align:right;margin-right:10px;">
+                  <b>订单总金额： </b>¥{$cache.total_fee}</div>
+                </li>
+              </neq>
+
+              <neq name="cache.pay_integral" value="0">
+                <li class="formitems" style="text-align:right">
+                  <div class="form-controls" style="text-align:right;margin-right:10px; color:red">
+                    <b>实际支付积分： </b>{$cache.pay_integral}积分</div>
+                  </li>
+                </neq>
+
+                <neq name="cache.pay_price" value="0">
+                  <li class="formitems" style="text-align:right">
+                    <div class="form-controls" style="text-align:right;margin-right:10px; color:red">
+                      <b>实际支付金额： </b>￥{$cache.pay_price}</div>
+                    </li>
+                  </neq> -->
+                  <li class="txtCenter" style="text-align:right;margin-right:10px;">
+                    <a href="javascript:;" data-id="2197883" class="btn btn-primary" style=" visibility:hidden" id="j-order-modify">修改价格</a>
+                    <a href="javascript:history.back(-1);" data-id="2197883" class="btn btn-primary" id="j-order-close">返回</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- end content-right -->
+          </div>
+        </div>
+        <!-- end container -->
+
+        <include file="Public:foot"/>

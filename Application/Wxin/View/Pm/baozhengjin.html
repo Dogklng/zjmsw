@@ -1,0 +1,46 @@
+<include file="Public:header" />
+
+<!-- 大家都在赞 -->
+<div class="praise artworkP" style="margin-top: 60px">
+  <div class="popBox pmxqBox">
+        <h1>您将缴纳{$res.baoding}元作为参拍保障金</h1>
+        <a href="javascript:;" class="closePop"></a>
+        <div class="popService pmxqBC">
+          <h2>1、若竞卖不成功,保证金自动退回；</h2>
+          <h2>2、若竞卖成功后,保证金转货款,您需支付剩余货款。</h2>
+          <div class="inspection_agree">
+            <input type="checkbox" id="inagree">
+            <label for="inagree">我同意</label><!--<a href="#">-->《竞卖协议》<!--</a>-->，通过美术网平台进行支付。 并且理解了<!--<a href="#">-->《保证金详细规则》<!--</a>-->及<!--<a href="#">-->《使用银行卡缴纳保证金须知》<!--</a>-->，因拍品性质特殊，不支持7天无理由退货，请谨慎参拍。</div>
+          <div class="pmxqDiv">
+           <h6>该标的物需缴纳保证金{$res.baoding}元，建议您使用<span>银行卡快捷支付、信用卡、网银、支付宝、微信，</span></h6>
+          </div>
+          <div class="pmxqBut">
+           <a class="pmxqBt" onclick="return tongyi()" href='{:U("/Wxin/Pm/pmxq_bzj/id")}/{$res["id"]}'>确定</a>
+           <a class="pmxqBq" href="javascript:history.go(-1);">取消</a>
+          </div>
+        </div>
+    </div>
+
+</div>
+<!-- 大家都在赞 -->
+
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+<script>
+  function tongyi() {
+    var obj = document.getElementById("inagree");
+    //var inagree = $('#inagree');
+    var i=obj.checked;
+    //console.log(i);
+    if (!obj.checked){
+      alert('请勾选同意！');
+      return false;
+    }
+    //return false;
+  }
+</script>
+
+</body>
+
+</html>

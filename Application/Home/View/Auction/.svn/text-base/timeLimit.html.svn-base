@@ -1,0 +1,279 @@
+<include file="Public:header" />
+<div class="ban1">
+  <div class="banner_img"> <img src="__IMAGES__/paimai.jpg" alt="" /> </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Time taken</p>
+    <h5>限 • 时 • 拍 </h5>
+  </div>
+  <div class="main">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="mainList">
+          <div class="mainL-screen">
+            <h3 class="mainL-h3">按类目筛选<a href="#" class="mainLs-A">取消选中</a></h3>
+            <ul class="mainL-screenUl">
+              <li>
+                <input type="checkbox" name="screenS" id="screenS1" />
+                <label for="screenS1">油画</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9">
+        <div class="news">
+          <div class="news_fl">
+            <div class="tab-controls"> <a href="javascript:;" class="active" style="color:#f70000; font-size:20px;">10:00</a> <a href="javascript:;">12:00</a> <a href="javascript:;">14:00</a> <a href="javascript:;">15:00</a> <a href="javascript:;">17:00</a> <a href="javascript:;">19:00</a> </div>
+          </div>
+          <div class="pagebox clearfix">
+            <section class="page0 page active clearfix">
+              <div class="main">
+                <div class="promo_right">
+                  <h3 style="text-align:center; color:#f70000; font-size:18px; margin:0 0 20px 0;"> 距本场结束：<span id="t_d">3 </span>天 <span  id="t_h">24</span>小时 <span  id="t_m">30</span>分 <span  id="t_s">15</span>秒 </h3>
+                  <div class="right_con">
+                    <div class="right_con_show">
+                      <ul class="right_con_list">
+                        <volist name="res" id="v">
+                        <li class="col-lg-4 col-md-4 col-sm-4"> <a href="{:U('/Home/Auction/buy')}">
+                          <div class="prd_list_bg prd_list_bg1" style="left:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >
+                            <div class="prd_img"> <img src="__IMG__/chanpin1.png" width="100%"> </div>
+                            <p class="prd_link"><span>林岗作品</span> 众象不可说 刘钢强、林岗、黄大有作品展 o八那年，在三尚艺术北京空间的那次展览是我们三人第...</p>
+                            <div class="price">
+                              <div class="discount"> Jun /<span>05</span> </div>
+                              <div class="act_price"> <del>一口价：600</del> <em><b>起拍价</b><i>￥</i>150</em> </div>
+                            </div>
+                            <div class="num">
+                              <div class="num_all">
+                                <div class="num_sale" style="width: 170px;"></div>
+                              </div>
+                              <span>68</span>人围观</div>
+                          </div>
+                          </a> </li>
+                        </volist>
+                        <!--<li class="col-lg-4 col-md-4 col-sm-4"> <a href="index.html">-->
+                          <!--<div class="prd_list_bg prd_list_bg2" style="top:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >-->
+                            <!--<div class="prd_img"> <img src="__IMG__/chanpin2.png" width="100%"> </div>-->
+                            <!--<p class="prd_link"><span>《恣意的泼笔》</span> 蓝正辉作品展  策展人/张健 主办/三尚当代艺术馆 开幕/2013年4月14日14:00 展期/2013年4月...</p>-->
+                            <!--<div class="price">-->
+                              <!--<div class="discount">May /<span>20</span> </div>-->
+                              <!--<div class="act_price"> <del>一口价：900</del> <em><b>起拍价</b><i>￥</i>300</em> </div>-->
+                            <!--</div>-->
+                            <!--<div class="num">-->
+                              <!--<div class="num_all">-->
+                                <!--<div class="num_sale" style="width: 200px;"></div>-->
+                              <!--</div>-->
+                              <!--<span>105</span>人围观</div>-->
+                          <!--</div>-->
+                          <!--</a> </li>-->
+                        <!--<li class="col-lg-4 col-md-4 col-sm-4"> <a href="{:U('/Home/Auction/buy')}">-->
+                          <!--<div class="prd_list_bg prd_list_bg3" style="left:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >-->
+                            <!--<div class="prd_img"> <img src="__IMG__/chanpin3.png" width="100%"> </div>-->
+                            <!--<p class="prd_link"> <span>沂蒙画派创始人刘阳作品</span> 刘阳画展： (1)1981年(北京少年宫)； (2)1987年(北京音乐厅画廊)； (3)1989年(加拿大约克...</p>-->
+                            <!--<div class="price">-->
+                              <!--<div class="discount">May /<span>13</span> </div>-->
+                              <!--<div class="act_price"> <del>一口价：600</del> <em><b>起拍价</b><i>￥</i>200</em> </div>-->
+                            <!--</div>-->
+                            <!--<div class="num">-->
+                              <!--<div class="num_all">-->
+                                <!--<div class="num_sale" style="width:200px;"></div>-->
+                              <!--</div>-->
+                              <!--<span>46</span>人围观</div>-->
+                          <!--</div>-->
+                          <!--</a> </li>-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="right_con">-->
+                    <!--<div class="right_con_show">-->
+                      <!--<ul class="right_con_list">-->
+                        <!--<li class="col-lg-4 col-md-4 col-sm-4"> <a href="{:U('/Home/Auction/buy')}">-->
+                          <!--<div class="prd_list_bg prd_list_bg1" style="left:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >-->
+                            <!--<div class="prd_img"> <img src="__IMG__/chanpin3.png" width="100%"> </div>-->
+                            <!--<p class="prd_link"><span>林岗作品</span> 众象不可说 刘钢强、林岗、黄大有作品展 o八那年，在三尚艺术北京空间的那次展览是我们三人第...</p>-->
+                            <!--<div class="price">-->
+                              <!--<div class="discount"> Jun /<span>05</span> </div>-->
+                              <!--<div class="act_price"> <del>一口价：600</del> <em><b>起拍价</b><i>￥</i>150</em> </div>-->
+                            <!--</div>-->
+                            <!--<div class="num">-->
+                              <!--<div class="num_all">-->
+                                <!--<div class="num_sale" style="width: 170px;"></div>-->
+                              <!--</div>-->
+                              <!--<span>68</span>人围观</div>-->
+                          <!--</div>-->
+                          <!--</a> </li>-->
+                        <!--<li class="col-lg-4 col-md-4 col-sm-4"> <a href="index.html">-->
+                          <!--<div class="prd_list_bg prd_list_bg2" style="top:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >-->
+                            <!--<div class="prd_img"> <img src="__IMG__/chanpin1.png" width="100%"> </div>-->
+                            <!--<p class="prd_link"><span>《恣意的泼笔》</span> 蓝正辉作品展  策展人/张健 主办/三尚当代艺术馆 开幕/2013年4月14日14:00 展期/2013年4月...</p>-->
+                            <!--<div class="price">-->
+                              <!--<div class="discount">May /<span>20</span> </div>-->
+                              <!--<div class="act_price"> <del>一口价：900</del> <em><b>起拍价</b><i>￥</i>300</em> </div>-->
+                            <!--</div>-->
+                            <!--<div class="num">-->
+                              <!--<div class="num_all">-->
+                                <!--<div class="num_sale" style="width: 200px;"></div>-->
+                              <!--</div>-->
+                              <!--<span>105</span>人围观</div>-->
+                          <!--</div>-->
+                          <!--</a> </li>-->
+                        <!--<li class="col-lg-4 col-md-4 col-sm-4"> <a href="{:U('/Home/Auction/buy')}">-->
+                          <!--<div class="prd_list_bg prd_list_bg3" style="left:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >-->
+                            <!--<div class="prd_img"> <img src="__IMG__/chanpin2.png" width="100%"> </div>-->
+                            <!--<p class="prd_link"> <span>沂蒙画派创始人刘阳作品</span> 刘阳画展： (1)1981年(北京少年宫)； (2)1987年(北京音乐厅画廊)； (3)1989年(加拿大约克...</p>-->
+                            <!--<div class="price">-->
+                              <!--<div class="discount">May /<span>13</span> </div>-->
+                              <!--<div class="act_price"> <del>一口价：600</del> <em><b>起拍价</b><i>￥</i>200</em> </div>-->
+                            <!--</div>-->
+                            <!--<div class="num">-->
+                              <!--<div class="num_all">-->
+                                <!--<div class="num_sale" style="width:200px;"></div>-->
+                              <!--</div>-->
+                              <!--<span>46</span>人围观</div>-->
+                          <!--</div>-->
+                          <!--</a> </li>-->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="promo_right" style="margin-top:50px;">
+                  <h3 class="mrjp" style="font-size:24px; margin-bottom:30px; text-align:center; color:#f70000; font-weight:bold; "><span><i class="left"></i>明日竞拍<i class="right"></i></span></h3>
+                  <div class="right_con">
+                    <div class="right_con_show">
+                      <ul class="right_con_list">
+                        <li class="col-lg-4 col-md-4 col-sm-4"> <a href="{:U('/Home/Auction/buy')}">
+                          <div class="prd_list_bg prd_list_bg1" style="left:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >
+                            <div class="prd_img"> <img src="__IMG__/chanpin1.png" width="100%"> </div>
+                            <p class="prd_link"><span>林岗作品</span> 众象不可说 刘钢强、林岗、黄大有作品展 o八那年，在三尚艺术北京空间的那次展览是我们三人第...</p>
+                            <div class="price">
+                              <div class="discount"> Jun /<span>05</span> </div>
+                              <div class="act_price"> <del>一口价：600</del> <em><b>起拍价</b><i>￥</i>150</em> </div>
+                            </div>
+                            <div class="num">
+                              <div class="num_all">
+                                <div class="num_sale" style="width: 170px;"></div>
+                              </div>
+                              <span>68</span>人围观</div>
+                          </div>
+                          </a> </li>
+                        <li class="col-lg-4 col-md-4 col-sm-4"> <a href="index.html">
+                          <div class="prd_list_bg prd_list_bg2" style="top:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >
+                            <div class="prd_img"> <img src="__IMG__/chanpin2.png" width="100%"> </div>
+                            <p class="prd_link"><span>《恣意的泼笔》</span> 蓝正辉作品展  策展人/张健 主办/三尚当代艺术馆 开幕/2013年4月14日14:00 展期/2013年4月...</p>
+                            <div class="price">
+                              <div class="discount">May /<span>20</span> </div>
+                              <div class="act_price"> <del>一口价：900</del> <em><b>起拍价</b><i>￥</i>300</em> </div>
+                            </div>
+                            <div class="num">
+                              <div class="num_all">
+                                <div class="num_sale" style="width: 200px;"></div>
+                              </div>
+                              <span>105</span>人围观</div>
+                          </div>
+                          </a> </li>
+                        <li class="col-lg-4 col-md-4 col-sm-4"> <a href="{:U('/Home/Auction/buy')}">
+                          <div class="prd_list_bg prd_list_bg3" style="left:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >
+                            <div class="prd_img"> <img src="__IMG__/chanpin3.png" width="100%"> </div>
+                            <p class="prd_link"> <span>沂蒙画派创始人刘阳作品</span> 刘阳画展： (1)1981年(北京少年宫)； (2)1987年(北京音乐厅画廊)； (3)1989年(加拿大约克...</p>
+                            <div class="price">
+                              <div class="discount">May /<span>13</span> </div>
+                              <div class="act_price"> <del>一口价：600</del> <em><b>起拍价</b><i>￥</i>200</em> </div>
+                            </div>
+                            <div class="num">
+                              <div class="num_all">
+                                <div class="num_sale" style="width:200px;"></div>
+                              </div>
+                              <span>46</span>人围观</div>
+                          </div>
+                          </a> </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+$(document).ready(function(e) {
+
+
+
+
+	$(".ss").click(function(e){
+		    $(".sskuang").css({"left":"0","opacity":"1"})
+	})
+
+	$(".close").click(function(e){
+		    $(".sskuang").css({"left":"-100%","opacity":"0"})
+	})
+
+
+
+
+
+});
+
+
+</script>
+<script>
+
+$(document).ready(function() {
+
+	$(".wx").hover(function(){
+		$(".ewm1").stop().animate({"opacity":"1"},500);
+
+	},function(){
+		$(".ewm1").stop().animate({"opacity":"0"},500);
+
+	})
+
+	$(".sj").hover(function(){
+		$(".ewm2").stop().animate({"opacity":"1"},500);
+
+	},function(){
+		$(".ewm2").stop().animate({"opacity":"0"},500);
+
+	})
+	function GetRTime(){
+	var EndTime= new Date('2017/5/25 23:00:00');
+	var NowTime = new Date();
+	var t =EndTime.getTime() - NowTime.getTime();
+	var d=0;
+	var h=0;
+	var m=0;
+	var s=0;
+	if(t>=0){
+		d=Math.floor(t/1000/60/60/24);
+		h=Math.floor(t/1000/60/60%24);
+		//h=Math.floor(t/1000/60/60);
+		m=Math.floor(t/1000/60%60);
+		s=Math.floor(t/1000%60);
+	}
+	document.getElementById("t_d").innerHTML = d;
+	document.getElementById("t_h").innerHTML = h<10? "0"+h : h;
+	document.getElementById("t_m").innerHTML = m<10? "0"+m : m;
+	document.getElementById("t_s").innerHTML = s<10? "0"+s : s;
+}
+setInterval(GetRTime,0);
+
+
+
+});
+
+</script>
+</html>

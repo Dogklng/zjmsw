@@ -1,0 +1,70 @@
+<include file="Public:header" />
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 收藏 </a> </h3>
+</div>
+
+<div class="p_xiangqing1" style="margin-top:120px;">
+
+
+    <div class="shop_sjj" >
+        <div class="content-slide">
+            <ul class="cpl_one_body">
+                <volist name="res" id="vv">
+                <li>
+                    <img src="{$vv.index_pic}" width="100%" />
+                    <div class="shop_xx_warp">
+                        <div class="shop_xx_center">
+
+
+                            <div class="shop_xx_right shop_xx_fd">
+                                <p><b style="color:#666;font-weight:normal;">{$vv.goods_name}  {$vv.goods_cap}</b><br />
+                                    <b style="color:#666;font-weight:normal;">￥{$vv.price}</b></p>
+
+
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="shop_sjj_bg">
+                        <h3><img src="__IMAGES__/sc.svg" class="soucang" data-id="{$vv.id}" width="24px" /></h3></div>
+
+                </li>
+                </volist>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<include file="Public:footer" />
+<script>
+    $('.soucang').click(function () {
+        var collect = $(this).attr('data-id');
+
+        dialog.showTips('确定删除吗','firm',function () {
+            $.ajax({
+                url: "{:U('Wxin/PersonalCenter/delCollect')}",
+                data: {id:collect},
+                type: 'post',
+                dataType: 'json',
+                success: function (content) {
+                    if (content.status == 1) {
+                        alert(content.info
+
+                        );
+                        window.location.reload();
+                    } else {
+                        alert(content.info
+
+                        );
+                    }
+                }
+            })
+        });
+
+    })
+</script>
+</body>
+</html>

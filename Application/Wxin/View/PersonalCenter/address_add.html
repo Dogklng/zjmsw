@@ -1,0 +1,185 @@
+<include file="Public:header" />
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/address/tag/address/value/5"> <i class="fa fa-angle-left"></i> <empty name="res">添加新地址<else/>编辑地址</empty> </a> </h3>
+</div>
+
+<!--shop-->
+
+<div class="p_xiangqing1">
+
+<div class="shop_xdz">
+<div class="shop_xdzone">
+<div class="shop_xdz_center">
+收件人姓名 :<input type="text" id="consignee" value="{$res.consignee}"/></div>
+</div>
+
+<div class="shop_xdzone">
+<div class="shop_xdz_center">
+手机号码 :<input type="text" id="telephone" value="{$res.telephone}"/></div>
+</div>
+
+
+<div class="shop_xdzone shop_dz_xl">
+<div class="shop_xdz_center">
+省市<i class="fa fa-angle-right"></i>
+</div>
+</div>
+
+
+<div class="info">
+	<div class="info_center">
+	<select id="s_province" name="s_province"></select>  
+    <select id="s_city" name="s_city" ></select>  
+    <select id="s_county" name="s_county"></select>
+    <script class="resources library" src="__JS__/area.js" type="text/javascript"></script>
+    <script type="text/javascript">_init_area();</script>
+    </div>
+    <div id="show"></div>
+</div>
+<script type="text/javascript">
+var Gid  = document.getElementById ;
+var showArea = function(){
+	Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" + 	
+	Gid('s_city').value + " - 县/区" + 
+	Gid('s_county').value + "</h3>"
+							}
+/*Gid('s_county').setAttribute('onchange','showArea()');*/
+</script>
+
+
+<div class="shop_xdzone">
+<div class="shop_xdz_center">
+<p>详细地址 :</p> <input type="text" id="place" value="{$res.place}"/>
+<div class="clear"></div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<div class="shop_add_tj shop_add_tj1">
+<a href="#" class="confirm_addr" data-id="{$res.id}">保存</a>
+</div>
+
+
+
+</div>
+
+
+<!--shop-->
+<include file="Public/footer" />
+
+</body>
+
+<script>
+    var province = "{$res['province']}";
+    var city = "{$res['city']}";
+    var district = "{$res['district']}";
+    $("#s_province option").each(function () {
+        if ($(this).val() == province) {
+            $(this).attr('selected', true);
+        }
+    });
+    $("#s_city option").each(function () {
+        if ($(this).val() == province) {
+            $(this).attr('selected', true);
+        }
+    });
+
+    $('#s_city').html("");
+    $('#s_county').html("");
+    var _ct = "<option value=" + city + " >" + city + "</option>";
+    var _dt = "<option value=" + district + ">" + district + "</option>";
+    $('#s_city').append(_ct);
+    $('#s_county').append(_dt);
+
+    $('.confirm_addr').click(function() {
+
+        var post = {};
+        var defaults = "{$res.default}";
+        if (defaults) {
+            post.defaults = defaults;
+        }
+        post.id	  		= $(this).attr("data-id");
+        post.province 	= $('#s_province').val();
+        post.city 		= $('#s_city').val();
+        post.district 	= $('#s_county').val();
+        post.place 		= $.trim($('#place').val());
+        post.consignee 	= $.trim($('#consignee').val());
+        post.telephone 	= $.trim($('#telephone').val());
+
+
+        if(!post['consignee']) {
+            alert("请填写收货人！");return false;
+        }
+        if(!check_personname(post.consignee)){
+            alert("联系人格式错误,请填写2-30位字符");return false;
+        }
+        if(!post['telephone']) {
+            alert("请填写联系电话！");return false;
+        }
+        if(post['telephone'] && !post['telephone'].match(/^1[3-8][0-9]\d{8}$/)) {
+            alert("手机号码格式错误！");return false;
+        }
+
+        if (post['province'] == "请选择省份" || post['province'] == ''){
+            if (!($('#city-picker4').val())){
+                if(post['province'] == "请选择省份" || post['province'] == ''){
+                    alert("请选择省！");return false;
+                }
+                if(post['city'] == "请选择城市" || post['city'] == '') {
+                    alert("请选择城市！");return false;
+                }
+
+                if(post['district'] == "请选择区域" || post['district'] == '') {
+                    alert("请选择区域！");return false;
+                }
+            }
+        }else {
+            if(post['city'] == "请选择城市" || post['city'] == '') {
+                alert("请选择城市！");return false;
+            }
+
+            if(post['district'] == "请选择区域" || post['district'] == '') {
+                alert("请选择区域！");return false;
+            }
+        }
+
+
+
+        // if(post['district'] == "请选择区域" || post['district'] == '') {
+        //     alert("请选择区域！");return false;
+        // }
+        if(!post['place']) {
+            alert("请填写详细地址！");return false;
+        }
+
+
+        $.post("{:U('Wxin/PersonalCenter/addressadd')}", post, function(data){
+            if (data.status == 1 ) {
+                dialog.showTips(data.info,'warn',function(){
+                    window.location.href = "{:U('Wxin/PersonalCenter/address/tag/address/value/5')}";
+                });
+            } else {
+                alert(data.info);
+            }
+        })
+    });
+    //验证姓名
+    function check_personname(text){
+        var reg = /^(([\u4e00-\u9fa5]{2,16})|([a-zA-Z]{2,16}))$/;//2到16个字的汉字,或者2到16个字的英文
+        return reg.test(text);
+    }
+$(document).ready(function(e) {
+    $(".shop_dz_xl").click(function(){
+		$(".shop_xdz .info").slideToggle();
+	})
+});
+
+</script>
+
+
+
+</html>

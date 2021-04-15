@@ -1,0 +1,147 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:shop_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+         <div class="SellerTop">
+          <h3>免费开店</h3>
+          <p>申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+         </div>
+         <div class="SellerFlower">
+          <div class="row">
+           <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="SellerFlist SellerFlistCurr1"> <span>1</span>
+              <h3>选择开店类型<i>个人店铺，企业店铺</i></h3>
+             </div>
+           </div> 
+           <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="SellerFlist SellerFlistCurr1"> <span>2</span>
+              <h3>阅读开店须知<i>确认自己符合个人店铺的相关规定</i></h3>
+             </div>
+           </div> 
+           <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="SellerFlist SellerFlistCurr"> <span>3</span>
+              <h3>申请开店认证<i>需要提供认证相关资料，等待审核通过</i></h3>
+             </div>
+           </div> 
+          </div>
+          <div class="SelCertCon">
+           <div class="SelCertClass">
+            <span><i>*</i>用户类型：</span>
+            <span><input type="radio" name="SelCinput" value="1" <if condition="$type eq 1">checked</if>/> 中国大陆</span>
+            <span><input type="radio" name="SelCinput" value="2" <if condition="$type eq 2">checked</if>/> 香港/澳门用户</span>
+            <span><input type="radio" name="SelCinput" value="3" <if condition="$type eq 3">checked</if>/> 台湾用户</span>
+            <span><input type="radio" name="SelCinput" value="4" <if condition="$type eq 4">checked</if>/> 外籍用户</span>
+           </div>
+		   <if condition="$res.perfect eq '0'">
+           <div class="SelCertH6">		   
+            <h6>抱歉，您的账号信息不够完善 <a href="{:U('Home/PersonalCenter/userInfo')}">立即完善</a></h6><
+           </div>/else></if>
+           <div class="SelCertTable">
+            <table border="1">
+              <tr>
+                <th>认证名称</th>
+                <th>状态</th>
+                <th>提示</th>
+                <th>操作</th>
+              </tr>
+              <tr>
+                <td>身份实名认证</td>
+                  <if condition="$res.status eq 0"><td>未认证</td></if>
+                  <if condition="$res.status eq 1"><td>已认证</td></if>
+                <td>开店需实名认证</td>
+                  <if condition="$res.status eq 0"><td><a href="{:U('Home/PersonalCenter/SelIdentity')}">立即认证</a></td></if>
+                  <if condition="$res.status eq 1"><td><a href="javascript:void(0)" style="color: green">认证成功</a></td></if>
+              </tr>
+            </table>
+           </div>
+          </div>
+          <div class="SelNoticeStyle">
+           <h4><a href="javascript:history.back();" style="background:#ccc;">上一步</a>
+               <if condition="$res.status eq 1"><a id="next" href="javascript:void(0)">下一步</a></if>
+               <if condition="$res.status eq 0"></if>
+
+           </h4>
+          </div>
+         </div>
+        </div>  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+    $('#next').click(function () {
+        var list= $('input:radio[name="SelCinput"]:checked').val();
+        if(list == undefined){
+            alert("请选择用户类型！");
+            return false;
+        }
+
+        var zl = '{$count}';
+        if(zl == 0){
+            alert("请先身份认证，再操作下一步");
+            return;
+        }
+
+        window.location.href="{:U('/Home/Gallery/selAgree/tag/selCenter')}?personType="+list;
+    })
+</script>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+</html>

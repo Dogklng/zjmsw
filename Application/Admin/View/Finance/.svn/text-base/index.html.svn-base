@@ -1,0 +1,129 @@
+<include file="Public:head"/>
+
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<script type="text/javascript">
+
+    J(function () {
+        J('#dayStartTime').calendar({format: 'yyyy-MM-dd 00:00:00'});
+        J('#dayEndTime').calendar({format: 'yyyy-MM-dd 23:59:59'});
+        J('#monthStartTime').calendar({format: 'yyyy-MM-dd 00:00:00'});
+        J('#monthEndTime').calendar({format: 'yyyy-MM-dd 23:59:59'});
+        J('#yearStartTime').calendar({format: 'yyyy-MM-dd 00:00:00'});
+        J('#yearEndTime').calendar({format: 'yyyy-MM-dd 23:59:59'});
+    });
+
+</script>
+
+<div class="container">
+    <div class="inner clearfix">
+        <div class="content-left fl">
+            <include file="Public:left"/>
+        </div>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">财务统计</h1>
+
+            <!--<a  style="float:left;margin-right:20px;" href="{:U('Admin/finance/export')}" class="btn btn-warning">记录导出</a>-->
+            <div class="tablesWrap">
+                <form action="" method="GET" name="form1">
+                    <div class="tables-searchbox">     
+                        <input type="hidden" name="action" value="">
+                    </div>
+                </form>
+                <!-- end tables-searchbox -->
+
+                <table class="wxtables data mgt15">
+                    <colgroup>
+                        <col width="13%">
+                        <col width="13%">
+                        <col width="13%">
+                        <col width="13%">
+                        <col width="13%">
+                        <col width="13%">
+                        <col width="13%">
+                      <!--   <col width="13%"> -->
+                    </colgroup>
+                    
+                    <thead>
+	                    <tr>
+	                        <td colspan="8" class="left" style="font-size:14px;">统计
+	                            <form action="{:U('Admin/Finance/index/type/3')}" method="post">
+	                                <input type="text" autocomplete="off" name="yearStartTime" id="yearStartTime"
+	                                       value="{$yearStartTime}" placeholder="起始日期" class="input Wdate">
+	                                <span class="mgr5">至</span>
+	                                <input type="text" autocomplete="off" name="yearEndTime" id="yearEndTime"
+	                                       value="{$yearEndTime}" placeholder="结束日期" class="input Wdate">
+	                                <button class="btn btn-primary"><i class="gicon-search white"></i>查询</button>
+	                            </form>
+	
+	                        </td>
+	                    </tr>
+                    </thead>
+                    
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="dataItems">订单总数</div>
+                            <div class="dataItems"><span class="">{$year['all']|default="0"}</span></div>
+                        </td>
+                        <td>
+                            <div class="dataItems">订单总额</div>
+                            <div class="dataItems"><span class="">{$year['allprice']|default="0"}</span></div>
+                        </td>
+                        <td>
+                            <div class="dataItems">已付款订单</div>
+                            <div class="dataItems"><span class="">{$year['success']|default="0"}</span></div>
+                        </td>
+                        <td>
+                            <div class="dataItems">优惠总额</div>
+                            <div class="dataItems"><span class="">{$year['couponprice']|default="0"}</span></div>
+                        </td>
+                        <td>
+                            <div class="dataItems">成本额</div>
+                            <div class="dataItems">
+                                <notempty name="$year['gy_allprice']"><span class="">{$year['gy_allprice']|default="0"}</span>
+                                    <else/>
+                                    <span class="">{$year['gy_allprice']}</span></notempty>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dataItems">营业额</div>
+                            <div class="dataItems"><span class="">{$year['businessprice']|default="0"}</span></div>
+                        </td>
+                        <td>
+                            <div class="dataItems">盈利额</div>
+                            <div class="dataItems"><span class="">{$year['profitprice']|default="0"}</span></div>
+                        </td>
+                        <!-- <td>
+                            <div class="dataItems">PV</div>
+                            <div class="dataItems"><span class="">{$day['pv']|default="0"}</span></div>
+                        </td> -->
+                    </tr>
+
+                    </tbody>
+                </table>
+          <div class="chartWrap mgt15 clearfix"> </div>
+            <div class="chartWrap mgt15 clearfix"></div>
+
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fr">
+                        <div class="paginate">
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div> <!-- end tables-btmctrl -->
+            </div>
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+
+<!-- end container -->
+
+<include file="Public:foot"/>

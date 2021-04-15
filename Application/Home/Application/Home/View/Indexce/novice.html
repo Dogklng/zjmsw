@@ -1,0 +1,106 @@
+<include file="Public:header" />
+<style>
+ .return_left_tit {
+  padding: 5px 10px;
+  font-size: 16px;
+  border-bottom: 1px solid #d6d6d6;
+  line-height: 30px;
+  cursor: pointer;
+ }
+ .return_left_con ul {
+  line-height: 35px;
+  padding: 5px 30px 5px 30px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #d6d6d6;
+  font-size: 14px;
+  display: none;
+ }
+ .return_left {
+  float: left;
+  border: 1px solid #d6d6d6;
+  width: 180px;
+  border-bottom: none;
+ }
+ /*.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  float: right;
+  margin-top: 5px;
+  margin-right: -5px;
+ }*/
+</style>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Novice area</p>
+    <h5>{$res.title} </h5>
+  </div>
+  <div class="NoviceCon">
+   <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-2">
+     <div class="return_con clearfix">
+      <div class="return_left ">
+       <volist name="cate" id="v">
+        <div class="return_left_con">
+         <div class="return_left_tit">{$v.name}</div>
+         <!--<i class="fa fa-angle-down"></i>-->
+         <ul style="display: block">
+          <volist name="v.title" id="vo">
+           <li value="{$vo.id}" name="li1"><a href="{:U('Home/Index/novice',array('id'=>$vo['id']))}">{$vo.title}</a></li>
+          </volist>
+         </ul>
+        </div>
+       </volist>
+      </div>
+
+
+
+
+      <!--<volist name="cate" id="v">-->
+       <!--<div class="return_left_con">-->
+        <!--<div>{$v.name}</div>-->
+        <!--<ul style="display: block">-->
+         <!--<volist name="v.title" id="vo">-->
+          <!--<li><a href="{:U('Home/Index/service',array('id'=>$vo['id']))}">{$vo.title}</a></li>-->
+         <!--</volist>-->
+        <!--</ul>-->
+       <!--</div>-->
+      <!--</volist>-->
+
+
+
+
+        <!--<a href="{:U('/Home/Index/novice')}" class="stayN">新手专区</a>-->
+        <!--<a href="{:U('/Home/Shop/index')}">免费开店</a>-->
+        <!--<a href="#">在线帮助</a>-->
+        <!--<a href="{:U('/Home/PersonalCenter/myOrder/tag/myOrder')}">个人中心</a>-->
+     </div>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-10">
+      {$res.content|htmlspecialchars_decode|stripslashes}
+    </div>
+   </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<script>
+ var id1 = '{$id}';
+   $('li[name="li1"]').each(function () {
+
+       if($(this).val()==id1){
+           $(this).find('a').addClass("stayN");
+       }
+   })
+
+</script>
+</body>
+<script src="__JS__/swiper.min.js"></script>
+</html>

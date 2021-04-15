@@ -1,0 +1,419 @@
+<include file="Public:header" />
+<style>
+  .main_page {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .main_page .me {
+    background: #ff6801 !important;
+    border: 1px solid #ff6801 !important;
+    color: #fff !important;
+  }
+  .main_page span {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 30px;
+    background: #fff;
+    font-size: 14px;
+    border: 1px solid #dbdbdb;
+    color: #666;
+    padding: 0 20px;
+    cursor: pointer;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+  .banner_img img{
+    width:100%;
+    height:800px;
+  }
+</style>
+<div class="ban1">
+
+  <!-- <div class="banner_img"> <img src="{$images.pic}" alt="" /> </div> 
+  <div class="swiper-container swiperPS">
+      <div class="swiper-wrapper ">
+        <div class="swiper-slide">
+          <div class="banner_img"><img class="imgPS" src="/Uploads/Picture/uploads/20170905/59ae3f6e05598.jpg" alt="" /></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="banner_img"><img class="imgPS" src="/Uploads/Picture/uploads/20170905/59ae3f310537e.jpg" alt="" /></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="banner_img"><img class="imgPS" src="/Uploads/Picture/uploads/20171110/5a05953bded90.jpg" alt="" /></div>
+        </div>
+      </div>
+      <div class="swiper-pagination paginationPS"></div>
+    </div>-->
+  <!--<div class="banner_img"> <img src="{$images.pic}" alt="" /> </div>-->
+  <div class="swiper-container swiperPS">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="banner_img"><img class="imgPS" src="{$num.0.backg_pic|default='/Uploads/Picture/uploads/20170905/59ae3f6e05598.jpg'}" alt="" /></div>
+      </div>
+      <div class="swiper-slide">
+        <div class="banner_img"><img class="imgPS" src="{$num.1.backg_pic|default='/Uploads/Picture/uploads/20170905/59ae3f310537e.jpg'}" alt="" /></div>
+      </div>
+      <div class="swiper-slide">
+        <div class="banner_img"><img class="imgPS" src="{$num.2.backg_pic|default='/Uploads/Picture/uploads/20171110/5a05953bded90.jpg'}" alt="" /></div>
+      </div>
+    </div>
+    <div class="swiper-pagination paginationPS"></div>
+  </div>
+
+  <div class="banpY">
+    <div class="banpYbox">
+      <div class="banner-info banner-status-over" style="height: 300px;">
+        <div class="info-top" style="padding-top: 10px;padding-bottom: 10px">
+          <p class="over-flag">拍卖预展</p>
+        </div>
+        <div class="info-bottom" style="padding-top: 10px">
+          <div class="infoM clearfix">
+            <p class="info-meta info-store"> <span class="meta-text">专场:</span> <span class="meta-num"><em>{$num.0.num|default=没预}</em>场</span> </p>
+            <p class="info-meta info-look" > <span class="meta-text">围观:</span> <span class="meta-num"><em>{$num.0.wgcont|default=0}</em>次</span> </p>
+          </div>
+          <div class="info-desc" style="padding-top: 10px"> <p class="info-org"> <span>组织机构:</span><a href="{:U('/Home/Pm/companyDetails/id/0')}">美术网平台 &gt;</a> </p></div>
+        </div>
+        <div class="info-bottom" style="padding-top: 10px">
+         <h3 class="sqrzH3"><a href='javascript:;'>拍卖详情</a></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Auction preview</p>
+    <h5>拍 • 卖 • 预 • 展</h5>
+  </div>
+  <div class="main">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="mainList">
+          <div class="mainL-calendar">
+            <!--<h3 class="mainL-h3">按时间筛选</h3>&lt;!&ndash;readonly&ndash;&gt;
+            <input class="datainp time" id="dateinfo" type="text" value="" placeholder="请选择">
+            <i><img src="__IMAGES__/xiajiantou.png" onclick="dateinfo()" alt="" /></i> --></div>
+          <div class="mainL-screen">
+            <h3 class="mainL-h3">按类目筛选<a href="#" onclick="disfun()" class="mainLs-A">取消选中</a></h3>
+            <ul class="mainL-screenUl">
+              <foreach name="screens" item="v">
+                <li>
+                  <input type="checkbox" name="screenS[]" id="screenS{$key}"
+                  <foreach name="cate" item="vv">
+                    <if condition="($v.id eq $vv)">
+                      checked="checked"
+                      <else/>
+                    </if>
+                  </foreach> onclick="fun(this)" value="{$v.id}" />
+                  <label for="screenS{$key}">{$v.classname}</label>
+                </li>
+              </foreach>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9">
+        <div class="left-main">
+          <div class="event_list">
+            <ul>
+            <foreach name="num" item="vo">
+              <li class="first">
+                <div class="pMd">
+                    <a href='{:U("Home/Pm/paimaiYNum/num_id")}/{$vo.id}' target="_blank" class="image"><img src="{$vo.backg_pic}" style="height: 120px;"></a> <a href='{:U("Home/Pm/paimaiYNum/num_id")}/{$vo.id}' target="_blank" class="names">{$vo.name}</a>
+                  <span class="action">
+                  <a href="javascript:;" onclick="addRemind(this)" class="sms icon tip" data-id="{$vo.id}" > <span>短信提醒</span> </a>
+                  </span><span class="time">{$vo.start_time|date="Y年m月d日 H:i",###} - {$vo.end_time|date="Y年m月d日 H:i",###}</span> <span class="date">
+                  <span class="day">{$vo.start_time|date="d",###}</span><span class="month">
+                  <switch name="vo.start_time|date='m',###">
+                    <case value="01">一</case>
+                    <case value="02">二</case>
+                    <case value="03">三</case>
+                    <case value="04">四</case>
+                    <case value="05">五</case>
+                    <case value="06">六</case>
+                    <case value="07">七</case>
+                    <case value="08">八</case>
+                    <case value="09">九</case>
+                    <case value="10">十</case>
+                    <case value="11">十一</case>
+                    <case value="12">十二</case>
+                  </switch>
+                  月</span><span class="year">{$vo.start_time|date="Y",###}</span>
+              </span> <span class="count"><span class="bid">{$vo.zcj|default=0}</span><b>出价次数</b><span class="views">{$vo.wgcont|default=0}</span><b>围观数</b></span> </div>
+              </li>
+            </foreach>
+            </ul>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main_page">
+    {$page}
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="relation">
+  <div class="relation_bg"></div>
+  <div class="relation_con" style="margin-top:-150px;overflow-y:auto;"> <img onclick="cler()" src="__IMAGES__/dizhi_close.png" width="24">
+    <h5>设置拍卖前提醒</h5>
+    <div class="relation_list">
+      <form action="relationForm">
+        <div class="reFormI reFormIdx"> <span>姓名：</span>
+          <input type="hidden" id="num_id" value="">
+          <input id="name" type="text" />
+        </div>
+        <div class="reFormI reFormIdx"> <span>手机号码：</span>
+          <input id="tel" type="text" />
+        </div>
+        <div class="reFormB">
+          <input id="btn" type="button" value="确认" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="__JEDATE__/jedate.js"></script>
+<script>
+
+$(document).ready(function(){
+
+$(".jpxz").click(function(e){
+		    $(".popBox").css({"display":"block"})
+	})
+	
+	
+$(".closejp").click(function(e){
+		    $(".popBox").css({"display":"none"})
+	})
+	
+});
+
+ jeDate.skin('gray');
+ jeDate({
+		dateCell:"#dateinfo",
+		format:"YYYY年MM月DD日 hh:mm:ss",
+		isinitVal:true,
+		isTime:true, //isClear:false,
+		minDate:"2014-09-19 00:00:00",
+		okfun:function(val){alert(val)}
+ })
+function dateinfo() {
+    jeDate({
+        dateCell:"#dateinfo",
+        format:"YYYY年MM月DD日 hh:mm:ss",
+        isinitVal:true,
+        isTime:true, //isClear:false,
+        minDate:"2014-09-19 00:00:00",
+        okfun:function(val){alert(val)}
+    })
+}
+
+
+
+
+
+// 鼠标移入事件
+$('.event_list li .action  a').mouseenter(function(){
+    $(this).children().css("display","block");
+}).mouseleave(function(){
+    $(this).children().css("display","none");
+});
+
+
+
+
+/*$('.action a').click(function(){
+
+});*/
+function addRemind(obj) {
+    var member_id = '{$name}';
+    if(member_id == 0){
+        dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+        return false;
+    }
+
+    //alert('设置提醒成功!');
+    var num_id   = $(obj).attr("data-id");
+	console.log(num_id);
+    $.ajax({
+        url: "{:U('/Home/Pm/addRemind')}",
+        type: "post",
+        dataType: "json",
+        data: {
+            num_id:num_id
+        },
+        success:function(msg){
+            //console.log(msg);
+            if (msg.status==1){
+                $('.relation_con').removeClass('relation_con_on');
+                $('.relation').stop(true).fadeOut(1000);
+                alert( msg.info);
+            }else{
+                alert( msg.info);
+            }
+        }
+    })
+}
+
+function cler() {
+    $('.relation').stop(true).fadeOut(1000);
+    $('.relation_con').removeClass('relation_con_on');
+}
+/*$('.relation_con img').click(function(){
+
+})*/
+$('#reI1').click(function(){
+  $('.reFormIyx').slideToggle();
+})
+$('#reI2').click(function(){
+  $('.reFormIdx').slideToggle();
+})
+  
+
+</script>
+
+<script>
+    function funtimes() {
+        var start_time = $('#dateinfo').val();
+        //console.log(start_time);return false;
+        location.href="{:U('/Home/Pm/paimaiY')}?start_time="+start_time;
+    }
+
+    function fun(obj) {
+        /*var obj = document.getElementsByName("screenS[]");
+        check_val = [];
+        for (var k=0;k< obj.length;k++) {
+            if (obj[k].checked)
+                check_val[k] = obj[k].value;
+        }*/
+        var cate = $(obj).val();
+        location.href="{:U('/Home/Pm/paimaiY')}?cate="+cate;
+    }
+
+    function disfun() {
+        location.href="{:U('/Home/Pm/paimaiY')}?cate";
+    }
+    $('.main_page span').click(function () {
+        var page = $(this).attr('data-page');
+        if(!isNaN(page)){
+            window.location.href = "{:U('/Home/Pm/paimaiY')}?cate={$_GET['cate']}&page="+page;
+        }
+    })
+    function ruzhu() {
+        var member_id = '{$name}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Home/Pm/isRuZhu')}",
+            type: "get",
+            dataType: "json",
+            data:'',
+            success:function(msg){
+                //console.log(msg);
+                if (msg.status==1){
+                    alert( msg.info);
+                    return false;
+                }else{
+location.href="{:U('Home/Pm/paimaiRuzhu')}";
+                }
+            }
+        })
+    }
+
+
+    $('#btn').click(function () {
+
+        var member_id = '{$name}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+
+        var name = $.trim($('#name').val());
+        var tel  = $.trim($('#tel').val());
+        var num_id   = $('#num_id').val();
+        if(name == ""){
+            alert('姓名必填');
+            return false;
+        }
+        if(tel == ''){
+            alert('手机号必填');
+            return false;
+        }
+        if(!(/^1[34578]\d{9}$/.test(tel))){
+            alert('请输入正确的手机号');
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Home/Pm/addRemind')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                name: name,
+                tel:  tel,
+                num_id:num_id
+            },
+            success:function(msg){
+                //console.log(msg);
+                if (msg.status==1){
+                    $('.relation_con').removeClass('relation_con_on');
+                    $('.relation').stop(true).fadeOut(1000);
+                    alert( msg.info);
+                }else{
+                    alert( msg.info);
+                }
+            }
+        })
+    })
+
+
+    /*function myFunction(obj) {
+        var id = obj.id;
+        $('#num_id').val(id);
+    }*/
+
+</script>
+
+<script src="__JS__/swiper.min.js"></script>
+<script>
+var mySwiperPS = new Swiper('.swiperPS',{
+    pagination: '.paginationPS',
+    paginationClickable: true,
+    spaceBetween: 0,
+    slidesPerView : 1,//设置几个一切换
+    autoplay:5000,
+    loop:true, //循环
+    grabCursor: true,
+    autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+   });
+   
+$(window).load(function(e) {
+  var height1 = $(".imgPS").height();
+  $(".swiperPS").css("height",height1)
+
+})
+
+$(window).resize(function(e) {
+  var height1 = $(".imgPS").height();
+  $(".swiperPS").css("height",height1)
+
+})
+</script>
+</html>

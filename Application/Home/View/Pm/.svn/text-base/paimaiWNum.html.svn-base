@@ -1,0 +1,246 @@
+<include file="Public:header" />
+
+<div class="ban1">
+  <div class="banner_img"> <img src="{$num['backg_pic']|default=$images['pic']}" alt="" />
+    <div class="banpY">
+      <div class="banpYbox">
+        <div class="banner-info banner-status-over">
+          <div class="info-top">
+            <switch name="type">
+              <case value="1"><p class="over-flag">本专场预展</p></case>
+              <case value="2"><p class="over-flag">本场拍卖进行中</p></case>
+            </switch>
+          </div>
+          <div class="info-bottom">
+            <div class="infoM clearfix">
+              <p class="info-meta info-store"> <span class="meta-text">拍品:</span> <span class="meta-num"><em>{$cont|default=0}</em>件</span> </p>
+              <p class="info-meta info-look"> <span class="meta-text">围观:</span> <span class="meta-num"><em>{$wgcont.0.wg|default=0}</em>次</span> </p>
+              <p class="info-meta info-look"> <span class="meta-text">出价:</span> <span class="meta-num"><em>{$cjcont|default=0}</em>次</span> </p>
+            </div>
+            <div class="info-desc">
+              <p class="info-org"> <span>组织机构:</span><if condition="$org eq ''"><a href="{:U('/Home/Pm/companyDetails/id/0')}">美术网平台 &gt;</a><else/><a href="{:U('/Home/Pm/companyDetails',array('id'=>$org['id']))}">{$org.org_name} &gt;</a></if> </p>
+            </div>
+          </div>
+          <div class="info-bottom">
+            <!--<h3 class="sqrzH3"><a onclick="return ruzhu()" href='javascript:;'>申请入驻拍卖</a></h3>-->
+            <h3 class="sqrzH3"><a href="{:U('/Home/Pm/numDetail',array('id'=>$_GET['num_id']))}">专场详情</a></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <switch name="type">
+      <case value="1"><p class="font_tit1">Auction preview</p>
+        <h5><!--拍 • 卖-->{$num.topic_info}</h5></case>
+      <case value="2"><p class="font_tit1">Auctions</p>
+        <h5><!--拍 • 卖-->{$num.topic_info}</h5></case>
+    </switch>
+
+  </div>
+  <div class="main">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="big_auction_board">
+          <div class="big_auction_board_img"><img src="__IMAGES__/auction_64.gif" alt="" /></div>
+          <switch name="type">
+            <case value="1"><p class="status">距离开始还有</p></case>
+            <case value="2"><p class="status">距离结束还有</p></case>
+          </switch>
+
+          <div class="pre_start">
+            <div class="end_time is-countdown"> <span class="countdown-row countdown-show3  djstime" data-endtime="{$djtime}"><span class="countdown-section"> <span class="countdown-amount" id="t_d">00</span> <span class="countdown-period">天</span> </span> <span class="countdown-section"> <span class="countdown-amount" id="t_h">00</span> <span class="countdown-period">时</span> </span> <span class="countdown-section"> <span class="countdown-amount" id="t_m">00</span> <span class="countdown-period">分</span> </span> <span class="countdown-section"> <span class="countdown-amount" id="t_s">00</span> <span class="countdown-period">秒</span> </span> </span> </div>
+          </div>
+        </div>
+        <div class="left-main">
+          <foreach name="res" item="vo">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="left-store">
+                  <a href='{:U("Home/Pm/pmxq/id")}/{$vo["id"]}' target="_blank">
+                <div class="store"> <img src="{$vo.index_pic}"/>
+                  <div class="store-det">
+                    <h3>
+                      <if condition="$vo['start'] gt $now_time">
+                        拍卖预展|
+                        <else/>
+                      </if>
+                      {$vo.goods_name}</h3>
+                    <h4><b>当前价格</b>￥{$vo.dangqian}</h4>
+                    <span class="cishu">出价次数：<b>{$vo.chujia|default=0}</b></span> <span class="cishu">围观数：<b>{$vo.weiguan|default=0}</b></span> </div>
+                </div>
+              </a> </div>
+            </div>
+          </foreach>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="paimai_xz">
+    <h3><span><i class="left"></i>竞拍流程<i class="right"></i></span></h3>
+    <ul class="jplc">
+      <li><a href="#"><i class="itop"></i>交保证金 <i class="bottom"></i> <img src="__IMAGES__/yjtpm.png" class="yjtpm" /></a> </li>
+      <li><a href="#"><i class="itop"></i>出价竞拍 <i class="bottom"></i> <img src="__IMAGES__/yjtpm.png" class="yjtpm" /></a> </li>
+      <li><a href="#"><i class="itop"></i>竞拍成功 <i class="bottom"></i> <img src="__IMAGES__/yjtpm.png" class="yjtpm" /></a> </li>
+      <li><a href="#"><i class="itop"></i>支付货款 <i class="bottom"></i> <img src="__IMAGES__/yjtpm.png" class="yjtpm" /></a> </li>
+      <li style="margin-right:0;"><a href="#"><i class="itop"></i>完成收货 <i class="bottom"></i></a> </li>
+      <div class="clear"></div>
+    </ul>
+    <a  class="jpxz">竞拍须知</a>
+    <div class="popBox zxpExplain"> <img src="__IMAGES__/gb.png" class="close closejp" />
+      <h1>竞拍须知</h1>
+      <a href="javascript:;" class="closePop"></a>
+      <div class="popService scrollBox">
+        <h2>一、竞拍须知</h2>
+        <ul>
+          <li>1.浙江美术网线上服务平台专场拍品均由第三方机构提供，经过浙江美术网专家初步审核，您在出价前仍要仔细鉴别。</li>
+          <li>2.浙江美术网线上服务平台按照拍品单独交纳保证金，系统会自动判断当前保证金余额是否足够参拍本件拍品，如需参拍多件拍品需在保证金充值页面充值足够金额。</li>
+          <li>3.请登录后进行出价，出价前请确认您的保证金余额是否能够参与拍品竞拍，并完善个人资料。</li>
+          <li>4.出价领先时不可继续出价。</li>
+          <li>5.若竞拍结束前2分钟内有买家出价，则该拍品竞拍结束时间自动延时5分钟。</li>
+          <li>6.竞拍结束时，最高出价大于等于保留价时中拍。</li>
+          <li>7.当您成功竞拍到某一拍品时，请于72小时内付款或者联系浙江美术网客服沟通付款方式，若无正当理由不付款，将扣除该件拍品的保证金赔付给送拍机构。</li>
+          <li>8.在您付款后7个工作日内，由拍品所属机构发货。收到货后，请确认收货，否则将于发货后10天后自动确认收货。如未收到货请及时联系浙江美术网客服核实。</li>
+          <li>9.签收快件时，请务必当面验货，若快递员拒绝验货或者您验货时发现实物图片不一致、有损、物品为赝品时，请拒绝签收并退货，否则不予退货。</li>
+          <li>10.拍卖方成交不卖行为成立的，浙江美术网将返还买方参与交易时冻结的保证金，并赔偿买方锁定的保证金数额的 2 倍资金至买方账户。</li>
+        </ul>
+        <h2>二、保证金须知</h2>
+        <ul>
+          <li>1.保证金的交纳
+            <p>保证金是竞拍人获取竞拍资格的凭证，如竞拍人有意参加相关拍品竞拍活动，需要交纳一定数额的款项作为参拍保证金；
+              保证金在线支付遇到问题时，可使用线下银行转账方式进行支付，转账手续费用户自理。</p>
+          </li>
+          <li>2.保证金的退回
+            <p>在符合以下条件时，会员可申请退回保证金：</p>
+            <p>1）.因浙江美术网艺术网或送拍机构不可抗力因素导致专场下线或拍品撤拍。</p>
+            <p>2）.未成功竞拍到拍品：例如在竞拍过程中始终未出价、在竞拍过程中放弃加价等情况。</p>
+            <p>3）.竞拍成功后并在规定时间内完成付款。</p>
+            <p>4）.竞拍成功后，非买家因素导致取消订单。</p>
+            <p>用户提交退款申请后，浙江美术网工作人员核实无误，将在3-7个工作日完成退款，具体到账时间以银行转账时间为准。请核实个人资料中手机号填写无误。如遇问题请随时咨询浙江美术网艺术网客服。</p>
+          </li>
+          <li>3.保证金的扣除
+            <p>竞拍成功后，72小时内买家未完成支付，系统将自动关闭交易，保证金将扣除，不予退回。</p>
+            <p>因买家原因取消订单，保证金将扣除，不予退回。</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+
+$('.action  a').click(function(){
+    $('.relation').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.relation_con').addClass('relation_con_on');
+    },300)
+});
+$('.relation_con>img').click(function(){
+      $('.relation').stop(true).fadeOut(1000);
+      $('.relation_con').removeClass('relation_con_on');
+})
+function timehtml(t, obj) {
+    var times = t;
+    window.setInterval(function() {
+        var d = 0,
+            h = 0,
+            m = 0,
+            s = 0;
+
+        if (t > 0) {
+            d = Math.floor(t / (60 * 60 * 24));
+            h = Math.floor(t / (60 * 60)) - (d * 24);
+            m = Math.floor(t / 60) - (d * 24 * 60) - (h * 60);
+            s = Math.floor(t) - (d * 24 * 60 * 60) - (h * 60 * 60) - (m * 60);
+        }
+        if (d <= 9)
+            d = '0' + d;
+        if (h <= 9)
+            h = '0' + h;
+        if (m <= 9)
+            m = '0' + m;
+        if (s <= 9)
+            s = '0' + s;
+        if (t>0){
+            $(obj).html("<span class='countdown-section'><span class='countdown-amount'>"+d + "</span><span class='countdown-period'>天</span> </span><span class='countdown-section'> <span class='countdown-amount'>" + h + "</span> <span class='countdown-period'>时</span> </span> <span class='countdown-section'> <span class='countdown-amount'>" + m + "</span> <span class='countdown-period'>分</span></span><span class='countdown-section'> <span class='countdown-amount'>" + s + "</span><span class='countdown-period'>秒</span> </span>");
+        }else {
+            window.location.reload();
+        }
+        t--;
+    }, 1000);
+}
+$(function() {
+    $(".djstime").each(function() {
+        var endtime = $(this).attr("data-endtime");
+        //var message = $(this).attr("data-msg");
+        if(!endtime){
+            message='暂时没有拍卖';
+            $(this).html("<span style='color:#FC2233;'>"+message+"</span>");
+            $(this).find('span').css({'font-family':'宋体','font-style':'normal','font-size':'20px'});
+            return true;
+        }
+        var nowtime = new Date().getTime();
+        var time = (endtime * 1000 - nowtime) / 1000; time = time.toFixed(0);
+        if (time <= 0) {
+            //window.location.reload();
+        } else {
+            timehtml(time, this);
+        }
+    })
+});
+</script>
+
+<script>
+
+
+    function ruzhu() {
+        var member_id = '{$name}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Home/Pm/isRuZhu')}",
+            type: "get",
+            dataType: "json",
+            data:'',
+            success:function(msg){
+                //console.log(msg);
+                if (msg.status==1){
+                    alert( msg.info);
+                    return false;
+                }else{
+                    location.href="{:U('Home/Pm/paimaiRuzhu')}";
+                }
+            }
+        })
+    }
+
+$(document).ready(function(){
+
+$(".jpxz").click(function(e){
+		    $(".popBox").css({"display":"block"})
+	})
+	
+	
+$(".closejp").click(function(e){
+		    $(".popBox").css({"display":"none"})
+	})
+	
+});
+
+</script>
+</html>

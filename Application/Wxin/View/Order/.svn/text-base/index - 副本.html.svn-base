@@ -1,0 +1,323 @@
+<include file="Public:header" />
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://sandbox.runjs.cn/uploads/rs/108/zgmeruh2/vue.js"></script>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  --> 
+  
+  <!--  / order1  -->
+  <div class="order1">
+    <div class="">
+      <div class="order_sh">
+        <h5>收货信息 <span>亲，为确保给您送货入户，下单地址务必精确到几幢几楼或几组几号哦~</span></h5>
+        <div class="order_shon clearfix">
+          <ul class="order_shonc clearfix">
+            <li class="order_shoncon">
+              <h5>浙江<b>杭州</b><span>李亮(收)</span></h5>
+              <p>西湖区 文三路华星时代广场A座2102 18674001723</p>
+              <a href="##">修改</a> </li>
+          </ul>
+          <ul class="order_shonc order_shond clearfix">
+            <li>
+              <h5>浙江<b>杭州</b><span>李亮(收)</span></h5>
+              <p>西湖区 文三路华星时代广场A座2102 18674001723</p>
+              <a href="##">修改</a> </li>
+            <li>
+              <h5>浙江<b>杭州</b><span>李亮(收)</span></h5>
+              <p>西湖区 文三路华星时代广场A座2102 18674001723</p>
+              <a href="##">修改</a> </li>
+            <li style="margin-right:0;">
+              <h5>浙江<b>杭州</b><span>李亮(收)</span></h5>
+              <p>西湖区 文三路华星时代广场A座2102 18674001723</p>
+              <a href="##">修改</a> </li>
+          </ul>
+          <div class="order_shone clearfix">
+            <div class="order_shone1"><a style="display:block;" href="##">显示全部地址</a><a href="##">使用新地址</a></div>
+            <div class="order_shone2"><a href="{:U('/Home/PersonalCenter/address/tag/address')}">管理收货地址</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="user_r_list user_r_list_order">
+        <table>
+          <tr>
+            <th class="user_r_frist" style="width:45%;">确认商品信息</th>
+            <th style="width:15%;">单价</th>
+            <th style="width:25%;">数量</th>
+            <th style="width:15%;">小计(元)</th>
+          </tr>
+          <tr>
+            <td colspan="4" style="text-align:left; font-size:13px; color:#d70000; padding:10px 15px;"><img src="__IMAGES__/pro_inner_index.png" width="20" style="margin-right:0px;"> 艺术商城</td>
+          </tr>
+          <tr v-for = "(index,item) in items" v-bind:id = item.id>
+            <td class="user_r_frist"><a style="text-align:left;" href="products_inner.html"><img v-bind:src="item.imageSrc" width="60"><span>{{item.name}}</span></a></td>
+            <td>{{item.price | currency '￥' '2'}}</td>
+            <td><div class="shopcar_nums"> <span class="pro_jian" v-on:click = "reduceNum(index)">-</span> <span class="pro_num">{{item.count}}</span> <span class="pro_jia" v-on:click = "addNum(index)">+</span> </div></td>
+            <td>{{item.price*item.count | currency '￥' '2'}}</td>
+          </tr>
+          <tr class="order1_last_list">
+            <td class="user_r_frist"></td>
+            <td></td>
+            <td style="font-size:18px;">合计:</td>
+            <td style="font-size:18px;color:red;">{{priceTotal | currency '￥' '2'}}</td>
+          </tr>
+        </table>
+      </div>
+      
+        <!--<div class="order1_yh_con clearfix">
+          <div class="order1_yh_con2" style="display:inline-block; vertical-align:top; margin-right:10%; width:45%;">
+            <h5>使用优惠卷</h5>
+            <ul>
+              <li>
+                <input type="checkbox" class="j_checkbox">
+                不使用优惠卷 </li>
+              <li>
+                <input type="checkbox" class="j_checkbox j_checkbox_on">
+                <div class="user_r3_j">
+                  <div class="user_r3_j1"> <span>￥100</span> 礼金券
+                    <p></p>
+                  </div>
+                  <div class="user_r3_j2"> 注册新用户全场通用券<br>
+                    <span>单笔订单满2000元使用</span> </div>
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" class="j_checkbox">
+                <div class="user_r3_j">
+                  <div class="user_r3_j1"> <span>￥50</span> 礼金券
+                    <p></p>
+                  </div>
+                  <div class="user_r3_j2"> 注册新用户全场通用券<br>
+                    <span>单笔订单满2000元使用</span> </div>
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" class="j_checkbox">
+                <div class="user_r3_j">
+                  <div class="user_r3_j1"> <span>￥30</span> 礼金券
+                    <p></p>
+                  </div>
+                  <div class="user_r3_j2"> 注册新用户全场通用券<br>
+                    <span>单笔订单满2000元使用</span> </div>
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" class="j_checkbox">
+                <div class="user_r3_j">
+                  <div class="user_r3_j1"> <span>￥20</span> 礼金券
+                    <p></p>
+                  </div>
+                  <div class="user_r3_j2"> 注册新用户全场通用券<br>
+                    <span>单笔订单满2000元使用</span> </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>-->
+        <!--<div class="order1_yh_con clearfix">
+          <div class="order1_yh_con2" style="display:inline-block; float:left; vertical-align:top; margin-right:10%; width:45%;">
+            <div class="order1_yh_con1" style="vertical-align:top; margin-top:0px; margin-bottom:15px;">
+              <h5>使用优惠码</h5>
+              <input type="text" placeholder="输入您的优惠码" style="width:80%;">
+              <a href="##">确认</a> </div>
+            <p class="yuxx_p">每笔订单仅限使用一个礼金券或者优惠码</p>
+            <span class="yuxx_sp">-100元</span> </div>
+          <div class="order1_yh_con1" style="display:inline-block; float:left; vertical-align:top; width:45%;">
+            <h5>积分抵现金</h5>
+            <input type="text" placeholder="输入使用积分" style="width:80%;">
+            <a href="##">确认</a>
+            <p class="jfxx_p">共有积分3000分， 可使用3000分抵扣30元</p>
+            <span class="yuxx_sp">-0元</span>
+            <div class="sjf" style="position:relative; top:0; left:0; margin-top:15px; display:inline-block;">
+              <h5 style="color:#d70000;">您可获得:
+                <p style="display:inline-block;"><span>积分<b>2400分</b></span></p>
+              </h5>
+            </div>
+          </div>
+        </div>-->
+      </div>
+      <div class="order1_tall">
+        <div class="shopcar_zj clearfix">
+          <div class="shopcar_zjs">
+            <p>商品合计：¥24000.00</p>
+            <p>运费：¥0.00</p>
+           <!-- <p>活动优惠：¥0.00</p>
+            <p>折扣优惠：¥1200.00</p>-->
+            <h5><span>配送至：</span>浙江省 杭州市 西湖区 文三路华星时代广场</h5>
+            <h5><span>收货人：</span>李亮 18674001723</h5>
+            <div class="shopcar_zjs_btn">
+              <p>商品数量: <span>3</span>个
+                &nbsp; &nbsp; &nbsp; 商品总金额: <span>22700.00</span>元  
+               <!-- &nbsp; &nbsp; &nbsp; 礼金券抵扣: -<span>0.00</span>元  
+                &nbsp; &nbsp; &nbsp; 积分抵扣: -<span>0.00</span>元 -->
+                &nbsp; &nbsp; &nbsp; 付款金额：<b>{{priceTotal | currency '￥' '2'}}</b>元</p>
+              <a href="{:U('/Home/Order/pay')}">下单</a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  / order1  -->
+  
+  <div class="dizhi">
+    <div class="dizhi_bg"></div>
+    <div class="dizhi_con"> <img src="__IMAGES__/dizhi_close.png" width="24">
+      <h5>新建地址</h5>
+      <div class="dizhi_list clearfix">
+        <p class="dizhi_l">收货人：
+          <input type="text">
+        </p>
+        <p class="dizhi_r">手机号码：
+          <input type="text">
+        </p>
+      </div>
+      <div class="dizhi_list clearfix"> <span style="position:relative; top:8px;">所在地区:</span>
+        <div class="docs-methods" style="display:inline-block; width:82%;">
+          <form class="form-inline" style="width:100%;">
+            <div id="distpicker" style="width:100%;">
+              <div class="form-group" style="width:100%;">
+                <div style="position: relative; width:100%;">
+                  <input id="city-picker3" class="form-control" readonly type="text" value="浙江省/杭州市/西湖区" data-toggle="city-picker">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="dizhi_list clearfix"> <span>详细地址：</span>
+        <textarea name="adress"></textarea>
+      </div>
+      <div class="dizhi_btn clearfix">
+        <div class="w_chkbox">
+          <input type="checkbox" name="dft" class="j_checkbox">
+          <span>设为默认</span></div>
+        <div class="dizhi_btn1"> <a href="##" class="dizhi_btn1_on">确定</a> <a href="##">取消</a> </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--  / user  --> 
+  
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+    var app = angular.module('DemoApp', []);
+
+    app.controller('CartController', ['$scope', '$http', function ($scope, $http) {
+        $scope.ShoppingCar = {}
+        var GetCar = function () {
+            $http.get('/Employee/GetCar')
+                .success(function (response) {
+                    $scope.ShoppingCar = response;
+                    GetTotal();
+                });
+        }
+        $scope.total = 0;
+        var GetTotal = function () {
+            for (var i = 0; i < $scope.ShoppingCar.length; i++) {
+                var item = $scope.ShoppingCar[i];
+                $scope.total += item.Count * item.UnitPrice;
+            }
+        }
+
+        $scope.UpdateCar = function (title, count) {
+            for (var i = 0; i < $scope.ShoppingCar.length; i++) {
+                var item = $scope.ShoppingCar[i];
+                if (item.Title == title) {
+                    item.Count = item.Count + count;//这里可以增加上下限制
+                    if (item.Count < 0) {
+                        $scope.ShoppingCar.splice(i, 1);
+                    }
+                }
+            }
+            GetTotal();
+        }
+        $scope.submit = function () {
+            $http.post('/Employee/AddCar', $scope.ShoppingCar)
+                .success(function (response) {
+                    alert(response);
+                });
+        }
+        GetCar();
+    }]);
+
+    var vm = new Vue({
+        el: "body",
+        data: {
+            items: [
+                {
+                    name: "恣意的泼笔",
+                    imageSrc : '__IMAGES__/order_pro1.jpg',
+                    price: 6000,
+                    id: 1,
+                    count: 1
+                },
+                {
+                    name: "恣意的泼笔",
+                    price: 5000,
+                    imageSrc : '__IMAGES__/order_pro2.jpg',
+                    id: 2,
+                    count: 1
+                },
+                {
+                    name: "恣意的泼笔",
+                    price: 2000,
+                    imageSrc : '__IMAGES__/order_pro3.jpg',
+                    id: 3,
+                    count: 1
+                },
+                {
+                    name: "治愈梦想落地失败的疼痛",
+                    price: 3000,
+                    imageSrc : '__IMAGES__/order_pro4.jpg',
+                    id: 4,
+                    count: 1
+                }
+            ]
+        },
+        computed: {
+            //计算属性，计算总价格，返回给页面展示
+            priceTotal: function() {
+                var price = 0;
+                //遍历items数组,计算当前（this）price字段和count字段的价格总和
+                for(var i = 0; i < this.items.length; i++) {
+                    price += this.items[i].price * this.items[i].count;
+                }
+                return price;
+            }
+        },
+        methods: {
+            addNum: function(index) {
+                //实现增加购买数量
+                var current = this.items[index];
+                if(!current.count) {
+                    alert("库存不够");
+                } else {
+                    current.count++;
+                }
+            },
+            reduceNum: function(index) {
+                //实现减少购买数量
+                var current = this.items[index];
+                if(current.count <= 1) {
+                    alert("数量不能小于1");
+                } else {
+                    current.count--;
+                }
+            },
+            removeGoods: function(index) {
+                //实现移除操作 splice  移除
+                this.items.splice(index, 1);
+            }
+        }
+    });
+
+
+</script>
+</html>

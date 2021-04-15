@@ -1,0 +1,115 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:shop_left" />
+      </div>
+      <div class="col-sm-10">
+          <div class="user_r">
+	            <ul class="user_all">
+	              <li class="actived"><a href="javascript:;">产品收益</a></li>
+	            </ul>
+
+              <div id="TabShow1" class="TabHide2">
+
+                <div class="user_r_list">
+  	                <h5><span>仓库中</span></h5>
+  	                <table>
+  	                  <tbody><tr>
+  	                    <th class="user_r_frist" style="width:40%;"><input type="checkbox" style="float:left; margin-top:9px; margin-right:5px;">商品名称</th>
+  	                    <th style="width:12%;">数量</th>
+  	                    <th style="width:12%;">价格</th>
+  	                    <th style="width:12%;">提成收益</th>
+  	                    <th style="width:14%;">操作</th>
+  	                  </tr>
+  	                  <tr>
+  	                    <td class="user_r_frist"><a class="user_proa" href="zpxq.html"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+  	                    <td>100</td>
+                        <td>¥4,000.00</td>
+                        <td>¥800.00</td>
+  	       
+  	                    <td><a href="#" >添加</a><a class="fukuan" href="javaScript:;" style="">删除</a></td>
+  	                  </tr>
+  	                </tbody></table>  
+  	            </div>
+                <div class="user_r_list">
+                    <h5><span>仓库中</span></h5>
+                    <table>
+                      <tbody><tr>
+                        <th class="user_r_frist" style="width:40%;"><input type="checkbox" style="float:left; margin-top:9px; margin-right:5px;">商品名称</th>
+                        <th style="width:12%;">数量</th>
+                        <th style="width:12%;">价格</th>
+                        <th style="width:12%;">提成收益</th>
+                        <th style="width:14%;">操作</th>
+                      </tr>
+                      <tr>
+                        <td class="user_r_frist"><a class="user_proa" href="zpxq.html"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                        <td>100</td>
+                        <td>¥4,000.00</td>
+                        <td>¥800.00</td>
+                        <td><a href="#" >添加</a><a class="fukuan" href="javaScript:;" style="">删除</a></td>
+                      </tr>
+                    </tbody></table>  
+                </div>
+              </div>
+
+
+            
+          </div>
+          
+          <h3 class="zpbj" style="text-align:right; margin-top:0;">
+            	<a href="#" style="color:#333; font-size:14px; padding-right:10px;"><input type="checkbox" style="padding-top:2px; margin-right:2px; ">全选</a>
+                <a href="#" style="color:#333; font-size:14px;"><img src="__IMAGES__/shop_cloae.png" style="display:inline-block;width:16px; margin-top:-2px; margin-right:3px;">删除</a>
+            </h3>
+        </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <a href="##" class="task_btn1_on">确定</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1">
+        <a href="##" class="task1_btn1_on">确定</a>
+        <a href="##" class="task1_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

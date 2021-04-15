@@ -1,0 +1,97 @@
+<include file="Public:head"/>
+
+<link rel="stylesheet" href="../css/lists.css">
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<!-- script type="text/javascript" src="__JS__/uploadPreview.min.js"></script -->
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript" src="__C_JS__/news.js"></script>
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">素颜小清晰</h1>
+    <a href="{:U('/Admin/About/addDistinct')}" class="btn btn-success">添加数据</a>
+    
+  <!--   <form action="" method="get">
+      <div class="tables-searchbox newcearchbox">
+      	<input type="text" placeholder="产品名称" class="input" name="title" value="">
+        <button class="btn btn-primary" id="buutons" style="line-height:26px;"> 
+        	<i class="gicon-search white"></i>查询
+       </button>
+      </div> 
+    </form> -->
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10" style="text-align:center;">
+   	<colgroup>
+      <col width="5%">
+      <col width="20%">
+      <col width="20%">
+      <col width="20%">
+      <col width="20%">
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+           <tr class="po_list">
+          <td>广告logo</td>
+          <td>视频路径</td>
+          <td>日期</td>
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <foreach name="result" item="vo">
+          <tr>   
+             <td>
+            	<div class="goodswrap">
+            		<img src="{$vo.imgs}" style="width:100px;height:60px;"/>
+            	</div>
+            </td>
+            
+            <td>
+                <div class="table-item-info" style="width: 100px">
+                	<p style="height:auto">{$vo.video_url} <br/></p>
+                </div>
+            </td>
+     
+            <td class="class_name">
+              <span>{$vo.dates}</span>
+            </td>
+            
+            <td>
+              <a href="{:U('/Admin/About/editDistinct/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+              <a href="{:U('/Admin/About/delDistinct/id')}/{$vo.id}"  onclick="{if(!confirm('确定删除产品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除">删除</a>
+            </td>
+         </tr>
+        </foreach>
+      </tbody>
+    </table>
+    
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl"> 
+        <!-- a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a --> 
+        <!-- a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a--> 
+        <!-- a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a--> 
+        <div class="fr">
+        	<?php if(!result): ?>
+            	<div class="pages" style="height:50px;line-height:50px;text-align:center;font-size:20px;color:#fff;background:#ccc;">没有结果 !</div>
+    		<?php else: ?>
+    			<div class="pages"">{$page} </div>
+    		<?php endif; ?>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end container --> 
+
+<include file="Public:foot"/>
+
+<script type="text/javascript">
+	window.urls = {
+		'index_url'	: "{:U('Admin/News/index')}",
+	}
+</script>

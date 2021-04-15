@@ -1,0 +1,84 @@
+<include file="Public:header" />
+
+<style>
+  .shopcar_list_zi {
+    width: calc(100% - 100px);
+    float: left;
+     padding-right: 10px;
+    padding-left: 10px;
+    position: relative;
+  }
+</style>
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:50px;margin-top: 60px">
+
+
+<!--  / user  -->
+<div class="user">
+  
+  <div class="shopcar">
+    <volist name="data" id="vo">
+    <div class="shopcar_list clearfix" data-id="{$vo.id}">
+      <img src="{$vo['index_pic']}" width="100">
+      <div class="shopcar_list_zi">
+        <h5 style="width: 100%">{$vo.goods_name}</h5>
+      <!--  <p>L 布面丙烯</p>-->
+        <h5 style="color: #ea5404;">¥{$vo['price']}</h5>
+        <div class="shopcar_list_zi1 clearfix" style="right:10px;">
+          <!--<span class="pro_jian">-</span>-->
+          <p>x1</p>
+          <!--<span class="pro_num">1</span>-->
+          <!--<span class="pro_jia">+</span>-->
+        </div>
+      </div>
+      <input type="checkbox" value="{$vo.id}" class="j_checkbox ">
+    </div>
+      </volist>
+  </div>
+   
+</div>
+<!--  / user  -->
+
+  <!--form表单提交购买-->
+  <form action="{:U('/Wxin/Order/index')}" method="post" name="form_go_pay">
+    <input type="hidden" name="cart_ids" class="cart_ids" value="" />
+  </form>
+  <!--form表单提交购买-->
+</div>
+<!--  / warpper  -->
+
+<div class="order1_2_b clearfix">
+  <a class="order1_2_b1" href="javascript:history.go(-1);"><img src="__IMAGES__/pro_inner_back.png" width="24"></a>
+  <a class="order1_2_b2 go_pay" href="javascript:;">确定</a>
+</div>
+
+<!--  / footer  -->
+
+<!--  / footer  -->
+
+</body>
+<script>
+  //组合cart id 成 cart_ids
+  $('.go_pay').click(function () {
+    var cart_ids = '';
+    $('.j_checkbox').each(function () {
+      var _this = $(this);
+      //获取选中cart_id
+      if (_this.is(':checked')) {
+        var cart_id = _this.val();
+        if (!cart_ids) {
+          cart_ids = cart_id;
+        } else {
+          cart_ids += '-' + cart_id;
+        }
+      }
+    });
+    if (cart_ids == '' || cart_ids == null) {
+      alert('请选择商品');
+      return false;
+    }
+    $(".cart_ids").val(cart_ids);
+    $("form[name=form_go_pay]").submit();
+  })
+</script>
+</html>

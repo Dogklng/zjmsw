@@ -1,0 +1,122 @@
+<include file="Public:header" />
+<style>
+    h3 {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+</style>
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/Shop/shop/tag/shop/value/6"> <i class="fa fa-angle-left"></i> 店铺预览 </a> </h3>
+ 
+</div>
+<div class="warp_box">
+  <div class="warpper wrapper1" style="margin: 150px auto 80px;">
+    <div class="title">
+      <div class="line"></div>
+      <p class="font_tit1">Shop</p>
+      <h5>店 • 铺</h5>
+    </div>
+
+    <div class="dianpu_sec1">
+      <div class="dianpu_title">
+        <div class="dianpu_title_pic" style="width: 70%">
+          <div class="dianpu_title_img"><img src="{$artist.logo_pic}" alt="" /></div>
+          <div class="dianpu_title_text">
+            <h3>{$artist.zy_name}</h3>
+            <h6 style="width: 100px">加入时间:</h6>
+              <h6>{$artist.addtime|date='Y-m-d',###}</h6>
+          </div>
+        </div>
+        <div class="dianpu_title_canyu" style="width: 25%">
+          <ul>
+            <li>
+              <h3>{$artist.browser|default='0'}</h3>
+              <span>访问量</span>
+            </li>
+            <li>
+              <h3>{$artist.like|default='0'}</h3>
+              <span>喜欢</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="dianpu_sec2">
+        <if condition="$type eq 2">
+            <a href="{:U('Wxin/Products/index')}.html" class="btn"><button style="width: 80px;height: 40px;color: red;background-color: #2be6fc"><h4>推荐</h4></button></a> <else/> </if>
+      <div class="dianpu_xian"><img src="__IMAGES__/dianpu_bg.gif" alt="" /></div>
+      <div class="dianpu_sec2_list">
+          <h3>自传作品</h3><br/>
+        <div class="row">
+            <volist name="goods" id="vo">
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="dianpu_sec2_li">
+              <div class="dianpu_sec2_img"><if condition="$vo.cstore  eq 1"><a href="{:U('/Wxin/Products/products_dot')}/id/{$vo.id}"> <else /> <a href="{:U('/Wxin/Products/buy')}/id/{$vo.id}"></if><img src="{$vo.index_pic}" alt="" /></a></div>
+              <div class="dianpu_cont_text">
+                  <h4><span><i class="left"></i>{$vo.goods_name}<i class="right"></i></span></h4>
+                  <h3 class="dianpu_Price-h3"><!--<span><a href="#">登录</a>可查看价格</span>--><i>￥</i>800</h3>
+<!--                  <p class="dianpu_small_cont">&lt;!&ndash;<span>市场价：</span><i>￥</i>600&ndash;&gt; <a href="#">可租赁</a>-->
+                  </p><div class="clear"></div>
+                  <p></p>
+                  <div class="dianpu_htx">
+                      <if condition="$vo.cstore eq 1">
+                          <a href="{:U('/Wxin/Products/products_dot')}/id/{$vo.id}"><div class="htx">  查看详情  </div></a>
+                          <else />
+                          <a href="{:U('/Wxin/Products/buy')}/id/{$vo.id}"><div class="htx">  查看详情  </div></a>
+                      </if>
+                  </div>
+                </div>
+            </div>
+          </div>
+                </volist>
+        </div>
+          <br/>
+          <if condition="$type eq 2">
+              <h3>推荐商品</h3>
+              <br/>
+              <div class="row">
+                  <volist name="goodstj" id="vo">
+                      <div class="col-lg-3 col-md-3 col-sm-3">
+                          <div class="dianpu_sec2_li">
+                              <div class="dianpu_sec2_img"><if condition="$vo.cstore  eq 1"><a href="{:U('/Wxin/Products/products_dot')}/id/{$vo.id}"> <else /> <a href="{:U('/Wxin/Products/buy')}/id/{$vo.id}"></if><img src="{$vo.index_pic}" alt="" /></a></div>
+                              <div class="dianpu_cont_text">
+                                  <h4><span><i class="left"></i>{$vo.goods_name}<i class="right"></i></span></h4>
+                                  <h3 class="dianpu_Price-h3"><!--<span><a href="#">登录</a>可查看价格</span>--><i>￥</i>800</h3>
+                          <!--        <p class="dianpu_small_cont">&lt;!&ndash;<span>市场价：</span><i>￥</i>600&ndash;&gt; <a href="#">可租赁</a>-->
+                                  </p><div class="clear"></div>
+                                  <p></p>
+                                  <div class="dianpu_htx">
+                                      <if condition="$vo.cstore eq 1">
+                                          <a href="{:U('/Wxin/Products/products_dot')}/id/{$vo.id}"><div class="htx">  查看详情  </div></a>
+                                          <else />
+                                          <a href="{:U('/Wxin/Products/buy')}/id/{$vo.id}"><div class="htx">  查看详情  </div></a>
+                                      </if>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </volist>
+              </div>
+              </if>
+      </div>
+    </div>     
+    <!--<div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGWS__/top.png"> </a>
+    </div> -->
+          
+  </div>
+
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+
+</body>
+</html>

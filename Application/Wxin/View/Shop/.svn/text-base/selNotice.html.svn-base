@@ -1,0 +1,50 @@
+<include file="Public:header" />
+<div class="dianpu_box">
+  <div class="SellerCon">
+    <div class="SellerTop">
+      <h3>创建店铺</h3>
+    </div>
+    <div class="SellerFlower">
+      <div class="paiuncenter_one">
+        <h3>免费开店</h3>
+        <p class="activedp">申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+      </div>
+      <div class="SellerFlist SellerFlistCurr"> <span>2</span>
+        <h3 class="paiUncenter_h3">阅读开店须知</h3>
+      </div>
+      <div class="clear"></div>
+      <div class="SelAgreeTxt">
+          <h6>1、开美术网店要收费吗?</h6>
+          <p>答：美术网开店是免费的，不收取任何服务费用。</p>
+          
+        </div>
+        <div class="SelAgreeTxt">
+          <h6>2、我已经开过美术网店，现在想要注销原来的店铺重新开店，可以吗?</h6>
+          <p>答：不可以，美术网暂时不提供注销店铺的服务。用户一但成功开店就无法再用身份证（营业执照）另开一家美术网店铺。</p>
+          
+        </div>
+        <div class="SelAgreeTxt">
+          <h6>3、认证前请准备以下材料：</h6>
+          <p>(1)单位营业执照彩色扫描件或数码照片</p>
+          <p>(2)组织机构代码证彩色扫描件或数码照片</p>
+          <p>(3)对公银行账户(基本账户、一般账户均可)</p>
+          <p style="color:#999">若为代理人(即法人以外的公司代表)申请认证，需额外提供以下两项材料</p>
+          <p>(5)代理人的身份证彩色扫描件或数码照片</p>
+          <p>(6)委托书委托书上必须盖有单位公章或财务专用章(合同专用章、业务专用章登无效)</p>
+          
+        </div>
+        
+      <div class="SelNoticeStyle">
+            <h6>注：美术网在任何情况下都不会用QQ与您取得联系, 任何使用QQ联系您的"工作人员"都是骗子。</h6>
+            <h4><a href="{:U('/Wxin/Shop/index/tag/index')}" style="background:#ccc;">上一步</a> <a href="{:U('/Wxin/Shop/selAgree/tag/selAgree')}" id="next">下一步</a></h4>
+          </div>
+    </div>
+  </div>
+</div>
+
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+
+</body>
+</html>

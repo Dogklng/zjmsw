@@ -1,0 +1,82 @@
+<style>
+    .pages {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+    }
+    .pages .current {
+        background: #ff6801 !important;
+        border: 1px solid #ff6801 !important;
+        color: #fff !important;
+    }
+    .pages a,.pages span {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+        background: #fff;
+        font-size: 14px;
+        border: 1px solid #dbdbdb;
+        color: #666;
+        padding: 0 20px;
+        cursor: pointer;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+</style>
+<div class="user_left">
+    <div class="user_tx">
+        <div class="user_tx_img">
+           <empty name="headimg.person_img">
+                <img src="__IMAGES__/user_tx.jpg">
+                <else/>
+                <img src="{$headimg.person_img}" width="100">
+            </empty>
+           <input id="imgOne" name="imgOne" type="hidden" />
+            <input style="width: 108px;height: 100px; background: red;border-radius: 50%; position: absolute; top: 3px;left: -15px;padding: 0;z-index: 10;cursor: pointer;opacity: 0;" type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="xuanze" />
+        </div>
+        <span>{$artists['artist_name']}</span>
+
+        <a href="/Home/Shop/dianpu/type/2">店铺预览</a>
+    </div>
+    <div class="user_nav">
+        <ul>
+            <h5>推荐管理</h5>
+            <a href="{:U('/Home/Shop/yunpsy/tag/yunpsy')}/detail/7"><li <eq name="Think.get.tag" value="yunpsy">class="user_nav_on"</eq> >推荐收益</li></a>
+            <a href="{:U('/Home/Shop/link/tag/link')}"><li <eq name="Think.get.tag" value="link">class="user_nav_on"</eq> >我的推荐</li></a>
+
+
+            <!--<h5>推荐管理</h5>
+                <a href="{:U('/Home/Shop/seldpsy/tag/selcpsy')}/detail/7"><li <eq name="Think.get.tag" value="selRelease">class="user_nav_on"</eq> >推荐收益</li></a>
+                <a href="{:U('/Home/Shop/selRec/tag/selRec')}"><li <eq name="Think.get.tag" value="selRelease">class="user_nav_on"</eq> >我的推荐</li></a>-->
+
+        </ul>
+    </div>
+</div>
+<script src="__JS__/jquery-form.js"></script>
+<script>
+    $(function () {
+        var progress = $('.xuanze_percent');
+        $("#xuanze").wrap("<form id='myupload1' action='{:U('/Home/PersonalCenter/headImg')}' method='post' enctype='multipart/form-data'></form>");
+        $("#xuanze").change(function(){ //选择文件
+            $("#myupload1").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="person_img" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    progress.html(img);
+                    window.location.reload();
+                },
+                error:function(xhr){ //上传失败
+                }
+            });
+
+        });
+    });
+</script>

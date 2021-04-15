@@ -1,0 +1,718 @@
+<include file="Public:header" />
+<script src="https://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script language="javascript" src="__JS__/vue.min.js"></script>
+<link href="__CSS__/city-picker.css" rel="stylesheet">
+<script language="javascript" src="__JS__/city-picker.data.js"></script>
+<script language="javascript" src="__JS__/city-picker.js"></script>
+<style>
+  .city-picker-dropdown {
+    width: auto !important;
+  }
+</style>
+<!--  / warpper  -->
+<div id="app">
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  <!--  / user  -->
+
+  <!--  / order1  -->
+  <div class="order1">
+    <div class="">
+      <div class="order_sh">
+        <h5>收货信息 <span>亲，为确保给您送货入户，下单地址务必精确到几幢几楼或几组几号哦~</span></h5>
+        <div class="order_shon clearfix">
+          <ul class="order_shonc clearfix" id="address_add">
+            <foreach name="address" item="vo">
+              <li onclick="choose_address(this)" <eq name="vo.default" value="1">class="order_shoncon"</eq> data-address_id="{$vo.id}">
+              <h5>{$vo.province}<b>{$vo.city}</b><span>{$vo.consignee}(收)</span></h5>
+              <p>{$vo.district} {$vo.place} {$vo.telephone}</p>
+              <a href="javascript:;" data-default="{$vo.default}" data-consignee="{$vo.consignee}" data-id="{$vo.id}" data-province="{$vo.province}" data-city="{$vo.city}" data-district="{$vo.district}" data-place="{$vo.place}" data-telephone="{$vo.telephone}">修改</a> </li>
+            </foreach>
+          </ul>
+
+          <!-- <ul class="order_shonc order_shond clearfix">
+             <li>
+               <h5>浙江<b>杭州</b><span>李亮(收)</span></h5>
+               <p>西湖区 文三路华星时代广场A座2102 18674001723</p>
+               <a href="##">修改</a> </li>
+             <li>
+               <h5>浙江<b>杭州</b><span>李亮(收)</span></h5>
+               <p>西湖区 文三路华星时代广场A座2102 18674001723</p>
+               <a href="##">修改</a> </li>
+             <li style="margin-right:0;">
+               <h5>浙江<b>杭州</b><span>李亮(收)</span></h5>
+               <p>西湖区 文三路华星时代广场A座2102 18674001723</p>
+               <a href="##">修改</a> </li>
+           </ul>-->
+          <div class="order_shone clearfix">
+            <!--<div class="order_shone1"><a style="display:block;" href="##">显示全部地址</a><a href="##">使用新地址</a></div>-->
+            <div class="order_shone1">
+              <a style="display:block;" href="javascript:;">使用新地址</a>
+              <a style="display:none;" href="javascript:;">使用新地址</a>
+            </div>
+            <div class="order_shone2"><a href="{:U('/Home/PersonalCenter/address/tag/address')}">管理收货地址</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="user_r_list user_r_list_order">
+        <table>
+          <tr>
+            <th class="user_r_frist" style="width:45%;">确认商品信息</th>
+            <th style="width:15%;">单价</th>
+            <th style="width:25%;"><if condition="$is_groom eq 0">租赁天数<elseif condition="$is_groom eq 1"/>数量</if></th>
+            <th style="width:15%;">小计(元)</th>
+          </tr>
+          <tr>
+            <td colspan="4" style="text-align:left; font-size:13px; color:#d70000; padding:10px 15px;"><img src="__IMAGES__/pro_inner_index.png" width="20" style="margin-right:0px;"> 艺术商城</td>
+          </tr>
+          <tr v-for = "(item,index) in items" :id = item.id>
+		
+            <td class="user_r_frist"><a style="text-align:left;" href="javascript:void(0);"><img v-bind:src="item.imageSrc" width="60"><span>{{item.name}}</span></a></td>
+            <td>{{item.price | currency '￥' '2'}}</td>
+            <td><div class="shopcar_nums">
+              <!--<span class="pro_jian" v-on:click = "reduceNum(index)">-</span> -->
+              <span class="pro_num">{{item.count}}</span>
+              <!-- <span class="pro_jia" v-on:click = "addNum(index)">+</span>-->
+            </div></td>
+            <td><if condition="$is_groom eq 0">{{item.price | currency '￥' '2'}}<elseif condition="$is_groom eq 1"/>{{item.price*item.count | currency '￥' '2'}}</if></td>
+          </tr>
+          <tr class="order1_last_list">
+            <td class="user_r_frist"></td>
+            <td></td>
+            <td style="font-size:18px;">合计:</td>
+            <td style="font-size:18px;color:red;">{{priceTotal | currency '￥' '2'}}</td>
+          </tr>
+        </table>
+      </div>
+        <ul class="order_shonc1 clearfix" id="address_coupon">
+            <foreach name="coupon" item="vo">
+             <!--  <li onclick="choose_address1(this)" <eq name="vo.id" value="1">class="order_shoncon1"</eq> data-couponid="{$vo.id}">
+                <p>￥{$vo.money}代金券</p> -->
+              <!-- <h5> --><!-- {$vo.condition}<b>{$vo.city}</b> --><!-- <span>满￥{$vo.condition}使用</span></h5> -->
+              <!-- <a href="javascript:;" data-default="{$vo.default}" data-consignee="{$vo.consignee}" data-id="{$vo.id}" data-province="{$vo.province}" data-city="{$vo.city}" data-district="{$vo.district}" data-place="{$vo.start_time}" data-telephone="{$vo.telephone}">修改</a>  -->
+           <!--  </li> -->
+            <li  style="float: left;margin-left: 10px;"><p><input type="checkbox" data-id={$vo.id} data-money="{$vo.money}" name="checkbox" value="{$vo.id}"  <if condition="$countprice lt $vo['condition']">disabled="disabled"</if> />{$vo.money}代金券  满￥{$vo.condition}使用</p></li>
+            </foreach>
+        </ul>
+      <!--<div class="order1_yh_con clearfix">
+        <div class="order1_yh_con2" style="display:inline-block; vertical-align:top; margin-right:10%; width:45%;">
+          <h5>使用优惠卷</h5>
+          <ul>
+            <li>
+              <input type="checkbox" class="j_checkbox">
+              不使用优惠卷 </li>
+            <li>
+              <input type="checkbox" class="j_checkbox j_checkbox_on">
+              <div class="user_r3_j">
+                <div class="user_r3_j1"> <span>￥100</span> 礼金券
+                  <p></p>
+                </div>
+                <div class="user_r3_j2"> 注册新用户全场通用券<br>
+                  <span>单笔订单满2000元使用</span> </div>
+              </div>
+            </li>
+            <li>
+              <input type="checkbox" class="j_checkbox">
+              <div class="user_r3_j">
+                <div class="user_r3_j1"> <span>￥50</span> 礼金券
+                  <p></p>
+                </div>
+                <div class="user_r3_j2"> 注册新用户全场通用券<br>
+                  <span>单笔订单满2000元使用</span> </div>
+              </div>
+            </li>
+            <li>
+              <input type="checkbox" class="j_checkbox">
+              <div class="user_r3_j">
+                <div class="user_r3_j1"> <span>￥30</span> 礼金券
+                  <p></p>
+                </div>
+                <div class="user_r3_j2"> 注册新用户全场通用券<br>
+                  <span>单笔订单满2000元使用</span> </div>
+              </div>
+            </li>
+            <li>
+              <input type="checkbox" class="j_checkbox">
+              <div class="user_r3_j">
+                <div class="user_r3_j1"> <span>￥20</span> 礼金券
+                  <p></p>
+                </div>
+                <div class="user_r3_j2"> 注册新用户全场通用券<br>
+                  <span>单笔订单满2000元使用</span> </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>-->
+      <!--<div class="order1_yh_con clearfix">
+        <div class="order1_yh_con2" style="display:inline-block; float:left; vertical-align:top; margin-right:10%; width:45%;">
+          <div class="order1_yh_con1" style="vertical-align:top; margin-top:0px; margin-bottom:15px;">
+            <h5>使用优惠码</h5>
+            <input type="text" placeholder="输入您的优惠码" style="width:80%;">
+            <a href="##">确认</a> </div>
+          <p class="yuxx_p">每笔订单仅限使用一个礼金券或者优惠码</p>
+          <span class="yuxx_sp">-100元</span> </div>
+        <div class="order1_yh_con1" style="display:inline-block; float:left; vertical-align:top; width:45%;">
+          <h5>积分抵现金</h5>
+          <input type="text" placeholder="输入使用积分" style="width:80%;">
+          <a href="##">确认</a>
+          <p class="jfxx_p">共有积分3000分， 可使用3000分抵扣30元</p>
+          <span class="yuxx_sp">-0元</span>
+          <div class="sjf" style="position:relative; top:0; left:0; margin-top:15px; display:inline-block;">
+            <h5 style="color:#d70000;">您可获得:
+              <p style="display:inline-block;"><span>积分<b>2400分</b></span></p>
+            </h5>
+          </div>
+        </div>
+      </div>-->
+    </div>
+
+    <!--发票信息开始-->
+    <!--<div class="order1_yh">
+      <h5>发票/优惠信息 </h5>
+      <div class="order1_yh_con">
+        <div class="order1_yh_con1">
+          <h5>发票类型</h5>
+          <ul class="clearfix">
+            <li data-invoice_type="5" class="order1_yhon"><span></span>电子发票-增值普票</li>
+            <li data-invoice_type="3"><span></span>纸质发票-增值普票</li>
+          </ul>
+          <div class="order1_yh_l">
+            <div class="order1_yh_list" style="display:block;"> <span>发票抬头</span>
+              <input type="text" name="invoice_title" id="invoice_title" placeholder="填写需要开票的个人或个人信息">
+              <div class="order1_yh_lista">
+                <p>浙江美术网开具的电子发票均为真实有效的合法发票，与传统纸质发票具有同等法律效力，可作为用户维权、保修、报销的有效凭据。</p>
+                <p>电子发票会在确认收货后15天内，将发票代码和发票号码以短信方式发送到收货人手机上。</p>
+                <p>开具成功后，您可登录电子发票查询系统<span>http://imv.auxshop.cn/fppt-web/fppt/public/lookup.html</span>下载电子发票</p>
+              </div>
+            </div>
+            <div class="order1_yh_list"> <span>发票抬头</span>
+              <input type="text" name="invoice_title1" id="invoice_title1" placeholder="填写需要开票的个人或个人信息">
+            </div>
+            <div class="order1_yh_list order1_yh_list1">
+              <ul>
+                <li>
+                  <input type="checkbox" class="j_checkbox j_checkbox_on">
+                  吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 浙江省杭州西湖区文三路 &nbsp;&nbsp; 杭州银行 &nbsp;&nbsp; 654126541235038</li>
+                <li>
+                  <input type="checkbox" class="j_checkbox">
+                  吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 浙江省杭州西湖区文三路 &nbsp;&nbsp; 杭州银行 &nbsp;&nbsp; 654126541235038</li>
+                <li>
+                  <input type="checkbox" class="j_checkbox">
+                  吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 浙江省杭州西湖区文三路 &nbsp;&nbsp; 杭州银行 &nbsp;&nbsp; 654126541235038</li>
+                <li>
+                  <input type="checkbox" class="j_checkbox j_checkbox_xz">
+                  新增增值税发票</li>
+              </ul>
+              <div class="user8_con2">
+                <p><span>单位名称：</span>
+                  <input type="text" value="13429614578">
+                </p>
+                <p><span>纳税人识别号：</span>
+                  <input type="text" value="李亮">
+                </p>
+                <p><span>注册地址：</span>
+                  <input type="text" value="">
+                </p>
+                <p><span>注册电话：</span>
+                  <input type="text" value="">
+                </p>
+                <p><span>开户银行：</span>
+                  <input type="text" value="">
+                </p>
+                <p><span>银行账户：</span>
+                  <input type="text" value="">
+                </p>
+                <div class="user_r6_line"></div>
+                <a href="##">保存</a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="order1_tall1">
+        <h5>买家留言</h5>
+        <textarea name="liuyan" id="liuyan" style="resize: none;"></textarea>
+      </div>
+    </div>-->
+    <!--发票信息结束-->
+
+    <div class="order1_tall">
+      <div class="shopcar_zj clearfix">
+        <div class="shopcar_zjs">
+          <p>商品合计：¥{$countprice}</p>
+          <p>运费：¥<b class="express_fee">{$express_fee}</b></p>
+          <!-- <p>活动优惠：¥0.00</p>
+           <p>折扣优惠：¥1200.00</p>-->
+          <h5><span>配送至：</span><span id="peisong">{$Defauladdress.province}&nbsp;{$Defauladdress.city}&nbsp;{$Defauladdress.district}&nbsp;{$Defauladdress.place}</span></h5>
+          <h5><span>收货人：</span><span id="shouhuoren">{$Defauladdress.consignee}&nbsp;{$Defauladdress.telephone}</span></h5>
+          <div class="shopcar_zjs_btn">
+            <p><if condition="$is_groom eq 0">租赁天数: <span>{$count_nums}</span>天 <elseif condition="$is_groom eq 1"/>商品数量: <span>{$count_nums}</span>件</if>
+              &nbsp; &nbsp; &nbsp; 商品总金额: <span>{$countprice}</span>元
+			 <if condition="$is_groom eq 0"> &nbsp; &nbsp; &nbsp; 商品总租金: <span>{$zujin}</span>元</elseif condition="$is_groom eq 1"/></if> 
+              <!-- &nbsp; &nbsp; &nbsp; 礼金券抵扣: -<span>0.00</span>元
+               &nbsp; &nbsp; &nbsp; 积分抵扣: -<span>0.00</span>元 -->
+              &nbsp; &nbsp; &nbsp; 付款金额：<b id="pay_fee">{$pay_fee}</b>元</p>
+            <a class="makeorder" href="javascript:;" onclick="goOrder()">下单</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  / order1  -->
+<form action="{:U('/Home/Order/pay')}" method="post" name="form1">
+  <input type="hidden" name="post_data" value="" />
+</form>
+
+<div class="dizhi" style="z-index: 99;">
+  <div class="dizhi_bg"></div>
+  <div class="dizhi_con"> <img src="__IMAGES__/dizhi_close.png" width="24">
+    <h5>新建地址</h5>
+    <div class="dizhi_list clearfix">
+      <p class="dizhi_l">收货人：
+        <input type="hidden" value="" id="addressid">
+        <input type="hidden" value="" id="index">
+        <input type="text" class='consignee'>
+      </p>
+      <p class="dizhi_r">手机号码：
+        <input type="text" class='telephone'  onkeyup='this.value=this.value.replace(/\D/gi,"")' maxlength="11">
+      </p>
+    </div>
+    <div class="dizhi_list clearfix"> <span style="position:relative; top:8px;">所在地区:</span>
+      <div class="docs-methods" style="display:inline-block; width:82%;">
+        <form class="form-inline" style="width:100%;">
+          <div id="distpicker" style="width:100%;">
+            <div class="form-group" style="width:100%;">
+              <div style="position: relative; width:100%;">
+                <input id="city-picker3" class="form-control" readonly type="text" value="" data-toggle="city-picker"><!-浙江省/杭州市/西湖区-->
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="dizhi_list clearfix"> <span>详细地址：</span>
+      <textarea name="adress" class="place"></textarea>
+    </div>
+    <div class="dizhi_btn clearfix">
+      <div class="w_chkbox">
+        <!--<input type="checkbox" name="dft" class="j_checkbox">
+        <span>设为默认</span>-->
+      </div>
+      <div class="dizhi_btn1"> <a href="javascript:;" class="dizhi_btn1_on">确定</a> <a href="javascript:;">取消</a> </div>
+    </div>
+  </div>
+</div>
+
+<!--  / user  -->
+
+</div>
+<!--  / warpper  -->
+</div>
+<include file="Public/footer" />
+
+</body>
+
+<script>
+  /*下单*/
+  function get_checked_address(){
+      var id = $(".order_shoncon").attr("data-address_id");
+      return {address_id:id};
+  }
+  function get_checked_receipt(){
+      var that = $(".order1_yhon");
+      var re = that.data("invoice_type");
+      return re;
+  }
+  function get_checked_invoice_title(){
+      var title = $("#invoice_title").val();
+      var title1 = $("#invoice_title1").val();
+      if(title1){
+          title = title1;
+      }
+      return title;
+  }
+
+  function goOrder(){
+	  var post = {};
+      var address        = get_checked_address();
+      post.address_id    = address.address_id;
+      post.express_fee   = $(".express_fee").html();
+      if(!post.address_id){
+          //dialog.showTips("请选择收货地址！", "warn");return false;
+          alert("请选择收货地址！");
+          return false;
+      }
+      /*post.invoice_type  = get_checked_receipt();
+      post.invoice_title = get_checked_invoice_title();
+      post.liuyan       = $("#liuyan").val();*/
+      post.order_info = '{$order_info1}';
+      post.type = '{$type}';
+      post.cart_ids   = '{$cart_ids}';
+      post.total_price  = '{$countprice}';
+
+      //代金券
+      var cc = $(".order_shonc1 li input[name='checkbox']:checked").data('id');
+       if(cc != undefined){
+          var coupon = cc;
+          post.coupon  = coupon;
+       }
+
+      
+      var artists_id = '{$artists_id}';
+      if(artists_id != 0){
+        post.artists_id  = artists_id;
+      }
+      var post1 = JSON.stringify(post);
+      $("input[name=post_data]").val(post1);
+      $("form[name=form1]").submit();
+  }
+  $(".makeorder").click(function (){
+      
+
+  })
+  /*下单*/
+  edit_address();
+  //添加编辑地址
+  $('.dizhi_btn1>a').eq(0).click(function(){
+      var post = {};
+      post.id = $('#addressid').val();
+      if(post.id != 0){
+          var index = $('#index').val();
+          var i_this = $('.order_shonc li').eq(index);
+      }
+      post.consignee  = $('.consignee').val();
+      post.telephone  = $('.telephone').val();
+      post.province   = $('.select-item[data-count=province]').html();
+      post.city       = $('.select-item[data-count=city]').html()
+      post.district   = $('.select-item[data-count=district]').html();
+      post.place      = $('.place').val();
+      if(post.consignee == '' || post.consignee==null){
+          $('.dizhi_con').addClass('dizhi_con_on');
+          alert("请输入收货人！");return false;
+          //dialog.showTips("请输入收货人","warn");return false;
+      }
+      if(!post.telephone){
+          $('.dizhi_con').addClass('dizhi_con_on');
+          alert("请填写手机号！");return false;
+          //dialog.showTips("请填写手机号","warn");return false;
+      }else if(!post.telephone.match(/^1[35789][0-9]{9}$/)){
+          $('.dizhi_con').addClass('dizhi_con_on');
+          alert("手机号码格式错误！");return false;
+          //dialog.showTips("手机号码格式错误","warn");return false;
+      }
+
+      if(post.province == '' || post.province==null){
+          $('.dizhi_con').addClass('dizhi_con_on');
+          alert("请选择省份！");return false;
+          //dialog.showTips("请选择省份","warn");return false;
+      }
+
+      if(post.city == '' || post.city==null){
+          $('.dizhi_con').addClass('dizhi_con_on');
+          alert("请选择城市！");return false;
+          //dialog.showTips("请选择城市","warn");return false;
+      }
+
+      if(post.district == '' || post.district==null){
+          $('.dizhi_con').addClass('dizhi_con_on');
+          alert("请选择区县！");return false;
+          //dialog.showTips("请选择区县","warn");return false;
+      }
+
+
+      $.ajax({
+          url:"{:U('Home/Order/addAddress')}",
+          data:post,
+          type:'post',
+          dataType:'json',
+          success:function(content){
+              if(content.status==2){
+                  var h5 = post.province+'<b>'+post.city+'</b><span>'+post.consignee+"(收)</span>";
+                  i_this.find('h5').html(h5);
+                  var p = post.district+'  '+post.place+'  '+post.telephone;
+                  i_this.find('p').html(p);
+                  i_this.find('a').attr('data-consignee',post.consignee);
+                  i_this.find('a').attr('data-province',post.province);
+                  i_this.find('a').attr('data-city',post.city);
+                  i_this.find('a').attr('data-district',post.district);
+                  i_this.find('a').attr('data-telephone',post.telephone);
+                  i_this.find('a').attr('data-place',post.place);
+                  $('.dizhi').stop(true).fadeOut(1000);
+                  $('.dizhi_con').removeClass('dizhi_con_on');
+                  dialog.showTips("修改成功","warn");
+              }else if(content.status==1){
+                  var html = '<li onclick="choose_address(this);" data-address_id="'+content.id+'" >';
+                  html += '<h5>'+post.province+'<b>'+post.city+'</b><span>'+post.consignee+'(收)</span></h5>';
+                  html += '<p>'+post.district+'  '+post.place+'  '+post.telephone+'</p>';
+                  html += '<a href="javascript:void(0);" data-consignee="'+post.consignee+'" data-id="'+content.id+'" data-province="'+post.province+'" data-city="'+post.city+'" data-district="'+post.district+'" data-place="'+post.place+'" data-telephone="'+post.telephone+'" >修改</a>';
+                  html += '</li>';
+                  $('#address_add').append(html);
+                  //choose_address();
+                  $('.dizhi').stop(true).fadeOut(1000);
+                  $('.dizhi_con').removeClass('dizhi_con_on');
+                  edit_address();
+                  dialog.showTips(content.info,"warn");
+              }else{
+                  alert(content.info);
+              }
+          }
+      });
+  });
+  $('.order_shone1>a').eq(0).click(function(){
+      $('.consignee').val('');
+      $('.telephone').val('');
+      $('.place').val('');
+//                        if(default_d != 1){
+//                            $("#moren").attr("checked", true);
+//                        }
+      $("#addressid").val(0);
+      $('.dizhi_con').show().addClass('bianda');
+      $('.dizhi_con>h5').text('新增地址');
+
+      $('.dizhi').stop(true).fadeIn(1000);
+      setTimeout(function(){
+          $('.dizhi_con').addClass('dizhi_con_on');
+      },300);
+      $(this).css('display','block');
+  });
+  $('.dizhi_bj').click(function(){
+      $('.dizhi').stop(true).fadeIn(1000);
+      setTimeout(function(){
+          $('.dizhi_con').addClass('dizhi_con_on');
+      },300)
+  })
+
+  $('.dizhi_btn1>a').eq(1).click(function(){
+      $('.dizhi').stop(true).fadeOut(1000);
+      $('.dizhi_con').removeClass('dizhi_con_on');
+  })
+
+  $('.dizhi_con>img').click(function(){
+      $('.dizhi').stop(true).fadeOut(1000);
+      $('.dizhi_con').removeClass('dizhi_con_on');
+  });
+  //选择地址 读取运费
+  function choose_address(this_obj){
+      $('.order_shonc li').removeClass('order_shoncon');
+      $(this_obj).addClass('order_shoncon');
+      var consignee = $(this_obj).find('a').data('consignee');
+      var province = $(this_obj).find('a').data('province');
+      var city = $(this_obj).find('a').data('city');
+      var district = $(this_obj).find('a').data('district');
+      var place = $(this_obj).find('a').data('place');
+      var telephone = $(this_obj).find('a').data('telephone');
+      var price = "{$countprice}";
+      var weight = "{$weight}";
+      var is_groom = "{$is_groom}";
+      var zujin = "{$zujin}";
+      var is_cart = "{$is_cart}";
+      var user_id = "{$user_id}";
+
+      var express = {$express};
+      if(!express){
+          express=0;
+      }
+      //console.log(express);return false;
+
+      $.ajax({
+          type: "POST",
+          url: "{:U('/Home/Order/get_expressFee')}",
+          data: {
+              weight: weight,
+              province:province,
+              is_cart:is_cart,
+              express:express,
+              user_id:user_id
+          },
+          dataType: "json",
+          success: function (g) {
+              if (g.status == 1) {
+			    var zprice = "";
+				if(is_groom == 1){
+                   zprice = parseFloat(price) + parseFloat(g.info);
+				}else{
+                   zprice = parseFloat(price) + parseFloat(zujin) + parseFloat(g.info);
+				}
+                 var cc = $(".order_shonc1 li input[name='checkbox']:checked").data('id');
+                 if(cc != undefined){
+                     var money = $(".order_shonc1 li input[name='checkbox']:checked").data('money');
+                    zprice = parseFloat(zprice) - parseFloat(money);
+                 }
+                  $(".express_fee").html(g.info); //运费
+                  $("#pay_fee").text(zprice);     //付款金额
+                  $("#peisong").text(province+'  '+city+'  '+district+'  '+place);
+                  $("#shouhuoren").text(consignee+'  '+telephone);
+
+
+              } else {
+                  alert(g.info);
+              }
+          }
+      });
+  }
+
+  //代金券
+  $(function(){
+   //console.log($('.order_shonc .order_shoncon').length);
+   if($('.order_shonc .order_shoncon').length > 0){
+      choose_address($('.order_shonc .order_shoncon'));
+   }
+    $(".order_shonc1 li input[name='checkbox']").click(function(){
+       var leng = $(".order_shonc1 li input[name='checkbox']:checked").length;
+        if(leng > 1){
+            alert('一件商品只能使用一个红包');
+            $(".order_shonc1 li input[name='checkbox']").attr('checked',false);
+            choose_address($('.order_shonc .order_shoncon'));
+            return false;
+        }
+       choose_address($('.order_shonc .order_shoncon'));
+
+       // var cc = $(".order_shonc1 li input[name='checkbox']:checked").data('id');
+       // if(cc != undefined){
+       //    var money = $(".order_shonc1 li input[name='checkbox']:checked").data('money');
+       //    console.log(cc+'|'+money);
+       //    var zprice = $("#pay_fee").text();
+       //    zprice = parseFloat(zprice) - parseFloat(money);
+       //      $("#pay_fee").text(zprice);
+       // }
+    })
+     
+      
+  })
+
+  function edit_address(){
+      $('.order_shonc li a').click(function(){
+          var consignee = $(this).attr("data-consignee");
+          var id = $(this).attr("data-id");
+          var province = $(this).attr("data-province");
+          var city = $(this).attr("data-city");
+          var district = $(this).attr("data-district");
+//                        var default_d = $(this).attr("data-default");
+          var place = $(this).attr("data-place");
+          var telephone = $(this).attr("data-telephone");
+          $('.consignee').val(consignee);
+          $('.telephone').val(telephone);
+          $('.place').val(place);
+//                        if(default_d != 1){
+//                            $("#moren").attr("checked", true);
+//                        }
+          $("#addressid").val(id);
+          var index = $(this).parent().index();
+          $('#index').val(index);
+          $('.title').find('.select-item').eq(0).html(province);
+          $('.title').find('.select-item').eq(1).html(city);
+          $('.title .select-item').eq(2).html(district);
+          $('.l_xiugaidizhi').val(province+'/'+city+'/'+district);
+          $('[data-toggle="city-picker"]').citypicker();
+          $('.dizhi_con').show().addClass('bianda');
+          $('.dizhi_con>h5').text('修改地址');
+
+          $('.dizhi').stop(true).fadeIn(1000);
+          setTimeout(function(){
+              $('.dizhi_con').addClass('dizhi_con_on');
+          },300)
+      });
+  }
+</script>
+<script>
+    var app = angular.module('DemoApp', []);
+
+    app.controller('CartController', ['$scope', '$http', function ($scope, $http) {
+        $scope.ShoppingCar = {}
+        var GetCar = function () {
+            $http.get('/Employee/GetCar')
+                .success(function (response) {
+                    $scope.ShoppingCar = response;
+                    GetTotal();
+                });
+        }
+        $scope.total = 0;
+        var GetTotal = function () {
+            for (var i = 0; i < $scope.ShoppingCar.length; i++) {
+                var item = $scope.ShoppingCar[i];
+                $scope.total += item.Count * item.UnitPrice;
+            }
+        }
+
+        $scope.UpdateCar = function (title, count) {
+            for (var i = 0; i < $scope.ShoppingCar.length; i++) {
+                var item = $scope.ShoppingCar[i];
+                if (item.Title == title) {
+                    item.Count = item.Count + count;//这里可以增加上下限制
+                    if (item.Count < 0) {
+                        $scope.ShoppingCar.splice(i, 1);
+                    }
+                }
+            }
+            GetTotal();
+        }
+        $scope.submit = function () {
+            $http.post('/Employee/AddCar', $scope.ShoppingCar)
+                .success(function (response) {
+                    alert(response);
+                });
+        }
+        GetCar();
+    }]);
+
+    var order_data = {$order_info};
+    var is_groom = {$is_groom};
+    console.log(order_data);
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            items: order_data
+        },
+        computed: {
+            //计算属性，计算总价格，返回给页面展示
+            priceTotal: function() {
+			console.log(this.items);
+                var price = 0;
+                //遍历items数组,计算当前（this）price字段和count字段的价格总和;
+					if(is_groom == 1){
+						for(var i = 0; i < this.items.length; i++) {
+							price += this.items[i].price * this.items[i].count;
+						}
+						return price;
+					}else{
+						for(var i = 0; i < this.items.length; i++) {
+							price += this.items[i].price;
+						}
+						return price;
+					}
+					
+				
+            }
+        },
+        methods: {
+            addNum: function(index) {
+                //实现增加购买数量
+                var current = this.items[index];
+                console.log(current.store);
+                if(current.count >= current.store) {
+                    alert("库存不够");return false;
+                } else {
+                    current.count++;
+                }
+            },
+            reduceNum: function(index) {
+                //实现减少购买数量
+                var current = this.items[index];
+                if(current.count <= 1) {
+                    alert("数量不能小于1");
+                } else {
+                    current.count--;
+                }
+            },
+            removeGoods: function(index) {
+                //实现移除操作 splice  移除
+                this.items.splice(index, 1);
+            }
+        }
+    });
+
+
+</script>
+</html>

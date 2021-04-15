@@ -1,0 +1,245 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="user_r6">
+            <div class="user_r6a" style="width:350px;display: inline-block">
+              <p style="margin-bottom:25px;">您好<span>{$result.person_name}</span>，欢迎进入会员中心 &nbsp;&nbsp;&nbsp;&nbsp;
+                <!--<span class="qiand qxdd">签到</span>-->
+              </p>
+              <p>您目前是：<span><switch name="result.vip">
+                <case value="1">[普通会员]</case>
+                <case value="2">[白金经纪人]</case>
+                <case value="3">[黄金经纪人]</case>
+                <case value="4">[黑金经纪人]</case>
+              </switch>
+                </span> &nbsp;&nbsp;&nbsp;&nbsp;<!-- <a href="{:U('/Home/PersonalCenter/memberLevel/tag/userInfo/value/5')}">会员类别介绍</a>--></p>
+              <!--<p>账户总积分：<span style="font-size:16px; font-weight:600;">2722</span>分 
+                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="user10">查看积分记录</a> (下单金额累积到10000元可成为白金高级会员，可享受2倍积分并享更高折扣价)</p> --> 
+            </div>
+            <div style="width:400px;display: inline-block;margin-bottom: 35px;">
+              <p style="height:30px;line-height:30px;">账户余额：{$result.wallet|default='0.00'}元</p>
+              <p style="height:30px;line-height:30px;border:1px solid #ddd;text-align: center;width:100px;"><a href="{:U('/Home/Order/chongzhi')}">充值</a></p>
+            </div>
+            <div class="user8_con2">
+              <p><span>用户名：</span>
+                <input type="text" value="{$result.telephone}" disabled />
+              </p>
+              <p><span>类别：</span>
+                <input type="hidden" id="cate_id" value="{$result.type}">
+                <select name="type" style="width: 150px;height: 30px;" id="select_cate">
+                  <if condition="$result.type eq 0">
+                    <option value="0">普通会员</option></if>
+                  <volist name="cate" id="vo">
+                    <option value="{$vo.id}" >{$vo.classname}</option>
+                  </volist>
+                </select>
+              </p>
+              <p><span>姓名：</span>
+                <input type="text" value="{$result.realname}" maxlength="10" onblur="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" onkeyup="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" id="real_name" />
+              </p>
+              <p><span>昵称：</span>
+                <input type="text" value="{$result.person_name}" maxlength="16" id="person_name" />
+              </p>
+              <p><span>性别：</span>
+                <i><input class="gc-radio" type="radio" name="sex" id="sex" value="1" <?php if($result['sex']==1):?> checked="checked"<?php endif;?> >
+                &nbsp;先生</i>
+                <i><input class="gc-radio" type="radio" name="sex" id="sex" value="2" <?php if($result['sex']==2):?> checked="checked"<?php endif;?>>
+                &nbsp;女士</i>
+              </p>
+
+              <p><span>生日：</span>
+                <input type="date" value="{$result.birth}" id="birth">
+              </p>
+              <p><span>手机号码：</span>
+                <input type="text" value="{$result.telephone}" id="telephone" disabled>
+              </p>
+              <p><span>邮箱：</span>
+                <input type="text" value="{$result.email}" id="email">
+              </p>
+              <p><span>联系地址：</span>
+                <input style="width:30%;" type="text" maxlength="30" placeholder="用于官网给会员不定期寄送礼品，务必填写准确哦！" value="{$result.country}" id="country">
+              </p>
+              <p><span style="width:100px;">绑定微信号：</span><img src="__IMAGES__/wx_logo.jpg" width="120"><b class="saomiao">扫描二维码绑定微信号</b></p>
+              <div class="xgmm">
+                <input type="checkbox">
+                <span>修改密码</span>
+                <div class="xgmm_con">
+                  <p><span>当前密码：</span>
+                    <input type="password" value="" id="nowpass">
+                  </p>
+                  <p><span>新密码：</span>
+                    <input type="password" value="" id="newpass">
+                  </p>
+                  <p><span>确认密码：</span>
+                    <input type="password" value="" id="password">
+                  </p>
+                </div>
+              </div>
+              <div class="user_r6_line"></div>
+              <a href="javascript:void (0)" id="save">保存</a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--  / user  -->
+  
+  <div class="wap_tanc">
+    <div class="wap_tanc_bg"></div>
+    <div class="wap_tanc_con wap_tanc_con1">
+      <p>×</p>
+      <h5><img src="__IMAGES__/qdcg.png" width="80">
+        <p>签到成功</br>
+          <!--恭喜您获得<span>10</span>积分</p>-->
+        </p>
+      </h5>
+      <!--<a href="user10.html">查看我的积分</a> --></div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+    $(document).ready(function(){
+        var cate_id=$("#cate_id").val();
+        if(cate_id){
+            $("#select_cate option[value="+cate_id+"]").attr('selected',true);
+        }
+    });
+</script>
+<script>
+
+$(document).ready(function(){
+
+  $('.qxdd').click(function(){
+	  $('.wap_tanc').stop(true).fadeIn(600);
+	  $('.wap_tanc_con').stop(true).fadeIn(600);
+	  })
+  
+  $('.wap_tanc_bg').click(function(){
+	  $('.wap_tanc').stop(true).fadeOut(600);
+	  $('.wap_tanc_con').stop(true).fadeOut(600);
+	  })
+  
+  $('.wap_tanc_con1>p').click(function(){
+	  $('.wap_tanc').stop(true).fadeOut(600);
+	  $('.wap_tanc_con').stop(true).fadeOut(600);
+	  })
+
+})
+
+</script>
+<script>
+  $('#save').click(function () {
+      var realname=$.trim($('#real_name').val());
+      var person_name=$.trim($('#person_name').val());
+      var sex = $.trim($("input[type='radio']:checked").val());
+      var birth=$.trim($('#birth').val());
+      var telephone=$.trim($('#telephone').val());
+      var email=$.trim($('#email').val());
+      var country=$.trim($('#country').val());
+      var nowpass = $.trim($('#nowpass').val());
+      var newpass = $.trim($('#newpass').val());
+      var password = $.trim($('#password').val());
+      //var type = $("input[name='cate']:selected").val();
+      var type = $("#select_cate option:selected").val();
+      //console.log(type);return false;
+      /*if(realname == ''){
+        alert('请输入姓名');return false;
+      }*/
+      /*if(person_name == ''){
+        alert('请输入昵称');return false;
+      }*/
+      /*if(birth == ''){
+        alert('请输入生日');return false;
+      }*/
+      /*if(email == ''){
+        alert('请输入邮箱');return false;
+      }*/
+      /*if(country == ''){
+        alert('请输入地址');return false;
+      }*/
+      birth1 = new Date(birth);
+      var time = new Date();
+      var b1 = birth1.getTime();
+      var t1 = time.getTime();
+      if(b1>t1){
+        dialog.showTips('生日不能晚于当前时间','warn');return false;
+      }
+     
+      if(nowpass == ''){
+
+      }else{
+          if (!newpass.match(/^.{6,24}$/)) {
+              dialog.showTips("新密码长度必须是6-24位！","warn");
+              return false;
+          }
+          if(newpass==""){
+              dialog.showTips("确认密码不能为空", "warn");
+              return false;
+          }
+
+          if (!password.match(/^.{6,24}$/)) {
+              dialog.showTips("确定密码长度必须是6-24位！","warn");
+              return false;
+          }
+
+          if(newpass!=password){
+              dialog.showTips("两次密码不一致", "warn");
+              return false;
+          }
+      }
+      if(email != "") {
+
+          var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+          if (!myreg.test(email)) {
+              alert("请输入有效的邮箱！");
+              return false;
+          }
+      }
+      $.ajax({
+          url: "{:U('/Home/PersonalCenter/editCenter')}",
+          type: "post",
+          dataType: "json",
+          data: {
+              realname:realname,
+              person_name:person_name,
+              sex:sex,
+              birth:birth,
+              telephone:telephone,
+              email:email,
+              country:country,
+              password:newpass,
+              nowpass:nowpass,
+              type:type
+          }
+      }).done(function (g) {
+          if (g.status == 1) {
+              alert(g.info);
+             dialog.showTips(g.info,"warn",function () {
+                window.location.reload();
+             });
+              return false;
+          } else {
+              alert(g.info);return false;
+          }
+
+      })
+
+  })
+</script>
+</html>

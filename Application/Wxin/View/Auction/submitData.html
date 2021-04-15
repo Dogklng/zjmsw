@@ -1,0 +1,283 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+<link rel="stylesheet" href="__CSS__/paiUncenter.css" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="SellerCon">
+          <div class="SellerTop">
+            <h3>入驻竞卖美术网平台</h3>
+          </div>
+          <div class="SellerFlower">
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>1</span>
+                  <h3 class="paiUncenter_h3">签署协议</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>2</span>
+                  <h3 class="paiUncenter_h3 paiCH3">账号类型<br />（个人、公司）</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>3</span>
+                  <h3 class="paiUncenter_h3">选择类目</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist SellerFlistCurr"> <span>4</span>
+                  <h3 class="paiUncenter_h3">提交资料</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>5</span>
+                  <h3 class="paiUncenter_h3">审核</i></h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>6</span>
+                  <h3 class="paiUncenter_h3 paiCH3">缴纳保证金，<br />入驻成功</h3>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="pZlCon">
+              <form class="pZlConForm">
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">机构名称：</label>
+                  <input type="text" value="" />
+                  <span>必须填写官方机构名称或者公司名称</span>
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">联系人：</label>
+                  <input type="text" value="" />
+                  <span>当前店铺经营的联系人，方便小二联系</span> 
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">联系手机：</label>
+                  <input type="text" value="" />
+                  <span>当前店铺经营联系人的手机，方便小二联系</span>
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">联系地址：</label>
+                  <span><select id="s_province" name="s_province"></select>  
+                   <select id="s_city" name="s_city" ></select>  
+                   <select id="s_county" name="s_county"></select>
+                  </span>
+                  <span>当前店铺经营联系人的手机，方便小二联系</span>
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">入驻类型：</label>
+                  <span><label for="pz1"><input id="pz1" name="pz" type="radio" />企业商家<i>（以企业身份入驻）</i></label></span>
+                  <span><label for="pz2"><input id="pz2" name="pz" type="radio" />个人商家<i>（以个人身份入驻，如大师工作室）</i></label></span>
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">法人姓名：</label>
+                  <input type="text" value="" />
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">法人身份证号码：</label>
+                  <input type="text" value="" />
+                </div>
+                <div class="pZlConI clearfix">
+                 <div class="pZlConI-div">
+                  <label class="pzLs">法人身份证正反面照片：</label>
+                  <div class="SelIdetPic-list">
+                   <div class="SelIdPic-border">
+                     <img src="__IMAGES__/SeladdPic.png">
+                     <h6>点此上传</h6>
+                     <input type="file">
+                    </div>
+                  </div>
+                  <div class="SelIdetPic-list">
+                   <div class="SelIdPic-border">
+                     <img src="__IMAGES__/SeladdPic.png">
+                     <h6>点此上传</h6>
+                     <input type="file">
+                    </div>
+                  </div>
+                  </div>
+                  <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+                </div>
+                <div class="pZlConI clearfix">
+                 <div class="pZlConI-div">
+                  <label class="pzLs">法人手持身份证照片：</label>
+                  <div class="SelIdetPic-list">
+                   <div class="SelIdPic-border">
+                     <img src="__IMAGES__/SeladdPic.png">
+                     <h6>点此上传</h6>
+                     <input type="file">
+                    </div>
+                  </div>
+                 </div>
+                 <h5>原件照片或加盖公司公章的复印件照片，支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">三证：</label>
+                  <span><label for="pz3"><input name="pzS" id="pz3" type="radio" />三证分离</label></span>
+                  <span><label for="pz4"><input name="pzS" id="pz4" type="radio" />三证合一</label></span>
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">企业名称：</label>
+                  <input type="text" value="" />
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">企业营业执照代码：</label>
+                  <input type="text" value="" />
+                </div>
+                <div class="pZlConI clearfix">
+                 <div class="pZlConI-div">
+                  <label class="pzLs">企业营业执照照片：</label>
+                  <div class="SelIdetPic-list">
+                   <div class="SelIdPic-border">
+                     <img src="__IMAGES__/SeladdPic.png">
+                     <h6>点此上传</h6>
+                     <input type="file">
+                    </div>
+                  </div>
+                 </div>
+                 <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">企业注册时间：</label>
+                  <input type="text" value="" />
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">营业执照有效期：</label>
+                  <input type="text" value="" />
+                  <h6>如果有效期为长期，请填写2020-12-31</h6>
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">企业经营范围：</label>
+                  <input type="text" value="" />
+                  <h6>如果有效期为长期，请填写2020-12-31</h6>
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">营业执照所在地：</label>
+                  <input type="text" value="" />
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">组织机构代码：</label>
+                  <input type="text" value="" />
+                </div>
+                <div class="pZlConI clearfix">
+                 <div class="pZlConI-div">
+                  <label class="pzLs">组织机构代码照片：</label>
+                  <div class="SelIdetPic-list">
+                   <div class="SelIdPic-border">
+                     <img src="__IMAGES__/SeladdPic.png">
+                     <h6>点此上传</h6>
+                     <input type="file">
+                    </div>
+                  </div>
+                 </div>
+                 <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">组织机构有效期：</label>
+                  <input type="text" value="" />
+                </div>
+                <div class="pZlConI clearfix">
+                  <label class="pzLs">税务代码：</label>
+                  <input type="text" value="" />
+                </div>
+                <div class="pZlConI clearfix">
+                 <div class="pZlConI-div">
+                  <label class="pzLs">税务代码照片：</label>
+                  <div class="SelIdetPic-list">
+                   <div class="SelIdPic-border">
+                     <img src="__IMAGES__/SeladdPic.png">
+                     <h6>点此上传</h6>
+                     <input type="file">
+                    </div>
+                  </div>
+                 </div>
+                 <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+                </div>
+                <div class="pZlConI clearfix">
+                 <div class="pZlConI-div">
+                  <label class="pzLs">授权书：</label>
+                  <div class="SelIdetPic-list">
+                   <div class="SelIdPic-border">
+                     <img src="__IMAGES__/SeladdPic.png">
+                     <h6>点此上传</h6>
+                     <input type="file">
+                    </div>
+                  </div>
+                 </div>
+                 <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+                 <a href="#">[  下载授权书模板  ]</a>
+                </div>
+                <div class="pZlConI clearfix">
+                 <div class="pZlConI-div">
+                  <label class="pzLs">其它资料：</label>
+                  <div class="SelIdetPic-list">
+                   <div class="SelIdPic-border">
+                     <img src="__IMAGES__/SeladdPic.png">
+                     <h6>点此上传</h6>
+                     <input type="file">
+                    </div>
+                  </div>
+                 </div>
+                 <h5>支持上传jpg，png，jpeg，zip，txt，pdf，doc，docx，xls，xlsx格式的文件，并且大小不超过20M，图片不能含二维码</h5>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="SelNoticeStyle">
+          <h4><a href="{:U('/Home/Auction/category')}" style="background:#ccc;">上一步</a> <a href="{:U('/Home/Auction/examine')}">下一步</a></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;"> <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1"> <a href="##" class="task_btn1_on">确定</a> <a href="##" class="task_btn1_quxiao">取消</a> </div>
+    </div>
+  </div>
+</div>
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;"> <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1"> <a href="##" class="task1_btn1_on">确定</a> <a href="##" class="task1_btn1_quxiao">取消</a> </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+<script class="resources library" src="__JS__/area.js" type="text/javascript"></script>
+<script type="text/javascript">_init_area();</script>
+<script type="text/javascript">
+var Gid  = document.getElementById ;
+var showArea = function(){
+	Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" + 	
+	Gid('s_city').value + " - 县/区" + 
+	Gid('s_county').value + "</h3>"
+							}
+Gid('s_county').setAttribute('onchange','showArea()');
+</script>
+</html>

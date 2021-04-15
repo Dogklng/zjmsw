@@ -1,0 +1,14 @@
+<div class="products_inner_ban">
+    <div class="swiper-container swiper-container1" >
+        <div class="swiper-wrapper">
+            <foreach name="image" item="vo">
+                <div class="swiper-slide">
+                    <div class="device">
+                        <img src="{$vo.pic}" width="100%">
+                    </div>
+                </div>
+            </foreach>
+        </div>
+        <div class="swiper-pagination pagination1"></div>
+    </div>
+</div>

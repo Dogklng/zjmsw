@@ -1,0 +1,64 @@
+<include file="Public:header" />
+<style>
+    .activity_content {
+        color: red;
+        font-size: 20px;
+    }
+</style>
+<div class="ban1">
+    <div class="banner_img"> <img src="{$activity['index_pic']}" alt="" />
+        <div class="banpY">
+            <div class="banpYbox">
+                <div class="banner-info banner-status-over">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+    <div class="title">
+        <div class="line"></div>
+        <p class="font_tit1">Activity Goods</p>
+        <h5>活 • 动 • 商 • 品 • 展 • 览</h5>
+    </div>
+    <div class="main">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="big_auction_board" color="red" font-size="20px">
+                    <!--<p class="status activity_content" >{$activity['content']}</p>-->
+                </div>
+                <div class="left-main">
+                    <foreach name="res" item="vo">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="left-store">
+                                <a href='{:U("Home/Products/buy/id")}/{$vo["id"]}' target="_blank">
+                                    <div class="store"> <img src="{$vo.index_pic}"/>
+                                        <div class="store-det">
+                                            <h3>{$vo.goods_name}</h3>
+                                            <h4><b>当前价格</b>￥{$vo.price}</h4>
+                                            <if condition="$activity['type'] eq 2">
+                                            <span class="cishu">折后价：<b>￥{$vo.zhehoujia|default=0}</b></span>
+                                            </if>
+                                            <span class="cishu">围观数：<b>{$vo.browser|default=0}</b></span>
+                                        </div>
+                                    </div>
+                                </a> </div>
+                        </div>
+                    </foreach>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script type="text/javascript" src="__JEDATE__/jedate.js"></script>
+</html>

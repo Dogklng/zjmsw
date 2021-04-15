@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="images/mswlogo.ico" />
+<title>美术网</title>
+<meta name="keywords" content="美术网" />
+<meta name="description" content="美术网" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link href="css/swiper.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+
+<script type="text/javascript" src="js/jquery.1.9.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</head>
+
+<body>
+<!--导航-->
+<div class="body_top">
+  <div class="body_top_up">
+    <div class="body_top_tit1"> <a href="../index.html"><img src="images/logoM.png" /></a> </div>
+    <div class="sousuo">
+    	<img src="images/search.png" />
+    </div>
+    <div class="clear"></div>
+    
+    <div class="sousuok">
+    	<input type="text" value="请输入关键词" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键词';}" />
+    </div>
+    
+  </div>
+</div>
+
+<!--导航-->
+
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 保证金流水 </a> </h3>
+</div>
+<div class="p_xiangqing1">
+<div class="shop_xiad">
+ <div class="shop_xiadts">
+  <div class="shop_sjr_center"><b>订单：</b>123456</div>
+ </div>
+ <div class="shop_xiadbh">
+  <div class="shop_sjr_center">
+   <p><b>时间：</b><span>2017年09月13日 17:53</span></p>
+   <p><b>状态：</b><span>缴纳成功</span></p>
+   <p><b>金额：</b><span>￥50.00</span></p>
+   <p><b>渠道：</b><span>支付宝</span></p>
+  </div>
+ </div>
+</div>
+<div class="shop_xx">
+ <div class="shop_xx_warp">
+  <div class="shop_xx_center">
+   <div class="shop_xx_left shop_xx_fd"> <a href="fukuan01.html"><img src="images/order_pro1.jpg" /></a> </div>
+   <div class="shop_xx_right shop_xx_fd">
+    <p>拍品名称： <b>恣意的泼笔</b> <br />订单号 <i>1234567</i></p>
+     <p>保证金金额: <i>￥50.00</i></p>
+      <h3 class="shop_xx_jg"><b>支付宝账号: </b><b>1318618829</b></h3>
+   </div>
+   <div class="clear"></div>
+  </div>
+ </div>
+ <ul class="buyer_ul02">
+  <h4>美术网拍卖提醒</h4>
+  <h6>1. 使用银行卡直接交保，保证金释放后会在1-5个工作日退回到银行卡，不收费。如退回银行卡失败，请您手动提现，支付宝有2万元提现免收费额度。</h6>
+  <h6>2. 先充值到余额，再缴纳保证金，释放后，会回到余额，可通过点击“原路退回”申请免费退回到银行卡。</h6>
+  <h6>3. 先转入到余额宝再缴纳保证金，释放后，会回到余额宝，退回后直接转出到银行卡即可，无需手续费。</h6>
+ </ul>
+</div>
+</div>
+<!--shop-->
+<div class="ght">
+ <div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>
+</div>
+
+<!--footer-->
+<div class="footer">
+ <ul class="footer_list">
+  <li class="on"> <a href="../index.html"> <img src="images/indexha.svg" width="18px" />
+   <p>首页</p>
+   </a> </li>
+  <li> <a href="../products.html"> <img src="images/product.svg" width="18px" />
+      <p>产品</p>
+      </a> </li>
+  <li class="dz_db"> <a href="../groom.html"> <img src="images/dingzhi.svg" width="18px" />
+   <p>云推荐</p>
+   </a> </li>
+  <li> <a href=""> <img src="images/cart.svg" width="18px" />
+   <p>购物车</p>
+   </a> </li>
+  <li> <a href="myorder.html"> <img src="images/my.svg" width="18px" />
+   <p>我的</p>
+   </a> </li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<!--footer-->
+</body>
+</html>

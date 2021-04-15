@@ -1,0 +1,171 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/Shop/shop/tag/shop/value/6"> <i class="fa fa-angle-left"></i> 已卖出作品 </a> </h3>
+
+</div>
+<div class="warp_box">
+    <volist name="order" id="vo">
+ <div class="all_dingdan_one">
+  <div class="allorder_topz">
+   <div class="allorder_topz_center">
+    <div class="allorder_topz_right"><switch name="vo.order_status">
+        <case value="1">未付款</br>(付款时间24小时)</case>
+        <case value="2">已付款</case>
+        <case value="3">已发货</case>
+        <case value="4">已签收</case>
+        <case value="5">已完成</case>
+        <case value="6">退款中</case>
+        <case value="7">已关闭</case>
+    </switch></div>
+    <div class="clear"></div>
+   </div>
+  </div>
+  <div class="allorder_kuang">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_left shop_xx_fd"> <a href="javascript:;"><img src="{$vo.goods_spic}" width="100%" /></a> </div>
+     <div class="shop_xx_right shop_xx_fd shop_xx_revenue">
+      <p><b>{$vo.goods_name}</b><br />订单号 <i>{$vo.order_no}</i></p>
+      <p>买家<i>{$vo.person_name}</i><em></em></p>
+      <h3 class="shop_xx_jg"><b>卖出时间</b><b>{$vo.order_time|date='Y-m-d H:i:s',###}</b></h3>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <div class="llk_border">
+    <div class="llk">
+     <div class="od_zongji">共<b>{$vo.goods_nums}</b>件商品 实付：<span>¥{$vo.total_fee}</span></div>
+    </div>
+    <div class="clear"></div>
+   </div>
+   <div class="od_button">
+    <div class="od_fukuan"><a href="javascript:void(0); " class="fukuan" data-id='{$vo.id}'>删除订单</a></div>
+    <div class="od_quxiao"><a href="{:U('/Wxin/PersonalCenter/orderDetails/tag/selSellout',array('id'=>$vo['id']))}">查看详情</a></div>
+    
+    <div class="clear"></div>
+   </div>
+  </div>
+ </div>
+    </volist>
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+<script>
+    var p = 2;
+    // 加载刷新。
+    function refresh(refresh,loadmore) {
+        $(window).scroll(function(){
+            console.log('正在滑动f');
+
+            var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+            var scrollHeight = $(document).height();   //当前页面的总高度
+            var clientHeight = $(this).height();    //当前可视的页面高度
+            // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+            if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+                // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+                console.log('下拉');
+
+                if(loadmore){
+                    loadmore();
+                }
+            }else if(scrollTop<=0){
+                //滚动条距离顶部的高度小于等于0 TODO
+                //alert("下拉刷新，要在这调用啥方法？");
+
+                console.log('上拉');
+                if(refresh){
+                    refresh();
+                }
+
+            }
+
+        });
+
+    }
+    //调用
+    refresh(fn1,fn2);
+
+    function fn1(){
+        window.location.href = "{:U('Wxin/Shop/selSellout')}";
+    }
+    function fn2(){
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Wxin/Shop/get_selSellout')}",
+            data: {
+                p: p,
+            },
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                    p++;
+                    $('.warp_box').append(g.html);
+                } else {
+                    //alert(g.info);
+                }
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function(){
+        function fukuan(obj){
+            dialog.showTips('确定删除？','firm',function(){
+                var id = $(obj).data('id');
+                $.ajax({
+                    url:'/Wxin/Shop/selSellout/',
+                    type:'get',
+                    data:{id:id},
+                    dataType:'json',
+                    success :function(g){
+
+                        //console.log(g);return false;
+                        if(g.status == 1){
+                            dialog.showTips(g.info, "warn",function(){
+                                window.location.reload();
+                            });
+                        }else{
+                            dialog.showTips(g.info, "warn",function(){
+                                window.location.reload();
+                            });
+                        }
+                    }
+                })
+            });
+        }
+        $('.fukuan').click(function(){
+            dialog.showTips('确定删除？','firm',function(){
+                var id = $(this).data('id');
+                $.ajax({
+                    url:'/Wxin/Shop/selSellout/',
+                    type:'get',
+                    data:{id:id},
+                    dataType:'json',
+                    success :function(g){
+
+                        //console.log(g);return false;
+                        if(g.status == 1){
+                            dialog.showTips(g.info, "warn",function(){
+                                window.location.reload();
+                            });
+                        }else{
+                            dialog.showTips(g.info, "warn",function(){
+                                window.location.reload();
+                            });
+                        }
+                    }
+                })
+            });
+        })
+
+    })
+</script>
+</body>
+</html>

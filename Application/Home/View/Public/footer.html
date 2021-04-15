@@ -1,0 +1,128 @@
+<!--  / footer  -->
+
+
+<div class="footer_top">
+    <p class="phone" id="foot_tel">{$service_tel}</p>
+    <p class="web">http://www.<span>zhejiangart</span>.com.cn</p>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer_center">
+                <volist name="footer_cate" id="v">
+                    <ul>
+                        <h3><a href="{:U('/Home/Index/novice')}">{$v.name}</a></h3>
+                        <volist name="v.title" id="vo">
+
+                            <li><a href="{:U('Home/Index/novice',array('id'=>$vo['id']))}" class='warning'
+                                   rel="nofollow">{$vo.title}</a></li>
+
+                        </volist>
+                    </ul>
+                </volist>
+                <ul>
+                    <h3><a href="{:U('/Home/Index/about')}">关于我们</a></h3>
+                    <li><a href="{:U('/Home/Index/contact')}">联系方式</a></li>
+                    <li><a href="{:U('/Home/Index/join')}">在线招聘</a></li>
+                    <li><a href="__IMAGES__/wx_logo.jpg" target="_blank"><img src="__IMAGES__/wx_logo.jpg" title="微信" width="60px"></a>&nbsp;<a href="__IMAGES__/wb.png" target="_blank"><img src="__IMAGES__/wb.jpg" title="微博" width="60px"></a></li>
+                    <li></li>
+                   <!-- <li class="erweima"> <i class="fa fa-weixin wx"></i> <i class="fa fa-tablet sj"></i> <i class="fa fa-envelope" style=" font-size:14px;"></i> <img src="__IMAGES__/erweima.jpg" class="ewm1" /> <img src="__IMAGES__/erweima.jpg" class="ewm2" /> </li>-->
+                    <!--<li class="erweima"><i class="fa fa-weixin wx"></i> <i class="fa fa-tablet sj"></i> <i class="fa fa-envelope" style=" font-size:14px;"></i> <img src="__IMAGES__/erweima.jpg" class="ewm1"/> <img src="__IMAGES__/erweima.jpg" class="ewm2"/></li>-->
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="footer_bottom">
+                <h3>合作伙伴</h3>
+                <ul class="hzkh">
+                    <volist name="partner" id="va">
+                    <li><a href="{$va.urla}"><img src="{$va['pic']}"/></a></li></volist>
+                    <!--<li><img src="__IMAGES__/hz2.png"/></li>
+                    <li><img src="__IMAGES__/hz3.png"/></li>
+                    <li><img src="__IMAGES__/hz4.png"/></li>
+                    <li><img src="__IMAGES__/hz5.png"/></li>
+                    <li><img src="__IMAGES__/hz6.png"/></li>-->
+                    <div class="clear"></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="copy">
+        <div class="container">
+            <div class="row" align="center">
+                <div class="" >
+                    <p>中华人民共和国信息产业部备案许可：<a href="http://www.beian.miit.gov.cn" target="_blank">浙ICP证11038945号-2    3301020000370</a><br/>
+                        Copyright © 2017 <span>浙江美术网</span> All Rights Reserved.
+					
+<script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?dddb676add45aa7989ad5ee746668e9e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+					
+					</p>
+					
+						
+										   <!-- <p>Copyright © 2017 <span>浙江美术网</span> All Rights Reserved.</p>-->
+                </div>
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6">
+
+                   --<div id="footer_unohacha">
+                         <div style="display:none;"><a href="http://www.unohacha.com/">网站建设,网页设计,高端网站</a></div>
+                         <iframe title="UNOHACHA 吾诺瀚卓" allowTransparency="true" frameborder="0" scrolling="no"
+                                 width="110" height="40" allowTransparency="true" src="__UNOHACHA__/index.html"
+                                 style="background-color:transparent;">
+                         </iframe>
+                     </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $.get("{:U('/Home/Index/addVisitLog')}")
+    })
+
+    $(function(){
+        function IsPC() {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        var pc = IsPC();
+        if(!pc){
+            window.location.href = '/Wxin/Index/index';
+        }
+    })
+</script>
+<!--<div class="jbox1 editfenlei disshow" style=" width:700px; left: 40%;top: 35%; height:auto; overflow: visible;">
+    &lt;!&ndash;<span style="color: red">点击图片隐藏</span>&ndash;&gt;
+    <img onclick="cancle()" id="img" src="" width="100%" height="100%">
+</div>-->
+<!--<script type="text/JavaScript">
+    function imgs(obj) {
+        var image = $(obj).attr('src');
+        $('.jbox1').show();
+        $('#img').attr('src',image);
+    }
+
+    function cancle() {
+        $('.jbox1').hide();
+    }
+
+
+</script>-->
+<!--  / footer  -->
+

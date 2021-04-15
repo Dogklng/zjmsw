@@ -1,0 +1,66 @@
+<include file="Public:header" />
+<div class="allorder_top">
+    <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 我的银行卡 </a> </h3>
+</div>
+<div class="bandCard_boxs">
+  <div class="bandCard_massage">
+    <h3>银行信息</h3>
+  </div>
+    <volist name="res" id="vo">
+  <div class="bandCard_box">
+    <h5><span class="bandCard_title">银行：</span><span>{$vo.bank_name}</span></h5>
+    <h5><span class="bandCard_title">银行卡号：</span><span>{$vo.bank_no}</span></h5>
+    <h5><span class="bandCard_title">开户行：</span><span>{$vo.bank_branch}</span></h5>
+    <h5><span class="bandCard_title">户名：</span><span>{$vo.username}</span></h5>
+    <h5><span class="bandCard_title">预留手机号：</span><span>{$vo.telephone}</span></h5>
+    <h5><span class="bandCard_title">操作时间：</span><span>{$vo['create_at']|date="Y-m-d",###}</span></h5>
+    <div class="user_table_A">
+        <a href="javascript:void(0);" data-id="{$vo.id}" class="delete">删除</a>
+        <a href="{:U('Wxin/PersonalCenter/addcash/tag/addcash/value/4')}?id={$vo.id}">提现</a>
+        <a href="{:U('Wxin/PersonalCenter/addbank/tag/addbank/value/4')}?id={$vo.id}" class="userCard">编辑</a>
+    </div>
+   <!-- <div class="user_table_A">
+     <a href="javascript:void(0);" data-id="{$vo.id}" class="delete">删除</a>
+        <a href="javascript:void(0);" data-id="{$vo.id}">提现</a>
+    </div>
+      <div class="user_table_A">
+          <a href="javascript:void(0);" data-id="{$vo.id}">提现</a>
+      </div>-->
+  </div>
+        </volist>
+  <div class="bandCard_add">
+    <a href="{:U('Wxin/PersonalCenter/addbank/tag/addbank/value/4')}">新增+</a>
+  </div>
+</div>
+
+<!--shop-->
+<include file="Public/footer" />
+<script>
+    $(".delete").click(function () {
+        var id1  = $(this).attr('data-id');
+        dialog.showTips('确定删除吗','firm',function () {
+            $.ajax({
+                url: "{:U('Wxin/PersonalCenter/deleteBankCard')}",
+                data: {id:id1},
+                type: 'post',
+                dataType: 'json',
+                success: function (content) {
+                    if (content.status == 1) {
+                        alert(content.info
+
+                        );
+                        window.location.reload();
+                    } else {
+                        alert(content.info
+
+                        );
+                    }
+                }
+            })
+        });
+
+    })
+</script>
+</body>
+
+</html>

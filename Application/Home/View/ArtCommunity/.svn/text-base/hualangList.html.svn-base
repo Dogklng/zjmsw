@@ -1,0 +1,154 @@
+<include file="Public:header1" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">The work details</p>
+    <h5>{$name} • 详 • 情</h5>
+  </div>
+  <div class="buy">
+    <div class="buy_con"> </div>
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="buy_con_text" style="margin-top:30px; width:100%;"> <img src="{$res.logo_pic}" style="width:150px;" />
+              <h3 class="con_title">{$res.artist_name}</h3>
+             <!-- <p><span> 粉丝:</span>{$res.fans}</p>-->
+              <p> <span>成立时间:</span>{$res.shop_at}</p>
+              <p><span> 访问量:</span> {$res.browser}</p>
+              <!--<p><span> 喜欢:</span> {$res.like}</p>-->
+              <p><span> 藏品:</span> {$num}</p>
+              <p  class="buy_con_text2" style="width: 600px"><span>{$name}简介:</span> {$res.desc|htmlspecialchars_decode|stripslashes} </p>
+            </div>
+          </div>
+          <div class="col-lg-6"> <img src="{$res.index_pic}" style="width:100%"> </div>
+        </div>
+      </div>
+    </div>
+{$v.auth}
+    <div class="nav-ft" style="width:100%;">
+      <h3>{$name}收藏品展示</h3>
+      <div class="row">
+        <div class="buy-sec2-cont">
+          <volist name="res1" id="v">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="nav-ft-ig" ><a href="{:U('/Home/Products/buy',array('id'=>$v['id']))}"> <img src="{$v.index_pic}" style="width:100%"></a>
+                <div class="nav-ft-text">
+                  <div class="nav-ft-text2" id="list_cont"> <span>{$v.goods_name}</span>
+                    <p>{$v.goods_cap}</p>
+                    <h5 class="Price-h3"><span  class="login"><a href="{:U('Home/User/login')}">登录</a>可查看价格</span></h5>
+                    <i class="price">￥</i><span class="price" style="font-size: 20px !important;">{$v.price}</span></h3>
+                    <a href="{:U('/Home/Products/buy',array('id'=>$v['id']))}"> <div class="htx">  查看详情 </div> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </volist>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+$(document).ready(function(e) {
+    $(".buy_sec1_right_out").height($(".buy_sec1_left").height())
+	
+	var hbuy = $(".buy_dt img").height()+80;
+    $(".swiper-container1").css("height",hbuy);
+	
+	$(window).load(function(e) {
+        $(".buy_sec1_right_out").height($(".buy_sec1_left").height())
+    });
+		
+	
+	  var mySwiper1 = new Swiper('.swiper-container1',{
+    grabCursor: true,
+	autoplay:5000, 
+	spaceBetween: 0,
+	slidesPerGroup : 1,//设置几个一切换
+	autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+  })
+  $('.arrow-left1').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipePrev()
+	})
+	$('.arrow-right1').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipeNext()
+	})
+  
+  $('.buy_xt li').eq(0).hover(function(){
+mySwiper1.swipeTo(0, 1000, false);
+})
+$('.buy_xt li').eq(1).hover(function(){
+mySwiper1.swipeTo(1, 1000, false);
+})
+$('.buy_xt li').eq(2).hover(function(){
+mySwiper1.swipeTo(2, 1000, false);
+})
+$('.buy_xt li').eq(3).hover(function(){
+mySwiper1.swipeTo(3, 1000, false);
+})
+  
+
+$(".buy2_left ul li").click(function(e) {
+	//$(this).addClass("active").siblings().removeClass("active");
+    var ind=$(this).index();
+	var scrollnum=$(".buy3_sec").eq(ind).offset().top-140;
+	$('body,html').animate({ scrollTop: scrollnum }, 200);
+});
+var scro_to=0;
+
+$(window).scroll(function(e) {
+	var scrolltop=$(window).scrollTop();
+	
+	var buy3_num=$(".buy3_sec").length;
+	for(i=0;i<buy3_num;i++){
+		if(scrolltop>$(".buy3_sec").eq(i).offset().top-160){
+			scro_to=i;
+		}
+	}
+	$(".buy2_left ul li").eq(scro_to).addClass("active").siblings().removeClass("active");
+	
+	
+	
+	
+    if(scrolltop>$(".buy_sec2").offset().top-60){
+		$(".buy_sec2_in").css({"position":"fixed","top":"60px","left":"0"})
+	}else{
+		$(".buy_sec2_in").css({"position":"absolute","top":"0"})
+	}
+});
+
+
+});
+ 
+
+ 
+
+
+
+ 
+</script>
+
+<script>
+  var member_id ='{$member_id}';
+    if(member_id == 0){
+        $('.login').show();
+        $('.price').hide();
+    }else{
+        $('.login').hide();
+        $('.price').show();
+    }
+</script>
+</html>

@@ -1,0 +1,188 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:shop_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="user_r">
+          <ul class="user_all">
+            <li class="actived"><a href="javascript:;">发布</a></li>
+            <li><a href="{:U('Home/Shop/SelUpload')}">上传作品</a> </li>
+          </ul>
+          <div class="user_r_list">
+            <h5><span>发布</span></h5>
+            <table>
+              <volist name="goods" id="vo">
+              <tbody>
+                <tr>
+                  <th class="user_r_frist" style="width:38%;"><input type="checkbox" style="float:left; margin-top:9px; margin-right:5px;">
+                    商品名称</th>
+                  <th style="width:10%;">价格</th>
+                  <th style="width:10%;">喜欢</th>
+                  <th style="width:10%;">浏览次数</th>
+                  <!--<th style="width:10%;">状态</th>-->
+                  <th style="width:12%;">操作</th>
+                </tr>
+                <tr>
+                  <td class="user_r_frist"><a class="user_proa" href="zpxq.html"><img src="{$vo.index_pic}" width="100"><span>{$vo.goods_name}</span></a></td>
+                  <td>¥{$vo.price}</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <!--<td>待出售</td>-->
+                  <td>
+                    <!--<a href="#">发布</a>-->
+                    <a class="fukuan" href="javascript:;" data-id="{$vo.id}">删除</a>
+                  </td>
+                </tr>
+              </tbody>
+              </volist>
+            </table>
+          </div>
+
+
+          <div class="user_r_list">
+            <h5><span>仓库中</span></h5>
+            <table>
+              <volist name="ck" id="v">
+              <tbody>
+                <tr>
+                  <th class="user_r_frist" style="width:38%;"><input type="checkbox" style="float:left; margin-top:9px; margin-right:5px;">
+                    商品名称</th>
+                  <th style="width:10%;">价格</th>
+                  <th style="width:10%;">喜欢</th>
+                  <th style="width:10%;">浏览次数</th>
+                  <th style="width:10%;">状态</th>
+                  <th style="width:12%;">操作</th>
+                </tr>
+                <tr>
+                  <td class="user_r_frist"><a class="user_proa" href="zpxq.html"><img src="{$v.index_pic}" width="100"><span>{$v.goods_name}</span></a></td>
+                  <td>¥{$v.price}</td>
+                  <td>93</td>
+                  <td>398</td>
+                  <td>待出售</td>
+                  <td>
+                    <a href="javascript:void(0)" class="fabu1" data-id="{$v.id}">发布</a>
+                    <a class="fukuan" href="javascript:void(0);" style="javaScript:'';" data-id="{$v.id}">删除</a>
+                  </td>
+                </tr>
+              </tbody>
+              </volist>
+            </table>
+          </div>
+        </div>
+        <!--<h3 class="zpbj" style="text-align:right; margin-top:0;"> <a href="#" style="color:#333; font-size:14px; padding-right:10px;">-->
+          <!--<input type="checkbox" style="padding-top:2px; margin-right:2px; ">-->
+          <!--全选</a> <a href="#" style="color:#333; font-size:14px;"><img src="__IMAGES__/shop_cloae.png" style="display:inline-block;width:16px; margin-top:-2px; margin-right:3px;">删除</a> </h3>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+
+</body>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+<script>
+//	$(document).ready(function(){
+//		$('.fukuan').click(function(){
+//			$(this).parents('.user_r_list').remove();
+//		})
+//
+//	})
+
+$('.fukuan').click(function(){
+    var id1 = $(this).attr('data-id');
+    dialog.showTips('确定删除吗','firm',function () {
+        $.ajax({
+            url: "{:U('Home/Shop/delGoods')}",
+            data: {id:id1},
+            type: 'post',
+            dataType: 'json',
+            success: function (content) {
+                if (content.status == 1) {
+                    alert(content.info
+                    );
+                    window.location.reload();
+                } else {
+                    alert(content.info
+
+                    );
+                }
+            }
+        })
+    });
+})
+
+</script>
+<script>
+    $('.fabu1').click(function(){
+        var id1 = $(this).attr('data-id');
+        $.ajax({
+            url: "{:U('Home/Shop/fabu')}",
+            data: {id:id1},
+            type: 'post',
+            dataType: 'json',
+            success: function (content) {
+                if (content.status == 1) {
+                    alert(content.info
+                    );
+                    window.location.reload();
+                } else {
+                    alert(content.info
+
+                    );
+                }
+            }
+        })
+    })
+</script>
+</html>

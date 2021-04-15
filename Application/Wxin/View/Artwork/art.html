@@ -1,0 +1,55 @@
+<include file="Public:header" />
+<!-- 大家都在赞 -->
+<div class="artlist" style="margin-top:60px">
+    <volist name="resh" id="vo">
+<div class="yyxy"> <a href="{:U('Wxin/Artwork/index')}?id={$vo.id}"> <img src="{$vo.pic}">
+    <div class="zz"></div>
+    <div class="yyxy_text">
+      <h3>{$vo.classname}</h3>
+      <img src="__IMAGES__/xybt_bg.png">
+      <h6>发现艺术、了解艺术、走进艺术</h6>
+      <span>查看更多</span> </div>
+    </a> </div>
+        </volist>
+  </div>
+<!-- 大家都在赞 -->
+
+<div class="indexbottom"></div>
+<include file="Public:footer" />
+</body>
+<script>
+
+
+$(document).ready(function(){
+	
+  $('.screenA').click(function(){
+   $('.screenBox').stop(true).fadeIn(1000);
+   setTimeout(function(){
+	 $('.screenBox').addClass('screenBox_on');
+   },300)
+  })
+  $(".screenLeft").click(function(){
+    $(".screenBox").hide();
+  });
+	
+
+  $(".screenClick1").click(function(){
+    $(".screenlist-a1").fadeToggle("slow");
+  });
+  $(".screenClick2").click(function(){
+    $(".screenlist-a2").fadeToggle("slow");
+  });
+  $(".screenClick3").click(function(){
+    $(".screenlist-a3").fadeToggle("slow");
+  });
+  $(".screenClick4").click(function(){
+    $(".screenlist-a4").fadeToggle("slow");
+  });
+  $(".screenClick5").click(function(){
+    $(".screenlist-a5").fadeToggle("slow");
+  });
+  
+  
+});
+</script>
+</html>

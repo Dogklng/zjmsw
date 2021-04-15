@@ -1,0 +1,103 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:shop_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+          <div class="SellerTop SelIdTop">
+            <h3 style="padding-bottom: 20px;">企业资料</h3>
+            
+          </div>
+          <div class="SelIdentCon" style="width:60%;margin:0 auto;">
+            <div class="SelCertName">
+              <span class="SelIdentCon1">法人姓名：</span>
+              <span>曹帅家</span>
+            </div>
+            <div class="SelCertName">
+              <span class="SelIdentCon1">电话：</span>
+              <span>15800001234</span>
+            </div>
+
+            <div class="SelCertName SelCertName1">
+              <span class='SelIdentCon1'>单位营业执照号：</span>
+              <span>33322201110000820Z</span>
+            </div>
+            <div class="SelIdentAddPic">
+              <span class='SelIdentCon1'>单位营业执照图片: </span>
+              <div class="SelIdentPic">
+                <div class="SelIdetPic-list" style="margin-top: 0;">
+                  <a href="__IMAGES__/SeladdPic1.jpg" class="SelIdPic-A" style="margin-top: 0;" target="_blank">
+                    <img src="__IMAGES__/SeladdPic1.jpg" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="SelCertName SelCertName1">
+              <span class='SelIdentCon1'>组织机构代码证号：</span>
+              <span>33322201110000820Z</span>
+            </div>
+            <div class="SelIdentAddPic">
+              <span class='SelIdentCon1'>组织机构代码证图片: </span>
+              <div class="SelIdentPic">
+                <div class="SelIdetPic-list">
+                  <a href="__IMAGES__/SeladdPic1.jpg" class="SelIdPic-A" style="margin-top: 0;" target="_blank">
+                    <img src="__IMAGES__/SeladdPic1.jpg" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <a href="##" class="task_btn1_on">确定</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1">
+        <a href="##" class="task1_btn1_on">确定</a>
+        <a href="##" class="task1_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

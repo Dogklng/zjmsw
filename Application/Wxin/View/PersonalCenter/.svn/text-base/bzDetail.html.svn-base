@@ -1,0 +1,36 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top all_cz">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 我的展览 </a> </h3>
+ <h3 class="xq_h3">我的办展详情</h3>
+</div>
+<div class="warp_box">
+ 
+  <div class="all_dingdan_one">
+  <div class="allorder_kuang">
+    <div class="shop_xx_center">
+     <div class="shop_xx_right shop_xx_fd">
+      <p>作者：<i>{$res["auth"]}</i></p>
+      <p>手机号：<i>{$res["tel"]}</i></p>
+      <p>微信：<i>{$res["wx"]}</i></p>
+      <p>E-mail：<i>{$res["email"]}</i></p>
+      <p>标题：<i>{$res["title"]}</i></p>
+      <p>开始时间：<i>{$res["start"]|date="Y-m-d H:i:s",###}</i></p>
+      <p>结束时间：<i>{$res["end"]|date="Y-m-d H:i:s",###}</i></p>
+      <p>logo图片：<img style="width: 30%;margin-left: 2%;" src="{$res['logo']}" alt="" /></p>
+      <p style="margin-top: 3%;">作品展示图片：<img style="width: 30%;margin-left: 2%;" src="{$res['detail_img']}" alt="" /></p>
+      <p style="margin-top: 3%;">详情：{$res['content']|htmlspecialchars_decode|stripslashes}</p>
+      <!--<h3 class="shop_xx_jg"><b>创建时间</b><b>2016-09-05</b></h3>-->
+     </div>
+     <div class="clear"></div>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<include file="Public:footer" />
+
+</body>
+</html>

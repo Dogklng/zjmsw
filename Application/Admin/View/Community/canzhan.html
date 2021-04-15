@@ -1,0 +1,157 @@
+<include file="Public:head"/>
+<style>
+    .btn-success {
+        margin-top: 12px;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">参展审核列表</h1>
+
+            <table class="wxtables table-order mgt15" id="tb_3">
+                <thead>
+                <tr>
+                    <td>姓名</td>
+                    <td>作品类型</td>
+                    <td >手机</td>
+                    <td >微信</td>
+                    <td >邮箱</td>
+                    <td>状态</td>
+                    <td >申请时间</td>
+                    <td class="center">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res" item="vo" >
+                    <tr>
+                        <td>{$vo.name}</td>
+                        <!--<if condition="$vo.cate eq 0"><td>个展</td></if>
+                        <if condition="$vo.cate eq 1"><td>群展</td></if>-->
+                        <td>{$vo.classname}</td>
+                        <td>{$vo.tel}</td>
+                        <td>{$vo.wx}</td>
+                        <td>{$vo.email}</td>
+                        <if condition="$vo.shenhe eq 0" ><td>未审核</td></if>
+                        <if condition="$vo.shenhe eq 1"><td style="color: green;">通过</td></if>
+                        <if condition="$vo.shenhe eq 2"><td style="color: red;">拒绝</td></if>
+                        <td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+                        <td><a href="{:U('/Admin/Community/canzhanDetail/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="详情">详情</a>
+                            <if condition="$vo.shenhe eq 0"><a href="javascript:;" class="btn huifu" style="background-color: green;border-color: green; color: white" data-id="{$vo.id}">审核</a></if>
+                        </td>
+                    </tr>
+
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <!--<a href="javascript;" class="btn btn-primary btn_table_delAll">批量删除</a></div>-->
+                    <div class="fr">
+                        <!--<div class="paginate">-->
+
+                        <div class="pages">
+                            <!--</div>-->
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+</div>
+
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="height:auto; overflow: visible;z-index: 999;">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">回复评论</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 140px;overflow: visible;">
+        <div class="formitems">
+            <input type="hidden" class="input sort" name="commentId" id="commentId" >
+            <label><span class="colorRed">*</span>内容：</label>
+
+            <div class="form-controls">
+                <textarea style="width: 200px;height: 100px;margin-left: -30px;" id="content"></textarea>
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+
+    </div>
+    <div class="jbox-buttons">
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">通过</a>
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn " id="disagree" style="background-color: red;border-color: red; color: white">拒绝</a>
+        <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<script src="__JS__/jquery-1.7.1.min.js"></script>
+<script>
+    $(".huifu").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(".huifu").click(function(){
+        var commentId = $(this).attr('data-id');
+        $('#commentId').val(commentId);
+    })
+
+    $('#agree').click(function () {
+        var id1 = $('#commentId').val();
+        $.ajax({
+            url: "{:U('/Admin/Community/czAgree')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id: id1,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+
+    $('#disagree').click(function () {
+        var id1 = $('#commentId').val();
+        var content = $('#content').val();
+        if(content == ''){
+            alert('内容必填');
+            $('#content').focus();
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Admin/Community/czDisagree')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id: id1,
+                disagree_detail:content
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>

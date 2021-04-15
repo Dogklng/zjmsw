@@ -1,0 +1,134 @@
+<include file="Public:header" />
+<div class="dianpu_box">
+  <div class="SellerCon">
+  <div class="SellerTop">
+    <h3>发布众筹</h3>
+  </div>
+  <div class="SellerFlower">
+    <div class="SellerFlist SellerFlistCurr"> <span>1</span>
+      <h3 class="paiUncenter_h3">签署协议</h3>
+    </div>
+    <!--<div class="paiuncenter_one">
+      <h3>阅读开店协议</h3>
+      <p class="activedp">请认真阅读以下协议条款, 确认无误再点击“同意”正式签署：</p>
+    </div>
+    <div class="SellerFlist SellerFlistCurr"> <span>1</span>
+      <h3 class="paiUncenter_h3">签署协议</h3>
+    </div>-->
+    <!--<div class="SellerCon" style="padding:20px 0">
+      <div class="SellerTop">
+        <h3>阅读开店协议</h3>
+        <p>请认真阅读以下协议条款, 确认无误再点击“同意”正式签署：</p>
+        <div class="SelAgreeTxt">
+          <h5>诚信经营承诺书</h5>
+          <div class="SelAgreeH6">
+            <h6>为共同构建诚信、透明的网络消费环境，共同维护公平、规范的网络经营秩序，共同促进电子商务生态系统的健康持续发展，本店（本人）特向广大网民及淘宝网承诺如下： 一、 不参与、不加入、不组建任何交易信用炒作组织（该交易信用包括商品销量、评价、DSR评分等）； 二、 不进行 任何交易信用炒作行为，保证每一笔交易内容、交易信用均为真实、可信，绝无虚构、炒作行为。 三、 不发布、不传播、不推广任何有关交易信用炒作的违规信息，并积极举报此类违规信息； 四、 积极接受广大网民及淘宝网的监督，严格遵守、积极维护淘宝网交易信用体系的各项规则； 五、 若本店违反淘宝网交易信用体系的各项规则，本店愿意接受淘宝网的相应处理措施，并承担因此引发的相关责任。 本店郑重承诺：本店将始终恪守上述承诺，不进行任何形式的交易信用炒作行为，严格遵守国家法律法规及淘宝网的相关规定，诚信、公平、规范地开展经营活动。 </h6>
+          </div>
+        </div>
+        <div class="SelAgreeTxt">
+          <h5>消费者保障服务协议</h5>
+          <div class="SelAgreeH6">
+            <h6>为共同构建诚信、透明的网络消费环境，共同维护公平、规范的网络经营秩序，共同促进电子商务生态系统的健康持续发展，本店（本人）特向广大网民及淘宝网承诺如下： 一、 不参与、不加入、不组建任何交易信用炒作组织（该交易信用包括商品销量、评价、DSR评分等）； 二、 不进行 任何交易信用炒作行为，保证每一笔交易内容、交易信用均为真实、可信，绝无虚构、炒作行为。 三、 不发布、不传播、不推广任何有关交易信用炒作的违规信息，并积极举报此类违规信息； 四、 积极接受广大网民及淘宝网的监督，严格遵守、积极维护淘宝网交易信用体系的各项规则； 五、 若本店违反淘宝网交易信用体系的各项规则，本店愿意接受淘宝网的相应处理措施，并承担因此引发的相关责任。 本店郑重承诺：本店将始终恪守上述承诺，不进行任何形式的交易信用炒作行为，严格遵守国家法律法规及淘宝网的相关规定，诚信、公平、规范地开展经营活动。 </h6>
+          </div>
+        </div>
+        <div class="SelNoticeStyle">
+          <h6>注：本人同意将身份认证材料授权美术网竞卖入驻使用；本人同意认证材料用于本店铺的对外披露。</h6>
+          <h4><a href="javascript:;" style="background:#ccc;">不同意</a> <a href="fbzcB.html">同意</a></h4>
+        </div>
+      </div>
+    </div>-->
+    {$content|htmlspecialchars_decode|stripslashes}
+    <div class="SelNoticeStyle">
+      <h4><a href="javascript:history.back();">不同意</a> <a id="next" href='javascript:;'>同意</a></h4>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+<script>
+  $('#next').click(function(){
+    $.ajax({
+      url: "{:U('/Wxin/PersonalCenter/crowdAgree')}",
+      type: "post",
+      dataType: "json",
+      data: {xieyi:1},
+      success:function(g){
+        if(g.status == 1){
+          window.location.href=g.url;
+          return false;
+        }else{
+          window.location.reload();
+          return false;
+        }
+      }
+    })
+  })
+</script>
+<script>
+
+  $('#agree').click(function () {
+
+    var personType = $(this).attr('data-id');
+    var is_depute  = $(this).attr('data-is_depute');
+
+    $.ajax({
+      url: "{:U('/Wxin/Shop/zl')}",
+      type: "post",
+      dataType: "json",
+      data: {
+        personType: personType,
+        is_depute:is_depute
+      }
+    }).done(function (g) {
+      if (g.status == 1) {
+        window.location.href="{:U('/Wxin/personalCenter/userinfo')}"
+      } else {
+        alert(g.info);
+      }
+
+    })
+
+
+  })
+  function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+  };
+  $('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+      $('.task_con').addClass('task_con_on');
+    },300)
+  })
+  $('.task_con>img').click(function(){
+    $('.task').stop(true).fadeOut(1000);
+    $('.task_con').removeClass('task_con_on');
+  })
+  $('.task_btn1_quxiao').click(function(){
+    $('.task').stop(true).fadeOut(1000);
+    $('.task_con').removeClass('task_con_on');
+  })
+
+  $('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+      $('.task1_con').addClass('task1_con_on');
+    },300)
+  })
+  $('.task1_con>img').click(function(){
+    $('.task1').stop(true).fadeOut(1000);
+    $('.task1_con').removeClass('task1_con_on');
+  })
+  $('.task1_btn1_quxiao').click(function(){
+    $('.task1').stop(true).fadeOut(1000);
+    $('.task1_con').removeClass('task1_con_on');
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<include file="Public:header" />
+<!--search-->
+<!-- <div class="galleryClass">
+  <div class="galleryScroll"> <a href="artwork.html" class="active">家居•办公</a> <a href="">设计衍生</a> <a href="">手工•非遗</a> <a href="">民间工艺</a> <a href="">个性•定制</a></div>
+</div> -->
+<style>
+    .List{
+        background: #f70000 !important;
+        color: #fff !important;
+    }
+</style>
+<!-- 大家都在赞 -->
+<div class="praise artworkP">
+  <div class="praise_list ">
+    <div class="praise_title zt_title" style="margin-top: 50px">
+      <h2><a href="/Wxin/News/index?type=1"> <i class="fa fa-angle-left"></i></a>3D展厅<a href="javascript:vido(0);" class="screenA">筛选</a></h2>
+    </div>
+    <div class="prod_show_nav_con sdzt">
+      <foreach name="res" item="vo">
+      <div class="prod_cont">
+        <p class="prod_cont_img"><a href='{:U("Wxin/Goods/hallDetail/id")}/{$vo["id"]}'><img src="{$vo.pic}" /></a></p>
+        <div class="prod_cont_text">
+          <h4><b>{$vo.goods_name}</b></span></h4>
+          <h4 style="color:black;" >{$vo.title}</h4>
+          <!--<h3 >作者简介: {$vo.goods_cap}...</h3>
+          <h3 >作品简介: {$vo.detail}...</h3>-->
+		  <h3 >{$vo.gai}</h3>
+          <div class="clear"></div>
+        </div>
+      </div>
+      </foreach>
+    </div>
+  </div>
+</div>
+<!-- 大家都在赞 -->
+
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+
+<!--screen-->
+<div class="screenBox">
+ <div class="screenBoxS">
+   <div class="screenCon">
+    <h3 class="screenH3">筛选</h3>
+    <div class="screenList">
+     <h4 class="screenClick1">按材质浏览<span class="fa fa-angle-down"></span></h4>
+        <input type="hidden" name="cate_id" value="{$_GET['cate_id']}"/>
+     <div class="screenlist-a1" style="display:block;">
+         <a href="javascript:vido(0);" data-id="0" <empty name="_GET['cate_id']">class="List" </empty>>全部</a>
+         <volist name="screens" id="v">
+             <a href="javascript:vido(0);" data-id="{$v.id}" <eq name="_GET['cate_id']" value="$v.id">class="List" </eq>>{$v.classname}</a>
+         </volist>
+     </div>
+    </div>
+   </div>
+   <div class="screenButton">
+    <a href="#" class="screenFinish" id="screenReset" style="background: #F77B7B;">重置</a>
+    <a href="#" class="screenFinish" id="screenFinish">完成</a>
+   </div>
+ </div>
+ <div class="screenLeft"></div>
+</div>
+<!--screen-->
+
+
+</body>
+<script>
+    var p = 2;
+    var cate_id = "{$_GET['cate_id']}";
+    $('.screenlist-a1 a').click(function(){
+        var cate_id = $(this).attr('data-id');
+        $('.screenlist-a1 a').removeClass('List');
+        $(this).addClass('List');
+        $('input[name="cate_id"]').val(cate_id);
+    })
+
+    $('#screenReset').click(function(){
+        $('input[name="cate_id"]').val('');
+        window.location.href = "{:U('Wxin/Goods/hall')}";
+    });
+    $('#screenFinish').click(function(){
+        var id = $('input[name="cate_id"]').val();
+        window.location.href = "{:U('Wxin/Goods/hall')}?cate_id="+id;
+    });
+    // 加载刷新。
+    function refresh(refresh,loadmore) {
+        $(window).scroll(function(){
+            console.log('正在滑动f');
+
+            var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+            var scrollHeight = $(document).height();   //当前页面的总高度
+            var clientHeight = $(this).height();    //当前可视的页面高度
+            // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+            if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+                // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+                console.log('下拉');
+
+                if(loadmore){
+                    loadmore();
+                }
+            }else if(scrollTop<=0){
+                //滚动条距离顶部的高度小于等于0 TODO
+                //alert("下拉刷新，要在这调用啥方法？");
+
+                console.log('上拉');
+                if(refresh){
+                    refresh();
+                }
+
+            }
+
+        });
+
+    }
+    //调用
+    refresh(fn1,fn2);
+
+    function fn1(){
+        window.location.href = "{:U('Wxin/Goods/hall')}?cate_id="+cate_id;
+    }
+    function fn2(){
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Wxin/Goods/get_hall')}",
+            data: {
+                cate_id: cate_id,
+                p: p,
+            },
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                    p++;
+                    $('.sdzt').append(g.html);
+                } else {
+                    //alert(g.info);
+                }
+            }
+        });
+    }
+</script>
+<script>
+
+
+$(document).ready(function(){
+	
+	  $('.screenFinish').click(function(){
+   $('.screenBox').animate({"right":"-80%"},100)
+   
+   });
+	
+  $('.screenA').click(function(){
+   $('.screenBox').animate({"right":"0"},100)
+  })
+  $(".screenLeft").click(function(){
+    $(".screenBox").hide();
+  });
+	
+
+  $(".screenClick1").click(function(){
+    $(".screenlist-a1").fadeToggle("slow");
+  });
+  $(".screenClick2").click(function(){
+    $(".screenlist-a2").fadeToggle("slow");
+  });
+  $(".screenClick3").click(function(){
+    $(".screenlist-a3").fadeToggle("slow");
+  });
+  $(".screenClick4").click(function(){
+    $(".screenlist-a4").fadeToggle("slow");
+  });
+  $(".screenClick5").click(function(){
+    $(".screenlist-a5").fadeToggle("slow");
+  });
+  
+  
+});
+</script>
+</html>

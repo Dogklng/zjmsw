@@ -1,0 +1,1 @@
+E:\HwsApacheMaster\php\php56\php.exe -q E:\msw\cancer.php

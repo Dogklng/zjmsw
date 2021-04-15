@@ -1,0 +1,73 @@
+<include file="Public:head"/>
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:left"/>
+    <!-- end content-left -->
+    
+    <div class="content-right fl" style="min-height: 800px;">
+        <div id="main" style="width: 600px;height:400px;"></div>
+        <div  style="width: 600px;height:400px;">{$taskNameArr}</div>
+    </div>
+  </div>
+</div>
+<!-- <input type="hidden" id="taskNameArr" value="{$taskNameArr}"> -->
+<!-- <input type="hidden" id="taskCollectNum" value="{$taskCollectNum}"> -->
+<include file="Public:foot"/>
+<script type="text/javascript" src="__JS__/echarts.js"></script>
+<script type="text/javascript">
+  // var taskNameArr=$("#taskNameArr").val();
+  // var taskCollectNum=$("#taskCollectNum").val();
+  // var a=eval(taskNameArr);
+  // alert(taskNameArr);
+  // alert(a);
+  $(function () {
+    $.ajax({
+        type:"POST",
+        url:"{:U('/Admin/Index/collection')}",
+        data:{action:'collection'},
+        async: false,
+       //dataType:'json',
+        success: function(data){
+          console.log(data);
+          // var result = $.parseJSON(data);
+          taskNameArr = data.taskNameArr;
+          taskCollectNum = data.taskCollectNum;
+          console.log(taskNameArr);
+          },
+        error:function(data){
+            alert('加载失败')
+        }
+    });
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '任务收藏统计'
+        },
+        tooltip: {},
+        legend: {
+            data:['任务名称']
+        },
+        xAxis: {
+            name : '任务名称',
+            nameRotate :45,
+            // inverse : true,
+            data: taskNameArr
+        },
+        yAxis: {},
+        series: [{
+            name: '收藏量',
+            type: 'bar',
+            data: taskCollectNum
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  });
+  // 基于准备好的dom，初始化echarts实例
+  
+</script>

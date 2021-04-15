@@ -1,0 +1,67 @@
+<include file="Public:header" />
+
+
+
+<div class="" style="height:500px;padding-top:200px;text-align: center">
+  <div class="">
+   <div class="">
+     <img style="top:70px;" src="__IMAGES__/error.png" width="90">
+     <h5 style="font-size:20px; font-weight:600;">{$error_msg}</h5>
+     <h5>请检查您输入的网址或者数据是否正确。</h5>
+     <h5>您可以回到<a href="javascript:void(0);" onclick="window.history.back();">之前页面</a>或者<a href="{:U('Index/index')}">首页</a></h5>
+   </div>         
+  </div>  
+</div>
+
+
+<include file="Public/footer" />
+
+<script language="javascript">
+    $( document ).ready( function() {
+        $(window).load(function () {
+            $(".nav_cont li").mouseenter(function () {
+                var now = $(this).index()
+                $(this).addClass("on")
+                $(this).siblings("li").removeClass("on")
+                $(this).parents(".main_nav_con").find(".menuBox").css("display", "none")
+                $(this).parents(".main_nav_con").find(".menuBox").eq(now).css("display", "block")
+            })
+
+
+            $(document).on('click', ".radiopop", function () {
+                if ($(this).hasClass("radio-click")) {
+                    $(this).removeClass("radio-click")
+                }
+                else {
+                    $(this).addClass("radio-click");
+                }
+
+            })
+            $(".xubox_setwin").click(function () {
+                $(".address_bg").hide()
+            })
+            $(".add-address").click(function () {
+                $(".address_bg").fadeIn("fast");
+            })
+
+            $(".dis_l").click(function () {
+                $(".dis_r").fadeOut("fast")
+                $(this).siblings(".dis_r").fadeIn("fast");
+            })
+            $(".dis_con1").click(function () {
+                var now = $(this).index();
+                $(".dis_con2").fadeOut("fast")
+                $(".dis_con2").eq(now).fadeIn("fast");
+
+            })
+            $(".dis_con3").click(function () {
+                $(".dis_con2").fadeOut("fast")
+            })
+
+
+        })
+
+    });
+</script>
+</body>
+</html>

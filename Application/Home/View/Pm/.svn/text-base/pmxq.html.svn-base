@@ -1,0 +1,419 @@
+<include file="Public:header" />
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM"> 
+  <div class="buy"> 
+ 
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+          <div class="cp_xxjs1  col-lg-6 col-md-6 col-sm-6">
+            <div id="magnifier">
+              <div id="showmagnifier"> <img src="{$res.index_pic}">
+                <div id="smallmagnifier"></div>
+                <div id="hiddenmagnifier"> <img id="bigmagnifier" src="{$res.index_pic}"> </div>
+              </div>
+              <div id="magnifierlist">
+                <div id="magnifierLeft"></div>
+                <ul id="magnifierMiddle">
+                  <foreach name="image" item="vo">
+                    <li><img src="{$vo.pic}"></li>
+                  </foreach>
+                  <!--<li><img src="{$res.index_pic}"></li>
+                  <li><img src="{$res.index_pic}"></li>
+                  <li><img src="{$res.index_pic}"></li>
+                  <li><img src="{$res.index_pic}"></li>
+                  <li><img src="{$res.index_pic}"></li>-->
+                </ul>
+                <div id="magnifierRight"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="buy_con_text pm_con_text" style=" float:left; width:90%;">
+              <h3>{$res.goods_name}</h3>
+              <div class="buyDel">
+                <ul>
+                  <li><b>作品的上架时间 :</b>{$res['shang_time']|date="Y-m-d",###}</li>
+                  <li><b>编号 :</b> {$res.goods_mel}</li>
+                  <li><b>作者 :</b> {$res.goods_cap}</li>
+                  <li><b>材质 ：</b>{$res.goods_skin}</li>
+                  <li><b>尺寸 ：</b> {$res.goods_range}</li>
+                  <li><b>创作年代 :</b> {$res.goods_care}年</li>
+                  <li><b>品相 ：</b>{$res.goods_com}</li>
+                  <li><b>版本 ：</b>{$res.goods_version}</li>
+                </ul>
+              </div>
+              <if condition="$type eq 1">
+                <h4 style="margin-bottom:20px;"><i style="background:#999;">该拍卖活动尚未开始</i></h4>
+                <elseif condition="$type eq 6"/>
+                <h4><i style="background:#999;">已结束</i> 结束时间：<span>{$res['end']|date="Y年m月d日 H:i",###}</span></h4>
+                <else/>
+                <h4><i>正在拍卖</i>距结束： <span  id="t_h">24</span>小时 <span  id="t_m">30</span>分 <span  id="t_s">15</span>秒</h4>
+              </if>
+              <if condition="$type eq 1">
+                <div class="qpxx">
+                  <p><span> 开拍提醒:</span>
+                    <input style="border:1px #ddd solid; line-height:32px; padding:0 20px; color:#999;" type="text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '请输入您的邮箱或者手机号';}" value="请输入您的邮箱或者手机号">
+                    <a href="#" style="line-height:34px; display:inline-block; background:#999; color:#fff; padding:0 20px;">发送</a></p>
+                <elseif condition="$type eq 2"/>
+                    <div class="qpxx">
+                      <div class="qpxx1" style="padding-left:50px;">
+                        <h6>当前价：<span class="dangqian" style="font-size:24px;">¥{$res.dangqian}</span></h6>
+                        <h6 class="tw">保证金：<span style="font-size:26px;">¥{$res.baoding}</span></h6>
+                      </div>
+
+                      <div class="jpxz_bao">
+                        <div class="arounddetails_person">
+                          <div class="num2">
+                            <div class="num_l jian">-</div>
+                            <div class="num_c">
+                              <input type="text" value="{$res.dangqian}" readonly class="gm_num_txt">
+                            </div>
+                            <div class="num_l jia">+</div>
+                            <div class="clear"></div>
+                          </div>
+                        </div>
+                        <div class="jpxz_right">
+                          <h5><i><img src="__IMAGES__/jing_chujia.png"></i>出价</h5>
+                        </div>
+                      </div>
+                <elseif condition="$type eq 3"/>
+                      <div class="qpxx">
+                        <div class="qpxx1" style="padding-left:50px;">
+                          <h6>当前价：<span style="font-size:24px;">¥{$res.dangqian}</span></h6>
+                          <h6 class="tw">保证金：<span style="font-size:26px;">¥{$res.baoding}</span></h6>
+                        </div>
+                        <a  class="jpxz">报名交证金</a>
+                <elseif condition="$type eq 4"/>
+                        <div class="qpxx">
+                          <div class="qpxx1" style="padding-left:50px;">
+                            <h6>当前价成交加：<span style="font-size:24px;">¥{$res.dangqian}</span>    您已经成功拍下  <a href="{:U('/Home/PersonalCenter/buyerXia')}" style="font-size:16px; color:#f00;">立即查看</a></h6>
+                          </div>
+                <elseif condition="$type eq 5"/>
+                          <div class="qpxx">
+                            <div class="qpxx1" style="padding-left:50px;">
+                              <h6>当前价成交加：<span style="font-size:24px;">¥{$res.dangqian}</span>   您已出局</h6>
+                            </div>
+                <elseif condition="$type eq 6"/>
+                        <div class="qpxx">
+                          <div class="qpxx1">
+                            <h2>拍卖已流拍，未达保留价</h2>
+                          </div>
+              </if>
+              <ul class="qpxx2">
+                <li><span>{$res.baomain}</span>人报名 </li>
+                <li><span>193</span>人设置提醒 </li>
+                  <li><span>{$res.weiguan}</span>次围观</li>
+                  <div class="clear"></div>
+                </ul>
+                <ul class="qpxx3">
+                  <li>起拍价: <span>¥{$res.start_price}</span></li>
+                  <li>加价幅度: <span>¥{$res.fudu}</span></li>
+                  <li>保证金: <span>¥{$res.baoding}</span></li>
+                  <li>佣金: <span>¥{$res.yongjin}</span></li>
+                  <li>延时周期: {$res.zhouqi}天</li>
+                  <li>保留价:<span>¥{$res.baoliu}</span></li>
+                  <div class="clear"></div>
+                </ul>
+                <div class="qpxx4"> 特色服务： <span>假一赔三</span> <span>拍前预展</span> </div>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    <if condition="$type eq 3">
+      <div class="popBox pmxqBox">
+        <img src="__IMAGES__/gb.png" class="close closejp" />
+        <h1>您将缴纳{$res.baoding}元作为参拍保障金</h1>
+        <a href="javascript:;" class="closePop"></a>
+        <div class="popService pmxqBC">
+          <h2>1、若竞拍不成功,保证金自动退回；</h2>
+          <h2>2、若竞拍成功后,保证金转货款,您需支付剩余货款。</h2>
+          <div class="inspection_agree">
+            <input type="checkbox" id="inagree">
+            <label for="inagree">我同意</label><a href="#">竞拍协议</a>，通过美术网平台进行支付。 并且理解了<a href="#">《保证金详细规则》</a>及<a href="#">《使用银行卡缴纳保证金须知》</a>，因拍品性质特殊，不支持7天无理由退货，请谨慎参拍。</div>
+          <div class="pmxqDiv">
+            <h6>该标的物需缴纳保证金{$res.baoding}元，建议您使用<span>银行卡快捷支付、信用卡、网银、支付宝、微信，</span></h6>
+          </div>
+          <div class="pmxqBut">
+            <a class="pmxqBt" href='{:U("Home/Pm/baoDing/id")}/{$res["id"]}'>确定</a>
+            <a class="pmxqBq" href="javascript:;">取消</a>
+          </div>
+        </div>
+      </div>
+      <else/>
+        </if>
+
+      <div class="pm_cont">
+        <ul class="pm_cont_list">
+          <li  class="focus" onClick="fnTabBoxFade(this,4,1);" class="on">
+          <a>拍品描述</a>
+          </li>
+          <li onClick="fnTabBoxFade(this,4,2);"><a onclick="chujiaJL()">出价记录(<span>{$cjcont}</span>)</a></li>
+          <li onClick="fnTabBoxFade(this,4,3);"><a >服务保障</a></li>
+          <li onClick="fnTabBoxFade(this,4,4);"><a>保障金须知</a></li>
+          <div class="clear"></div>
+        </ul>
+        <div id="TabShow1" class="TabHide4 pm_cont1" style=" display:block">
+          <div class="pm_cont1_top">
+            <h6>友情提醒：</h6>
+            <h5>1、真伪：送拍机构的企业资质已审核，但拍品介绍（图片、文字、视频等）及拍品资质文件（来源证明、鉴定证书等）均由机构自行发布并上传，所有拍品相关信息由送拍机构自行承担相应担保责任；</h5>
+            <h5>2、售后：拍品多为孤品性质类商品，“7天退货”服务为卖家可选服务保障，不强制送拍机构提供，竞拍前请充分考虑；
+              </h6>
+            </h5>
+          </div>
+          <div class="pm_cont1_bottom"> <span>材料：{$res.goods_liao} </span> <span>尺寸：{$res.goods_range}</span> <span>上市时间：{$res.goods_shi}</span> <span>浏览次数： 259</span> <span>价格范围：{$res.start_price}-{$res.baoliu}</span>
+            <div class="clear"></div>
+            <div class="pm_cont1_text_all">
+              <div class="col-lg-6 col-md-6 col-sm-6 colpadding">
+                <div class="buyCt buyCtLeft">
+                  <p><span>作者简介：</span></p>
+                  <p><img src="{$res.cap_pic}">{$res.detail|htmlspecialchars_decode|stripslashes}</p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 colpadding">
+                <div class="pm_cont1_text">
+                  <p><span>作品简介：</span></p>
+                  {$res.goods_des}</div>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div id="TabShow2" class="TabHide4 pm_cont2"  style=" display:none" >
+          <ul class="pm_top">
+            <li>状态</li>
+            <li>竞拍人</li>
+            <li>价格</li>
+            <li>时间</li>
+            <li>评价</li>
+            <div class="clear"></div>
+          </ul>
+          <foreach name="chujia" item="v">
+            <if condition="$key eq 0">
+              <ul class="pm_ok">
+                <li><span>领先</span></li>
+                <li>R{$v.user_id}</li>
+                <li>¥{$v.jiage}</li>
+                <li>{$v['time']|date="Y-m-d H:i:s",###}</li>
+                <li><i class="zan">({$v.pin})</i></li>
+                <div class="clear"></div>
+              </ul>
+            <else/>
+              <ul>
+                <li><span>出局</span></li>
+                <li>R{$v.user_id}</li>
+                <li>¥{$v.jiage}</li>
+                <li>{$v['time']|date="Y-m-d H:i:s",###}</li>
+                <li><i class="zan">({$v.pin})</i></li>
+                <div class="clear"></div>
+              </ul>
+            </if>
+          </foreach>
+        </div>
+        <div id="TabShow3" class="TabHide4 pm_cont3"  style="display:none;"  >
+          <div class="pm_cont3_con">
+            <h2>拍卖会机构服务保障</h2>
+            <ul class="pm_cont3_con1">
+              <h3>送拍机构服务及承诺</h3>
+              <li>送拍机构承诺如实描述拍品；</li>
+              <li>送拍机构成交不卖，则拍品保证金退一赔五（汽车/房产品类退一赔一）作为赔付给竞买成功人；</li>
+              <li>关于运费：竞拍成功后，由送拍机构承担发货运费（港澳台除外）；其中拍卖行送拍的拍品，以及房地产、新车/二手车、媒体广告、运输设备、资产、媒体名人、虚拟、活体、服务类拍品，实物重50斤以上(大件家具30斤以上)或面积大于2个平方的拍品，以及类目有特别规定的不包邮；</li>
+              <li>关于拍卖行佣金收取：依据《中华人民共和国拍卖法》的规定，竞买人在竞拍成功后，需根据拍卖行约定（商品页面描述佣金额），缴纳约定比例、数额的佣金。</li>
+            </ul>
+            <ul class="pm_cont3_con2">
+              <h3>维权服务发起流程</h3>
+              <img src="__IMAGES__/pmwtlc.png" />
+            </ul>
+          </div>
+        </div>
+        <div id="TabShow4" class="TabHide4 pm_cont4"  style=" display:none" >
+          <div class="pm_cont4_con"> <img src="__IMAGES__/bzj.jpg" /> </div>
+        </div>
+      </div>
+    </div>
+    <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script src="__JS__/jquery.fn.TabBox.js"></script>
+<script>
+
+
+    $(document).ready(function(){
+
+        $(".jpxz").click(function(e){
+            $(".popBox").css({"display":"block"})
+        })
+
+
+        $(".closejp,.pmxqBq").click(function(e){
+            $(".popBox").css({"display":"none"})
+        })
+
+    });
+</script>
+<script>
+    function GetRTime(){
+        var EndTime= "{$res['end']}";
+        var NowTime = new Date();
+        var t =EndTime*1000 - NowTime.getTime();
+        var h=0;
+        var m=0;
+        var s=0;
+        if(t>=0){
+            d=Math.floor(t/1000/60/60/24);
+            h=Math.floor(t/1000/60/60%24);
+            //console.log(h)
+            //h=Math.floor(t/1000/60/60);
+            m=Math.floor(t/1000/60%60);
+            s=Math.floor(t/1000%60);
+        }
+        document.getElementById("t_h").innerHTML = h<10? "0"+h : h;
+        document.getElementById("t_m").innerHTML = m<10? "0"+m : m;
+        document.getElementById("t_s").innerHTML = s<10? "0"+s : s;
+    }
+    setInterval(GetRTime,0);
+
+</script>
+
+<script>
+$(window).load(function(){
+
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  console.log(showmagnifierWidth);
+  console.log(showmagnifierHeight);
+  
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  console.log(hiddenmagnifierWidth);
+  console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  console.log(bigmagnifierWidth);
+  console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  console.log(xiaohuangWidth);
+  console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+
+
+})
+
+$(window).resize(function(){
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  console.log(showmagnifierWidth);
+  console.log(showmagnifierHeight);
+  
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  console.log(hiddenmagnifierWidth);
+  console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  console.log(bigmagnifierWidth);
+  console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  console.log(xiaohuangWidth);
+  console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+
+
+
+});
+
+</script>
+
+<script>
+
+    $(".jian").click(function () {
+        var gm_num = $(this).next().find("input").val();
+        if(gm_num <= 0){
+            gm_num=1;
+            $(this).next().find("input").val(gm_num);
+        }
+        if (gm_num >= 1) {
+            gm_num-=1;
+            if(gm_num <= 0){
+                gm_num=1;
+            }
+
+            $(this).next().find("input").val(gm_num);
+        }
+    })
+    $(".jia").click(function () {
+        var gm_num2 = parseInt($(this).prev().find("input").val());
+        if(gm_num2 < 1000){
+            gm_num2 += 100;
+            $(this).prev().find("input").val(gm_num2);
+        }else {
+            gm_num2 += 10;
+            $(this).prev().find("input").val(gm_num2);
+        }
+    })
+
+</script>
+
+<script>
+  $(".jpxz_right").click(function () {
+      var chujia = $(".gm_num_txt").val();
+      var id = "{$res.id}";
+      $.ajax({
+          type: "post",
+          url: "{:U('/Home/Pm/chuJia')}",
+          data: {"jiage":chujia,'goods_id':id},//提交表单，相当于CheckCorpID.ashx?ID=XXX
+          success: function(msg){
+              if (msg.status==2){
+                  alert( msg.info );
+                  location.reload();
+              }else{
+                  $('.dangqian').text("¥"+ msg.info.dangqian);
+                  alert( msg.info.err);
+              }
+          }
+      });
+
+  })
+</script>
+<script src="__JS__/detail.js"></script>
+</html>

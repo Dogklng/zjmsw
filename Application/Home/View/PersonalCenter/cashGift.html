@@ -1,0 +1,146 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="user_r3 user_r10">
+            <div class="user_r3_con">
+              <h5>我的礼金券</h5>
+              <table>
+              <tbody><tr>
+                <th style="width:55%;">礼金券</th>             
+                <th style="width:30%;">使用有效期</th>
+                <th style="width:15%;">状态</th>
+              </tr>
+              <volist name='coupon' id='vo'>
+              <tr>
+                <td>
+                  <div class="user_r3_j">
+                    <div class="user_r3_j1">
+                     <span>￥{$vo.money}</span> 礼金券
+                     <p></p>
+                    </div>
+                    <div class="user_r3_j2">
+                      注册新用户全场通用券<br>
+                      <span>单笔订单满{$vo.condition}元使用</span>
+                    </div>   
+                  </div>
+                </td>
+                <td>{$vo.start_time|date='Y-m-d H:i:s',###} <br>至 {$vo.end_time|date='Y-m-d H:i:s',###} <br><if condition="$vo.status eq 4">已过期<else /><span>将在{$vo.over_time}天后过期！</span></if></td>
+                <td>
+                  <switch name="vo.status">
+                    <case value='1'>待使用</case>
+                    <case value='2'>已锁定</case>
+                    <case value='3'>已使用</case>
+                    <default>已过期
+                  </switch>
+                </td>
+              </tr>
+              </volist>
+            <!--   <tr>
+                <td>
+                  <div class="user_r3_j">
+                    <div class="user_r3_j1">
+                     <span>￥50</span> 礼金券
+                     <p></p>
+                    </div>
+                    <div class="user_r3_j2">
+                      注册新用户全场通用券<br>
+                      <span>单笔订单满2000元使用</span>
+                    </div>   
+                  </div>
+                </td>
+                <td>2016-08-30 12：00：00 <br>至 2016-12-30 12：00：00 <br><span>将在120天后过期！</span></td>
+                <td>未使用</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="user_r3_j">
+                    <div class="user_r3_j1">
+                     <span>￥30</span> 礼金券
+                     <p></p>
+                    </div>
+                    <div class="user_r3_j2">
+                      注册新用户全场通用券<br>
+                      <span>单笔订单满2000元使用</span>
+                    </div>   
+                  </div>
+                </td>
+                <td>2016-08-30 12：00：00 <br>至 2016-12-30 12：00：00 <br><span>将在120天后过期！</span></td>
+                <td>未使用</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="user_r3_j">
+                    <div class="user_r3_j1">
+                     <span>￥20</span> 礼金券
+                     <p></p>
+                    </div>
+                    <div class="user_r3_j2">
+                      注册新用户全场通用券<br>
+                      <span>单笔订单满2000元使用</span>
+                    </div>   
+                  </div>
+                </td>
+                <td>2016-08-30 12：00：00 <br>至 2016-12-30 12：00：00 <br><span>将在120天后过期！</span></td>
+                <td>未使用</td>
+              </tr> -->
+              </tbody></table>      
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dizhi">
+    <div class="dizhi_bg"></div>
+    <div class="dizhi_con"> <img src="__IMAGES__/dizhi_close.png" width="24">
+      <h5>新建地址</h5>
+      <div class="dizhi_list clearfix">
+        <p class="dizhi_l">收货人：
+          <input type="text">
+        </p>
+        <p class="dizhi_r">手机号码：
+          <input type="text">
+        </p>
+      </div>
+      <div class="dizhi_list clearfix"> <span>所在地区:</span>
+        <div class="dizhi_list_city clearfix">
+          <select name="province" id="province">
+          </select>
+          <select name="city" id="city">
+          </select>
+          <select name="county" id="county">
+          </select>
+        </div>
+      </div>
+      <div class="dizhi_list clearfix"> <span>详细地址：</span>
+        <textarea name="adress"></textarea>
+      </div>
+      <div class="dizhi_btn clearfix">
+        <div class="w_chkbox">
+          <input type="checkbox" name="dft" class="j_checkbox">
+          <span>设为默认</span></div>
+        <div class="dizhi_btn1"> <a href="##" class="dizhi_btn1_on">确定</a> <a href="##">取消</a> </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--  / user  --> 
+  
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+</html>

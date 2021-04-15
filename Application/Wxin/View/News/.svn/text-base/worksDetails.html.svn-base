@@ -1,0 +1,79 @@
+<include file="Public:header" />
+<!--  / header  -->
+<div class="galleryClass" style="margin-top:60px;">
+  <div class="galleryScroll">
+    <a href="{:U('/Wxin/News/process')}">大赛流程</a>
+    <a href="{:U('/Wxin/News/processDetails')}">大赛详情</a>
+    <a href="{:U('/Wxin/News/works')}" class="active">在线作品</a>
+    <a href="{:U('/Wxin/News/win')}">获奖作品</a>
+    <a id="zggA" class="zgg" href="javascript:void(0);" >我要投稿</a>
+  </div>
+  <input type="hidden" id="nid" name="nid" value="{$Think.session.nid}"/>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:0;">
+  <div class="buy">
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+          <div class="col-lg-6"> <img src="{$paper_list['wpic1']}" style="width:100%"> </div>
+          <div class="col-lg-6">
+            <div class="buy_con_text" style="margin-top:30px; width:100%;">
+              <h3 class="con_title ">【参赛】</h3>
+              <volist name="attrList" id="val">
+                <p> <span>{$val.classname}:</span>
+                  <volist name="val.child" id="v">
+                    {$v.classname}
+                  </volist>
+                </p>
+              </volist>
+              <p> <span>分类:</span>水墨画</p>
+              <p><span> 访问量:</span> {$paper_list['visits']}</p>
+              <p><span> 喜欢:</span> {$paper_list['likes']}</p>
+              <h6 class="zggZpdot_H6"><span> 得票数:</span> {$paper_list['counts']}</h6>
+              <a href="#" id="addVote" class="zggZpTp"><i class="fa fa-thumbs-o-up"></i>投他一票</a>
+              <input type="hidden" name="vote1" value="{$paper_list['id']}" id="vote1"/>
+              <div class="buy_con_text2">
+                <div class="zggZp_div"><a href="#">
+                  <div class="user_tx_img"> <img src="{$paper_list['person_img']}" width="100"> </div>
+                  <span class="zggZpname">{$paper_list['author']}</span></a> </div>
+                <div class="zggZp_div clearfix"><span>作品描述：</span>{$paper_list['zuo_detail']} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+<script>
+  $(document).ready(function(){
+    $('#addVote').click(function(){
+      //
+      var vo =$("#vote1").val();
+      $.ajax({
+        type:'post',
+        url:"{:U('/Wxin/News/addvote')}",
+        data:{id:vo},
+        dataType:'json',
+        success: function(e){
+          if(!e.status){
+            alert(e.info);
+          }else{
+            alert(e.info);
+            window.location.reload();
+          }
+        }
+      })
+    })
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:user_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+         <div class="SellerTop SelIdTop">
+          <h3>委托人身份验证</h3>
+          <p>请上传本人身份证件，确保图片清晰，四角完整</p>
+         </div>
+         <div class="SelIdentCon">
+          <div class="SelCertName">
+           <span>姓名：</span>
+           <span><input type="text" maxlength="30" value="曹帅家" onblur="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" onkeyup="value=value.replace(/[^\u4e00-\u9fa5]/g,'')"  /> </span>
+          </div>
+          <div class="SelCertName">
+           <span>电话：</span>
+           <span><input type="text" value="15800001234" maxlength="16" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" /> </span>
+          </div>
+          <div class="SelCertClass">
+           <span>证件类型：</span>
+           <span><input type="radio" name="SelCinput" /> 二代身份证</span>
+           <span><input type="radio" name="SelCinput" /> 临时身份证</span>
+          </div>
+          <div class="SelCertName SelCertName1">
+           <span>证件号：</span>
+           <span><input type="text" maxlength="30" value="33322201110000820Z"  /> </span>
+          </div>
+          <div class="SelIdentAddPic">
+           <span>证件图片: </span>
+           <div class="SelIdentPic">
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border">
+               <img src="__IMAGES__/SeladdPic.png" />
+               <h6>点此上传</h6>
+               <input type="file" />
+              </div>
+              <a href="__IMAGES__/SeladdPic1.jpg" class="SelIdPic-A" target="_blank">
+               <img src="__IMAGES__/SeladdPic1.jpg" />
+               <div class="SelIdPic-Atxt">
+                <i class="fa fa-search"></i>
+                <h3>示例</h3>
+               </div>
+              </a>
+            </div>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border">
+               <img src="__IMAGES__/SeladdPic.png" />
+               <h6>点此上传</h6>
+               <input type="file" />
+              </div>
+              <a href="__IMAGES__/SeladdPic1.jpg" class="SelIdPic-A" target="_blank">
+               <img src="__IMAGES__/SeladdPic1.jpg" />
+               <div class="SelIdPic-Atxt">
+                <i class="fa fa-search"></i>
+                <h3>示例</h3>
+               </div>
+              </a>
+            </div>
+           </div>
+          </div>
+          <div class="SelIdentAddPic">
+           <span>委托书图片: </span>
+           <div class="SelIdentPic">
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border">
+               <img src="__IMAGES__/SeladdPic.png" />
+               <h6>点此上传</h6>
+               <input type="file" />
+              </div>
+              <a href="__IMAGES__/SeladdPic1.jpg" class="SelIdPic-A" target="_blank">
+               <img src="__IMAGES__/SeladdPic1.jpg" />
+               <div class="SelIdPic-Atxt">
+                <i class="fa fa-search"></i>
+                <h3>示例</h3>
+               </div>
+              </a>
+            </div>
+           </div>
+          </div>
+          <div class="SelIdentTime">
+           <span>居住地址：</span>
+           <span><input type="text" maxlength="30" /> 省</span>
+           <span><input type="text" maxlength="30" /> 市</span>
+           <span><input type="text" maxlength="30" /> 县</span>
+          </div>
+          <div class="SelIdentTime SelIdentTime1">
+           <span>详细地址：</span>
+           <span><input type="text" maxlength="30" /> </span>
+          </div>
+          <div class="SelNoticeStyle">
+           <h4><a href="{:U('/Home/Shop/selAudit/tag/selCenter')}">确定提交</a></h4>
+          </div>
+         </div>
+        </div>  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+</html>

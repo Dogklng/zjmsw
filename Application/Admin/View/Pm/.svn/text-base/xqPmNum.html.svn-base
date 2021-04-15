@@ -1,0 +1,170 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">场次拍品列表</h1>
+    <!--<a href="{:U('/Admin/Pm/addPm')}" class="btn btn-success">添加拍卖</a>
+    <form action="{:U('/Admin/Pm/pmList')}" method="get">
+      <div class="tables-searchbox newcearchbox">
+
+        <input type="text" placeholder="产品名称" class="input" name="name" value="{$title}" >
+        &lt;!&ndash; <input type="text" placeholder="商家编码" class="input" name="goods_no" value="" > &ndash;&gt;
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+        &lt;!&ndash;<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>&ndash;&gt;
+        &lt;!&ndash;产品导出</a>&ndash;&gt;
+      </div>
+      <div class="tabs clearfix mgt10"> 
+        <a href="{:U('/Admin/Pm/pmList')}" class="<eq name="_GET['is_sale']" value="">active</eq> tabs_a fl">全部({$counts})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/1')}" class="<eq name="_GET['is_sale']" value="1">active</eq> tabs_a fl">拍卖中({$count1})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/2')}" class="<eq name="_GET['is_sale']" value="2">active</eq> tabs_a fl">下架中({$count2})</a>
+        &lt;!&ndash;<a href="{:U('/Admin/Pm/pmList/is_sale/3')}" class="<eq name="_GET['is_sale']" value="3">active</eq> tabs_a fl">待审核({$count3})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/4')}" class="<eq name="_GET['is_sale']" value="4">active</eq> tabs_a fl">审核通过({$count4})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/5')}" class="<eq name="_GET['is_sale']" value="5">active</eq> tabs_a fl">审核拒绝({$count5})</a>&ndash;&gt;
+
+
+
+      </div>
+    </form>-->
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+      <thead>
+        <tr class="po_list">
+          <td>产品</td>
+          <td>发布者</td>
+          <td>是否上架</td>
+          <td>时间段</td>
+          <!--<td>状态</td>-->
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="res" item="vo">
+          <tr>
+            <td><div class="goodswrap"> <a href="javascript:void(0)" class="block" target="_blank" title="{$vo['goods_name']}">
+                <div class="table-item-img"> <img src="{$vo['index_pic']}" alt=""> </div>
+                <div class="table-item-info" style="width: 100px">{$vo.goods_name}</div>
+                </a> </div></td>
+            <if condition="$vo.promulgator eq 0"><td>美术网平台</td><else/><td>其他</td></if>
+            <td><if condition="($vo.is_shang eq 1)"> 上架
+              <else/>
+              下架</if></td>
+            <td> 开始：{$vo.start|date="Y-m-d H::i:s",###}<br/>结束：{$vo.end|date="Y-m-d H::i:s",###}</td><!--0：未开始，1：正在拍卖，2：流拍,3:拍卖成功'-->
+           <!-- <if condition="$vo.paimai_zt eq 0"><td>未开始</td></if>
+            <if condition="$vo.paimai_zt eq 1"><td style="color:rebeccapurple">正在拍卖</td></if>
+            <if condition="$vo.paimai_zt eq 2"><td style="color: red">流拍</td></if>
+            <if condition="$vo.paimai_zt eq 3"><td style="color: blue">拍卖成功</td></if>-->
+
+            <td>
+              <a href="{:U('/Admin/Pm/xqPmN/id')}/{$vo.id}" class="btn btn-primary j-editClass">查看详情</a>
+               <!-- <a href="javascript:;" data-id="{$vo.id}" class="btn <eq name="vo['is_shang']" value="0">btn-success  shang<else />btn-danger change-is_xia</eq>" data-id="{$vo.id}"><eq name="vo['is_shang']" value="0">上架<else />下架</eq></a>-->
+
+              <!--<a href="{:U('/Admin/Pm/delPm/id')}/{$vo.id}" onclick="{if(!confirm('确定删除作品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除">删除</a>-->
+              <!--<if condition="$vo.shenhe eq 0"><a href="javascript:;" class="btn huifu" style="background-color: green;border-color: green; color: white" data-id="{$vo.id}">审核</a></if>-->
+              </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <div class="fr">
+          <div class="pages"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+
+
+  <div id="albums-overlay" class="disshow"></div>
+  <div class="jbox addfenlei disshow" style="height:auto; overflow: visible;">
+    <div class="jbox-title">
+      <div class="jbox-title-txt">关联场次</div>
+      <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 140px;overflow: visible;">
+      <div class="formitems">
+        <input type="hidden" class="input sort" name="commentId" id="commentId" >
+        <select name="num_id" id="num_id">
+          <option value="">请选择拍卖场次</option>
+          <foreach name="num" item="vo" >
+            <option value="{$vo.id}">第{$vo.num}场  <eq name="vo['is_xs']" value="0">普通场<else/>限时场</eq>  开始时间:{$vo['start_time']|date='Y-m-d H:i:s',###}</option>
+          </foreach>
+        </select>
+        <!--时间:{$vo['start_time']|date='Y-m-d H:i:s',###}-{$vo['end_time']|date='Y-m-d H:i:s',###}-->
+          <span class="fi-help-text" id="times"></span>
+        </div>
+      </div>
+    <div class="jbox-buttons">
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">确定</a>
+      <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+
+  </div>
+  <script src="__JS__/jquery.js"></script>
+  <script>
+      $(".shang").click(function(){
+          $('.addfenlei').show();
+          $('#albums-overlay').show();
+      })
+
+      $(".cancle").click(function(){
+          $(this).parent().parent('.jbox').hide();
+          $('#albums-overlay').hide();
+      })
+
+      $(".shang").click(function(){
+          var commentId = $(this).attr('data-id');
+          $('#commentId').val(commentId);
+      })
+
+      $('#agree').click(function () {
+          var id1 = $('#commentId').val();
+          var num_id = $('#num_id').val();
+          if (num_id==''||num_id==null){
+              alert('场次必选')
+              return false;
+          }
+          $.ajax({
+              url: "{:U('/Admin/Pm/glnum')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+                  num_id: num_id,
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  alert(g.info);
+                  window.location.reload();
+              } else {
+                  alert(g.info);
+              }
+
+          })
+      })
+  </script>
+<!-- end container --> 
+<include file="Public:foot"/>
+<script>
+$(".change-is_xia").click(function (){
+  var id   = $(this).attr("data-id");
+  var item = "is_shang";
+  $.post("{:U('Admin/Pm/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status){
+      window.location.reload()
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+</script>

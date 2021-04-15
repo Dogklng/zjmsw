@@ -1,0 +1,73 @@
+<include file="Public:header" />
+<div class="dianpu_box">
+  <div class="SellerCon">
+    <div class="SellerTop">
+      <h3>创建店铺</h3>
+    </div>
+    <div class="SellerFlower">
+      <div class="paiuncenter_one">
+        <h3>免费开店</h3>
+        <p class="activedp">申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+      </div>
+      <div class="SellerFlist SellerFlistCurr"> <span>5</span>
+        <h3 class="paiUncenter_h3">审核认证</h3>
+      </div>
+      <div class="clear"></div>
+      <div class="pZlCon">
+
+        <if condition="$res.ruzhu_status eq 3">
+          <div class="SelAudCon">
+            <div class="SelAudPic"> <img src="__IMAGES__/SelAudPic1.png"> </div>
+            <div class="SellerTop SelIdTop">
+              <p>亲爱的{$res.name}，您的身份</p>
+              <h3>审核认证中</h3>
+            </div>
+          </div>
+          <div class="SelAudTxt clearfix">
+            <h6>预计审核完成时间{$res.addtime|date="Y-m-d H:i:s",(###+3600*24*3)} ，我们尽快审核，请您耐心等待，敬请留意！</h6>
+          </div>
+        </if>
+        <if condition="$res.ruzhu_status eq 4">
+          <div class="SelAudCon">
+            <div class="SelAudPic"> <img src="__IMAGES__/SelAudPic1.png"> </div>
+            <div class="SellerTop SelIdTop">
+              <p>亲爱的{$res.name}，您的身份</p>
+              <h3>未通过认证</h3>
+            </div>
+          </div>
+          <div class="SelAudTxt clearfix">
+            <h6>拒绝原因：{$res.feedback}</h6>
+          </div>
+          <div class="SelAudTxt clearfix">
+            <if condition="$res.type eq 0">
+              <h2><a href="{:U('/Wxin/Shop/selIdentity')}">请重新填写资料申请入驻</a></h2>
+              <else/>
+              <h2><a href="{:U('/Wxin/Shop/selIdentityone')}">请重新填写资料申请入驻</a></h2>
+            </if>
+          </div>
+        </if>
+        <if condition="$res.ruzhu_status eq 5">
+          <div class="SelAudCon">
+            <div class="SelAudPic"> <img src="__IMAGES__/SelAudPic1.png"> </div>
+            <div class="SellerTop SelIdTop">
+              <if condition="$res.type eq 1">
+                <p>尊敬的用户，您的{$res.cate_name} </p>
+                <else/> <p>亲爱的{$res.name}，您的身份</p></if>
+              <h3>已通过认证</h3>
+            </div>
+          </div>
+          <div class="SelAudTxt clearfix">
+            <h6>根据《网络交易管理办法》的规定，美术网将定期或不定期复核您的身份信息。请确保您账号绑定的身份信息真实有效，并确保账号为本人使用，请勿向他人转让、出租和借用账号。</h6>
+          </div>
+        </if>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+
+</body>
+</html>

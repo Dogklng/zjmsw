@@ -1,0 +1,78 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top all_zc">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 我的众筹 </a> </h3>
+ <ul class="allorderUl">
+  <li class="title_first"><a href="{:U('Wxin/PersonalCenter/crowdCan/tag/crowdCan/value/7')}">我的众筹</a></li>
+  <li><a href="{:U('Wxin/PersonalCenter/crowdRec/tag/crowdRec/value/7')}">我发布的众筹</a></li>
+  <if condition="$step eq 5">
+   <li><a href="{:U('Wxin/Crowd/fbzc/tag/fbzc/value/7',array('id'=>$res['id']))}">发布众筹</a></li>
+   <else/>
+   <switch name="crowd">
+    <case value="">
+     <li><a href="{:U('Wxin/PersonalCenter/crowdAgree/tag/crowdAgree/value/7')}">发布众筹</a></li>
+    </case>
+    <case  value="1">
+     <li><a href="{:U('Wxin/PersonalCenter/crowdIdentity/tag/crowdIdentity/value/7')}">发布众筹</a></li>
+    </case>
+    <case  value="2">
+     <li><a href="{:U('Wxin/PersonalCenter/crowdAudit/tag/crowdAudit/value/7')}">发布众筹</a></li>
+    </case>
+    <case  value="4">
+     <li><a href="{:U('Wxin/PersonalCenter/crowdAudit/tag/crowdAudit/value/7')}">发布众筹</a></li>
+    </case>
+    <case  value="5">
+     <li><a href="{:U('Wxin/Crowd/fbzc/tag/fbzc/value/7',array('id'=>$res['id']))}">发布众筹</a></li>
+    </case>
+
+
+   </switch>
+  </if>
+  <div class="clear"></div>
+ </ul>
+</div>
+<div class="warp_box">
+ <volist name="res" id="vo">
+ <div class="all_dingdan_one">
+  <!--<div class="allorder_topz">
+   <div class="allorder_topz_center">
+    <div class="allorder_topz_right">待审核</div>
+    <div class="clear"></div>
+   </div>
+  </div>-->
+  <div class="allorder_kuang">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_left shop_xx_fd"> <a href="{:U('/Wxin/ArtCommunity/crowdFdot/id')}/{$vo.crowd_id}"><img src="{$vo.logo_pic}" width="100%" /></a> </div>
+     <div class="shop_xx_right shop_xx_fd">
+      <p><b>作品名称：</b>{$vo.goods_name}  {$vo.goods_cap}<br />已筹金额 <i><if condition="$res.pay_time eq ''">暂未支付<else/>¥{$vo.pay_price}</if></i></p>
+      <p>发布者：<i><if condition="$res.zy_name eq ''">美术网平台<else/>{$vo.qy_name}</if></i></p>
+      <p>状态：<i><switch name="vo.is_zc">
+       <case value="0">众筹中</case>
+       <case value="2">众筹成功</case>
+       <case value="1">众筹失败</case>
+      </switch></i></p>
+      <h3 class="shop_xx_jg"><b>时间</b><b class="djstime" data-endtime="{$vo['end']}"><if condition="$res.pay_time eq ''">暂未支付<else/>{$res.pay_time|date="Y-m-d H:i:s",###}</if></b></h3>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <!--<div class="od_button">
+    <div class="od_fukuan"><a href="fbzp.html">修改</a></div>
+    <div class="clear"></div>
+   </div>-->
+  </div>
+ </div>
+  </volist>
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+
+</body>
+</html>

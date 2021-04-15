@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <title>Document</title>
+    <link rel="stylesheet" href="__CSS__/jquery.emoji.css">
+</head>
+<style scoped>
+    #content .contMsg .contWatch i {
+        background: url('__IMAGES__/eye.png') no-repeat;
+        background-size: 12px 9px;
+        display: inline-block;
+        width: 12px;
+        height: 10px;
+        margin-right: 5px;
+        position: relative;
+        top: 0px;
+        margin: 0 10px;
+    }
+
+    #content .heartPic .heart i {
+        display: inline-block;
+        background: url('__IMAGES__/hert.png') no-repeat;
+        height: 100px;
+        width: 100px;
+        background-size: 3000%;
+        background-position: left;
+        position: relative;
+    }
+
+    footer .ftinput .enj {
+        position: absolute;
+        top: 0;
+        left: 10px;
+        width: 28px;
+        height: 44px;
+        background: url('__IMAGES__/enj.png') center no-repeat;
+        background-size: 23px 23px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+
+    .emoji_container {
+        position: fixed !important;
+        top: 48px !important;
+    }
+
+    /* 点赞红色 */
+    .dz {
+        position: absolute;
+        right: 0;
+        width: 15px;
+        height: 14px;
+        background: url('__IMAGES__/dz.png') no-repeat;
+        background-size: 15px 14px;
+        margin-right: 15px;
+    }
+
+    /* 点赞白色 */
+    .tnright {
+        position: absolute;
+        right: 0;
+        width: 15px;
+        height: 14px;
+        background: url('__IMAGES__/zan1.png') no-repeat;
+        background-size: 15px 14px;
+        margin-right: 15px;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: scroll;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+    }
+
+    body,
+    html {
+        font-size: 20px;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .partTime {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background: url('__IMAGES__/parttime.png') no-repeat;
+        background-size: contain;
+        margin-right: 5px;
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 44px;
+        background: #fff;
+        text-align: center;
+        z-index: 999;
+    }
+
+    header .title {
+        text-align: center;
+        height: 44px;
+        line-height: 44px;
+        font-size: 0.8rem;
+        color: #000;
+        padding: 0 5rem;
+    }
+
+    .article-detail-box {
+        margin-top: 20px;
+    }
+
+    .article-detail-box img {
+        width: 100%;
+        height: auto;
+    }
+
+    .article-detail-box h3 {
+        padding-left: 10px;
+    }
+
+    .article-detail-box p {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    #content .contHead {
+        position: relative;
+        height: 60px;
+        border: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+
+    #content .contHead .contPic {
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        height: 100%;
+        width: 70%;
+    }
+
+    #content .contHead .contPic .contPicbox {
+        display: inline-block;
+        border-radius: 87px;
+        position: relative;
+    }
+
+    #content .contHead .contPic .contPicbox i {
+        position: absolute;
+        bottom: 3px;
+        right: 0;
+        width: 15px;
+        height: 15px;
+        background: url('__IMAGES__/qian.png') no-repeat;
+        background-size: contain;
+    }
+
+    #content .contHead .contPic .contPicbox img {
+        width: 40px;
+        height: 40px;
+        object-fit: fill;
+        border-radius: 50%;
+    }
+
+    #content .contHead .contPicgz img {
+        position: absolute;
+        top: 28px;
+        right: 10px;
+        width: 42px;
+        height: 32px;
+        object-fit: fill;
+    }
+
+    #content .contMsg h6 {
+        margin: 30px 10px;
+        font-weight: normal;
+        font-size: 0.6rem;
+        color: rgb(75, 74, 74);
+    }
+
+    #content .contMsg .contWatch {
+        font-weight: normal;
+        font-size: 0.7rem;
+        color: rgb(75, 74, 74);
+    }
+
+    #content .heartPic {
+        padding: 1.3rem 0.75rem 0.9rem 0.75rem;
+    }
+
+    #content .heartPic .heart {
+        text-align: center;
+        border-bottom: 1px solid #f2f2f2;
+    }
+
+
+
+    @keyframes heart {
+        0% {
+            background-position: left;
+        }
+
+        100% {
+            background-position: right;
+        }
+    }
+
+    #content .heartPic .heart i::after {
+        content: '';
+        position: absolute;
+        bottom: -12%;
+        left: 44%;
+        transform: rotate(45deg);
+        width: 10px;
+        height: 10px;
+        border-top: 1px solid #f2f2f2;
+        border-left: 1px solid #f2f2f2;
+        background-color: white;
+    }
+
+    #content .heartPic .heartUser {
+        margin-top: 20px;
+    }
+
+    #content .heartPic .heartUser img {
+        display: inline-block;
+        border-radius: 50%;
+        height: 28px;
+        width: 28px;
+    }
+
+    #content .heartPic .heartUser .userLast {
+        display: inline-block;
+        height: 28px;
+        width: 28px;
+        background-color: #d9d9d9;
+        color: #fff;
+        text-align: center;
+        vertical-align: top;
+        border-radius: 50%;
+        line-height: 30px;
+        font-size: 0.6rem;
+    }
+
+    .line {
+        display: inline-block;
+        height: 5px;
+        width: 100%;
+        background-color: #f4f4f4;
+        border-top: 2px solid #f1f1f1;
+    }
+
+    footer .ftinput {
+        position: relative;
+        height: 50px;
+        width: 100%;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    footer .ftinput textarea {
+        position: absolute;
+        left: 50px;
+        top: 4px;
+        width: 60%;
+        height: 35px;
+        line-height: 35px;
+        border: none;
+        outline: none;
+        resize: none;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    footer .ftinput span {
+        position: absolute;
+        height: 44px;
+        right: 0;
+        top: 0;
+        line-height: 44px;
+        padding-right: 10px;
+        font-size: 0.8rem;
+    }
+
+    footer .talkBox {
+        padding: 0 0.75rem;
+        height: 100%;
+    }
+
+    footer li {
+        display: inline-block;
+        width: 100%;
+        height: 50px;
+        position: relative;
+        margin: 30px 0;
+    }
+
+    footer li::after {
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        border-bottom: 1px solid #eeeeee;
+        left: 0;
+        bottom: -40px;
+    }
+
+    footer .talkPic {
+        position: absolute;
+        top: 0;
+        height: 34;
+        width: 34px;
+    }
+
+    footer .talkPic img {
+        height: 34;
+        width: 34px;
+        object-fit: fill;
+        border-radius: 50%;
+    }
+
+    footer .talkMsg {
+        position: absolute;
+        left: 43px;
+        width: 90%;
+    }
+
+    footer .talkMsg .talkName {
+        width: 100%;
+        height: 50px;
+        position: relative;
+    }
+
+    footer .talkMsg .talkName span {
+        position: absolute;
+        right: 15px;
+        bottom: 0;
+        font-size: 12px;
+    }
+
+    footer .talkMsg .talkName .tnleft {
+        position: absolute;
+        height: 100%;
+        left: 0;
+    }
+
+    footer .talkMsg .talkmsgs {
+        font-size: 0.7rem;
+        font-weight: 400;
+        color: #000;
+        line-height: 20px;
+    }
+
+    .emoji_tab_list {
+        width: 100% !important;
+        left: 0 !important;
+    }
+
+    .gzBox {
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        background-color: white;
+        transition: all .5s;
+    }
+
+    .gzBox li {
+        border-bottom: 1px solid #eee;
+        height: 50px;
+        line-height: 50px;
+        font-weight: normal;
+        font-size: 16px;
+    }
+
+    #bgblack {
+        position: fixed;
+        background-color: black;
+        opacity: 0.5;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transition: all .5s;
+        display: none;
+    }
+</style>
+
+<body>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
+    <script src="__JS__/jquery.emoji.min.js"></script>
+    <script src="__JS__/emoji.list.js"></script>
+    <div id="content">
+        <div class="contHead">
+            <div class="contPic">
+                <div class="contPicbox">
+                    <a href="">
+                        <img src="{$news['logo_pic']}" alt="">
+                    </a>
+                    <i class="qian"></i>
+                </div>
+                <div style="display: inline-block;">
+                    <p style="font-size: 14px;">{$news['name']}</p>
+                    <span style="font-size: 13px;color: #9c9c9c;"><i class="partTime"></i>{$news['addtime']}</span>
+                </div>
+            </div>
+            <!--<div class="contPicgz">-->
+                <!--<img src="__IMAGES__/partgz.png" alt="">-->
+            <!--</div>-->
+            <div id="bgblack"></div>
+            <!--<div class="gzBox">-->
+                <!--<ul>-->
+                    <!--<li id="qxgz" style="color: red;">取消关注</li>-->
+                    <!--<li id="qx">取消</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        </div>
+        <div class="article-detail-box">
+            <h3 class="article-title">{$news['title']}</h3>
+            <div class="main-body">
+                {$news['content']|htmlspecialchars_decode|stripslashes}
+            </div>
+        </div>
+        <div class="contMsg">
+            <div class="contWatch"><i></i>{$news['browser']}次浏览</div>
+        </div>
+        <div class="heartPic">
+            <div class="heart">
+                <i class="gz"></i>
+            </div>
+            <div class="heartUser">
+                <volist name="like" id="vo">
+                    <img src="{$vo.person_img}" alt="">
+                </volist>
+                <span class="userLast">{$like_nums}</span>
+            </div>
+        </div>
+        <span class="line"></span>
+        <!--<footer>-->
+            <!--<div class="ftinput">-->
+                <!--<div class="enj"></div>-->
+                <!--<textarea placeholder="随便说点什么^_^"></textarea>-->
+                <!--<span class="addMsg">发送</span>-->
+            <!--</div>-->
+            <!--<div class="talkBox">-->
+                <!--<ul class="talklist">-->
+                    <!--<volist name="comment" id="v">-->
+                        <!--<li>-->
+                            <!--<div class="talkPic">-->
+                                <!--<a href=""></a>-->
+                                <!--<img src="{$v.person_img}" alt="">-->
+                                <!--</a>-->
+                            <!--</div>-->
+                            <!--<div class="talkMsg">-->
+                                <!--<div class="talkName">-->
+                                    <!--<div class="tnleft">-->
+                                        <!--<p style="font-size: 0.7rem;">{$v.name}</p>-->
+                                        <!--<p style="margin-top:5px;font-size: 12px;color: #9c9c9c;">{$v.created_at}</p>-->
+                                    <!--</div>-->
+                                    <!--<i class="dzpic"></i>-->
+                                    <!--<span class="msgHf">回复</span>-->
+                                <!--</div>-->
+                                <!--<div class="talkmsgs">-->
+                                    <!--<p>{$v.content}</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</volist>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</footer>-->
+    </div>
+</body>
+
+</html>
+<script>
+    let addMsg = document.getElementsByClassName("addMsg")[0];
+    let heartUser = document.getElementsByClassName("heartUser")[0];
+    let msg = document.getElementsByTagName("textarea")[0];
+    let talklist = document.getElementsByClassName("talklist")[0];
+    let enj = document.getElementsByClassName("enj")[0];
+    let sharehideBox = document.getElementsByClassName("sharehideBox")[0];
+    let contMsg = document.getElementsByClassName("contMsg")[0];
+    let news_id = getQueryString('id');
+
+    console.log(news_id);
+
+    // 顶部关注按钮
+    var topgz = true
+    $('.contPicgz>img').click(function () {
+        if (!topgz) {
+            $('#bgblack').show(100)
+            $('.gzBox').css('bottom', '0')
+            topgz=true
+            return
+        }
+        $('.contPicgz>img').attr('src','__IMAGES__/partygz.png')
+        topgz=false
+        return
+    })
+    // 取消关注
+    $('#qxgz').click(function () {
+        $('#bgblack').hide(100)
+        $('.gzBox').css('bottom', '-100%')
+        $('.contPicgz>img').attr('src','__IMAGES__/partgz.png')
+        topgz=true
+    })
+    // 取消
+    $('#qx').click(function () {
+        $('#bgblack').hide(100)
+        $('.gzBox').css('bottom', '-100%')
+    })
+    $('#bgblack').click(function () {
+        $('#bgblack').hide(100)
+        $('.gzBox').css('bottom', '-100%')
+    })
+
+    // 获取当前时间
+    let time = new Date();
+    // 月
+    let month = time.getMonth() + 1;
+    // 日
+    let date = time.getDate();
+
+    $("textarea").emoji({
+        button: '.enj',
+        showTab: true,
+        animation: 'fade',
+        basePath: '__IMAGES__/emoji',// /images/emoji
+        icons: emojiLists
+    });
+    $("p").emojiParse({
+        basePath: '__IMAGES__/emoji',// images/emoji
+        icons: emojiLists
+    });
+
+    // 点赞样式切换
+    let dzflag = true
+    function dz(el) {
+        if (dzflag) {
+            el.className = 'dz'
+            dzflag = false
+            return
+        } else {
+            el.className = 'tnright'
+            dzflag = true
+        }
+    }
+    //默认加载回复功能
+    let msgHf = document.getElementsByClassName('msgHf')
+    for (var i = 0; i < msgHf.length; i++) {
+        msgHf[i].onclick = function () {
+            $('html,body').animate({ scrollTop: $('.contHead').height() + $('.contMsg').height() }, 500);
+            $('textarea').val('回复：xxxx ')
+            $('textarea').focus()
+        }
+    }
+    // 回复信息
+    // addMsg.ontouchstart = function () {
+    //     let val = msg.value;
+    //     if (val.trim() == "") {
+    //         msg.value = "";
+    //         return false;
+    //     }
+    //     let li = document.createElement("li");
+    //     li.innerHTML = "<div class='talkPic'><a href=''><img src='__IMAGES__/tou1.jfif' alt=''></a></div><div class='talkMsg'><div class='talkName'><div class='tnleft'><p style='font-size:0.7rem;'>的权威去</p><p style='margin-top:5px;font-size: 12px;color: #9c9c9c;'>" + month + "月" + date + "日</p></div><i class='dzpic'></i><span  class='msgHf'>回复</span></div><div class='talkmsgs'><p>" + val + "</p></div></div>"
+    //     talklist.appendChild(li);
+    //
+    //     // $("p").emojiParse({
+    //     //     basePath: '__IMAGES__/emoji',// images/emoji
+    //     //     icons: emojiLists
+    //     // });
+    //     msg.value = "";
+    //     makeComment(val.trim(), 0);
+    // };
+
+
+    // 关注人数量
+    $('.userLast').text($('.heartUser>img').length)
+    // 默认显示6个关注头像
+    for (var i = 0; i < $('.heartUser>img').length; i++) {
+        if (i < $('.heartUser>img').length - 6) {
+            $('.heartUser>img')[6 + i].style.display = 'none'
+        }
+    }
+    // 点击显示全部关注头像
+    let flag = true;
+    $('.userLast').click(function () {
+        if (flag) {
+            for (var i = 0; i < $('.heartUser>img').length; i++) {
+                $('.heartUser>img')[i].style.display = 'inline-block'
+            }
+            flag = false
+        } else {
+            for (var i = 0; i < $('.heartUser>img').length; i++) {
+                if (i < $('.heartUser>img').length - 6) {
+                    $('.heartUser>img')[6 + i].style.display = 'none'
+                }
+            }
+            flag = true
+        }
+
+    })
+
+    //获取url中的参数
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", 'i'); // 匹配目标参数
+        var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+        if (result != null) {
+            return decodeURIComponent(result[2]);
+        } else {
+            return null;
+        }
+    }
+
+    function makeComment(content, prev_comment_id) {
+        var member_id = "{$_SESSION['member_id']}";
+        if (member_id == 0) {
+            alert("请先注册，若有账号，请先登录！", "", '/Wxin/User/login');
+            return false;
+        }
+        $.ajax({
+            url: "/Wxin/ArtCommunity/comment",
+            data: {
+                content: content,
+                id: artist_id,
+                artist_id: artist_id,
+                prev_comment_id: prev_comment_id,
+            },
+            type: "post",
+            dataType: "json",
+            success: function (res) {
+                if (res.code == 0) {
+                    alert("评论成功，等待审核", "warn");
+                    $("p").emojiParse({
+                        basePath: '__IMAGES__/emoji',// images/emoji
+                        icons: emojiLists
+                    });
+                } else {
+                    alert(res.info);
+                }
+            }
+        })
+    }
+
+
+    // 点击爱心
+    let gz = document.getElementsByClassName("gz")[0];
+    let like = {$is_like};
+    let isLike =true;
+    if (like) {
+        isLike = false;
+        gz.style.backgroundPosition = "right";
+    } else {
+        isLike = true;
+        gz.style.backgroundPosition = "left";
+    }
+
+    gz.ontouchstart = function () {
+        $.ajax({
+            url: '/Wxin/ArtCommunity/likeAction',
+            dataType: 'json',
+            type: 'post',
+            data: {
+                target_id: news_id,
+                type: 4,
+            },
+            success:function (res) {
+                if (res.code == 1001) {
+                    alert("请先注册，若有账号，请先登录！", "", '/Wxin/User/login');
+                    return false;
+                } else if (res.code == 10001) {
+                    alert(res.info);
+                    return false;
+                }
+                if (isLike) {
+                    gz.style.animation = "heart 803ms 1 steps(29)";
+                    gz.style.backgroundPosition = "right";
+                    isLike = false;
+                } else {
+                    gz.style.backgroundPosition = "left";
+                    gz.style.animation = "none";
+                    isLike = true;
+                }
+                location.reload();
+            }
+        });
+    };
+
+</script>

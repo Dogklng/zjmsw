@@ -1,0 +1,214 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+<style>
+    .col-lg-2{
+        width:20%;
+    }
+</style>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+    <!--  / user  -->
+    <div class="Selleruser">
+        <div class="row">
+            <div class="col-sm-2">
+                <include file="Public:user_left" />
+            </div>
+            <div class="col-sm-10">
+                <div class="SellerCon">
+                    <div class="SellerTop">
+                        <h3>免费入驻</h3>
+                        <p>申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+                    </div>
+                    <div class="SellerFlower">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="SellerFlist SellerFlistCurr"> <span>1</span>
+                                    <h3>选择入驻类型<i>入驻类型</i></h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="SellerFlist "> <span>2</span>
+                                    <h3>阅读开店须知<i>开店须知</i></h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="SellerFlist "> <span>3</span>
+                                    <h3>阅读协议<i>签署协议</i></h3>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="SellerFlist"> <span>4</span>
+                                    <h3>提交资料<i>提交个人资料</i></h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="SellerFlist"> <span>5</span>
+                                    <h3>审核<i>审核</i></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="located-select">
+                            <h2>选择入驻类型</h2><br>
+                            <!--<form action="{:U('Home/Shop/paiLeimu/ruzhu_id')}/{$ruzhu_id}" method="post" id="form">-->
+                                <div class="bd">
+                                    <ul class="first clearfix">
+                                        <foreach name="res" item="vo">
+                                            <li class="levels">
+                                                <dl class="clearfix">
+                                                    <dt>
+                                                        <label style="font-size:20px">
+                                                            <input type="radio" name="Cates" data-id="{$vo.id}" value="{$vo.id}" class="Cates" style="width:20px!important">
+                                                            {$vo.name}</label>
+                                                    </dt>
+
+                                                </dl>
+                                            </li>
+                                        </foreach>
+                                    </ul>
+                                </div>
+                            <!--</form>-->
+
+
+
+                        <!-- <div class="row">
+                          <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="SellerPic">
+                              <span><i class="fa fa-user-circle-o"></i></span>
+                              <h3>个人店铺</h3>
+                              <h6>通过美术网账号实名认证的商家店铺就是个人店铺</h6>
+                              <a href="{:U('/Home/Shop/selNotice/tag/selNotice')}">创建个人店铺</a>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="SellerPic">
+                              <span><i class="fa fa-building-o"></i></span>
+                              <h3>企业店铺</h3>
+                              <h6>通过美术网企业账号认证的商家店铺就是企业店铺</h6>&lt;!&ndash;style=" background:#ccc;"&ndash;&gt;
+                              <a href="{:U('/Home/Shop/selCompanyNotice/tag/selCompanyNotice')}" >创建企业店铺</a>
+                              <h4>请使用<a href="#">企业账户</a>登录开店</h4>
+                            </div>
+                          </div>
+                         </div>-->
+                            <div class="SelNoticeStyle">
+                                <h4><a href="{:U('Home/PersonalCenter/userinfo')}" >上一步</a> <a href='javascript:;' id="next">下一步</a></h4>
+                            </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+    <div class="task_bg"></div>
+    <div class="task_con" style="margin-top:-300px;">
+        <img src="__IMAGES__/dizhi_close.png" width="24">
+        <div class="fenxiang">你确定要取消订单？</div>
+        <div class="task_btn">
+            <div class="task_btn1">
+                <a href="##" class="task_btn1_on">确定</a>
+                <a href="##" class="task_btn1_quxiao">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="task1">
+    <div class="task1_bg"></div>
+    <div class="task1_con" style="margin-top:-300px;">
+        <img src="__IMAGES__/dizhi_close.png" width="24">
+        <div class="fenxiang">你确定要删除订单？</div>
+        <div class="task1_btn">
+            <div class="task1_btn1">
+                <a href="##" class="task1_btn1_on">确定</a>
+                <a href="##" class="task1_btn1_quxiao">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+    <script>
+        $('#next').click(function(){
+            var id = $('input[name="Cates"]:checked').val();		
+            //console.log(id);
+            //return false;
+            if(id == undefined){
+                alert("请选择入驻类型");
+                return false;
+            }
+            //alert(id);return false;
+            $.ajax({
+                url:"/Home/Shop/index",
+                data:{id:id},
+                dataType:"json",
+                type:"post",
+                success:function(g){
+                    if(g.status == 1){
+                        console.log(g);
+                        alert(g.info);
+                        window.location.href=g.url;
+                    }else{
+					console.log(g);
+                        alert(g.info);
+						
+                       window.location.reload();
+                        return false;
+                    }
+                }
+            })
+        })
+    </script>
+<script>
+    function fnTabBoxSlide(Focus,Hide,Show){
+        $(Focus).siblings().removeClass("actived");
+        $(Focus).addClass("actived");
+        $(".TabHide"+Hide).hide();
+        $("#TabShow"+Show).slideDown("fast");
+    };
+    $('.quxiao').click(function(){
+        $('.task').stop(true).fadeIn(1000);
+        setTimeout(function(){
+            $('.task_con').addClass('task_con_on');
+        },300)
+    })
+    $('.task_con>img').click(function(){
+        $('.task').stop(true).fadeOut(1000);
+        $('.task_con').removeClass('task_con_on');
+    })
+    $('.task_btn1_quxiao').click(function(){
+        $('.task').stop(true).fadeOut(1000);
+        $('.task_con').removeClass('task_con_on');
+    })
+
+    $('.delete').click(function(){
+        $('.task1').stop(true).fadeIn(1000);
+        setTimeout(function(){
+            $('.task1_con').addClass('task1_con_on');
+        },300)
+    })
+    $('.task1_con>img').click(function(){
+        $('.task1').stop(true).fadeOut(1000);
+        $('.task1_con').removeClass('task1_con_on');
+    })
+    $('.task1_btn1_quxiao').click(function(){
+        $('.task1').stop(true).fadeOut(1000);
+        $('.task1_con').removeClass('task1_con_on');
+    })
+
+</script>
+</html>

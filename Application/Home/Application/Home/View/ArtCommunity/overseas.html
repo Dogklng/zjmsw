@@ -1,0 +1,189 @@
+<include file="Public:header" />
+<style>
+  .main_page {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .main_page .me {
+    background: #ff6801 !important;
+    border: 1px solid #ff6801 !important;
+    color: #fff !important;
+  }
+  .main_page span {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 30px;
+    background: #fff;
+    font-size: 14px;
+    border: 1px solid #dbdbdb;
+    color: #666;
+    padding: 0 20px;
+    cursor: pointer;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+</style>
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">In training</p>
+    <h5>海 • 外 • 交 • 流</h5>
+  </div>
+  <div class="main">
+    <div class="CraCon row">
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <div class="peixunLeft">
+          <!--<div class="mainL-screen">-->
+            <!--<h3 class="mainL-h3">按培训地点筛选<a href="#" class="mainLs-A">取消选中</a></h3>-->
+            <!--<ul class="mainL-screenUl">-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS1">-->
+                <!--<label for="screenS1">北京</label>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS2">-->
+                <!--<label for="screenS2">上海</label>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS3">-->
+                <!--<label for="screenS3">杭州</label>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS4">-->
+                <!--<label for="screenS4">南京</label>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS5">-->
+                <!--<label for="screenS5">宁波</label>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS6">-->
+                <!--<label for="screenS6">广州</label>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS7">-->
+                <!--<label for="screenS7">四川</label>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS8">-->
+                <!--<label for="screenS8">山东</label>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS9">-->
+                <!--<label for="screenS9">湖北</label>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS10">-->
+                <!--<label for="screenS10">天津</label>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<input type="checkbox" name="screenS" id="screenS11">-->
+                <!--<label for="screenS11">吉林</label>-->
+              <!--</li>-->
+            <!--</ul>-->
+          <!--</div>-->
+        </div>
+      </div>
+      <div class="col-lg-10 col-md-10 col-sm-10">
+        <div class="peixunRight">
+          <ul class="CraUl">
+            <volist name="res" id="v">
+            <li><a href="{:U('/Home/ArtCommunity/overseasdot',array('id'=>$v['id']))}">
+              <div class="CraUl-img"><img src="{$v.logo}" /></div>
+              <div class="CraUl-txt">
+                <h2>{$v.title}</h2>
+                <span> <i class="fa fa-clock-o"></i>时间：{$v.start|date='Y-m-d',###}——{$v.end|date='Y-m-d',###}</span> <span> <i class="fa fa-map-marker" style=" font-size:16px;"></i>地点：{$v.address}</span> </div>
+              </a>
+              <h3 class="peixunH peixunH3"><a href="{:U('/Home/ArtCommunity/overseasdot',array('id'=>$v['id']))}"><i class="fa fa-plus-square"></i>查看详情</a></h3>
+              <h4 class="peixunH peixunH4"><a href="javascript:;" id="{$v.id}" onclick="myFunction(this)"><i class="fa fa-user-plus"></i>我要报名</a></h4>
+            </li>
+            </volist>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main_page">
+    {$page}
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<div class="canzhan_forma">
+  <div class="canzhan_form"> <img src="__IMAGES__/close.png" class="close canzhan_close" style="top:10px; right:10px;" />
+    <h3>交流报名</h3>
+    <div class="canzhan_xx">
+      <input type="hidden" id="train_id"/>
+      <p><span>姓名：</span>
+        <input type="text" maxlength="10" id="name"/>
+      </p>
+      <p><span>手机号：</span>
+        <input type="text" maxlength="16" id="tel"/>
+      </p>
+      <a href="javascript:void(0)" class="zlxxtj">提交信息</a> </div>
+  </div>
+</div>
+
+<include file="Public/footer" />
+<script>
+    $('.main_page span').click(function () {
+        var page = $(this).attr('data-page');
+        if(!isNaN(page)){
+            window.location.href = "{:U('/Home/ArtCommunity/overseas')}?page="+page;
+        }
+    })
+    function myFunction(obj) {
+        var id = obj.id;
+        $('#train_id').val(id);
+    }
+
+    $('.zlxxtj').click(function () {
+        var member_id = '{$member_id}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+        var name = $.trim($('#name').val());
+        var tel  = $.trim($('#tel').val());
+        var train_id   = $('#train_id').val();
+        if(name == ""){
+            alert('姓名必填');
+            return false;
+        }
+        if(tel == ''){
+            alert('手机号必填');
+            return false;
+        }
+        if(!(/^1[34578]\d{9}$/.test(tel))){
+            alert('请输入正规手机号');
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Home/ArtCommunity/addTrain')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                name: name,
+                tel:  tel,
+                train_id:train_id,
+                type:2
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+              window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+</body>
+</html>

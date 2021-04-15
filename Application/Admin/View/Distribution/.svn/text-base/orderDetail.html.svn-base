@@ -1,0 +1,166 @@
+<include file="Public:head"/>
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:distributionleft" />
+    <!-- end content-left -->
+    
+    <div class="content-right fl">
+      <h1 class="content-right-title">订单详情</h1>
+      <div class="panel-single panel-single-light">订单编号： <span class="order-title">{$cache.order_no}</span></div>
+      
+      <ul class="wizard"> 
+      <li class="wizard-item <egt name="cache.orderstate" value="0">complete</egt>" > 
+      <dl class="wizard-item-content"> 
+      <dt class="wizard-ic-step"> 
+      <span class="wizard-icstp-num">1</span> 
+      <span class="wizard-icstp-title">下单</span> 
+      <span class="wizard-icstp-date">{$cache.create_at}</span> 
+      </dt> 
+      <dd class="wizard-ic-desc"></dd> 
+      </dl> 
+      </li> 
+      <li class="wizard-item <egt name="cache.orderstate" value="1">complete</egt>"> 
+      <dl class="wizard-item-content"> 
+      <dt class="wizard-ic-step"> 
+      <span class="wizard-icstp-num">2</span> 
+      <span class="wizard-icstp-title">完成支付</span> 
+      <span class="wizard-icstp-date">{$cache.pay_at}</span> 
+      </dt> 
+      <dd class="wizard-ic-desc"></dd> 
+      </dl> 
+      </li> 
+      <li class="wizard-item <eq name="cache.is_complete" value="1">complete</eq>"> 
+      <dl class="wizard-item-content"> 
+      <dt class="wizard-ic-step"> 
+      <span class="wizard-icstp-num">3</span> 
+      <span class="wizard-icstp-title">完成分销</span> 
+      <span class="wizard-icstp-date"></span> 
+      </dt> 
+      </dl> 
+      </li> 
+      </ul>
+      
+      <div class="chartBox mgt30">
+        <div class="cb-title">订单信息</div>
+        <div class="cb-contain">
+          <ul class="info-table mgl15">
+            <li class="long"> <span class="bold">订单状态：</span> <span> <span class="colorRed">
+              <!-- 0待接受 1 申请中 2 任务开始 3任务完成  4确认任务完成 5 取消任务 6退款 7任务结束 -->
+              <switch name="cache.orderstate">
+                <case value="0">待支付</case>
+              	<case value="1">已支付</case>
+                <default />
+                未知 </switch>
+              </span> </span> 
+            </li>
+            <li class="long"> <span class="bold">真实姓名：</span> <span><a href="javascript:void(0);"> {$cache.user.realname}</a> </span> </li>
+            <li class="long"> <span class="bold">昵　　称：</span> <span><a href="javascript:void(0);"> {$cache.user.person_name}</a> </span> </li>
+            <li class="long"> <span class="bold">联系方式：</span> <span><a href="javascript:void(0);"> {$cache.user.telephone}</a> </span> </li>
+            <li class="long"> <span class="bold">支付类型：</span> <span><a href="javascript:void(0);"> 
+            
+            <!-- 0 微信支付 1 支付宝支付 2余额 -->
+            <switch name="cache.pay_way">
+              <case value="1">余额</case>
+              <case value="2">支付宝支付</case>
+              <default />未知支付方式
+            </switch>
+            </a> </span> </li>
+          </ul>
+        </div>
+        <!-- <div class="cb-contain feedback">
+          <p class="bold">详情:</p>
+          <div class="feedback-txt mgt5"> <span>{$cache.content}</span> 
+          </div>
+          <p class="bold">特殊需求:</p>
+          <div class="feedback-txt mgt5"> <span>{$cache.special}</span> 
+            <a href="javascript:;" class="a_hover" id="j-feedback-mdf">修改留言</a> 
+          </div>
+          <div class="feedback-modifyPanel mgt5"> 
+          <textarea>{$cache.comment}</textarea> 
+          <p class="mgt5"> 
+          <a href="javascript:;" class="btn btn-primary btn-small" id="j-feedback-mdf-save" data-id="2197883">保存</a> 
+          <a href="javascript:;" class="btn btn-primary btn-small" id="j-feedback-mdf-cancel">取消</a> 
+          </p> 
+          </div> 
+        </div> -->
+        
+      </div>
+      <notempty name="cache['log']">
+      <table class="wxtables mgt15">
+        <colgroup>
+        <col width="10%">
+        <col width="10%">
+        <col width="10%">
+        <col width="10%">
+        <col width="30%">
+        <col width="10%">
+        <col width="10%">
+        <col width="10%">
+        </colgroup>
+        <thead>
+          <tr>
+            <td>获利者</td>
+            <td>联系方式</td>
+            <td>金额</td>
+            <td>层级关系</td>
+            <td>描述</td>
+            <td>时间</td>
+            <td>分销状态</td>
+            <td>用户状态</td>
+          </tr>
+        </thead>
+        <tbody>
+            <volist name="cache['log']" id="v">
+            <tr>
+              <td>{$v['person_name']}</td>
+              <td>{$v['telephone']}</td>
+              <td>¥{$v.fx_money}</td>
+              <td>{$v.relation}</td>
+              <td>{$v.describe}</td>
+              <td>{$v.create_at}</td>
+              <td>
+                <switch name="v['status']">
+                  <case value="0">未分销</case>
+                  <case value="1">已分销</case>
+                </switch>
+              </td>
+              <td>
+                <switch name="v['stat']">
+                  <case value="0">正常</case>
+                  <case value="1">已冻结</case>
+                </switch>
+              </td>
+            </tr>
+            </volist>
+        </tbody>
+      </table>
+      </notempty>
+      <div class="clearfix">
+        <ul class="order-statistics fr">
+          <li class="formitems" style="text-align:right">
+            <div class="form-controls realPrice" style="text-align:right;margin-right:10px;">
+            <b>报单类型： </b>¥{$cache.subject}</div>
+          </li>
+          <li class="formitems" style="text-align:right">
+            
+            <div class="form-controls" style="text-align:right;margin-right:10px;">
+            <b>订单金额： </b>¥{$cache.total_fee}</div>
+          </li>
+          <li class="formitems" style="text-align:right">
+            
+            <div class="form-controls" style="text-align:right;margin-right:10px;">
+            <b>支付金额： </b>￥{$cache.pay_price}</div>
+          </li>
+          <li class="txtCenter" style="text-align:right;margin-right:10px;"> 
+            <a href="javascript:;" data-id="2197883" class="btn btn-primary" style=" visibility:hidden" id="j-order-modify">修改价格</a> 
+            <a href="javascript:history.back(-1);" data-id="2197883" class="btn btn-primary" id="j-order-close">返回</a> 
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+
+<include file="Public:foot"/>

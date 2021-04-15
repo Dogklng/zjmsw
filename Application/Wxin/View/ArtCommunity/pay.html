@@ -1,0 +1,140 @@
+<include file="Public:header" />
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  --> 
+  
+  <!--  / order1  -->
+  <div class="order1">
+    <div class="order_sh">
+      <h5>支付方式</h5>
+      <div class="order_shon clearfix">
+        <div data-pay_way="1" class="order_shona pro_xz"> <img src="__IMAGES__/zffs1.jpg" width="100%"> </div>
+         <div data-pay_way="2" class="order_shona"> <img src="__IMAGES__/zffs2.jpg" width="100%"> </div>
+          <div data-pay_way="3" class="order_shona"> <img src="__IMAGES__/weixin1.jpg" width="100%"> </div>
+          <div data-pay_way="4" class="order_shona"> <img src="__IMAGES__/zffs4.png" width="100%"> </div>
+      </div>
+    </div>
+	<div class="order1">
+	 <table class="wxtables mgt15">
+        <colgroup>
+        <col width="55%">
+        <col width="10%">
+        <col width="15%">
+        <col width="10%">
+        <col width="15%">
+        </colgroup>
+        <thead class="cb-title">
+          <tr>
+            <td>商品名</td>
+            <td>订单价格</td>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td><a href="javascript:void(0)" class="block" title="">
+                <div class="table-item-img"> <img src="{$res.logo_pic}" alt="" width="60px" height="60px"> </div>
+                <div class="table-item-info">
+                  <p>商品名称：{$res.goods_name}</p>                  
+                   </div>
+                </a></td>
+              <td>¥{$res.total_fee}元</td>            
+            </tr>
+            
+         
+        </tbody>
+      </table>
+	  </div>
+    <div class="order1_tall">
+        <div class="shopcar_zj clearfix">
+          <div class="shopcar_zjs">
+            <div class="shopcar_zjs_btn">
+              <a class="pay-order" href="javascript:;">支付</a> </div>
+          </div>
+        </div>
+      </div>
+  </div>
+   
+  
+  <!--  / order1  --> 
+  
+  <!--  / user  --> 
+  
+</div>
+<!--  / warpper  -->
+<div class="dizhi wxzf-box">
+    <div class="dizhi_bg"></div>
+    <div class="dizhi_con dizhi_con_weixin" style="width:320px;height:auto;margin:0px;top:30%;left:40%;">
+
+        <div class="ewm text-center">
+            <h5 style="margin-bottom:16px;">打开微信扫码支付</h5>
+            <img src="" id="weixin_erweima" width="150" title="打开微信扫一扫支付"/>
+            <h6>浙江美术网全心全意为您服务，让您省心放心，扫码即可支付！</h6>
+        </div>
+    </div>
+</div>
+<include file="Public/footer" />
+<script>
+    $(".pay-order").click(function (){
+        var post = {};
+        post.pay_way = $(".pro_xz").data('pay_way');
+
+        if(!post.pay_way){
+            dialog.showTips("请选择支付方式", "warn");return false;
+        }
+
+        if(post.pay_way==3){
+            alert("微信支付暂未开");
+            return false;
+        }
+        post.order_no = '{$order_no}';
+        post.crowd_id = '{$crowd_id}';
+        post.user_id  = '{$user_id}';
+        post.total_fee    = '{$total_fee}';
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Home/ArtCommunity/PayOrder')}",
+            data:post,
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                        var order_no = g.info;
+                    if("{$is_weixin}"=='1'){
+                        window.location.href="{:U('/Wxin/Index/weixinpay')}?url=http://{$_SERVER['HTTP_HOST']}/Wxin/CrowedPay/alipay/order_no/"+order_no;
+                    }else {
+                        window.location.href="/Wxin/CrowedPay/alipay/order_no/"+order_no;
+                    }
+                } else if(g.status == 2) {
+                    //dialog.showTips(g.info, "firm", function () {
+                    window.location.href=g.url;
+                    //});
+                }else if(g.status == 4) {
+                    //dialog.showTips(g.info, "firm", function () {
+                    window.location.href=g.info;
+                    //});
+                }else if(g.status == 3){
+                    order_id = g.order_id;
+                    $('#weixin_erweima').attr('src', g.url);
+                    $('.wxzf-box').stop(true).fadeIn(1000);
+                    setTimeout(function () {
+                        $('.dizhi_con_weixin').addClass('dizhi_con_on');
+                    }, 200)
+                    int = setInterval(function () {
+                        $.post("{:U('Home/ArtCommunity/order_status')}", {order_id: order_id},
+                            function (g) {
+                                if (g.status == 1) {
+                                    window.location.href = g.url;
+                                }
+                            })
+                    }, 1000);
+                } else {
+                    dialog.showTips(g.info, "warn");
+                }
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">details</p>
+    <h5>展 • 览 • 详 • 情 </h5>
+  </div>
+  <div class="newsdot" id="newsdot">
+    <div class="newsdot_topimg"> <img src="{$res.detail_img}" width="100%" class="hidden-xs"> </div>
+    <div class="newsdot_main" style="bottom: 0px; opacity: 1;">
+      <div class="newsdot_left">
+        <h4>发布时间：<span>{$res.create_time|date="Y-m-d",###}</span></h4>
+        <h4>作者：<span>{$res.auth}</span></h4>
+        <!--<h4>关键词：<span>书法家、</span><span>马科、</span><span>书法</span></h4>-->
+        <!--<h4>来源：<span>美术网</span></h4>-->
+        <h4>展览状态：<span><switch name="res.now_status">
+          <case value="0"><span style="font-size:20px;color:red;font-weight: bolder">筹备中</span></case>
+          <case value="1"><span style="font-size:20px;color:red;font-weight: bolder">展览中</span></case>
+          <case value="2"><span style="font-size:20px;color:red;font-weight: bolder">已结束</span></case>
+        </switch></span></h4>
+      </div>
+      <div class="newsdot_right">
+        <div class="newsdot_sectit">{$res.title}</div>
+        <h4>{$res.content|htmlspecialchars_decode|stripslashes}</h4>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div style="text-align:center; width:350px; margin:0 auto;">
+      <div class="newsdot_back" style="float: left;"> <a href="javascript:;" onclick="zhan(this)" style="background-color:#333" class="more_aa2">我要参展</a> </div>
+      <div class="newsdot_back" style="float: right;"> <a href="javascript:;" onclick="myFunction()" style="background-color:#333" class="more_aa2">我要观展</a> </div>
+<!--      <h4 class="peixunH peixunH4"><a href="javascript:;" id="{$v.id}" ><i class="fa fa-user-plus"></i>我要报名</a></h4>-->
+      <!--<a href="javascript:;" data-id="1" class="btnx" style="cursor:pointer;" onclick="zhan(this)">我要参展</a>-->
+      <!-- <a href="javascript:;" data-id="2" class="btnx" style="margin-right:0; cursor:pointer;" onclick="zhan(this)">我要办展</a>-->
+      <div style="clear: both"></div>
+    </div>
+    <!--<div class="newsdot_bot"> <a href="#"><strong>上一篇：</strong>没有了</a> <a href="#"><strong>下一篇：</strong>著名书画家李明先生偕同仁寒假前夕...</a> </div>-->
+    <!--<div class="newsdot_back"> <a href="javascript:history.back();" class="more_aa2">返回</a> </div>-->
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+
+<div class="canzhan_forma">
+  <div class="canzhan_form"> <img src="__IMAGES__/close.png" class="close canzhan_close" style="top:10px; right:10px;" />
+    <h3>观展报名</h3>
+    <div class="canzhan_xx">
+      <input type="hidden" name="show_id" value="{$_GET['id']}" id="show_id"/>
+      <p><span>姓名：</span>
+        <input type="text" name="name" id="name"/>
+      </p>
+      <p><span>手机号：</span>
+        <input type="text" name="tel" id="tel"/>
+      </p>
+      <p><span>邮箱：</span>
+        <input type="text" name="email" id="email"/>
+      </p>
+      <p><span>职业：</span>
+        <input type="text" name="job" id="job"/>
+      </p>
+      <a href="javascript:void(0)" class="zlxxtj">提交信息</a> </div>
+  </div>
+</div>
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+  function myFunction() {
+      $('.canzhan_forma').show();
+  }
+    function zhan(obj) {
+        var member_id = '{$member_id}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+        var status = "{$res.now_status}";
+        if(status == 2){
+            alert("展览已结束！");
+            return false;
+        }else if(status == 1){
+            alert("展览已经开始！");
+            return false;
+        }
+        window.location.href="{:U('/Home/ArtCommunity/exhibitors')}?id={$_GET['id']}";
+
+    }
+
+  $('.zlxxtj').click(function () {
+      var member_id = '{$member_id}';
+      if(member_id == 0){
+          dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+          return false;
+      }
+      var name = $.trim($('#name').val());
+      var tel  = $.trim($('#tel').val());
+      var email  = $.trim($('#email').val());
+      var job  = $.trim($('#job').val());
+      var show_id   = $('#show_id').val();
+      if(name == ""){
+          alert('姓名必填');
+          return false;
+      }
+      if(tel == ''){
+          alert('手机号必填');
+          return false;
+      }
+      if(email == ''){
+          alert('邮箱必填');
+          return false;
+      }
+      if(job == ''){
+          alert('职业必填');
+          return false;
+      }
+      if(!(/^1[34578]\d{9}$/.test(tel))){
+          alert('请输入正规手机号');
+          return false;
+      }
+      $.ajax({
+          url: "{:U('/Home/ArtCommunity/addgtrain')}",
+          type: "post",
+          dataType: "json",
+          data: {
+              name: name,
+              tel:  tel,
+              show_id:show_id,
+              email:email,
+              job:job
+          }
+      }).done(function (g) {
+          if (g.status == 1) {
+              alert(g.info);
+              window.location.reload();
+          } else {
+              alert(g.info);
+          }
+
+      })
+  })
+</script>
+</html>

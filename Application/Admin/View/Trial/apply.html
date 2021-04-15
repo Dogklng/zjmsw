@@ -1,0 +1,401 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<script type="text/javascript">
+
+    J(function(){
+        J('#starttime').calendar();
+        J('#endtime').calendar();
+    });
+
+</script>
+
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl" >
+    <h1 class="content-right-title">试用产品列表</h1>
+    
+    <form action="{:U('Admin/Trial/apply')}" method="post">
+        <div class="tables-searchbox">
+            <input type="text" placeholder="用户昵称 " class="input newinput" name="person_name" value="{$telephone}">
+            <input type="text" placeholder="手机号" class="input newinput" name="telephone" value="{$person_name}">
+            <input type="text"  name="start_time" id="starttime" value="" placeholder="订单起始时间" class="input Wdate mini" >
+            <span class="mgr5">至</span>
+            <input type="text"  name="end_time" value="" id="endtime" placeholder="订单结束时间" class="input Wdate mini" >
+           
+            <button class="btn btn-primary vtal-2"><i class="gicon-search white"></i>查询</button>
+        </div>
+    </form>
+    
+    <!-- end tabs -->
+    
+     <div class="tabs clearfix mgt10"> 
+     	<a href="{:U('/Admin/Trial/apply')}" class="<eq name="_GET['goods_status']" value="">active</eq> tabs_a fl">全部({$apply_all})</a> 
+     	<a href="{:U('/Admin/Trial/apply/goods_status/0')}" class="<eq name="_GET['goods_status']" value="0">active</eq> tabs_a fl">申请中({$apply_underway})</a> 
+     	<a href="{:U('/Admin/Trial/apply/goods_status/1')}" class="<eq name="_GET['goods_status']" value="1">active</eq> tabs_a fl">申请成功({$apply_sucess})</a> 
+     	<a href="{:U('/Admin/Trial/apply/goods_status/2')}" class="<eq name="_GET['goods_status']" value="2">active</eq> tabs_a fl">申请失败({$apply_fall})</a>   
+     </div>
+    
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+	      <col width="7%">
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="10%">
+	      <col width="3%">
+	      <col width="5%">
+	      <col width="8%">
+      </colgroup>
+    
+      <thead>
+        <tr class="po_list">
+        
+          <td>产品名称</td>
+          <td>产品logo</td>
+          <td>试用价格</td>  
+          <td>申请用户</td>
+          <td>手机号</td>
+          <td>申请时间</td>
+          <td>数量</td>
+          <td>是否通过</td>
+       <!--    <td>活动结束时间</td> -->
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <foreach name="trial_list" item="vo">
+          <tr>
+            
+         	<td>{$vo.trial_name}</td>
+         	
+            <td>
+                <div class="table-item-img"> <img src="{$vo['goods_img']}" alt=""> </div>
+                <div class="table-item-info" style="width: 100px"></div>
+            </td>
+            <td> {$vo.price} </td>
+            <td>{$vo.consignee}</td>
+            <td>{$vo.mobile}</td>
+             <td class="class_name">
+              <span>{$vo.goods_time}</span>
+            </td>
+            <td> {$vo.num} </td>
+             <td>
+            	<if condition="($vo.goods_status eq 1)">
+                    <span class="">通过</span>
+                    <elseif condition="$vo.goods_status eq 2" />
+                    <span class="">未通过</span>
+            	    <else/>
+            		<span class="">待审核</span>
+            	</if>
+            </td>
+            
+         <!--    <td class="class_name">
+              <span>{$vo.end_time}</span>
+            </td> -->
+            
+            <td>
+<!--                <if condition="$vo.goods_status eq 0">
+                    <a href="javascript:void (0);" class="btn change-goods_status btn-success" data-id="{$vo.id}">申请通过</a>
+                    <a href="javascript:void (0);" class="btn change-goods_status btn j-delClass btn-warning">申请不通过</a>
+                    <elseif condition="$vo.goods_status eq 1" />
+                    <a href="javascript:void (0);" class="btn-success " data-id="{$vo.id}">发货</a>
+                    <else/>
+
+                </if>-->
+                <if condition="$vo.goods_status eq 0">
+                    <a href="javascript:void (0);" class="btn change-goods_status btn-success" data-id="{$vo.id}" data-v="1">通过</a>
+                    <a href="javascript:void (0);" class="btn change-goods_status btn j-delClass btn-warning" data-id="{$vo.id}" data-v="2">拒绝</a>
+                    <a href="javascript:void(0)" class="btn btn-primary selected" data-id="{$vo.goods_id}">一键抽选</a>
+                    <elseif condition="$vo.goods_status eq 1" />
+                        <if condition="$vo.is_deliver eq 0">
+                            <a href="javascript:void (0);" class="btn btn-primary shipments" data-id="{$vo.id}">发货</a>
+                            <elseif condition="$vo.is_deliver eq 1" />
+                            已发货
+                            <else />
+                            已签收
+                        </if>
+                    <else/>
+                    申请已拒绝
+                </if>
+              <!-- <a href="{:U('/Admin/Trial/editTrial/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑</a> -->
+              <!--<a href="##" class="btn change-goods_status <eq name="vo['goods_status']" value="0"> btn-success <else /> btn j-delClass btn-warning </eq> " data-id="{$vo.id}"  title="申请通过">-->
+              		<!--<eq name="vo['goods_status']" value="0" >申请通过  <else /> 申请不通过 </eq>-->
+              <!--</a>-->
+             <!--  <a href="{:U('/Admin/Trial/delTrial/id')}/{$vo.id}" onclick="{if(!confirm('确定删除产品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">删除</a> -->
+            </td>           
+          </tr>
+        </foreach>
+        
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    
+     <div class="tables-btmctrl clearfix">
+      	<!--<div class="fl"> 
+        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> 
+        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a> 
+        <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a> -->
+       
+        <div class="fr"><br>
+        <?php if($trial_list):?>
+          	<div class="pages"> {$page} </div>
+        <?php endif;?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox editfenlei disshow quxiao faHuo" style="height:190px;top: 55%;">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">发货信息</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container">
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>快递公司：</label>
+            <div class="form-controls">
+
+                <select name="express_name" id="">
+                    <foreach name="express_list" item="vo">
+                        <option value="{$vo['express_ma']}">{$vo['express_company']}</option>
+                    </foreach>
+                </select>
+
+                <span class="fi-help-text"></span> </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>快递单号：</label>
+            <div class="form-controls">
+                <input type="text" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" class="input describe1" name="express_no">
+                <span class="fi-help-text"></span> </div>
+        </div>
+        <!-- <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>快递价格：</label>
+            <div class="form-controls">
+                <input type="text" class="input describe2" name="express_fee">
+                <span class="fi-help-text"></span> </div>
+        </div> -->
+        <div class="jbox-buttons" style="text-align:center;">
+            <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="fahuo">确定发货</a>
+            <a href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a>
+        </div>
+    </div>
+</div>
+
+<div class="jbox editfenlei disshow single" style="height:170px;top: 50%;">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">一键抽选</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container">
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>抽选人数：</label>
+            <div class="form-controls">
+                <input type="text" name="num" class="input" id="numberSelected">
+            </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>选择方式：</label>
+            <div class="form-controls">
+                <a href="javascript:void(0)" class="btn btn-success random_select" data-type="1" >按时间抽选</a>
+                <a href="javascript:void(0)" class="btn btn-success random_select" data-type="2" >随机抽选</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end container --> 
+
+<include file="Public:foot"/>
+<script>
+    $(".shipments").click(function(){
+        var id = $(this).attr("data-id");
+        $("#fahuo").attr("data-id",id);
+        $('.faHuo').show();
+        $("#albums-overlay").show();
+    });
+    $(".cancle").click(function(){
+        $('.faHuo').hide();
+        $('.single').hide();
+        $("#albums-overlay").hide();
+    });
+/* $(".change-status").click(function (){
+  var _this= $(this)
+  var id   = $(this).attr("data-id");
+  var item = $(this).attr("data-item");
+  $.post("{:U('Admin/Goods/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status == 1){
+      _this.css({color:"#0C0"}).html("√");
+    }else if(data.status == 2){
+      _this.css({color:"#c00"}).html("×");
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+}); */
+
+/* $(".change-all-status").click(function (){
+  if(!confirm("确定改变所有选中产品的状态？")){
+    return false;
+  }
+  var ids = "";
+  var item = $(this).attr("data-item");
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Goods/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+    if(data.status){
+      window.location.reload();
+    }else{
+      alert(data.info);
+    }
+  })
+}); */
+
+//搜索功能
+/* $("#buttons").click(function() {
+	$data = $("input[name=trial_name]").val();
+
+	$.get("{:U('Admin/Trial/apply')}", {trial_name : $data}, function(res){
+		//console.log(res);
+	});
+});
+ */
+
+//$(".change-goods_status").click(function () {
+//	
+//  var id   = $(this).attr("data-id");
+// 
+//  $.post("{:U('Admin/Trial/applyChangeStatus')}", {id : id}, function(data) {
+//    if (data.status == 1) {
+//      	//window.location.reload();
+//    } else {
+//      alert(data.info);
+//    }
+//  }, "json");
+//});
+
+    $(".change-goods_status").click(function () {
+
+        var id   = $(this).attr("data-id");
+        var val   = $(this).attr("data-v");
+        $.post("{:U('Admin/Trial/applyChangeStatus')}", {id : id,val :val}, function(data) {
+            if (data.status == 1) {
+                alert(data.info);
+                window.location.reload();
+            } else {
+                alert(data.info);
+            }
+        }, "json");
+    });
+
+//发货
+    $("#fahuo").click(function(){
+        var data = {};
+        var id   = $(this).attr("data-id");
+        data.express_name    = $.trim($("select[name=express_name]").val());
+        // data.express_fee     = $.trim($("input[name=express_fee]").val());
+        data.express_no         = $.trim($("input[name=express_no]").val());
+        if(!data.express_name){
+            alert("请选择物流公司！");return false;
+        }
+        if(!data.express_no){
+            alert("请填写快递单号！");return false;
+        }
+        data.id = id ;
+        alert(id)
+        $.ajax({
+            url:"{:U('Admin/Trial/goodsShipments')}",
+            type:'post',
+            data :data,
+            datatype : 'json',
+            success:function(data){
+                if(data.status==1){
+                    alert(data.info);
+                    window.location.reload();
+                }else{
+                    alert(data.info);
+                }
+            }
+        });
+    });
+
+/* $(".btn_table_delAll").click(function(){
+  if(!confirm("确定删除所有选中的产品？")){
+    return false;
+  }
+  var ids = "";
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Goods/delGoods')}" ,{ids:ids}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  })
+}) */
+</script>
+<script>
+    $(function () {
+        $(".selected").click(function () {
+            $('.single').show();
+            $("#albums-overlay").show();
+            var id = $(this).attr("data-id");
+            $(".random_select").attr("data-id",id);
+
+        });
+        $(".random_select").click(function () {
+            var type = $(this).attr("data-type");
+            var num  = $("#numberSelected").val();
+            var id   = $(this).attr("data-id");
+            if (id == null || id == '') {
+                alert("非法操作");
+                return false;
+            }
+            if (num == '' || num == null || num <= 0 || isNaN(num)) {
+                alert("请填写抽选人数");
+                return false;
+            }
+            if (!/^[0-9]+$/.test(num)) {
+                alert("请填写正确的抽选人数");
+                return false;
+            }
+            if (type == '' || type == null || isNaN(type)) {
+                alert("请选择抽选方式");
+                return false;
+            }
+            $('.single').hide();
+            $("#albums-overlay").hide();
+            $.ajax({
+                url: "{:U('/Admin/Trial/selected')}",
+                type: "post",
+                data: {type:type,num:num,id:id},
+                success: function (data) {
+                    if (data.status == 1) {
+                        alert(data.info);
+                        location.reload();
+                    } else {
+                        alert(data.info);
+                    }
+                }
+            })
+        })
+    })
+</script>

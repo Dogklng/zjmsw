@@ -1,0 +1,100 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__/lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">退保定金列表</h1>
+    <!--<a href="{:U('/Admin/Pm/addPm')}" class="btn btn-success">添加拍卖</a>-->
+    <form action="{:U('/Admin/Pm/pmTuiDJin')}" method="get">
+      <div class="tables-searchbox newcearchbox">
+
+        <input type="text" placeholder="姓名" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" class="input" name="name" value="{$title}" >
+        <!-- <input type="text" placeholder="商家编码" class="input" name="goods_no" value="" > -->
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+        <!--<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>-->
+        <!--产品导出</a>-->
+      </div>
+      <div class="tabs clearfix mgt10"> 
+        <a href="{:U('/Admin/Pm/pmTuiDJin')}" class="<eq name="_GET['is_sale']" value="">active</eq> tabs_a fl">全部({$counts})</a>
+        <!--<a href="{:U('/Admin/Pm/pmList/is_sale/1')}" class="<eq name="_GET['is_sale']" value="1">active</eq> tabs_a fl">出售中({$count1})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/2')}" class="<eq name="_GET['is_sale']" value="2">active</eq> tabs_a fl">下架中({$count2})</a>-->
+        <a href="{:U('/Admin/Pm/pmTuiDJin/is_sale/2')}" class="<eq name="_GET['is_sale']" value="2">active</eq> tabs_a fl">待处理({$count2})</a>
+        <a href="{:U('/Admin/Pm/pmTuiDJin/is_sale/4')}" class="<eq name="_GET['is_sale']" value="4">active</eq> tabs_a fl">已退款({$count4})</a>
+        <a href="{:U('/Admin/Pm/pmTuiDJin/is_sale/3')}" class="<eq name="_GET['is_sale']" value="3">active</eq> tabs_a fl">已抵扣({$count3})</a>
+
+
+
+      </div>
+    </form>
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+      <thead>
+        <tr class="po_list">
+          <td>订单信息</td>
+          <!--<td>发布者</td>-->
+          <td>拍卖状态</td>
+          <td>保定金</td>
+          <td>状态</td>
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="res" item="vo">
+          <tr>
+            <td><div class="goodswrap"> <!--<a href="javascript:void(0)" class="block" target="_blank" title="{$vo['goods_name']}">-->
+                <!--<div class="table-item-img"> <img src="{$vo['index_pic']}" alt=""> </div>-->
+                <div class="table-item-info" >
+                  用户：{$vo.name}<br />电话：{$vo.telephone}
+                </div>
+                </a> </div></td>
+            <!--<if condition="$vo.promulgator eq 1"><td>美术网平台</td></if>-->
+            <!--<td><if condition="($vo.is_shang eq 1)"> 上架
+              <else/>
+              下架</if></td>-->
+            <td>
+              <if condition="$vo['mai_id'] eq $vo['user_id']">成功拍下<else/>出局</if>
+            </td>
+            <td> ￥{$vo.baoding} </td>
+<!--0：未支付，1：已支付，2：拒绝退款，3：已退款-->
+            <td>
+                <eq name="vo['order_status']" value="1">待处理</eq>
+              <eq name="vo['order_status']" value="2">已抵扣</eq>
+              <eq name="vo['order_status']" value="3">已退款</eq>
+            </td>
+
+            <td>
+              <!--<a href="{:U('/Admin/Pm/editPm/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+                <a href="javascript:;" class="btn change-is_shang <eq name="vo['is_shang']" value="0">btn-success<else />btn-danger</eq>" data-id="{$vo.id}"><eq name="vo['is_shang']" value="0">上架<else />下架</eq></a>-->
+
+
+                <if condition="$vo['mai_id'] neq $vo['user_id']" >
+                <eq name="vo['order_status']" value="1"><a href="{:U('/Admin/Pm/TuiDJin/id')}/{$vo.id}" onclick="{if(!confirm('确定退款吗?'))return false;} " class="btn" style="background-color: green;border-color: green; color: white" >退款</a></eq>
+              <a href="{:U('/Admin/Pm/delPmDing/id')}/{$vo.id}" onclick="{if(!confirm('确定删除作品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除">删除</a>
+              </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <div class="fr">
+          <div class="pages"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+</div>
+
+  <script src="__JS__/jquery.js"></script>
+<!-- end container --> 
+<include file="Public:foot"/>

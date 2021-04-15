@@ -1,0 +1,141 @@
+<include file="Public:head"/>
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<!-- script type="text/javascript" src="__JS__/uploadPreview.min.js"></script -->
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript" src="__C_JS__/news.js"></script>
+
+<style type="text/css">
+	.imgnav{max-height: 30px;overflow: hidden;cursor: pointer;}
+	.imgwrapper{display: block;width: 78px;height: 78px;overflow: hidden;}
+	.imgwrapper img{display: block;width: 100%;padding: 0;margin: 0;border:0;}
+	.spanpd10{margin:10px;}
+	.wxtables.wxtables-sku.newtable{width: 40%;margin: 0;}
+	.img-list li{width: 60px;height:60px;}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+</style>
+
+<div class="container">
+  <div class="inner clearfix"> 
+  	<include file="Public:left"/>
+  	
+  	<form action = "{:U('Admin/About/doEditContribution')}" method="post" enctype="multipart/form-data" id="forms"  >
+  	 <input type="hidden" name="id" value="{$result.id}">
+  	 <div class="content-right fl">
+		<div class="panel-single panel-single-light mgt20">
+	          <h3 class="cst_h3 mgb20">贡献信息</h3>
+	     
+	     		 <div class="formitems">
+            		<label class="fi-name"><span class="colorRed">*</span>标题描述：</label>
+            		<div class="form-controls">
+              		<input type="text" class="input xxlarge" name="heads" id="goods_name" value="{$result.heads}">
+              		<span class="fi-help-text"></span> </div>
+          		 </div>
+          		 <div class="formitems">
+            		<label class="fi-name"><span class="colorRed">*</span>图片标题：</label>
+            		<div class="form-controls">
+              		<input type="text" class="input xxlarge" name="tilte" id="goods_name" value="{$result.tilte}">
+              		<span class="fi-help-text"></span> </div>
+          		 </div>
+          		 
+	          	<div class="formitems">
+	            	<label class="fi-name"><span class="colorRed">*</span>品牌 logo：</label>
+	            	<div class="form-controls pdt5 j-imglistPanel">
+	            		<div class="xuanze_showimge fl mgr10">
+	            			<img src="{$result.imgs}" style="width:100px;height:60px;" />
+	            			<input type="hidden" name="imgs" value="{$result.imgs}" />
+	            		</div>
+	               		<div class="btnimage fl">选择图片
+	                    	<input type="file" accept="image/jpg,image/jpeg,image/png" name="images" id="xuanze" class="file">                
+	                	</div>
+	                	<div class="duoxuan_progress fl mgr15" style="display:none">
+	                	 	<img src="__IMAGES__/loadings.gif" width="30" /><span class="multiple_percent">80%</span>
+	                	</div>
+                		<div style="clear:both"></div>
+                		<div class="multiple_showimge mgr10"></div>
+	            	</div>
+	     	 	</div>
+			</div>
+			
+			<div class="panel-single panel-single-light mgt20 j-showinhyd" style="display: block;">
+          		<h3 class="cst_h3 mgb20">贡献描述</h3>
+          		<div class="formitems">
+            		<label class="fi-name"><span class="colorRed">*</span>图片描述：</label>
+            		<div class="form-controls">
+              			<script id="editor" class="editors" name="text" type="text/plain" style="width:200px;height:500px;">
+							 {$result['text']|htmlspecialchars_decode|stripslashes}
+						</script>
+            		</div>
+          		</div>
+        	</div>
+        	
+			
+			<div class="panel-single panel-single-light mgt20 txtCenter">
+          		<a href="{:U('Admin/About/contribution')}" class="btn">取消</a>
+          		<input type="submit" class="btn btn-primary" value="保存">
+        	</div>
+		</div>
+	 </form>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+//输入判断
+	$("#forms").submit(function() {
+		var title,imgs,text,heads;
+		heads = $("input[name=heads]").val();
+		title = $("input[name=tilte]").val();
+		imgs  = $("input[name=imgs]").val();
+		text  = $("#editor").text();
+		
+		if (heads == '' || heads == null) {
+			alert("模块描述不能为空"); return false;
+		}
+		if (title == '' || title == null) {
+			alert("图片标题不能为空"); return false;
+		}
+		if (imgs == '' || imgs == null) {
+			alert("图片不能为空"); return false;
+		}
+		if (text == '' || text == null) {
+			alert("图片描述不能为空"); return false;
+		}
+	});
+</script>
+	
+<script type="text/javascript">
+	
+	UE.getEditor('editor',{
+	toolbars: [
+		['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+		],
+	autoHeightEnabled: false,
+	autoFloatEnabled: true,
+	elementPathEnabled:false,
+	enableContextMenu:false,
+	wordCount:false,
+	
+	});
+	
+	UE.getEditor('editor2',{
+	toolbars: [
+		['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+		],
+	
+	autoHeightEnabled: false,
+	autoFloatEnabled: true,
+	elementPathEnabled:false,
+	enableContextMenu:false,
+	wordCount:false,
+});
+	
+</script>
+

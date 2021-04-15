@@ -1,0 +1,137 @@
+<include file="Public:header" />
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="user_left">
+          <div class="user_tx">
+            <div class="hltx_img"> <img src="images/g01.1.png" width="100"></div>
+            <span>安格尔画廊</span> <a href="#">画廊预览</a> </div>
+          <div class="user_nav">
+            <ul>
+              <h5>画廊管理</h5>
+              <a href="hlgl.html">
+              <li class="user_nav_on">画廊资料</li>
+              </a> 
+              <!--<a href="hlcp.html">
+              <li>藏品管理</li>
+              </a>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-10">
+        
+        <div class="hlCon"><form aciton="{:U('/Home/PersonalCenter/zcGallery')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">
+          <div class="hlCpadding">
+            <h2>请选择店铺类型：</h2>
+            <div class="hlCselect">
+              <volist name="art_cate" id="v">
+             <span><input name="art_cate" id="{$v.id}" type="radio" /><label for="hlinp1">{$v.name}</label></span>
+              </volist>
+            </div>
+          </div>
+        </div>
+        <div class="hlCon">
+          <div class="hlCpadding">
+            <h2>请填写店铺信息：</h2>
+            <div class="hlCdiv clearfix">
+              <div class="hlCti">
+                <h6>画廊小标：</h6>
+              </div>
+              <div class="hlCnr"> <span>
+                <input type="file" name="logo_pic" id="logo_pic"/>
+                </span> <a href="javascript:;">上传</a> </div>
+            </div>
+            <div class="hlCdiv clearfix">
+              <div class="hlCti">
+                <h6>画廊名称：</h6>
+              </div>
+              <div class="hlCnr">
+                <input type="text" class="input" name="gallery_name" id="gallery_name" value=""/>
+              </div>
+            </div>
+            <div class="hlCdiv clearfix">
+              <div class="hlCti">
+                <h6>画廊描述：</h6>
+              </div>
+              <div class="hlCnr">
+                <input type="text" name="desc" value="一句话的事" onfocus="this.value=''" onblur="if(this.value==''){this.value='一句话的事'}"  />
+              </div>
+            </div>
+            <div class="hlCdiv clearfix">
+              <div class="hlCti">
+                <h6>成立时间：</h6>
+              </div>
+              <div class="hlCnr">
+                <input class="laydate-icon" id="demo" name="create_at" style="padding:0px 5px;width:220px;height:28px;line-height:30px;"/>
+              </div>
+            </div>
+            <div class="hlCdiv clearfix">
+              <div class="hlCti">
+                <h6>画廊环境：</h6>
+              </div>
+              <div class="hlCnr"> <span>
+                <input type="file" name="index_pic" id="index_pic"/>
+                </span> <a href="javascript:;">上传</a> </div>
+            </div>
+            <div class="hlCdiv clearfix">
+              <div class="hlCti">
+                <h6>画廊简介：</h6>
+              </div>
+              <div class="hlCnr">
+                <textarea></textarea>
+              </div>
+            </div>
+            <div class="SelNoticeStyle hlCdiv">
+              <h4><input type="submit" class="btn btn-primary" value="确认修改"></h4>
+            </div>
+          </div></form>
+        </div>
+     
+      </div> 
+    </div>
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<!--  / warpper  --> 
+<include file="Public/footer" />
+
+
+</body>
+</html>
+<script type="text/javascript" src="js/jeDate/jedate.js"></script>
+<script type="text/javascript">
+
+$(window).load(function(){
+  var widthshijin = $('#dateinfo').width();
+  $('.jedatebox').width(widthshijin-2);
+
+})
+
+jeDate({
+    dateCell:"#dateinfo",
+    format:"YYYY年MM月DD日",
+    isinitVal:true,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+
+</script>
+ <script type="text/javascript">
+  function toVaild(){
+    var goods_name = $('#goods_name').val();
+    if(goods_name == ''){
+        alert('作品名不能为空！');
+        return false;
+    }
+  }
+</script>

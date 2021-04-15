@@ -1,0 +1,90 @@
+<include file="Public:header" />
+
+<div class="ban1">
+  <div class="banner_img"> <img src="{$num['backg_pic']|default=$images['pic']}" alt="" /> </div>
+  <div class="banpY">
+      <div class="banpYbox">
+        <div class="banner-info banner-status-over">
+          <div class="info-top">
+            <p class="over-flag">拍卖结果</p>
+          </div>
+          <div class="info-bottom">
+            <div class="info-desc">
+              <p class="info-org"> <span>组织机构:</span><a target="_blank" href="{:U('/')}">美术网平台 &gt;</a> </p>
+            </div>
+          </div>
+          <div class="info-bottom">
+            <h3 class="sqrzH3"><a onclick="return ruzhu()" href='javascript:;'>申请入驻拍卖</a></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Auction results</p>
+    <h5>拍 • 卖 • 结 • 果</h5>
+  </div>
+  <div class="main">
+    <div class="left-main">
+      <div class="row">
+        <foreach name="res" item="vo">
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="left-store"> <a href='{:U("Home/Pm/pmxq/id")}/{$vo["id"]}' target="_blank">
+              <div class="store">
+                <div class="store_img"> <img src="{$vo.index_pic}"/>
+                  <div class="store_position">
+                    <if condition="$vo['paimai_zt'] eq 2">
+                      <img src="__IMAGES__/liupai.png" alt="" />
+                      <elseif condition="$vo['paimai_zt'] eq 3"/>
+                  <img src="__IMAGES__/yichengjiao.png" alt="" />
+                    </if>
+                  </div>
+                </div>
+                <div class="store-det">
+                  <h3>{$vo.goods_name}</h3>
+                  <h4><b>当前价格</b>￥{$vo.dangqian}</h4>
+                  <span class="cishu">出价次数：<b>{$vo.chujia|default=0}</b></span> <span class="cishu">围观数：<b>{$vo.weiguan|default=0}</b></span> </div>
+              </div>
+            </a> </div>
+          </div>
+        </foreach>
+      </div>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+    function ruzhu() {
+        var member_id = '{$name}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Home/Pm/isRuZhu')}",
+            type: "get",
+            dataType: "json",
+            data:'',
+            success:function(msg){
+                //console.log(msg);
+                if (msg.status==1){
+                    alert( msg.info);
+                    return false;
+                }else{
+                    location.href="{:U('Home/Pm/paimaiRuzhu')}";
+                }
+            }
+        })
+    }
+</script>
+</html>

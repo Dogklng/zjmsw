@@ -1,0 +1,135 @@
+<include file="Public:header" />
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="SellerCon">
+          <div class="SellerTop">
+            <h3>入驻预售美术网平台</h3>
+          </div>
+          <div class="SellerFlower">
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>1</span>
+                  <h3 class="paiUncenter_h3">签署协议</h3>
+                </div>
+              </div>
+              <!--<div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>2</span>
+                  <h3 class="paiUncenter_h3">账号类型</h3>
+                </div>
+              </div>-->
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>2</span>
+                  <h3 class="paiUncenter_h3">选择类目</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>3</span>
+                  <h3 class="paiUncenter_h3">提交资料</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist SellerFlistCurr"> <span>4</span>
+                  <h3 class="paiUncenter_h3">审核</i></h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>5</span>
+                  <h3 class="paiUncenter_h3 paiCH3">缴纳保证金，<br />入驻成功</h3>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="pZlCon">
+              <div class="SelAudCon">
+              <div class="SelAudPic">
+               <img src="__IMAGES__/SelAudPic2.png">
+              </div>
+              <div class="SelAudTxt">
+               <div class="SellerTop SelIdTop">
+                <p>亲爱的{$res.user_name}，您的身份</p>
+                <h3>
+                  <switch name="res.shenhe">
+                    <case value="1">待认证中</case>
+                    <case value="2">已通过认证</case>
+                    <case value="3">认证失败</case>
+                  </switch>
+                </h3>
+               </div>
+               <h6>根据《网络交易管理办法》的规定，美术网将定期或不定期复核您的身份信息。请确保您账号绑定的身份信息真实有效，并确保账号为本人使用，请勿向他人转让、出租和借用账号。</h6>
+              </div>
+             </div>
+            </div>
+          </div>
+        </div>
+        <div class="SelAud1Info clearfix">
+          <input type="hidden" id="shenhe" value="{$res.shenhe}">
+          <if condition="$res.shenhe eq 1"><h2 >请耐心等待：<a href="{:U('Home/Pm/paimaiS')}">跳转到预售页</a></h2></if>
+          <if condition="$res.shenhe eq 2"><h2 >请先缴纳保证金：<a id="jl" href='javascript:;' onclick="shenhe()">立即缴纳</a></h2></if>
+          <if condition="$res.shenhe eq 3"><h2 ><a href='javascript:;' onclick="xgruzhu()">修改入驻资料</a></h2></if>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<script>
+  $(function () {
+      var shenhe = $('#shenhe').val();
+      if (shenhe==2){
+          $('.SelAudPic').addClass('SelAudPic1');
+          $('#jl').attr('style','background-color: red;');
+      }
+  })
+
+
+  function shenhe() {
+      var shenhe = $('#shenhe').val();
+      if (shenhe==1){
+          alert('请耐心等待');
+          location.href="{:U('Home/Pm/paimaiS')}";
+      }
+
+      if (shenhe==2){
+          location.href="{:U('Home/Pm/paiBaozj')}";
+      }
+
+      if (shenhe==3){
+          alert('抱歉你的审核未通过');
+          location.href="{:U('Home/Pm/paimaiS')}";
+      }
+  }
+
+  function xgruzhu() {
+      $.ajax({
+          url: "{:U('/Home/Pm/xgruzhu')}",
+          type: "get",
+          dataType: "json",
+          data: '',
+          success:function(msg){
+              //console.log(msg);
+              if (msg.status==1){
+                  //alert( msg.info);
+                  location.href="{:U('Home/Pm/paimaiRuzhu')}";
+              }else{
+                  alert( msg.info);
+              }
+          }
+      })
+  }
+</script>
+
+</body>
+
+</html>

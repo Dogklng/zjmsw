@@ -1,0 +1,64 @@
+<include file="Public:header" />
+<div class="dianpu_box">
+  <div class="SellerCon">
+    <div class="SellerTop">
+      <h3>创建店铺</h3>
+    </div>
+    <div class="SellerFlower">
+      <div class="paiuncenter_one">
+        <h3>免费入驻</h3>
+        <p class="activedp">申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+      </div>
+      <div class="SellerFlist SellerFlistCurr"> <span>1</span>
+        <h3 class="paiUncenter_h3">选择入驻类型</h3>
+      </div>
+      <div class="clear"></div>
+      <div class="dianpu_usertype">
+        <ul>
+          <foreach name="res" item="vo">
+            <li><label for="article"><input type="radio" name="Cates" data-id="{$vo.id}" value="{$vo.id}" class="dianpuuser_type" id="article">{$vo.name}</label></li>
+          </foreach>
+        </ul>
+      </div>
+      <div class="SelNoticeStyle">
+            
+            <h4><a href="{:U('Wxin/PersonalCenter/user')}" style="background:#ccc;">上一步</a> <a href='javascript:;' id="next">下一步</a></h4>
+          </div>
+    </div>
+  </div>
+</div>
+
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+<script>
+  $('#next').click(function(){
+    var id = $('input[name="Cates"]:checked').val();
+    console.log(id);
+    //alert(id);return false;
+    if(id == undefined){
+      alert("请选择入驻类型");
+      return false;
+    }
+    //alert(id);return false;
+    $.ajax({
+      url:"/Wxin/Shop/index",
+      data:{id:id},
+      dataType:"json",
+      type:"post",
+      success:function(g){
+        if(g.status == 1){
+          console.log(g);
+          alert(g.info);
+          window.location.href=g.url;
+        }else{
+          alert(g.info);
+          window.location.reload();
+          return false;
+        }
+      }
+    })
+  })
+</script>
+</body>
+</html>

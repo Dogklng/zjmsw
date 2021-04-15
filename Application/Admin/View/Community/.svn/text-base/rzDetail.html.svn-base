@@ -1,0 +1,956 @@
+<include file="Public:head"/>
+
+<style>
+        .imgnav{
+            max-height: 30px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .imgwrapper{
+            display: block;
+            width: 78px;
+            height: 78px;
+            overflow: hidden;
+        }
+        .imgwrapper img{
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border:0;
+        }
+				#l-map{height:300px;width:100%;}
+        .spanpd10{
+            margin:10px;
+        }
+        .wxtables.wxtables-sku.newtable{
+            width: 40%;
+            margin: 0;
+        }
+        .img-list li{
+            width: 60px;
+            height:60px;
+        }
+        .cst_h3 span{font-weight: normal;}
+        .formitems .fi-name {
+            float: left;
+            width: 150px;
+            text-align: right;
+            color: #333;
+        }
+        select {
+            height: 30px;
+            line-height: 30px;
+            width: 13%;
+            border: 1px solid #ccc;
+            background: #fff;
+            margin-bottom: 5px;
+        }
+        .imgnav{
+            max-height: 30px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .imgwrapper{
+            display: block;
+            width: 78px;
+            height: 78px;
+            overflow: hidden;
+        }
+        .imgwrapper img{
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border:0;
+        }
+        .spanpd10{
+            margin:10px;
+        }
+        .wxtables.wxtables-sku.newtable{
+            width: 40%;
+            margin: 0;
+        }
+        .img-list li{
+            width: 60px;
+            height:60px;
+        }
+        .cst_h3 span{font-weight: normal;}
+        #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+        .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+        .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+        #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+        #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+        #xuanze2:hover{ background:#E6E6E6; }
+        .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+    </style>
+
+<div class="container">
+<div class="inner clearfix">
+        <include file="Public:left" />
+<!-- end content-left -->
+
+<div class="content-right fl">
+ 
+
+    <h1 class="content-right-title">查看详情</h1>
+    
+    
+<input type="hidden" id="j-isSid" value="0"><!-- 是否选择了淘宝类目 -->
+<input type="hidden" id="j-hasNorms" value="1"><!-- 淘宝类目下是否有属性 -->
+<input type="hidden" id="supplier" value="">
+        <if condition="$res.type eq 1">
+        <div class="panel-single panel-single-light mgt20" id="'rz2">
+            <h3 class="cst_h3 mgb20">个人信息</h3>
+            <div>
+                <div class="formitems">
+                    <label class="fi-name">姓名：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        <input type="text" name="name" class="input" value="{$res.name}" >
+
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems" style="padding-top:-5px">
+                    <label class="fi-name">手机号：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        <input type="text" name="tel" class="input" value="{$res.tel}" >
+                        <span class="fi-help-text"></span></div>
+                </div>
+
+                <div class="formitems">
+                    <label class="fi-name">身份证号：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        <input type="text" name="f_card" class="input" value="{$res.f_card}" >
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">地址：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        <select id="s_province" name="s_province">
+                        </select>
+                        <select id="s_city" name="s_city">
+                        </select>
+                        <select id="s_county" name="s_county">
+                        </select>
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">详细地址：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        <input type="text" name="address" class="input" value="{$res.address}" >
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">身份证(正面)：</label>
+                    <div class="form-controls pdt5 j-imglistPanel">
+                        <div class="show_file1 fl mgr10">
+                            <img onclick="imgs(this)" src="{$res.f_zpic}" height="80" alt="">
+                            <input type="hidden" name="f_zpic" class="input" value="{$res.f_zpic}" >
+                        </div>
+                        <div class="btnimage fl">选择图片
+                            <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file1" id="file1" class="file" >
+                        </div>
+                        <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                        </div>
+                        <span class="fi-help-text fl lh30 mgl10"><b class="percent_file1"></b></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">身份证(反面)：</label>
+                    <div class="form-controls pdt5 j-imglistPanel">
+                        <div class="show_file2 fl mgr10">
+                            <img onclick="imgs(this)" src="{$res.f_fpic}" height="80" alt="">
+                            <input type="hidden" name="f_fpic" class="input" value="{$res.f_fpic}" >
+                        </div>
+                        <div class="btnimage fl">选择图片
+                            <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file2" id="file2" class="file" >
+                        </div>
+                        <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                        </div>
+                        <span class="fi-help-text fl lh30 mgl10"><b class="percent_file2"></b></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">企业名：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        <input type="text" name="qy_name" class="input" value="{$res.qy_name}" >
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">单位营业执照号：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        <input type="text" name="qy_zhi" class="input" value="{$res.qy_zhi}" >
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">单位营业执照图片：</label>
+                    <div class="form-controls pdt5 j-imglistPanel">
+                        <div class="show_file5 fl mgr10">
+                            <img onclick="imgs(this)" src="{$res.qy_zhipic}" height="80" alt="">
+                            <input type="hidden" name="qy_zhipic" class="input" value="{$res.qy_zhipic}" >
+                        </div>
+                        <div class="btnimage fl">选择图片
+                            <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file5" id="file5" class="file" >
+                        </div>
+                        <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                        </div>
+                        <span class="fi-help-text fl lh30 mgl10"><b class="percent_file5"></b></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">组织机构代码证号：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        <input type="text" name="zhuz_jigou" class="input" value="{$res.zhuz_jigou}" >
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">组织机构代码证图片：</label>
+                    <div class="form-controls pdt5 j-imglistPanel">
+                        <div class="show_file6 fl mgr10">
+                            <img onclick="imgs(this)" src="{$res.zhuz_pic}" height="80" alt="">
+                            <input type="hidden" name="zhuz_pic" class="input" value="{$res.zhuz_pic}" >
+                        </div>
+                        <div class="btnimage fl">选择图片
+                            <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file6" id="file6" class="file" >
+                        </div>
+                        <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                        </div>
+                        <span class="fi-help-text fl lh30 mgl10"><b class="percent_file6"></b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="panel-single panel-single-light mgt20" id="'rz2">
+        <h3 class="cst_h3 mgb20">入驻信息</h3>
+        <div>
+            <div class="formitems">
+                <label class="fi-name">机构名：</label>
+                <div class="form-controls" style="padding-top:-5px">
+                    <input type="text" name="zy_name" class="input" value="{$res.zy_name}" >
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name">口号：</label>
+                <div class="form-controls" style="padding-top:-5px">
+                    <input type="text" name="detail" class="input" value="{$res.detail}" >
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name">logo：</label>
+                <div class="form-controls pdt5 j-imglistPanel">
+                    <div class="show_file3 fl mgr10">
+                        <img onclick="imgs(this)" src="{$res.logo_pic}" height="80" alt="">
+                        <input type="hidden" name="logo_pic" class="input" value="{$res.logo_pic}" >
+                    </div>
+                    <div class="btnimage fl">选择图片
+                        <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file3" id="file3" class="file" >
+                    </div>
+                    <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                    </div>
+                    <span class="fi-help-text fl lh30 mgl10"><b class="percent_file3"></b>建议大小(宽182px高119px)</span>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name">机构背景图：</label>
+                <div class="form-controls pdt5 j-imglistPanel">
+                    <div class="show_file7 fl mgr10">
+                        <img onclick="imgs(this)" src="{$res.gallery_index}" height="80" alt="">
+                        <input type="hidden" name="gallery_index" class="input" value="{$res.gallery_index}" >
+                    </div>
+                    <div class="btnimage fl">选择图片
+                        <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file7" id="file7" class="file" >
+                    </div>
+                    <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                    </div>
+                    <span class="fi-help-text fl lh30 mgl10"><b class="percent_file7"></b>建议大小(宽473px高154px)</span>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name">机构大图：</label>
+                <div class="form-controls pdt5 j-imglistPanel">
+                    <div class="show_file8 fl mgr10">
+                        <img onclick="imgs(this)" src="{$res.index_pic}" height="80" alt="">
+                        <input type="hidden" name="index_pic" class="input" value="{$res.index_pic}" >
+                    </div>
+                    <div class="btnimage fl">选择图片
+                        <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file8" id="file8" class="file" >
+                    </div>
+                    <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                    </div>
+                    <span class="fi-help-text fl lh30 mgl10"><b class="percent_file8"></b>建议大小(宽622px高475px)</span>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name">成立时间：</label>
+                <div class="form-controls" style="padding-top:-5px">
+                    <input type="text" name="shop_at" class="input" value="{$res.shop_at}" >年
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+            <if condition="$res.style neq 0">
+            <div class="formitems">
+                <label class="fi-name">类别：</label>
+                <div class="form-controls" style="padding-top:-5px">
+                    <select name="style">
+                        <option value="1" <eq name="res.style" value="1">selected</eq>>传统</option>
+                        <option value="2" <eq name="res.style" value="2">selected</eq>>当代</option>
+                        <option value="3" <eq name="res.style" value="3">selected</eq>>其他</option>
+                    </select>
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+            </if>
+            <div class="formitems">
+                <label class="fi-name">简介：</label>
+                <div class="form-controls" style="padding-top:-5px">
+                    <textarea name="desc" style="height: 200px;width: 400px">{$res.desc|htmlspecialchars_decode|stripslashes}</textarea>
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+            <else/>
+            <div class="panel-single panel-single-light mgt20" id="'rz2">
+                <h3 class="cst_h3 mgb20">个人信息</h3>
+                <div>
+                    <div class="formitems">
+                        <label class="fi-name">姓名：</label>
+                        <div class="form-controls" style="padding-top:-5px">
+                            <input type="text" name="name" class="input" value="{$res.name}" >
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+                    <div class="formitems" style="padding-top:-5px">
+                        <label class="fi-name">手机号：</label>
+                        <div class="form-controls" style="padding-top:-5px">
+                            <input type="text" name="tel" class="input" value="{$res.tel}" >
+                            <span class="fi-help-text"></span></div>
+                    </div>
+                    <!--<div class="formitems">
+                        <label class="fi-name">证件类型：</label>
+                        <div class="form-controls" style="padding-top:-5px">
+                            <if condition="$res2.type eq 0">二代身份证</if>
+                            <if condition="$res2.type eq 1">临时身份证</if>
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>-->
+                    <div class="formitems">
+                        <label class="fi-name">身份证号：</label>
+                        <div class="form-controls" style="padding-top:-5px">
+                            <input type="text" name="f_card" class="input" value="{$res.f_card}" >
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name">居住地址：</label>
+                        <div class="form-controls" style="padding-top:-5px">
+                            <select id="s_province" name="s_province">
+                            </select>
+                            <select id="s_city" name="s_city">
+                            </select>
+                            <select id="s_county" name="s_county">
+                            </select>
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name">详细地址：</label>
+                        <div class="form-controls" style="padding-top:-5px">
+                            <input type="text" name="address" class="input" value="{$res.address}" >
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name">身份证(正面)：</label>
+                        <div class="form-controls pdt5 j-imglistPanel">
+                            <div class="show_file1 fl mgr10">
+                                <img onclick="imgs(this)" src="{$res.f_zpic}" height="80" alt="">
+                                <input type="hidden" name="f_zpic" class="input" value="{$res.f_zpic}" >
+                            </div>
+                            <div class="btnimage fl">选择图片
+                                <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file1" id="file1" class="file" >
+                            </div>
+                            <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                            </div>
+                            <span class="fi-help-text fl lh30 mgl10"><b class="percent_file1"></b></span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name">身份证(反面)：</label>
+                        <div class="form-controls pdt5 j-imglistPanel">
+                            <div class="show_file2 fl mgr10">
+                                <img onclick="imgs(this)" src="{$res.f_fpic}" height="80" alt="">
+                                <input type="hidden" name="f_fpic" class="input" value="{$res.f_fpic}" >
+                            </div>
+                            <div class="btnimage fl">选择图片
+                                <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file2" id="file2" class="file" >
+                            </div>
+                            <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                            </div>
+                            <span class="fi-help-text fl lh30 mgl10"><b class="percent_file2"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-single panel-single-light mgt20" id="'rz2">
+                <h3 class="cst_h3 mgb20">入驻信息</h3>
+                <div>
+                    <div class="formitems">
+                        <label class="fi-name">主页名称：</label>
+                        <div class="form-controls" style="padding-top:-5px">
+                            <input type="text" name="zy_name" class="input" value="{$res.zy_name}" >
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name">等级：</label>
+                        <div class="form-controls" style="padding-top:-5px">
+                            <select name="level">
+                                <volist name="level_list" id="v">
+                                    <option value="{$v.id}" <eq name="res.level" value="$v.id">selected</eq>>{$v.level_name}</option>
+                                </volist>
+                            </select>
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name">logo：</label>
+                        <div class="form-controls pdt5 j-imglistPanel">
+                            <div class="show_file3 fl mgr10">
+                                <img onclick="imgs(this)" src="{$res.logo_pic}" height="80" alt="">
+                                <input type="hidden" name="logo_pic" class="input" value="{$res.logo_pic}" >
+                            </div>
+                            <div class="btnimage fl">选择图片
+                                <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file3" id="file3" class="file" >
+                            </div>
+                            <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                            </div>
+                            <span class="fi-help-text fl lh30 mgl10"><b class="percent_file3"></b>建议大小（宽368px 高434px）</span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name">主页图片：</label>
+                        <div class="form-controls pdt5 j-imglistPanel">
+                            <div class="show_file4 fl mgr10">
+                                <img onclick="imgs(this)" src="{$res.zy_pic}" height="80" alt="">
+                                <input type="hidden" name="zy_pic" class="input" value="{$res.zy_pic}" >
+                            </div>
+                            <div class="btnimage fl">选择图片
+                                <input type="file"  accept="image/jpg,image/jpeg,image/png" name="file4" id="file4" class="file" >
+                            </div>
+                            <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                            </div>
+                            <span class="fi-help-text fl lh30 mgl10"><b class="percent_file4"></b>建议大小（宽270px 高425px）</span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name">个人简介：</label>
+                        <div class="form-controls" style="padding-top:-5px">
+                            <textarea name="desc" style="height: 200px;width: 400px">{$res.desc|htmlspecialchars_decode|stripslashes}</textarea>
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </if>
+
+<!-- end 基本信息 -->
+
+
+<!-- end 详情及其它 -->
+
+
+<div class="panel-single panel-single-light mgt20 txtCenter">
+    <if condition="$res.ruzhu_status lt 4">
+    <a href="javascript:;" class="btn btn-primary huifu" id="btn" data-id="{$res.id}">审核</a>
+    </if>
+    <a href="javascript:;" class="btn btn-primary" data-id="{$res.id}" onclick="toVaild()">保存</a>
+    <a href="javascript:history.back()" class="btn">返回</a>
+
+
+</div>
+
+
+
+</div>
+<!-- end content-right -->
+</div>
+</div>
+
+
+<div class="jbox1 editfenlei disshow" style=" width:700px; left: 40%;top: 35%; height:auto; overflow: visible;">
+    <!--<span style="color: red">点击图片隐藏</span>-->
+    <img onclick="cancle()" id="img" src="" width="100%" height="100%">
+</div>
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="height:auto; overflow: visible;">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">店铺审核</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 140px;overflow: visible;">
+        <div class="formitems">
+            <input type="hidden" class="input sort" name="commentId" id="commentId" >
+            <label><span class="colorRed">*</span>内容：</label>
+
+            <div class="form-controls">
+                <textarea style="width: 200px;height: 100px;margin-left: -30px;" id="content"></textarea>
+                <span class="fi-help-text"></span>
+                <span id="spaid" style="color:red;"></span>
+            </div>
+        </div>
+
+    </div>
+    <div class="jbox-buttons">
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">通过</a>
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn " id="disagree" style="background-color: red;border-color: red; color: white">拒绝</a>
+        <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script>
+    $(function () {
+        var percent1 = $('.percent_file1');
+        var percents1 = $('.percent_file1');
+        $("#file1").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#file1").change(function(){ //选择文件
+            $("#myupload1").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    percents1.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent1.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent1.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img onclick="imgs(this)" src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="f_zpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/>';
+                    $('.show_file1').html(img);
+                    percents1.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+
+        var percent2 = $('.percent_file2');
+        var percents2 = $('.percent_file2');
+        $("#file2").wrap("<form id='myupload2' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#file2").change(function(){ //选择文件
+            $("#myupload2").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    percents2.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent2.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent2.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img onclick="imgs(this)" src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="f_fpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/>';
+                    $('.show_file2').html(img);
+                    percents2.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+
+        var percent3 = $('.percent_file3');
+        var percents3 = $('.percent_file3');
+        $("#file3").wrap("<form id='myupload3' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#file3").change(function(){ //选择文件
+            $("#myupload3").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    percents3.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent3.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent3.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img onclick="imgs(this)" src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="logo_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/>';
+                    $('.show_file3').html(img);
+                    percents3.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+
+        var percent4 = $('.percent_file4');
+        var percents4 = $('.percent_file4');
+        $("#file4").wrap("<form id='myupload4' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#file4").change(function(){ //选择文件
+            $("#myupload4").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    percents4.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent4.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent4.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img onclick="imgs(this)" src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="zy_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/>';
+                    $('.show_file4').html(img);
+                    percents4.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+
+        var percent5 = $('.percent_file5');
+        var percents5 = $('.percent_file5');
+        $("#file5").wrap("<form id='myupload5' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#file5").change(function(){ //选择文件
+            $("#myupload5").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    percents5.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent5.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent5.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img onclick="imgs(this)" src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="qy_zhipic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/>';
+                    $('.show_file5').html(img);
+                    percents5.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+
+        var percent6 = $('.percent_file6');
+        var percents6 = $('.percent_file6');
+        $("#file6").wrap("<form id='myupload6' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#file6").change(function(){ //选择文件
+            $("#myupload6").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    percents6.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent6.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent6.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img onclick="imgs(this)" src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="zhuz_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/>';
+                    $('.show_file6').html(img);
+                    percents6.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+
+        var percent7 = $('.percent_file7');
+        var percents7 = $('.percent_file7');
+        $("#file7").wrap("<form id='myupload7' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#file7").change(function(){ //选择文件
+            $("#myupload7").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    percents7.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent7.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent7.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img onclick="imgs(this)" src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="gallery_index" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/>';
+                    $('.show_file7').html(img);
+                    percents7.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+
+        var percent8 = $('.percent_file8');
+        var percents8 = $('.percent_file8');
+        $("#file8").wrap("<form id='myupload8' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#file8").change(function(){ //选择文件
+            $("#myupload8").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    percents8.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent8.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent8.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img onclick="imgs(this)" src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="index_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/>';
+                    $('.show_file8').html(img);
+                    percents8.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+
+
+</script>
+<script class="resources library" src="__JS__/area.js" type="text/javascript"></script>
+<script type="text/javascript">_init_area();</script>
+<!-- end container -->
+
+<!--gonggao-->
+<div class="footer">© 2017 艺术网 , Inc. All rights reserved.</div>
+<!-- end footer -->
+<div class="fixedBar" style="left: 1321px; height: 285px; top: 76px; margin-top: 0px;">
+    <!--<ul>
+        <li class="shopManager0 cur"><a href="javascript:;" data-target="#shop_0">店铺管理</a></li><li class="shopManager1"><a href="javascript:;" data-target="#shop_1">自定义专题</a></li><li class="shopManager2"><a href="javascript:;" data-target="#shop_2">商品管理</a></li><li class="shopManager3"><a href="javascript:;" data-target="#shop_3">分组管理</a></li><li class="shopManager4"><a href="javascript:;" data-target="#shop_4">批量导入</a></li><li class="shopManager5"><a href="javascript:;" data-target="#shop_5">订单管理</a></li><li class="shopManager6"><a href="javascript:;" data-target="#shop_6">售后服务</a></li><li class="shopManager8"><a href="javascript:;" data-target="#shop_8">会员管理</a></li><li class="shopManager7"><a href="javascript:;" data-target="#shop_7">分销商</a></li><li class="shopManager9"><a href="javascript:;" data-target="#shop_9">分销财务</a></li>        </ul>-->
+</div>
+<a href="#" id="j-gotop" class="gotop" title="回到顶部" style="left: 1322.5px;"></a>
+<!-- end gotop -->
+
+
+
+
+<!--end front template  -->
+<script src="__JS__/daterangepicker/unohacha.js"></script>
+<script src="__JS__/jquery.jbox-min.js"></script>
+<script src="__JS__/jquery.zclip-min.js"></script>
+<!-- 线上环境 -->
+<script src="__JS__/component-min.js"></script>
+<script src="__JS__/scroll.js"></script>
+<script src="__JS__/echarts.min.js"></script>
+<!--[if lt IE 10]>
+<script src="./__JS__/jquery.placeholder-min.js"></script>
+<script>
+    $(function(){
+        //修复IE下的placeholder
+        $('.input,.textarea').placeholder();
+    });
+</script>
+<![endif]-->
+
+
+<script>
+    $(function(){
+        $(".j-copy").zclip({
+            path: '/Public/plugins/zclip/ZeroClipboard.swf',
+            copy: function(){
+                return $(this).data('copy');
+            },
+            afterCopy:function(){
+                HYD.hint("success","内容已成功复制到您的剪贴板中");
+            }
+        });
+        $(".btn-notice").click(function(){
+            // $.post('/System/readAllNotice',{},function(){
+            //     window.location.reload();
+            // })
+            $.ajax({
+                url: '/System/readAllNotice',
+                type: 'POST',
+                success:function(data){
+                    if(data.status == 1){
+                        window.location.reload();
+                    }else{
+                        HYD.hint("danger",data.msg);
+                    }
+
+                }
+            })
+        });
+
+
+        ;(function(){
+            // 首页竖线到底
+            var height1=$(".content-right").height();
+            var height2=$(".content-left").height();
+            if(parseInt(height1) < parseInt(height2)){
+                $(".content-right").css({'min-height': height2});
+            };
+
+        })();
+
+    });
+</script>
+<!-- end session hint -->
+
+<script>
+    $(function () {
+        setTimeout(gggoup(),5000);
+        $('.gound_close').click(function(){
+            $('#gonggao').animate({bottom:"-270px"},1000);
+        });
+    });
+    function gggoup(){
+        $('#gonggao').animate({bottom:"3px"},1000);
+    };
+</script>
+
+
+</body></html>
+<script>
+    var province = "{$res['s_province']}";
+    var city = "{$res['s_city']}";
+    var district = "{$res['s_county']}";
+    $("#s_province option").each(function () {
+        if ($(this).val() == province) {
+            $(this).attr('selected', true);
+        }
+    });
+    $('#s_city').html("");
+    $('#s_county').html("");
+    var _ct = "<option value=" + city + " >" + city + "</option>";
+    var _dt = "<option value=" + district + ">" + district + "</option>";
+    $('#s_city').append(_ct);
+    $('#s_county').append(_dt);
+
+    function imgs(obj) {
+        var image = $(obj).attr('src');
+        $('.jbox1').show();
+        $('#img').attr('src',image);
+    }
+
+    function cancle() {
+        $('.jbox1').hide();
+    }
+    var rz = "{$res['remind_type']}";
+    if(rz = 0){
+        $('#rz1').attr('hidden',true);
+        $('#rz2').attr('hidden',false);
+    }else{
+        $('#rz1').attr('hidden',false);
+        $('#rz2').attr('hidden',true);
+    }
+
+    $(".huifu").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(".huifu").click(function(){
+        var commentId = $(this).attr('data-id');
+        $('#commentId').val(commentId);
+        console.log(commentId);
+    })
+
+
+    $('#agree').click(function () {
+        var id1 = $('#commentId').val();
+        var content = $('#content').val();
+        $.ajax({
+            url: "{:U('/Admin/Community/communityAgree')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id: id1,
+                content:content
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+                return false;
+            } else {
+                alert(g.info);
+                return false;
+            }
+
+        })
+    })
+
+    function toVaild(){
+        var post = {};
+        post.id = "{$res.id}";
+        post.name = $('input[name="name"]').val();
+        post.tel = $('input[name="tel"]').val();
+        post.f_card = $('input[name="f_card"]').val();
+        post.s_province = $('select[name="s_province"]').val();
+        post.s_city = $('select[name="s_city"]').val();
+        post.s_county = $('select[name="s_county"]').val();
+        post.address = $('input[name="address"]').val();
+        post.f_zpic = $('input[name="f_zpic"]').val();
+        post.f_fpic = $('input[name="f_fpic"]').val();
+        post.qy_name = $('input[name="qy_name"]').val();
+        post.qy_zhi = $('input[name="qy_zhi"]').val();
+        post.qy_zhipic = $('input[name="qy_zhipic"]').val();
+        post.zhuz_jigou = $('input[name="zhuz_jigou"]').val();
+        post.zhuz_pic = $('input[name="zhuz_pic"]').val();
+        post.zy_name = $('input[name="zy_name"]').val();
+        post.detail = $('input[name="detail"]').val();
+        post.logo_pic = $('input[name="logo_pic"]').val();
+        post.gallery_index = $('input[name="gallery_index"]').val();
+        post.index_pic = $('input[name="index_pic"]').val();
+        post.shop_at = $('input[name="shop_at"]').val();
+        post.zhuz_pic = $('select[name="style"]').val();
+        post.desc = $('textarea[name="desc"]').val();
+        post.level = $('select[name="level"]').val();
+        post.zy_pic = $('input[name="zy_pic"]').val();
+        $.ajax({
+            url: "{:U('/Admin/Community/rzDetail')}",
+            type: "post",
+            dataType: "json",
+            data: post
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+                return false;
+            } else {
+                alert(g.info);
+                return false;
+            }
+
+        })
+    }
+</script>
+

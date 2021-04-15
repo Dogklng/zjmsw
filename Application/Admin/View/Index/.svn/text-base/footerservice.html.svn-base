@@ -1,0 +1,117 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+        <div class="content-right fl">
+            <h1 class="content-right-title">底部导航栏列表</h1>
+            <div class="clearfix"><a href="{:U('admin/Index/fservice')}" class="btn btn-success fl BtnAddClass">添加</a>
+            </div>
+
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                <div class="tables-searchbox">
+                    <div class="fl">
+                        <form action="{:U('admin/Service/service')}" method="post">
+                            <!--<input type="text" class="input" name="name" id="title" value="{$title}" placeholder="标题">-->
+                            <!--<button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i-->
+                                    <!--class="gicon-search white"></i>查询-->
+                            <!--</button>-->
+                        </form>
+                    </div>
+
+                </div>
+                <!-- end tables-searchbox -->
+                <table class="wxtables table-order" id="tb_3">
+                    <thead>
+                    <tr>
+                        <td class="center">类别</td>
+                        <td class="center">标题</td>
+                        <td class="center">添加时间</td>
+                        <td class="center">操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="ser" item="vo">
+                        <tr>
+                            <td class="center"><p>{$vo.name}</p></td>
+                            <td class="center"><p> {$vo.title|subtext=18}</p></td>
+                            <td class="center"><p> {$vo['create_time']|date="Y-m-d",###}</p></td>
+
+                            <td  class="center">
+                                <p>
+
+                                    <a href="{:U('admin/Index/eservice',array('id'=>$vo[id]))}" class="btn btn-primary" title="编辑" >编辑</a>
+                                    <a href="{:U('admin/Index/delFooterService',array('id'=>$vo[id]))}" class="btn btn-primary" style="background-color:#f0ad4e;border-color: #eea236;" onclick="return confirm('此操作不可逆，确定要删除吗？')" title="删除" >删除</a>
+
+
+
+                                    <br>
+
+
+                                </p>
+                            </td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <!--<a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setUsersLevel">设置等级</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setAgent">设置分销商</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setGroup" data-type="0">设置分组</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setSuperior">设置上级</a>-->
+                        <!--<a href="javascript:;" class="btn btn-warning j-setPwd">设置密码</a>-->
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<!-- end container -->
+<script>
+    function search_m(){
+        var title=$('#title').val();
+        if(title != ''){
+            location.href="{:U('/Admin/Company/index')}/title/"+title;
+        }else{
+            location.href="{:U('/Admin/Company/index')}";
+        }
+    }
+</script>
+
+<include file="Public:foot"/>

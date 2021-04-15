@@ -1,0 +1,92 @@
+<include file="Public:header" />
+
+<!-- banner -->
+<div class="ban1">
+  <div class="banner_img"> <img src="__IMAGES__/paimai.jpg" alt="" /> </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Auction preview</p>
+    <h5>竞 • 卖 • 结 • 果</h5>
+  </div>
+  <div class="main">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="mainList">
+          <div class="mainL-calendar">
+            <h3 class="mainL-h3">按时间筛选</h3>
+            <input class="datainp" id="dateinfo" type="text" placeholder="请选择"  readonly>
+            <i><img src="__IMAGES__/xiajiantou.png" alt="" /></i> </div>
+          <div class="mainL-screen">
+            <h3 class="mainL-h3">按类目筛选</h3>
+            <ul class="mainL-screenUl">
+              <volist name="cate" id="vo" key="k">
+                <li>
+                  <input type="checkbox" name="screenS" id='screenS+{$k+1}' onchange="fun()" value="{$vo.id}"/>
+                  <label for='screenS+{$k+1}'>{$vo.classname}</label>
+                </li>
+              </volist>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9">
+        <div class="event_list box">
+          <ul>
+            <volist name="pm" id="v">
+              <li>
+                <div class="pMd">
+                  <a href="{:U('/Home/Auction/resultDetails',array('id'=>$v['id']))}" class="image"><img src="{$v.index_pic}"></a>
+                  <a href="{:U('/Home/Auction/resultDetails',array('id'=>$v['id']))}" class="names">{$v.goods_name}</a>
+                  <span class="action"> <a href="javascript:eventRemind(1047,'sms');" class="sms icon tip" onclick="myFunction(this)" id="{$v.id}"> <span>短信提醒</span> </a> </span>
+                  <span class="time">{$v['start']|date="Y",###}年{$v['start']|date="m",###}月{$v['start']|date="d",###}日 {$v['start']|date="i:s",###}  - {$v['end']|date="Y",###}年{$v['end']|date="m",###}月{$v['end']|date="d",###}日 {$v['end']|date="i:s",###}</span>
+                  <span class="date"><span class="day">{$v['start']|date="d",###}</span><span class="month">{$v['start']|date="m",###}月</span><span class="year">{$v['start']|date="Y",###}</span></span>
+                  <span class="count"><span class="bid">0</span><b>出价次数</b>
+                    <span class="views">{$weiguan}</span><b>围观数</b></span>
+                </div>
+              </li>
+            </volist>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+
+<include file="Public/footer" />
+
+</body>
+<script type="text/javascript" src="__JEDATE__/jedate.js"></script>
+<script>
+
+    $(document).ready(function(){
+
+        $(".jpxz").click(function(e){
+            $(".popBox").css({"display":"block"})
+        })
+
+
+        $(".closejp").click(function(e){
+            $(".popBox").css({"display":"none"})
+        })
+
+    });
+
+    jeDate.skin('gray');
+    jeDate({
+        dateCell:"#dateinfo",
+        format:"YYYY年MM月DD日 hh:mm:ss",
+        isinitVal:true,
+        isTime:true, //isClear:false,
+        minDate:"2014-09-19 00:00:00",
+        okfun:function(val){alert(val)}
+    })
+
+</script>
+</html>

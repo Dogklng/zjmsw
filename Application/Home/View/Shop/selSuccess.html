@@ -1,0 +1,111 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:user_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+         <div class="SelSucCon">
+          <img src="__IMAGES__/SelSuccess.png" />
+          
+          <if condition="$status eq 1">
+          <h3>亲，店铺申请提交成功！祝您生意兴隆！</h3>
+          <h6>现在后台正在为您审核资料！</h6>
+            <else />
+          <h3>亲，您的资料已提交！</h3>
+          <h6>现在后台正在为您审核资料,请稍等！</h6>
+          </if>
+          <!--<a href="{:U('/Home/Shop/selUpload/tag/selRelease')}">立即发布作品</a>-->
+          <h4>美术网不会主动联系您缴纳保证金，谨防假冒客服诈骗！</h4>
+         </div>
+        </div>  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <a href="##" class="task_btn1_on">确定</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1">
+        <a href="##" class="task1_btn1_on">确定</a>
+        <a href="##" class="task1_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+</html>

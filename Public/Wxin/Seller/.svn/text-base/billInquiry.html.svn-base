@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="images/mswlogo.ico" />
+<title>美术网</title>
+<meta name="keywords" content="美术网" />
+<meta name="description" content="美术网" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen"/>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/swiper.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+
+<script type="text/javascript" src="js/jquery.1.9.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+
+<!--[if lt IE 9]>
+	<script src="lib/plugins/html5.js"></script>
+	<script src="lib/plugins/respond.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+
+<!--导航-->
+<div class="body_top">
+  <div class="body_top_up">
+    <div class="body_top_tit1"> <a href="../index.html"><img src="images/logoM.png" /></a> </div>
+    <div class="sousuo">
+    	<img src="images/search.png" />
+    </div>
+    <div class="clear"></div>
+    
+    <div class="sousuok">
+    	<input type="text" value="请输入关键词" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键词';}" />
+    </div>
+    
+  </div>
+</div>
+
+<!--导航--> 
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 单据查询 </a> </h3>
+
+</div>
+<div class="warp_box">
+  <div class="user_r">
+    <div class="SelTop clearfix bill_top">
+     <div class="SelBiSearch">
+      <input type="text" value="请输入订单编号" onfocus="this.value=''" onblur="if(this.value==''){this.value='请输入订单编号'}" />
+      <input type="button" value="搜索"  />
+     </div>
+     <div class="SelTime">
+      <span>成交时间：</span>
+      <div class="SelTk SelT"><input type="请选择时间范围的起始"  id="dateinfo" /></div>
+      <span>至</span>
+      <div class="SelTj SelT"><input type="请选择时间范围的结束"  id="dateinfo1" /></div>
+     </div>
+   </div>
+    <div class="SeldpsyCon SeldpsyCon_sy">
+      <div class="user_r_list">
+        <div class="allorder_topz allorder_topz_sy allorder_topz_bill">
+         <div class="allorder_topz_center">
+          <h5><span>时间：2016-09-05 18:13:59</span></h5><h5><span>订单号：2532742</span></h5>
+          <div class="allorder_topz_right bill_topz_right">已揽件</div>
+         </div>
+        </div>
+        <div class="allorder_kuang">
+         <div class="shop_xx_warp">
+          <div class="shop_xx_center">
+           <div class="shop_xx_left shop_xx_fd"> <a href="fukuan01.html"><img src="images/order_pro1.jpg" width="100%" /></a> </div>
+           <div class="shop_xx_right shop_xx_fd shop_xx_revenue">
+            <p><b>恣意的泼笔  蓝正辉</b><br />顺丰速运</p>
+            <p>收件人<i>李亮</i></p>
+            <h3 class="shop_xx_jg" style="    margin: 0px auto;"><b>收件电话</b><b>15800996565</b></h3>
+           </div>
+           <div class="clear"></div>
+          </div>
+         </div>
+         <div class="llk_border">
+          <div class="llk">
+           <div class="od_zongji">出售价格：<span>¥4,000.00</span></div>
+          </div>
+          <div class="clear"></div>
+         </div>
+         <div class="od_button">
+          <div class="od_fukuan"><a href="fukuan01.html">查看详情</a></div>
+          <div class="od_quxiao"><a href="fukuan01.html">查看物流</a></div>
+          
+          <div class="clear"></div>
+         </div>
+        </div>
+      </div>
+      <div class="user_r_list">
+        <div class="allorder_topz allorder_topz_sy allorder_topz_bill">
+         <div class="allorder_topz_center">
+          <h5><span>时间：2016-09-05 18:13:59</span></h5><h5><span>订单号：2532742</span></h5>
+          <div class="allorder_topz_right bill_topz_right">发货中</div>
+         </div>
+        </div>
+        <div class="allorder_kuang">
+         <div class="shop_xx_warp">
+          <div class="shop_xx_center">
+           <div class="shop_xx_left shop_xx_fd"> <a href="fukuan01.html"><img src="images/order_pro1.jpg" width="100%" /></a> </div>
+           <div class="shop_xx_right shop_xx_fd shop_xx_revenue">
+            <p><b>恣意的泼笔  蓝正辉</b><br />顺丰速运</p>
+            <p>收件人<i>李亮</i></p>
+            <h3 class="shop_xx_jg" style="    margin: 0px auto;"><b>收件电话</b><b>15800996565</b></h3>
+           </div>
+           <div class="clear"></div>
+          </div>
+         </div>
+         <div class="llk_border">
+          <div class="llk">
+           <div class="od_zongji">出售价格：<span>¥4,000.00</span></div>
+          </div>
+          <div class="clear"></div>
+         </div>
+         <div class="od_button">
+          <div class="od_fukuan"><a href="fukuan01.html">查看详情</a></div>
+          <div class="od_quxiao"><a href="fukuan01.html">查看物流</a></div>
+          
+          <div class="clear"></div>
+         </div>
+        </div>
+      </div>
+      <div class="user_r_list">
+        <div class="allorder_topz allorder_topz_sy allorder_topz_bill">
+         <div class="allorder_topz_center">
+          <h5><span>时间：2016-09-05 18:13:59</span></h5><h5><span>订单号：2532742</span></h5>
+          <div class="allorder_topz_right bill_topz_right">已收货</div>
+         </div>
+        </div>
+        <div class="allorder_kuang">
+         <div class="shop_xx_warp">
+          <div class="shop_xx_center">
+           <div class="shop_xx_left shop_xx_fd"> <a href="fukuan01.html"><img src="images/order_pro1.jpg" width="100%" /></a> </div>
+           <div class="shop_xx_right shop_xx_fd shop_xx_revenue">
+            <p><b>恣意的泼笔  蓝正辉</b><br />顺丰速运</p>
+            <p>收件人<i>李亮</i></p>
+            <h3 class="shop_xx_jg" style="    margin: 0px auto;"><b>收件电话</b><b>15800996565</b></h3>
+           </div>
+           <div class="clear"></div>
+          </div>
+         </div>
+         <div class="llk_border">
+          <div class="llk">
+           <div class="od_zongji">出售价格：<span>¥4,000.00</span></div>
+          </div>
+          <div class="clear"></div>
+         </div>
+         <div class="od_button">
+          <div class="od_fukuan"><a href="fukuan01.html">查看详情</a></div>
+          <div class="od_quxiao"><a href="fukuan01.html">查看物流</a></div>
+          
+          <div class="clear"></div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+</div>
+<div class="ght">
+ <div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>
+</div>
+
+<!--footer-->
+<div class="footer">
+  <ul class="footer_list">
+    <li class="on"> <a href="../index.html"> <img src="images/indexha.svg" width="18px" />
+      <p>首页</p>
+      </a> </li>
+    <li> <a href="../products.html"> <img src="images/product.svg" width="18px" />
+      <p>产品</p>
+      </a> </li>
+    <li class="dz_db"> <a href="sellerCenter.html"> <img src="images/dingzhi.svg" width="18px" />
+      <p>云推荐</p>
+      </a> </li>
+    <li> <a href=""> <img src="images/cart.svg" width="18px" />
+      <p>购物车</p>
+      </a> </li>
+    <li> <a href="../use/myorder.html"> <img src="images/my.svg" width="18px" />
+      <p>我的</p>
+      </a> </li>
+    <div class="clear"></div>
+  </ul>
+</div>
+<!--footer-->
+
+</body>
+<script type="text/javascript" src="js/jeDate/jedate.js"></script>
+<script type="text/javascript">
+
+jeDate({
+    dateCell:"#dateinfo",
+    format:"YYYY年MM月DD日",
+    isinitVal:true,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+  
+jeDate({
+    dateCell:"#dateinfo1",
+    format:"YYYY年MM月DD日",
+    isinitVal:true,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+</script>
+</html>

@@ -1,0 +1,209 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:user_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+         <div class="SellerTop SelIdTop">
+          <h3>证件验证</h3>
+          <p>请上传证件，确保图片清晰，四角完整</p>
+         </div>
+         <div class="SelIdentCon">
+          
+          <!-- <div class="SelCertClass">
+           <span>证件类型：</span>
+           <span><input type="radio" name="SelCinput" /> 二代身份证</span>
+           <span><input type="radio" name="SelCinput" /> 临时身份证</span>
+          </div> -->
+          <div class="SelCertName SelCertName1">
+           <span class='SelIdentCon1'>单位营业执照号：</span>
+           <span><input type="text" maxlength="30" value="33322201110000820Z"  /> </span>
+          </div>
+          <div class="SelIdentAddPic">
+           <span class='SelIdentCon1'>单位营业执照图片: </span>
+           <div class="SelIdentPic">
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border">
+               <img src="__IMAGES__/SeladdPic.png" />
+               <h6>点此上传</h6>
+               <input type="file" />
+              </div>
+              <a href="javascript:;"  onclick="fangda(this)" class="SelIdPic-A">
+               <img src="__IMAGES__/SeladdPic1.jpg" />
+               <div class="SelIdPic-Atxt">
+                <i class="fa fa-search"></i>
+                <h3>示例</h3>
+               </div>
+              </a>
+            </div>
+           </div>
+          </div>
+          <div class="SelCertName SelCertName1">
+           <span class='SelIdentCon1'>组织机构代码证号：</span>
+           <span><input type="text" maxlength="30" value="33322201110000820Z"  /> </span>
+          </div>
+          <div class="SelIdentAddPic">
+           <span class='SelIdentCon1'>组织机构代码证图片: </span>
+           <div class="SelIdentPic">
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border">
+               <img src="__IMAGES__/SeladdPic.png" />
+               <h6>点此上传</h6>
+               <input type="file" />
+              </div>
+              <a href="javascript:;"  onclick="fangda(this)" class="SelIdPic-A">
+               <img src="__IMAGES__/SeladdPic1.jpg" />
+               <div class="SelIdPic-Atxt">
+                <i class="fa fa-search"></i>
+                <h3>示例</h3>
+               </div>
+              </a>
+            </div>
+           </div>
+          </div>
+          <div class="SelNoticeStyle">
+           <h4><a href="{:U('/Home/Shop/selAudit/tag/selCenter')}" style="margin-left: 162px;">确定提交</a></h4>
+          </div>
+         </div>
+        </div>  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <a href="##" class="task_btn1_on">确定</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1">
+        <a href="##" class="task1_btn1_on">确定</a>
+        <a href="##" class="task1_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<!--放大图片-->
+<div id="albums-overlay" class="disshow"></div>
+<div id="img" style="display: none"> </div>
+<include file="Public:footer"/>
+<!--  / footer  -->
+
+</body>
+<script src="__JS__/jquery-form.js"></script>
+<!-- 图片上传 -->
+<style>
+    #albums-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .3);
+        z-index: 998;
+    }
+    .disshow {
+        display: none;
+    }
+
+    #img{
+        position: fixed;
+        top: 30%;
+        left: 35%;
+        width: 600px;
+        height: 600px;
+        z-index: 99999;
+    }
+</style>
+<script>
+    $('#albums-overlay').click(function () {
+        $('#img').hide();
+        $('#albums-overlay').hide();
+    })
+    $('#img').click(function () {
+        $('#img').hide();
+        $('#albums-overlay').hide();
+    })
+    function fangda(obj) {
+        var src = $(obj).find('img').attr('src');
+        $('#albums-overlay').show();
+        var str='<img src="'+src+'" width="100%" height="100%" >';
+        $('#img').show();
+        $('#img').html(str);
+    }
+</script>
+<!--放大图片-->
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+</html>

@@ -1,0 +1,374 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__CSS__/jquery.emoji.css">
+<script src="__JS__/jquery.emoji.min.js"></script>
+<script src="__JS__/emoji.list.js"></script>
+<style>
+  .plBox {
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .plBox .plboxlf {
+    display: inline-block;
+    width: 10%;
+    font-size: 16px;
+    font-weight: normal;
+    vertical-align: top;
+  }
+
+  .plBox ul li {
+    margin: 5px 0;
+  }
+
+  .plBox ul span {
+    float: right;
+    color: red;
+    font-weight: 800;
+    font-size: 20px;
+  }
+
+  .plBox .plboxrt {
+    display: inline-block;
+    width: 50%;
+    font-size: 16px;
+  }
+
+  .plBox .plLine {
+    display: block;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    height: 10px;
+  }
+
+  .plBox .plbtn {
+    text-align: right;
+    margin-top: 10px;
+  }
+
+  .plBox .plbtn a {
+    display: inline-block;
+    border: 1px solid #999;
+    border-radius: 10px;
+    text-align: center;
+    width: 80px;
+    height: 25px;
+    color: #999;
+    line-height: 25px;
+  }
+
+  .shddbgbox {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 999;
+    display: none;
+  }
+
+  .shddbox {
+    width: 50%;
+    height: 300px;
+    background-color: white;
+    position: fixed;
+    top: 30%;
+    left: 26%;
+    z-index: 999;
+    border-radius: 5px;
+    transition: all .3s;
+    transform: scale(0);
+  }
+
+  .shddbox .shddtop {
+    display: inline-block;
+    width: 100%;
+    height: 249px;
+    padding: 38px;
+  }
+
+  .shddbox .shddtop input {
+    margin: 0;
+    padding: 0;
+    width: 14px;
+    height: 14px;
+    vertical-align: top;
+    margin-top: 3px;
+    margin-right: 5px;
+  }
+
+  .shddbox .shddtop label {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+
+  .shddbox .shddtop .shddtopbox {
+    display: inline-block;
+    width: 60%;
+    height: 150px;
+  }
+
+  .shddbox .shddbottom {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+  }
+
+  .shddbox span {
+    display: inline-block;
+    width: 25%;
+    vertical-align: top;
+    text-align: right;
+    font-size: 14px;
+  }
+
+  .shddbox .shddcont {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    outline: none;
+    font-size: 14px;
+    background-color: white;
+    border: 1px solid #eee;
+    padding: 3px;
+  }
+
+  .shddbox ul {
+    border-top: 1px solid #eee;
+  }
+
+  .shddbox li {
+    float: left;
+    width: 50%;
+    height: 50px;
+    line-height: 50px;
+    font-weight: 800;
+    font-size: 16px;
+  }
+
+  .shddbox li:hover {
+    color: red;
+  }
+
+  .shddrefuse {
+    border-right: 1px solid #eee;
+    cursor: pointer;
+  }
+
+  .shddAgree {
+    cursor: pointer;
+  }
+
+  .meunColor {
+    color: red;
+  }
+  .coBox {
+        text-align: left;
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .comleft {
+        display: inline-block;
+        width: 88px;
+        font-size: 15px;
+        text-align: right;
+        vertical-align: top;
+    }
+
+    .comright {
+        display: inline-block;
+        width: 85%;
+        vertical-align: top;
+        font-size: 16px;
+    }
+    .detailBox{
+      background-color: #fff;
+      position: fixed;
+      top: 150px;
+      left: 28%;
+      z-index: 999;
+      padding: 10px;
+      border-radius: 3px;
+      width: 45%;
+      transform: scale(0);
+      transition: all .1s;
+    }
+    @media (max-width: 1355px){
+      .comleft{
+        text-align: left;
+      }
+      .comright{
+        width: 100%;
+      }
+    }
+</style>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+  <!--  / user  -->
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-12">
+          <include file="Public:shop_left" />
+        </div>
+        <div class="col-lg-10 col-md-8 col-sm-12">
+          <div class="user_r">
+            <ul class="user_all">
+              <li><a href="javascript:void(0)" style="color: red;">全部</a></li>
+              <li><a href="javascript:void(0)">未审批</a></li>
+              <li><a href="javascript:void(0)">已通过</a></li>
+              <li><a href="javascript:void(0)">已拒绝</a></li>
+            </ul>
+          </div>
+          <volist name="comment" id="vo">
+          <div class="plBox">
+            <ul>
+              <li>
+                <h4 class="plboxlf">评论者:</h4>
+                <h4 class="plboxrt">{$vo['realname']}</h4><span>
+                  <if condition="$vo.status eq 1">未审批</if>
+                  <if condition="$vo.status eq 2">已通过</if>
+                  <if condition="$vo.status eq 3">已拒绝</if>
+              </span>
+              </li>
+              <li>
+                <h4 class="plboxlf">评论内容:</h4>
+                <h4 class="plboxrt">{$vo['content']}</h4>
+              </li>
+              <li>
+                <h4 class="plboxlf">评论时间:</h4>
+                <h4 class="plboxrt">{$vo['created_at']}</h4>
+              </li>
+            </ul>
+            <i class="plLine"></i>
+            <div class="plbtn">
+              <if condition="$vo.status eq 1">
+                <a href="javascript:void(0)" class="quxiao" data-id="{$vo.id}" >审批</a>
+              </if>
+              <a href="javascript:void(0)" class="plckxq">查看详情</a>
+            </div>
+          </div>
+          </volist>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- 背景黑窗口 -->
+<div class="shddbgbox"></div>
+<!-- 审核弹窗 -->
+<div class="shddbox">
+  <div class="shddtop">
+    <span>审核原因:</span>
+    <div class="shddtopbox">
+      <label for=""><input type="radio" name='choose' value="2">同意</label>
+      <label for=""><input type="radio" name='choose' value="3">拒绝</label>
+      <input type="hidden" name="commentId" value="" id="commentId" />
+      <textarea class="shddcont"></textarea>
+    </div>
+  </div>
+  <div class="shddbottom">
+    <ul>
+      <li class="shddrefuse">取消</li>
+      <li class="shddAgree">确定</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 查看详情弹窗 -->
+<div class="detailBox">
+  <div class="coBox observer"><span class="comleft">评论者：</span><span class="comright">张三</span></div>
+  <div class="coBox"><span class="comleft">内容：</span><span
+          class="comright">你好的武器单位hi确定为hi强度和地球地壳的去hi确定hi和地区物权法第七</span></div>
+  <div class="coBox"><span class="comleft">评论日期：</span> <span class="comright">2020-05-30</span></div>
+  <div class="coBox"><span class="comleft">审批状态：</span> 已通过/已拒绝/未审核</div>
+  <div class="coBox"><span class="comleft">拒绝原因：</span><span class="comright"></span> </div>
+</div>
+
+<include file="Public/footer" />
+</body>
+
+</html>
+
+<script>
+    $("h4").emojiParse({
+        basePath: '__IMAGES__/emoji',// images/emoji
+        icons: emojiLists
+    });
+
+  //  点击审核弹出窗口
+  $('.quxiao').click(function () {
+     var comment_id = $(this).attr('data-id');
+     $("#commentId").val(comment_id);
+    //   quxiao_fun(order_id);
+    $('.shddbgbox').css('display', 'block')
+    $('.shddbox').css('transform', 'scale(1)')
+  })
+  //  点击取消关闭
+  $('.shddrefuse').click(function () {
+    $('.shddbgbox').css('display', 'none')
+    $('.shddbox').css('transform', 'scale(0)')
+  })
+  //  点击确定关闭
+  $('.shddAgree').click(function () {
+     var current_comment_id = $("#commentId").val();
+     var status = $('input:radio[name="choose"]:checked').val();
+     var reason = $('.shddcont').val();
+    $('.shddtopbox>label>input').prop('checked',false)
+    $('.shddcont').val(' ')
+    $('.shddbgbox').css('display', 'none')
+    $('.shddbox').css('transform', 'scale(0)')
+
+     $.ajax({
+         url: '/Home/PersonalCenter/checkComment',
+         dataType: 'json',
+         type: 'post',
+         data: {
+             id: current_comment_id,
+             status: status,
+             reason: reason
+         },
+         success: function (res) {
+             alert(res.msg);
+             location.reload();
+         }
+     })
+  });
+  //  点击背景黑框关闭
+  $('.shddbgbox').click(function () {
+    $('.shddbgbox').css('display', 'none')
+    $('.shddbox').css('transform', 'scale(0)')
+    $('.detailBox').css('transform', 'scale(0)')
+  })
+  
+  // 点击查看详情弹窗
+  $('.plckxq').click(function () {
+    $('.shddbgbox').css('display', 'block')
+    $('.detailBox').css('transform', 'scale(1)')
+  })
+  // 关闭审核原因弹窗
+  $('.detailBox').click(function () {
+    $('.shddbgbox').css('display', 'none')
+    $('.detailBox').css('transform', 'scale(0)')
+  })
+
+  const meunli = document.getElementsByClassName('user_all')[0]
+  for (let i = 0; i < meunli.children.length; i++) {
+    meunli.children[i].onclick = function () {
+      // li变黑
+      for (let k = 0; k < meunli.children.length; k++) {
+          meunli.children[k].children[0].style.color = 'black'
+      }
+      // 点击的li变红
+      meunli.children[i].children[0].style.color = 'red'
+    }
+  }
+</script>

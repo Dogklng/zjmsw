@@ -1,0 +1,115 @@
+<include file="Public:header" />
+<!--  / header  -->
+<style>
+  .zggLcPlate1 h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .zggA {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  .zggA a {
+    margin: 10px 22% 0 22%;
+    display: inline-block;
+    background: #d70000;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+    padding: 7px 56px;
+    border-radius: 3px;
+  }
+  .zggLcPlate h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .zggLcUlJx li {
+    margin: 0 auto 20px;
+    width: 240px;
+    border: 1px solid #eee;
+    padding: 20px;
+    text-align: center;
+  }
+  .zggLcUlJx li img {
+    width: 90px;
+    margin-bottom: 10px;
+  }
+  .zhenggLcCon {
+    overflow: hidden;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 30px;
+  }
+  .zggLcPlate {
+    margin-top: 20px;
+    border-bottom: 1px dashed #ddd;
+    overflow: hidden;
+  }
+</style>
+<div class="galleryClass" style="margin-top:60px;">
+  <div class="galleryScroll">
+    <a href="{:U('/Wxin/News/process')}">大赛流程</a>
+    <a href="{:U('/Wxin/News/processDetails')}" class="active">大赛详情</a>
+    <a href="{:U('/Wxin/News/works')}">在线作品</a>
+    <a href="{:U('/Wxin/News/win')}">获奖作品</a>
+    <a id="buZgga" class="zgg" href="javascript:void(0);" >我要投稿</a>
+  </div>
+  <input type="hidden" id="nid" name="nid" value="{$Think.session.nid}"/>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:0;">
+  <div class="zhenggLcCon">
+    <div class="zggLcPlate1" style="width: 100%">
+      <h3>参赛须知</h3>
+      {$cansai['content']|htmlspecialchars_decode|stripslashes}
+    </div>
+    <div class="zggLcPlate1 zggLcPlate" style="width: 100%">
+      <h3>获奖须知</h3>
+      {$prize['content']|htmlspecialchars_decode|stripslashes}
+    </div>
+    <!--<div class="zggLcPlate1 zggLcPlate">
+      <h3>作品要求</h3>
+      <h6>① 作品主题关于艺术生活</h6>
+      <h6>② 并根据邮件内容，配合主办方完成获奖作品源文件收集、及奖金奖品发放等工作</h6>
+      <h6>③ 若获奖设计师在规定时间内对获奖通知未做回应，则视为放弃奖项，主办方有权撤销该奖项；</h6>
+      <h6>④ 主办方将在比赛结束后安排奖金发放事宜，所有奖金均为税前金额，个人所得税由主办方代扣代缴；</h6>
+      <h6>⑤ 主办方提供的奖品不可转让，不可折现；获奖参赛者提出转让或折现要求视为放弃领取奖品；</h6>
+    </div>-->
+    <div class="zggLcPlate">
+      <h3>承办方</h3>
+      <ul class="zggLcUlJx">
+        <notempty name="time.contractor1">
+          <li><img src="{$time.piccon1}" />
+            <div class="zggLcJx">
+              <h5>{$time.contractor1}</h5>
+            </div>
+          </li>
+        </notempty>
+        <notempty name="time.contractor2">
+          <li><img src="{$time.piccon2}" />
+            <div class="zggLcJx">
+              <h5>{$time.contractor2}</h5>
+            </div>
+          </li>
+        </notempty>
+
+
+      </ul>
+     <div class="zggA"> <a class="zgg" href="javascript:void(0);">我要投稿</a></div>
+     </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+
+</body>
+</html>

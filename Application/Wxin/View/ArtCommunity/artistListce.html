@@ -1,0 +1,142 @@
+<include file="Public:header" />
+
+<div class="galleryClass" style="margin-top: 60px">
+  <div class="galleryScroll">
+    <volist name="person" id="v">
+      <a href="{:U('Wxin/ArtCommunity/artistList')}?id={$v.id}" <eq name="_GET['id']" value="$v.id">class="active"</eq> >{$v.name}</a>
+    </volist>
+    <volist name="organize" id="vv">
+      <a href="{:U('Wxin/ArtCommunity/hualang')}?id={$vv.id}" <eq name="_GET['id']" value="$vv.id">class="active"</eq> >{$vv.name}</a>
+    </volist>
+
+    <a href="{:U('Wxin/ArtCommunity/train')}">培训</a>
+    <a href="{:U('Wxin/ArtCommunity/crowdFunding')}">众筹</a>
+    <a href="{:U('Wxin/ArtCommunity/overseas')}">海外交流</a>
+  </div>
+</div>
+
+<!-- 大家都在赞 -->
+<div class="praise artworkP">
+  <div class="praise_list">
+   <!-- <div class="praise_title">
+      <h2 class="zimu" style=" padding-left:0; text-align:center;"><a href="#">A</a><a href="#">B</a><a href="#">C</a><a href="#">D</a><a href="#">E</a><a href="#">F</a><a href="#">G</a><a href="#">H</a><a href="#">I</a><a href="#">J</a><a href="#">K</a><a href="#">L</a><a href="#">M</a><a href="#">N</a><a href="#">O</a><a href="#">P</a><a href="#">Q</a><a href="#">R</a><a href="#">S</a><a href="#">T</a><a href="#">U</a><a href="#">V</a><a href="#">W</a><a href="#">X</a><a href="#">Y</a><a href="#">Z</a></h2>
+    </div>-->
+    <div id="topic_switcher" class="switcher">
+      <volist name="level" id="p">
+        <a class="first"
+           href="{:U('/Wxin/ArtCommunity/artistList',array('id'=>$_GET['id'],'level'=>$p['id']))}"
+        <if condition="$p['id'] eq $_GET['level']">style="background:#000;color:#fff;"</if>>{$p.level_name}</a>&nbsp;
+      </volist>
+    </div>
+  </div>
+  <div class="ysj-cont1">
+    <volist name="res" id="v">
+      <div class="ysjItem">
+        <div class="ysj_list"> <a href="{:U('/Wxin/ArtCommunity/artistShow',array('id'=>$v['id']))}">
+          <div class="ysj_list_wz">
+            <h5><!--{$v.zy_name} • -->{$v.desc|htmlspecialchars_decode|stripslashes|strip_tags|msubstr=0,10}</h5>
+          </div>
+          <img src="{$v.logo_pic}" width="100%" /> </a> </div>
+      </div>
+    </volist>
+  </div>
+  <div class="ysj-txt">
+    {$slogan|htmlspecialchars_decode|stripslashes}
+    <div class="ysj-tbtn">
+      <a class="apply" href="javascript:void(0);">申请入驻</a>
+    </div>
+  </div>
+</div>
+<!-- 大家都在赞 -->
+
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+
+</body>
+<script>
+
+  var p = 2;
+  var id = "{$_GET['id']}";
+  var level = "{$_GET['level']}";
+  // 加载刷新。
+  function refresh(refresh,loadmore) {
+    $(window).scroll(function(){
+      console.log('正在滑动f');
+
+      var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+      var scrollHeight = $(document).height();   //当前页面的总高度
+      var clientHeight = $(this).height();    //当前可视的页面高度
+      // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+      if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+        // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+        console.log('下拉');
+
+        if(loadmore){
+          loadmore();
+        }
+      }else if(scrollTop<=0){
+        //滚动条距离顶部的高度小于等于0 TODO
+        //alert("下拉刷新，要在这调用啥方法？");
+
+        console.log('上拉');
+        if(refresh){
+          refresh();
+        }
+
+      }
+
+    });
+
+  }
+  //调用
+  refresh(fn1,fn2);
+
+  function fn1(){
+    window.location.href = "{:U('Wxin/ArtCommunity/artistList')}?id="+id+"&level"+level;
+  }
+  function fn2(){
+    $.ajax({
+      type: "POST",
+      url: "{:U('/Wxin/ArtCommunity/get_artistList')}",
+      data: {
+        id: id,
+        level: level,
+        p: p,
+      },
+      dataType: "json",
+      success: function (g) {
+        if (g.status == 1) {
+          p++;
+          $('.ysj-cont1').append(g.html);
+        } else {
+          //alert(g.info);
+        }
+      }
+    });
+  }
+  $(".apply").click(function(){
+    var id = "{$_SESSION['member_id']}";
+    if(id == ''){
+      dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+      return false;
+    }
+    $.ajax({
+      url:'/Wxin/Shop/apply',
+      dataType:"json",
+      type:"post",
+      data:{id:id},
+      success:function(g){
+        if(g.status==1){
+          window.location.href=g.url;
+          return false;
+        } else{
+          alert(data.info);
+          window.location.reload();
+          return false;
+        }
+      }
+    })
+  })
+</script>
+</html>

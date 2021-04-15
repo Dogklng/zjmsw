@@ -1,0 +1,619 @@
+<include file="Public:head"/>
+<style>
+    .imgnav{
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .imgwrapper{
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .imgwrapper img{
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border:0;
+    }
+    .spanpd10{
+        margin:10px;
+    }
+    .wxtables.wxtables-sku.newtable{
+        width: 40%;
+        margin: 0;
+    }
+    .img-list li{
+        width: 60px;
+        height:60px;
+    }
+    .cst_h3 span{font-weight: normal;}
+    #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+    .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+    .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+    #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+    #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+    #xuanze2:hover{ background:#E6E6E6; }
+    .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <input type="hidden" id="j-isSid" value="0">
+            <!-- 是否选择了淘宝类目 -->
+            <input type="hidden" id="j-hasNorms" value="1">
+            <!-- 淘宝类目下是否有属性 -->
+            <input type="hidden" id="supplier" value="">
+            <form aciton="{:U('/Admin/Community/addCrowd')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">
+                <!-- end 基本信息 -->
+
+                <div class="panel-single panel-single-light mgt20">
+                    <h3 class="cst_h3 mgb20">作品信息</h3>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>作品名称：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input xxlarge" maxlength="30" name="goods_name" id="goods_name" value="">
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>作品描述：</label>
+                        <div class="form-controls">
+                            <textarea name="desc" id="desc" style="width:420px;height: 100px;"></textarea>
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>分类：</label>
+                        <div class="form-controls">
+                            <select style="width: 182px;height: 30px;" name="cate_id">
+                                <volist name="crowd_cate" id="v">
+                                    <option value="{$v.id}">{$v.name}</option>
+                                </volist>
+                            </select>
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>起始时间：</label>
+                        <div class="form-controls">
+                            <input type="text" class="laydate-icon" name="start" id="start" value="">
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>结束时间：</label>
+                        <div class="form-controls">
+                            <input type="text" class="laydate-icon" name="end" id="end" value="">
+                            <span class="fi-help-text"></span> </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>目标价：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input" name="total_price" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" id="total_price" value="">万元
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>估值：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input" name="gz" id="gz" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" value="">万元
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>出让股份：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input" name="crgf" id="crgf" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" value="">%
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>起投金额：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input" name="mini" id="mini" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" value="">元
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>作者头像(小)：</label>
+                        <div class="form-controls pdt5 j-imglistPanel">
+                            <div class="xuanze1_showimge fl mgr10">
+                                <img src="{$res['goods_cap_pic']}" height="80">
+                            </div>
+                            <div class="btnimage fl">选择图片
+                                <input type="file"  accept="image/jpg,image/jpeg,image/png" name="serial" id="xuanze1" class="file" >
+                            </div>
+                            <div class="xuanze1_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" /><span class="xuanze1_percent">80%</span>
+                            </div>
+                            <span class="fi-help-text fl lh30 mgl10">建议大小（宽434px高368px）</span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>作品logo图片(小)：</label>
+                        <div class="form-controls pdt5 j-imglistPanel">
+                            <div class="xuanze_showimge fl mgr10">
+                                <img src="{$res['logo_pic']}" height="80">
+                            </div>
+                            <div class="btnimage fl">选择图片
+                                <input type="file"  accept="image/jpg,image/jpeg,image/png" name="serial" id="xuanze" class="file" >
+                            </div>
+                            <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" /><span class="xuanze_percent">80%</span>
+                            </div>
+                            <span class="fi-help-text fl lh30 mgl10">建议大小（宽109px高108px）</span>
+                        </div>
+                    </div>
+
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>作品展示图片(大)：</label>
+                        <div class="form-controls pdt5 j-imglistPanel">
+                            <div class="baotuan_showimge fl mgr10">
+                                <img src="{$res['index_pic']}" height="80">
+                            </div>
+                            <div class="btnimage fl">选择图片
+                                <input type="file"  accept="image/jpg,image/jpeg,image/png" name="index_pic" id="baotuan" class="file" >
+                            </div>
+                            <div class="baotuan_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+                                <span class="baotuan_percent">80%</span>
+                            </div>
+                            <span class="fi-help-text fl lh30 mgl10">建议大小（宽1050px高1000px）</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-single panel-single-light mgt20 j-showinhyd" style="display: block;">
+                    <h3 class="cst_h3 mgb20">作品参数</h3>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>作者：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input xxlarge" maxlength="6" name="goods_cap" id="goods_cap">
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>作者简介：</label>
+                        <div class="form-controls">
+                            <textarea name="goods_cap_des" id="des" style="width:420px;height: 100px;"></textarea>
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>材质：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input xxlarge" maxlength="20" name="goods_skin" id="goods_skin">
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>尺寸：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input xxlarge" maxlength="20" name="goods_range" id="goods_range">cm
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+                   <!-- <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>上市时间：</label>
+                        <div class="form-controls">
+                            &lt;!&ndash;<input type="text" class="input xxlarge" name="goods_care" style="width:600px">&ndash;&gt;
+                            <input class="laydate-icon" id="demo" name="goods_care" style="padding:0px 5px;width:220px;height:28px;line-height:30px;"/>
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>-->
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>上市时间：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input" id="demo2" name="goods_care">
+                           <!-- <input class="laydate-icon" id="demo2" name="goods_care" style="padding:0px 5px;width:220px;height:28px;line-height:30px;"/>-->
+                            <span class="fi-help-text"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 简介 -->
+                <div class="panel-single panel-single-light mgt20 j-showinhyd" style="display: block;">
+                    <h3 class="cst_h3 mgb20">简介</h3>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>投资概述：</label>
+                        <div class="form-controls">
+                            <script id="tz_desc" name="tz_desc" type="text/plain" style="width:730px;height:300px;"></script>
+                        </div>
+                    </div>
+                <div class="formitems">
+                    <label class="fi-name"><span class="colorRed">*</span>资产包介绍：</label>
+                        <div class="form-controls">
+                                <script id="zcb_desc" name="zcb_desc" type="text/plain" style="width:730px;height:300px;"></script>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+
+        <div class="panel-single panel-single-light mgt20 txtCenter">
+            <a href="{:U('Admin/Community/crowd')}" class="btn">取消</a>
+            <input type="button" class="btn btn-primary" onclick="toVaild()" value="保存">
+        </div>
+        </form>
+    </div>
+
+
+    <include file="Public:foot"/>
+    <link href="__UM__/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="__UM__/third-party/jquery.min.js"></script>
+    <script type="text/javascript" src="__UM__/third-party/template.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__UM__/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__UM__/umeditor.min.js"></script>
+    <script type="text/javascript" src="__UM__/lang/zh-cn/zh-cn.js"></script>
+<!--    <script type="text/javascript" src="__JS__/jquery.js"></script>-->
+    <script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+    <script type="text/javascript" src="__JS__/jquery-form.js"></script>
+    <script type="text/javascript">
+
+
+        $("#j-select_category_id").click(function(){
+            $('.select-fenlei').show();
+            /*$('#albums-overlay').show();*/
+        });
+        $(".cancle").click(function(){
+            $(this).parent().parent('.jbox').hide();
+            /*$('#albums-overlay').hide();*/
+        });
+
+        $("#select_class").click(function(){
+            var clssid=$("#select_class_id  option:selected").val();
+            var classname=$("#select_class_id option:selected" ).text();
+            $('#class_id').val(clssid);
+            $('#class_name').val(classname);
+            $(this).parent().parent('.jbox').hide();
+            /*$('#albums-overlay').hide();*/
+        });
+
+        $("#j-select_series_id").click(function(){
+            $('.select-series').show();
+            $('#albums-overlay1').show();
+        });
+        $(".cancle").click(function(){
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay1').hide();
+        });
+
+        $("#select_series").click(function(){
+            var seriesid=$("#select_series_id  option:selected").val();
+            var seriesname=$("#select_series_id option:selected" ).text();
+            $('#series_id').val(seriesid);
+            $('#series_name').val(seriesname);
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay1').hide();
+        });
+
+
+
+
+
+        UM.getEditor('tz_desc',{
+            toolbars: [
+
+                ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+
+            ],
+
+            autoHeightEnabled: false,
+            autoFloatEnabled: true,
+            elementPathEnabled:false,
+            enableContextMenu:false,
+            wordCount:false,
+
+        });
+        UM.getEditor('zcb_desc',{
+            toolbars: [
+
+                ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+
+            ],
+
+            autoHeightEnabled: false,
+            autoFloatEnabled: true,
+            elementPathEnabled:false,
+            enableContextMenu:false,
+            wordCount:false,
+
+        });
+
+    </script>
+
+
+    <script type="text/javascript">
+        function toVaild(){
+            var goods_name = $.trim($('#goods_name').val());
+            if(goods_name == ''){
+                alert('作品名不能为空！');
+                return false;
+            }
+            var desc = $.trim($('#desc').val());
+            if(desc == ''){
+                alert('作品描述不能为空！');
+                return false;
+            }
+            var start = $.trim($('#start').val());
+            if(start == ''){
+                alert('起始时间不能为空！');
+                return false;
+            }
+            var end = $.trim($('#end').val());
+            if(end == ''){
+                alert('结束时间不能为空！');
+                return false;
+            }
+            if(start > end){
+                alert('起始时间必须早于结束时间！');
+                return false;
+            }
+            var time=new Date();
+            var time1 = time.getTime();
+            var dltime = new Date(end);
+            var dltime1 = dltime.getTime();
+            if(dltime1<=time1){
+                alert('结束时间必需大于当前时间');
+                return false;
+            }
+
+            var total_price = $.trim($('#total_price').val());
+            if(total_price == ''){
+                alert('目标金额不能为空！');
+                return false;
+            }
+            if(!total_price.match(/^[0-9]*$/)){
+                alert('目标金额只能为数字！');
+                return false;
+            }
+            var gz = $.trim($('#gz').val());
+            if(gz == ''){
+                alert('估值不能为空！');
+                return false;
+            }
+            if(!gz.match(/^[0-9]*$/)){
+                alert('估值只能为数字！');
+                return false;
+            }
+            var crgf = $.trim($('#crgf').val());
+            if(crgf == ''){
+                alert('出让股份不能为空！');
+                return false;
+            }
+            if(crgf >100){
+                alert("出让股份不能大于100！");
+                return false;
+            }
+            if(!crgf.match(/^[0-9]*$/)){
+                alert('出让股份只能为数字！');
+                return false;
+            }
+            var mini = $.trim($('#mini').val());
+            if(mini == ''){
+                alert('起投金额不能为空！');
+                return false;
+            }
+            if(!mini.match(/^[0-9]*$/)){
+                alert('起投金额只能为数字！');
+                return false;
+            }
+            var goods_cap_pic = $.trim($('#xuanze1').val());
+            if(goods_cap_pic == ''){
+                alert('作者图片不能为空！');
+                return false;
+            }
+            var logo_pic = $.trim($('#xuanze').val());
+            if(logo_pic == ''){
+                alert('logo图片不能为空！');
+                return false;
+            }
+            var index_pic = $.trim($('#baotuan').val());
+            if(index_pic == ''){
+                alert('作品展示图片不能为空！');
+                return false;
+            }
+            var goods_cap = $.trim($('#goods_cap').val());
+            if(goods_cap == ''){
+                alert('作者不能为空！');
+                return false;
+            }
+            var goods_cap_desc = $.trim($('#des').val());
+            if(goods_cap_desc == ''){
+                alert('作者简介不能为空！');
+                return false;
+            }
+            var goods_skin = $.trim($('#goods_skin').val());
+            if(goods_skin == ''){
+                alert('作品材料不能为空！');
+                return false;
+            }
+            var goods_range = $.trim($('#goods_range').val());
+            if(goods_range == ''){
+                alert('作品尺寸不能为空！');
+                return false;
+            }
+            var goods_care = $.trim($('#demo2').val());
+            if(goods_care == ''){
+                alert('作品上市时间不能为空！');
+                return false;
+            }
+            var date=new Date;
+            var year=date.getFullYear(); 
+            if(goods_care>year){
+                alert('作品上市时间不能晚于当前时间！');
+                return false;
+            }
+            console.log('111');
+
+            $.ajax({
+                url:'/Admin/Community/addCrowd',
+                type:'post',
+                data:$("form").serialize(),
+                dataType:'json',
+                success:function(data){
+                    if(data.status == 1){
+                        dialog.showTips(data.info, "crowd","{:U('/Admin/Community/crowd')}");
+                    }else{
+                        alert(data.info);
+                        return false;
+                    }
+                }
+            })
+        }
+        function num(obj){
+            obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+            obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+            obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+            obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+            obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+        }
+    </script>
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            var percent = $('.xuanze_percent');
+            var progress = $('.xuanze_percent');
+            $("#xuanze").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+            $("#xuanze").change(function(){ //选择文件
+                $("#myupload1").ajaxSubmit({
+                    dataType:  'json', //数据格式为json
+                    beforeSend: function() { //开始上传
+                        progress.show(); //显示进度条
+                        var percentVal = '0%';
+                        percent.html(percentVal);
+                    },
+                    uploadProgress: function(event, position, total, percentComplete) {
+                        var percentVal = percentComplete + '%'; //获得进度
+                        percent.html(percentVal); //显示上传进度百分比
+                    },
+                    success: function(data) { //成功
+                        var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="logo_pic" id="logo_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                        $('.xuanze_showimge').html(img);
+                        progress.hide();
+                    },
+                    error:function(xhr){ //上传失败
+                        //console.log(xhr.status)
+                    }
+                });
+            });
+
+
+            var percent1 = $('.xuanze1_percent');
+            var progress1 = $('.xuanze1_percent');
+            $("#xuanze1").wrap("<form id='myupload' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+            $("#xuanze1").change(function(){ //选择文件
+                $("#myupload").ajaxSubmit({
+                    dataType:  'json', //数据格式为json
+                    beforeSend: function() { //开始上传
+                        progress1.show(); //显示进度条
+                        var percentVal1 = '0%';
+                        percent1.html(percentVal1);
+                    },
+                    uploadProgress: function(event, position, total, percentComplete) {
+                        var percentVal = percentComplete + '%'; //获得进度
+                        percent.html(percentVal); //显示上传进度百分比
+                    },
+                    success: function(data) { //成功
+                        var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="goods_cap_pic" id="goods_cap_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                        $('.xuanze1_showimge').html(img);
+                        progress.hide();
+                    },
+                    error:function(xhr){ //上传失败
+                        //console.log(xhr.status)
+                    }
+                });
+            });
+
+
+            var percent = $('.baotuan_percent');
+            var progress = $('.baotuan_percent');
+            $("#baotuan").wrap("<form id='baotuan1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+            $("#baotuan").change(function(){ //选择文件
+                $("#baotuan1").ajaxSubmit({
+                    dataType:  'json', //数据格式为json
+                    beforeSend: function() { //开始上传
+                        progress.show(); //显示进度条
+                        var percentVal = '0%';
+                        percent.html(percentVal);
+                    },
+                    uploadProgress: function(event, position, total, percentComplete) {
+                        var percentVal = percentComplete + '%'; //获得进度
+                        percent.html(percentVal); //显示上传进度百分比
+                    },
+                    success: function(data) { //成功
+                        var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="index_pic" id="index_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                        $('.baotuan_showimge').html(img);
+                        progress.hide();
+                    },
+                    error:function(xhr){ //上传失败
+                        //console.log(xhr.status)
+                    }
+                });
+            });
+
+        });
+        function add_re(r){
+            $('#restriction'+r).show();
+        }
+        function del_re(r){
+            $('#restriction'+r).hide();
+        }
+    </script>
+    <script src="__LAYDATE__/laydate.js"></script>
+
+    <script>
+        ;!function(){
+            laydate({
+                elem: '#start',
+                format: 'YYYY-MM-DD',
+            })
+
+        }();
+        ;!function(){
+            laydate({
+                elem: '#end',
+                format: 'YYYY-MM-DD',
+            })
+
+        }();
+        /*;!function(){
+            laydate({
+                elem: '#demo2',
+                format: 'YYYY',
+            })
+
+        }();*/
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+

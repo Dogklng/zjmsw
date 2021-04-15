@@ -1,0 +1,89 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__CSS__/jquery.emoji.css">
+<script src="__JS__/jquery.emoji.min.js"></script>
+<script src="__JS__/emoji.list.js"></script>
+<style scoped>
+    .user_all span {
+        font-size: 18px;
+        color: black;
+        padding-left: 10px;
+    }
+
+    .detailBox {
+        font-size: 16px;
+        text-align: left;
+    }
+
+    .detailBox .coBox {
+        margin: 5px 0;
+    }
+
+    .detailBox .coBox .comleft {
+        display: inline-block;
+        width: 10%;
+        vertical-align: top;
+    }
+
+    .detailBox .coBox .comright {
+        display: inline-block;
+        width: 80%;
+    }
+
+    .backComment {
+        display: inline-block;
+        width: 200px;
+        height: 40px;
+        font-size: 14px;
+        background-color: #eee;
+        line-height: 40px;
+        text-align: center;
+        margin: 50px 0 10px 30%;
+        transition: all .2s;
+    }
+
+    .backComment:hover {
+        color: white;
+        background-color: #d70000;
+    }
+</style>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+    <!--  / user  -->
+    <div class="user">
+        <div class="">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-12">
+                    <include file="Public:shop_left" />
+                </div>
+                <div class="col-lg-10 col-md-8 col-sm-12">
+                    <div class="user_r">
+                        <ul class="user_all">
+                            <span>审核详情</span>
+                        </ul>
+                    </div>
+                    <!-- 审核详情 -->
+                    <div class="detailBox">
+                        <div class="coBox observer"><span class="comleft">评论者：</span><span class="comright">张三</span>
+                        </div>
+                        <div class="coBox"><span class="comleft">内容：</span><span
+                                class="comright">内容内容内容内容内容内容内容内容</span>
+                        </div>
+                        <div class="coBox"><span class="comleft">评论日期：</span><span class="comright">2020-05-30</span>
+                        </div>
+                        <div class="coBox"><span class="comleft">审批状态：</span><span class="comright">已通过/已拒绝/未审核</span></div>
+                        <div class="coBox"><span class="comleft">拒绝原因：</span><span
+                                class="comright">内容内容内容内容内容内容</span>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="backComment">返回</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<include file="Public/footer" />
+</body>
+
+</html>

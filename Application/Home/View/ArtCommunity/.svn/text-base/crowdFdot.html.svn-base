@@ -1,0 +1,564 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__CSS__/details.css" />
+<style>
+  .Schedulel{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #333;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+  }
+</style>
+<style>
+  .main_page {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .main_page .me {
+    background: #ff6801 !important;
+    border: 1px solid #ff6801 !important;
+    color: #fff !important;
+  }
+  .main_page span {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 30px;
+    background: #fff;
+    font-size: 14px;
+    border: 1px solid #dbdbdb;
+    color: #666;
+    padding: 0 20px;
+    cursor: pointer;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+</style>
+<script src="__JS__/jquery.fn.TabBox.js" type="text/javascript"></script>
+<div class="ban1">
+ <div class="swiper-container swiperBa">
+   <div class="swiper-wrapper ">
+    <div class="swiper-slide">
+     <div class="banner_img">
+      <img src="{$images.pic}" alt=""></a>
+     </div>
+    </div>
+    <div class="swiper-slide">
+     <div class="banner_img">
+      <img src="{$images.pic}" alt="">
+     </div>
+    </div>
+   </div>
+   <div class="swiper-pagination paginationBa"></div>
+ </div>
+</div>
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="buy">
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+          <div class="cp_xxjs1  col-lg-6 col-md-6 col-sm-6">
+            <div id="magnifier">
+              <div id="showmagnifier"> <img src="{$res.index_pic}">
+                <div id="smallmagnifier"></div>
+                <div id="hiddenmagnifier"> <img id="bigmagnifier" src="{$res.index_pic}"> </div>
+              </div>
+              <!--<div id="magnifierlist">
+                <div id="magnifierLeft"></div>
+                <ul id="magnifierMiddle">
+                  <li><img src="./__IMAGES__/img02.jpg"></li>
+                  <li><img src="./__IMAGES__/img01.jpg"></li>
+                  <li><img src="./__IMAGES__/img02.jpg"></li>
+                  <li><img src="./__IMAGES__/img01.jpg"></li>
+                  <li><img src="./__IMAGES__/img02.jpg"></li>
+                  <li><img src="./__IMAGES__/img01.jpg"></li>
+                </ul>
+                <div id="magnifierRight"></div>
+              </div>-->
+            </div>
+          </div>
+          <div class="col-lg-6 col-lg-md-6 col-sm-6">
+            <div class="buy_con_text pm_con_text" style=" float:left; width:90%;">
+              <div class="CrowdFdot">
+                <h3>{$res.goods_cap}：{$res.goods_name}</h3>
+                <div class="crowdFdotTop clearfix">
+                  <div class="CorwdFLeft">
+                    <div class="CorwdF-plate">
+                      <h3 class="CorwdF_h3"><span>筹集中</span><i>众筹活动进行中</i></h3>
+                      <div class="CrowdF"><i>已筹<if condition="$price eq ''"><font>0元</font></if> <if condition="$price neq ''"><font>{$price}元</font></if> / 目标  {$res.total_price}万元</i> <i>完成 {$res.width}</i></div>
+                      <span class="Schedule"><div class="Schedulel" style="width:{$res['width']} !important;" ></div></span>  </div>
+                    <div class="CrowdF-plate">
+                      <div class="ys4 ys4_tit clearfix"> <span>认购:</span>
+                        <p class="getnums" ><b><input type="text" style="width: 160px !important;text-align: center;height: 28px;font-size: 16px;"  value="{$res.mini}" onchange="exchange()"></b><span>+</span><span>-</span></p>
+
+                      </div>
+                      <div class="ys4_tit clearfix"> <span class="gfzb">股份占比：{$res['mini']/100/$res['total_price']}%</span> </div>
+                    </div>
+
+                    <div class="CrowdF-plate"> <span class="CrowdF-input">
+                      <input type="checkbox" class="check" checked=""/>
+                      </span><span><a href="#">《风险揭示书》</a> / <a href="#">《用户服务协议》</a></span> </div>
+                    <div class="buy_more">
+                      <if condition="$res.end gt $now"><span class="more gmdd" style="background:#d70000;"><a href="javascript:void(0)" class="bu buy1" style=" color:#fff;" data-price="{$res.total_price}" data-id="{$res.id}">认购 </a><i></i></span></if>
+                      <if condition="$res.end lt $now"><span class="more gmdd" style="background:grey;"><a href="javascript:void(0)" class="bu" style=" color:#fff;" >已结束 </a><i></i></span></if>
+                      <!--<span class="more" style="background:#F77B7B;"><a href="javascript:void(0)" class="bu recharge" style=" color:#fff;">充值</a><i></i></span>-->
+                      <div class="clear"></div>
+                    </div>
+                    <ul class="touzi-round">
+                      <li> <strong>{$res.total_price} 万元</strong> <span>目标金额</span> </li>
+                      <li> <strong>{$res.gz}万元</strong> <span>总估值</span> </li>
+                      <li> <strong>{$res.crgf}%</strong> <span>出让股份</span> </li>
+                      <li> <strong>{$res.mini}<sup>元</sup></strong> <span>起投金额</span> </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="pm_cont">
+    <ul class="pm_cont_list">
+      <li id="xq"  class="focus" onClick="fnTabBoxFade(this,4,1);" class="on">
+      <a>详情介绍</a>
+      </li>
+      <li onClick="fnTabBoxFade(this,4,2);"><a>投资概述</a></li>
+      <li onClick="fnTabBoxFade(this,4,3);"><a >资产包介绍</a></li>
+      <li onClick="fnTabBoxFade(this,4,4);"><a>跟投记录</a></li>
+      <div class="clear"></div>
+    </ul>
+    <div id="TabShow1" class="TabHide4 pm_cont1">
+
+      <div class="pm_cont1_top">
+        <!--<h6>友情提醒：</h6>-->
+        {$goods_remind.content|htmlspecialchars_decode|stripslashes}
+      </div>
+      <div class="pm_cont1_bottom"> <span>材料：{$res.goods_skin} </span> <span>尺寸：{$res.goods_range}cm</span> <span>上市时间：{$res.goods_care}</span><span>浏览次数：{$res.num}</span> <!-- <span>价格范围：500-800</span> -->
+        <div class="clear"></div>
+        <div class="pm_cont1_text_all">
+          <div class="col-lg-6 col-md-6 col-sm-6 colpadding">
+            <div class="buyCt buyCtLeft">
+              <p><span>作者简介：</span></p>
+              <p><img src="{$res.goods_cap_pic}">{$res.goods_cap_des|htmlspecialchars_decode|stripslashes}</p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 colpadding">
+            <div class="pm_cont1_text">
+              <p><span>作品说明：</span></p>
+            {$res.desc}
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div id="TabShow2" class="TabHide4 pm_cont3"  style=" display:none" >
+      <div class="pm_cont3_con">
+            <p>{$res.tz_desc|htmlspecialchars_decode|stripslashes}</p>
+      </div>
+    </div>
+    <div id="TabShow3" class="TabHide4 pm_cont3"  style="display:none"  >
+      <div class="pm_cont3_con">
+            {$res.zcb_desc|htmlspecialchars_decode|stripslashes}
+      </div>
+    </div>
+    <div id="TabShow4" class="TabHide4 pm_cont2"  style=" display:none" >
+      <ul class="pm_top">
+        <li>跟投人</li>
+        <li>金额</li>
+        <li>时间</li>
+        <div class="clear"></div>
+      </ul>
+      <volist name="jilu" id="j">
+      <ul class="pm_ok">
+        <li>{$j.person_name}</li>
+        <li>{$j.pay_price}</li>
+        <li>{$j.order_time|date="Y-m-d H:i:s",###}</li>
+        <div class="clear"></div>
+      </ul>
+      </volist>
+    </div>
+  </div>
+  <div class="main_page">
+    {$page}
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+</div>
+</div>
+<form action="{:U('/Home/ArtCommunity/pay')}" method="post" name="form1">
+  <input type="hidden" name="post_data" value="" />
+</form>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script  type="text/javascript">
+    $('.main_page span').click(function () {
+        var page = $(this).attr('data-page');
+        if(!isNaN(page)){
+            window.location.href = "{:U('/Home/ArtCommunity/crowdFunding')}?cate={$_GET['cate']}&page="+page;
+        }
+    })
+    $(document).ready(function(){
+
+        var bignum = Number($('.ys4 .getnums b input').val());
+        //alert(bignum);return false;
+        var mini = '{$res.mini}';
+        if ($(this).html() == '+') {
+            $('.ys4 .getnums b input').val(parseInt(bignum) + parseInt(mini))
+        } else if ($(this).html() == '-' && bignum > mini) {
+            $('.ys4 .getnums b input').val(bignum - mini)
+        }
+
+        var post = {};
+
+        post.price = $('.ys4 .getnums b input').val();
+        var total_price = post.price;
+        var total_price1 = '{$res.total_price}';
+        $('.gfzb').html('股份占比：'+ total_price/100/total_price1+ '%')
+    });
+/*  function mypay(){
+
+  }
+  window.onload =function(){
+      mypay();
+  }*/
+/*window.reload(){
+
+  }*/
+</script>
+<script>
+    function exchange(){
+        var bignum = Number($('.ys4 .getnums b input').val());
+        //alert(bignum);return false;
+        var mini = '{$res.mini}';
+        if ($(this).html() == '+') {
+            $('.ys4 .getnums b input').val(parseInt(bignum) + parseInt(mini))
+        } else if ($(this).html() == '-' && bignum > mini) {
+            $('.ys4 .getnums b input').val(bignum - mini)
+        }
+
+        var post = {};
+
+        post.price = $('.ys4 .getnums b input').val();
+        var total_price = post.price;
+        var total_price1 = '{$res.total_price}';
+        $('.gfzb').html('股份占比：'+ total_price/100/total_price1+ '%')
+    }
+</script>
+<script>
+
+    $(".buy1").click(function (){
+        var member_id = '{$member_id}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+
+        if($('.check').attr('checked') == ''){
+          alert('请勾选协议书！');
+          return false;
+        }
+
+        var post = {};
+        post.member_id = '{$member_id}';
+        post.price = $('.ys4 .getnums b input').val();
+//        var price1 = $(this).attr('data-price');
+//        post.price = post.count1 * price1;
+        post.id = $(this).attr('data-id');
+
+        var final_price = '{$res.total_price}';
+        var ycje  = '{$price}';
+        var mini = '{$res.mini}';
+        var total_price = post.price;
+        //alert(mini);
+        //alert((final_price*10000-ycje)<mini);return false;
+        //alert(total_price);return false;
+        //alert(total_price-mini);return false;
+        if((parseInt(final_price*10000)-parseInt(ycje))>parseInt(mini)){
+            if(parseInt(total_price) < parseInt(mini)){
+                alert("认购金额必须大于起投金额");
+                return false;
+            }
+        }
+
+
+        //alert(final_price*10000-ycje);return false;
+
+        var crgf  = parseInt('{$res.crgf}');
+        if(total_price > (final_price*10000-ycje)){
+            alert('认购金额不能大于目标金额');
+            return false;
+        }
+
+
+       /*
+        var mini = '{$res.mini}';
+        var total_price = post.price;
+        //alert(mini);
+        if(total_price < mini){
+            alert("认购金额必须大于起投金额");
+            return false;
+        }
+
+        var ycje  = '{$price}';
+        var price = '{$res.total_price}';
+        var crgf  = '{$res.crgf}';
+        if(total_price > (price*10000-ycje)){
+            alert('认购金额不能大于目标金额');
+            return false;
+        }*/
+
+
+
+        var post1 = JSON.stringify(post);
+        $("input[name=post_data]").val(post1);
+        $("form[name=form1]").submit();
+
+    })
+
+
+</script>
+<script>
+  var mySwiperBa = new Swiper('.swiperBa',{
+        pagination: '.paginationBa',
+        paginationClickable: true,
+        spaceBetween: 0,
+		slidesPerView : 1,//设置几个一切换
+		autoplay:5000,
+		loop:true, //循环
+		grabCursor: true,
+		autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+    });
+
+ $(window).load(function(e) {
+	var height1 = $(".banner_img").height();
+	$(".swiperBa").css("height",height1);
+
+ })
+
+ $(window).resize(function(e) {
+	var height1 = $(".banner_img").height();
+	$(".swiperBa").css("height",height1)
+ })
+
+</script>
+
+<script>
+
+$(document).ready(function(e) {
+
+    $(function () {
+
+        $('.zpjs').click(function () {
+            var h = $('.buy_con_Tab1').offset().top - 230;
+            $('body,html').animate({scrollTop: h}, 2000)
+        })
+
+        $('.wypl').click(function () {
+            var h = $('.cont_main').offset().top;
+            $('body,html').animate({scrollTop: h}, 2000)
+        })
+
+        $('.tjbq').click(function () {
+            var h = $('.biaoqian').offset().top;
+            $('body,html').animate({scrollTop: h}, 2000)
+        })
+
+    })
+})
+
+
+  </script>
+
+<!------cp_xxjs1_js------>
+<script src="__JS__/jquery-1.2.6.pack.js" type=text/javascript></script>
+<script src="__JS__/base.js" type=text/javascript></script>
+<script type=text/javascript>
+	$(function(){
+	   $(".jqzoom").jqueryzoom({
+			xzoom:420,
+			yzoom:400,
+			offset:10,
+			position:"right",
+			preload:1,
+			lens:1
+		});
+		$("#spec-list").jdMarquee({
+			deriction:"left",
+			width:420,
+			height:70,
+			step:2,
+			speed:4,
+			delay:10,
+			control:true,
+			_front:"#spec-right",
+			_back:"#spec-left"
+		});
+		$("#spec-list img").bind("mouseover",function(){
+			var src=$(this).attr("src");
+			$("#spec-n1 img").eq(0).attr({
+				src:src.replace("\/n5\/","\/n1\/"),
+				jqimg:src.replace("\/n5\/","\/n0\/")
+			});
+			$(this).css({
+				"border":"2px solid #6d79df",
+				"padding":"1px"
+			});
+		}).bind("mouseout",function(){
+			$(this).css({
+				"border":"1px solid #ccc",
+				"padding":"2px"
+			});
+		});
+	})
+	</script>
+<script src="__JS__/lib.js" type=text/javascript></script>
+<script src="__JS__/163css.js" type=text/javascript></script>
+<!------cp_xxjs1_js------>
+
+<script>
+
+  	  $(document).ready(function(){
+
+   var show = false
+	 $(".ddgd").click(function(){
+		 //$(".more_gs").slideToggle();
+		 if(show==false){
+			 $(".more_text").slideDown();
+		 	$(".ddgd").text("点击收回")
+
+			 show=true;
+			 }else{
+				  $(".more_text").slideUp();
+				  $(".ddgd").text("查看更多+")
+				  show=false;
+
+				 }
+        })
+	$(".ddgd").click(
+		 function(event){event.stopPropagation();}
+		)
+
+
+})
+
+  $('.ys4 .getnums span').click(function() {
+	  var bignum = Number($('.ys4 .getnums b input').val());
+    var mini = '{$res.mini}';
+	  if ($(this).html() == '+') {
+		  $('.ys4 .getnums b input').val(parseInt(bignum) + parseInt(mini))
+	  } else if ($(this).html() == '-' && bignum > mini) {
+		  $('.ys4 .getnums b input').val(bignum - mini)
+	  }
+
+    var post = {};
+
+    post.price = $('.ys4 .getnums b input').val();
+    var total_price = post.price;
+    var total_price1 = '{$res.total_price}';
+     $('.gfzb').html('股份占比：'+ total_price/100/total_price1+ '%')
+  })
+
+
+
+  </script>
+<script>
+$(window).load(function(){
+
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  console.log(showmagnifierWidth);
+  console.log(showmagnifierHeight);
+
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  console.log(hiddenmagnifierWidth);
+  console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  console.log(bigmagnifierWidth);
+  console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  console.log(xiaohuangWidth);
+  console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+
+
+})
+
+$(window).resize(function(){
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  console.log(showmagnifierWidth);
+  console.log(showmagnifierHeight);
+
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  console.log(hiddenmagnifierWidth);
+  console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  console.log(bigmagnifierWidth);
+  console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  console.log(xiaohuangWidth);
+  console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+});
+
+$(function () {
+    $('#xq').siblings().removeClass("focus");
+    $('#xq').addClass("focus");
+    $(".TabHide4").hide();
+    $("#TabShow1").fadeIn("fast");
+})
+</script>
+<script src="__JS__/detail.js"></script>
+</html>

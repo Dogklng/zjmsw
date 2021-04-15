@@ -1,0 +1,432 @@
+<include file="Public:head"/>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">运费规则</h1>
+
+            <form action="" method="post">
+                <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加运费规则</a></div>
+            </form>
+
+            <div class="alert alert-info disable-del">共有 <span style="font-size:16px;">{$count|default="0"}</span> 条规则。<a href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <div class="tablesWrap">
+
+                <!-- end tables-searchbox -->
+                <table class="wxtables">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="5%">
+
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="25%">
+                        <col width="20%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>ID</td>
+                        <td>首重价格</td>
+                        <td>续重价格</td>
+                        <td>系数</td>
+                        <td>城市</td>
+                        <td>创建时间</td>
+                        <td align="center">操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="cache" item="vo">
+                        <tr>
+                            <td><input type="checkbox" class="checkbox table-ckbs check"  data-name="" data-id="{$vo.id}"></td>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.first_price}</td>
+                            <td>{$vo.next_price}</td>
+                            <td>{$vo.ratio}</td>
+                            <td>{$vo.region_name}</td>
+                            <td>{$vo.create_at|date="Y-m-d H:i:s",###}</td>
+                            <td align="right">
+                                <p style=" text-align:center">
+
+                                <a class="btn btn-primary j-editClass"data-id="{$vo.id}" data-first_price="{$vo.first_price}" data-next_price="{$vo.next_price}" data-ratio="{$vo.ratio}" data-sort="{$vo.sort}" >编辑</a>
+                                <a href="javaScript:;" data-id="{$vo.id}"  class="btn j-delClass btn-warning" title="删除" >删除</a><!--onclick="{if(confirm('确定删除吗?')){return true;} return false;} "-->
+                                    <a href="javaScript:;" data-id="{$vo.id}"  class="btn j-addcity c BtnAddCity"  >城市</a>
+                                </p>
+                            </td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                        <a href="javascript:;"  style="background-color:#f0ad4e;border-color:#eea236;"  class="btn btn-primary del">删除</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<!-- end container -->
+<include file="Public:foot"/>
+
+
+<div id="albums-overlay" class="disshow"></div>
+
+<!--添加-->
+<div class="jbox addfenlei disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">添加运费规则</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>首重价格：</label>
+            <div class="form-controls">
+                <input type="text"  class="input first_price">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>续重价格：</label>
+            <div class="form-controls">
+                <input type="text"  class="input next_price">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>系数：</label>
+            <div class="form-controls">
+                <input type="text"  class="input ratio">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>排序：</label>
+            <div class="form-controls">
+                <input type="text"  class="input sort">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+
+
+      
+    </div>
+    <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+<!--修改-->
+<div class="jbox editfenlei disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">修改运费规则</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+
+        
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>首重价格：</label>
+            <div class="form-controls">
+                <input type="text" class="input first_price">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>续重价格：</label>
+            <div class="form-controls">
+                <input type="text" class="input next_price">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>系数：</label>
+            <div class="form-controls">
+                <input type="text" class="input ratio">
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>排序：</label>
+
+            <div class="form-controls">
+                <input type="text" class="input sort">
+                <input type="hidden" class="input freightfeeid " name="freightfeeid" >
+                <span class="fi-help-text"></span> </div>
+        </div>
+
+    </div>
+    <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editcategory">确定</a><a
+            href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+
+<!--城市-->
+<div class="jbox addcity disshow">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">城市</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 263px;">
+
+        <div class="formitems">
+            <div style="width: 240px; ">
+            <foreach name="cityAll" item="vo">
+                <lable><input type="checkbox" name="city" value="{$vo['id']}" >{$vo['region_name']}</lable>
+            </foreach>
+                <input type="hidden" name="freightid" value="">
+            </div>
+        </div>
+
+
+    </div>
+    <div class="jbox-buttons">
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcity">确定</a>
+        <a href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+</script>
+
+<!--城市-->
+<script type="text/javascript">
+    $(".BtnAddCity").click(function(){
+
+        $('.addcity').show();
+        $('#albums-overlay').show();
+        var id=$(this).attr('data-id');
+        $("input[name=freightid]").val(id);
+
+
+        $.ajax({
+            url: "{:U('/Admin/Index/getcity')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id:id
+            }
+        }).done(function (g) {
+        })
+    })
+</script>
+<!--城市-->
+
+<!--添加城市-->
+<script type="text/javascript">
+    $("#addcity").click(function(){
+        var city = new Array();
+        var id=$("input[name=freightid]").val();
+
+        $("input[name=city]:checked").each(function(){
+            city.push($(this).val());
+        })
+        $.ajax({
+            url: "{:U('/Admin/Index/addcity')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id:id,
+                city:city
+            }
+        }).done(function (g) {
+            alert(g.info);
+            window.location.reload();
+        })
+    })
+
+</script>
+<!--添加城市-->
+
+
+
+
+<!--添加运费规则-->
+<script type="text/javascript">
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+</script>
+<script type="text/javascript">
+    $("#addcategory").click(function(){
+
+
+        var pfirst_price = $(".addfenlei .first_price").val();
+        var pnext_price = $(".addfenlei .next_price").val();
+        var pratio = $(".addfenlei .ratio").val();
+        var psort = $(".addfenlei .sort").val();
+        if (!pfirst_price) {
+            alert("请输入首重价格");
+            return false;
+        }
+        if (!pnext_price) {
+            alert("请输入续重价格");
+            return false;
+        }
+        if (!pratio) {
+            alert("请输入系数");
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Admin/Index/addfreightfee')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                first_price:pfirst_price,
+                next_price:pnext_price,
+                ratio:pratio,
+                sort:psort
+
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.href= g.url;
+            } else {
+                alert(g.info);
+            }
+        })
+    })
+</script>
+<!--添加运费规则end-->
+
+<!--修改运费规则-->
+<script type="text/javascript">
+    var categoryid;
+    $(".j-editClass").click(function(){
+        $('.editfenlei').show();
+        $('#albums-overlay').show();
+        var pfirst_price = $(this).attr("data-first_price");
+        var pnext_price = $(this).attr("data-next_price");
+        var pratio = $(this).attr("data-ratio");
+        var psort = $(this).attr("data-sort");
+        var pid=$(this).attr("data-id");
+
+        $(".editfenlei .first_price").val(pfirst_price);
+        $(".editfenlei .next_price").val(pnext_price);
+        $(".editfenlei .ratio").val(pratio);
+        $(".editfenlei .sort").val(psort);
+        $(".editfenlei .freightfeeid").val(pid);
+
+
+
+    })
+
+    $("#editcategory").click(function(){
+
+        var pid =$(".editfenlei .freightfeeid").val();
+        var pfirst_price = $(".editfenlei .first_price").val();
+        var pnext_price = $(".editfenlei .next_price").val();
+        var pratio = $(".editfenlei .ratio").val();
+        var psort = $(".editfenlei .sort").val();
+
+        if (!pfirst_price) {
+            alert("请输入首重价格");
+            return false;
+        }
+        if (!pnext_price) {
+            alert("请输入续重价格");
+            return false;
+        }
+        if (!pratio) {
+            alert("请输入系数");
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Admin/Index/addfreightfee')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id:pid,
+                first_price:pfirst_price,
+                next_price:pnext_price,
+                ratio:pratio,
+                sort:psort
+
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+
+
+
+
+
+    //多选删除
+    $('.del').click(function(){
+        var ID ='';
+        if($('.check:checked').length ==0){
+            alert('请选择要删除的数据');return false;
+        }
+        if(confirm('确定删除吗！')){
+            $('.check:checked').each(function(){
+                ID = ID + $(this).attr("data-id") + '_';
+            });
+
+
+            $.post("{:U('Admin/Index/delfreightfee')}",{'id':ID},function(data){
+                if(data.status==1){
+                    alert(data.info);
+                    location.reload();
+                }
+            },'json');
+        }
+    })
+
+
+    $('.j-delClass').click(function(){
+        var ID=$(this).attr("data-id");
+
+        if(confirm('确定删除吗！')) {
+            $.post("{:U('Admin/Index/delfreightfee')}",{'id':ID},function(data){
+                if(data.status==1){
+                    alert(data.info);
+                    location.reload();
+                }
+            },'json');
+
+        }
+
+    })
+
+
+
+</script>
+<!--修改运费规则-->

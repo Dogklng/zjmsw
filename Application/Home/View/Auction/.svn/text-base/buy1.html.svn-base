@@ -1,0 +1,462 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__CSS__/details.css" />
+<script src="__JS__/jquery.fn.TabBox.js" type="text/javascript"></script>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM"> 
+  <!--  
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">The work details</p>
+    <h5>作 • 品 • 详 • 情</h5>
+  </div>
+-->
+  <div class="buy"> 
+    
+    <!--<div class="buy_con" style="margin-top:0;">
+    	<ul class="buy_title">
+        	<li class="active zpjs">作品介绍</li> 	
+          <li class="wypl">我要评论</li>
+          <li class="tjbq" style=" border-right:none;">添加标签</li>
+        </ul>
+
+
+    </div>-->
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+          <div class="cp_xxjs1  col-lg-6 col-md-6 col-sm-6">
+            <div id="magnifier">
+              <div id="showmagnifier"> <img src="{$res2.index_pic}">
+                <div id="smallmagnifier"></div>
+                <div id="hiddenmagnifier"> <img id="bigmagnifier" src="__IMAGES__/img02.jpg"> </div>
+              </div>
+              <div id="magnifierlist">
+                <div id="magnifierLeft"></div>
+                <ul id="magnifierMiddle">
+                  <volist name="goods_slide" id="v">
+                    <li><img src="{$v.pic}"></li>
+                  </volist>
+                </ul>
+                <div id="magnifierRight"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="buy_con_text pm_con_text" style=" float:left; width:90%;">
+              <h3>{$res.goods_name}</h3>
+              <h4><i style="background:#999;">已结束</i> 结束时间：<span>2017年4月12日11:00</span></h4>
+              <div class="qpxx">
+                <div class="qpxx1">
+                  <h2>拍卖已流拍，未达保留价</h2>
+                </div>
+                <ul class="qpxx2">
+                  <li><span>5</span>人报名 </li>
+                  <li><span>{$tel}</span>人设置提醒 </li>
+                  <li><span>1095</span>次围观</li>
+                  <div class="clear"></div>
+                </ul>
+                <ul class="qpxx3">
+                  <li>起拍价: <span>¥{$res.start_price}</span></li>
+                  <li>加价幅度: <span>¥{$res.fudu}</span></li>
+                  <li>保证金: <span>¥{$res.fudu}</span></li>
+                  <li>佣金: <span>¥{$res.yongjin}</span></li>
+                  <li>延时周期: <span>¥{$res.zhouqi}</span></li>
+                  <li>保留价:有保留价有保留价</li>
+                  <div class="clear"></div>
+                </ul>
+                <div class="qpxx4"> 特色服务： <span>假一赔三</span> <span>拍前预展</span> </div>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="pm_cont">
+        <ul class="pm_cont_list">
+          <li  class="focus" onClick="fnTabBoxFade(this,4,1);" class="on">
+          <a>拍品描述</a>
+          </li>
+          <li onClick="fnTabBoxFade(this,4,2);"><a>出价记录(<span>5</span>)</a></li>
+          <li onClick="fnTabBoxFade(this,4,3);"><a >服务保障</a></li>
+          <li onClick="fnTabBoxFade(this,4,4);"><a>保障金须知</a></li>
+          <div class="clear"></div>
+        </ul>
+        <div id="TabShow1" class="TabHide4 pm_cont1" >
+          <div class="pm_cont1_top">
+            <h6>友情提醒：</h6>
+            <h5>{$remind.content|htmlspecialchars_decode|stripslashes}</h5>
+          </div>
+          <div class="pm_cont1_bottom"> <span>材料：{$res.goods_skin} </span> <span>尺寸：{$res.goods_range}</span> <span>上市时间：{$res.goods_care}</span> <span>浏览次数： 259</span> <span>价格范围：500-800</span>
+            <div class="clear"></div>
+            <div class="pm_cont1_text_all">
+              <div class="col-lg-6 col-md-6 col-sm-6 colpadding">
+                <div class="buyCt buyCtLeft">
+                  <p><span>作者简介：</span></p>
+                  <p><img src="{$res.logo_pic}">{$res.detail|htmlspecialchars_decode|stripslashes}</p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 colpadding">
+                <div class="pm_cont1_text">
+                  <p><span>作品简介：</span></p>
+                  {$res.goods_des}
+                  </div>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div id="TabShow2" class="TabHide4 pm_cont2"  style=" display:none" >
+          <ul class="pm_top">
+            <li>状态</li>
+            <li>竞拍人</li>
+            <li>价格</li>
+            <li>时间</li>
+            <li>评价</li>
+            <div class="clear"></div>
+          </ul>
+          <ul class="pm_ok">
+            <li><span>领先</span></li>
+            <li>R3183</li>
+            <li>¥8,001</li>
+            <li>2017-04-14 10:58:47</li>
+            <li><i class="zan">(0)</i></li>
+            <div class="clear"></div>
+          </ul>
+          <ul>
+            <li><span>出局</span></li>
+            <li>R3185</li>
+            <li>¥7,001</li>
+            <li>2017-04-14 10:58:47</li>
+            <li><i class="zan">(0)</i></li>
+            <div class="clear"></div>
+          </ul>
+          <ul>
+            <li><span>出局</span></li>
+            <li>R3186</li>
+            <li>¥5,001</li>
+            <li>2017-04-14 10:58:47</li>
+            <li><i class="zan">(0)</i></li>
+            <div class="clear"></div>
+          </ul>
+          <ul>
+            <li><span>出局</span></li>
+            <li>R3187</li>
+            <li>¥3,001</li>
+            <li>2017-04-14 10:58:47</li>
+            <li><i class="zan">(0)</i></li>
+            <div class="clear"></div>
+          </ul>
+          <ul>
+            <li><span>出局</span></li>
+            <li>R3185</li>
+            <li>¥3,001</li>
+            <li>2017-04-14 10:58:47</li>
+            <li><i class="zan">(0)</i></li>
+            <div class="clear"></div>
+          </ul>
+        </div>
+        <div id="TabShow3" class="TabHide4 pm_cont3"  style="display:none;"  >
+          <div class="pm_cont3_con">
+         {$service.content|htmlspecialchars_decode|stripslashes}
+          </div>
+        </div>
+        <div id="TabShow4" class="TabHide4 pm_cont4"  style=" display:none" >
+          <div class="pm_cont4_con"> {$bz.content|htmlspecialchars_decode|stripslashes}</div>
+        </div>
+      </div>
+    </div>
+    <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<script>
+    $('#save').click(function () {
+        var member_id = '{$name}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+        var tel  = $('#tel').val();
+        var goods_id   = $(this).attr('data-id');
+        if(tel == ''){
+            alert('手机号必填');
+            return false;
+        }
+        if(!(/^1[34578]\d{9}$/.test(tel))){
+            alert('请输入正规手机号');
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Home/Auction/addRemind')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                tel:  tel,
+                goods_id:goods_id
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+$(document).ready(function(e) {
+    $(".buy_sec1_right_out").height($(".buy_sec1_left").height())
+	
+	var hbuy = $(".buy_dt img").height()+80;
+    $(".swiper-container1").css("height",hbuy);
+	
+	
+	$(window).load(function(e) {
+        $(".buy_sec1_right_out").height($(".buy_sec1_left").height())
+    });
+	
+	  var mySwiper1 = new Swiper('.swiper-container1',{
+      grabCursor: true,
+	  autoplay:5000, 
+	  spaceBetween: 0,
+	  slidesPerGroup : 1,//设置几个一切换
+	  autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+      });
+  $('.arrow-left1').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipePrev()
+	})
+	$('.arrow-right1').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipeNext()
+	})
+  
+  $('.buy_xt li').eq(0).hover(function(){
+    mySwiper1.swipeTo(0, 1000, false);
+  });
+  $('.buy_xt li').eq(1).hover(function(){
+    mySwiper1.swipeTo(1, 1000, false);
+  });
+  $('.buy_xt li').eq(2).hover(function(){
+    mySwiper1.swipeTo(2, 1000, false);
+  });
+  $('.buy_xt li').eq(3).hover(function(){
+    mySwiper1.swipeTo(3, 1000, false);
+  });
+  
+
+$(".buy2_left ul li").click(function(e) {
+	//$(this).addClass("active").siblings().removeClass("active");
+    var ind=$(this).index();
+	var scrollnum=$(".buy3_sec").eq(ind).offset().top-140;
+	$('body,html').animate({ scrollTop: scrollnum }, 200);
+});
+var scro_to=0;
+
+$(window).scroll(function(e) {
+	var scrolltop=$(window).scrollTop();
+	
+	var buy3_num=$(".buy3_sec").length;
+	for(i=0;i<buy3_num;i++){
+		if(scrolltop>$(".buy3_sec").eq(i).offset().top-160){
+			scro_to=i;
+		}
+	}
+	$(".buy2_left ul li").eq(scro_to).addClass("active").siblings().removeClass("active");
+	
+	
+	
+	
+    if(scrolltop>$(".buy_sec2").offset().top-60){
+		$(".buy_sec2_in").css({"position":"fixed","top":"60px","left":"0"})
+	}else{
+		$(".buy_sec2_in").css({"position":"absolute","top":"0"})
+	}
+});
+
+
+});
+ 
+	
+	$(function(){
+
+       $('.zpjs').click(function(){
+                var h=$('.buy_con_Tab1').offset().top-230;
+                $('body,html').animate({scrollTop:h},2000)
+            })
+			
+		$('.wypl').click(function(){
+                var h=$('.cont_main').offset().top;
+                $('body,html').animate({scrollTop:h},2000)
+            })
+			
+		$('.tjbq').click(function(){
+                var h=$('.biaoqian').offset().top;
+                $('body,html').animate({scrollTop:h},2000)
+            })
+       
+    })
+	
+ 
+  </script>
+
+<!------cp_xxjs1_js------>
+<SCRIPT src="__JS__/jquery-1.2.6.pack.js" type=text/javascript></SCRIPT>
+<SCRIPT src="__JS__/base.js" type=text/javascript></SCRIPT>
+<SCRIPT type=text/javascript>
+	$(function(){			
+	   $(".jqzoom").jqueryzoom({
+			xzoom:420,
+			yzoom:400,
+			offset:10,
+			position:"right",
+			preload:1,
+			lens:1
+		});
+		$("#spec-list").jdMarquee({
+			deriction:"left",
+			width:420,
+			height:70,
+			step:2,
+			speed:4,
+			delay:10,
+			control:true,
+			_front:"#spec-right",
+			_back:"#spec-left"
+		});
+		$("#spec-list img").bind("mouseover",function(){
+			var src=$(this).attr("src");
+			$("#spec-n1 img").eq(0).attr({
+				src:src.replace("\/n5\/","\/n1\/"),
+				jqimg:src.replace("\/n5\/","\/n0\/")
+			});
+			$(this).css({
+				"border":"2px solid #6d79df",
+				"padding":"1px"
+			});
+		}).bind("mouseout",function(){
+			$(this).css({
+				"border":"1px solid #ccc",
+				"padding":"2px"
+			});
+		});				
+	})
+	</SCRIPT>
+<SCRIPT src="__JS__/lib.js" type=text/javascript></SCRIPT>
+<SCRIPT src="__JS__/163css.js" type=text/javascript></SCRIPT>
+<!------cp_xxjs1_js------>
+
+<script>
+  
+  	  $(document).ready(function(){
+  
+   var show = false
+	 $(".ddgd").click(function(){
+		 //$(".more_gs").slideToggle();
+		 if(show==false){
+			 $(".more_text").slideDown();
+		 	$(".ddgd").text("点击收回")
+			
+			 show=true;
+			 }else{
+				  $(".more_text").slideUp();
+				  $(".ddgd").text("查看更多+")
+				  show=false;
+				
+				 }
+        })
+	$(".ddgd").click(
+		 function(event){event.stopPropagation();}
+		)
+	
+
+})
+  
+  
+  </script>
+<script>
+$(window).load(function(){
+
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  console.log(showmagnifierWidth);
+  console.log(showmagnifierHeight);
+  
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  console.log(hiddenmagnifierWidth);
+  console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  console.log(bigmagnifierWidth);
+  console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  console.log(xiaohuangWidth);
+  console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+
+
+})
+
+$(window).resize(function(){
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  console.log(showmagnifierWidth);
+  console.log(showmagnifierHeight);
+  
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  console.log(hiddenmagnifierWidth);
+  console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  console.log(bigmagnifierWidth);
+  console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  console.log(xiaohuangWidth);
+  console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+});
+
+
+</script>
+<script src="__JS__/detail.js"></script>
+</html>

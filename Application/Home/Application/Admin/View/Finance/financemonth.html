@@ -1,0 +1,122 @@
+<include file="Public:head"/>
+
+<!-- <link rel="stylesheet" href="__PLUGCSS__/laydate.css" type="text/css"/> -->
+<script type="text/javascript" src="__PUBLIC__/Admin/laydate/laydate.js"></script>
+
+<div class="container">
+    <div class="inner clearfix">
+        <div class="content-left fl">
+            <include file="Public:left"/>
+        </div>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">财务明细统计</h1>
+
+            <a  style="float:right;margin-right:20px;" href="javascript:void(0);" class="btn btn-warning order_export">记录导出</a>
+            <div class="chartWrap mgt15 clearfix">
+
+
+
+                <!--当月日统计列表开始-->
+                <div class="chartWrap mgt15 clearfix">
+                    <h1 class="content-right-title" style="color:red;">{$today}月统计列表</h1>
+                    <table class="wxtables" style="text-align:center;">
+                        <colgroup>
+                            <col width="15%">
+                            <col width="10%">
+                            <col width="10%">
+                            <col width="10%">
+                            <col width="10%">
+                            <col width="15%">
+                           
+                            <col width="10%">
+                         <!--    <col width="10%"> -->
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <td colspan="9" class="left" style="font-size:14px;">统计列表
+                                <form action="{:U('Admin/Finance/FinanceMonth')}" method="post">
+                                    <!--<input type="text" autocomplete="off" name="dayStartTime" id="dayStartTime" value="{$dayStartTime}" placeholder="起始日期" class="input Wdate" />-->
+                                    <input class="laydate-icon" id="demo" name="dayStartTime" value="{$dayStartTime}" style="padding:0px 5px;width:220px;height:28px;line-height:30px;"/>
+                                    <button class="btn btn-primary"><i class="gicon-search white"></i>查询</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </thead>
+                        <thead width="100%">
+                        <tr>
+                            <td>日期</td>
+                            <td>订单总数</td>
+                            <td>订单总额</td>
+                            <td>已付款订单</td>
+                            <td>优惠总额</td>
+                            <td>成本额</td>
+                            <td>营业额</td>
+                            <td>盈利额</td>
+                    <!--         <td>PV</td> -->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <foreach name="data" item="vo">
+                            <tr>
+                                <td>{$key}</td>
+                                <td>{$vo.all|default="0"}</td>
+                                <td>{$vo.allprice|default="0"}</td>
+                                <td>{$vo.success|default="0"}</td>
+                                <td>{$vo.couponprice|default="0"}</td>
+                                <td>{$vo.gy_allprice|default="0"}</td>
+                                <td>{$vo.businessprice|default="0"}</td>
+                                <td class="status">{$vo.profitprice|default="0"}</td>
+                              <!--   <td>{$vo.pv|default="0"}</td> -->
+                            </tr>
+                        </foreach>
+                        </tbody>
+                    </table>
+                </div>
+                <!--当月日统计列表结束-->
+
+                <div class="chartWrap mgt15 clearfix"></div>
+
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fr">
+                        <div class="paginate">
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div><!-- end tables-btmctrl -->
+            </div>
+        </div>
+        <!-- end content-right -->
+        
+    </div>
+</div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<script type="text/javascript">
+
+    $(".order_export").click(function(){
+        var starttime=$("#demo").val();
+        var starttimes=starttime?'/starttime/'+starttime:'';
+        window.location.href='/Admin/finance/export'+starttimes;
+    });
+
+</script>
+
+<script>
+
+	;!function(){
+//laydate.skin('molv');
+       laydate({
+            elem: '#demo',
+            format: 'YYYY-MM',
+        });
+    }();
+    
+</script>

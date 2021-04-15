@@ -1,0 +1,424 @@
+<include file="Public:header" />
+ 
+
+<div class="ban1">
+  <div class="banner_img"> <img src="__IMAGES__/xinwen.jpg" alt="" /> </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="zhenggLcTitle">
+    <h3>{$number['theme']}主题大赛征稿<span><if condition = "$timed gt $number['end_time']">已经结束<elseif condition = "$timed lt $number['start_time']"/>还未开始<elseif condition = "$timed gt $number['collectiontime'] and $timed elt $number['selectiontime']"/>评选中<elseif condition="$timed gt $number['selectiontime'] and $timed elt $number['end_time']"/>公布结果中<else />进行中</if>...</span></h3>
+    <div class="zggLcNav"> 
+      <a href="{:U('/Home/News/process')}">大赛流程</a>
+      <a href="{:U('/Home/News/processDetails')}">大赛详情</a>
+      <!-- <a href="{:U('/Home/News/submission')}">在线投稿</a> -->
+      <a href="{:U('/Home/News/works')}">在线作品</a>
+      <a href="{:U('/Home/News/win')}" class="zggLcNavCur">获奖作品</a></div>
+  </div>
+  <div class="zhenggLcCon">
+    <!--<div class="zggLcPlate">
+      <h3 style="color:#999;">比赛进行中，敬请期待！</h3>
+    </div>-->
+	<if condition = "$number['selectiontime'] lt $timed">
+	 <div class="zggLcPlate zggHjPlate">
+      <h3>一等奖</h3>
+	  <volist name="paper_list1" id="vo">
+		  <div class="col-lg-3 col-md-3 col-sm-3">
+			<div class="zggHjItem"> <a href="{:U('/Home/News/worksDetails/pid')}/{$vo.id}">
+			  <div class="zggHjItem-img"> <img src="{$vo.picp}" />
+				<div class="zggHjItem-txt">
+				  <h6>{$vo.person_detail}</h6>
+				</div>
+			  </div>
+			  <div class="zggHjItemT">
+				<h3>{$vo.wname}</h3>
+				<h4>by:{$vo.author}</h4>
+			  </div>
+			</a> </div>
+		  </div>
+	  </volist>
+    </div>
+    <div class="zggLcPlate zggHjPlate">
+      <h3>二等奖</h3>
+	  <volist name="paper_list2" id="vo">
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="zggHjItem"> <a href="{:U('/Home/News/worksDetails/pid')}/{$vo.id}">
+          <div class="zggHjItem-img"> <img src="{$vo.picp}" />
+            <div class="zggHjItem-txt">
+              <h6>{$vo.person_detail}</h6>
+            </div>
+          </div>
+          <div class="zggHjItemT">
+            <h3>{$vo.wname}</h3>
+            <h4>by:{$vo.author}</h4>
+          </div>
+        </a> </div>
+      </div>
+	  </volist>
+	  </div>
+	 <div class="zggLcPlate zggHjPlate">
+      <h3>三等奖</h3>
+	    <volist name="paper_list3" id="vo">
+		  <div class="col-lg-3 col-md-3 col-sm-3">
+			<div class="zggHjItem"> <a href="{:U('/Home/News/worksDetails/pid')}/{$vo.id}">
+			  <div class="zggHjItem-img"> <img src="{$vo.picp}" />
+				<div class="zggHjItem-txt">
+				  <h6>{$vo.person_detail}</h6>
+				</div>
+			  </div>
+			  <div class="zggHjItemT">
+				<h3>{$vo.wname}</h3>
+				<h4>by:{$vo.author}</h4>
+			  </div>
+			</a> </div>
+		  </div>
+	  </volist>
+	</div>
+	<elseif condition = "$number['start_time'] gt $timed"/>
+	
+	<h3 style="text-align:center">还未开始</h3>
+	<elseif condition = "$number['collectiontime'] elt $timed and $timed elt $number['selectiontime']"/>
+		<h3  style="text-align:center;">评选中</h3>
+	<else />
+	<h3  style="text-align:center;">进行中</h3>
+	
+	
+	</if>
+    <!-- <div class="zggLcPlate zggHjPlate"> -->
+      <!-- <h3>一等奖</h3> -->
+	  <!-- <volist name="paper_list1" id="vo"> -->
+		  <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+			<!-- <div class="zggHjItem"> <a href="{:U('/Home/News/worksDetails/pid')}/{$vo.id}"> -->
+			  <!-- <div class="zggHjItem-img"> <img src="{$vo.picp}" /> -->
+				<!-- <div class="zggHjItem-txt"> -->
+				  <!-- <h6>{$vo.person_detail}</h6> -->
+				<!-- </div> -->
+			  <!-- </div> -->
+			  <!-- <div class="zggHjItemT"> -->
+				<!-- <h3>{$vo.wname}</h3> -->
+				<!-- <h4>by:{$vo.author}</h4> -->
+			  <!-- </div> -->
+			<!-- </a> </div> -->
+		  <!-- </div> -->
+	  <!-- </volist> -->
+    <!-- </div> -->
+	
+    <!-- <div class="zggLcPlate zggHjPlate"> -->
+      <!-- <h3>二等奖</h3> -->
+	  <!-- <volist name="paper_list2" id="vo"> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="{:U('/Home/News/worksDetails/pid')}/{$vo.id}"> -->
+          <!-- <div class="zggHjItem-img"> <img src="{$vo.picp}" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>{$vo.person_detail}</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>{$vo.wname}</h3> -->
+            <!-- <h4>by:{$vo.author}</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+	  <!-- </volist> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+    <!-- <div class="zggLcPlate zggHjPlate"> -->
+      <!-- <h3>三等奖</h3> -->
+	    <!-- <volist name="paper_list3" id="vo"> -->
+		  <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+			<!-- <div class="zggHjItem"> <a href="{:U('/Home/News/worksDetails/pid')}/{$vo.id}"> -->
+			  <!-- <div class="zggHjItem-img"> <img src="{$vo.picp}" /> -->
+				<!-- <div class="zggHjItem-txt"> -->
+				  <!-- <h6>{$vo.person_detail}</h6> -->
+				<!-- </div> -->
+			  <!-- </div> -->
+			  <!-- <div class="zggHjItemT"> -->
+				<!-- <h3>{$vo.wname}</h3> -->
+				<!-- <h4>by:{$vo.author}</h4> -->
+			  <!-- </div> -->
+			<!-- </a> </div> -->
+		  <!-- </div> -->
+	  <!-- </volist> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+      <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zggHjItem"> <a href="#"> -->
+          <!-- <div class="zggHjItem-img"> <img src="__IMAGES__/buy01.png" /> -->
+            <!-- <div class="zggHjItem-txt"> -->
+              <!-- <h6>画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！画廊成立于1994年，以经营中国当代艺术家原创油画作品为主，旨在高品质呈现中国当代艺术，让艺术点亮生活！</h6> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="zggHjItemT"> -->
+            <!-- <h3>艺术人生</h3> -->
+            <!-- <h4>by:蓝正辉</h4> -->
+          <!-- </div> -->
+        <!-- </a> </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+   $('.product-sort a').click(function(){
+      // alert($(this).parent().find('a').length)
+      $(this).parent().find('a').removeClass('active')
+      $(this).addClass('active')
+    })
+</script>
+<!--  / banner切换  -->
+<script src="__JS__/swiper.min.js"></script>
+<script>
+$(document).ready(function(e) {
+    
+	var mySwiper1 = new Swiper('.swiper-banner',{
+		pagination: '.pagination1',
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left_01').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipePrev()
+	})
+	  
+	$('.arrow-right_01').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipeNext()
+	})
+	
+	var mySwiper2 = new Swiper('.swiper-tuijian',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerGroup : 1,//设置几个一切
+		slidesPerView :4,//一行几
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+	
+	$(".ss").click(function(e){
+		    $(".sskuang").css({"left":"0","opacity":"1"})  
+	})
+	
+	$(".close").click(function(e){
+		    $(".sskuang").css({"left":"-100%","opacity":"0"})  
+	})
+	
+  
+  
+  
+
+});
+
+
+
+
+
+$(window).scroll(function ()
+{
+	
+ 
+		 	 
+	
+	 if($(window).scrollTop()>=60){ 
+		 $('.header').addClass('header_fixed');
+	 }
+	 else {
+        $('.header').removeClass('header_fixed');
+        } 
+		 
+	 
+
+	
+});		 
+		 
+</script>
+
+<!--  / banner切换  -->
+
+<script>
+
+$(document).ready(function() {
+
+	$(".wx").hover(function(){
+		$(".ewm1").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm1").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	$(".sj").hover(function(){
+		$(".ewm2").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm2").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	
+	
+});
+
+</script>
+</html>

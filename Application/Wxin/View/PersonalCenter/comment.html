@@ -1,0 +1,388 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__CSS__/jquery.emoji.css">
+<script src="__JS__/jquery.emoji.min.js"></script>
+<script src="__JS__/emoji.list.js"></script>
+<!--order_top-->
+<style>
+ .pop-up_box .pop-up_box_close {
+  background: url(__IMAGES__/.pop-up_box_close.png) no-repeat center center;
+  background-color: #000;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 0;
+  top: 0;
+ }
+ .pop-up_box .pop-up_box_bottom {
+  display: block;
+  background-color: #e66c6a;
+  color: #FFFFFF;
+  height: 36px;
+  line-height: 36px;
+  margin: 0 auto;
+  width: 46%;
+  border: none;
+  margin-top: 20px;
+ }
+ .recommend_enter p{
+  width: 100px !important;
+ }
+ .recommend_enter p span{
+  float:left !important;
+ }
+ .all_dingdan_one b{
+     color: #999;
+     font-weight: normal;
+ }
+ .shddbgbox{
+     position: fixed;
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     background-color: black;
+     opacity: 0.5;
+     z-index: 999;
+     display: none;
+ }
+ .shddbox{
+     width: 80%;
+     height: 220px;
+     background-color: white;
+     position: fixed;
+     top: 30%;
+     left: 10%;
+     z-index: 999;
+     border-radius: 5px;
+     transition: all .3s;
+     transform:scale(0);
+ }
+ .shddbox .shddtop{
+     display: inline-block;
+     width: 100%;
+     height: 170px;
+     padding: 20px;
+ }
+ .shddbox .shddtop input{
+     margin: 0;
+     padding: 0;
+     width: 14px;
+     height: 14px;
+     vertical-align: top;
+     margin-top: 3px;
+     margin-right: 5px;
+ }
+ .shddbox .shddtop label{
+     font-size: 14px;
+ }
+ .shddbox .shddtop .shddtopbox{
+     display: inline-block;
+     width: 60%;
+     height: 100px;
+ }
+ .shddbox .shddbottom{
+     text-align: center;
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+ }
+ .shddbox span{
+     display: inline-block;
+     width: 30%;
+     vertical-align: top;
+     text-align: center;
+     font-size: 14px;
+ }
+ .shddbox .shddcont{
+     display: inline-block;
+     width: 100%;
+     height: 100%;
+     resize: none;
+     outline: none;
+     font-size: 14px;
+     background-color: white;
+     border: 1px solid #eee;
+ }
+ .shddbox ul{
+     border-top: 1px solid #eee;
+ }
+ .shddbox li{
+     float: left;
+     width: 50%;
+     height:50px;
+     line-height: 50px;
+     font-weight: 800;
+     font-size: 16px;
+ }
+ .shddrefuse{
+     border-right: 1px solid #eee;
+ }
+</style>
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 我的评论 </a> </h3>
+ <ul class="allorderUl myleaseUl">
+  <li <eq name="_GET['status']" value="">class="title_first"</eq>><a href="{:U('Wxin/PersonalCenter/comment/tag/comment/value/1')}">全部</a></li>
+  <li <eq name="_GET['status']" value="1">class="title_first"</eq>><a href="{:U('Wxin/PersonalCenter/comment/tag/comment/status/1/value/1')}">未审批</a></li>
+  <li <eq name="_GET['status']" value="2">class="title_first"</eq>><a href="{:U('Wxin/PersonalCenter/comment/tag/comment/status/2/value/1')}">已通过</a></li>
+  <li <eq name="_GET['status']" value="3">class="title_first"</eq>><a href="{:U('Wxin/PersonalCenter/comment/tag/comment/status/3/value/1')}">已拒绝</a></li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<div class="warp_box">
+ <volist name="comment" id="vo">
+ <div class="all_dingdan_one">
+  <div class="allorder_topz">
+   <div class="allorder_topz_center">
+    <div class="allorder_topz_right">
+     <if condition="$vo.status eq 1"><td>未审批</td></if>
+     <if condition="$vo.status eq 2"><td>已通过</td></if>
+     <if condition="$vo.status eq 3"><td>已拒绝</td></if>
+    </div>
+    <div class="clear"></div>
+   </div>
+  </div>
+  <div class="allorder_kuang">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_right shop_xx_fd">
+      <p>评论者: <i>{$vo.realname}</i></p>
+      <p style='margin:5px 0'>评论内容：<i>{$vo.content}</i></p>
+      <h3 class=""><b>评论时间：</b><b>{$vo.created_at}</b></h3>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <div class="llk_border">
+    <div class="llk">
+    </div>
+    <div class="clear"></div>
+   </div>
+   <div class="od_button">
+      <div class="od_quxiao"><a href="{:U('/Wxin/PersonalCenter/commentDetail/tag/commentDetail/',array('id'=>$vo['id']))}">查看详情</a></div>
+      <div class="od_quxiao"><a href="javascript:;" data-id="{$vo.id}" class="qxdd quxiao">审批</a></div>
+    <div class="clear"></div>
+   </div>
+  </div>
+ </div>
+  </volist>
+</div>
+<div class="ght">
+<!-- <div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<!-- 审核背景黑窗口 -->
+<div class="shddbgbox"></div>
+<!-- 审核弹窗 -->
+<div class="shddbox">
+    <div class="shddtop">
+        <span>审核原因:</span>
+        <div class="shddtopbox">
+            <label for=""><input type="radio" name='choose' value="2">同意</label>
+            <label for=""><input type="radio" name='choose' value="3">拒绝</label>
+            <input type="hidden" name="commentId" value="" id="commentId" />
+            <textarea class="shddcont"></textarea>
+        </div>
+    </div>
+    <div class="shddbottom">
+        <ul>
+            <li class="shddrefuse">取消</li>
+            <li class="shddAgree">确定</li>
+        </ul>
+    </div>
+</div>
+</body>
+<!--<script src="/Public/admin/js/fm.selectator.jquery.js"></script>-->
+<script>
+  $("p").emojiParse({
+      basePath: '__IMAGES__/emoji',// images/emoji
+      icons: emojiLists
+  });
+ var p = 2;
+ var status = "{$_GET['status']}";
+
+
+ function fn1(){
+     window.location.href = "{:U('Wxin/PersonalCenter/comment')}?status="+status;
+ }
+</script>
+<script>
+
+
+
+ $('.task_btn1_on').click(function () {
+  var id1 = $('#start').val();
+
+  $.ajax({
+   url: "{:U('Wxin/PersonalCenter/cancelOrder')}",
+   data: {order_id:id1},
+   type: 'post',
+   dataType: 'json',
+   success: function (content) {
+    if (content.status == 1) {
+     alert(content.info
+
+     );
+     window.location.reload();
+    } else {
+     alert(content.info
+
+     );
+    }
+   }
+  })
+ })
+ function quxiao(obj){
+  var order_id = $(obj).data('id');
+  quxiao_fun(order_id);
+ }
+
+ function quxiao_fun(order_id){
+  dialog.showTips('你确定要取消订单？','firm',function(){
+   $.ajax({
+    type: "POST",
+    url: "{:U('/Wxin/PersonalCenter/cancelOrder')}",
+    data:{order_id:order_id},
+    dataType: "json",
+    success: function (g) {
+     if (g.status == 1) {
+      dialog.showTips(g.info, "warn");
+      window.location.reload();
+     } else {
+      dialog.showTips(g.info, "warn");
+     }
+    }
+   });
+
+  })
+ }
+
+//  点击审核弹出窗口
+ $('.quxiao').click(function(){
+     var comment_id = $(this).attr('data-id');
+     $("#commentId").val(comment_id);
+//   quxiao_fun(order_id);
+    $('.shddbgbox').show(100)
+    $('.shddbox').css('transform','scale(1)')
+ })
+//  点击取消关闭
+ $('.shddrefuse').click(function(){
+    $('.shddbgbox').hide(100)
+    $('.shddbox').css('transform','scale(0)')
+ })
+//  点击确定关闭
+ $('.shddAgree').click(function(){
+     var current_comment_id = $("#commentId").val();
+     var status = $('input:radio[name="choose"]:checked').val();
+     var reason = $('.shddcont').val();
+    $('.shddbgbox').hide(100)
+    $('.shddbox').css('transform','scale(0)')
+
+     $.ajax({
+         url: '/Wxin/PersonalCenter/checkComment',
+         dataType: 'json',
+         type: 'post',
+         data: {
+             id: current_comment_id,
+             status: status,
+             reason: reason
+         },
+         success: function (res) {
+             alert(res.msg);
+             location.reload();
+         }
+     })
+ });
+//  点击背景黑框关闭
+ $('.shddbgbox').click(function(){
+    $('.shddbgbox').hide(100)
+    $('.shddbox').css('transform','scale(0)')
+ })
+
+ function qianshou(obj){
+  var id1 = $(obj).attr('data-id');
+  qianshou_fun(id1);
+ }
+
+ function qianshou_fun(id1){
+  dialog.showTips('确定签收吗','firm',function () {
+   $.ajax({
+    url: "{:U('Wxin/PersonalCenter/changeOrderStatus')}",
+    data: {id:id1},
+    type: 'post',
+    dataType: 'json',
+    success: function (content) {
+     if (content.status == 1) {
+      //alert(content.info );
+      window.location.reload();
+     } else {
+      alert(content.info);
+     }
+    }
+   })
+  });
+ }
+ $('.qianshou').click(function () {
+  var id1 = $(this).attr('data-id');
+  qianshou_fun(id1);
+
+ })
+
+ //发货
+ $("#fahuo").click(function(){
+  var data = {};
+  data.express_name    = $.trim($("select[name=express_name]").val());
+  // data.express_fee     = $.trim($("input[name=express_fee]").val());
+  data.express_no         = $.trim($("input[name=express_no]").val());
+  if(!data.express_name){
+   alert("请选择物流公司！");return false;
+  }
+  if(!data.express_no){
+   alert("请填写快递单号！");return false;
+  }
+  data.id = $("#ordid").val() ;
+  // console.log(data);return false;
+
+  $.ajax({
+   url:"{:U('Wxin/PersonalCenter/express')}",
+   type:'post',
+   data :data,
+   datatype : 'json',
+   success:function(data){
+    if(data.status==1){
+     $('.wap_tanc').attr('z-index','999999');
+     $('.wap_tanc_bg').attr('z-index','999999');
+     $('.wap_tanc_con').attr('z-index','999999');
+     // alert(data.info);
+     //return false;//z-index
+     // dialog.showTips(data.info,'warn',function(){
+     window.location.reload();
+     // })
+    }else{
+     window.location.reload();
+     alert(data.info);
+    }
+   }
+  });
+ });
+
+ $('.gh').css('color','#ccc');
+ //$('.gh').click(function(){
+ //    dialog.showTips('是否归还','firm',function(){
+ //
+ //    })
+ //})
+ $('.gh').mouseover(function(){
+  $(this).css('background','black');
+ })
+ $('.gh').mouseout(function(){
+  $(this).css('background','');
+ })
+
+</script>
+</html>

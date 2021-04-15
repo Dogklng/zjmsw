@@ -1,0 +1,97 @@
+<include file="Public:header" />
+<style>
+    .wrapper_s1{
+        z-index:99;
+        margin-top:40px!important;
+    }
+</style>
+<!----移动端-----> 
+<div class="ban1">
+  <div class="banner_img">
+    <!--<img src="{$pic.index_pic}" alt="" />-->
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title" style="margin-top:120px">
+    <div class="line"></div>
+    <p class="font_tit1">Cloud release</p>
+    <h5>机 • 构 • 信 • 息</h5>
+  </div>
+  <div class="announce_box">
+  	
+    
+  	<if condition="$_GET['id'] eq 0">
+  	<div class="announce_contlist row" style="width:100%;margin-left:5%">
+    	<div class="Company_Details">
+    		<div class="Company_Details_left">
+    			<div class="Company_Details_left_img">
+    				<img src="__IMAGES__/Company_Details_logo.png" alt="公司详情logo" width="100%" />
+    			</div>
+    			<h5 class="Company_Details_left_h5">浙江美术网成立于2012年，坐落于人杰地灵的杭城。</h5>
+    		</div>
+    		<div class="Company_Details_right">
+    			<p class="Company_Details_right_p">浙江美术网成立于2012年，坐落于人杰地灵的杭城。浙江自古乃人文渊厚之地，艺术大家数不胜数,浙江美术网正是汲取浙江浓厚的文化气息，充分利用省内资源及政策优势开发建成的省内美术界权威性专业服务网站。</p>
+    			<p class="Company_Details_right_p">浙江美术网以推动艺术的发展为己任，强化学术讨论的大众性和互动性，整合全国艺术资源信息，强调共享和互动，不断推动浙江乃至中国的艺术走向世界，竭诚为中国和世界各国的访问者提供迅捷、权威的资讯服务。</p>
+    			<p class="Company_Details_right_p">浙江美术网以推动艺术的发展为己任，强化学术讨论的大众性和互动性，整合全国艺术资源信息，强调共享和互动，不断推动浙江乃至中国的艺术走向世界，竭诚为中国和世界各国的访问者提供迅捷、权威的资讯服务。</p>
+    			<p class="Company_Details_right_p">美术网运作上以会员制为基础，以会员制为服务纽带，整合各类美术信息，提供美术信息动态展示、单位及个人形象宣传和推广、会员美术作品网上介绍和交易等网络服务。推荐有学术意义的展览活动，推荐品质艺术机构，推荐品质和潜质的艺术家，推荐艺术精品。同时也成为艺术家、院校学生、收藏家、艺术爱好者等主流展示平台，也为广大艺术收藏爱好者提供交流、交易平台。</p>
+    		</div>
+    	</div>
+  	</div>
+        <else/>
+        <div class="Company_Details" style="width:100%;margin-left:5%">
+            <div class="Company_Details_left">
+                <div class="Company_Details_left_img">
+                    <img src="{$res.logo_pic}" alt="公司详情logo" width="100%"/>
+                </div>
+                <h5 class="Company_Details_left_h5">{$res.org_name}</h5>
+            </div>
+            <div class="Company_Details_right">
+                {$res.data|htmlspecialchars_decode|stripslashes}
+            </div>
+        </div>
+    </if>
+  </div>
+</div>
+
+<!--  / warpper  --> 
+
+<!--  / footer  -->
+<include file="Public/footer" />
+
+<!--  / footer  -->
+
+</body>
+ 
+ <script>
+ 	
+$(window).ready(function(){
+$(".announce_top").animate({"bottom":"0px","opacity":"1"},1000);
+})
+
+ 
+$(window).scroll(function(){ 
+
+
+if($(window).scrollTop()>($(".announce_box").offset().top-500)){
+$(".presenting").animate({"bottom":"0px","opacity":"1"},1000);
+var length=$(".contlist").length;
+		for(i=0;i<=length;i++){
+			(function(){
+				var c=i;
+				var time=100+c*200;
+				$(".contlist").eq(i).delay(time).animate({"opacity":"1","bottom":"0"},1000)
+			})()
+		}
+		
+		
+	}
+
+})
+
+
+
+ </script>
+
+</html>

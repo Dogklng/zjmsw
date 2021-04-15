@@ -1,0 +1,299 @@
+<include file="Public:head"/>
+
+<style>
+    .ftnormal {line-height: 25px!important;}
+    .btn{vertical-align: baseline;}
+    .newinput{ width:145px;}
+    .select.mini{width: 110px;}
+    .vtal-2{vertical-align: -2px;}
+    .shady{ background:#000; opacity:0.5; width:100%; height:100%; position:fixed; top:0; left:0; z-index:111111; display:none; }
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<script type="text/javascript">
+
+    J(function(){
+        J('#starttime').calendar();
+        J('#endtime').calendar();
+    });
+
+</script>
+
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left"/>
+        <!-- end content-left -->
+        <div class="shady" id="heemu"></div>
+        <img src="" id="em" style="position:fixed;width:34%;margin:auto;left:0;right:0;display:none;z-index:11111111111111;cursor:pointer;" onclick="this.style.display='none',document.getElementById('heemu').style.display='none'"/>
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">所有订单</h1>
+
+
+   <!--  <form action="{:U('Admin/Order/index')}" method="post">
+        <div class="tables-searchbox">
+            <input type="text" placeholder="手机号" class="input newinput" name="telephone" value="{$telephone}">
+            <input type="text" placeholder="用户昵称" class="input newinput" name="person_name" value="{$person_name}">
+            <input type="text" placeholder="输入订单号" class="input newinput" name="order_no" value="{$order_no}">
+            <input type="text"  name="starttime" id="starttime" value="{$starttime}" placeholder="订单起始时间" class="input Wdate mini" >
+            <span class="mgr5">至</span>
+            <input type="text"  name="endtime" value="{$endtime}" id="endtime" placeholder="订单结束时间" class="input Wdate mini" >
+           
+            <button class="btn btn-primary vtal-2"><i class="gicon-search white"></i>查询</button>
+        </div>
+    </form> -->
+
+    <div class="tabs clearfix mgt15">
+        <div class="tabs clearfix mgt15">
+            <a href="{:U('Admin/Community/crowdtk')}" class="<eq name="_GET['refund_type']" value="">active</eq> tabs_a fl">所有({$count})</a>
+            <a href="{:U('Admin/Community/crowdtk/refund_type/1')}" class="<eq name="_GET['refund_type']" value="1">active</eq> tabs_a fl">未退款({$count0})</a>
+            <a href="{:U('Admin/Community/crowdtk/refund_type/4')}" class="<eq name="_GET['refund_type']" value="4">active</eq> tabs_a fl">已退款({$count1})</a>           
+        </div>
+        <table class="wxtables table-order mgt20">
+            <colgroup>
+            <col width="25%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="15%">
+            <!-- <col width="10%"> -->
+        </colgroup>
+        <thead>
+            <tr>
+                <td align="center">用户信息</td>
+                <td align="center">众筹作品</td>               
+                <td align="center">订单金额</td>
+                <td align="center">是否退款</td>
+                <td align="center">支付方式</td>
+                <td align="center">退款时间</td>
+                <td align="center">操作</td>
+            </tr>
+        </thead>
+    </table>
+
+
+    <table class="wxtables table-order mgt20">
+      <colgroup>
+      <col width="25%">
+      <col width="10%">
+      <col width="10%">
+      <col width="10%">
+      <col width="10%">
+      <col width="15%">
+      <!-- <col width="10%"> -->
+  </colgroup>
+
+  <volist name="cache" id="vo" empty="暂无数据">
+    <thead>
+
+        <tr>
+            <td colspan="8" class="ftnormal" style="background-color:#F2F8FC;">
+                <!-- <input type="checkbox" class="checkbox table-ckbs" data-id="2137327" name="id" value="{$vo.id}"> -->
+                <span>订单编号：<b>{$vo.order_no}</b></span>
+                <span class="mgl15">{$vo.order_time|date="Y-m-d H:i:s",###}</span>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td valign="top" class="txtCenter" style="padding-top:15px;vertical-align: inherit;">
+                <p><b>用户：</b>{$vo.person_name}</p>
+                <p><b>电话：</b>{$vo.telephone}</p>
+            </td>
+            <td valign="middle" align="center" class="txtCenter">
+                <p><b><if condition="$vo['goods_name']">{$vo.goods_name}<else /></if></b></p>
+            </td>
+            <td valign="top" class="txtCenter" style="padding-top:15px;vertical-align: inherit;">
+                <p><b>¥<if condition="$vo['total_fee']">{$vo.total_fee}<else />0.00</if></b></p>
+            </td> 
+            <td valign="middle" align="center"  class="txtCenter">
+                <p><b>
+                <switch name="vo.refund_type">
+                    <case value="0">未退款</case>
+                    <case value="4">已退款</case>
+                </switch>
+                </b></p>
+            </td>
+            <td valign="middle" align="center"  class="txtCenter">
+                <p><b>
+                <switch name="vo.pay_way">
+                    <case value="1">支付宝</case>
+                    <case value="2">银联支付</case>
+                    <case value="3">微信支付</case>
+                    <case value="4">余额支付</case>
+                </switch>
+                </b></p>
+            </td>
+            <td valign="top" class="txtCenter" style="padding-top:15px;vertical-align: inherit;">
+                <if condition="$vo.refund_time eq 0"><else />{$vo.refund_time|date='Y-m-d H:i:s',###}</if>
+            </td>
+
+
+        <td valign="top" style="vertical-align: inherit;text-align: center;">
+            <p>
+                <!-- <a href="{:U('Admin/Order/orderDetail')}/id/{$vo.id}" class="btn btn-mini btn-primary">查看详情</a> -->
+                <?php if($vo['refund_type']==1){ ?>
+                    <a href="{:U('Admin/Community/alreturn')}/id/{$vo.id}" class="btn btn-success" onclick="return confirm('确定退款？')">同意退款</a>
+                <?php }?>
+   
+                <a href="{:U('Admin/community/refundDetail',array('id'=>$vo['id']))}" class="btn  btn-primary j-editClass" data-id="{$vo.id}" title="查看详情">查看详情</a>
+
+            </p>
+
+        </td>
+    </tr>
+</tbody>
+</volist>
+
+</table>
+
+
+
+<!-- end wxtables -->
+<div class="tables-btmctrl clearfix mgt10">
+    <div class="fl" style="display:none;">
+        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+        <!-- <a href="javascript:void(0)" onclick="del()" class="btn btn-danger J_batch_del">删除订单</a> -->
+    </div>
+
+    <div class="pages" style="float:none;width:100%;text-align:center;padding-top:10px;">
+        {$page}
+    </div>
+    <!-- end paginate -->
+
+</div>        <!-- end tables-btmctrl -->
+
+
+<form action="" method="post" id="ids">
+    <input type="hidden" name="ids" value="">
+</form>
+
+</div>
+<!-- end content-right -->
+</div>
+</div>
+</div>
+<!-- end container -->
+  <div id="albums-overlay" class="disshow"></div>
+  <div class="jbox addfenlei disshow" style="height: 200px;">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">退款金额</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <div class="jbox-container" style="height: 50px;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>退款金额：</label>
+                <div class="form-controls">
+                    <input type="text" class="input title1 safdasfda">￥
+                    <span class="fi-help-text"></span> </div>
+                </div>
+            </div>
+            <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" data-id="" id="addcategory">确定</a><a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+        </div>
+        <!--gonggao-->
+        <include file="Public:foot"/>
+
+
+        <!--修改分类-->
+        <script type="text/javascript">
+
+           $('.refundOk').click(function(){
+            if(confirm('确认受理？')){
+                var id = $(this).attr('data-id');
+                if(!id){
+                    alert('受理失败！');return false;
+                }
+                $.ajax({
+                    url:"{:U('Admin/Order/refundOk')}",
+                    data:{id:id},
+                    dataType:'json',
+                    type:'post',
+                    success:function(data){
+                        alert(data.info);
+                        if(data.status){
+                            window.location.reload();
+                        }
+                    }
+                })
+            }
+        })
+        $('.BtnAddClass').click(function(){
+            var id = $(this).attr('data-id');
+            $('#addcategory').attr('data-id',id);
+            $('.disshow').show();
+        })
+        $('.cancle').click(function(){
+            $('.disshow').hide();
+        })
+        $('#addcategory').click(function(){
+            var id = $(this).attr('data-id');
+            var return_price = $('.safdasfda').val();
+            $.ajax({
+                url:"{:U('Admin/Community/orderOk')}",
+                data:{id:id,return_price:return_price},
+                dataType:'json',
+                type:'post',
+                success:function(data){
+                    alert(data.info);
+                    if(data.status){
+                        window.location.reload();
+                    }
+                }
+            })
+        })
+        //    $('.orderOk').click(function(){
+        //     if(confirm('确认退款？')){
+        //         var id = $(this).attr('data-id');
+        //         if(!id){
+        //             alert('确认失败！');return false;
+        //         }
+        //         $.ajax({
+        //             url:"{:U('Admin/Order/orderOk')}",
+        //             data:{id:id},
+        //             dataType:'json',
+        //             type:'post',
+        //             success:function(data){
+        //                 alert(data.info);
+        //                 if(data.status){
+        //                     window.location.reload();
+        //                 }
+        //             }
+        //         })
+        //     }
+        // })
+           $('.orderNo').click(function(){
+            if(confirm('确认拒绝？')){
+                var id = $(this).attr('data-id');
+                if(!id){
+                    alert('确认失败！');return false;
+                }
+                $.ajax({
+                    url:"{:U('Admin/Community/refundNo')}",
+                    data:{id:id},
+                    dataType:'json',
+                    type:'post',
+                    success:function(data){
+                        alert(data.info);
+                        if(data.status){
+                            window.location.reload();
+                        }
+                    }
+                })
+            }
+        })
+//  $(".cancle").click(function(){
+//         $(this).parent().parent('.jbox').hide();
+//         $('#albums-overlay').hide();
+//         $(".quxiao").hide();
+//     })
+//  var id ='';
+//  $(".j-editClass").click(function(){
+//         id = $(this).attr("data-id");
+//         $('.editfenlei').show();
+//         $('#albums-overlay').show();
+// });
+
+</script>

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="images/mswlogo.ico" />
+<title>美术网</title>
+<meta name="keywords" content="美术网" />
+<meta name="description" content="美术网" />
+<link href="css/reset.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link href="css/swiper.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="css/font-awesome.css" />
+
+<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/css1.css" />
+<link rel="stylesheet" href="css/user.css" />
+
+<script type="text/javascript" src="js/jquery.1.9.1.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+<!--[if lt IE 9]>
+  <script src="lib/plugins/html5.js"></script>
+  <script src="lib/plugins/respond.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+<!--search-->
+<div class="body_top">
+  <div class="body_top_up">
+    <div class="body_top_tit1"> <a href="index.html"><img src="images/logoM.png" /></a> </div>
+    <div class="sousuo"> <img src="images/search.png" /> </div>
+    <div class="clear"></div>
+    <div class="sousuok">
+      <input type="text" value="请输入关键词" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键词';}" />
+    </div>
+  </div>
+</div>
+<div class="dianpu_box">
+  <div class="SellerCon">
+    <div class="SellerTop">
+      <h3>创建店铺</h3>
+    </div>
+    <div class="SellerFlower">
+      <div class="paiuncenter_one">
+        <h3>免费入驻</h3>
+        <p class="activedp">申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+      </div>
+      <div class="SellerFlist SellerFlistCurr"> <span>5</span>
+        <h3 class="paiUncenter_h3">身份验证</h3>
+      </div>
+      <div class="clear"></div>
+       <div class="SellerTop" style="margin-top:20px">
+        <h3>身份验证</h3>
+        <p>请上传本人身份证件，确保图片清晰，四角完整</p>
+        </div>
+      <div class="pZlCon">
+        <form class="pZlConForm">
+          <div class="pZlConI clearfix">
+            <label class="pzLs">机构名：</label>
+            <input type="text" value="">
+           </div>
+          <div class="pZlConI clearfix">
+            <label class="pzLs">您的类别：</label>
+            <input type="text" value="">
+           </div> 
+          <div class="pZlConI clearfix">
+            <label class="pzLs">成立时间：</label>
+            <input type="text" value="">
+          </div>
+          <div class="pZlConI clearfix">
+            <label class="pzLs">口号：</label>
+            <input type="text" value="">
+          </div>
+           <div class="pZlConI clearfix">
+            <div class="pZlConI-div">
+              <label class="pzLs">logo：</label>
+              <div class="SelIdetPic-list">
+                <div class="SelIdPic-border"> <img src="images/SeladdPic.png">
+                  <h6>点此上传</h6>
+                  <input type="file">
+                </div>
+              </div>
+              
+            </div>
+            <h5>建议大小（宽182px 高119px）</h5>
+          </div>
+          <div class="pZlConI clearfix">
+            <div class="pZlConI-div">
+              <label class="pzLs">背景图片：</label>
+              <div class="SelIdetPic-list">
+                <div class="SelIdPic-border"> <img src="images/SeladdPic.png">
+                  <h6>点此上传</h6>
+                  <input type="file">
+                </div>
+              </div>
+              
+            </div>
+            <h5>建议大小（宽473px 高154px）</h5>
+          </div>
+          <div class="pZlConI clearfix">
+            <div class="pZlConI-div">
+              <label class="pzLs">背景大图：</label>
+              <div class="SelIdetPic-list">
+                <div class="SelIdPic-border"> <img src="images/SeladdPic.png">
+                  <h6>点此上传</h6>
+                  <input type="file">
+                </div>
+              </div>
+              
+            </div>
+            <h5>建议大小（宽622px 高475px）</h5>
+          </div>
+          
+           <div class="pZlConI clearfix">
+            <label class="pzLs">简介：</label>
+            <textarea name="message" rows="5" cols="30" style="width:100%"></textarea>
+          </div>
+        </form>
+        <div class="SelNoticeStyle">
+          
+          <h4><a href="dianpuD.html">确定提交</a></h4>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<div class="indexbottom"></div>
+
+<!--footer-->
+<div class="footer">
+  <ul class="footer_list">
+    <li class="on"> <a href="../index.html"> <img src="images/indexha.svg" width="18px" />
+      <p>首页</p>
+      </a> </li>
+    <li> <a href="../products.html"> <img src="images/product.svg" width="18px" />
+      <p>产品</p>
+      </a> </li>
+    <li class="dz_db"> <a href="../groom.html"> <img src="images/dingzhi.svg" width="18px" />
+      <p>云推荐</p>
+      </a> </li>
+    <li> <a href=""> <img src="images/cart.svg" width="18px" />
+      <p>购物车</p>
+      </a> </li>
+    <li> <a href="myorder.html"> <img src="images/my.svg" width="18px" />
+      <p>我的</p>
+      </a> </li>
+    <div class="clear"></div>
+  </ul>
+</div>
+<!--footer-->
+
+</body>
+</html>

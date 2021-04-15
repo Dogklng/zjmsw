@@ -1,0 +1,73 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top all_cz">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 我的展览 </a> </h3>
+ <ul class="allorderUl">
+  <li><a href="{:U('Wxin/PersonalCenter/canzhan/tag/canzhan/value/3')}">我的参展</a></li>
+  <li class="title_first"><a href="{:U('Wxin/PersonalCenter/banzhan/tag/banzhan/value/3')}">我的办展</a></li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<div class="warp_box">
+ <volist name="res" id="vo">
+  <div class="all_dingdan_one">
+  <div class="allorder_kuang">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_right shop_xx_fd">
+      <!--<p>参展类型：<i>群展</i></p>-->
+      <p>审核状态：<i><if condition="$vo.status eq 1"><td style="color: #3bb4f2">待审核</td><elseif condition="$vo.status eq 2"/><td style="color: green">审核通过</td><else/><td style="color: red">审核拒绝</td></if></i></p>
+      <p>展览标题：<i>{$vo.title}</i></p>
+      <p>创建时间：<i>{$vo['create_time']|date="Y-m-d",###}</i></p>
+      <!--<h3 class="shop_xx_jg"><b>创建时间</b><b>2016-09-05</b></h3>-->
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <div class="od_button">
+   	<div class="od_fukuan"><a href="javascript:;" data-id="{$vo.id}" onclick="banzhanDel(this)">删除</a></div>
+    <div class="od_fukuan" ><a style="margin-right: 2%;" href="{:U('/Wxin/PersonalCenter/bzDetail/tag/banzhan/id')}/{$vo.id}/value/3">查看详情</a></div>
+    <div class="clear"></div>
+   </div>
+  </div>
+ </div>
+  </volist>
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+<script>
+ function banzhanDel(obj) {
+  if(!confirm('确定删除吗?')){
+   return false;
+  }
+
+  var id = $(obj).attr('data-id');
+  $.ajax({
+   url: "{:U('/Wxin/PersonalCenter/banzhanDel')}",
+   type: "post",
+   dataType: "json",
+   data: {
+    id: id
+   },
+   success:function(msg){
+    if (msg.status==1){
+     alert( msg.info);
+     location.reload();
+    }else{
+     alert( msg.info);
+    }
+   }
+  })
+
+
+ }
+
+</script>
+</body>
+</html>

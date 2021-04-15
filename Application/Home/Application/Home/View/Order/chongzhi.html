@@ -1,0 +1,124 @@
+<include file="Public:header" />
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;padding-top:50px;">
+  
+  <!--  / user  -->
+
+  <!--  / order1  -->
+  <div class="order1">
+    <div  style="text-align: center;height:50px;line-height:50px;font-weight: bold ">
+      <h4>会员充值</h4>
+    </div>
+
+    <div class="order_sh">
+      <h5>支付方式</h5>
+      <div class="order_shon clearfix">
+        <div data-pay_way="1" class="order_shona pro_xz"> <img src="__IMAGES__/zffs1.jpg" width="100%"> </div>
+        <div class="order_shona " data-pay_way="2">
+          <img src="__IMAGES__/weixin1.jpg" width="100%">
+        </div>
+        <div data-pay_way="3" class="order_shona"> <img src="__IMAGES__/zffs2.jpg" width="100%"> </div>
+      </div>
+    </div>
+    <div class="order1_yh">
+      <h5>充值金额</h5>
+
+      <div class="order1_tall1">
+        <input name="money" value="" onkeyup="num(this)" onafterpaste="this.value=this.value.replace(/\D/g,'')" id="money" style="width:200px;height:30px;line-height:30px;" />&nbsp;&nbsp;&nbsp;单位：元
+      </div>
+    </div>
+    <div class="order1_tall">
+        <div class="shopcar_zj clearfix">
+          <div class="shopcar_zjs">
+            <div class="shopcar_zjs_btn">
+              <a class="pay-order" href="javascript:;">付款</a> </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!--  / order1  --> 
+  
+  <!--  / user  --> 
+  
+</div>
+<!--  / warpper  -->
+<div class="dizhi wxzf-box">
+  <div class="dizhi_bg"></div>
+  <div class="dizhi_con dizhi_con_weixin" style="width:320px;height:auto;margin:0px;top:30%;left:40%;">
+
+    <div class="ewm text-center">
+      <h5 style="margin-bottom:16px;">打开微信扫码支付</h5>
+      <img src="" id="weixin_erweima" width="150" title="打开微信扫一扫支付"/>
+      <h6>浙江美术网全心全意为您服务，让您省心放心，扫码即可支付！</h6>
+    </div>
+  </div>
+</div>
+<include file="Public/footer" />
+<script>
+    function num(obj){
+        obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/\.{3,}/g,"."); //只保留第一个, 清除多余的
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d\d).*$/,'$1$2.$2'); //只能输入两个小数
+    }
+    $(".pay-order").click(function (){
+        var post = {};
+        post.pay_way = $(".pro_xz").data('pay_way');
+        if(!post.pay_way){
+            dialog.showTips("支付方式", "warn");return false;
+        }
+        post.money       = parseFloat($("#money").val());
+        if(!post.money){
+            dialog.showTips("请输入充值金额","warn");return false;
+        }
+        if(post.money<=0){
+            dialog.showTips("充值金额必须大于0","warn");return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Home/Order/CzPayOrder')}",
+            data:post,
+            dataType: "json",
+            success: function (g) {
+
+                if (g.status == 1) {
+                    window.location.href=g.url;
+                } else if(g.status == 3) {
+                    //dialog.showTips(g.info, "firm", function () {
+                    window.location.href=g.url;
+                    //});
+                }else if(g.status == 2){
+                    order_id = g.order_id;
+                    $('#weixin_erweima').attr('src', g.url);
+                    $('.wxzf-box').stop(true).fadeIn(1000);
+                    setTimeout(function () {
+                        $('.dizhi_con_weixin').addClass('dizhi_con_on');
+                    }, 200)
+                    int = setInterval(function () {
+                        $.post("{:U('Home/Order/czorder_status')}", {order_id: order_id},
+                            function (g) {
+                                if (g.status == 1) {
+                                    window.location.href = g.url;
+                                }
+                            })
+                    }, 1000);
+                } else {
+                    dialog.showTips(g.info, "warn");
+                }
+                /*if (g.status == 1) {
+                    window.location.href=g.url;
+                } else if(g.status == 2) {
+                    dialog.showTips(g.info, "firm", function () {
+                        window.location.href=g.url;
+                    });
+                }else{
+                    dialog.showTips(g.info,"warn");
+                }*/
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

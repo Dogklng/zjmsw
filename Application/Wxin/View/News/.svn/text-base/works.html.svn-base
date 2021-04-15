@@ -1,0 +1,104 @@
+<include file="Public:header" />
+<!--  / header  -->
+<div class="galleryClass" style="margin-top:60px;">
+  <div class="galleryScroll">
+    <a href="{:U('/Wxin/News/process')}">大赛流程</a>
+    <a href="{:U('/Wxin/News/processDetails')}">大赛详情</a>
+    <a href="{:U('/Wxin/News/works')}" class="active">在线作品</a>
+    <a href="{:U('/Wxin/News/win')}">获奖作品</a>
+    <a id="zggA" class="zgg" href="javascript:void(0);" >我要投稿</a>
+  </div>
+  <input type="hidden" id="nid" name="nid" value="{$Think.session.nid}"/>
+</div> 
+
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:0;">
+   <div class="zhenggLcCon">
+    <div class="zggZp">
+      <if condition = "$theme['start_time'] gt $timed">
+        <h3 style="text-align:center;">还未开始</h3>
+        <else />
+        <volist name='paper_list' id='vo'>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="zggZpitem"> <a href="{:U('/Wxin/News/worksDetails/pid')}/{$vo.id}"> <img src="{$vo['picp']}" /> </a>
+            <div class="zggZpTxt">
+              <h3>{$vo['wname']}<span>{$vo['number']}</span></h3>
+            </div>
+            <div class="htx"> <img src="{$vo['person_img']}"> <span>{$vo['author']}</span>
+              <a href="{:U('/Wxin/News/worksDetails/pid')}/{$vo.id}" class="zggZpTp">
+                <i class="fa fa-thumbs-o-up"></i>投他一票</a>
+              <div class="clear"></div>
+            </div>
+          </div>
+        </div>
+          </volist>
+        </if>
+    </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+<script>
+  var p = 2;
+  // 加载刷新。
+  function refresh(refresh,loadmore) {
+    $(window).scroll(function(){
+      console.log('正在滑动f');
+
+      var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+      var scrollHeight = $(document).height();   //当前页面的总高度
+      var clientHeight = $(this).height();    //当前可视的页面高度
+      // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+      if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+        // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+        console.log('下拉');
+
+        if(loadmore){
+          loadmore();
+        }
+      }else if(scrollTop<=0){
+        //滚动条距离顶部的高度小于等于0 TODO
+        //alert("下拉刷新，要在这调用啥方法？");
+
+        console.log('上拉');
+        if(refresh){
+          refresh();
+        }
+
+      }
+
+    });
+
+  }
+  //调用
+  refresh(fn1,fn2);
+
+  function fn1(){
+    window.location.href = "{:U('Wxin/News/works')}";
+  }
+
+  function fn2(){
+    $.ajax({
+      type: "POST",
+      url: "{:U('/Wxin/News/get_works')}",
+      data: {
+        p: p,
+      },
+      dataType: "json",
+      success: function (g) {
+        if (g.status == 1) {
+          p++;
+          $('.main').append(g.html);
+        } else {
+          //alert(g.info);
+        }
+      }
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/WxPayPubHelper2/cert
+END
+apiclient_key.pem
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/WxPayPubHelper2/cert/apiclient_key.pem
+END
+证书使用说明.txt
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/WxPayPubHelper2/cert/%E8%AF%81%E4%B9%A6%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.txt
+END
+apiclient_cert.pem
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/WxPayPubHelper2/cert/apiclient_cert.pem
+END
+apiclient_cert.p12
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/WxPayPubHelper2/cert/apiclient_cert.p12
+END
+rootca.pem
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/WxPayPubHelper2/cert/rootca.pem
+END

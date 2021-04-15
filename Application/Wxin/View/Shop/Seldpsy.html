@@ -1,0 +1,174 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/Shop/shop/tag/shop/value/6"> <i class="fa fa-angle-left"></i> 店铺收益 </a> </h3>
+
+</div>
+<div class="warp_box">
+  <div class="user_r">
+    <div class="SeldpsyCon">
+        <if condition="$detail eq 6"><h3>店铺收益</h3>
+            <elseif condition="$detail eq 7"/><h3>推荐收益</h3>
+            <else />
+        </if>
+      <div class="SeldpsyUl">
+        <ul>
+            <if condition="$detail neq null">
+                <li>
+                    <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI1.png" /></div>
+                    <div class="SeldpsyUl_right">
+                        <h3>
+                            <if condition="$detail eq 6">总收益<elseif condition="$detail eq 7"/>抽佣 <else /></if>
+                        </h3>
+                        <h6>
+                            <if condition="$detail eq 6"><b>{$summoney|default=0}</b>元<elseif condition="$detail eq 7"/><b>{$jyun|default=0}</b>元</if>
+                        </h6>
+                        <!--<b>{$jyun|default=0}</b>代金券-->
+                    </div>
+                </li>
+                <else/>
+                <li>
+                    <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI1.png" /></div>
+                    <div class="SeldpsyUl_right">
+                        <h3>收益</h3>
+                        <h6><b>{$summoney|default=0}</b>元</h6>
+                    </div>
+                </li>
+            </if>
+          <li>
+            <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI2.png" /></div>
+            <div class="SeldpsyUl_right">
+              <h3>总订单</h3>
+              <h6><b>{$count|default=0}</b>单</h6>
+            </div>
+          </li>
+          <li>
+            <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI3.png" /></div>
+            <div class="SeldpsyUl_right">
+              <h3>总访客</h3>
+              <h6><b>{$artists['browser']|default=0}</b>次</h6>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="SeldpsyCon SeldpsyCon_sy">
+        <if condition="$order neq null"><h3>收益明细</h3>
+        </if>
+        <volist name="order" id="vo">
+      <div class="user_r_list">
+        <div class="allorder_topz allorder_topz_sy">
+         <div class="allorder_topz_center">
+          <h5><span>时间：{$vo.order_time|date='Y-m-d H:i:s',###}</span></h5><h5><span>订单号：{$vo.order_no}</span></h5>
+         </div>
+        </div>
+        <div class="allorder_kuang">
+         <div class="shop_xx_warp">
+          <div class="shop_xx_center">
+           <div class="shop_xx_left shop_xx_fd"> <a href="javascript:;"><img src="{$vo.index_pic}" width="100%" /></a> </div>
+           <div class="shop_xx_right shop_xx_fd">
+            <p><b>{$vo.index_name}</b><br /><if condition="$vo.is_recommend eq 1">数量<else />租赁天数</if> <i>{$vo.goods_nums}</i></p>
+            <p><if condition="$vo.is_recommend eq 1">出售价格<else />押金</if><i>¥{$vo.price}</i></p>
+            <h3 class="shop_xx_jg"><b><if condition="$detail eq 6">收益<elseif condition="$detail eq 7"/>佣金 <else /></if></b><b>¥<if condition="$detail eq 6">{$vo.sub_tree|default='0'}<elseif condition="$detail eq 7"/>{$vo.yong_fee|default='0'} <else /></if></b></h3>
+            <p>状态 <switch name="vo.order_status">
+                <case value="1">未付款</br>(付款时间24小时)</case>
+                <case value="2">已付款待发货</case>
+                <case value="3">已发货待收货</case>
+                <case value="4">已签收</case>
+                <case value="5">已完成</case>
+                <case value="6">退款中</case>
+                <case value="7">已关闭</case>
+            </switch></p>
+           </div>
+           <div class="clear"></div>
+          </div>
+         </div>
+         <!--<div class="llk_border">
+          <div class="llk">
+           <div class="od_zongji">共<b>1</b>件商品 提成合计：<span>¥800.00</span></div>
+          </div>
+          <div class="clear"></div>
+         </div>-->
+         <!--<div class="od_button">
+          <div class="od_fukuan"><a href="fukuan01.html">删除订单</a></div>
+          <div class="od_quxiao"><a href="fukuan01.html">查看详情</a></div>
+          
+          <div class="clear"></div>
+         </div>-->
+        </div>
+      </div>
+            </volist>
+    </div>
+  </div>
+
+
+
+ 
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+<script>
+    var p = 2;
+    // 加载刷新。
+    function refresh(refresh,loadmore) {
+        $(window).scroll(function(){
+            console.log('正在滑动f');
+
+            var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+            var scrollHeight = $(document).height();   //当前页面的总高度
+            var clientHeight = $(this).height();    //当前可视的页面高度
+            // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+            if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+                // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+                console.log('下拉');
+
+                if(loadmore){
+                    loadmore();
+                }
+            }else if(scrollTop<=0){
+                //滚动条距离顶部的高度小于等于0 TODO
+                //alert("下拉刷新，要在这调用啥方法？");
+
+                console.log('上拉');
+                if(refresh){
+                    refresh();
+                }
+
+            }
+
+        });
+
+    }
+    //调用
+    refresh(fn1,fn2);
+
+    function fn1(){
+        window.location.href = "{:U('Wxin/Shop/seldpsy')}";
+    }
+    function fn2(){
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Wxin/Shop/get_seldpsy')}",
+            data: {
+                p: p,
+            },
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                    p++;
+                    $('.SeldpsyCon_sy').append(g.html);
+                } else {
+                    //alert(g.info);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

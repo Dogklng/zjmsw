@@ -1,0 +1,224 @@
+
+<include file="Public:head"/>
+<style>
+    .btn-success {
+        margin-top: 12px;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix" style="width:1360px;">
+        <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">推荐订单提现申请列表</h1>
+            <form action="" method="get">
+                <div class="tables-searchbox newcearchbox">
+
+                    <input type="text" placeholder="用户名称" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" class="input" name="name" value="{$name}" >
+                    <input type="text" placeholder="客户号码" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" class="input" name="tel" value="{$tel}" >
+                    <input type="text" placeholder="银行用户名" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" class="input" name="a_name" value="{$a_name}" >
+                    <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+                </div>
+            </form>
+            <div class="tabs clearfix mgt15">
+                <div class="tabs clearfix mgt15">
+                    <a href="{:U('Admin/Finance/AgentCommission')}" class="<eq name="_GET['status']" value="">active</eq> tabs_a fl">全部({$count})</a>
+                    <a href="{:U('Admin/Finance/AgentCommission/status/1')}" class="<eq name="_GET['status']" value="1">active</eq> tabs_a fl">财务待审核({$count1})</a>
+                    <a href="{:U('Admin/Finance/AgentCommission/status/2')}" class="<eq name="_GET['status']" value="2">active</eq> tabs_a fl">财务已审核({$count2})</a>
+                </div>
+            <table class="wxtables table-order mgt15" style="width:117%;" id="tb_3">
+                <thead>
+                <tr >
+                   <!-- <td><i class="icon_check"></i></td>-->
+                    <td align="center">店铺名称</td>
+                    <td align="center">银行信息</td>
+                    <td align="center">号码</td>
+                    <td align="center">申请时间</td>
+                    <td align="center">申请金额</td>
+                    <td align="center">打款时间</td>
+                    <!--<td>打款人</td>-->
+                    <!-- <td align="center">图标</td> -->
+                    <td align="center">状态</td>
+                    <!--<td>佣金</td>-->
+                    <!-- <td align="center" >创建时间</td> -->
+                    <td class="center">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="cache" item="vo" key="k" >
+                    <tr class="center">
+                        <!--<td class="center"><input type="checkbox" class="checkbox table-ckbs check" data-id="{$vo.id}"></td>-->
+                        <td align="center">{$vo.artist_name}</td>
+                        <td align="center">
+                            卡号:{$vo.bank_no}<br>
+                            银行名:{$vo.bank_name}<br>
+                            户名:{$vo.truename}
+                        </td>
+                        <td >{$vo.mobile}</td>
+                        <td>{$vo.addtime|date='Y-m-d H:i:s',###}</td>
+                        <td>{$vo.money}</td>
+                        <td><if condition="$vo.deal_at neq ''">{$vo.deal_at|date='Y-m-d H:i:s',###}</if></td>
+                        <!--<td></td>-->
+                        <td align="center">
+                            <switch name="vo.status">
+                                <case value="1"><span style="color:red;">待审核</span></case>
+                                <case value="2"><span style="color:red;">财务已审核</span></case>
+                            </switch>
+                        </td>
+                        <td class="center">
+                            <eq name="vo.status" value="1">
+                                <a href="javascript:void(0);" class="btn btn-primary btn-warning chuli" title="审核打款" data-id="{$vo.id}">审核打款</a>
+                                <else/>
+                                <a href="javascript:void(0);" class="btn btn-primary btn-success" title="审核打款" data-id="{$vo.id}">已打款</a>
+                            </eq>
+                            <a href="{:U('Admin/Finance/AgentOrderList/type/1')}/id/{$vo.id}" class="btn btn-primary" title="查看订单" data-id="{$vo.id}" >查看推荐明细</a>
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <!-- <div class="fl">
+                    <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                    <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                    <a href="javascript:;" class="btn btn-danger btn_table_delAll" onclick="btn_del()">批量删除</a>
+                </div> -->
+                <div class="fr">
+                    <div class="pages">
+                        {$page}
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end container -->
+<include file="Public:foot"/>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox editfenlei disshow" style="height: 200px;">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">情况跟踪</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container">
+
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>状态：</label>
+            <div class="form-controls">
+                <!--<input type="text" class="input classname" name="classname" >-->
+                <!-- 1到访  2 认购  3 签约  4 回款-->
+                <select value="" name="status" class="select mini">
+                    <!--<option value="" selected="">订单状态</option>-->
+                    <option value="1">到访</option>
+                    <option value="2">认购</option>
+                    <option value="3">签约</option>
+                    <option value="4">回款</option>
+                </select>
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>佣金：</label>
+            <div class="form-controls">
+                <input type="number" class="input mini" id="brokerage_edit" value="0" name="brokerage" >
+                <input type="hidden" class="input sort" name="serial" id="bannertypegoryid" >
+                <!--<span class="fi-help-text">注：越大越靠前</span> </div>-->
+            </div>
+        </div>
+
+        <!--<div class="formitems">-->
+        <!--<label class="fi-name"><span class="colorRed">*</span>分类名称：</label>-->
+        <!--<div class="form-controls">-->
+        <!--<input type="text" class="input classname" name="classname" id="editclassname">-->
+        <!--<span class="fi-help-text"></span> </div>-->
+        <!--</div>-->
+
+        <!-- <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>上级分类：</label>
+            <div class="form-controls">
+                <select name='fid' style='padding:5px;border: 1px solid #ccc;width:182px' id='editfid'>
+                    <option value="0">--顶级分类--</option>
+                    <foreach name="bannertype" item="vo" >
+                        <option value="{$vo.id}">{$vo.classname}</option>
+                    </foreach>
+                </select>
+                <span class="fi-help-text"></span> </div>
+        </div> -->
+
+        <!-- <div class="formitems" style=" height:60px;">
+            <label class="fi-name"><span class="colorRed"></span>上传图片：</label>
+            <div class="form-controls images">
+                <div class="showimg showimgedit"></div>
+                <div class="imagesadd">+</div>
+                <input type="file"  accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="editimage" >
+                <div class="progress">
+                    <div class="bar"></div>
+
+                </div>
+                <span class="fi-help-text" style="left:85px; position:absolute; top:40px; width:150px; height:20px;">建议大小（宽90高90）</span>
+            </div>
+        </div> -->
+
+        <!--<div class="formitems">-->
+        <!--<label class="fi-name"><span class="colorRed"></span>分类排序：</label>-->
+        <!--<div class="form-controls">-->
+        <!--<input type="text" class="input sort" name="serial" id="editsort" >-->
+        <!--<input type="hidden" class="input sort" name="serial" id="bannertypegoryid" >-->
+        <!--<span class="fi-help-text">注：越大越靠前</span> </div>-->
+        <!--</div>-->
+
+    </div>
+    <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editbannertypegory">确定</a><a
+            href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    });
+</script>
+<script>
+
+</script>
+
+<!--添加分类-->
+<script type="text/javascript">
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+</script>
+
+<!--处理打款-->
+<script>
+    $(".chuli").click(function(){
+        if(!confirm("此操作不可逆,确定审核通过,并成功支付该经纪人的提现佣金吗？")){
+            return false;
+        }
+        var _this = $(this);
+        var id = _this.attr('data-id');
+        $.ajax({
+            url: "{:U('/Admin/Finance/AgentCommission')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id:id,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                dialog.showTips(g.info,"firm",function() {
+                    window.location.reload();
+                });
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+
+</script>
+<!--删除分类 2-->

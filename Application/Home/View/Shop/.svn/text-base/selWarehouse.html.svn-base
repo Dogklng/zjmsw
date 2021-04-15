@@ -1,0 +1,311 @@
+
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:shop_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="user_r">
+          <ul class="user_all">
+            <!--<li class="active"><a href="#tab1">全部</a></li>-->
+            <li class="active"><a href="#tab1">仓库商品</a></li>
+            <!--<li><a href="#tab2">平台作品</a></li>
+            <li><a href="#tab3">自传作品</a></li>-->
+          </ul>
+		  <!--<div id="tab1" class="tab_content" style="display:none">
+          <volist name="res" id="v">
+          <div id="TabShow1" class="TabHide3">
+            <div class="user_r_list">
+              <if condition="$v.is_sale eq 1"><td>出售中</td><else/>
+                <td>仓库中</td></if>
+              &lt;!&ndash;<if condition="$v.shenhe eq 1">&ndash;&gt;
+
+                    &lt;!&ndash;</if>
+                    <if condition="$v.shenhe neq 1">
+                      <td>仓库中</td> 
+                    </if>&ndash;&gt;
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:38%;">&lt;!&ndash; <input type="checkbox" style="float:left; margin-top:9px; margin-right:5px;"> &ndash;&gt;
+                      商品名称</th>
+                    <th style="width:10%;">价格</th>
+                    <th style="width:10%;">喜欢</th>
+                    <th style="width:10%;">浏览次数</th>
+                    <th style="width:10%;">状态</th>
+                    &lt;!&ndash;<th style="width:12%;">操作</th>&ndash;&gt;
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa"><img src="{$v.index_pic}" width="100"><span>{$v.goods_name}  {$v.goods_cap}</span></a></td>
+                    <td>¥{$v.price}</td>
+                    <td>{$v.collection}</td>
+                    <td>{$v.browser}</td>
+                    <if condition="$v.is_sale eq 1"><td>出售中</td></if>
+                    <if condition="$v.is_sale eq 0"><td>仓库中</td></if>
+                   &lt;!&ndash; <if condition="$v.shenhe eq 1">&ndash;&gt;
+
+                    &lt;!&ndash;</if>
+                    <if condition="$v.shenhe neq 1">
+                      <td>仓库中</td> 
+                    </if>&ndash;&gt;
+                    &lt;!&ndash;<td><a href="#" >出售</a><a class="fukuan" href="#" style="javaScript:'';">删除</a></td>&ndash;&gt;
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </volist>
+		  <volist name="goods" id="vo">
+          <div class="TabHide3">
+            <div class="user_r_list">
+              <if condition="$vo.is_sale eq 1"><td>出售</td></if>
+              <if condition="$vo.is_sale eq 0"><td>仓库中</td></if>
+             &lt;!&ndash; <if condition="$vo.shenhe eq 1">&ndash;&gt;
+
+                    &lt;!&ndash;</if>
+                    <if condition="$vo.shenhe neq 1">
+                      <td>仓库中</td> 
+                    </if>&ndash;&gt;
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:38%;">&lt;!&ndash; <input type="checkbox" style="float:left; margin-top:9px; margin-right:5px;"> &ndash;&gt;
+                      商品名称</th>
+                    <th style="width:10%;">价格</th>
+                    <th style="width:10%;">喜欢</th>
+                    <th style="width:10%;">浏览次数</th>
+                    <th style="width:10%;">状态</th>
+                    &lt;!&ndash;<th style="width:12%;">操作</th>&ndash;&gt;
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa"><img src="{$vo.index_pic}" width="100"><span>{$vo.goods_name}  {$vo.goods_cap}</span></a></td>
+                    <td>¥{$vo.price}</td>
+                    <td>{$vo.collection}</td>
+                    <td>{$vo.browser}</td>
+                    <if condition="$vo.is_sale eq 1"><td>出售</td></if>
+                    <if condition="$vo.is_sale eq 0"><td>仓库中</td></if>
+                    &lt;!&ndash;<if condition="$vo.shenhe eq 1">&ndash;&gt;
+
+                    &lt;!&ndash;</if>
+                    <if condition="$vo.shenhe neq 1">
+                      <td>仓库中</td> 
+                    </if>&ndash;&gt;
+                    &lt;!&ndash;<td><a href="#" >出售</a><a class="fukuan" href="#" style="javaScript:'';">删除</a></td>&ndash;&gt;
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </volist>
+		  </div>
+		  
+		  <div id="tab2" class="tab_content" style="display:none">		  
+          <volist name="res" id="v">
+          <div class="TabHide3">
+            <div class="user_r_list">
+              <if condition="$v.is_sale eq 1"><td>出售中</td></if>
+              <if condition="$v.is_sale eq 0"><td>仓库中</td></if>
+              &lt;!&ndash;<if condition="$v.shenhe eq 1">&ndash;&gt;
+
+                   &lt;!&ndash; </if>
+                    <if condition="$v.shenhe neq 1">
+                      <td>仓库中</td> 
+                    </if>&ndash;&gt;
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:38%;">&lt;!&ndash; <input type="checkbox" style="float:left; margin-top:9px; margin-right:5px;"> &ndash;&gt;
+                      商品名称</th>
+                    <th style="width:10%;">价格</th>
+                    <th style="width:10%;">喜欢</th>
+                    <th style="width:10%;">浏览次数</th>
+                    <th style="width:10%;">状态</th>
+                    &lt;!&ndash;<th style="width:12%;">操作</th>&ndash;&gt;
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa"><img src="{$v.index_pic}" width="100"><span>{$v.goods_name}  {$v.goods_cap}</span></a></td>
+                    <td>¥{$v.price}</td>
+                    <td>{$v.collection}</td>
+                    <td>{$v.browser}</td>
+                    <if condition="$v.is_sale eq 1"><td>出售</td></if>
+                    <if condition="$v.is_sale eq 0"><td>仓库中</td></if>
+                    &lt;!&ndash;<if condition="$v.shenhe eq 1">&ndash;&gt;
+
+                    &lt;!&ndash;</if>
+                    <if condition="$v.shenhe neq 1">
+                      <td>仓库中</td> 
+                    </if>&ndash;&gt;
+                    &lt;!&ndash;<td><a href="#" >出售</a><a class="fukuan" href="#" style="javaScript:'';">删除</a></td>&ndash;&gt;
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </volist>
+		  </div>-->
+		  
+		  <div id="tab3" class="tab_content" style="display:none">
+          <volist name="goods" id="vo">
+          <div class="TabHide3">
+            <div class="user_r_list">
+              <if condition="$vo.shenhe eq 1">
+              <if condition="$vo.is_sale eq 1"><td>出售</td></if>
+              <if condition="$vo.is_sale eq 0"><td>仓库中</td></if>
+              </if>
+              <if condition="$vo.shenhe eq 0"><td>审核中</td></if>
+              <if condition="$vo.shenhe eq 2"><td>审核拒绝</td></if>
+              <!--<if condition="$vo.shenhe eq 1">-->
+
+                   <!-- </if>
+                    <if condition="$vo.shenhe neq 1">
+                      <td>仓库中</td> 
+                    </if>-->
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:38%;"><!--<input type="checkbox" style="float:left; margin-top:9px; margin-right:5px;">-->
+                      商品名称</th>
+                    <th style="width:10%;">价格</th>
+                    <th style="width:10%;">喜欢</th>
+                    <th style="width:10%;">浏览次数</th>
+                    <th style="width:10%;">状态</th>
+                    <th style="width:12%;">操作</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa"><img src="{$vo.index_pic}" width="100"><span>{$vo.goods_name}  {$vo.goods_cap}</span></a></td>
+                    <td>¥{$vo.price}</td>
+                    <td>{$vo.collection}</td>
+                    <td>{$vo.browser}</td>
+
+                    <if condition="$vo.shenhe eq 0"><td>审核中</td></if>
+                    <if condition="$vo.shenhe eq 2"><td> {$vo.disagree_detail}</td></if>
+
+                    <!--<if condition="$vo.is_sale eq 1"><td>出售</td></if>
+                    <if condition="$vo.is_sale eq 0"><td>仓库中</td></if>-->
+                    <!--<if condition="$vo.shenhe eq 1">-->
+
+                    <!--</if>
+                    <if condition="$vo.shenhe neq 1">
+                      <td>仓库中</td> 
+                    </if>-->
+                    <td>
+                        <if condition="($vo.shenhe eq 2 or $vo.shenhe eq 0)"><a class="fukuan" href="{:U('Home/Shop/selUpload')}?id={$vo.id}">修改</a></if></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </volist>
+		  </div>
+          <div  class="pages" >{$page}</div>
+        </div>
+       <!--  <h3 class="zpbj" style="text-align:right; margin-top:0;"> <a href="#" style="color:#333; font-size:14px; padding-right:10px;">
+          <input type="checkbox" style="padding-top:2px; margin-right:2px; ">
+          全选</a> <a href="#" style="color:#333; font-size:14px;"><img src="__IMAGES__/shop_cloae.png" style="display:inline-block;width:16px; margin-top:-2px; margin-right:3px;">删除</a> </h3> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;"> <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1"> <a href="##" class="task_btn1_on">确定</a> <a href="##" class="task_btn1_quxiao">取消</a> </div>
+    </div>
+  </div>
+</div>
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;"> <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1"> <a href="##" class="task1_btn1_on">确定</a> <a href="##" class="task1_btn1_quxiao">取消</a> </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+<script>
+	/*$(document).ready(function(){
+		$('.fukuan').click(function(){
+			$(this).parents('.user_r_list').remove();
+		})
+		
+	})*/
+</script>
+</html>
+<script>
+
+  
+$(document).ready(function() { 
+  
+ $(".tab_content").hide();
+ $("ul.user_all li:first").addClass("active").show(); 
+ $(".tab_content:first").show(); 
+   
+
+ $("ul.user_all li").click(function() { 
+  $("ul.user_all li").removeClass("active");
+  $(this).addClass("active"); 
+  $(".tab_content").hide();  
+  var activeTab = $(this).find("a").attr("href"); 
+  $(activeTab).fadeIn(); 
+  return false; 
+ }); 
+  
+}); 
+</script>
+

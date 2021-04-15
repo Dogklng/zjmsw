@@ -1,0 +1,162 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">会员认证列表</h1>
+
+
+            <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count}</span> 名会员认证。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <div class="tablesWrap">
+                <div class="tables-searchbox">
+                    <div class="fl">
+                        <form action="{:U('admin/Community/crowdMember')}" method="post">
+                            <input type="text" class="input" name="title" id="title" value="{$title}" placeholder="姓名/手机号">
+
+                            <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                    class="gicon-search white"></i>查询
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!-- end tables-searchbox -->
+                <table class="wxtables table-order" id="tb_3" style="text-align:center;">
+                    <thead>
+                    <tr>
+                        <td>真实姓名</td>
+                        <td>电话</td>
+                        <td>证件类型</td>
+                        <td>证件号</td>
+                        <td>认证名称</td>
+                        <td>注册时间</td>
+                        <td>状态</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="res" item="vo">
+                        <tr>
+                            <td><p> {$vo.name}</p></td>
+                             <td><p>{$vo.tel}</p></td>
+                            <td><p>
+                                <switch name="vo.type">
+                                    <case value="0">二代身份证</case>
+                                    <case value="1">临时身份证</case>
+                                </switch>
+                            </p></td>
+                            <td><p>{$vo.cardid}</p></td>
+                            <td><p>
+                                <switch name="vo.remind_type">
+                                    <case value="0">个人实名认证</case>
+                                    <case value="1">法人代表身份实名认证</case>
+                                    <case value="2">证件认证</case>
+                                    <case value="3">代理人认证</case>
+                                </switch>
+                            </p></td>
+                            <td><p>{$vo.addtime|date="Y-m-d",###}</p></td>
+                            <td class="status">
+                                <switch name="vo.status">
+                                    <case value="0"><p style='color:red;'>未认证</p></case>
+                                    <case value="1"><p style='color:green;'>已认证</p></case>
+                                </switch>
+                            </td>
+                            <td>
+                                <p>
+                                    <a href="{:U('/Admin/Member/authenticationDetail/id')}/{$vo.id}" class="btn btn-success">查看详情</a>
+                                    <switch name="vo.status">
+                                        <case value="0">
+                                            <a href="JavaScript:void(0);" class="btn btn-warning changeStatus" title="通过" data-id="{$vo.id}">通过</a>
+                                        </case>
+                                        <case value="1">
+                                            <a href="JavaScript:void(0);" class="btn btn-danger changeStatus" title="禁止" data-id="{$vo.id}">禁止</a>
+                                        </case>
+                                    </switch>
+                                </p>
+                            </td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<!-- end container -->
+<script>
+    $(function() {
+        $(".cancle").click(function () {
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay').hide();
+        })
+
+        //是否认证
+        $(".changeStatus").click(function () {
+            var id = $(this).attr("data-id");
+            var _this = $(this);
+            $.post("{:U('admin/member/changeAuthentication')}", {id: id}, function (data) {
+                if (data.status == 1) {
+                    var p = _this.parent().parent().parent().find(".status p");
+                    p.html(data.info);
+                    if (_this.hasClass("btn-warning")) {
+                        _this.removeClass("btn-warning").addClass("btn-danger").html("禁止")
+                        p.css("color", "red")
+                    } else {
+                        _this.removeClass("btn-danger").addClass("btn-warning").html("通过")
+                        p.css("color", "black")
+                    }
+                } else {
+                    alert("修改失败");
+                }
+            }, "json")
+            window.location.reload();
+        })
+    });
+
+</script>
+
+<include file="Public:foot"/>

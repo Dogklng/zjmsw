@@ -1,0 +1,454 @@
+<include file="Public:header" />
+<style>
+  .buy-sec2-cont img{
+    width: 100%;
+  }
+</style>
+<link rel="stylesheet" href="__CSS__/style1.css"/>
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:0;margin-top:60px">
+  <div class="products_inner">
+    <div class="products_inner_ban">
+      <div class="swiper-container swiper-container1" >
+        <div class="swiper-wrapper">
+          <volist name="goods_slide" id="v">
+            <div class="swiper-slide">
+              <div class="device"> <img src="{$v.pic}" width="100%"> </div>
+            </div>
+          </volist>
+        </div>
+        <div class="swiper-pagination pagination1"></div>
+      </div>
+    </div>
+    <div class="products_inner_zi">
+      <div class="buy_con_text" style=" float:left; width:100%;">
+        <div class="Img_buy">
+          <h2>{$res.goods_name}<if condition="$res.goods_mel eq ''"><else/><span style="float:right;font-size:14px" >编号 : {$res.goods_mel}</span></if></h2>
+
+          <neq name="member_id" value="0">
+            <div class="buy_Price">
+              <h3 class="Price-h3">
+              <if condition="$res.is_groom eq 0">保证金：<elseif condition="$res.is_groom eq 1"/>售价：</if>
+              ￥{$res.price} </h3>
+            </div>
+          </neq>
+          <eq name="member_id" value="0">
+            <a href="{:U('Wxin/User/login')}" class="price_A">登录可查看价格</a>
+          </eq>
+          <if condition="$res.is_groom eq 0">
+            <neq name="member_id" value="0">
+              <h3 class="Price-h3"><span class="zujin">租金/天：<i>￥{$res.zujin}</i></span></h3>
+            </neq>
+          </if>
+          <h4 class="Price-h4"><if condition="$res.is_groom eq 1">市场价：<s>￥{$res.oprice}</s></if></h4>
+          <div class="buyDel">
+            <ul>
+              <!--<li><b>作品的上架时间 :</b>2017-07-10</li>
+              <li><b>编号 :</b> 0011</li>-->
+              <li><b>作者 :</b> <if condition="$res.promulgator neq 0">{$artist.name}<else/>{$res.goods_cap}</if></li>
+              <li><b>材质 ：</b>{$res.goods_skin}</li>
+              <li><b>尺寸 ：</b> {$res.goods_range}</li>
+              <li><b>创作年代 :</b> {$res.goods_care}年</li>
+              <li><b>品相 ：</b>{$res.goods_com}</li>
+              <!--<li><b>版本 ：</b>原版</li>-->
+              <input type="hidden" name="id" value="{$res.id}">
+            </ul>
+          </div>
+          <!--<div class="Img_size clear" style=" position:relative; overflow:visible;"> <span>运费：</span>
+            <h6 style="float:left; margin:5px 0 0 0; width:auto; line-height:30px; color:#666; font-size:14px; margin:0; display:inline-block; position:relative;"> 至
+              <div class="xzqy" style="position:relative; display:inline-block; width:160px;margin-left:5px; padding-left:5px;">
+                <input type="text" id="city"  style="line-height:normal;vertical-align: middle;border: 1px #E8E8E8 solid;margin-top: -4px;" />
+              </div>
+            </h6>
+            <h5 style="display:inline-block; color:#666; line-height:18px; margin:0;">快递：5元</h5>
+            <div class="clear"></div>
+            <h6 style="font-size: 12px;color: #000;line-height: 20px;margin:0;">默认顺丰，自由选择保价或不保价</h6>
+          </div>-->
+          <div class="Img_size clear" style=" position:relative;"> <span>浏览次数：</span> <span>{$res.browser}</span> </div>
+          <div class="Img_size clear"><span>分享：</span>
+            <div class="Like_p share_p">
+              <div class="bdsharebuttonbox"> <a href="#" class="bds_more" data-cmd="more"></a> <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a> <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a> <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a> <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a> </div>
+              <script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script> 
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div class="BuyDel Buylike clear">
+            <p class="Like_p"><a href="#" class="btn_like"><i></i> <span class="status">喜欢</span></a> <a class="btn_like1"><span id="count">{$count}</span>人喜欢</a> </p>
+            <if condition="$res.cstore eq 1">
+              <if condition="$is_groom eq 1"><p class="Like_p"><a class="Like_T" href="#"><i></i>推荐</a> <a class="btn_like1"><span id="count1">{$count1}</span>人推荐</a> </p><elseif condition="$is_groom eq 1"/></if>
+            </if>
+            <div class="clear"></div>
+          </div>
+          <div class="ZjDay">
+            <div class="ys4 ys4_tit clearfix"> <span><if condition="$is_groom eq 0">天数:</span> <div class="shopcar_list_zi1">
+              <span class="pro_jian">-</span>
+              <span class="pro_num">1</span>
+              <span class="pro_jia">+</span>
+            </div><elseif condition="$is_groom eq 1"/></if></div>
+          </div>
+          <ul class="detail_promiseUl">
+            <li class="cn_label">服务承诺：</li>
+            <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall1.qiyipic.com/mall/20170217/97/6f/mall_58a66adb14d455172028976f_1x1.png)"></i> <span class="cn_info">正品保证</span> </li>
+            <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall4.qiyipic.com/mall/20170217/79/e2/mall_58a66b1074d57953771779e2_1x1.png)"></i> <span class="cn_info">极速发货</span> </li>
+            <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall7.qiyipic.com/mall/20170217/f8/25/mall_58a66afbd2999d6b8c42f825_1x1.png)"></i> <span class="cn_info">7天无理由</span> </li>
+            <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall5.qiyipic.com/mall/20170217/9f/21/mall_58a66aed74d57953767c9f21_1x1.png)"></i> <span class="cn_info">特卖包邮</span> </li>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div  class="buy_con_text2">
+        <p><span>作品描述：</span>{$res.goods_des}
+        <div class="more_text" style="display:none;">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+              <div class="buyCt buyCtLeft">
+                <p><span>作者简介：</span></p>
+                <p><if condition="$res.promulgator neq 0"><img src="{$artist.logo_pic}" alt="无" />
+                  {$artist.desc|htmlspecialchars_decode|stripslashes}</p><else/>
+
+                <notempty name="res.logo_pic">
+                  <img src="{$res.logo_pic}" alt="无" />
+                </notempty>
+                {$res.detail|htmlspecialchars_decode|stripslashes}</p></if>
+              </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+              <div class="buyCt buyCtRight">
+                <p><span>相关作品：</span></p>
+                <div class="buy-sec2-cont">
+                  <volist name="rel" id="v">
+
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                      <div class="nav-ft-ig"> <a href="{:U('/Wxin/Products/buy',array('id'=>$v['id']))}"><img src="{$v.index_pic}"></a>
+                        <div class="nav-ftxt"> <a href="{:U('/Wxin/Products/buy',array('id'=>$v['id']))}"><span>{$v.goods_name}</span>
+                          <p>{$v.goods_cap}</p>
+                        </a> </div>
+                      </div>
+                    </div>
+                  </volist>
+                  <div class="col-lg-2 col-md-2 col-sm-2">
+                    <!--<div class="nav-ft-ig">
+                      <div class="nav-ftxt"> <a href="#"><span>查看更多相关作品</span> </a> </div>
+                    </div>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="ddgd">查看更多</h3>
+      </div>
+    </div>
+    <div class="products_inner_btn clearfix"> <!--<a class="pro_innera1 pro_innera11" href="products_inner.html"><img src="images/pro_inner_kf.png" width="18"></br>
+      <span>客服</span></a> --><!--<a class="pro_innera1 pro_innera11" href="products_inner.html"><img src="__IMAGES__/pro_inner_sc.png" width="18"></br>
+      收藏</span></a> -->
+      <if condition="$is_groom eq 1">
+        <!--判断是否是从店铺推荐过来的-->
+        <if condition="$store eq 2">
+          <a class="pro_innera2 nowbuy" href="##" style="width: 100%">立即购买</a>
+          <else />
+          <a class="pro_innera3 addCart" style="width: 50%">加入购物车</a> <a class="pro_innera2 nowbuy" href="##" style="width: 50%">立即购买</a>
+        </if>
+      </if>
+      <if condition="$is_groom eq 0">
+        <a class="pro_innera2 nowbuy" href="##" style="width: 100%">立即租赁</a>
+      </if>
+      </div>
+  </div>
+</div>
+<!--  / warpper  -->
+<form name="buyform" id="buyform" action="{:U('Wxin/Order/index')}" method="post">
+  <input type="hidden" name="goods_id"  id="goods_id" value="{$res.id}">
+  <input type="hidden" name="store"  id="kucun" value="{$res.store}">
+  <input type="hidden" name="is_groom"  id="is_groom" value="{$res.is_groom}">
+  <input type="hidden" name="zujin"  id="zujin" value="{$res.zujin}">
+  <input type="hidden" name="nums"  id="nums" value="1">
+  <input type="hidden" name="artists_id"  id="artists_id" value="">
+  <input type="hidden" name="type"  id="type" value="1">
+  <input type="hidden" name="is_reed"  id="is_reed" value="0">
+  <input type="hidden" name="reed_id"  id="reed_id" value="0">
+  <input type="hidden" name="skuid" id="skuid"  value="">
+</form>
+<!--  / footer  --> 
+
+<!--  / footer  -->
+
+</body>
+<script>
+  $('.nowbuy').click(function(){
+    var headimg = "{$headimg}";
+    if(headimg){
+      var kucun = parseInt($('#kucun').val());
+      var is_groom = $('#is_groom').val();
+      if(is_groom == 1){
+        if(!kucun){
+          dialog.showTips("商品库存不足", "warn");
+          return false;
+        }
+      }else{
+        if(!kucun){
+          dialog.showTips("该商品已租", "warn");
+          return false;
+        }
+      }
+
+      //判断是否有店铺的id 有就是店铺产品
+      var artists_id = '{$artists_id}' ;
+      //console.log(artists_id);return false;
+      if(artists_id != 0){
+        $('#artists_id').val(artists_id);
+      }
+      $('#buyform').submit();
+    }else {
+      dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+      return false;
+    }
+  });
+
+  //加入购物车
+  $('.addCart').click(function () {
+    var member_id = '{$member_id}';
+    if(member_id == 0){
+      dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+      return false;
+    }
+
+
+    var goods_id = '{$res.id}';
+    var cstore = '{$res.cstore}';
+    var num = 1;
+    $.ajax({
+      url: "{:U('/Wxin/Products/addCart')}",
+      type: "post",
+      dataType: "json",
+      data: {
+        goods_id:goods_id,
+        num:num,
+        cstore:cstore,
+        type:1,
+        is_reed:0,
+        reed_id:0,
+      }
+    }).done(function (g) {
+      if (g.status == 1) {
+        $(".cart_count_num").text(g.cartnum);
+        dialog.showTips(g.info, "firm", function () {
+          window.location.href=g.url;
+        });
+      } else {
+        alert(g.info);
+      }
+
+    })
+  })
+
+  var member_id = '{$member_id}';
+  if(member_id == 0){
+    $('.price_A').show();
+    $('.price').hide();
+    $('.price1').hide();
+    $('.zujin').hide();
+    $('.Price-h4').hide();
+  }else{
+    $('.price_A').hide();
+    $('.price').show();
+    $('.price1').show();
+    $('.zujin').show();
+    $('.Price-h4').show();
+  }
+</script>
+<script language="javascript">
+$(document).ready(function() {
+  $('.btn_like').click(function () {
+    var member_id = '{$member_id}';
+    if (member_id == 0) {
+      dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+      return false;
+    }
+    var goods_id = $('input[name=id]').val();
+    $.ajax({
+      url: "{:U('Wxin/Products/ajaxSc')}",
+      data: {
+        goods_id: goods_id,
+      },
+      dataType: 'json',
+      type: 'post',
+      success: function (data) {
+        if (data.status == 1) {
+          var count = data.count;
+          $('#count').html(count);
+        }
+      }
+    })
+    var s = $(this).find('i').attr('ss');
+    if (s == 1) {
+      $(this).find('i').attr('ss', '0').css({background: 'url(__IMAGES__/like.png) no-repeat center center'})
+    } else {
+      $(this).find('i').attr('ss', '1').css({background: 'url(__IMAGES__/likes.png) no-repeat center center'})
+    }
+  })
+  $('.Like_T').click(function () {
+    var member_id = '{$member_id}';
+    if (member_id == 0) {
+      dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+      return false;
+    }
+    var goods_id = $('input[name=id]').val();
+    $.ajax({
+      url: "{:U('Wxin/Products/ajaxSc1')}",
+      data: {
+        goods_id: goods_id,
+      },
+      dataType: 'json',
+      type: 'post',
+      success: function (data) {
+        if (data.status == 1) {
+          var count1 = data.count1;
+          $('#count1').html(count1);
+          if ($('.Like_T').find('i').attr('ss') == 1) {
+            $('.Like_T').find('i').attr('ss', '0').css({background: 'url(__IMAGES__/ .png) no-repeat center center'})
+          } else {
+            $('.Like_T').find('i').attr('ss', '1').css({background: 'url(__IMAGES__/like1.png) no-repeat center center'})
+          }
+        } else {
+          alert(data.info);
+        }
+      }
+    })
+
+  })
+
+
+  var like_collect = '{$like_collect}';
+  if (like_collect == 0) {
+    $('.btn_like i').css({background: 'url(__IMAGES__/like.png) no-repeat center center'});
+
+  } else {
+    $('.btn_like').find('i').attr('ss', '1');
+    $('.btn_like i').css({background: 'url(__IMAGES__/likes.png) no-repeat center center'});
+  }
+
+  var recommend = '{$recommend}';
+  if (recommend == 0) {
+    $('.Like_T').find('i').attr('ss', '1');
+    $('.Like_T i').css({background: 'url(__IMAGES__/like1.png) no-repeat center center'})
+
+  } else {
+    $('.Like_T i').css({background: 'url(__IMAGES__/like1s.png) no-repeat center center'})
+  }
+  var mySwiper = new Swiper('.swiper-container1', {
+    pagination: '.pagination1',
+    loop: true,
+    grabCursor: true,
+    autoplay: 5000,
+    spaceBetween: 0,
+    slidesPerGroup: 1,//设置几个一切换
+    centeredSlides: true, //当前居中
+    paginationClickable: true,
+    autoplayDisableOnInteraction: false    //用户操作点的时候  停止自动切换
+  })
+
+})
+
+$(window).scroll(function(){
+  
+  if($(window).scrollTop()>($('.products_inner_con').offset().top-60)){  
+      $('.proinner_nav').addClass('proinner_navon');
+      }else{
+		  $('.proinner_nav').removeClass('proinner_navon');
+		  }
+	  	   	
+}) 	
+
+
+$('.show_xzd1').click(function(){
+	$('.load_dh').stop(true).fadeIn(600);
+	
+	setTimeout(function(){
+		$('.load_dh').stop(true).fadeOut(600);
+		},4000)
+	
+	})
+
+
+$(window).load(function(e) {
+	var height1 = $(".device img").height();
+	$(".swiper-container1").css("height",height1)
+
+})
+
+$(window).resize(function(e) {
+	var height1 = $(".device img").height();
+	$(".swiper-container1").css("height",height1)
+})
+
+$(document).ready(function(e) {
+	var height1 = $(".device img").height();
+	$(".swiper-container1").css("height",height1)
+
+})
+$(function(){
+  if({$is_groom}==1){
+    $("#nums").val(1);
+  }else{
+    $("#nums").val($('.ys4 .getnums b').html());
+
+    $('.pro_jian').click(function(){
+      var bignum = Number($('.pro_num').html());
+      var mini = '1';
+      if(bignum > mini){
+        $('.pro_num').html(bignum - mini)
+        $("#nums").val(bignum - mini);
+      }
+      /*var post = {};
+
+       post.price = $('.ys4 .getnums b').html();
+       var total_price = post.price;
+       var total_price1 = '{$res.total_price}';
+       $('.gfzb').html('股份占比：'+ total_price/100/total_price1+ '%')*/
+    })
+
+    $('.pro_jia').click(function(){
+      var bignum = Number($('.pro_num').html());
+      var mini = '1';
+
+      $('.pro_num').html(parseInt(bignum) + parseInt(mini));
+      $("#nums").val(parseInt(bignum) + parseInt(mini));
+      /*var post = {};
+
+       post.price = $('.ys4 .getnums b').html();
+       var total_price = post.price;
+       var total_price1 = '{$res.total_price}';
+       $('.gfzb').html('股份占比：'+ total_price/100/total_price1+ '%')*/
+    })
+  }
+})
+
+</script>
+<script>
+  $(document).ready(function(){
+  
+   var show = false
+   $(".ddgd").click(function(){
+   if(show==false){
+	 $(".more_text").slideDown();
+	$(".ddgd").text("点击收回")
+	
+	 show=true;
+	 }else{
+		$(".more_text").slideUp();
+		$(".ddgd").text("查看更多+")
+		show=false;
+  
+   }
+  })
+  $(".ddgd").click(
+     function(event){event.stopPropagation();}
+    )
+  
+
+})
+</script>
+</html>

@@ -1,0 +1,267 @@
+<include file="Public:header" />
+<style>
+.zhenggLcTitle .zggA {
+    float: right;
+    margin: 0;
+}
+.zggA a {
+    margin-top: 30px;
+    display: inline-block;
+    background: #d70000;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+    padding: 7px 60px;
+    border-radius: 3px;
+}
+.zhenggLcTitle .zggA a {
+    margin-top: 0;
+}
+</style>
+<div class="ban1">
+  <div class="banner_img"> <img src="__IMAGES__/xinwen.jpg" alt="" /> </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="zhenggLcTitle">
+    <h3>第{$num}期艺术主题大赛征稿<span><if condition = "$prizes['end_time'] lt $timed">已经结束<elseif condition = "$prizes['start_time'] gt $timed"/>还未开始<else />进行中</if>...</span></h3>
+    <div class="zggLcNav"> <a href="{:U('/Home/News/process')}" class="zggLcNavCur">大赛流程</a> <a href="{:U('/Home/News/processDetails')}">大赛详情</a><!-- <a href="{:U('/Home/News/submission')}">在线投稿</a>--> <a href="{:U('/Home/News/works')}">在线作品</a> <a href="{:U('/Home/News/win')}">获奖作品</a> <div class="zggA"> <a href="{:U('/Home/News/submission')}">我要投稿</a></div></div>
+  </div>
+  <div class="zhenggLcCon">
+    <div class="zggLcPlate">
+      <h3>大赛引言</h3>
+      <h6>数百位有才华的设计师也在这里收获了自己成千上万的粉丝，并实现了每天赚一杯星巴克的小小梦想。想成为下一个网红设计师吗？{$prizes['contonts']|htmlspecialchars_decode|stripslashes}~ <b>好的设计有千千万，但独缺你设计的那一套～</b></h6><!--快来参赛，用你的才华征服我们-->
+    </div>
+    <div class="zggLcPlate">
+      <h3>大赛时间</h3>
+      <ul class="zggLcUl">
+        <li><img src="__IMAGES__/zggLc1.png" />
+          <h6>作品征集</h6>
+          <span>{$prizes['start_time']|date='Y-m-d',###} - {$prizes['collectiontime']|date='Y-m-d',###}</span></li>
+        <li>
+          <div class="zggLcLine"><img src="__IMAGES__/zggLc0.png" /></div>
+        </li>
+        <li><img src="__IMAGES__/zggLc2.png" />
+          <h6>作品评选</h6>
+          <span>{$prizes['collectiontime']|date='Y-m-d',###} - {$prizes['selectiontime']|date='Y-m-d',###}</span></li>
+        <li>
+          <div class="zggLcLine"><img src="__IMAGES__/zggLc0.png" /></div>
+        </li>
+        <li><img src="__IMAGES__/zggLc3.png" />
+          <h6>结果公布</h6>
+          <span>{$prizes['selectiontime']|date='Y-m-d',###} - {$prizes['end_time']|date='Y-m-d',###}</span></li>
+      </ul>
+    </div>
+    <div class="zggLcPlate">
+      <h3>大赛奖项</h3>
+      <ul class="zggLcUlJx">
+        <li><img src="{$prizes['first_picture']}" width="90" height="76"/>
+          <div class="zggLcJx">
+            <h6>一等奖（{$prizes['first_number']}名）</h6>
+            <span>{$prizes['first_name']}<br />
+            （价值约¥{$prizes['first_money']}）</span></div>
+        </li>
+		 
+        <li><img src="{$prizes['second_picture']}"  width="90" height="76"/>
+          <div class="zggLcJx">
+            <h6>二等奖（{$prizes['second_number']}名）</h6>
+            <span>{$prizes['second_name']}<br />
+            （价值约¥{$prizes['second_money']}）</span></div>
+        </li>
+        <li><img src="{$prizes['third_picture']}"  width="90" height="76"/>
+          <div class="zggLcJx">
+            <h6>三等奖（{$prizes['third_number']}名）</h6>
+            <span>{$prizes['third_name']}<br />
+            （价值约¥{$prizes['third_money']}）</span></div>
+        </li>
+        <li><img src="{$prizes['create_picture']}"  width="90" height="76"/>
+          <div class="zggLcJx">
+            <h6>创意奖（{$prizes['create_number']}名）</h6>
+            <span>{$prizes['create_name']}<br />
+            （价值约¥{$prizes['create_money']}）</span></div>
+        </li>
+      </ul>
+    </div>
+	   <div class="zggLcPlate">
+      <h3>大赛评委</h3>
+      <div class="row">
+	  <volist name="judges" id="vo">
+		   <div class="col-lg-3 col-md-3 col-sm-3">
+			<div class="zgpw">
+			 <div class="zgpwimg">
+			  <img src="{$vo['picj']}" width="245" height="258"/>
+			 </div>
+			 <div class="zgpwtxt">
+			  <h3>{$vo['aname']}</h3>
+			  <h4>{$vo['school']}</h4>
+			  <h6>{$vo['adetail']|htmlspecialchars_decode|stripslashes}</h6>
+			 </div>
+			</div>
+		   </div>
+	  </volist>
+      
+       <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zgpw"> -->
+         <!-- <div class="zgpwimg"> -->
+          <!-- <img src="__IMAGES__/zgpw2.jpg" /> -->
+         <!-- </div> -->
+         <!-- <div class="zgpwtxt"> -->
+          <!-- <h3>陈义丰</h3> -->
+          <!-- <h4>中国美术学院油画高级研修班导师</h4> -->
+          <!-- <h6>1984 安徽省庆祝建国35周年美术作品展（合肥）。1988 安徽省88金秋油画大展（合肥）。1988 安徽省青年油画展（合肥）...</h6> -->
+         <!-- </div> -->
+        <!-- </div> -->
+       <!-- </div> -->
+       <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zgpw"> -->
+         <!-- <div class="zgpwimg"> -->
+          <!-- <img src="__IMAGES__/zgpw3.jpg" /> -->
+         <!-- </div> -->
+         <!-- <div class="zgpwtxt"> -->
+          <!-- <h3>陈义丰</h3> -->
+          <!-- <h4>中国美术学院油画高级研修班导师</h4> -->
+          <!-- <h6>1984 安徽省庆祝建国35周年美术作品展（合肥）。1988 安徽省88金秋油画大展（合肥）。1988 安徽省青年油画展（合肥）...</h6> -->
+         <!-- </div> -->
+        <!-- </div> -->
+       <!-- </div> -->
+       <!-- <div class="col-lg-3 col-md-3 col-sm-3"> -->
+        <!-- <div class="zgpw"> -->
+         <!-- <div class="zgpwimg"> -->
+          <!-- <img src="__IMAGES__/zgpw4.jpg" /> -->
+         <!-- </div> -->
+         <!-- <div class="zgpwtxt"> -->
+          <!-- <h3>陈义丰</h3> -->
+          <!-- <h4>中国美术学院油画高级研修班导师</h4> -->
+          <!-- <h6>1984 安徽省庆祝建国35周年美术作品展（合肥）。1988 安徽省88金秋油画大展（合肥）。1988 安徽省青年油画展（合肥）...</h6> -->
+         <!-- </div> -->
+        <!-- </div> -->
+       <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+   $('.product-sort a').click(function(){
+      // alert($(this).parent().find('a').length)
+      $(this).parent().find('a').removeClass('active')
+      $(this).addClass('active')
+    })
+</script>
+<!--  / banner切换  -->
+<script src="__JS__/swiper.min.js"></script>
+<script>
+$(document).ready(function(e) {
+    
+	var mySwiper1 = new Swiper('.swiper-banner',{
+		pagination: '.pagination1',
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left_01').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipePrev()
+	})
+	  
+	$('.arrow-right_01').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipeNext()
+	})
+	
+	var mySwiper2 = new Swiper('.swiper-tuijian',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerGroup : 1,//设置几个一切
+		slidesPerView :4,//一行几
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+	
+	$(".ss").click(function(e){
+		    $(".sskuang").css({"left":"0","opacity":"1"})  
+	})
+	
+	$(".close").click(function(e){
+		    $(".sskuang").css({"left":"-100%","opacity":"0"})  
+	})
+	
+  
+  
+  
+
+});
+
+
+
+
+
+$(window).scroll(function ()
+{
+	
+ 
+		 	 
+	
+	 if($(window).scrollTop()>=60){ 
+		 $('.header').addClass('header_fixed');
+	 }
+	 else {
+        $('.header').removeClass('header_fixed');
+        } 
+		 
+	 
+
+	
+});		 
+		 
+</script>
+
+<!--  / banner切换  -->
+
+<script>
+
+$(document).ready(function() {
+
+	$(".wx").hover(function(){
+		$(".ewm1").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm1").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	$(".sj").hover(function(){
+		$(".ewm2").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm2").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	
+	
+});
+
+</script>
+</html>

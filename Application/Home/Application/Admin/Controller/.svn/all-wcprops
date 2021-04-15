@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/msw/!svn/ver/1944/Application/Admin/Controller
+END
+MarketingController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/msw/!svn/ver/1/Application/Admin/Controller/MarketingController.class.php
+END
+AntifakeController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/msw/!svn/ver/1/Application/Admin/Controller/AntifakeController.class.php
+END
+CommunityController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/msw/!svn/ver/1937/Application/Admin/Controller/CommunityController.class.php
+END
+SystemController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/msw/!svn/ver/1/Application/Admin/Controller/SystemController.class.php
+END
+ActivityController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/msw/!svn/ver/1/Application/Admin/Controller/ActivityController.class.php
+END
+StoreController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/msw/!svn/ver/1/Application/Admin/Controller/StoreController.class.php
+END
+CstoreController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/msw/!svn/ver/1567/Application/Admin/Controller/CstoreController.class.php
+END
+ServiceController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/msw/!svn/ver/1/Application/Admin/Controller/ServiceController.class.php
+END
+FinanceController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/msw/!svn/ver/1505/Application/Admin/Controller/FinanceController.class.php
+END
+CouponController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/msw/!svn/ver/439/Application/Admin/Controller/CouponController.class.php
+END
+IntegralController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/msw/!svn/ver/1/Application/Admin/Controller/IntegralController.class.php
+END
+MemberController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/msw/!svn/ver/1600/Application/Admin/Controller/MemberController.class.php
+END
+IndexController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/msw/!svn/ver/1838/Application/Admin/Controller/IndexController.class.php
+END
+AboutController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/msw/!svn/ver/1/Application/Admin/Controller/AboutController.class.php
+END
+CallforpaperController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/msw/!svn/ver/1942/Application/Admin/Controller/CallforpaperController.class.php
+END
+OrderController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/msw/!svn/ver/1494/Application/Admin/Controller/OrderController.class.php
+END
+GoodsController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/msw/!svn/ver/1944/Application/Admin/Controller/GoodsController.class.php
+END
+ReserveController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/msw/!svn/ver/1/Application/Admin/Controller/ReserveController.class.php
+END
+TrialController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/msw/!svn/ver/1/Application/Admin/Controller/TrialController.class.php
+END
+NewsController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/msw/!svn/ver/1/Application/Admin/Controller/NewsController.class.php
+END
+PmController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/msw/!svn/ver/1605/Application/Admin/Controller/PmController.class.php
+END
+ActionController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/msw/!svn/ver/1/Application/Admin/Controller/ActionController.class.php
+END
+UserController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/msw/!svn/ver/512/Application/Admin/Controller/UserController.class.php
+END
+YunrecommController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/msw/!svn/ver/1600/Application/Admin/Controller/YunrecommController.class.php
+END
+DistributionController.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/msw/!svn/ver/1/Application/Admin/Controller/DistributionController.class.php
+END

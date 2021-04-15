@@ -1,0 +1,265 @@
+<include file="Public:header" />
+<style>
+  .tabs_a{
+    color: #000000 !important;
+  }
+  .active{
+    color: red !important;
+  }
+  .div .cont_describe1 {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    color: #88817b;
+    margin-top: 0;
+    margin-bottom: 25px;
+    line-height: 24px;
+    height: 100px;
+    overflow: hidden;
+  }
+  .cont_describe1{
+    height:100px
+  }
+</style>
+<link rel="stylesheet" href="__CSS__/cloud.css">
+<style>
+  .main_page {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .main_page .me {
+    background: #ff6801 !important;
+    border: 1px solid #ff6801 !important;
+    color: #fff !important;
+  }
+  .main_page span {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 30px;
+    background: #fff;
+    font-size: 14px;
+    border: 1px solid #dbdbdb;
+    color: #666;
+    padding: 0 20px;
+    cursor: pointer;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+</style>
+<div class="ban1">
+  <volist name="res1" id="vo">
+  <div class="banner_img"> <img src="{$vo.pic}" alt="" /> </div>
+  </volist>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">DISPLAY INFORMATION</p>
+    <h5>展 • 览 • 展 • 讯 </h5>
+  </div>
+  <div class="news">
+    <div class="news_fl">
+      <div class="tab-controls">
+        <volist name="newsCate" id="val">
+          <a href="/News.html?type={$val.id}" class="<eq name="_GET['type']" value="$val.id">active</eq> tabs_a fl">{$val.name}</a>
+        </volist>
+        <a href="{:U('/Home/News/exhibition')}" class="active" style="color: #000000">展览展讯</a>
+        <a href="/hall.html"  style="color: #000000">3D展厅</a>
+        <a href="/contest.html" style="color: #000000">大赛征稿</a>
+        <a href="/video.html" style="color: #000000">视频</a>
+    </div>
+    <div class="pagebox clearfix">
+      <section class="page0 active clearfix">
+        <div class="main">
+          <volist name="show" id="v">
+          <div class="col-lg-3 col-md-3 col-sm-4">
+            <div class="pin"> <a target="_blank" href="{:U('/Home/ArtCommunity/detail',array('id'=>$v['id']))}">
+              <div class="box" style="height: 400px;width: 200px;">
+                <p class="cont_date_p"><span><b>{$v.create_time|date="Y-m-d",###}</b></span></p>
+                <h3>{$v.title}</h3>
+                <!--<div class="cont_describe1">{$v.content|htmlspecialchars_decode|stripslashes}</div>-->
+				<div class="cont_describe1">{$v.gai}</div>
+                <p class="cont_img1"><span class="cont_img1_hd"><img src="{$v.logo}" style="height: 150px;" alt=""></span></p>
+              </div></a> </div>
+          </div>
+          </volist>
+          <div class="clear"></div>
+        </div>
+        <div class="cloud_sec3">
+          <div class="inlet">
+            <div class="nr" align="center">
+              <div class="title_bottom"><span>为您提供最新的展览信息</span> </div>
+              <div class="title_nr">如您需要办展或参加展会，您可点击下方按钮将相应信息提供给我们，我们将第一时间回复您！</div>
+              <div style="text-align:center; width:100px; margin:0 auto;">
+
+                <a href="javascript:;" data-id="2" class="btnx" style="margin-right:0; cursor:pointer;align:center!important;color:#fff;" onclick="zhan(this);">我要办展</a>
+                <div style="clear: both"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="main_page">
+          {$page}
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+</div>
+<!--  / warpper  -->
+
+<!--  / footer  -->
+<include file="Public/footer" />
+<!--  / footer  -->
+
+</body>
+<script>
+    $('.product-sort a').click(function(){
+        // alert($(this).parent().find('a').length)
+        $(this).parent().find('a').removeClass('active')
+        $(this).addClass('active')
+    })
+  $('.main_page span').click(function () {
+      var page = $(this).attr('data-page');
+      if(!isNaN(page)){
+          window.location.href = "{:U('/Home/News/exhibition')}?page="+page;
+      }
+  })
+
+    function zhan(obj) {
+        var member_id = '{$name}';
+        var val = $(obj).attr('data-id');
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+
+        if (val==1){
+            //alert(val);
+            window.location.href="{:U('/Home/News/exhibitors')}";
+        }else {
+            //alert(val);
+            window.location.href="{:U('/Home/News/upExhibitors')}";
+        }
+
+    }
+</script>
+<!--  / banner切换  -->
+<script src="__JS__/swiper.min.js"></script>
+<script>
+    $(document).ready(function(e) {
+
+        var mySwiper1 = new Swiper('.swiper-banner',{
+            pagination: '.pagination1',
+            loop:true,
+            autoplay:5000,
+            spaceBetween: 0,
+            paginationClickable: true,
+            autopalyDisableOnInteraction:false,
+        })
+        $('.arrow-left_01').on('click', function(e){
+            e.preventDefault()
+            mySwiper1.swipePrev()
+        })
+
+        $('.arrow-right_01').on('click', function(e){
+            e.preventDefault()
+            mySwiper1.swipeNext()
+        })
+
+        var mySwiper2 = new Swiper('.swiper-tuijian',{
+            loop:true,
+            autoplay:5000,
+            spaceBetween: 0,
+            slidesPerGroup : 1,//设置几个一切
+            slidesPerView :4,//一行几
+            paginationClickable: true,
+            autopalyDisableOnInteraction:false,
+        })
+        $('.arrow-left2').on('click', function(e){
+            e.preventDefault()
+            mySwiper2.swipePrev()
+        })
+
+        $('.arrow-right2').on('click', function(e){
+            e.preventDefault()
+            mySwiper2.swipeNext()
+        })
+
+
+
+
+        $(".ss").click(function(e){
+            $(".sskuang").css({"left":"0","opacity":"1"})
+        })
+
+        $(".close").click(function(e){
+            $(".sskuang").css({"left":"-100%","opacity":"0"})
+        })
+
+
+
+
+
+    });
+
+
+
+
+
+    $(window).scroll(function ()
+    {
+
+
+
+
+        if($(window).scrollTop()>=60){
+            $('.header').addClass('header_fixed');
+        }
+        else {
+            $('.header').removeClass('header_fixed');
+        }
+
+
+
+
+    });
+
+</script>
+
+<!--  / banner切换  -->
+
+<script>
+
+    $(document).ready(function() {
+
+        $(".wx").hover(function(){
+            $(".ewm1").stop().animate({"opacity":"1"},500);
+
+        },function(){
+            $(".ewm1").stop().animate({"opacity":"0"},500);
+
+        })
+
+        $(".sj").hover(function(){
+            $(".ewm2").stop().animate({"opacity":"1"},500);
+
+        },function(){
+            $(".ewm2").stop().animate({"opacity":"0"},500);
+
+        })
+
+
+
+    });
+</script>
+</html>

@@ -1,0 +1,182 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="__JS__/Webuploader/webuploader.css" />
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script> 
+<script type="text/javascript" src="__JS__/Webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="__JS__/Webuploader/uploade.js"></script>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<!-- script type="text/javascript" src="__JS__/uploadPreview.min.js"></script -->
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript" src="__C_JS__/news.js"></script>
+<script src="__PUBLIC__/Admin/lhgcalendar/lhgcore.min.js"></script>
+<script src="__PUBLIC__/Admin/lhgcalendar/lhgcalendar.min.js"></script>
+<script>
+    J(function(){
+        J('#birth').calendar({ format:'yyyy-MM-dd'});
+    });
+</script>
+
+<style type="text/css">
+	.imgnav{max-height: 30px;overflow: hidden;cursor: pointer;}
+	.imgwrapper{display: block;width: 78px;height: 78px;overflow: hidden;}
+	.imgwrapper img{display: block;width: 100%;padding: 0;margin: 0;border:0;}
+	.spanpd10{margin:10px;}
+	.wxtables.wxtables-sku.newtable{width: 40%;margin: 0;}
+	.img-list li{width: 60px;height:60px;}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+</style>
+
+<div class="container">
+  <div class="inner clearfix"> 
+  	<include file="Public:left"/>
+  	
+  	<form action = "{:U('Admin/About/doEditAdvertising')}" method="post" enctype="multipart/form-data" id="forms"  >
+  	 <input type="hidden" name="id" value="{$result.id}">
+  	 <div class="content-right fl">
+		<div class="panel-single panel-single-light mgt20">
+	          <h3 class="cst_h3 mgb20">素颜广告信息</h3>
+	          	<div class="formitems">
+					<div class="formitems">
+	           		<label class="fi-name"><span class="colorRed"></span>标题</label>
+	           		<div class="form-controls">
+	             		<input type="input" class="input"  name="name" value="{$result.name}" id="name">
+	             		<span class="lh30 mgl10"></span>
+	           		</div>
+					</div>
+				
+				
+	            	<label class="fi-name"><span class="colorRed">*</span>展示大图：</label>
+	            	<div class="form-controls pdt5 j-imglistPanel">
+	            		<div class="xuanze_showimge fl mgr10">
+	            			<img src="{$result.imgs}" style="width:100px;height:60px;" />
+	            			<input type="hidden" name="imgs" value="{$result.imgs}" />
+	            		</div>
+	               		<div class="btnimage fl">选择图片
+	                    	<input type="file" accept="image/jpg,image/jpeg,image/png" name="images"  value="{$result.imgs}" id="xuanze" class="file">                
+	                	</div>
+	                	<div class="duoxuan_progress fl mgr15" style="display:none">
+	                	 	<img src="__IMAGES__/loadings.gif" width="30" /><span class="multiple_percent">80%</span>
+	                	</div>
+                		<div style="clear:both"></div>
+                		<div class="multiple_showimge mgr10"></div>
+	            	</div>
+	            	
+	            	<div class="formitems">
+	            	<label class="fi-name"><span class="colorRed">*</span>底部点击小图：</label>
+	            	<div class="form-controls pdt5 j-imglistPanel">
+	            		<div class="xuanze_showimge_btn_img fl mgr10">
+	            			<img src="{$result.small_imgs}" style="width:100px;height:60px;" />
+	            			<input type="hidden" name="btn_img" value="{$result.small_imgs}" />
+	            		</div>
+	               		<div class="btnimage fl">选择图片
+	                    	<input type="file"  accept="image/jpg,image/jpeg,image/png" name="imags" id="xuanze_btn" class="file" >	                
+	                	</div>
+	                	<div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" />
+	                		<span class="xuanze_percent">80%</span>
+	                	</div>
+	                	<!--span class="fi-help-text fl lh30 mgl10">建议大小（宽254px高236px）</span -->
+	            	</div>
+					</div>
+	     	 	</div>
+	     	 	
+	     	 	<input type="hidden" value='{:U("Admin/index/webup")}' id='upode_parth'/>
+				上传视频
+             	<div class="formitems"> 
+             
+                <div class="uploader-list-container">
+                <div class="queueList">
+                <div id="dndArea" class="placeholder">
+				 
+                  <div class="baotuan_showimge fl mgr10">
+				  
+                  </div>
+                  <div id="filePicker-2"></div>
+                   
+                  </div>
+                </div>
+               <input type="hidden" name="video_url" id="video" value="{$result.video_url}"/>
+                <div class="statusBar" style="display:none;">
+                    <div class="progress"> <span class="text">0%</span> <span class="percentage"></span> </div>
+                    <div class="info"></div>
+                    <div class="btns">
+                        <div id="filePicker2"></div>
+                        <div class="uploadBtn">开始上传</div>
+                    </div>
+                </div>
+                </div> 
+            </div>
+	     	 	
+	     	 	<div class="formitems">
+	           		<label class="fi-name"><span class="colorRed"></span>上传日期：</label>
+	           		<div class="form-controls">
+	             		<input type="input" class="input" readonly name="dates" value="{$result.dates}" id="birth">
+	             		<span class="lh30 mgl10"></span>
+	           		</div>
+         		</div>
+				
+				
+         		
+			</div>
+			
+			<div class="panel-single panel-single-light mgt20 txtCenter">
+          		<a href="{:U('Admin/About/advertising')}" class="btn">取消</a>
+          		<input type="submit" class="btn btn-primary" value="保存">
+        	</div>
+		</div>
+	 </form>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+//输入判断
+	//输入判断
+	$("#forms").submit(function() {
+		var imgs,video_url;
+	
+		imgs      = $("input[name=imgs").val();
+		video_url = $("input[name=video_url").val();
+		
+		if (imgs == '' || imgs == null) {
+			alert("广告图片不能为空"); return false;
+		}
+		if (video_url == '' || video_url == null) {
+			alert("图片视频路径不能为空"); return false;
+		}	
+	});
+</script>
+	
+<script type="text/javascript">
+	
+	UE.getEditor('editor',{
+	toolbars: [
+		['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+		],
+	autoHeightEnabled: false,
+	autoFloatEnabled: true,
+	elementPathEnabled:false,
+	enableContextMenu:false,
+	wordCount:false,
+	
+	});
+	
+	UE.getEditor('editor2',{
+	toolbars: [
+		['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+		],
+	
+	autoHeightEnabled: false,
+	autoFloatEnabled: true,
+	elementPathEnabled:false,
+	enableContextMenu:false,
+	wordCount:false,
+});
+	
+</script>
+

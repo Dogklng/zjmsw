@@ -1,0 +1,253 @@
+<include file="Public:header" />
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="user_r">
+            <ul class="user_all">
+              <li <eq name="_GET['status']" value="">class="actived"</eq> ><a href="{:U('Home/PersonalCenter/myOrder/value/1',array('tag'=>'myOrder'))}">全部订单</a></li>
+              <li <eq name="_GET['status']" value="1">class="actived"</eq> ><a href="{:U('Home/PersonalCenter/myOrder/value/1',array('status'=>1,'tag'=>'myOrder'))}">待付款</a></li>
+              <li <eq name="_GET['status']" value="2">class="actived"</eq> ><a href="{:U('Home/PersonalCenter/myOrder/value/1',array('status'=>2,'tag'=>'myOrder'))}">待发货</a></li>
+              <li <eq name="_GET['status']" value="3">class="actived"</eq> ><a href="{:U('Home/PersonalCenter/myOrder/value/1',array('status'=>3,'tag'=>'myOrder'))}">待收货</a></li>
+              <li <eq name="_GET['status']" value="4">class="actived"</eq> ><a href="{:U('Home/PersonalCenter/myOrder/value/1',array('status'=>4,'tag'=>'myOrder'))}">已签收</a></li>
+              <!--<li <eq name="_GET['status']" value="5">class="actived"</eq> ><a href="{:U('Home/PersonalCenter/myOrder',array('status'=>5,'tag'=>'myOrder'))}">已完成</a></li>-->
+            </ul>
+            <div id="TabShow1" class="TabHide3">
+              <volist name="cache" id="val">
+              <div class="user_r_list">
+                <h5><span>下单时间：{$val.order_time|date="Y-m-d H:i:s",###}</span><span>订单号：{$val.order_no}</span></h5>
+                <table>
+                  <tr>
+                    <th class="user_r_frist" style="width:38%;">商品</th>
+                    <th style="width:10%;">单价</th>
+                    <th style="width:10%;">数量</th>
+                    <th style="width:10%;">实付</th>
+                    <th style="width:10%;">收货人</th>
+                    <th style="width:10%;">状态</th>
+                    <th style="width:12%;">操作</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="{:U('/Home/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}"><img src="{$val.index_pic}" width="100"><span>{$val.index_name}</span></a></td>
+                    <td>¥{$val.price}</td>
+                    <td>{$val.goods_nums}</td>
+                    <td>¥<if condition="$val.order_status eq 1">0<else/>{$val.total_fee}</if></td>
+                    <!--{$val['price']*$val['goods_nums']}-->
+                    <td>{$val.consignee}</td>
+                    <td>
+                      <switch name="val.order_status">
+                        <case value="1">未付款</case>
+                        <case value="2">已付款待发货</case>
+                        <case value="3">已发货待收货</case>
+                        <case value="4">已签收</case>
+                        <case value="5">已完成</case>
+                        <case value="6">退款中</case>
+                        <case value="7">已关闭</case>
+                      </switch>
+                    </td>
+                    <td>
+                      <switch name="val.order_status">
+                        <case value="1">
+                          <a class="fukuan" class="fukuan" data-id="{$val['order_no']}" href="javascript:void();">付款</a>
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a>
+                          <a href="javascript:;" data-id="{$val.id}" class="qxdd quxiao">取消订单</a>
+                        </case>
+                        <case value="2">
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a>
+                        </case>
+                        <case value="3">
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a>
+                          <a href="javascript:;" data-id="{$val['id']}" class="qianshou">确认收货</a>
+                        </case>
+                        <case value="4">
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a>
+                         <!-- <a class="fukuan" href="{:U('/Home/PersonalCenter/goEvaluate/tag/myOrder')}">晒单/评价</a>-->
+                        </case>
+                        <case value="5">
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a>
+                         <!-- <a class="fukuan" href="order1.html">退换货申请</a>-->
+                        </case>
+
+                        <case value="6"><a href="{:U('/Home/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a></case>
+                        <case value="7"><a href="{:U('/Home/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a></case>
+                      </switch>
+                    </td>
+                  </tr>
+                </table>  
+              </div>
+              </volist>
+
+            </div>
+            <div class="pages">
+              {$page}
+            </div>
+          </div>
+        </div>
+      </div>
+          
+    </div>      
+  </div>
+
+
+  <!--  / user  -->
+
+  
+   
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <input type="hidden" name="order_id" id="order_id"/>
+        <a href="javascript:;" class="task_btn1_on">确定</a>
+        <a href="javascript:;" class="task_btn1_quxiao">取消</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1">
+        <a href="javascript:;" class="task1_btn1_on">确定</a>
+        <a href="javascript:;" class="task1_btn1_quxiao">取消</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+   <form id="orForm" action="{:U('/Home/Order/pay')}" method="post" name="orForm">
+		<input type="hidden" id="post_ord" name="order_no" value=""/>
+	  </form>
+
+
+</body>
+<script>
+    $('.task_btn1_on').click(function(){
+        var order_id = $("#order_id").val();
+        if(!order_id){
+            dialog.showTips("参数错误！", "warn");return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Home/PersonalCenter/cancelOrder')}",
+            data:{order_id:order_id},
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                    dialog.showTips(g.info, "warn");
+                    window.location.reload();
+                } else {
+                    dialog.showTips(g.info, "warn");
+                }
+            }
+        });
+        $('.task').stop(true).fadeOut(1000);
+        $('.task_con').removeClass('task_con_on');
+    })
+</script>
+<script>
+	$(function(){
+		$(".fukuan").click(function(){
+		var order_no = $(this).data('id');
+		//alert(order_no);return false;
+			 dialog.showTips('确定付款','firm',function(){
+			 
+				$.ajax({
+					url:'/Home/PersonalCenter/orderDetails',
+					type:'post',
+					data:{order_no:order_no},
+					dataType:'json',
+					success:function(g){
+						if(g.status == 1){
+						//付款
+							$('#post_ord').val(order_no);
+							$("form[name=orForm]").submit();
+						}else{
+							alert(g.info);
+						}
+					}
+					
+				})
+			 })
+		})
+	})
+</script>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    var order_id = $(this).data('id');
+    $("#order_id").val(order_id);
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+});
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.qianshou').click(function () {
+     var id1 = $(this).attr('data-id'); 
+     //console.log(id1);return false;
+      dialog.showTips('确定签收吗','firm',function () {
+          $.ajax({
+              url: "{:U('Home/PersonalCenter/changeOrderStatus')}",
+              data: {id:id1},
+              type: 'post',
+              dataType: 'json',
+              success: function (content) {
+                  if (content.status == 1) {
+                      //alert(content.info );
+                      window.location.reload();
+                  } else {
+                      alert(content.info);
+                  }
+              }
+          })
+      });
+  })
+</script>
+</html>

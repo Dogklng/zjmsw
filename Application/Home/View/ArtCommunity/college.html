@@ -1,0 +1,138 @@
+<include file="Public:header" />
+
+<div class="ban1">
+  <div class="banner_img">
+    <img src="{$images.pic}" alt="" />
+  </div>
+</div>
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  
+  
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">The artist</p>
+    <h5>美院 • 艺术家</h5>
+  </div>
+  <div class="col_main">
+  
+  <h1 class="ysStH1"><span>浙江美术学院 - 艺术家</span> </h1>
+  
+  <div class="topic_list topList">
+      <div id="topic_switcher" class="switcher" >
+          <volist name="level" id="p">
+              <a class="first" href="{:U('/home/ArtCommunity/college',array('id'=>$_GET['id'],'level'=>$p['id']))}"
+              <if condition="$p['id'] eq $_GET['level']">style="background:#000;color:#fff;"</if>
+              >{$p.level_name}</a>&nbsp;
+          </volist>
+      </div>
+  </div>
+</div>
+
+  <div class="ysstCon clearfix">
+  
+  <div class="row">
+ <div class="ysj-cont1">
+     <volist name="res" id="v">
+ <div class="col-lg-3 col-md-3 col-sm-3">
+     <div class="ysj_list"> <a href="{:U('/Home/ArtCommunity/artistShow',array('id'=>$v['id']))}">
+          <div class="ysj_list_wz">
+          <h5>{$v.artist_name}</h5>
+          <p>{$v.desc}</p>
+          <i>+</i>
+          </div>
+           <img src="{$v.half_pic}" width="100%"> </a> </div>
+</div>
+     </volist>
+  </div>
+
+  </div>
+   
+ </div>
+
+
+ <div class="row">
+ <div class="rol-lg-12">
+    <div class="cont3-con">
+        <span>当美好至于梦想， 梦境每一刻都会被刺破</span>
+        <span>只有将“美”与真实在一起， 天然的原罪才可以赦免</span>
+        <span> 梦境每一刻都会被刺破</span>
+        <span> 梦境每一刻都会被刺破</span>
+        <span> 在瞬间怦然而成，辐射散开</span>
+    </div>
+ </div>
+
+
+  <div class="row">
+    <span class="more" style=" background:#000; margin:0 auto;"><a id="apply" href="javascript:;" style=" color:#fff;">申请成为艺术家 </a><i></i></span>
+  </div>
+
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div> 
+  
+</div>
+  </div>
+     </div>
+
+
+
+  </div>
+
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<script>
+    $('#apply').click(function(){
+
+        var id = '{$member_id}';
+        if(id==0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+        /*console.log(id);
+         $.ajax({
+         url: "{:U('/Home/ArtCommunity/apply')}",
+         type: "post",
+         dataType: "json",
+         data: {
+         id:id
+         }
+         }).done(function (data) {
+
+         if(data.status==0){
+         window.location.href="{:U('Home/Shop/seldpsy')}"
+         }elseif(data.status ==1){
+         window.location.href="{:U('Home/Shop/ysjgl')}"
+         }elseif(data.status==2){
+         window.location.href="{:U('Home/Shop/selCenter')}"
+         }elseif(data.status==3){
+         window.location.href="{:U('Home/Shop/selAudit')}"
+         }
+
+
+         })*/
+        $.post("{:U('Home/ArtCommunity/apply')}",{id:id},function(data) {
+            console.log(data.status);
+            if (data.status == 0) {
+                window.location.href = "{:U('Home/Shop/seldpsy')}"
+            }
+            if(data.status == 1)
+            {
+                window.location.href = "{:U('Home/Shop/ysjgl')}"
+            }
+            if(data.status == 2)
+            {
+                window.location.href = "{:U('Home/Shop/selCenter')}"
+            }
+            if(data.status == 3)
+            {
+
+                window.location.href = "{:U('Home/Shop/selAudit')}"
+            }
+        })
+    })
+</script>
+</body>
+</html>

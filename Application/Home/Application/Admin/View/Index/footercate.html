@@ -1,0 +1,309 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__/city-picker.css">
+<style>
+    .btn-success{
+        margin-top:12px;
+    }
+    .city-picker-span{
+        width:200px !important;
+    }
+    .city-select-content{
+        width:auto !important;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left" />
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">底部导航栏分类列表</h1>
+
+
+
+            <form action="" method="post">
+
+
+                <div class="clearfix">
+                    <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加底部导航栏分类</a>
+
+                </div>
+            </form>
+
+            <table class="wxtables mgt15 table-order" id="tb_3">
+                <thead>
+                <tr align="center">
+                    <td>名称</td>
+                    <td>排序</td>
+                    <td class="center">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res"  item="vo" key="k" >
+
+                    <tr align="center">
+                        <td>{$vo.name}</td>
+                        <td>{$vo.sort}</td>
+                        <td class="center">
+                            <a href="javascript:;" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}"  data-title="{$vo.name}" data-sort="{$vo.sort}">编辑</a>
+                            <a href="jsvascript:;" class="btn btn-warning j-delClass" title="删除" data-id="{$vo.id}">删除</a>
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <!--                    <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>-->
+                    <!--<a href="javascript;" class="btn btn-primary btn_table_delAll">批量删除</a></div>-->
+                    <div class="fr">
+                        <!--<div class="paginate">-->
+
+                        <div class="pages">
+                            {$page}
+                            <!--</div>-->
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+    <!-- end container -->
+    <include file="Public:foot"/>
+
+    <div id="albums-overlay" class="disshow"></div>
+    <div class="jbox addfenlei disshow" style="height:auto; overflow: visible;">
+        <div class="jbox-title">
+            <div id="air" class="jbox-title-txt">添加底部导航栏分类</div>
+            <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <div class="jbox-container" style="height: 140px;overflow: visible;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>名称：</label>
+
+                <div class="form-controls">
+                    <input type="text" class="input name" name="name" >
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>排序：</label>
+
+                <div class="form-controls">
+                    <input type="text" class="input sort" name="sort" >
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+                href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+    <div class="jbox editfenlei disshow" style="height:auto; overflow: visible;">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">修改尾部分类</div>
+            <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <div class="jbox-container" style="height: 140px;overflow: visible;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>名称：</label>
+
+                <div class="form-controls">
+                    <input type="hidden" class="input sort" name="serial" id="airid" >
+                    <input type="text" class="input username" name="name" id="editclassname">
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>排序：</label>
+
+                <div class="form-controls">
+                    <input type="text" class="input sort" name="sort" id="sort">
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editcategory">确定</a><a
+                href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+
+    <script type="text/javascript" src="__JS__/city-picker.data.js"></script>
+    <script type="text/javascript" src="__JS__/city-picker.js"></script>
+    <script type="text/javascript">
+        $(".cancle").click(function(){
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay').hide();
+        })
+
+    </script>
+    <script>
+
+    </script>
+
+    <!--添加分类-->
+
+    <script type="text/javascript">
+        $("#city-picker").citypicker({
+            province: '{$cache["country"][0]}',
+            city: '{$cache["country"][1]}',
+            district: '{$cache["country"][2]}'
+        });
+        $(".BtnAddClass").click(function(){
+            $('.addfenlei').show();
+            $('#albums-overlay').show();
+        })
+    </script>
+    <script type="text/javascript">
+        /*function addshow() {
+            $('.addfenlei').show();
+            $('#albums-overlay').show();
+        }*/
+
+
+        $("#addcategory").click(function(){
+            var name = $('.name').val();
+            if (name == '') {
+                alert("名称不能为空！");
+                //$('.jbox').hide();
+                //setTimeout(addshow,1500);
+                $('.name').focus();
+                return false;
+            }
+            var sort = $('.sort').val();
+
+            $.ajax({
+                url: "{:U('/Admin/Index/addFooterCate')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    name: name,
+                    sort:sort,
+                }
+            }).done(function (g) {
+                if (g.status == 1) {
+                    //$('.jbox').hide();
+                    //$('#albums-overlay').hide();
+                    alert(g.info);
+                    setTimeout(add,1500);
+                } else {
+                    //$('.jbox').hide();
+                    //$('#albums-overlay').hide();
+                    alert(g.info);
+                }
+
+            })
+        })
+
+        function add() {
+            window.location.reload();
+        }
+    </script>
+    <!--添加分类end-->
+
+
+    <!--修改分类-->
+    <script type="text/javascript">
+        function editshow() {
+            $('.editfenlei').show();
+            $('#albums-overlay').show();
+        }
+
+        var categoryid;
+        $(".j-editClass").click(function(){
+            $('.editfenlei').show();
+            $('#albums-overlay').show();
+
+            var categoryname=$(this).attr('data-title');
+            var packid = $(this).attr('data-id');
+            var sort = $(this).attr('data-sort');
+            $('#sort').val(sort);
+            $('#editclassname').val(categoryname);
+            $('#airid').val(packid);
+            $('.rate').val(rate);
+        })
+
+        function setSelectChecked(checkValue){
+            var select = document.getElementById('editcate');
+            for(var i=0; i<select.options.length; i++){
+                if(select.options[i].value == checkValue){
+                    select.options[i].selected = true;
+                    break;
+                }
+            }
+        };
+
+        $("#editcategory").click(function(){
+            var name = $('#editclassname').val();  //分类名称
+            var airid = $('#airid').val();
+
+            if (name == '') {
+                alert("名称不能为空！");
+                //$('.jbox').hide();
+                //setTimeout(editshow,1500);
+                return false;
+            }
+            var sort = $('#sort').val();
+
+            $.ajax({
+                url: "{:U('/Admin/Index/editFooterCate')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    name: name,
+                    id:airid,
+                    sort:sort,
+                }
+            }).done(function (g) {
+                if (g.status == 1) {
+                    alert(g.info);
+                    window.location.reload();
+                } else {
+                    //$('.jbox').hide();
+                    //$('#albums-overlay').hide();
+                    alert(g.info);
+                }
+
+            })
+        })
+        $('.j-delClass').click(function(){
+            var is_ture = confirm('确定要删除吗？');
+            if(is_ture)
+            {
+                var id = $(this).attr("data-id");
+
+                $.ajax({
+                    url: "{:U('/Admin/Index/delFooterCate')}",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        id: id
+                    }
+                }).done(function (g) {
+                    if (g.status == 1) {
+                        alert(g.info);
+                        window.location.reload();
+                    } else {
+                        alert(g.info);
+                    }
+
+                })
+            }
+
+        })
+
+
+        function num(obj){
+            obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+            obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+            obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+            obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+            obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+        }
+    </script>
+    <!--修改分类end-->

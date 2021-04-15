@@ -1,0 +1,294 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 所有订单 </a> </h3>
+ <ul class="allorderUl">
+  <li <eq name="_GET['status']" value="">class="title_first"</eq>><a href="{:U('Wxin/PersonalCenter/myOrder/value/1',array('tag'=>'myOrder'))}">全部</a></li>
+  <li <eq name="_GET['status']" value="1">class="title_first"</eq>><a href="{:U('Wxin/PersonalCenter/myOrder/value/1',array('status'=>1,'tag'=>'myOrder'))}">待付款</a></li>
+  <li <eq name="_GET['status']" value="2">class="title_first"</eq>><a href="{:U('Wxin/PersonalCenter/myOrder/value/1',array('status'=>2,'tag'=>'myOrder'))}">待发货</a></li>
+  <li <eq name="_GET['status']" value="3">class="title_first"</eq>><a href="{:U('Wxin/PersonalCenter/myOrder/value/1',array('status'=>3,'tag'=>'myOrder'))}">待收货</a></li>
+  <li <eq name="_GET['status']" value="4">class="title_first"</eq>><a href="{:U('Wxin/PersonalCenter/myOrder/value/1',array('status'=>4,'tag'=>'myOrder'))}">已签收</a></li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<div class="warp_box">
+ <volist name="cache" id="val">
+ <div class="all_dingdan_one">
+  <div class="allorder_topz">
+   <div class="allorder_topz_center">
+    <div class="allorder_topz_right">
+     <switch name="val.order_status">
+      <case value="1">未付款</case>
+      <case value="2">已付款待发货</case>
+      <case value="3">已发货待收货</case>
+      <case value="4">已签收</case>
+      <case value="5">已完成</case>
+      <case value="6">退款中</case>
+      <case value="7">已关闭</case>
+     </switch>
+     <!--等待买家付款-->
+    </div>
+    <div class="clear"></div>
+   </div>
+  </div>
+  <div class="allorder_kuang">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_left shop_xx_fd"> <a href="javascript:void();"><img src="{$val.index_pic}" width="100%" /></a> </div>
+     <div class="shop_xx_right shop_xx_fd">
+      <p><b>{$val.index_name}</b><br />订单号：<i>{$val.order_no}</i></p>
+      <p>收货人：<i>{$val.consignee}</i><em>×{$val.goods_nums}</em></p>
+      <h3 class="shop_xx_jg"><b>下单时间：</b><b>{$val.order_time|date="Y-m-d",###}</b></h3>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <div class="llk_border">
+    <div class="llk">
+     <div class="od_zongji">共<b>{$val.goods_nums}</b>件商品 合计：<span>¥{$val.total_fee}</span></div>
+    </div>
+    <div class="clear"></div>
+   </div>
+   <div class="od_button">
+    <switch name="val.order_status">
+     <case value="1">
+      <div class="od_fukuan"><a href="javascript:void();" class="fukuan" data-id="{$val['order_no']}">付款</a></div>
+      <div class="od_quxiao"><a href="{:U('/Wxin/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a></div>
+      <div class="od_quxiao"><a href="javascript:;" data-id="{$val.id}" class="qxdd quxiao">取消订单</a></div>
+     </case>
+     <case value="2">
+      <div class="od_quxiao"><a href="{:U('/Wxin/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a></div>
+     </case>
+     <case value="3">
+      <div class="od_quxiao"><a href="{:U('/Wxin/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a></div>
+      <div class="od_fukuan"><a href="javascript:void();" class="qianshou" data-id="{$val['id']}">确认收货</a></div>
+     </case>
+     <case value="4">
+      <div class="od_quxiao"><a href="{:U('/Wxin/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a></div>
+      <!-- <a class="fukuan" href="{:U('/Home/PersonalCenter/goEvaluate/tag/myOrder')}">晒单/评价</a>-->
+     </case>
+     <case value="5">
+      <div class="od_quxiao"><a href="{:U('/Wxin/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a></div>
+      <!-- <a class="fukuan" href="order1.html">退换货申请</a>-->
+     </case>
+
+     <case value="6"><div class="od_quxiao"><a href="{:U('/Wxin/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a></div></case>
+     <case value="7"><div class="od_quxiao"><a href="{:U('/Wxin/PersonalCenter/orderDetails/tag/myOrder/value/1',array('id'=>$val['id']))}">查看详情</a></div></case>
+    </switch>
+    <div class="clear"></div>
+   </div>
+  </div>
+ </div>
+  </volist>
+</div>
+<div class="ght">
+<!-- <div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+
+<include file="Public:footer" />
+<div class="task" style="display: none">
+ <div class="task_bg"></div>
+ <div class="task_con" style="margin-top:-300px;">
+  <img src="__IMAGES__/dizhi_close.png" width="24">
+  <div class="fenxiang">你确定要取消订单？</div>
+  <div class="task_btn">
+   <div class="task_btn1">
+    <input type="hidden" name="order_id" id="order_id"/>
+    <a href="javascript:;" class="task_btn1_on">确定</a>
+    <a href="javascript:;" class="task_btn1_quxiao">取消</a>
+   </div>
+  </div>
+ </div>
+</div>
+
+<div class="task1" style="display: none">
+ <div class="task1_bg"></div>
+ <div class="task1_con" style="margin-top:-300px;">
+  <img src="__IMAGES__/dizhi_close.png" width="24">
+  <div class="fenxiang">你确定要删除订单？</div>
+  <div class="task1_btn">
+   <div class="task1_btn1">
+    <a href="javascript:;" class="task1_btn1_on">确定</a>
+    <a href="javascript:;" class="task1_btn1_quxiao">取消</a>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<form id="orForm" action="{:U('/Wxin/Order/pay')}" method="post" name="orForm">
+ <input type="hidden" id="post_ord" name="order_no" value=""/>
+</form>
+<script>
+ var p = 2;
+ var status = "{$_GET['status']}";
+ // 加载刷新。
+ function refresh(refresh,loadmore) {
+  $(window).scroll(function(){
+   console.log('正在滑动f');
+
+   var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+   var scrollHeight = $(document).height();   //当前页面的总高度
+   var clientHeight = $(this).height();    //当前可视的页面高度
+   // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+   if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+    // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+    console.log('下拉');
+
+    if(loadmore){
+     loadmore();
+    }
+   }else if(scrollTop<=0){
+    //滚动条距离顶部的高度小于等于0 TODO
+    //alert("下拉刷新，要在这调用啥方法？");
+
+    console.log('上拉');
+    if(refresh){
+     refresh();
+    }
+
+   }
+
+  });
+
+ }
+ //调用
+ refresh(fn1,fn2);
+
+ function fn1(){
+  window.location.href = "{:U('Wxin/PersonalCenter/myOrder')}?status="+status;
+ }
+ function fn2(){
+  $.ajax({
+   type: "POST",
+   url: "{:U('/Wxin/PersonalCenter/get_myOrder')}",
+   data: {
+    status: status,
+    p: p,
+   },
+   dataType: "json",
+   success: function (g) {
+    if (g.status == 1) {
+     p++;
+     $('.warp_box').append(g.html);
+    } else {
+     //alert(g.info);
+    }
+   }
+  });
+ }
+
+ function quxiao(obj){
+  var order_id = $(obj).data('id');
+  quxiao_fun(order_id);
+ }
+
+ function quxiao_fun(order_id){
+  dialog.showTips('你确定要取消订单？','firm',function(){
+   $.ajax({
+    type: "POST",
+    url: "{:U('/Wxin/PersonalCenter/cancelOrder')}",
+    data:{order_id:order_id},
+    dataType: "json",
+    success: function (g) {
+     if (g.status == 1) {
+      dialog.showTips(g.info, "warn");
+      window.location.reload();
+     } else {
+      dialog.showTips(g.info, "warn");
+     }
+    }
+   });
+
+  })
+ }
+ $('.quxiao').click(function(){
+  var order_id = $(this).data('id');
+  quxiao_fun(order_id);
+ })
+</script>
+<script>
+ function fukuan(obj){
+  var order_no = $(obj).data('id');
+  fukuan_fun(order_no);
+ }
+
+ function fukuan_fun(order_no){
+  dialog.showTips('确定付款','firm',function(){
+
+   $.ajax({
+    url:'/Wxin/PersonalCenter/orderDetails',
+    type:'post',
+    data:{order_no:order_no},
+    dataType:'json',
+    success:function(g){
+     if(g.status == 1){
+      //付款
+      $('#post_ord').val(order_no);
+      $("form[name=orForm]").submit();
+     }else{
+      alert(g.info);
+     }
+    }
+   })
+  })
+ }
+ $(function(){
+  $(".fukuan").click(function(){
+   var order_no = $(this).data('id');
+   fukuan_fun(order_no);
+
+  })
+ })
+</script>
+<script>
+ $('.delete').click(function(){
+  $('.task1').stop(true).fadeIn(1000);
+  setTimeout(function(){
+   $('.task1_con').addClass('task1_con_on');
+  },300)
+ })
+ $('.task1_con>img').click(function(){
+  $('.task1').stop(true).fadeOut(1000);
+  $('.task1_con').removeClass('task1_con_on');
+ })
+ $('.task1_btn1_quxiao').click(function(){
+  $('.task1').stop(true).fadeOut(1000);
+  $('.task1_con').removeClass('task1_con_on');
+ })
+
+ function qianshou(obj){
+  var id1 = $(obj).attr('data-id');
+  qianshou_fun(id1);
+ }
+
+ function qianshou_fun(id1){
+  dialog.showTips('确定签收吗','firm',function () {
+   $.ajax({
+    url: "{:U('Wxin/PersonalCenter/changeOrderStatus')}",
+    data: {id:id1},
+    type: 'post',
+    dataType: 'json',
+    success: function (content) {
+     if (content.status == 1) {
+      //alert(content.info );
+      window.location.reload();
+     } else {
+      alert(content.info);
+     }
+    }
+   })
+  });
+ }
+ $('.qianshou').click(function () {
+  var id1 = $(this).attr('data-id');
+  qianshou_fun(id1);
+
+ })
+</script>
+</body>
+</html>

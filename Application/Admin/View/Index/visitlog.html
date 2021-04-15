@@ -1,0 +1,187 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">访问记录</h1>
+    <!--<a href="{:U('/Admin/Pm/addPm')}" class="btn btn-success">添加拍卖</a>-->
+      <!--<div class="tables-searchbox newcearchbox">
+        <div>
+          <input type="text" placeholder="产品名称" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" class="input" name="name" value="{$title}" >
+          &lt;!&ndash; <input type="text" placeholder="商家编码" class="input" name="goods_no" value="" > &ndash;&gt;
+          <button class="btn btn-primary" style="line-height:20px;"> <i class="gicon-search white"></i>查询 </button>
+        </div>
+
+        &lt;!&ndash;<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>&ndash;&gt;
+        &lt;!&ndash;产品导出</a>&ndash;&gt;
+      </div>
+      <div class="tabs clearfix mgt10"> 
+        <a href="{:U('/Admin/Index/liuyanList')}" class="<eq name="_GET['is_sale']" value="">active</eq> tabs_a fl">全部({$counts})</a>
+        <a href="{:U('/Admin/Index/liuyanList/is_sale/1')}" class="<eq name="_GET['is_sale']" value="1">active</eq> tabs_a fl">未处理({$count1})</a>
+        <a href="{:U('/Admin/Index/liuyanList/is_sale/2')}" class="<eq name="_GET['is_sale']" value="2">active</eq> tabs_a fl">已处理({$count2})</a>
+        a href="{:U('/Admin/Pm/pmList/is_sale/3')}" class="<eq name="_GET['is_sale']" value="3">active</eq> tabs_a fl">待审核({$count3})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/4')}" class="<eq name="_GET['is_sale']" value="4">active</eq> tabs_a fl">审核通过({$count4})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/5')}" class="<eq name="_GET['is_sale']" value="5">active</eq> tabs_a fl">审核拒绝({$count5})</a>-->
+
+
+
+    
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+      <thead>
+        <tr class="po_list">
+          <td>ID</td>
+          <td>数量</td>
+          <td>日期</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="data" item="vo">
+          <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.visit_num}</td>
+            <td>{$vo.date}</td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <div class="fr">
+          <div class="pages"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+
+
+  <div id="albums-overlay" class="disshow"></div>
+  <!--<div class="jbox addfenlei disshow" style="height:auto; overflow: visible;">
+    <div class="jbox-title">
+      <div class="jbox-title-txt">关联场次</div>
+      <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 140px;overflow: visible;">
+      <div class="formitems">
+        <input type="hidden" class="input sort" name="commentId" id="commentId" >
+        <select name="num_id" id="num_id">
+          <option value="">请选择拍卖场次</option>
+          <foreach name="num" item="vo" >
+            <option value="{$vo.id}">第{$vo.num}场  <eq name="vo['is_xs']" value="0">普通场<else/>限时场</eq>  开始时间:{$vo['start_time']|date='Y-m-d H:i:s',###}</option>
+          </foreach>
+        </select>
+        &lt;!&ndash;时间:{$vo['start_time']|date='Y-m-d H:i:s',###}-{$vo['end_time']|date='Y-m-d H:i:s',###}&ndash;&gt;
+          <span class="fi-help-text" id="times"></span>
+        </div>
+      </div>
+    <div class="jbox-buttons">
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">确定</a>
+      <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>-->
+
+  </div>
+  <script src="__JS__/jquery.js"></script>
+  <script>
+      $(".shang").click(function(){
+          $('.addfenlei').show();
+          $('#albums-overlay').show();
+      })
+
+      $(".cancle").click(function(){
+          $(this).parent().parent('.jbox').hide();
+          $('#albums-overlay').hide();
+      })
+
+      $(".shang").click(function(){
+          var commentId = $(this).attr('data-id');
+          $('#commentId').val(commentId);
+      })
+
+      $('#agree').click(function () {
+          var id1 = $('#commentId').val();
+          var num_id = $('#num_id').val();
+          if (num_id==''||num_id==null){
+              alert('场次必选')
+              return false;
+          }
+          $.ajax({
+              url: "{:U('/Admin/Pm/glnum')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+                  num_id: num_id,
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  alert(g.info);
+                  window.location.reload();
+              } else {
+                  //$(".cancle").parent().parent('.jbox').hide();
+                  //$('#albums-overlay').hide();
+                  alert(g.info);
+              }
+
+          })
+      })
+  </script>
+<!-- end container --> 
+<include file="Public:foot"/>
+<script>
+  function chuli(obj){
+      var id = $(obj).attr('data-id');
+      ajax(id,'1');
+  }
+
+  function del(obj){
+      if(!confirm('确定删除吗?')){
+          return false;
+      }
+      var id = $(obj).attr('data-id');
+      ajax(id,'0');
+  }
+
+  function ajax(id,lx) {
+      $.ajax({
+          url: "{:U('/Admin/Index/chuli')}",
+          type: "post",
+          dataType: "json",
+          data: {
+              id:id,
+              lx:lx,
+          },
+          success:function(msg){
+              if (msg.status==1){
+                  alert( msg.info);
+                  setTimeout(reload,1200);
+              }else{
+                  alert( msg.info);
+              }
+          }
+      })
+  }
+
+  function reload() {
+      location.reload();
+  }
+/*$(".change-is_xia").click(function (){
+  var id   = $(this).attr("data-id");
+  var item = "is_shang";
+  $.post("{:U('Admin/Pm/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status){
+      window.location.reload()
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})*/
+</script>

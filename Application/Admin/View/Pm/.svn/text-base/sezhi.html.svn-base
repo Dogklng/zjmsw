@@ -1,0 +1,220 @@
+<include file="Public:head"/>
+<style>
+    .imgnav{
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .imgwrapper{
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .imgwrapper img{
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border:0;
+    }
+    .spanpd10{
+        margin:10px;
+    }
+    .wxtables.wxtables-sku.newtable{
+        width: 40%;
+        margin: 0;
+    }
+    .img-list li{
+        width: 60px;
+        height:60px;
+    }
+    textarea {
+        resize: both;
+    }
+    .cst_h3 span{font-weight: normal;}
+    #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+    .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+    .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+    #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+    #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+    #xuanze2:hover{ background:#E6E6E6; }
+    .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+    </style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+            $("#xuanze").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+            $("#xuanze").change(function () { //选择文件
+                $("#myupload1").ajaxSubmit({
+                    dataType: 'json', //数据格式为json
+                    beforeSend: function () { //开始上传
+                    },
+                    uploadProgress: function (event, position, total, percentComplete) {
+                    },
+                    success: function (data) { //成功
+                        //console.log(data);
+                        if (data.status==0){
+                            alert(data.info);
+                            return false;
+                        }
+                        var v = data[0]["savepath"].substr(1) + data[0]["savename"];
+                        $('.xuanze_showimge').val(v);
+                        $('.xuanze_showimge1').val(v);
+                    },
+                    error: function (xhr) { //上传失败
+                        //console.log(xhr.status)
+                        alert('上传失败');
+                    }
+                });
+            });
+        })
+</script>
+
+
+
+<div class="container">
+  <div class="inner clearfix"> <include file="Public:left"/> 
+    <!-- end content-left -->
+    
+    <div class="content-right fl">
+      <h1 class="content-right-title">拍卖配置</h1>
+      <form aciton="{:U('/Admin/Pm/sezhi')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">
+      <input type="hidden" name="id" value="{$cache['id']}">
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">基本信息</h3>
+
+            <!--<div class="formitems">-->
+                <!--<label class="fi-name"><span class="colorRed">*</span>公司名称：</label>-->
+                <!--<div class="form-controls">-->
+                    <!--<input type="text" class="input gs" value="{$cache.gs}"/>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>拍卖订单支付时限：</label>
+                <div class="form-controls">
+                    <input type="text" class="input zfsx" value="{$res.zfsx}" onkeyup="num(this)"/><span>小时</span>
+                </div>
+            </div>
+            <!--<div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>经营保证金：</label>
+                <div class="form-controls">-->
+                    <input type="hidden" class="input bao_price" onkeyup="num(this)" value="{$res.bao_price}"/>
+                <!--</div>
+            </div>-->
+            <!--<div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>技术服务费保证金：</label>
+                <div class="form-controls">
+                    <input type="text" class="input jishu_price" onkeyup="num(this)" value="{$res.jishu_price}"/>
+                </div>
+            </div>-->
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>授权书模板：</label>
+                <div class="form-controls">
+                    <div class="btnimage fl">选择文件
+                        <input type="file" name="xuanze" id="xuanze" class="file" >
+                        <input type="hidden" name="moban" value="{$res.moban}" id="moban" class="input xuanze_showimge1" >
+                    </div>
+                    <span> &nbsp;&nbsp;&nbsp;&nbsp;链接地址：<input style="width: 400px !important;" name="moban" class="input xuanze_showimge" type="text" value="{$res.moban}" readonly="readonly"></span>
+                    <span>.doc或.docx文档</span>
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>保证金说明：</label>
+                <div class="form-controls" style="padding-left: 10px">
+                    <script id="editor" name="content" type="text/plain" style="width:730px;height:300px;">
+                        {$res['content']|htmlspecialchars_decode|stripslashes}
+                    </script>
+                </div>
+            </div>
+        <!-- end 详情及其它 -->
+        <div class="panel-single panel-single-light mgt20 txtCenter"> 
+          <a href="{:U('Admin/Pm/sezhi')}" class="btn">取消</a>
+          <a id="submit" class="btn btn-primary" >保存</a>
+        </div>
+        </div>
+      </form>
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+
+<include file="Public:foot"/>
+                    <link href="__UM__/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+                    <script type="text/javascript" src="__UM__/third-party/jquery.min.js"></script>
+                    <script type="text/javascript" src="__UM__/third-party/template.min.js"></script>
+                    <script type="text/javascript" charset="utf-8" src="__UM__/umeditor.config.js"></script>
+                    <script type="text/javascript" charset="utf-8" src="__UM__/umeditor.min.js"></script>
+                    <script type="text/javascript" src="__UM__/lang/zh-cn/zh-cn.js"></script>
+<!--<script type="text/javascript" src="__JS__/jquery.js"></script>-->
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    UM.getEditor('editor',{
+        toolbars: [
+
+            ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+
+        ],
+
+        autoHeightEnabled: false,
+        autoFloatEnabled: true,
+        elementPathEnabled:false,
+        enableContextMenu:false,
+        wordCount:false,
+
+    });
+$("#submit").click(function (){
+    var post = {};
+    post.zfsx        = $.trim($(".zfsx").val());
+    //post.bao_price       = $.trim($(".bao_price").val());
+    //post.jishu_price    = $.trim($(".jishu_price").val());
+    post.moban    = $.trim($("#moban").val());
+    post.content    = UM.getEditor('editor').getContent();
+    if(!post.zfsx){
+        alert("请填写拍卖订单支付时限");return false;
+    }
+    /*if(!post.bao_price){
+        alert("请填写经营保证金");return false;
+    }*/
+    /*if(!post.jishu_price){
+        alert("请填写上拍技术服务费保证金");return false;
+    }*/
+
+    if(!post.moban){
+        alert("请上传授权书模板");return false;
+    }
+
+    if(!post.content){
+        alert("请填写保证金内容");return false;
+    }
+
+
+    $.post("{:U('Admin/Pm/sezhi')}", post, function (data){
+        //console.log(data);
+        alert(data.info);
+    }, "json")
+    return false;
+})
+
+
+function num(obj){
+    obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+    obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+    obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+    obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+}
+</script>
+<!--上传图片-end->
+
+

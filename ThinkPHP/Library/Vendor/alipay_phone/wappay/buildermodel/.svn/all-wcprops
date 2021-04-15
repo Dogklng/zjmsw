@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/wappay/buildermodel
+END
+AlipayDataDataserviceBillDownloadurlQueryContentBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/wappay/buildermodel/AlipayDataDataserviceBillDownloadurlQueryContentBuilder.php
+END
+ContentBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/wappay/buildermodel/ContentBuilder.php
+END
+AlipayTradeFastpayRefundQueryContentBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/wappay/buildermodel/AlipayTradeFastpayRefundQueryContentBuilder.php
+END
+AlipayTradeWapPayContentBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/wappay/buildermodel/AlipayTradeWapPayContentBuilder.php
+END
+AlipayTradeRefundContentBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/wappay/buildermodel/AlipayTradeRefundContentBuilder.php
+END
+AlipayTradeCloseContentBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/wappay/buildermodel/AlipayTradeCloseContentBuilder.php
+END
+AlipayTradeQueryContentBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/wappay/buildermodel/AlipayTradeQueryContentBuilder.php
+END

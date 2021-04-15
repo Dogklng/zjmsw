@@ -1,0 +1,131 @@
+<include file="Public:header" />
+<style>
+    .canzhan_form {
+        width: 90%;
+        height: auto;
+        background: #fff;
+        margin: 30% auto 0 auto;
+        position: relative;
+    }
+    .canzhan_xx {
+        padding: 0px 30px 30px 30px;
+    }
+    .canzhan_xx input {
+        float: right;
+        padding: 0 10px;
+        border: 1px #eee solid;
+        line-height: 24px;
+        width: 70%;
+    }
+</style>
+<!--wrapper-->
+<div class="newsdot" id="newsdot">
+
+ 			<div class="newsdot_topimg">
+            	<img src="{$res.detail_img}" width="100%">
+            </div>
+            
+            <div class="newsdot_main" style="bottom: 0px; opacity: 1;">
+            	
+                <div class="newsdot_right">
+                
+                    <div class="newsdot_left">
+                        <h4>发布时间：<span>{$res.create_time|date="Y-m-d",###}</span></h4>
+                        <h4>培训地址：<span>{$res.address}</span></h4>
+                        <h4>组织人：<span>{$res.auth}</span></h4>
+                        <h4>培训内容：<span>{$res.title}</span></h4>
+                   <!-- <a class="PeixunA" href="javascript:;">我要报名</a>-->
+                </div>
+                 <div class="newsdot_right">
+          <div class="newsdot_sectit">{$res.title}</div>
+          <h4>{$res.content||htmlspecialchars_decode|stripslashes}</h4>
+          <div class="newsdot_topimg"> <img src="{$res.detail_img}" width="100%" class="hidden-xs"> </div>
+        </div>   
+                    
+                </div>
+                
+                
+                <div class="clear"></div>
+            </div>
+
+
+    <div class="newsdot_back">
+        <a data-id="{$res.id}" onclick="myFunction(this)" class="more_aa2">我要报名</a>
+    </div>
+            
+          
+          </div>
+
+<!--wrapper-->
+<div class="canzhan_forma">
+
+    <div class="canzhan_form">
+        <img src="__IMAGES__/close.png" class="close canzhan_close" style="top:10px; right:10px;" />
+        <h3>培训报名</h3>
+
+        <div class="canzhan_xx">
+            <input type="hidden" id="train_id"/>
+            <p><span>姓名：</span><input type="text" id="name"/></p>
+            <p><span>手机号：</span><input type="text" id="tel"/></p>
+            <a href="javascript:void(0)" class="zlxxtj">提交信息</a>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+
+</body>
+<script>
+    function myFunction(obj) {
+        var id = $(obj).attr('data-id');
+        $('#train_id').val(id);
+        $('.canzhan_forma').show();
+    }
+
+    $('.zlxxtj').click(function () {
+        var member_id = '{$member_id}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+            return false;
+        }
+        var name = $.trim($('#name').val());
+        var tel  = $.trim($('#tel').val());
+        var train_id   = $('#train_id').val();
+        if(name == ""){
+            alert('姓名必填');
+            return false;
+        }
+        if(tel == ''){
+            alert('手机号必填');
+            return false;
+        }
+        if(!(/^1[34578]\d{9}$/.test(tel))){
+            alert('请输入正规手机号');
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Wxin/ArtCommunity/addTrain')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                name: name,
+                tel:  tel,
+                train_id:train_id
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+
+</html>

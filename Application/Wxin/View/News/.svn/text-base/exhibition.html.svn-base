@@ -1,0 +1,133 @@
+<include file="Public:header" />
+
+<div class="galleryClass" style="margin-top:60px">
+  <div class="galleryScroll">
+    <volist name="newsCate" id="val">
+      <a href="{:U('Wxin/News/index')}?type={$val.id}" class="<eq name="_GET['type']" value="$val.id">active</eq> tabs_a fl">{$val.name}</a>
+    </volist>
+
+    <a href="{:U('/Wxin/News/exhibition')}" class="active">展览展讯</a>
+    <a href="{:U('/Wxin/Goods/hall')}" >3D展厅</a>
+    <a href="{:U('/Wxin/News/contest')}">大赛征稿</a></li>
+    <a href="{:U('/Wxin/News/video')}">视频</a></li>
+  </div>
+</div>
+
+<div class="zlzx_inlet">
+    <div class="nr" align="center">
+      <div class="title_bottom"><span>为您提供最新的展览信息</span> </div>
+      <div class="title_nr">如您需要办展或参加展会，您可点击下方按钮将相应信息提供给我们，我们将第一时间回复您！</div>
+      <div style="text-align:center; width:100px; margin:0 auto;">
+
+        <a href="javascript:;" onclick="zhan(this);" data-id="2" class="btnx" style="margin-right:0; cursor:pointer;align:center!important;color:#fff;background-color: #999999;">我要办展</a>
+        <div style="clear: both"></div>
+      </div>
+    </div>
+</div>
+
+
+<!-- 大家都在赞 -->
+<div class="praise artworkP">
+ 
+  <div class="news">
+   <div class="row">
+     <volist name="show" id="v">
+      <div class="col-lg-6 col-md-6 col-sm-6 index_sec4_right"> <a href="{:U('/Wxin/ArtCommunity/detail',array('id'=>$v['id']))}">
+        <div class="index_sec4_list " style="bottom: 0px; opacity: 1;">
+          <div class="index_sec4_list_img"> <img src="{$v.logo}" width="100%" /> </div>
+          <div class="index_sec4_list_wz">
+            <h6>{$v.create_time|date="Y-m-d",###}</h6>
+            <h2>{$v.title}</h2>
+            <h4>{$v.content|htmlspecialchars_decode|stripslashes}</h4>
+          </div>
+          <div class="clear"></div>
+        </div>
+        </a> </div>
+       </volist>
+    </div>
+  </div>
+</div>
+<!-- 大家都在赞 -->
+
+<div class="indexbottom"></div>
+
+<include file="Public:header" />
+
+</body>
+<script>
+  function zhan(obj) {
+    var member_id = '{$name}';
+    var val = $(obj).attr('data-id');
+    if(member_id == 0){
+      dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+      return false;
+    }
+
+    if (val==1){
+      //alert(val);
+      window.location.href="{:U('/Wxin/News/exhibitors')}";
+    }else {
+      //alert(val);
+      window.location.href="{:U('/Wxin/News/upExhibitors')}";
+    }
+
+  }
+
+  var p = 2;
+  // 加载刷新。
+  function refresh(refresh,loadmore) {
+    $(window).scroll(function(){
+      console.log('正在滑动f');
+
+      var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+      var scrollHeight = $(document).height();   //当前页面的总高度
+      var clientHeight = $(this).height();    //当前可视的页面高度
+      // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+      if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+        // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+        console.log('下拉');
+
+        if(loadmore){
+          loadmore();
+        }
+      }else if(scrollTop<=0){
+        //滚动条距离顶部的高度小于等于0 TODO
+        //alert("下拉刷新，要在这调用啥方法？");
+
+        console.log('上拉');
+        if(refresh){
+          refresh();
+        }
+
+      }
+
+    });
+
+  }
+  //调用
+  refresh(fn1,fn2);
+
+  function fn1(){
+    window.location.href = "{:U('Wxin/News/exhibition')}";
+  }
+  function fn2(){
+    $.ajax({
+      type: "POST",
+      url: "{:U('/Wxin/News/get_exhibition')}",
+      data: {
+        p: p,
+      },
+      dataType: "json",
+      success: function (g) {
+        if (g.status == 1) {
+          p++;
+          $('.row').append(g.html);
+        } else {
+          //alert(g.info);
+        }
+      }
+    });
+  }
+</script>
+
+</html>

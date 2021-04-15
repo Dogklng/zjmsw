@@ -1,0 +1,122 @@
+<include file="Public:header" />
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:30px;">
+  <div class="products_inner" style="margin-top: 60px;">
+    <include file="Public:images" />
+
+    <div class="products_inner_zi">
+      <div class="buy_con_text pm_con_text" style="padding-top: 15px; width:100%;">
+        <h3>{$res.goods_name}</h3>
+        <input type="hidden" id="goods_id" value="{$res.id}" >
+        <div class="buyDel">
+          <ul>
+            <li><b>作品的上架时间 :</b>{$res['shang_time']|date="Y-m-d",###}</li>
+            <li><b>材质 ：</b>{$res.goods_skin}</li>
+            <li><b>尺寸 ：</b> {$res.goods_range}</li>
+            <li><b>创作年代 :</b> {$res.goods_care}年</li>
+            <li><b>品相 ：</b>{$res.goods_com}</li>
+          </ul>
+        </div>
+        <h4><i style="background:#999;">已结束</i> 结束时间：<span>{$res['end']|date="Y年m月d日 H:i",###}</span></h4>
+        <div class="qpxx">
+          <!--<p><span> 开拍提醒:</span>
+            <input style="border:1px #ddd solid; line-height:32px; padding:0 20px; color:#999;" id="tel" type="text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '请输入您的邮箱或者手机号';}" value="请输入您的邮箱或者手机号">
+            <a href="#" id="btn" style="line-height:34px; display:inline-block; background:#999; color:#fff; padding:0 20px;">发送</a></p>-->
+          <div class="qpxx1" style="padding-left:50px;">
+            <h6>当前价成交加：<span style="font-size:24px;">¥{$res.dangqian}</span>   您已出局</h6>
+          </div>
+          <ul class="qpxx2">
+            <li><span>{$res.baomin|default=0}</span>人报名 </li>
+            <li><span>{$tx|default=0}</span>人设置提醒 </li>
+            <li><span>{$res.weiguan|default=0}</span>次围观</li>
+            <div class="clear"></div>
+          </ul>
+          <ul class="qpxx3">
+            <li>起拍价: <span>¥{$res.start_price}</span></li>
+            <li>加价幅度: <span>¥{$res.fudu}</span></li>
+            <li>保证金: <span>¥{$res.baoding}</span></li>
+            <li>佣金: <span>{$res.yongjin}%</span></li>
+            <div class="clear"></div>
+          </ul>
+          <div class="qpxx4"> 特色服务： <span>假一赔三</span> <span>拍前预展</span> </div>
+        </div>
+      </div>
+    </div>
+  <include file="Public/pmxq" />
+  </div>
+</div>
+<!--  / warpper  -->
+<!--  / footer  -->
+
+<!--  / footer  -->
+
+</body>
+
+
+<script language="javascript">
+  $(".jpxz").click(function(e){
+    $(".artworkP").show();
+    $('.products_inner').hide();
+  })
+$(document).ready(function(){
+	
+	  
+  var mySwiper = new Swiper('.swiper-container1',{
+    pagination: '.pagination1',
+    loop:true,
+    grabCursor: true,
+	autoplay:5000, 
+	spaceBetween: 0,
+	slidesPerGroup : 1,//设置几个一切换
+	centeredSlides : true, //当前居中
+    paginationClickable: true,
+	autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+  })
+   
+	
+
+$(window).scroll(function(){
+  
+  if($(window).scrollTop()>($('.products_inner_con').offset().top-60)){  
+      $('.proinner_nav').addClass('proinner_navon');
+      }else{
+		  $('.proinner_nav').removeClass('proinner_navon');
+		  }
+	  	   	
+}) 	
+
+
+$('.show_xzd1').click(function(){
+	$('.load_dh').stop(true).fadeIn(600);
+	
+	setTimeout(function(){
+		$('.load_dh').stop(true).fadeOut(600);
+		},4000)
+	
+	})
+
+
+})
+
+
+$(window).load(function(e) {
+	var height1 = $(".device img").height();
+	$(".swiper-container1").css("height",height1)
+
+})
+
+$(window).resize(function(e) {
+	var height1 = $(".device img").height();
+	$(".swiper-container1").css("height",height1)
+})
+
+$(document).ready(function(e) {
+	var height1 = $(".device img").height();
+	$(".swiper-container1").css("height",height1)
+
+})
+
+
+</script>
+<script src="__JS__/detail.js"></script>
+</html>

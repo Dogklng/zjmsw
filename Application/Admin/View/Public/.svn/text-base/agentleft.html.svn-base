@@ -1,0 +1,12 @@
+<div class="content-left fl">
+    <dl class="left-menu shop_8 sub_membership">
+        <dt>
+            <i class="icon-menu membership"></i>
+            <span id="shop_8" data-id="8">代理设置</span>
+        </dt>
+        <dd class="subshop_0 <eq name='comptype' value='0'>active</eq>">
+            <a href="{:U('/Admin/Agent/index')}">代理列表</a>
+        </dd>
+
+    </dl>
+</div>

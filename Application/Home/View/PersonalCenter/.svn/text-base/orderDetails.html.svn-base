@@ -1,0 +1,330 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+  <!--  / user  -->
+
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="user_r_inner">
+            <div class="user_inner">
+              <h5 class="clearfix">
+              <p>下单时间：<span>{$res.order_time|date="Y-m-d H:i:s",###}</span></p>
+              <p>订单号：<span>{$res.order_no}</span></p>
+              </h5>
+              <div class="user_inner_con clearfix">
+                <div class="user_inner_con1">
+                  <p>收货人：<span>{$res.consignee}</span></p>
+                  <p>联系方式：<span>{$res.mobile}</span></p>
+                  <p>收货地址：<span>{$res.provincee} {$res.city} {$res.district} {$res.address}</span></p>
+                  <p>配送方式：<span><if condition="$res.express_fee eq 0">快递免邮<else/>普通配送</if></span></p>
+                </div>
+                <div class="user_inner_con1">
+                  <p><if condition="$res1[0]['is_groom'] eq 0">押金：<else/>商品合计：</if><span>¥{$res.total_price}</span></p>
+                  <p>运费：<span>¥{$res.express_fee}</span></p>  
+                  <p>支付方式：
+                    <if condition="$res.pay_way eq 1"><span>支付宝</span></if>
+                    <if condition="$res.pay_way eq 2"><span>银联支付</span></if>
+                    <if condition="$res.pay_way eq 3"><span>微信支付</span></if>
+                    <if condition="$res.pay_way eq 4"><span>余额支付</span></if>
+                  </p>
+                  <if condition="$res1[0]['is_groom'] eq 0">
+                  <p>租金：¥{$res1[0]['zujin']}/天</p>
+                  <p>共租：{$res1[0]['goods_nums']}天</p>
+
+                    <elseif condition="$res1[0]['is_groom'] eq 1"/></if>
+                </div> 
+                
+                <div class="user_inner_con2">
+                  <p>发票信息： <span>
+                    <eq name="res.invoice_type" value="3">
+                      纸质发票-增值普票
+                      <else/>
+                      电子发票-增值普票
+                    </eq>
+                  </span>
+                    <span>发票抬头({$res.invoice_title})</span></p>
+                 <!-- <p>使用优惠卷： </p>
+                  <div class="user_r3_j">
+                    <div class="user_r3_j1">
+                     <span>￥100</span> 礼金券
+                     <p></p>
+                    </div>
+                    <div class="user_r3_j2">
+                      注册新用户全场通用券<br>
+                      <span>单笔订单满2000元使用</span>
+                    </div>   
+                  </div>-->
+                </div>
+                   
+
+
+              
+              <!-- <if condition="$res.order_status eq 3">
+              <div class="user_inner_con2">
+              <div class="cb-title">物流信息</div>
+              <div class="cb-contain">
+                <ul class="info-table mgl15">
+                  <li class="long"> <span class="bold">物流公司：</span> <span><a href="javascript:void(0);">
+                  {$res.express_name}</a> </span> </li>
+                  <li class="long"> <span class="bold">物流单号：</span> <span><a href="javascript:void(0);">
+                  {$res.express_no}</a> </span> </li>
+                  <li class="long"> <span class="bold">物流费：</span> <span><a href="javascript:void(0);">
+                  {$res['express_fee']?$res['express_fee']:0}</a> </span> </li>
+                  <li class="long">
+                    <span class="bold">物流详情：</span>
+                    <foreach name="express" item="v">
+                    <p>{$v['AcceptTime']} {$v['AcceptStation']}</p>
+                    </foreach>
+                  </li>
+                  </li>
+                </ul>
+              </div>
+              </div>
+            </div>
+            </if>
+ -->
+
+
+
+              </div>    
+            </div> 
+            <volist name="res1" id="v">
+            <div class="user_r_list">
+              <table>
+                <tr>
+                  <th class="user_r_frist" style="width:40%;">商品</th>
+                  <th style="width:12%;"><if condition="$v.is_groom eq 0">押金<elseif condition="$v.is_groom eq 1"/>单价</if></th>
+                  <th style="width:12%;"><if condition="$v.is_groom eq 0">租赁天数<elseif condition="$v.is_groom eq 1"/>数量</if></th>
+                  <th style="width:12%;">实付</th>
+                  <th style="width:12%;">收货人</th>
+                  <!--<th style="width:12%;">状态</th>-->
+                </tr>
+                <tr>
+                  <td class="user_r_frist"><img src="{$v.goods_spic}" width="100"><span>{$v.goods_name}  {$v.goods_cap}</span></td>
+                  <td>¥{$v.goods_price}</td>
+                  <td>{$v.goods_nums}</td>
+                  <td>¥<if condition="$res.order_status eq 1">0<else/>{$v.goods_price}</if></td>
+                  <!--{$v['goods_price']*$v['goods_nums']}-->
+                  <td>{$res.consignee}</td>
+				  <!--<td>
+				  <switch name="v.order_status">
+						<case value="0">
+                          <a href="javascript:;">已取消</a>
+                        </case>
+                        <case value="1">
+                          <a class="fukuan" id="fukuan" data-id="{$v['order_no']}" href="javascript:void();">付款</a>
+                          <a href="javascript:;" data-id="{$v.id}" class="qxdd quxiao">取消订单</a>
+                        </case>
+                        <case value="2">
+                          <a href="javascript:;">待发货</a>
+                        </case>
+                        <case value="3">
+                          <a href="javascript:;"  data-id="{$v.id}" class='qianshou'>确认收货</a>
+                        </case>
+                        <case value="4">
+                          <a  href="javascript:void(0);">已完成</a>
+                        </case>
+                        <case value="5">
+                          <a  href="javascript:void(0);">已归还</a>&lt;!&ndash;-order1.html&ndash;&gt;
+                        </case>
+                  </switch>
+                  </td>-->
+                </tr>
+              </table>  
+            </div>
+            </volist>
+            <div class="user_r_list wlxx">
+              <h5>买家留言</h5>
+              <div class="wlxx_con" style="padding:10px 20px;">
+                <p>{$res.liuyan}</p>
+              </div>
+            </div>
+            <div class="user_r_list wlxx">
+              
+              <h5>物流信息</h5>
+              <if condition="$res['express_no'] neq null">
+               <div class="wlxx_con">物流公司： {$res.express_name}</div>
+               <div class="wlxx_con">物流单号： {$res.express_no}</div>
+               <div class="wlxx_con">物流费： ¥{$res['express_fee']?$res['express_fee']:0}</div>
+
+              <div class="wlxx_con">
+                <if condition="$express neq null">
+                  <foreach name="express" item="v">
+                    <p>{$v['AcceptTime']} {$v['AcceptStation']}</p>
+                  </foreach>
+                  <else />暂无物流信息
+                </if>
+                <!--<p><span>20160-08-20 12:30:00</span> 商品已出货</p>-->
+                <!--<p><span>20160-08-20 18:30:00</span> 商品已到达宁波机场 正运往杭州</p>-->
+                <!--<p><span>20160-08-21 10:30:00</span> 商品到达杭州萧山机场</p>-->
+                <!--<p><span>20160-08-22 12:30:00</span> 商品到达杭州市西湖区 正在派送中</p>-->
+              
+              </div>
+               <else/>
+              <div class="wlxx_con">暂无物流信息</div>
+              </if>
+            </div>
+            <if condition="$zuexpress neq null">
+            <div class="user_r_list wlxx">
+
+              <h5>归还物流信息</h5>
+              <if condition="$res['zuexpress_no'] neq null">
+                <div class="wlxx_con">物流公司： {$res.zuexpress_name}</div>
+                <div class="wlxx_con">物流单号： {$res.zuexpress_no}</div>
+                <div class="wlxx_con">物流费： ¥{$res['zuexpress_fee']?$res['zuexpress_fee']:0}</div>
+
+                <div class="wlxx_con">
+                  <if condition="$zuexpress neq null">
+                    <foreach name="zuexpress" item="v">
+                      <p>{$v['AcceptTime']} {$v['AcceptStation']}</p>
+                    </foreach>
+                    <else />暂无物流信息
+                  </if>
+                  <!--<p><span>20160-08-20 12:30:00</span> 商品已出货</p>-->
+                  <!--<p><span>20160-08-20 18:30:00</span> 商品已到达宁波机场 正运往杭州</p>-->
+                  <!--<p><span>20160-08-21 10:30:00</span> 商品到达杭州萧山机场</p>-->
+                  <!--<p><span>20160-08-22 12:30:00</span> 商品到达杭州市西湖区 正在派送中</p>-->
+
+                </div>
+              </if>
+            </div>
+            </if>
+            <div><a href="javascript:void();" id="backid">返回</a></div>
+            <script type="text/javascript">
+                $('#backid').click(function(){
+                  //location.href='/Home/PersonalCenter/lease/tag/lease';
+                    window.location.href = document.referrer;
+                })
+            </script>
+          </div>
+        </div>
+      </div>
+          <form id="orForm" action="{:U('/Home/Order/pay')}" method="post" name="orForm">
+			<input type="hidden" id="post_ord" name="order_no" value=""/>
+		  </form>
+    </div>      
+  </div>
+  <div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <a href="javascript:void (0)" class="task_btn1_on" id="start" value="">确定</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+	$(function(){
+		$(".fukuan").click(function(){
+		var order_no = $(this).data('id');
+			 dialog.showTips('确定付款','firm',function(){
+			 
+				$.ajax({
+					url:'/Home/PersonalCenter/orderDetails',
+					type:'post',
+					data:{order_no:order_no},
+					dataType:'json',
+					success:function(g){
+						if(g.status == 1){
+						//付款
+							$('#post_ord').val(order_no);
+							$("form[name=orForm]").submit();
+						}else{
+							alert(g.info);
+						}
+					}
+					
+				})
+			 })
+		})
+		
+
+  })
+
+</script>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+
+$('.qxdd').click(function(){
+    var id1 = $(this).attr('data-id');
+    $('#start').val(id1);
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+
+  $('.task_btn1_on').click(function () {
+    var id1 = $('#start').val();
+
+          $.ajax({
+              url: "{:U('Home/PersonalCenter/cancelOrder')}",
+              data: {order_id:id1},
+              type: 'post',
+              dataType: 'json',
+              success: function (content) {
+                  if (content.status == 1) {
+				   //alert(content.info );
+                      window.location.reload();
+                  } else {
+                      alert(content.info);
+                  }
+              }
+          })
+  })
+
+
+  $('.qianshou').click(function () {
+     var id1 = $(this).attr('data-id');
+      dialog.showTips('确定签收吗','firm',function () {
+          $.ajax({
+              url: "{:U('Home/PersonalCenter/changeOrderStatus')}",
+              data: {id:id1},
+              type: 'post',
+              dataType: 'json',
+              success: function (content) {
+                  if (content.status == 1) {
+                      alert(content.info);
+                      window.location.reload();
+                  } else {
+                      alert(content.info );
+                  }
+              }
+          })
+      });
+  })
+</script>
+  <!--  / user  -->
+   
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+</html>

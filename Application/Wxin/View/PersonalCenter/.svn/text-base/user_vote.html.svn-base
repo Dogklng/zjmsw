@@ -1,0 +1,248 @@
+<include file="Public:header" />
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<div class="dianpu_box">
+  <div class="SellerCon">
+    <div class="SellerTop">
+      <h3>投稿</h3>
+    </div>
+    <div class="SellerFlower">
+
+
+      <div class="pZlCon">
+        <form class="pZlConForm">
+          <input type="hidden" name="cate" value="1" >
+          <div class="pZlConI clearfix">
+            <label class="pzLs"><span class="red">*</span>标题：</label>
+            <input type="text" value="" maxlength="30" name="title">
+           </div>
+          <div class="pZlConI clearfix">
+            <label class="pzLs"><span class="red">*</span>描述：</label>
+            <input type="text" value="" name="detail" maxlength="200">
+           </div> 
+          <div class="pZlConI clearfix">
+            <label class="pzLs"><span class="red">*</span>发布时间：</label>
+            <input type="text" value="" maxlength="30" readonly id="addtime" name="addtime">
+          </div>
+          <div class="pZlConI clearfix">
+            <label class="pzLs"><span class="red">*</span>作者：</label>
+            <input type="text" value="" maxlength="30" name="auth">
+          </div>
+          <div class="pZlConI clearfix">
+            <label class="pzLs"><span class="red">*</span>新闻详情：</label>
+            <textarea name="content" rows="5" cols="30" style="width:100%"></textarea>
+          </div>
+           <div class="pZlConI clearfix">
+            <label class="pzLs"><span class="red">*</span>关键词：</label>
+            <input type="text" value="" name="keyword" maxlength="30">
+          </div>
+           <div class="pZlConI clearfix">
+            <div class="pZlConI-div">
+              <label class="pzLs"><span class="red">*</span>新闻图片（小）：</label>
+              <div class="SelIdetPic-list">
+                <div class="SelIdPic-border xuanze_showimge"> <img src="__IMAGES__/SeladdPic.png">
+                  <h6>点此上传</h6>
+                  <input type="hidden" name="news_pic" id="news_pic" value="">
+                  <input type="file" class="add_pic" name="xuanze" id="xuanze1">
+                </div>
+                
+              </div>
+              
+            </div>
+            <h5>建议大小（宽305px 高204px）</h5>
+          </div>
+          <div class="pZlConI clearfix">
+            <div class="pZlConI-div">
+              <label class="pzLs"><span class="red">*</span>新闻详情页图片：</label>
+              <div class="SelIdetPic-list">
+                <div class="SelIdPic-border baotuan_showimge"> <img class="baotuan_showimge" src="__IMAGES__/SeladdPic.png">
+                  <h6>点此上传</h6>
+                  <input type="hidden" name="pic" id="pic" value="">
+                  <input type="file" class="add_pic" name="baotuan" id="baotuan">
+                </div>
+              </div>
+              
+            </div>
+             <h5>建议大小（宽1920px 高650px）</h5>
+          </div>
+          
+         
+        </form>
+        <div class="SelNoticeStyle">
+          
+          <h4><a href="javascript:;" onclick="toVaild()">确定提交</a></h4>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<div class="indexbottom"></div>
+<script type="text/javascript" src="__JS__/jedate/jedate.js"></script>
+<include file="Public:footer" />
+<script>
+  function toVaild(){
+    var cate = $('input[name="cate"]').val();
+    var title = $.trim($('input[name="title"]').val());
+    var detail = $.trim($('input[name="detail"]').val());
+    var addtime = $.trim($('#addtime').val());
+    var auth = $.trim($('input[name="auth"]').val());
+    var keyword = $.trim($('input[name="keyword"]').val());
+    var news_pic = $('input[name="news_pic"]').val();
+    var pic = $('input[name="pic"]').val();
+    var content = $.trim($('textarea[name="content"]').val());
+
+    if(cate==""){
+      alert('请选择分类');
+      return false;
+    }
+
+    if(title==""){
+      alert('请填写标题');
+      return false;
+    }
+
+    if(detail == ''){
+      alert('描述不能为空');
+      return false;
+    }
+    if(addtime == ''){
+      alert('请选择发布时间');
+      return false;
+    }
+    if(auth == ''){
+      alert('请填写作者');
+      return false;
+    }
+    if(content == ''){
+      alert('请填写新闻详情');
+      return false;
+    }
+
+    if(keyword == ''){
+      alert('请填写关键字');
+      return false;
+    }
+    if(news_pic ==''){
+      alert('请上传新闻图片(小)');
+      return false;
+    }
+    if(pic == ''){
+      alert('请上传新闻详情页图片');
+      return false;
+    }
+
+    $.ajax({
+      url:'/Wxin/PersonalCenter/user_vote',
+      type:'post',
+      data:$("form").serialize(),
+      dataType:'json',
+      async: false,
+      success:function(g){
+        if(g.status == 1){
+          dialog.showTips(g.info, "","{:U('/Wxin/PersonalCenter/newlist/tag/newlist/value/8')}");
+        }else{
+          alert(g.info);
+          return false;
+
+        }
+
+      }
+    })
+
+    return false;
+
+  }
+  function xuanze1(){
+    var percent1 = $('.xuanze_percent');
+    var progress1 = $('.xuanze_percent');
+    $("#xuanze1").wrap("<form id='myupload2' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#xuanze1").change(function () { //选择文件
+      $("#myupload2").ajaxSubmit({
+        dataType: 'json', //数据格式为json
+        beforeSend: function () { //开始上传
+          progress1.show(); //显示进度条
+          var percentVal = '0%';
+          percent1.html(percentVal);
+        },
+        uploadProgress: function (event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent1.html(percentVal); //显示上传进度百分比
+        },
+        success: function (data) { //成功
+          //console.log(data);
+          //var img = '<img src="' + data[0]["savepath"].substr(1) + data[0]["savename"] + '" height="80" ><input type="hidden" name="news_pic" id="pic" value="' + data[0]["savepath"].substr(1) + data[0]["savename"] + '"></input>';
+          //$('.xuanze_showimge').html(img);
+          var img = data[0]["savepath"].substr(1)+data[0]["savename"];
+          //$('.xuanze_showimge').attr('src',img);
+          //$('.xuanze_showimge').attr('w',img);
+          var str = '<img src="'+img+'" style="width: 100% !important;"/><input type="hidden" name="news_pic" id="news_pic" value=""> <input type="file" class="add_pic" name="xuanze" id="xuanze1">'
+          //$('.xuanze_showimge').attr('height','88.52px');
+          $('.xuanze_showimge').html(str);
+          $('input[name="news_pic"]').val(img);
+          xuanze1();
+          progress1.hide();
+        },
+        error: function (xhr) { //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+  function baotuan(){
+    var percent = $('.baotuan_percent');
+    var progress = $('.baotuan_percent');
+    $("#baotuan").wrap("<form id='baotuan1' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#baotuan").change(function(){ //选择文件
+      $("#baotuan1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          //console.log(data);
+          var img = data[0]["savepath"].substr(1)+data[0]["savename"];
+          //$('.baotuan_showimge').html(img);
+          var str = '<img src="'+img+'" style="width: 100% !important;"/><input type="hidden" name="pic" id="pic" value=""><input type="file" class="add_pic" name="baotuan" id="baotuan">'
+          //$('.baotuan_showimge').attr('src',img);
+          $('.baotuan_showimge').html(str);
+          $('input[name="pic"]').val(img);
+          baotuan();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+  $(function () {
+    xuanze1();
+    baotuan();
+  });
+  $(".fenlei p label").click(function(){
+    $(".classic").slideToggle(500);
+  })
+  $(".classic li").click(function(){
+    $(".classic").slideToggle(500);
+    $(".fenlei p label").text($(this).find('a').text());
+    $(".fenlei p label").attr('data-value',$(this).find('a').attr('data-value'));
+    $('input[name="cate"]').val($(this).find('a').attr('data-value'));
+  })
+  jeDate({
+    dateCell:"#addtime",
+    format:"YYYY-MM-DD",
+    isinitVal:false,
+    isClear:false,
+    //minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+</script>
+</body>
+</html>

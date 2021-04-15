@@ -1,0 +1,473 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script src="__PUBLIC__/Admin/lhgcalendar/lhgcore.min.js"></script>
+<script src="__PUBLIC__/Admin/lhgcalendar/lhgcalendar.min.js"></script>
+<script>
+    J(function(){
+        J('#birth').calendar({ format:'yyyy-MM-dd'});
+        J('#birth1').calendar({ format:'yyyy-MM-dd'});
+
+    });
+</script>
+
+<style>
+  .imgnav{
+    max-height: 30px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .imgwrapper{
+    display: block;
+    width: 78px;
+    height: 78px;
+    overflow: hidden;
+  }
+  .imgwrapper img{
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border:0;
+  }
+  .spanpd10{
+    margin:10px;
+  }
+  .wxtables.wxtables-sku.newtable{
+    width: 40%;
+    margin: 0;
+  }
+  .img-list li{
+    width: 60px;
+    height:60px;
+  }
+  .cst_h3 span{font-weight: normal;}
+  #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+  .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+  .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+  #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+  #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+  #xuanze2:hover{ background:#E6E6E6; }
+  .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+  </style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+<script type="text/javascript" src="__JS__/datepicker/WdatePicker.js"></script>
+<div class="container">
+  <div class="inner clearfix"> <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">发布产品</h1>
+      <input type="hidden" id="j-isSid" value="0">
+      <!-- 是否选择了淘宝类目 -->
+      <input type="hidden" id="j-hasNorms" value="1">
+      <!-- 淘宝类目下是否有属性 -->
+      <input type="hidden" id="supplier" value="">
+      <form aciton="{:U('/Admin/Activity/activity_goods')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">
+        <div class="panel-single panel-single-light mgt20 asfasdfa">
+          <h3 class="cst_h3 mgb20">基本信息</h3>
+         <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>产品分类：</label>
+            <div class="form-controls">
+               <select name="select_class_id" id="select_cate_id" class="select">
+                    <foreach name="cate" item="vo" >
+                        <option value="{$vo.id}" disabled="disabled">{$vo.classname}</option>
+                        <foreach name="vo.cate" item="vo1" >
+                            <option <eq name="cache.cate_id" value="$vo1.id">selected</eq> value="{$vo1.id}">&nbsp;&nbsp;&nbsp;|-{$vo1.classname}</option>
+                        </foreach>
+                    </foreach>
+                </select>
+              <span class="fi-help-text error"></span> </div>
+          </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>所属系列：</label>
+                <div class="form-controls">
+                   <select name="select_series_id" id="select_attr_id" class="select">
+                    <foreach name="attr" item="vo" >
+                        <option <eq name="cache.series_id" value="$vo.id">selected</eq> value="{$vo.id}">{$vo.classname}</option>
+                    </foreach>
+                </select>
+                    <span class="fi-help-text error"></span> </div>
+            </div>
+          <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>选择商品：</label>
+                <div class="form-controls">
+                   <select name="goods_id" id="select_goods_id" class="select">
+                      <option value="{$cache.goods_id}">{$cache.goods_name}</option>
+                   </select><a href="javascript:void(0)" class="btn btn-primary" id="j-select_series_id"> <i class="gicon-edit white"></i> 查询 </a>
+                    <span class="fi-help-text error"></span> </div>
+            </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>排序：</label>
+            <div class="form-controls">
+              <input type="text" class="input mini" name="sort" value="{$cache.sort}">
+            </div>
+          </div>
+          <input type="hidden" name="id" value="{$Think.get.goods_id}">
+          <input type="hidden" name="activity_id" value="{$Think.get.id}">
+           <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>优惠方式：</label>
+            <div class="form-controls">
+              <input type="radio" <eq name="cache.type" value="1">checked</eq> class="input mini" name="type" value="1">打折
+              <input type="radio" <eq name="cache.type" value="2">checked</eq> class="input mini" name="type" value="2">积分赠送
+            </div>
+          </div>
+           <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>优惠比例：</label>
+                <div class="form-controls">
+                    <input type="text" name="value" value="{$cache.value}"><span id="adfa"> <eq name="cache.type" value="2">%<else/>折</eq></span>
+                    <span class="fi-help-text error"></span> </div>
+            </div>
+        </div>
+        <script>
+          $('input[name=type]').click(function(){
+            var type = $(this).val();
+            if(type == 1){
+              $('#adfa').html(' 折');
+            }
+            if(type == 2){
+              $('#adfa').html(' %');
+            }
+
+          })
+        </script>
+
+        <!-- end 详情及其它 -->
+
+        <div class="panel-single panel-single-light mgt20 txtCenter">
+          <a href="{:U('Admin/integral/index')}" class="btn">取消</a>
+          <input type="submit" class="btn btn-primary" value="保存">
+        </div>
+      </form>
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<div id="albums-overlay" style="display: none;"></div>
+<div class="jbox fenlei select-fenlei disshow" >
+  <div class="jbox-title">
+    <div class="jbox-title-txt">请选择产品分类</div>
+    <a href="javascript:void(0);" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 75px;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>选择分类：</label>
+      <div class="form-controls">
+        <select name="select_class_id" id="select_class_id" class="select">
+          <foreach name="categorylist" item="vo" >
+            <option disabled value="">{$vo.classname}</option>
+            <foreach name="vo.cate" item="vo1" >
+              <option value="{$vo1.id}">&nbsp;&nbsp;&nbsp;|-{$vo1.classname}</option>
+            </foreach>
+          </foreach>
+        </select>
+        <span class="fi-help-text"></span> </div>
+    </div>
+  </div>
+  <div class="jbox-buttons"> <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="select_class">确定</a> <a href="javascript:void(0);" class="jbox-buttons-ok btn cancle">取消</a> </div>
+</div>
+
+<div id="albums-overlay1" style="display: none;"></div>
+<div class="jbox fenlei select-series disshow" >
+    <div class="jbox-title">
+        <div class="jbox-title-txt">请选择所属系列</div>
+        <a href="javascript:void(0);" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 75px;">
+        <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>选择分类：</label>
+            <div class="form-controls">
+                <select name="select_series_id" id="select_series_id" class="select">
+                    <foreach name="serieslist" item="vo" >
+                        <option value="{$vo.id}">{$vo.classname}</option>
+                        <foreach name="vo.cate" item="vo1" >
+                            <option value="{$vo1.id}">&nbsp;&nbsp;&nbsp;|-{$vo1.classname}</option>
+                        </foreach>
+                    </foreach>
+                </select>
+                <span class="fi-help-text"></span> </div>
+        </div>
+    </div>
+    <div class="jbox-buttons"> <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="select_series">确定</a> <a href="javascript:void(0);" class="jbox-buttons-ok btn cancle">取消</a> </div>
+</div>
+
+
+
+
+
+<!--选择分类-->
+<script type="text/javascript">
+  // $('#j-select_series_id').change(function(){
+  //   var id = 
+  // })
+
+  $("#j-select_category_id").click(function(){
+      $('.select-fenlei').show();
+      /*$('#albums-overlay').show();*/
+  })
+  $(".cancle").click(function(){
+      $(this).parent().parent('.jbox').hide();
+      /*$('#albums-overlay').hide();*/
+  })
+
+  $("#select_class").click(function(){
+      var clssid=$("#select_class_id  option:selected").val();
+      var classname=$("#select_class_id option:selected" ).text();
+     $('#class_id').val(clssid);
+     $('#class_name').val(classname);
+      $(this).parent().parent('.jbox').hide();
+      /*$('#albums-overlay').hide();*/
+  })
+
+        // $("#j-select_series_id").click(function(){
+        //     $('.select-series').show();
+        //     $('#albums-overlay1').show();
+        // })
+        $("#j-select_series_id").click(function(){
+             var cate_id = $('#select_cate_id').val();
+             var attr_id = $('#select_attr_id').val();
+             $.ajax({
+                url:"{:U('Admin/integral/ajaxclass')}",
+                data:{cate_id:cate_id,attr_id:attr_id},
+                dataType:'json',
+                type:'post',
+                success:function(data){
+                  if(data.status){
+                    $('#select_goods_id').html(data.html);
+                    $('#select_sku_id').html(data.sku);
+                  }else{
+                    alert(data.info);
+                  }
+                }
+             })
+         })
+        $(".cancle").click(function(){
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay1').hide();
+        })
+
+        $("#select_series").click(function(){
+            var seriesid=$("#select_series_id  option:selected").val();
+            var seriesname=$("#select_series_id option:selected" ).text();
+            $('#series_id').val(seriesid);
+            $('#series_name').val(seriesname);
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay1').hide();
+        })
+
+
+
+
+
+  UE.getEditor('editor',{
+    toolbars: [
+
+      ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+
+    ],
+
+    autoHeightEnabled: false,
+    autoFloatEnabled: true,
+    elementPathEnabled:false,
+    enableContextMenu:false,
+    wordCount:false,
+
+  });
+
+    UE.getEditor('editor2',{
+    toolbars: [
+
+      ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+
+    ],
+
+    autoHeightEnabled: false,
+    autoFloatEnabled: true,
+    elementPathEnabled:false,
+    enableContextMenu:false,
+    wordCount:false,
+
+  });
+</script>
+<!--选择分类-end->
+
+<!--提交表单前验证-->
+<script type="text/javascript">
+    function toVaild(){
+
+        var cate_id = $('#select_cate_id').val();
+        var attr_id = $('#select_attr_id').val();
+        var sku_id = $('#select_sku_id').val();
+        var goods_name = $('select[name="goods_id"]').val();
+        var type = $('input[name="type"]').val();
+        var vlaue = $('input[name="type"]').val();
+
+        if(!cate_id){
+            alert('请选择分类');
+            return false;
+        }
+        if(!attr_id){
+            alert('请选择分类');
+            return false;
+        }
+        if(!goods_name){
+            alert('商品必填');
+            return false;
+        } if(!type){
+            alert('请选择优惠类型');
+            return false;
+        } if(!value){
+            alert('请输入优惠值');
+            return false;
+        }
+       
+       
+        
+    }
+</script>
+<!--提交表单前验证end-->
+
+<!--上传图片-->
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+
+  function delImg(obj){
+    if(!confirm("删除这张图片？")){
+      return false;
+    }
+    var id = $(obj).attr("data-id")
+    if(id){
+      alert(1);
+      return false;
+    }
+    $(obj).next("input").remove();
+    $(obj).remove();
+  }
+  $(function () {
+    var percent = $('.xuanze_percent');
+    var progress = $('.xuanze_percent');
+    $("#xuanze").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#xuanze").change(function(){ //选择文件
+      $("#myupload1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="logo_pic" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.xuanze_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+
+
+    var percent = $('.duoxuan_percent');
+    var progress = $('.duoxuan_percent');
+    $("#duoxuan").wrap("<form id='myupload' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#duoxuan").change(function(){ //选择文件
+      $("#myupload").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80"  class="mgr10 mgt10 " onclick="delImg(this)"><input type="hidden" name="pic1[]" id="pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          console.log(img);
+          $('.duoxuan_showimge').append(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+
+    var percent = $('.baotuan_percent');
+    var progress = $('.baotuan_percent');
+    $("#baotuan").wrap("<form id='baotuan1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#baotuan").change(function(){ //选择文件
+      $("#baotuan1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="index_pic" id="pic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.baotuan_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+
+  });
+function add_re(r){
+  $('#restriction'+r).show();
+  }
+function del_re(r){
+  $('#restriction'+r).hide();
+  }
+</script>
+ <!-- <script>
+            $('#select_goods_id').change(function(){
+              var goods_id = $('select[name="goods_name"]').val();
+              $.ajax({
+                url:"{:U('Admin/integral/set')}",
+                data:{goods_id:goods_id},
+                dataType:'json',
+                type:'post',
+                success:function(data){
+                  if(!data.status){
+                    alert(data.info);
+                  }else{
+                    $('select[name="goods_sku"]').html(data.html);
+                  }
+                }
+              })
+            })
+            </script> -->
+<!--上传图片-end->
+
+
+
+
+
+
+
+
+
+
+
+

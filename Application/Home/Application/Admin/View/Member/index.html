@@ -1,0 +1,374 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:left" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">会员列表</h1>
+
+
+            <div class="alert alert-info disable-del">目前拥有 <span style="font-size:16px;">{$count}</span> 名会员。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                    <div class="tables-searchbox">
+                        <div class="fl">
+                            <form action="{:U('admin/member/index',array('user_type'=>$_GET['user_type']))}">
+                                <input type="text" class="input" name="title" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" id="title" value="{$title}" placeholder="真实姓名/手机号">
+
+                                <!-- <select class="select" name="isexamine">
+                                    <option value="">--请选择--</option>
+                                    <option value="0" <eq name="isexamine" value="0">selected="selected"</eq>>未审核</option>
+                                    <option value="1" <eq name="isexamine" value="1">selected="selected"</eq>>通过审核</option>
+                                    <option value="2" <eq name="isexamine" value="2">selected="selected"</eq>>审核失败</option>
+                                    <option value="3" <eq name="isexamine" value="2">selected="selected"</eq>>申请审核</option>
+                                </select> -->
+
+                                <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                        class="gicon-search white"></i>查询
+                                </button>
+                            </form>
+                            <div class="tabs clearfix mgt10">
+                                 <a href="{:U('/Admin/Member/index')}" class="<eq name="_GET['user_type']" value="">active</eq> tabs_a fl">全部({$count3})</a>
+                                -<a href="{:U('/Admin/Member/index/user_type/0')}" class="<eq name="_GET['user_type']" value="0">active</eq> tabs_a fl">买家({$count0})</a>
+                                 <a href="{:U('/Admin/Member/index/user_type/1')}" class="<eq name="_GET['user_type']" value="1">active</eq> tabs_a fl">云推荐({$count1})</a>
+                                 <a href="{:U('/Admin/Member/index/user_type/2')}" class="<eq name="_GET['user_type']" value="2">active</eq> tabs_a fl">艺术家({$count2})</a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                <!-- end tables-searchbox -->
+                <table class="wxtables table-order" id="tb_3" style="text-align:center;">
+                    <thead>
+                    <tr>
+                        <!--<td><i class="icon_check"></i></td>-->
+                        <td>头像</td>
+                        <td>真实姓名/手机</td>
+                        <td>性别</td>
+                        <td>钱包</td>
+                        <td>会员类别</td>
+                        <td>分类</td>
+                        <td>注册时间</td>
+                        <td>状态</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="memberlist" item="vo">
+                    <tr>
+                        <!--<td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>-->
+                        <td><img src="{$vo.person_img}" alt="" width="50" ></td>
+                        <td><p> {$vo.realname}<br/>{$vo.telephone}</p></td>
+                        <!-- <td><p>{$vo.vip}</p></td> -->
+                        <td><p>
+                            <switch name="vo.sex">
+                                <case value="1">男</case>
+                                <case value="2">女</case>
+                            </switch>
+                        </p></td>
+                        <td><p>¥{$vo.wallet}</p></td>
+
+                        <!--<td class="vip">
+                            <switch name="vo.vip">
+                                <case value="1"><p>普通会员</p></case>
+                                <case value="2"><p>白金经纪人</p></case>
+                                <case value="3"><p>黄金经纪人</p></case>
+                                <case value="4"><p>黑金经纪人</p></case>
+                            </switch>
+                        </td>-->
+                        <td><!--{$vo.cate|default='普通会员'}-->
+                            {$vo.yun_level|default='普通'}会员
+                        </td>
+                        <td>
+                            {$cate[$vo['type']]['classname']}
+                        </td>
+                        <td>{$vo.addtime}</td>
+                        <td class="status">
+                            <switch name="vo.status">
+                                <case value="0"><p>正常</p></case>
+                                <case value="1"><p style='color:red;'>冻结</p></case>
+                            </switch>
+                        </td>
+                        <td>
+                            <p>
+                                <a href="{:U('/Admin/Member/detail/id')}/{$vo.id}" class="btn btn-success">查看详情</a>
+                                <a href="{:U('admin/member/editMember',array('id'=>$vo['id']))}" class="btn btn-primary" title="编辑">编辑</a>
+                                <switch name="vo.status">
+                                    <case value="0">
+                                        <a href="JavaScript:void(0);" class="btn btn-warning changeStatus" title="冻结" data-id="{$vo.id}">冻结</a>
+                                    </case>
+                                    <case value="1">
+                                        <a href="JavaScript:void(0);" class="btn btn-danger changeStatus" title="解冻" data-id="{$vo.id}">解冻</a>
+                                    </case>
+                                </switch>
+                                <if condition="$_GET['user_type'] eq 1">
+                                    <a href="##"  class="btn btn-success" data-id="{$vo.id}" id="yun_id">查看店铺</a>
+                                </if>
+                                <if condition="$_GET['user_type'] eq 2">
+                                    <a href="{:U('/Admin/community/artcommunity/user_id')}/{$vo.id}" class="btn btn-success">查看店铺</a>
+                                </if>
+                                <a href="{:U('/Admin/Member/delMember/id')}/{$vo.id}" class="btn btn-success">删除</a>
+                                <!--<neq name="vo.user_type" value="0">
+                                    <a href="{:U('/Admin/community/artcommunity/user_id')}/{$vo.id}" class="btn btn-success">查看店铺</a>
+                                </neq>-->
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="width:500px">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">审核信息</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 263px;">
+    <input type="hidden" name="id">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>审核状态：</label>
+      <div class="form-controls">
+        <span class="fi-help-text isexamine"></span>
+      </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>身份证：</label>
+      <div class="form-controls">
+        <span class="fi-help-text cartid"></span> </div>
+    </div>
+    <div class="formitems" >
+        <label class="fi-name"><span class="colorRed"></span>身份证正面照：</label>
+        <div class="form-controls images">
+            <img width="300" src="" alt="" class="pic1">
+        </div>
+    </div>
+    <div class="formitems" >
+        <label class="fi-name"><span class="colorRed"></span>身份证背面照：</label>
+        <div class="form-controls images">
+            <img width="300" src="" alt="" class="pic2">
+        </div>
+    </div>
+
+    <div class="formitems" >
+        <label class="fi-name"><span class="colorRed"></span>手持身份证照片：</label>
+        <div class="form-controls images">
+            <img width="300" src="" alt="" class="pic3">
+        </div>
+    </div>
+
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>审核情况：</label>
+      <div class="form-controls">
+        <label>
+            <input type="radio" name="isexamine" value="1"><span>通过审核</span>
+        </label>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <label>
+            <input type="radio" name="isexamine" value="2"><span>审核失败</span>
+        </label>
+        <span class="fi-help-text examinemsg"></span> </div>
+    </div>
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>审核信息：</label>
+      <div class="form-controls">
+        <select name="examine_msg">
+            <option value="">——请选择——</option>
+            <option value="无效的身份证号码">无效的身份证号码</option>
+            <option value="身份证照片模糊">身份证照片模糊</option>
+            <option value="无效的身份证照片">无效的身份证照片</option>
+        </select>
+        <span class="fi-help-text examinemsg"></span> </div>
+    </div>
+
+
+
+
+  </div>
+  <div class="jbox-buttons" style="display:none;"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="examine">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<!-- end container -->
+<script>
+$(function(){
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    /*
+        <a href="JavaScript:void(0);" class="btn btn-success examine" title="审核" data-id="{$vo.id}" data-cardid="{$vo.card_id}" data-idcardpic1="{$vo.idcard_pic1}" data-idcardpic2="{$vo.idcard_pic2}" data-idcardpic3="{$vo.idcard_pic3}" data-isexamine="{$vo.isexamine}" data-examinemsg="{$vo.examine_msg}">审核</a>
+    */
+    $(".examine").click(function(){
+        var id            = $(this).attr("data-id")
+        var cartid        = $(this).attr("data-cardid")
+        var pic1          = $(this).attr("data-idcardpic1")
+        var pic2          = $(this).attr("data-idcardpic2")
+        var pic3          = $(this).attr("data-idcardpic3")
+        var isexamine     = $(this).attr("data-isexamine")
+        var examinemsg    = $(this).attr("data-examinemsg")
+        $(".addfenlei input[name=id]").val(id);
+        $(".addfenlei .cartid").html(cartid);
+        $(".addfenlei .pic1").attr("src",pic1);
+        $(".addfenlei .pic2").attr("src",pic2);
+        $(".addfenlei .pic3").attr("src",pic3);
+        switch(isexamine){
+            case "0":
+                var msg = "未审核";
+                break;
+            case "1":
+                var msg = "通过审核";
+                break;
+            case "2":
+                var msg = "拒绝通过审核";
+                break;
+        }
+        $(".addfenlei .isexamine").html(msg);
+        $(".addfenlei input[name=isexamine][value="+isexamine+"]").attr("checked","checked")
+        $(".addfenlei select[name=examine_msg] option[value="+examinemsg+"]").attr("selected","selected")
+        $("#albums-overlay").show()
+        $(".addfenlei").show()
+    })
+    $("#examine").click(function (){
+        var id            = $(".addfenlei input[name=id]").val()
+        var isexamine     = $(".addfenlei input[name=isexamine]:checked").val()
+        var examinemsg    = $(".addfenlei select[name=examine_msg]").val()
+        if(isexamine==2 && !examinemsg){
+            alert("请选择拒绝通过审核的原因");
+            return
+        }
+        $.post("{:U('admin/member/examine')}",{id:id,isexamine:isexamine,examinemsg:examinemsg},function(data){
+            alert(data.info)
+            if(data.status){
+                window.location.reload()
+            }
+        },"json")
+    })
+    // $("#search_m").click(function(){
+    //     var title=$('#title').val();
+    //     var
+    //     if(title != ''){
+    //         location.href="{:U('/Admin/Member/index')}/title/"+title;
+    //     }else{
+    //         location.href="{:U('/Admin/Member/index')}";
+    //     }
+    // })
+
+    //是否冻结
+    $(".changeStatus").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('admin/member/changeStatus')}",{id:id},function(data){
+            if(data.status == 1){
+                var p = _this.parent().parent().parent().find(".status p");
+                p.html(data.info);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("解冻")
+                    p.css("color","red")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("冻结")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+    })
+
+    //是否加盟
+    $(".changeVip").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('admin/member/changeVip')}",{id:id},function(data){
+            if(data.status == 1){
+                var p = _this.parent().parent().parent().find(".vip p");
+                p.html(data.info);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("退盟")
+                    p.css("color","green")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("加盟")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+    })
+
+    $('#yun_id').click(function(){
+        var userid = $(this).attr("data-id");
+       // console.log(userid);return false;
+        $.ajax({
+            url:"/Admin/Member/find",
+            dataType:"json",
+            data:{userid:userid},
+            type:"post",
+            success:function(g){
+                //console.log(g);
+                if(g.status==1){
+
+                    //$(this).attr('href',g.url);
+                    window.location.href=g.url;
+                    return false;
+                }
+            }
+        })
+    })
+})
+</script>
+
+<include file="Public:foot"/>

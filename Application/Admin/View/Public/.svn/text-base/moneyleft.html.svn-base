@@ -1,0 +1,18 @@
+<div class="content-left fl">
+    <dl class="left-menu shop_8 sub_membership">
+        <dt>
+            <i class="icon-menu membership"></i>
+            <span id="shop_8" data-id="8">提现管理</span>
+        </dt>
+        <dd class="subshop_0 <eq name='urlname' value='withdrawal'>active</eq>">
+            <a href="{:U('/Admin/Money/index')}">提现列表</a>
+        </dd>
+        <dt>
+            <i class="icon-menu membership"></i>
+            <span id="shop_8" data-id="8">积分管理</span>
+        </dt>
+        <dd class="subshop_0 <eq name='urlname' value='integral'>active</eq>">
+            <a href="{:U('/Admin/Money/integral')}">积分日志</a>
+        </dd>
+    </dl>
+</div>

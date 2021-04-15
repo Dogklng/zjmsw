@@ -1,0 +1,105 @@
+<include file="Public:header" />
+<div class="allorder_top">
+    <h3 class="headH3"> <a href="/Wxin/PersonalCenter/bank/tag/bank/value/4"> <i class="fa fa-angle-left"></i> 我的银行卡 </a> </h3>
+</div>
+<div class="addband_dizhi">
+  <div class="dizhi_con">
+   <div class="user_card">
+       <input type="hidden" name="id" value="{$res.id}" />
+    <p><span>银行卡号：</span><input type="text" name="bank_no" value="{$res.bank_no}"></p>
+    <p><span>银行：</span><input type="text" name="bank_name" value="{$res.bank_name}"></p>
+    <p><span>开户行：</span><input type="text" name="bank_branch" value="{$res.bank_branch}"></p>
+    <p><span>户名：</span><input type="text" name="username" value="{$res.username}"></p>
+    <p><span>预留手机号：</span><input type="text" name="telephone" value="{$res.telephone}"></p>
+    <div class="user_r6_line"></div>
+    <div class="cardA text-center">
+     <a class="cardS save" href="javascript:void();">保存</a>
+     <a class="cardD" href="{:U('Wxin/PersonalCenter/bank/tag/bank/value/4')}">取消</a>
+    </div>                
+   </div>
+  </div>
+ </div>
+
+<!--shop-->
+<include file="Public/footer" />
+<script>
+    $('.save').click(function () {
+        var bank_no = $.trim($('input[name="bank_no"]').val());
+        var bank_name = $.trim($('input[name="bank_name"]').val());
+        var bank_branch = $.trim($('input[name="bank_branch"]').val());
+        var username = $.trim($('input[name="username"]').val());
+        var tel = $.trim($('input[name="telephone"]').val());
+        var id1 = $('input[name="id"]').val();
+        if (bank_no == '')
+        {
+            alert("卡号必填！");
+            return false;
+        }
+        if(bank_no.length < 16 || bank_no.length > 19)
+        {
+//            $("#banknoInfo").html("银行卡号长度必须在16到19之间");
+            alert('银行卡号长度必须在16到19之间');
+            return false;
+        }
+        var num = /^\d*$/; //全数字
+        if(!num.exec(bank_no))
+        {
+//            $("#banknoInfo").html("银行卡号必须全为数字");
+            alert('银行卡号必须全为数字');
+            return false;
+        }
+        //开头6位
+        var strBin = "10,18,30,35,37,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,60,62,65,68,69,84,87,88,94,95,98,99";
+        if(strBin.indexOf(bank_no.substring(0, 2)) == -1)
+        {
+            alert('银行卡号开头6位不符合规范');
+//            $("#banknoInfo").html("银行卡号开头6位不符合规范");
+            return false;
+        }
+        if(bank_name == ''){
+            alert('银行必填');
+            return false;
+        }
+        if(bank_branch == ''){
+            alert('开户行必填');
+            return false;
+        }
+        if(username == ''){
+            alert('用户必填');
+            return false;
+        }
+        if(tel == ''){
+            alert('手机必填');
+            return false;
+        }
+        if(!tel.match(/^1[35789][0-9]{9}$/)){
+            alert("请输入有效的手机号码！");return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Wxin/PersonalCenter/addBankCard')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                bank_no: bank_no,
+                bank_name:bank_name,
+                bank_branch:bank_branch,
+                username:username,
+                telephone:tel,
+                id:id1,
+            }
+        }).done(function (g) {
+            console.log(g);
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.href = "{:U('Wxin/PersonalCenter/bank/tag/bank/value/4')}";
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+</body>
+
+</html>

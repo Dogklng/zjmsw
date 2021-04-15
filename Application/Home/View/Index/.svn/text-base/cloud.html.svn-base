@@ -1,0 +1,281 @@
+<include file="Public:header" />
+
+
+<style>
+    .gift_bag_list_ul li h3{
+        /*font-size:20px;*/
+        color:red;
+        text-align:center;
+    }
+</style>
+
+
+<div class="pingz"></div>
+<!-- 弹出框 -->
+<div class="pop-up_box">
+    <div class="pop-up_box_close"></div>
+    <h5 class="pop-up_box_h5">白金经纪人</h5>
+    <div class="pop-up_box_xiegang"><img src="__IMAGES__/pop-up_box_xiegang.png"/></div>
+    <p class="pop-up_box_p">月销售额达3件产品云推荐商，销量额度达1万</p>
+    <button class="pop-up_box_bottom buy">购买</button>
+    <!--<if condition="$ruzhu eq 3">
+        <button class="pop-up_box_bottom buy">购买</button>
+
+        <else/>
+        <button class="pop-up_box_bottom register">去注册</button>
+    </if>-->
+
+</div>
+
+<div class="sskuang">
+    <img src="__IMAGES__/close.png"  class="close"/>
+    <img src="__IMAGES__/ssb.png"  class="ssb" />
+    <div class="ss_text_a">
+        <input   onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键字';}"  value="请输入关键字"  type="text" class="ss_text" />
+        <a href="#"><img src="__IMAGES__/yjt.png" class="yjt" /></a>
+    </div>
+</div>
+
+
+<!--[if lte IE 9]>
+   <script src="__JS__/respond.min.js"></script>
+   <script src="__JS__/html5shiv.js"></script>
+<![endif]-->
+<!----移动端-----> 
+<div class="ban1">
+  <div class="banner_img">
+    <img src="__IMAGES__/yishushequ.jpg" alt="" />
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Cloud release</p>
+      <h5>云 • 推 • 荐</h5>
+  </div>
+  <!-- 礼包 -->
+  <div class="gift_bag">
+  	<div class="gift_bag_list">
+  		<h4 class="gift_bag_list_h4"></h4>
+  		<ul class="gift_bag_list_ul">
+            <volist name="gift" id="vo">
+                <li>
+                    <div class="prod_cont">
+                        <p class="prod_cont_img"><img src="{$vo.pic}"  alt="{$vo.name}"></p>
+                        <div class="prod_cont_text">
+                            <h4><span><i class="left"></i>{$vo.name}<i class="right"></i></span></h4>
+                                <span class="price" style="font-size: 24px !important;color:#f70000!important">
+                          ￥{$vo.price}
+                      </span>
+                            </h3>
+                            <!--<div class="gift_bag_list_viewDetails" data-id="{$vo.id}" data-detail="{$vo.detail}" data-name="{$vo.name}"><a href="javascript:;"><if condition="$ruzhu eq 5">去购买<else/>去入驻</if></a></div>-->
+                            <div class="gift_bag_list_viewDetails" data-id="{$vo.id}" data-detail="{$vo.detail}" data-name="{$vo.name}"><a href="javascript:;">去购买</a></div>
+                        </div>
+                    </div>
+                   <!-- <div class="gift_bag_list_li1_img"><img src="{$vo.pic}" alt="{$vo.name}" /></div>
+                    <h3>{$vo.name}</h3>
+                    <h3>￥{$vo.price}</h3>
+                    <br>
+                    &lt;!&ndash;<p>平台赠送300礼金券，可购买平台产品延用111</p>&ndash;&gt;
+                    <div class="gift_bag_list_viewDetails" data-id="{$vo.id}" data-detail="{$vo.detail}" data-name="{$vo.name}"><a href="javascript:;"><if condition="$ruzhu eq 5">去购买<else/>去入驻</if></a></div>-->
+                </li>
+            </volist>
+  		</ul>
+  	</div>
+  	<div class="recommend_enter">
+        {$rule|htmlspecialchars_decode|stripslashes}
+  	</div>
+  </div>
+  
+  <!-- 礼包 -->
+  
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+  
+</div>
+
+<!--  / warpper  --> 
+
+<!--  / footer  -->
+<include file="Public/footer" />
+<!--  / footer  -->
+
+</body>
+<script>
+    $(".register").click(function(){
+        var userid =  "{$_SESSION['member_id']}";
+        var art = "{$art}";
+        if(art==1){
+            alert("您已入驻，不能成为云推荐");
+            return false;
+        }
+        if(!userid){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+        var step = "{$step}";
+        var id = $(this).attr("data-id");
+        if(step == 0||step == ''){
+            window.location.href="/Home/Index/yunIdentity/id/"+id;
+        }else{
+            window.location.href="/Home/Index/yunAudit";
+        }
+
+    })
+    $('.buy').click(function(){
+        var id = $(this).attr("data-id");
+        var art = "{$art}";
+        if(art==1){
+            alert("您已入驻，不能成为云推荐");
+            return false;
+        }
+        $.ajax({
+            url:"/Home/Index/cloud",
+            data:{id:id},
+            dataType:"json",
+            type:"post",
+            success:function(data){
+                if(data.stauts==0){
+                    alert(data.info);
+                    window.location.reload();
+                    return false;
+                }else{
+
+                    window.location.href="/Home/Index/pay/id/"+id;
+                }
+            }
+        })
+
+        //window.location.href="/Home/Index/pay/id/"+id;
+    })
+</script>
+ <script>
+ 	
+$(window).ready(function(){
+$(".announce_top").animate({"bottom":"0px","opacity":"1"},1000);
+})
+
+ 
+$(window).scroll(function(){ 
+
+$(function(){
+	//设置屏障高度
+	var pz_height = $('body').height();
+	$('.pingz').height(pz_height);
+	//点击关闭
+	$('.pop-up_box_close').on('click',function(){
+		$(this).parent().hide();
+		$('.pingz').hide();
+	})
+	
+	//去注册点击事件
+	$('.gift_bag_list_viewDetails').on('click',function(){
+        var userid =  "{$_SESSION['member_id']}";
+
+        if(!userid){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+
+	    var gift = $(this).attr("data-id");
+	    var level = "{$user}";
+	    if(level == 3){
+	        alert("您已经是最高等级了!");
+	        window.location.reload();
+	        return false;
+        }
+	    if(gift <= level){
+	        alert("您的等级比当前礼包更高!");
+            //window.location.reload();
+	        return false;
+        }
+		$('.pop-up_box').show();
+		$('.pingz').show();
+		var name=$(this).attr("data-name");
+		var detail= $(this).attr("data-detail");
+		var id = $(this).attr("data-id");
+		$('.pop-up_box_h5').html(name);
+		$('.pop-up_box_p').html(detail);
+		$('.pop-up_box_bottom').attr("data-id",id);
+	});
+	
+	//动态设置盒子一直居中
+	function sc1(DivId) {
+		var t = $(DivId).css('top');
+		var l = $(DivId).css('left');
+		//获取定位位置
+		//					console.log('t=' + t);
+		//					console.log('l=' + l);
+		var st = $(document).scrollTop();
+		var sl = $(document).scrollLeft();
+		//获取滚动上去那部分
+		//					console.log('st=' + st);
+		//					console.log('sl=' + sl);
+		var ch = document.documentElement.clientHeight;
+		var cw = document.documentElement.clientWidth;
+		//可见屏幕大小
+		//					console.log('ch=' + ch);
+		//					console.log('cw=' + cw);
+		var ot = $(DivId).offset().top;
+		var ol = $(DivId).offset().left;
+		//距离文档左边跟上边的距离
+		//					console.log('ot=' + ot);
+		//					console.log('ol=' + ol);
+		var w = $(DivId).width();
+		var h = $(DivId).height();
+		//对象的高度和宽度
+		//					console.log('w=' + w);
+		//					console.log('h=' + h);
+		var top = st + (ch - h) / 2;
+		var left = sl + (cw - w) / 2;
+		//					console.log(top);
+		//					console.log(left);
+		$(DivId).css('top', top);
+		$(DivId).css('left', left);
+		//alert($(DivId).style.top); 
+	}
+	sc1($('.pop-up_box'));
+});
+
+if($(window).scrollTop()>($(".announce_box").offset().top-500)){
+$(".presenting").animate({"bottom":"0px","opacity":"1"},1000);
+var length=$(".contlist").length;
+		for(i=0;i<=length;i++){
+			(function(){
+				var c=i;
+				var time=100+c*200;
+				$(".contlist").eq(i).delay(time).animate({"opacity":"1","bottom":"0"},1000)
+			})()
+		}
+		
+		
+	}
+
+})
+
+
+
+ </script>
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</html>

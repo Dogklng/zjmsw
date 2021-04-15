@@ -1,0 +1,98 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 推荐的作品 </a> </h3>
+ <!--<ul class="allorderUl salingWorks_ul">
+  <li><a href="all_order.html">全部</a></li>
+  <li class="title_first"><a href="dai_fukuan.html">平台作品</a></li>
+  <li><a href="dai_fahuo.html">自传作品</a></li>
+  <div class="clear"></div>
+ </ul>-->
+</div>
+<div class="warp_box">
+ <div class="SeldpsyCon SeldpsyCon_sy">
+     <volist name="goods" id="v">
+      <div class="user_r_list" style="
+    margin-top: 48px;
+">
+        <div class="allorder_topz">
+         <div class="allorder_topz_center">
+          <h5><span>出售中</span></h5>
+          <div class="allorder_topz_right publish_topz_right"><if condition="$v.is_sale eq 1"><td>出售中</td></if>
+              <if condition="$v.is_sale eq 0"><td>下架中</td></if></div>
+         </div>
+        </div>
+        <div class="allorder_kuang">
+         <div class="shop_xx_warp">
+          <div class="shop_xx_center">
+           <div class="shop_xx_left shop_xx_fd"> <a href="javascript:;"><img src="{$v.index_pic}" width="100%" /></a> </div>
+           <div class="shop_xx_right shop_xx_fd shop_xx_revenue">
+            <p><b>{$v.goods_name}  {$v.goods_cap}</b><br />喜欢 <i>{$v.count}</i></p>
+            <p>价格<i>¥{$v.price}</i></p>
+            <h3 class="shop_xx_jg" style="margin:0"><b>浏览次数</b><b>{$v.browser}</b></h3>
+           </div>
+           <div class="clear"></div>
+          </div>
+         </div>
+         <!-- <div class="llk_border">
+          <div class="llk">
+           <div class="od_zongji">共<b>1</b>件商品 提成合计：<span>¥800.00</span></div>
+          </div>
+          <div class="clear"></div>
+         </div> -->
+         <div class="od_button">
+          <div class="od_quxiao"><a class="fukuan" href="javaScript:;" data-id="{$v.id}">移除</a></div>
+          
+          <div class="clear"></div>
+         </div>
+        </div>
+      </div>
+         </volist>
+
+      <!--<h3 class="zpbj" style="text-align:right; margin-top:0;"> <a href="#" style="color:#333; font-size:12px; padding-right:10px;">
+          <input type="checkbox" style="padding-top:2px; margin-right:2px;margin-bottom: 5px;">
+          全选</a> <a href="#" style="color:#333; font-size:14px;"><img src="images/shop_cloae.png" style="display:inline-block;width:16px; margin-top:-2px; margin-right:3px;">删除</a> </h3>-->
+    </div>
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+<script>
+    $(document).ready(function(){
+        $('.fukuan').click(function(){
+            var id1 = $(this).attr('data-id');
+//            dialog.showTips('确定吗','firm',function () {
+            $.ajax({
+                url: "{:U('Wxin/Shop/removeRec')}",
+                data: {
+                    id:id1,
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function (content) {
+                    if (content.status == 1) {
+                        alert(content.info
+
+                        );
+                        window.location.reload();
+                    } else {
+                        alert(content.info
+
+                        );
+                    }
+                }
+            })
+        });
+//			$(this).parents('.user_r_list').remove();
+    })
+
+    //	})
+</script>
+</body>
+
+</html>

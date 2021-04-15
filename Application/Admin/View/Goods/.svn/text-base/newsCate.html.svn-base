@@ -1,0 +1,336 @@
+<include file="Public:head"/>
+<style>
+    .btn-success {
+        margin-top: 12px;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">新闻分类列表</h1>
+            <div class="alert alert-info disable-del">
+                <h4>提示</h4>
+                删除分类会删除分类下面所有的新闻 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div>
+            <form action="" method="post">
+                <!--<div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加分类</a>
+
+                    &lt;!&ndash;<div class="tables-searchbox fr">
+                                    <input type="text" placeholder="分类名称" class="input" name="class_name" value="">
+                                    <button class="btn"><i class="gicon-search"></i>查询</button>
+                                </div>&ndash;&gt;
+                </div>-->
+            </form>
+            <table class="wxtables mgt15 table-order" id="tb_3">
+                <thead>
+                <tr>
+                    <td>分类名称</td>
+                    <td>英文名称</td>
+                    <td>排序</td>
+                    <td >创建时间</td>
+                    <td class="center">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res" item="vo" >
+                    <tr>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.ename}</td>
+                        <td>{$vo.sort}</td>
+                        <td>{$vo.create_at|date="Y-m-d H:i:s",###}</td>
+                        <td class="center"><a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}"  data-ename="{$vo.ename}" data-title="{$vo.name}" data-renk="{$vo.sort}">编辑</a>
+                            <!--<a href="{:U('/Admin/Goods/delNewsCate/id')}/{$vo.id}" class="btn btn-warning j-delClass" title="删除" onclick="return confirm('确定要删除吗？')" data-id="{$vo.id}">删除</a>-->
+                            <!-- <a href="javascript:;" class="btn btn-warning j-able" data-able="enable" title="禁用" data-id="9788">禁用</a>
+                                        --></td>
+                    </tr>
+
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <!--<a href="javascript;" class="btn btn-primary btn_table_delAll">批量删除</a></div>-->
+                    <div class="fr">
+                        <!--<div class="paginate">-->
+
+                        <div class="pages">
+                            <!--</div>-->
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+    <!-- end container -->
+    <include file="Public:foot"/>
+    <div id="albums-overlay" class="disshow"></div>
+    <div class="jbox addfenlei disshow">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">添加新闻分类</div>
+            <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <div class="jbox-container" style="height: 263px;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>分类名称：</label>
+                <div class="form-controls">
+                    <input type="text" class="input name" name="name" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>英文名称：</label>
+                <div class="form-controls">
+                    <input type="text" class="input ename" name="ename" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>分类排序：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" id="sort" name="sort" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+
+        </div>
+        <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addbannertypegory">确定</a><a
+                href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+    <div class="jbox editfenlei disshow">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">修改新闻分类</div>
+            <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <div class="jbox-container" style="height: 263px;">
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>分类名称：</label>
+                <div class="form-controls">
+                    <input type="text" class="input classname" name="classname" id="editclassname">
+                    <span class="fi-help-text"></span> </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>英文名称：</label>
+                <div class="form-controls">
+                    <input type="text" class="input editename" name="editename" id="editename">
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>分类排序：</label>
+                <div class="form-controls">
+                    <input type="text" class="input sort" name="serial" id="editsort" >
+                    <input type="hidden" class="input sort" name="serial" id="bannertypegoryid" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editbannertypegory">确定</a><a
+                href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+
+    <script type="text/javascript" src="__JS__/jquery-form.js"></script>
+    <script type="text/javascript">
+        $(".cancle").click(function(){
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay').hide();
+        })
+
+        $(function () {
+            var progress = $(".img");
+            var bar = $('.bar') ;
+            var percent = $('.percent');
+            var progress = $('.progress');
+            $("#addimage").wrap("<form id='myupload' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+            $("#addimage").change(function(){ //选择文件
+                $("#myupload").ajaxSubmit({
+                    dataType:  'json', //数据格式为json
+                    beforeSend: function() { //开始上传
+                        progress.show(); //显示进度条
+                        var percentVal = '0%';
+                        bar.width(percentVal);
+                        percent.html(percentVal);
+                    },
+                    uploadProgress: function(event, position, total, percentComplete) {
+                        var percentVal = percentComplete + '%'; //获得进度
+                        bar.width(percentVal); //上传进度条宽度变宽
+                        percent.html(percentVal); //显示上传进度百分比
+                    },
+                    success: function(data) { //成功
+                        var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="addpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                        $('.showimg').html(img);
+                        $("#addimage").val('');
+                        progress.hide();
+                    },
+                    error:function(xhr){ //上传失败
+                        //console.log(xhr.status)
+                    }
+                });
+            });
+        });
+
+
+        $(function () {
+            var progress = $(".img");
+            var bar = $('.bar') ;
+            var percent = $('.percent');
+            var progress = $('.progress');
+            $("#editimage").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+            $("#editimage").change(function(){ //选择文件
+                $("#myupload1").ajaxSubmit({
+                    dataType:  'json', //数据格式为json
+                    beforeSend: function() { //开始上传
+                        progress.show(); //显示进度条
+                        var percentVal = '0%';
+                        bar.width(percentVal);
+                        percent.html(percentVal);
+                    },
+                    uploadProgress: function(event, position, total, percentComplete) {
+                        var percentVal = percentComplete + '%'; //获得进度
+                        bar.width(percentVal); //上传进度条宽度变宽
+                        percent.html(percentVal); //显示上传进度百分比
+                    },
+                    success: function(data) { //成功
+                        var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="editpic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                        $('.showimgedit').html(img);
+                        $("#editimage").val('');
+                        progress.hide();
+                    },
+                    error:function(xhr){ //上传失败
+                        //console.log(xhr.status)
+                    }
+                });
+            });
+        });
+
+
+
+    </script>
+    <script>
+
+    </script>
+
+    <!--添加分类-->
+
+    <script type="text/javascript">
+        $(".BtnAddClass").click(function(){
+            $('.addfenlei').show();
+            $('#albums-overlay').show();
+        })
+    </script>
+    <script type="text/javascript">
+        $("#addbannertypegory").click(function(){
+            var name = $.trim($('.name').val());  //分类名称
+            var ename = $.trim($('.ename').val());  //分类名称
+            var sort = $('#sort').val();           //排序
+
+            if (name == '') {
+                alert("分类名称必填！");
+                return false;
+            }
+
+            if (ename == '') {
+                alert("英文名称必填！");
+                return false;
+            }
+
+            if(!sort.match(/^[0-9]*$/)){
+                alert("请填写正确的排序！");
+                return false;
+            }
+
+            $.ajax({
+                url: "{:U('/Admin/Goods/addNewsCate')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    name: name,
+                    sort:      sort,
+                    ename:ename
+                }
+            }).done(function (g) {
+                if (g.status == 1) {
+                    alert(g.info);
+                    window.location.reload();
+                } else {
+                    alert(g.info);
+                }
+
+            })
+        })
+    </script>
+    <!--添加分类end-->
+
+    <!--修改分类-->
+    <script type="text/javascript">
+        var bannertypegoryid;
+        $(".j-editClass").click(function(){
+            $('.editfenlei').show();
+            $('#albums-overlay').show();
+            var bannertypegoryname=$(this).attr('data-title');
+            var bannertypegoryid=$(this).attr('data-id');
+            var pic=$(this).attr('data-pic');
+            var sort=$(this).attr('data-renk');
+            var ename=$(this).attr('data-ename');
+
+            $('#editclassname').val(bannertypegoryname);
+            $('#editename').val(ename);
+            $('#editsort').val(sort);
+            $('#bannertypegoryid').val(bannertypegoryid);
+            if(pic!=""){
+
+                var img = '<img src="'+pic+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="editpic" value="'+pic+'"></input>';
+                $('.showimgedit').html(img);
+
+            }else{
+                $('.showimgedit').html('');
+            }
+
+
+
+
+        })
+
+        $("#editbannertypegory").click(function(){
+            var classname = $.trim($('#editclassname').val());  //分类名称
+            var ename = $.trim($('#editename').val());  //分类名称
+            var sort = $('#editsort').val();           //排序
+            var bannertypegoryid = $('#bannertypegoryid').val();           //排序
+
+//alert(bannertypegoryid);
+            if (classname == '') {
+                alert("分类名称必填！");
+                return false;
+            }
+
+            if (ename == '') {
+                alert("英文名称必填！");
+                return false;
+            }
+            $.ajax({
+                url: "{:U('/Admin/Goods/editNewsCate')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    name: classname,
+                    sort: sort,
+                    id:bannertypegoryid,
+                    ename:ename
+                }
+            }).done(function (g) {
+                if (g.status == 1) {
+                    alert(g.info);
+                    window.location.reload();
+                } else {
+                    alert(g.info);
+                }
+
+            })
+        })
+    </script>
+    <!--修改分类end-->

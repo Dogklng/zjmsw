@@ -1,0 +1,17 @@
+<div class="content-left fl">
+<dl class="left-menu shop_5 sub_signup">
+        <dt>
+            <i class="icon-menu signup"></i>
+            <span id="shop_5" data-id="5">订单管理</span>
+        </dt>
+        <dd class="subshop_0  <eq name="dealerid" value="2">active</eq>"><a href="{:U('Admin/taskOrder/orderLists')}">所有发单</a></dd>
+        <dd class="subshop_0  <eq name="dealerid" value="1">active</eq>"><a href="{:U('Admin/taskOrder/receiveLists')}">所有接单</a></dd>
+
+        <dt>
+            <i class="icon-menu signup"></i>
+            <span id="shop_5" data-id="5">订单日志</span>
+        </dt>
+        <dd class="subshop_0  <eq name="dealerid" value="4">active</eq>"><a href="{:U('Admin/taskOrder/tousulist')}">投诉列表</a></dd>
+        <dd class="subshop_0  <eq name="dealerid" value="3">active</eq>"><a href="{:U('Admin/taskOrder/logList')}">全部统计</a></dd>
+</dl>
+</div>

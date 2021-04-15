@@ -1,0 +1,124 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="images/mswlogo.ico" />
+<title>美术网</title>
+<meta name="keywords" content="美术网" />
+<meta name="description" content="美术网" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link href="css/swiper.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+
+<script type="text/javascript" src="js/jquery.1.9.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</head>
+<body>
+<!--导航-->
+<div class="body_top">
+  <div class="body_top_up">
+    <div class="body_top_tit1"> <a href="../index.html"><img src="images/logoM.png" /></a> </div>
+    <div class="sousuo">
+    	<img src="images/search.png" />
+    </div>
+    <div class="clear"></div>
+    
+    <div class="sousuok">
+    	<input type="text" value="请输入关键词" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键词';}" />
+    </div>
+    
+  </div>
+</div>
+
+<!--导航-->
+
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 退款申请 </a> </h3>
+</div>
+<div class="p_xiangqing1">
+ <div class="warp_box1">
+  <div class="tuihuo_fangshi">
+   <div class="fangshi_left">退货方式</div>
+   <div class="fangshi_right"> <span>售后门店退货</span><a class="mdth"><i class="fa fa-angle-down"></i></a> </div>
+  </div>
+  <div class="je_xq mdthshow">
+   <div class="je_xq_in">
+    <div class="tkqk_center"> &nbsp;门店退货 </div>
+   </div>
+   <div class="je_xq_in">
+    <div class="tkqk_center"> &nbsp;门店退货 </div>
+   </div>
+  </div>
+  <div class="tuihuo_fangshi">
+   <div class="fangshi_left">退货原因</div>
+   <div class="fangshi_right"><span>请选择原因</span><a class="xzyy"><i class="fa fa-angle-down"></i></a></div>
+  </div>
+  <div class="je_xq xzyyshow">
+   <div class="je_xq_in">
+    <div class="tkqk_center"> &nbsp;退货原因 </div>
+   </div>
+   <div class="je_xq_in">
+    <div class="tkqk_center" > &nbsp;退货原因 </div>
+   </div>
+  </div>
+  <div class="tuihuo_fangshi">
+   <div class="fangshi_left">退款金额</div>
+   <div class="fangshi_right"><span>¥720</span></div>
+  </div>
+  <div class="tuihuo_fangshi" >
+   <div class="fangshi_left">退货说明</div>
+   <textarea class="area" name="textarea2" id="textarea2" cols="45" rows="4">最多50字</textarea>
+  </div>
+ </div>
+ <div class="foot_box">
+  <div class="foot_queren"><a href="tianxie_wuliu.html">确认提交</a></div>
+ </div>
+</div>
+
+<!--footer-->
+<div class="footer">
+ <ul class="footer_list">
+  <li class="on"> <a href="../index.html"> <img src="images/indexha.svg" width="18px" />
+   <p>首页</p>
+   </a> </li>
+  <li> <a href="../products.html"> <img src="images/product.svg" width="18px" />
+      <p>产品</p>
+      </a> </li>
+  <li class="dz_db"> <a href="../groom.html"> <img src="images/dingzhi.svg" width="18px" />
+   <p>云推荐</p>
+   </a> </li>
+  <li> <a href=""> <img src="images/cart.svg" width="18px" />
+   <p>购物车</p>
+   </a> </li>
+  <li> <a href="myorder.html"> <img src="images/my.svg" width="18px" />
+   <p>我的</p>
+   </a> </li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<!--footer-->
+</body>
+<script>
+$(document).ready(function(e) {
+	var rotate=180;
+    $(".mdth").click(function(){
+		$(this).find("i").css("transform",'rotateZ('+rotate+'deg)');
+		rotate+=180;
+		$(".mdthshow").slideToggle();
+	})
+	
+	
+	$(".xzyy").click(function(){
+		$(this).find("i").css("transform",'rotateZ('+rotate+'deg)');
+		rotate+=180;
+		$(".xzyyshow").slideToggle();
+	})
+});
+</script>
+</html>

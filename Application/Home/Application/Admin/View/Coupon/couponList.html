@@ -1,0 +1,447 @@
+<include file="Public:head"/>
+<style>
+.btn-success {
+    margin-top: 12px;
+}
+.addfenlei {
+    width:500px !important;
+}
+.editfenlei {
+    width:500px !important;
+}
+</style>
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/>
+  <!-- end content-left -->
+
+  <div class="content-right fl">
+    <h1 class="content-right-title">礼金券列表</h1>
+   <!--  <div class="alert alert-info disable-del">
+      <h4>提示</h4>
+      删除分类会删除分类下面所有的产品 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div> -->
+    <form action="" method="post">
+      <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加礼金券</a>
+
+        <!--<div class="tables-searchbox fr">
+                        <input type="text" placeholder="分类名称" class="input" name="class_name" value="">
+                        <button class="btn"><i class="gicon-search"></i>查询</button>
+                    </div>-->
+      </div>
+    </form>
+    <table class="wxtables table-order mgt15" id="tb_3">
+      <thead>
+        <tr>
+          <!--<td><i class="icon_check"></i></td>-->
+          <td>礼金券码</td>
+          <td>礼金券额</td>
+          <td>礼金券种类</td>
+          <td>满减</td>
+          <td>类型</td>
+          <td>过期天数</td>
+          <!--<td>积分售价</td>-->
+          <td class="center">操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="res" item="vo" >
+          <tr>
+            <!--<td class="center"><input type="checkbox" class="checkbox table-ckbs" ></td>-->
+            <td>{$vo.coupon_no}</td>
+            <td>
+                    <eq name="vo.type" value="1">{$vo.money}</eq>
+                    <eq name="vo.type" value="2">{$vo['money']/10}折</eq>
+            </td>
+            <td>
+                <switch name="vo.condition1" >
+                    <case value="1">白金经纪人券</case>
+                    <case value="2">黄金经纪人券</case>
+                    <case value="3">黑金经纪人券</case>
+                </switch>
+            </td>
+            <td>{$vo.condition}</td>
+            <td>
+                <switch name="vo.type" >
+                    <case value="1">定额</case>
+                    <case value="2">折扣</case>
+                    <case value="3">现金券</case>
+                </switch>
+            </td>
+            <td>{$vo.over_time}</td>
+            <!--<td>{$vo.integral}</td>-->
+            <td class="center">
+                <a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}" data-coupon-no="{$vo.coupon_no}" data-money="{$vo.money}" data-condition1="{$vo.condition1}" data-condition="{$vo.condition}" data-over-time="{$vo.over_time}" data-sort="{$vo.sort}" data-type="{$vo.type}" data-integral="{$vo.integral}">编辑</a>
+
+                <a href="javascript:;" class="btn btn-warning j-delClass del" title="删除" onclick="return confirm('确定要删除吗？')" data-id="{$vo.id}">删除</a>
+            </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+          <!--<a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>-->
+        <!--<a href="javascript;" class="btn btn-primary btn_table_delAll">批量删除</a></div>-->
+        <div class="fr">
+          <!--<div class="paginate">-->
+
+          <div class="pages">
+            <!--</div>-->
+            {$page}
+          </div>
+          <!-- end paginate -->
+        </div>
+      </div>
+      <!-- end tables-btmctrl -->
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+<include file="Public:foot"/>
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">添加礼金券</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 263px;">
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>礼金券码：</label>
+      <div class="form-controls">
+        <span style="color:gray;">自动生成随机字符</span> </div>
+    </div>
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>礼金券额：</label>
+      <div class="form-controls">
+      <input type="text" class="input money" name="money" id="money" onkeyup="num(this)">
+        <span style="color:gray;"></span> </div>
+    </div>
+
+      <div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>类型：</label>
+          <div class="form-controls">
+                <select name="type" class="select" style="width:180px;">
+                    <option value="1">定额</option>
+                    <!--<option value="2">折扣</option>
+                    <option value="3">现金券</option>-->
+                </select>
+              <span class="fi-help-text"></span> </div>
+      </div>
+
+      <div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>礼金券种类：</label>
+          <div class="form-controls">
+              <select class="select" name="condition1">
+                  <option value="1">白金经纪人券</option>
+                  <option value="2">黄金经纪人券</option>
+                  <option value="3">黑金经纪人券</option>
+                </select>
+              <span class="fi-help-text"></span> </div>
+      </div>
+
+      <div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>满减：</label>
+          <div class="form-controls">
+              <input type="text" class="input condition" name="condition" id="condition" onkeyup="num(this)">
+              <span style="color:gray;">（满？？使用）</span> </div>
+      </div>
+
+      <div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>过期时间：</label>
+          <div class="form-controls">
+              <input type="text" class="input over_time" name="over_time" id="over_time">
+               <span style="color:red;">？天</span></div>
+      </div>
+
+      <!--<div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>积分售价：</label>
+          <div class="form-controls">
+              <input type="text" class="input integral" name="integral" id="integral">
+              <span style="color:gray;"></span> </div>
+      </div>-->
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>排序：</label>
+      <div class="form-controls">
+        <input type="text" class="input" id="addsort" name="serial" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+
+
+
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+<div class="jbox editfenlei disshow">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">修改礼金券</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 263px;">
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>礼金券码：</label>
+      <div class="form-controls">
+        <input type="text" class="input coupon_no"  id='coupon_no' disabled="">
+    </div>
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed">*</span>礼金券额：</label>
+      <div class="form-controls">
+      <input type="text" class="input money" name="money" id="money1" value="" onkeyup="num(this)">
+        <span style="color:gray;"></span> </div>
+    </div>
+
+      <div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>类型：</label>
+          <div class="form-controls">
+                <select name="type1" class="select" id="type1">
+                    <option value="1">定额</option>
+                   <!-- <option value="2">折扣</option>
+                    <option value="3">现金券</option>-->
+                </select>
+              <span class="fi-help-text"></span> </div>
+      </div>
+
+      <div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>礼金券种类：</label>
+          <div class="form-controls">
+              <select name="condition12" class="select" id="condition12">
+                  <option value="1">白金经纪人券</option>
+                  <option value="2">黄金经纪人券</option>
+                  <option value="3">黑金经纪人券</option>
+                </select>
+              <span class="fi-help-text"></span> </div>
+      </div>
+
+      <div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>满减：</label>
+          <div class="form-controls">
+              <input type="text" class="input condition" name="condition" id="condition2" onkeyup="num(this)">
+              <span style="color:gray;">（满？？使用）</span> </div>
+      </div>
+
+      <div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>过期时间：</label>
+          <div class="form-controls">
+              <input type="text" class="input over_time" name="over_time" id="over_time1">
+              <span style="color:red;">？天</span>
+               </div>
+          <input type="hidden" id="idd"/>
+      </div>
+
+     <!-- <div class="formitems">
+          <label class="fi-name"><span class="colorRed">*</span>积分售价：</label>
+          <div class="form-controls">
+              <input type="text" class="input integral" name="integral" id="integral1">
+              <input type="hidden" id="idd"/>
+              <span style="color:gray;"></span> </div>
+      </div>-->
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>排序：</label>
+      <div class="form-controls">
+        <input type="text" class="input" id="editsort" name="serial" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+
+</div>
+</div>
+  <div class="jbox-buttons">
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editcategory">确定</a>
+      <a href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a>
+  </div>
+</div>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+</script>
+
+<!--添加分类-->
+
+<script type="text/javascript">
+    $(".BtnAddClass").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+</script>
+<script type="text/javascript">
+    $("#addcategory").click(function(){
+        //var integral        = $('#integral').val();
+        var over_time       = $('#over_time').val();
+        var condition1      = $('select[name=condition1]').val();
+        var type            = $('select[name=type]').val();
+        var condition       = $('#condition').val();
+        var addsort         = $('#addsort').val();
+        var money           = $('#money').val();
+
+        if (money == '') {
+            alert("礼金券额不能为空!");
+            return false;
+        }
+        if (over_time == '') {
+            alert("过期时间不能为空！");
+            return false;
+        }
+        if (!over_time.match(/^[0-9]*$/)) {
+            alert("过期时间只能为数字！");
+            return false;
+        }
+        if (condition == '') {
+            alert("请选择满减!");
+            return false;
+        }
+       /* if (condition1 == '') {
+            alert("请选择使用场景!");
+            return false;
+        }*/
+        $.ajax({
+            url: "{:U('/Admin/Coupon/addCoupon')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                over_time: over_time,
+                condition: condition,
+                condition1: condition1,
+                money: money,
+                addsort: addsort,
+                type: type,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+<!--添加分类end-->
+
+<!--修改分类-->
+<script type="text/javascript">
+    var id;
+    $(".j-editClass").click(function(){
+        $('.editfenlei').show();
+        $('#albums-overlay').show();
+        var coupon_no   = $(this).attr('data-coupon-no');
+        var money       = $(this).attr('data-money');
+        var condition1  = $(this).attr('data-condition1');
+        var condition   = $(this).attr('data-condition');
+        var over_time   = $(this).attr('data-over-time');
+        var integral    = $(this).attr('data-integral');
+        var sort        = $(this).attr('data-sort');
+        var id          = $(this).attr('data-id');
+        var type        = $(this).attr('data-type');
+        $('#coupon_no').val(coupon_no);
+        $('#money1').val(money);
+
+        $('#condition12').val(condition1).attr("selected",true);
+
+        $('#condition2').val(condition);
+        $('#over_time1').val(over_time);
+        $('#integral1').val(integral);
+        $('#type').val(type);
+        $('#editsort').val(sort);
+        $('#idd').val(id);
+    })
+
+    $("#editcategory").click(function(){
+        var money       = $('#money1').val();
+        var condition1  = $('#condition12').val();
+        var condition   = $('#condition2').val();
+        var over_time   = $('#over_time1').val();
+        //var integral    = $('#integral1').val();
+        var sort        = $('#editsort').val();
+        var type        = $('#type1').val();
+        var idd          = $('#idd').val();
+        // console.log(condition1);
+        // console.log(condition);
+        // console.log(over_time);
+        // console.log(integral);
+        // console.log(sort);
+        // console.log(type);
+        console.log(id);
+
+        if (money == '') {
+            alert("礼金券额不能为空!");
+            return false;
+        }
+        /*if (integral == '') {
+            alert("积分售价不能为空!");
+            return false;
+        }*/
+        if (over_time == '') {
+            alert("过期时间不能为空！");
+            return false;
+        }
+        if (!over_time.match(/^[0-9]*$/)) {
+            alert("过期时间只能为数字！");
+            return false;
+        }
+        if (condition == '') {
+            alert("请选择满减!");
+            return false;
+        }
+        /*if (condition1 == '') {
+            alert("请选择使用场景!");
+            return false;
+        }*/
+
+        $.ajax({
+            url: "{:U('/Admin/Coupon/editCoupon')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                over_time: over_time,
+                condition: condition,
+                condition1: condition1,
+                money: money,
+                sort: sort,
+                type: type,
+                id: idd,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+<!--修改分类end-->
+
+<script>
+$('.del').click(function(){
+    var id = $(this).attr('data-id');
+    $.post("{:U('Admin/Coupon/delCoupon')}",{id:id},function(data){
+        if(data.status==1){
+            alert(data.info,"warn");
+            location.reload();
+        }else{
+            alert(data.info,"warn");
+        }
+    })
+})
+
+function num(obj){
+    obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+    obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+    obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+    obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+  }
+</script>

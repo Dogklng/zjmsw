@@ -1,0 +1,273 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">法人列表</h1>
+    <!-- <a href="{:U('/Admin/Yunrecomm/editIndex')}" class="btn btn-success">添加云推荐</a> -->
+    <form action="{:U('/Admin/Yunrecomm/legal')}" method="get">
+      <div class="tables-searchbox newcearchbox">
+
+        <input type="text" placeholder="等级" class="input" name="name" value="{$title}" >
+        <!-- <input type="text" placeholder="商家编码" class="input" name="goods_no" value="" > -->
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+        <!--<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>-->
+        <!--产品导出</a>-->
+      </div>
+      <div class="tabs clearfix mgt10"> 
+        <a href="{:U('/Admin/Yunrecomm/legal')}" class="<eq name="_GET['is_sale']" value="">active</eq> tabs_a fl">全部({$counts})</a>
+        <!-- <a href="{:U('/Admin/Yunrecomm/Yunrecomm/is_sale/1')}" class="<eq name="_GET['is_sale']" value="1">active</eq> tabs_a fl">企业店铺({$count2})</a> -->
+        <a href="{:U('/Admin/Yunrecomm/legal/is_sale/3')}" class="<eq name="_GET['is_sale']" value="3">active</eq> tabs_a fl">待审核({$count3})</a>
+        <a href="{:U('/Admin/Yunrecomm/legal/is_sale/4')}" class="<eq name="_GET['is_sale']" value="4">active</eq> tabs_a fl">审核通过({$count4})</a>
+        <a href="{:U('/Admin/Yunrecomm/legal/is_sale/5')}" class="<eq name="_GET['is_sale']" value="5">active</eq> tabs_a fl">审核拒绝({$count5})</a>
+
+
+
+  
+      </div>
+    </form>
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+      <thead>
+        <tr class="po_list">
+          <td>姓名</td><!-- 1,中国大陆。2,香港澳门。3,台湾用户.4,外籍用户 -->
+          <td>证件类型</td>
+          <td>证件号</td>
+          <td>身份证认证</td>
+          <!-- <td>店铺类型</td> -->
+          <td>状态</td>
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="res" item="vo">
+          <tr>
+            <td>
+              {$vo.fa_name}
+            </td>
+          
+            
+            <td><if condition=" $vo.card_type eq 1 ">二代身份证<else />临时身份证</if></td>
+            <td> {$vo.fcardid} </td>
+            
+           <td><if condition=" $vo.status eq 1 ">已认证<else />未认证</if></td>
+           <!--  <td><if condition=" $vo.shop_type eq 1 ">企业店铺<else />个人店铺</if></td> -->
+           <td>
+                    <switch name="vo.fa_status">
+                          <case value="1">
+                              已通过
+                          </case>
+                          <case value="2">
+                             已拒绝
+                          </case>
+                          <default />待审核
+                      </switch>
+           </td>
+             <td>
+                  <p>
+                      <a href="{:U('/Admin/Yunrecomm/leDetail/id')}/{$vo.id}" class="btn btn-success">查看详情</a>
+                      <switch name="vo.fa_status">
+                          <case value="0">
+                              <a href="JavaScript:void(0);" class="btn btn-warning huifu" title="通过" data-id="{$vo.id}">审核</a>
+                          </case>
+                          <case value="1">
+                            <!--   <a href="JavaScript:void(0);" class="btn btn-danger huifu" title="禁止" data-id="{$vo.id}">禁止</a> -->
+                          </case>
+                          <default />
+                      </switch>
+                  </p>
+              </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <div class="fr">
+          <div class="pages"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+
+
+  <div id="albums-overlay" class="disshow"></div>
+  <div class="jbox addfenlei disshow" style="height:auto; overflow: visible;">
+    <div class="jbox-title">
+      <div class="jbox-title-txt">回复评论</div>
+      <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 140px;overflow: visible;">
+      <div class="formitems">
+        <input type="hidden" class="input sort" name="commentId" id="commentId" >
+        <label><span class="colorRed">*</span>内容：</label>
+
+        <div class="form-controls">
+          <textarea style="width: 200px;height: 100px;margin-left: -30px;" id="content"></textarea>
+          <span class="fi-help-text"></span>
+            <span class="ispan" style="color:red;"></span>
+        </div>
+      </div>
+
+    </div>
+    <div class="jbox-buttons">
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">通过</a>
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn " id="disagree" style="background-color: red;border-color: red; color: white">拒绝</a>
+      <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+  </div>
+  <script src="__JS__/jquery.js"></script>
+  <script>
+      $(".huifu").click(function(){
+          $('.addfenlei').show();
+          $('#albums-overlay').show();
+      })
+
+      $(".cancle").click(function(){
+          $(this).parent().parent('.jbox').hide();
+          $('#albums-overlay').hide();
+      })
+
+      $(".huifu").click(function(){
+          var commentId = $(this).attr('data-id');
+          $('#commentId').val(commentId);
+      })
+
+      $('#agree').click(function () {
+          var id1 = $('#commentId').val();
+          var content = $('#content').val();
+          if(content == ''){
+              $('.ispan').text('内容必填！');
+              $('#content').focus();
+              return false;
+          }
+          $.ajax({
+              url: "{:U('/Admin/Yunrecomm/leAgree')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+                  disagree_detail:content
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  alert(g.info);
+                  window.location.reload();
+              } else {
+                  alert(g.info);
+              }
+
+          })
+      })
+
+      $('#disagree').click(function () {
+          var id1 = $('#commentId').val();
+          var content = $('#content').val();
+          if(content == ''){
+              $('.ispan').text('内容必填！');
+              $('#content').focus();
+              return false;
+          }
+
+          $.ajax({
+              url: "{:U('/Admin/Yunrecomm/leDisagree')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+                  disagree_detail:content
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  //alert(g.info);
+                  window.location.reload();
+              } else {
+                  alert(g.info);
+              }
+
+          })
+      })
+  </script>
+<!-- end container --> 
+<include file="Public:foot"/>
+<script>
+$(".change-status").click(function (){
+  var _this= $(this)
+  var id   = $(this).attr("data-id");
+  var item = $(this).attr("data-item");
+  $.post("{:U('Admin/Goods/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status == 1){
+      _this.css({color:"#0C0"}).html("√");
+    }else if(data.status == 2){
+      _this.css({color:"#c00"}).html("×");
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".change-all-status").click(function (){
+  if(!confirm("确定改变所有选中产品的状态？")){
+    return false;
+  }
+  var ids = "";
+  var item = $(this).attr("data-item");
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Goods/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+    if(data.status){
+      window.location.reload();
+    }else{
+      alert(data.info);
+    }
+  })
+})
+$(".change-is_sale").click(function (){
+  var id   = $(this).attr("data-id");
+  var item = "is_sale";
+  $.post("{:U('Admin/Goods/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status){
+      window.location.reload()
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".btn_table_delAll").click(function(){
+  if(!confirm("确定删除所有选中的产品？")){
+    return false;
+  }
+  var ids = "";
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Goods/delGoods')}" ,{ids:ids}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  })
+})
+//删除键
+// $('.btn-warning').click(function(){
+	
+// 	var delid = $(this).data('id');
+// 	dialog.showTips("是否删除", "firm",function(){
+// 		window.location.href = "/Admin/Yunrecomm/delIndex/id/"+delid;
+// 	});
+// })
+</script>

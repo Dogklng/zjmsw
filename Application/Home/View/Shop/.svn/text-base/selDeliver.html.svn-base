@@ -1,0 +1,405 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+<link rel="stylesheet" href="/Public/admin/js/fm.selectator.jquery.css">
+<link rel="stylesheet" href="__CSS__/jbox-min.css">
+<style>
+  .wap_tanc{
+    z-index: 9999;
+  }
+  .wap_tanc_bg{
+    z-index: 9999;
+  }
+  .wap_tanc_con{
+    z-index: 9999;
+  }
+</style>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:shop_left" />
+      </div>
+      <div class="col-sm-10">
+         <div class="user_r">
+            <ul class="user_all">
+             <!--  <li class="actived" onclick="fnTabBoxSlide(this,4,1);"><a href="javascript:;">待发货的订单</a></li> -->
+             <!--  <li onclick="fnTabBoxSlide(this,4,2);" class=""><a href="javascript:;">发货中的订单</a></li> -->
+             <!--  <li onclick="fnTabBoxSlide(this,4,3);" class=""><a href="javascript:;">已发货的订单</a></li>
+              <li onclick="fnTabBoxSlide(this,4,4);" class=""><a href="javascript:;">被取消的订单</a></li> -->
+              <li <eq name="_GET['status']" value="2">class="actived"</eq> ><a href="{:U('Home/Shop/selDeliver',array('status'=>2,'tag'=>'selDeliver'))}">待发货的订单</a></li>
+              <li <eq name="_GET['status']" value="3">class="actived"</eq> ><a href="{:U('Home/Shop/selDeliver',array('status'=>3,'tag'=>'selDeliver'))}">已发货的订单</a></li>
+              <li <eq name="_GET['status']" value="4">class="actived"</eq> ><a href="{:U('Home/Shop/selDeliver',array('status'=>4,'tag'=>'selDeliver'))}">已完成的订单</a></li>
+              <li <eq name="_GET['status']" value="0">class="actived"</eq> ><a href="{:U('Home/Shop/selDeliver',array('status'=>0,'tag'=>'selDeliver'))}">被取消的订单</a></li>
+            </ul>
+            <div id="TabShow1" class="TabHide4" style="display: block;">
+              <volist name="order" id="vo">
+              <div class="user_r_list">
+                <h5><span>下单时间：{$vo.order_time|date='Y-m-d H:i:s',###}</span><span>订单号：{$vo.order_no}</span></h5>
+                <table>
+                  <tbody><tr>
+                    <th class="user_r_frist" style="width:38%;">商品</th>
+                    <th style="width:10%;">单价</th>
+                    <th style="width:10%;">数量</th>
+                    <th style="width:10%;">实付</th>
+                    <th style="width:10%;">收货人</th>
+                    <th style="width:10%;">状态</th>
+                    <th style="width:12%;">操作</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="products_inner.html"><img src="{$vo.index_pic}" width="100"><span>{$vo.index_name}</span></a></td>
+                    <td>¥{$vo.price}</td>
+                    <td>{$vo.goods_nums}</td>
+                    <td>{$vo.total_fee}</td>
+                    <td>{$vo.person_name}</td>
+                    <td><switch name="vo.order_status">
+                        
+                          <case value="0">已取消</case>
+                          <case value="2">待发货</case>
+                          <case value="3">已发货</case>
+                          <case value="4">已完成</case>
+                          
+                          <case value="6">退款中</case>
+                        </switch>
+                      </td>
+                    <td><a class="fukuan" href="{:U('/Home/PersonalCenter/orderDetails/tag/selSellout',array('id'=>$vo['id']))}">查看详情</a><if condition="$vo.order_status eq 2"><a href="javascript:void();" class="quxiao" data-id="{$vo.id}">发货</a><elseif condition="$vo.order_status eq 3"/><!-- <a href="##" class="wl">查看物流</a> --></if></td><!--qxdd quxiao-->
+                  </tr>
+                </tbody></table>  
+              </div>
+              </volist>
+             <!--  <div class="user_r_list">
+                <h5><span>下单时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+                <table>
+                  <tbody><tr>
+                    <th class="user_r_frist" style="width:38%;">商品</th>
+                    <th style="width:10%;">单价</th>
+                    <th style="width:10%;">数量</th>
+                    <th style="width:10%;">实付</th>
+                    <th style="width:10%;">收货人</th>
+                    <th style="width:10%;">状态</th>
+                    <th style="width:12%;">操作</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="products_inner.html"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>¥4,000.00</td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>李亮</td>
+                    <td>待发货</td>
+                    <td><a class="fukuan" href="#">查看详情</a><a href="##" class="qxdd quxiao">查看物流</a></td>
+                  </tr>
+                </tbody></table>  
+              </div> -->
+            </div>
+            <!-- <div id="TabShow2" class="TabHide4">
+              <div class="user_r_list">
+                <h5><span>发货时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+                <table>
+                  <tbody><tr>
+                    <th class="user_r_frist" style="width:38%;">商品</th>
+                    <th style="width:10%;">单价</th>
+                    <th style="width:10%;">数量</th>
+                    <th style="width:10%;">实付</th>
+                    <th style="width:10%;">收货人</th>
+                    <th style="width:10%;">状态</th>
+                    <th style="width:12%;">操作</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="products_inner.html"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>¥4,000.00</td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>李亮</td>
+                    <td>发货中</td>
+                    <td><a class="fukuan" href="#">查看详情</a><a href="##" class="qxdd quxiao">查看物流</a></td>
+                  </tr>
+                </tbody></table>  
+              </div>
+            </div> -->
+           <!--  <div id="TabShow3" class="TabHide4">
+              <div class="user_r_list"> -->
+               <!--  <h5><span>发货时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5> -->
+              <!--   <table>
+                  <tbody><tr>
+                    <th class="user_r_frist" style="width:38%;">商品</th>
+                    <th style="width:10%;">单价</th>
+                    <th style="width:10%;">数量</th>
+                    <th style="width:10%;">实付</th>
+                    <th style="width:10%;">收货人</th>
+                    <th style="width:10%;">状态</th>
+                    <th style="width:12%;">操作</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="products_inner.html"><img src="__IMAGES__/order_pro4.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>¥4,000.00</td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>李亮</td>
+                    <td>待签收</td>
+                    <td><a class="fukuan" href="order1.html">查看详情</a><a href="##" class="qxdd delete">查看物流</a></td>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="products_inner.html"><img src="__IMAGES__/order_pro4.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>¥4,000.00</td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>李亮</td>
+                    <td>已签收</td>
+                    <td><a class="fukuan" href="order1.html">查看详情</a><a href="##" class="qxdd delete">查看物流</a></td>
+                  </tr>
+                </tbody></table>   -->
+                   <!-- <volist name="order1" id="vo">
+                    <div class="user_r_list">
+                      <h5><span>下单时间：{$vo.order_time|date='Y-m-d H:i:s',###}</span><span>订单号：{$vo.order_no}</span></h5>
+                      <table>
+                        <tbody><tr>
+                          <th class="user_r_frist" style="width:38%;">商品</th>
+                          <th style="width:10%;">单价</th>
+                          <th style="width:10%;">数量</th>
+                          <th style="width:10%;">实付</th>
+                          <th style="width:10%;">收货人</th>
+                          <th style="width:10%;">状态</th>
+                          <th style="width:12%;">操作</th>
+                        </tr>
+                        <tr>
+                          <td class="user_r_frist"><a class="user_proa" href="products_inner.html"><img src="{$vo.index_pic}" width="100"><span>{$vo.index_name}</span></a></td>
+                          <td>¥{$vo.price}</td>
+                          <td>{$vo.goods_nums}</td>
+                          <td>{$vo.total_fee}</td>
+                          <td>{$vo.person_name}</td>
+                          <td><switch name="vo.order_status">
+                              
+                                <case value="0">已取消</case>
+                                <case value="2">待发货</case>
+                                <case value="3">已发货</case>
+                                <case value="4">已完成</case>
+                                
+                                <case value="6">退款中</case>
+                              </switch>
+                            </td>
+                          <td><a class="fukuan" href={:U('/Home/PersonalCenter/orderDetails/tag/selSellout',array('id'=>$vo['id']))}">查看详情</a><a href="##" class="wl">查看物流</a></td>
+                        </tr>
+                      </tbody></table>  
+                    </div>
+                    </volist> -->
+             <!--  </div>
+            </div> -->
+           <!--  <div id="TabShow4" class="TabHide4">
+              <div class="user_r_list">
+                <h5><span>发货时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+                <table>
+                  <tbody><tr>
+                    <th class="user_r_frist" style="width:38%;">商品</th>
+                    <th style="width:10%;">单价</th>
+                    <th style="width:10%;">数量</th>
+                    <th style="width:10%;">实付</th>
+                    <th style="width:10%;">收货人</th>
+                    <th style="width:10%;">状态</th>
+                    <th style="width:12%;">操作</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="products_inner.html"><img src="__IMAGES__/order_pro4.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>¥4,000.00</td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>李亮</td>
+                    <td>订单取消</td>
+                    <td><a class="fukuan" href="order1.html">查看详情</a><a href="##" class="qxdd delete">查看物流</a></td>
+                  </tr>
+                </tbody></table>  
+              </div>
+            </div> -->
+          </div>
+          <div  class="pages" >{$page}</div>
+      </div>
+    </div>
+          
+   </div>      
+</div>
+<input type="hidden" name="ordid" value="" id="ordid"/>
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task" style="z-index: 9996;">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;height:500px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">发货信息</div>
+    <div class="task_btn">
+      <table style="line-height:30px;">
+        <tr>
+     <th><span style="color:red;">*</span>快递公司:</th>
+     <td> <select style="width: 182px;" name="express_name" id="select1">
+                <foreach name="express_list" item="vo">
+                    <option value="{$vo['express_ma']}">{$vo['express_company']}</option>
+                </foreach>
+            </select>
+         <input value="activate selectator" id="activate_selectator1" type="button" style="width:70px;height:30px;float:left;margin:1px 8px 0 12px;background:rgba(255, 102, 0, 1);color: #fff;border:0;font-size: 15px;display: none;">
+     </td>
+    </tr>
+    <br/>
+     <tr>
+      <th> <span style="color:red;">*</span>快递单号:</th>
+      <td><input type="text" onKeyUp="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" class="input describe1" name="express_no" style="height:35px;width: 182px;"></td>
+      </tr>
+      </table>
+      <div class="task_btn1" style="margin-top: 73px;">
+        <a href="##" class="task_btn1_on" id="fahuo">确定发货</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1">
+        <a href="##" class="task1_btn1_on">确定</a>
+        <a href="##" class="task1_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<script src="/Public/admin/js/fm.selectator.jquery.js"></script>
+<script>
+    var $activate_selectator1 = $('#activate_selectator1');
+    $activate_selectator1.click(function () {
+        var $select1 = $('#select1');
+        if ($select1.data('selectator') === undefined) {
+            $select1.selectator({
+                labels: {
+                    search: 'Search here...'
+                }
+            });
+            $activate_selectator1.val('搜索');
+        } else {
+            $select1.selectator('destroy');
+            $activate_selectator1.val('activate selectator');
+        }
+    });
+    $activate_selectator1.trigger('click');
+</script>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    console.log($(this).data('id'));
+    var ordid = $(this).data('id');
+    $("#ordid").val(ordid);
+    //console.log($("#ordid").val());
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.wl').click(function(){
+    var ordid = $(this).data('id');
+    $("#ordid").val(ordid);
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+<script>
+	// $(document).ready(function(){
+	// 	$('.fukuan').click(function(){
+	// 		$(this).parents('.user_r_list').remove();
+	// 	})
+		
+	// })
+  //发货 
+  $("#fahuo").click(function(){
+     var data = {};
+        data.express_name    = $.trim($("select[name=express_name]").val());
+        // data.express_fee     = $.trim($("input[name=express_fee]").val());
+        data.express_no         = $.trim($("input[name=express_no]").val());
+        if(!data.express_name){
+            alert("请选择物流公司！");return false;
+        }
+        if(!data.express_no){
+            alert("请填写快递单号！");return false;
+        }
+        data.id = $("#ordid").val() ;
+      // console.log(data);return false;
+
+        $.ajax({
+            url:"{:U('Home/Shop/express')}",
+            type:'post',
+            data :data,
+            datatype : 'json',
+            success:function(data){
+                if(data.status==1){
+                    $('.wap_tanc').attr('z-index','999999');
+                    $('.wap_tanc_bg').attr('z-index','999999');
+                    $('.wap_tanc_con').attr('z-index','999999');
+                   // alert(data.info);
+                    //return false;//z-index
+                    // dialog.showTips(data.info,'warn',function(){
+                      window.location.reload();
+                    // })
+                }else{
+                    window.location.reload();
+                    alert(data.info);
+                }
+            }
+        });
+ }); 
+  //
+  $('.task1_btn1_on').click(function(){
+      var data = {};
+      data.id = $("#ordid").val() ;
+      $.ajax({
+            url:"{:U('Home/Shop/selExp')}",
+            type:'post',
+            data :data,
+            datatype : 'json',
+            success:function(data){
+                console.log(data);return false;
+                if(data.status==1){
+                    //alert(data.info);
+                    // dialog.showTips(data.info,'warn',function(){
+                    //   window.location.reload();
+                    // })
+                }else{
+                    alert(data.info);
+                }
+            }
+        });
+  })
+</script>
+</html>

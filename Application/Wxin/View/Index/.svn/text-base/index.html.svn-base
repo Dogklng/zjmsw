@@ -1,0 +1,327 @@
+<include file="Public:header" />
+<style>
+  .index_code{
+    float: left;
+    margin-left: 30%;
+  }
+</style>
+<!--banner-->
+<div class="banner" style="margin-top:60px">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <volist name="banner" id="voo">
+        <div class="swiper-slide">
+          <div class="banner_warp"> <img src="{$voo.tel_pic}" alt="" />
+            <div class="banner_wz">
+              <h4>{$voo.title}</h4>
+              <h2>{$voo.title1}</h2>
+              <h3>{$voo.content}</h3>
+              <a href="{$voo.tel_url}">了解更多</a>
+            </div>
+          </div>
+        </div>
+      </volist>
+    </div>
+    <div class="swiper-pagination pagination1" style="z-index:9999999;"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!--banner--> 
+
+<!-- main -->
+<div class="main">
+  <div class="meilist">
+     <a href="{:U('Wxin/Artwork/art')}"><div class="meilist_left">
+    <h3>Works of art</h3>
+      <h2>艺术品</h2>
+    </div>
+    <div class="meilist_right"> <img src="__IMAGES__/cp1.png" alt="" /> </div></a>
+  </div>
+  <div class="meilist">
+     <a href="{:U('Wxin/ArtCommunity/artistList')}?id=13"><div class="meilist_left">
+      <h3>Art community</h3>
+      <h2>艺术社区</h2>
+    </div>
+    <div class="meilist_right"> <img src="__IMAGES__/cp2.png" alt="" /> </div></a>
+  </div>
+  <div class="meilist">
+     <a href="{:U('Wxin/Pm/paimaiS')}"><div class="meilist_left">
+      <h3><!--Limited auction-->Auction</h3>
+      <h2>拍卖</h2>
+    </div>
+    <div class="meilist_right"> <img src="__IMAGES__/cp3.png" alt="" /> </div></a>
+  </div>
+  <div class="meilist">
+     <a href="{:U('Wxin/Products/index')}"><div class="meilist_left">
+      <h3>Creative store</h3>
+      <h2>创意商店</h2>
+    </div>
+    <div class="meilist_right"> <img src="__IMAGES__/cp4.png" alt="" /> </div></a>
+  </div>
+  <div class="meilist">
+     <a href="{:U('Wxin/News/index')}?type=1"><div class="meilist_left">
+      <h3>news center</h3>
+      <h2>新闻</h2>
+    </div>
+    <div class="meilist_right"> <img src="__IMAGES__/cp5.png" alt="" /> </div></a>
+  </div>
+  <div class="meilist">
+      <a href="{:U('Wxin/Index/cloud')}"><div class="meilist_left">
+      <h3>recommended</h3>
+      <h2>云推荐</h2>
+    </div>
+    <div class="meilist_right"> <img src="__IMAGES__/cp6.png" alt="" /> </div></a>
+  </div>
+  <div class="clear"></div>
+</div>
+<!-- main --> 
+
+<!-- 限时拍卖 -->
+<div class="xianshi">
+  <div class="praise" style=" padding:0 15px;">
+    <div class="praise_title">
+      <h2><i></i>限时拍卖<span><a href="{:U('Wxin/Pm/paimaiS')}">MORE ></a></span></h2>
+    </div>
+  </div>
+  <div class="index_hd">
+    <div class="index_hd_con">
+      <p class="djs"><img src="__IMAGES__/sz.png" />距结束还剩 <span id="t_d"> 00</span> <span id="t_h" class="en"> 00</span> :<span id="t_m" class="en">00 </span>: <span id="t_s" class="en">00</span> </p>
+      <div class="clear"></div>
+      <p></p>
+      <div class="swiper_box" style="width:240%; margin-left:-70%; height:215px;  position:relative;">
+        <div class="swiper-container swiper-container2">
+          <div class="swiper-wrapper">
+            <foreach name="res" item="vo">
+            <div class="swiper-slide"> <a href='{:U("Wxin/Pm/pmxq/id")}/{$vo["id"]}'>
+              <div class="index_hd_list">
+                <div class="index_hd_pic"> <img src="{$vo.index_pic}" /> </div>
+                <div class="index_hd_text">
+                  <h3>{$vo.goods_name}</h3>
+                  <h4><b class="en">起拍价</b>{$vo.start_price}</h4>
+                </div>
+              </div>
+              </a> </div>
+            </foreach>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!-- 限时拍卖 --> 
+
+<!-- 大家都在赞 -->
+<div class="praise">
+  <div class="praise_list">
+    <div class="praise_title">
+      <h2><i></i>大家都在赞<span><a href="{:U('Wxin/Artwork/index')}">MORE ></a></span></h2>
+    </div>
+    <div class="row">
+      <volist name="res1" id="vv">
+        <div class="col-xs-6">
+          <div class="list_nav_a"> <a href="{:U('Wxin/Products/buy')}/id/{$vv.id}">
+            <div class="list_nav">
+              <div class="list_image"> <img src="{$vv.index_pic}" width="100%" /> </div>
+              <div class="rec_text">
+                <div class="recti">
+                  <h3>{$vv.goods_name}</h3>
+                  <p>{$vv.goods_cap}</p>
+                </div>
+                <div class="name">
+                  <div class="tx"> <img src="{$vv.logo_pic}"/> </div>
+                  <p>{$vv.goods_cap}</p>
+                  <span class="text_ys">{$vv.goods_list}</span>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="zz"></div>
+            </div>
+          </a> </div>
+        </div>
+        </volist>
+    </div>
+  </div>
+</div>
+<!-- 大家都在赞 -->
+
+<!-- 大家都在赞 -->
+<div class="praise">
+  <div class="praise_list">
+    <div class="praise_title">
+      <h2><i></i>推荐达人<span><a href="{:U('Wxin/ArtCommunity/artistList')}?id=2">MORE ></a></span></h2>
+    </div>
+    <div class="row">
+      <volist name="res2" id="vvv">
+        <div class="col-xs-6">
+          <div class="list_nav_a"> <a href="{:U('Wxin/ArtCommunity/artistShow',array('id'=>$vvv['id']))}">
+            <div class="list_nav">
+              <div class="list_image"> <img src="{$vvv.logo_pic}" width="100%" /> </div>
+              <div class="rec_text">
+                <div class="recti">
+                  <h3>{$vvv.zy_name}</h3>
+                  <p>{$vvv.desc|htmlspecialchars_decode|stripslashes}</p>
+                </div>
+              </div>
+              <div class="zz"></div>
+            </div>
+          </a> </div>
+        </div>
+      </volist>
+    </div>
+  </div>
+</div>
+<!-- 大家都在赞 -->
+
+<div class="index_sec index_sec4">
+  <div class="index_sec_con">
+    <div class="praise">
+      <div class="praise_title">
+        <h2><i></i>新闻速递<span><a href="{:U('Wxin/News/index')}">MORE &gt;</a></span></h2>
+      </div>
+    </div>
+    <div class="row">
+      <volist name="news" id="n">
+      <div class="col-lg-6 col-md-6 col-sm-6 index_sec4_left"> <a href="{:U('Wxin/News/details',array('id'=>$n['id']))}">
+        <div class="index_sec4_list" style="bottom: 0px; opacity: 1;">
+          <div class="index_sec4_list_img"> <img src="{$n.news_pic}" width="100%" /> </div>
+          <div class="index_sec4_list_wz">
+            <h6>{$n.addtime|date="Y-m-d",###}</h6>
+            <h2>{$n.title}</h2>
+            <!--<h4>2017年1月23日上午十点，“无界丹青”首届中国美术学院继续教育校友优秀作品展在滨江区图书馆8楼拉开帷幕！此次展览共展出中...</h4>-->
+          </div>
+          <div class="clear"></div>
+        </div>
+        </a> </div>
+      </volist>
+    </div>
+    <div class="pro_screen" style="bottom: 0px; opacity: 1;">
+      <h3>最新资讯，不容错过！</h3>
+      <h5>浙江美术网为您提供最新的展会信息</h5>
+      <span><a href="{:U('Wxin/News/index')}?type=1">查看更多信息</a> <i></i></span></div>
+  </div>
+</div>
+
+<!-- 图片部分 -->
+<div class="index_sec index_sec5">
+  <div class="index_sec_con">
+    <div class="index_sec5_dt"> <img src="__IMAGES__/cpzs.jpg" width="100%" />
+      <div class="index_sec5_dt_wz">
+        <h2><a href="{:U('Wxin/Index/cloud')}">浙江美术网云推荐</a> </h2>
+        <h3>成为浙江美术网合伙人，共享万亿艺术消费市场</h3>
+        <a href="{:U('Wxin/Index/cloud')}" class="btn1"> <i></i> <span>立即加入</span></a> </div>
+    </div>
+  </div>
+</div>
+<!-- 图片部分 -->
+<div style="height: 100px">
+  <div class="index_code">
+    <a href="__IMAGES__/wx_logo.jpg" target="_blank"><img src="__IMAGES__/wx_logo.jpg" title="微信" width="60px"></a>&nbsp;<a href="__IMAGES__/wb.png" target="_blank"><img src="__IMAGES__/wb.jpg" title="微博" width="60px"></a>
+  </div>
+</div>
+<div class="indexbottom"></div>
+<include file="Public:footer" />
+
+</body>
+<script src="__JS__/idangerous.swiper.3dflow.js"></script>
+<script>
+var mySwiper = new Swiper( '.swiper-container', {
+	pagination: '.pagination1',
+	loop: true,
+	autoplay: 5000,
+	spaceBetween: 0,
+	paginationClickable: true,
+})
+
+
+$( document ).ready( function(){
+	
+	var height2 = $(".index_hd_list").height();
+	$(".swiper-container2").css("height",height2)
+
+	
+	$(window).load(function(){
+		$(".swiper-container").height( $( ".banner_warp" ).height() )
+		
+			var height2 = $(".index_hd_list").height();
+	$(".swiper-container2").css("height",height2)
+		
+	})
+	$(window).resize(function(){
+		$(".swiper-container ").height($(".banner_warp").height())
+	})
+})
+
+</script>
+<script>
+  var mySwiper2 = new Swiper('.swiper-container2',{
+    paginationClickable: true, 
+	loop:true,
+	 slidesPerView: 3,
+    watchActiveIndex: true,
+	stretch :40,
+	 centeredSlides : true,
+      tdFlow: {
+          rotate : 30,
+      }
+	
+  })
+  
+
+  </script>
+<script>
+  
+  	$(document).ready(function(e) {
+	
+	 $(".lc ul li").eq(0).addClass("fd");
+	 setTimeout(function(){
+		 $(".lc ul li").eq(1).addClass("fd");
+	 },600)
+	 setTimeout(function(){
+		 $(".lc ul li").eq(2).addClass("fd");
+	 },1200)
+	 setTimeout(function(){
+		 $(".lc ul li").eq(3).addClass("fd");
+	 },300)
+	 setTimeout(function(){
+		 $(".lc ul li").eq(4).addClass("fd");
+	 },900)
+	 
+	 
+	
+	
+	 
+	 
+	
+
+});
+  
+  </script>
+<script>
+  
+  	
+function GetRTime(){
+  var end = "{$num['end_time']}";
+  //var EndTime = new Date(end);
+  var NowTime = new Date();
+  var t =end*1000 - NowTime.getTime();
+	var d=0;    
+	var h=0;    
+	var m=0;    
+	var s=0;   
+	if(t>=0){      
+		d=Math.floor(t/1000/60/60/24);      
+		h=Math.floor(t/1000/60/60%24); 
+		//h=Math.floor(t/1000/60/60);      
+		m=Math.floor(t/1000/60%60);      
+		s=Math.floor(t/1000%60);    
+	}      
+	document.getElementById("t_d").innerHTML = d + "天";    
+	document.getElementById("t_h").innerHTML = h<10? "0"+h : h;    
+	document.getElementById("t_m").innerHTML = m<10? "0"+m : m;    
+	document.getElementById("t_s").innerHTML = s<10? "0"+s : s;  
+}  
+setInterval(GetRTime,0);
+  
+  </script>
+</html>

@@ -1,0 +1,278 @@
+<include file="Public:header" />
+
+<!--banner-->
+<div class="banner_dl">
+	
+    <div class="zhuce">
+    	<div  class="zc_logo" >
+    	<img src="__IMAGES__/logo.png">
+        <h5>在这里，您可以分享原创创意当代艺术作品,收藏家和艺术爱好者欣赏并购买交易心仪的艺术品、工艺品,并自由发表对艺术创作作品的评论,享受艺术给生活带来的乐趣！</h5>
+        </div>
+        <div class="login_con login_con2">
+      <h5>手机注册</h5>
+      <div class="login_cons">
+      <input type="text" placeholder="手机号" name="telephone" class="telephone" onkeyup='this.value=this.value.replace(/\D/gi,"")' maxlength="11" />
+      <span><img src="__IMAGES__/zhuc_phone.png" width="20"></span>
+      </div>
+      <div class="login_cons">
+      <input class="yzm" type="text" placeholder="图片验证码"  id="piccode" onkeyup='this.value=this.value.replace(/\D/gi,"")' maxlength="8" />
+      <span><img src="__IMAGES__/zhuc_yzm.png" width="20"></span>
+      <a href="javascript:void(0);">
+          <b><img id="vcode"  height="40" alt="验证码" src="{:U('/Home/User/verify_c',array())}" title="点击刷新" width="100%"></b>
+      </a>
+      </div> 
+      <div class="login_cons">
+      <input class="yzm" type="text" placeholder="验证码"  id="code" onkeyup='this.value=this.value.replace(/\D/gi,"")' maxlength="8" />
+      <span><img src="__IMAGES__/zhuc_yzm.png" width="20"></span>
+      <a href="javascript:void(0);" class="getCode">获取验证码</a>
+      </div>
+      <div class="login_cons">
+      <input type="password" placeholder="设置密码" onkeyup="value=value.replace(/\s/g,'')"  name="password" class="password">
+      <span><img src="__IMAGES__/login_mima.png" width="20"></span>
+      </div> 
+        <!-- <h3 style="margin:20px 0 10px 0;"> 
+      <a class="sfxz"><input type="checkbox" name="box" class="j_checkbox" value="1">我是买家</a> 
+        <a class="sfxz"><input type="checkbox" name="box" class="j_checkbox" value="2"/>我是设计师</a> 
+        <a class="sfxz"><input type="checkbox" name="box" class="j_checkbox" value="3"/>我是卖家</a> 
+        <div class="clear"></div>-->
+        
+      </h3> 
+      <a style="margin-top:0;" href="javascript:void(0);" id="regs">注册</a>
+      
+      <p class="clearfix">
+        <a class="wjmm" href="{:U('Home/User/login')}">已有账户？点击<span>登录</span></a>
+      </p>
+      
+     <!--  <h4><span>其他注册方式</span></h4> -->
+      
+      <div class="login_other">
+        <!-- <p><span></span><br> -->
+           <!-- 微信注册 -->
+        <!-- </p> -->
+      <!-- </div> -->
+      
+    </div>
+        
+    </div>
+
+</div>
+</div>
+<!--banner-->
+
+    <include file="Public:footer" />
+</body>
+    <script language="JavaScript">
+        var captcha_img = $('#vcode')
+        var verifyimg = captcha_img.attr("src");
+        captcha_img.attr('title', '点击刷新');
+        captcha_img.click(function () {
+            $(this).attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+        });
+    </script>
+
+<script>
+
+   
+//   $(document).ready(function(){
+//        var show = false
+//	 $(".j_checkbox").click(function(){
+//		 if(show==false){
+//		$(this).addClass('j_checkbox_on')
+//
+//			 show=true;
+//			 }else{
+//				    $(this).removeClass('j_checkbox_on')
+//				  show=false;
+//
+//				 }
+//        })
+//	$(".j_checkbox").click(
+//		 function(event){event.stopPropagation();}
+//		)
+//
+//
+//
+//})
+</script>
+
+<script type="text/javascript">
+
+    $(function() {
+
+        /********* 注册 ***********/
+
+        $("#regs").click(function() {
+
+            doreg_phone();	//手机注册
+
+        });
+
+        //倒计时
+        var wait = 120;
+
+        $(".getCode").click(function () {
+            var _this = $(this);
+            if (_this.attr("disabled")) {
+                return false;
+            }
+            var type = $('.on').attr('reg-type');
+            if(type == 'emails'){
+                telephone	 = $(".emails").val();
+            }else{
+                telephonee   = $.trim($(".telephone").val());
+            }
+            var telephone = $.trim($(".telephone").val());
+
+            if (!telephone) {
+                dialog.showTips("请填写手机号！","warn");return false;
+            }
+            if (!telephone.match(/^1[3-9][0-9]{9}$/)) {
+                dialog.showTips("手机号码格式错误！","warn");return false;
+            }
+            var  piccode = $("#piccode").val();
+            if (!piccode) {
+                dialog.showTips("请填写图片验证码！","warn");return false;
+            }
+
+            $.post("{:U('Home/User/getMessage')}", {telephone : telephone, type : 1 ,piccode:piccode}, function (data){
+                if (data.status == 1) {
+                    time(_this); // 计时
+                } else {
+                    dialog.showTips(data.info, "warn")
+                }
+            }, "json");
+        });
+
+        function time(o) {
+            // localStorage.aux_reTime=wait;
+            if (wait == 0) {
+                o.removeAttr("disabled");
+                o.html("重新获取");
+                wait = 120;
+            } else {
+                o.attr("disabled", true);
+                o.html("重新发送(" + wait + ")");
+                wait--;
+                setTimeout(function () {
+                    time(o);
+                }, 1000);
+            }
+        }
+    });
+
+
+    ///////////////// 手机注册  /////////////////////
+
+    function doreg_phone() {
+
+        var box = document.getElementsByName("box");
+        var objArray = box.length;
+        var chestr="";
+
+        for(var i=0;i<objArray;i++){
+            if(box[i].checked == true){
+                chestr+=box[i].value+",";
+            }
+        }
+
+        var post = {};
+            post.telephone				= $.trim($(".telephone").val());
+            post.password			= $.trim($(".password").val());
+            post.code 				= $.trim($('#code').val());
+            post.box                = chestr;
+
+        if (!post.telephone) {
+            dialog.showTips("请填写手机号！","warn");
+            return false;
+        }
+
+        if (!post.telephone.match(/^1[345789][0-9]{9}$/)) {
+            dialog.showTips("手机号码格式错误！","warn");
+            return false;
+        }
+
+        if (!post.password) {
+            dialog.showTips("请填写密码！","warn");
+            return false;
+        }
+        if (!post.password.match(/^.{6,24}$/)) {
+            dialog.showTips("密码长度必须是6-24位！","warn");
+            return false;
+        }
+
+        // var check = $("input[type='checkbox']").is(':checked');
+        // if(check == false){
+        //     dialog.showTips("至少选一项！","warn");
+        //     return false;
+        // }
+
+        /*** ajax发送请求  ***/
+        $.post("{:U('Home/User/doRegs')}", post, function(data) {
+            if (data.status == 1 ) {
+                dialog.showTips(data.info, "", data.url);
+            } else {
+                alert(data.info);
+            }
+        }, "json");
+        return false;
+    }
+
+
+    //////////////////  邮箱注册  ///////////////////////
+    function doreg_emial()
+    {
+        var post = {}
+
+        post.emails				= $(".emails").val();
+        post.passwords			= $(".passwords").val();
+//        post.confrim_passwords	= $(".confrim_passwords").val();
+        post.reg_type			= "my_email";
+        post.code         		= $("#code").val();
+        post.company            =$('.company').val();
+        if (!post.emails) {
+            dialog.showTips("请填写邮箱号！", "warn");
+            return false;
+        }
+        if (!post.emails.match(/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/)) {
+            dialog.showTips("邮箱格式错误！","warn");
+            return false;
+        }
+        if (!post.company) {
+            dialog.showTips("请填写企业名称！", "warn");
+            return false;
+        }
+
+
+        if (!post.passwords) {
+            dialog.showTips("请填写密码！", "warn");
+            return false;
+        }
+        if (!post.passwords.match(/^.{6,24}$/)) {
+            dialog.showTips("密码长度必须是6-24位！","warn");
+            return false;
+        }
+        if (!post.confrim_passwords) {
+            dialog.showTips("请输入确认密码！","warn");
+            return false;
+        }
+//        if (post.confrim_passwords != post.passwords) {
+//            dialog.showTips("两次密码输入不一致！", "warn");
+//            return false;
+//        }
+
+        /*** ajax发送请求  ***/
+        $.post("{:U('Home/User/doRegs')}", post, function(data) {
+            if (data.status == 1 ) {
+                dialog.showTips(data.info, "", data.url);
+            } else {
+                alert(data.info);
+            }
+        }, "json");
+
+        return false;
+
+    }
+
+</script>
+
+</html>

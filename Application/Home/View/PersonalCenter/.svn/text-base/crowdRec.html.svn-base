@@ -1,0 +1,131 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+          <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="buyerCan">
+            <div class="buyerCan_list">
+              <div class="buyerCan_sec1">
+                <div class="buyerXia_sec1_li">
+                  <h5><span>浙江美术网</span></h5>
+                </div>
+
+                  <volist name="res" id="vo" empty="暂无数据">
+                    <div class="buyerCan_sec1_li">
+                     <!-- <h5>
+                        &lt;!&ndash;<if condition="$vo.promulgator eq 0">&ndash;&gt;
+                          <span>浙江美术网</span>
+                          &lt;!&ndash;<else/>
+                          <span>个人</span>
+                        </if>&ndash;&gt;
+
+                      </h5>-->
+                      <table>
+                        <tr>
+                          <th class="buyerCan_sec1_li_frist" style="width:30%;">作品名称</th>
+                          <th style="width:15%;">已筹金额</th>
+                          <th style="width:15%;">目标金额</th>
+                          <th style="width:10%;">状态</th>
+                          <th style="width:20%;">结束时间</th>
+                         <!-- <th style="width:10%;">操作</th>-->
+                        </tr>
+                        <tr>
+                          <td class="buyerCan_sec1_li_frist"><a class="user_proa" href="{:U('/Home/ArtCommunity/crowdFdot/id')}/{$vo.crowd_id}"><img src="{$vo.logo_pic}" width="100"><span>{$vo.goods_name}  {$vo.goods_cap}</span></a></td>
+                          <td>{$vo.total}</td>
+                          <td>{$vo.total_price}万</td>
+                          <td>
+                            <switch name="vo.is_zc">
+                              <case value="0">众筹中</case>
+                              <case value="2">众筹成功</case>
+                              <case value="1">众筹失败</case>
+                            </switch>
+                            <!--<if condition="$vo.zt eq 1">
+                              领先
+                              <else/>
+                              出局
+                            </if>-->
+                          </td>
+                          <td class="buyerCan_sec1_li_four"><span class="buyerCan_sec1_time">{$vo.end|date="Y-m-d H:i:s",###}</span> <span class="djstime" data-endtime="{$vo['end']}"></span></td>
+                         <!-- <td class="buyerCan_sec1_li_four"><span class="buyerCan_sec1_time"><i><img src="__IMAGES__/buyerMy_clock.png" alt="" /></i>距结束</span> <span class="djstime" data-endtime="{$vo['end']}">&lt;!&ndash;<?php echo (($vo['end']-time())/60/60%24)."小时".(($vo['end']-time())/60%60)."分".(($vo['end']-time())%60)."秒";?>&ndash;&gt;</span></td>-->
+                          <!--<td><if condition="$res.pay_time eq ''"><a href="{:U('/Home/ArtCommunity/pay/id')}/{$vo.id}">立即支付</a><else/>{$res.pay_time|date="Y-m-d H:i:s",###}</if></td>-->
+                        </tr>
+                      </table>
+                    </div>
+                  </volist>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--  / user  --> 
+  
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+  function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+
+  function timehtml(t, obj) {
+      window.setInterval(function() {
+          var d = 0,
+              h = 0,
+              m = 0,
+              s = 0;
+          if (t > 0) {
+              d = Math.floor(t / (60 * 60 * 24));
+              h = Math.floor(t / (60 * 60)) - (d * 24);
+              m = Math.floor(t / 60) - (d * 24 * 60) - (h * 60);
+              s = Math.floor(t) - (d * 24 * 60 * 60) - (h * 60 * 60) - (m * 60);
+          }
+          if (d <= 9)
+              d = '0' + d;
+          if (h <= 9)
+              h = '0' + h;
+          if (m <= 9)
+              m = '0' + m;
+          if (s <= 9)
+              s = '0' + s;
+          $(obj).html(d + " 天" + h + " 时" + m + " 分" + s + "秒");
+          t--;
+          }, 1000);
+  }
+  /*$(function() {
+      $(".djstime").each(function() {
+          var endtime = $(this).attr("data-endtime");
+          var message = $(this).attr("data-msg");
+          if(message==''||message==undefined){
+              message='竞拍结束';
+          }
+          var nowtime = new Date().getTime();
+          var time = (endtime * 1000 - nowtime) / 1000; time = time.toFixed(0);
+          if (time <= 0) {
+              $(this).html("<div></div><span style='color:#FC2233;'>"+message+"</span>");
+              $(this).find('i').css({'font-family':'宋体','font-style':'normal','font-size':'14px'});
+              return true;
+          } else {
+              timehtml(time, this);
+          }
+      })
+  });*/
+</script>
+</html>

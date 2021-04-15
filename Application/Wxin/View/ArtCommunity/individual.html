@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<include file="Public:header" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简介</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+</head>
+<style scoped>
+    body,
+    html,
+    p {
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        outline: none !important;
+    }
+
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    #firstScreen {
+        position: relative;
+        height: 100%;
+        margin-top: 40px;
+    }
+
+    #firstScreen img {
+        width: 100%;
+        height: 100%;
+    }
+
+    #firstScreen .picName {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        bottom: 80px;
+        color: white;
+    }
+
+    #firstScreen .picName .title {
+        font-size: 30px;
+    }
+    #firstScreen .picName .msgbox {
+        padding: 0 10px;
+        line-height: 24px;
+        max-height: 150px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        text-align: left;
+        text-overflow:ellipsis;
+    }
+    #firstScreen .picName .msgbox p{
+        color: white;
+    }
+    #firstScreen .toTwoScreen {
+        position: absolute;
+        bottom: 44px;
+        height: 20px;
+        display: block;
+        width: 100%;
+        background: url('__IMAGES__/bottom.png')center no-repeat;
+    }
+
+    #twoScreen {
+        text-align: center;
+    }
+
+    #twoScreen .twopic {
+        position: relative;
+        display: inline-block;
+        width: 84px;
+        height: 84px;
+        border-radius: 50%;
+        margin-top: 60px;
+    }
+
+    #twoScreen .twopic img {
+        width: 84px;
+        height: 84px;
+        border-radius: 50%;
+        object-fit: fill;
+        margin: 0;
+    }
+
+    #twoScreen .twopic i {
+        position: absolute;
+        right: 1px;
+        bottom: 1px;
+        height: 20px;
+        width: 20px;
+        background: url('__IMAGES__/qian.png')center no-repeat;
+        background-position: 0 0;
+        background-size: cover;
+    }
+
+    #twoScreen h4 {
+        display: block;
+        font-size: 18px;
+        font-weight: normal;
+        margin: 20px 0;
+    }
+
+    #twoScreen h3 {
+        font-weight: normal;
+        font-size: 13px;
+        color: #666;
+    }
+
+    #twoScreen h3 i {
+        font-style: normal;
+    }
+
+    #twoScreen h3 .twoHour {
+        margin: 0 10px;
+    }
+
+    #twoScreen h3 .twoAdr {
+        width: 7px;
+        height: 9px;
+        display: inline-block;
+        background-size: 7px 9px;
+        margin-right: 0.2rem;
+        position: relative;
+        top: -1px;
+    }
+
+    #twoScreen a img {
+        display: inline-block;
+        width: 78px;
+        height: 30px;
+        margin: 20px 0 40px 0;
+    }
+
+    #tabs {
+        border: none;
+        padding: 0;
+    }
+
+    #tabs .ui-widget-header {
+        background: none;
+        border: none;
+    }
+
+    #tabs .ui-widget-header li {
+        background: none;
+        border: none;
+        width: 18%;
+        text-align: center;
+        font-size: 16px;
+        float: left;
+    }
+
+    #tabs .ui-widget-header li a {
+        padding: 0;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    #tabs .tabBox {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        border-top: 1px solid #eee;
+    }
+
+    #tabs .oneBox {
+        float: left;
+        width: 49%;
+        height: 250px;
+        border: 1px;
+        margin: 0.5px;
+        border-top: 1px solid #eee;
+        position: relative;
+    }
+
+    #tabs .oneBox a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+    }
+
+    #tabs .oneBox img {
+        width: 100%;
+        height: 200px;
+        object-fit: fill;
+    }
+    #tabs .oneBox .oneBoxprice{
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        bottom: 10px;
+        color: black;
+        font-size: 16px;
+        color: red;
+        
+    }
+    #tabs .oneBox .oneBoxtitle{
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        bottom: 30px;
+        color: black;
+        font-size: 14px;
+    }
+
+    #tabs .threeBox {
+        padding: 0 5%;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    #tabs .threeBox .boxCont {
+        display: inline-block;
+        width: 62%;
+        vertical-align: top;
+    }
+
+    #tabs .threeBox h4 {
+        font-size: 18px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    #tabs .threeBox h3 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-align: left;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+    }
+
+    #tabs .threeBox img {
+        margin: 0;
+        width: 128px;
+        height: 96px;
+        object-fit: fill;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    #tabs .fiveBox {
+        margin-top: 20px;
+        margin-left: 15px;
+    }
+
+    #tabs .fiveBox .fivetitle {
+        width: 20%;
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        vertical-align: top;
+    }
+
+    #tabs .fiveBox h4 {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+    }
+
+    #tabs .fiveBox h3 {
+        display: inline-block;
+        font-weight: normal;
+        font-size: 22px;
+        margin-right: 8px;
+        margin: 0;
+    }
+
+    #tabs .fiveBox .fivepic {
+        display: inline-block;
+        width: 70%;
+
+    }
+
+    #tabs .fiveBox .fivepic h4 {
+        margin: 0;
+        height: 40px;
+        width: 100%;
+        line-height: 40px;
+        margin-top: 4px;
+    }
+
+    #tabs .fiveBox .fivepic h4 i {
+        font-style: normal;
+        margin: 0 3px;
+    }
+
+    #tabs .fiveBox .fivepic img {
+        height: 120px;
+        width: 120px;
+        object-fit: fill;
+    }
+
+    @media(max-width: 375px) {
+        .boxCont {
+            width: 60% !important;
+        }
+    }
+
+    @media(max-width: 320px) {
+        .boxCont {
+            width: 53% !important;
+        }
+    }
+</style>
+<include file="Public:header" />
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<body>
+    <div id="firstScreen">
+        <img src="{$artist_info['zy_pic']}" alt="">
+        <div class="picName">
+            <div class="msgbox">
+                <p>{$artist_info['desc']|htmlspecialchars_decode|stripslashes}</p>
+            </div>
+            <div style="text-align: left;padding-left: 10px;">
+                <a style="color: black;font-weight: bold;" href="{:U('Wxin/ArtCommunity/detailPage/')}?id={$artist_info['id']}">[详情]</a>
+            </div>
+            <!--<span>{$artist_info['desc']|htmlspecialchars_decode|stripslashes}</span>-->
+        </div>
+        <i class="toTwoScreen"></i>
+    </div>
+    <div id="twoScreen">
+        <div class="twopic">
+            <a href="javascript:void(0)">
+                <img src="{$artist_info['logo_pic']}" alt="">
+                <i></i>
+            </a>
+        </div>
+        <h4>{$artist_info['name']}</h4>
+        <h3><i>{$num}</i>件作品<span class="twoHour">
+        <if condition="$login_info['last_login_at'] neq 0">{$login_info['last_login_at']}来过</if>
+        </span><span><i class="twoAdr"></i>杭州</span></h3>
+        <a href="javascript:void(0)">
+            <if condition="$is_follow eq 0">
+                <img src="__IMAGES__/gz.png"  class="follow" alt="">
+                <else/>
+                <img src="__IMAGES__/ygz.png"  class="follow" alt="">
+            </if>
+        </a>
+    </div>
+    <div id="tabs">
+        <ul>
+            <li style="border-bottom: 2px solid;"><a href="#tabs-1">新作</a></li>
+            <li><a href="#tabs-2">出售中</a></li>
+            <li><a href="#tabs-3">新闻</a></li>
+            <li><a href="#tabs-4">文章</a></li>
+            <li><a href="#tabs-5">动态</a></li>
+        </ul>
+        <div id="tabs-1" class="tabBox">
+            <volist name="artist_goods" id="artist_good">
+                <div class="oneBox">
+                    <a href="">
+                        <img src="{$artist_good['index_pic']}" alt="">
+                        <span class="oneBoxprice"><if condition="$artist_good['price'] neq 0">
+                            {$artist_good['price']}
+                        </if></span>
+                        <span class="oneBoxtitle">
+                            {$artist_good['goods_name']}
+                        </span>
+                    </a>
+                </div>
+            </volist>
+        </div>
+        <div id="tabs-2" class="tabBox">
+            <volist name="paying_goods" id="paying_good">
+            <div class="oneBox">
+                <a href="">
+                    <img src="{$paying_good['index_pic']}" alt="">
+                    <span class="oneBoxprice"><if condition="$paying_good['price'] neq 0">
+                            {$paying_good['price']}
+                        </if></span>
+                    <span class="oneBoxtitle">
+                            {$paying_good['goods_name']}
+                        </span>
+                </a>
+            </div>
+            </volist>
+        </div>
+        <div id="tabs-3" class="tabBox">
+            <volist name="news" id="new">
+                <div class="threeBox">
+                    <a href="">
+                        <div class="boxCont">
+                            <h4>{$new['title']}</h4>
+                            <h3>{$new['detail']|htmlspecialchars_decode|stripslashes}</h3>
+                        </div>
+                        <img src="{$new['news_pic']}" alt="">
+                    </a>
+                </div>
+            </volist>
+        </div>
+        <div id="tabs-4" class="tabBox">
+            <vollist name="article" id="vo"></vollist>
+            <div class="threeBox">
+                <a href="">
+                    <div class="boxCont">
+                        <h4>{$vo['title']}</h4>
+                        <h3>{$vo['content']|htmlspecialchars_decode|stripslashes}</h3>
+                    </div>
+                    <img src="{$vo.index_pic}" alt="">
+                </a>
+            </div>
+
+        </div>
+        <div id="tabs-5" class="tabBox">
+            <volist name="actions" id="vv">
+                <div class="fiveBox">
+                    <div class="fivetitle">
+                        <h3>{$vv['day']}</h3>
+                        <h4>{$vv['month']}月</h4>
+                    </div>
+                    <div class="fivepic">
+                        <h4>{$vv['desc']}</h4>
+                        <img src="{$vv['pic']}" alt="">
+                    </div>
+                </div>
+            </volist>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    $(function () {
+        $('#firstScreen').click(function () {
+            $('html,body').animate({ scrollTop: $('#firstScreen').height()}, 500);
+        })
+        $('#toTwoScreen').click(function () {
+            $('html,body').animate({ scrollTop:$('#firstScreen').height()}, 500);
+        })
+        $("#tabs").tabs();
+        $("#tabs>ul>li").click(function () {
+            $("#tabs>ul>li").css('border', 'none');
+            this.style.borderBottom = '2px solid black'
+        })
+    });
+    var artist_id = "{$artist_info['id']}";
+
+    // console.log(is_follow);
+    $(".follow").click(function () {
+        $.ajax({
+            url: '/Wxin/ArtCommunity/follow',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                artist_id: artist_id,
+            },
+            success: function (res) {
+                if (res.code == 0) {
+                    $(".follow").attr("src", "/Public/Wxin/Images/ygz.png");
+                } else if (res.code == 1) {
+                    $(".follow").attr("src", "/Public/Wxin/Images/gz.png");
+                } else if (res.code == 1001) {
+                    alert("请先注册，若有账号，请先登录！", "", '/Wxin/User/login');
+                    return false;
+                }
+                alert(res.info);
+            }
+        })
+    });
+</script>

@@ -1,0 +1,200 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:user_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+         <div class="SellerTop">
+          <h3>免费开店</h3>
+          <p>申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+         </div>
+         <div class="SellerFlower">
+          <div class="row">
+           <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="SellerFlist SellerFlistCurr"> <span>1</span>
+                  <h3>阅读开店须知<i>签署协议</i></h3>
+              </div>
+           </div>
+           <div class="col-lg-3 col-md-3 col-sm-3">
+             <div class="SellerFlist "> <span>2</span>
+              <h3>选择开店类型<i>入驻类型</i></h3>
+             </div>
+           </div> 
+           <div class="col-lg-3 col-md-3 col-sm-3">
+             <div class="SellerFlist"> <span>3</span>
+              <h3>提交资料<i>提交个人资料</i></h3>
+             </div>
+           </div> 
+           <div class="col-lg-3 col-md-3 col-sm-3">
+             <div class="SellerFlist"> <span>4</span>
+              <h3>审核<i>审核</i></h3>
+             </div>
+           </div> 
+          </div>
+
+             <div class="located-select">
+                 <h2>选择主营类目</h2>
+                 <form action="{:U('Home/Pm/paiLeimu/ruzhu_id')}/{$ruzhu_id}" method="post" id="form">
+                     <div class="bd">
+                         <ul class="first clearfix">
+                             <foreach name="cate" item="vo">
+                                 <li class="levels">
+                                     <dl class="clearfix">
+                                         <dt>
+                                             <label>
+                                                 <input
+                                                 <foreach name="pids" item="vv">
+                                                     <eq name="vv" value="$vo['id']">checked</eq>
+                                                 </foreach>
+                                                 type="checkbox" name="Cates" data-price="{$vo.price}" value="{$vo.id}" class="Cates">
+                                                 {$vo.classname}</label>
+                                         </dt>
+                                         <foreach name="vo.data" item="v">
+                                             <dd style="margin-left: 50px;float: left;display: none" class="two_Cates{$vo.id}">
+                                                 <label>
+                                                     <input
+                                                     <foreach name="catexz" item="vvs">
+                                                         <eq name="vvs" value="$v['id']">checked</eq>
+                                                     </foreach>
+                                                     type="checkbox" data-pid="{$vo.id}" value="{$v.id}" name="two_Cates" class="two_Cates">
+                                                     {$v.classname}
+                                                 </label>
+                                             </dd>
+                                         </foreach>
+                                     </dl>
+                                 </li>
+                             </foreach>
+
+                             <!---->
+
+                             <!--<li class="levels">
+                               <dl class="clearfix">
+                                 <foreach name="screens" item="vo">
+                                   <dd>
+                                     <label for="pL{$key}">
+                                       <input type="checkbox" name="screens[]" id="pL{$key}" value="{$vo.id}">
+                                       {$vo.classname}</label>
+                                   </dd>
+                                 </foreach>
+                               </dl>
+                             </li>-->
+                         </ul>
+                     </div>
+                 </form>
+
+                 <div class="ft"> <b>缴纳经营保证金：</b> <b class="money J_guaranty" id="prices">0.00元</b> </div>
+                 <div class="ft"> <b>缴纳上拍技术服务费保证金：</b> <b class="money J_service">{$ms_ruzhu.jishu_price}元</b> <a href="" target="_blank">美术网拍卖保证金规则</a> </div>
+             </div>
+
+         <!-- <div class="row">
+           <div class="col-lg-6 col-md-6 col-sm-6">
+             <div class="SellerPic">
+               <span><i class="fa fa-user-circle-o"></i></span>
+               <h3>个人店铺</h3>
+               <h6>通过美术网账号实名认证的商家店铺就是个人店铺</h6>
+               <a href="{:U('/Home/Shop/selNotice/tag/selNotice')}">创建个人店铺</a>
+             </div>
+           </div>
+           <div class="col-lg-6 col-md-6 col-sm-6">
+             <div class="SellerPic">
+               <span><i class="fa fa-building-o"></i></span>
+               <h3>企业店铺</h3>
+               <h6>通过美术网企业账号认证的商家店铺就是企业店铺</h6>&lt;!&ndash;style=" background:#ccc;"&ndash;&gt;
+               <a href="{:U('/Home/Shop/selCompanyNotice/tag/selCompanyNotice')}" >创建企业店铺</a>
+               <h4>请使用<a href="#">企业账户</a>登录开店</h4>
+             </div>
+           </div>
+          </div>-->
+         </div>
+        </div>  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <a href="##" class="task_btn1_on">确定</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1">
+        <a href="##" class="task1_btn1_on">确定</a>
+        <a href="##" class="task1_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+</html>

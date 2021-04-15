@@ -1,0 +1,187 @@
+<include file="Public:head"/>
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:left"/>
+    <!-- end content-left -->
+    
+    <div class="content-right fl" style="min-height: 800px;">
+        <div id="main" style="width: 900px;height:400px;"></div>
+        <div id="main11" style="width: 900px;height:400px;"></div>
+        <div id="pie" style="width: 900px;height:400px;"></div>
+    </div>
+  </div>
+</div>
+<include file="Public:foot"/>
+<script type="text/javascript" src="__JS__/echarts.js"></script>
+<script type="text/javascript">
+  // var taskNameArr=$("#taskNameArr").val();
+  // var taskCollectNum=$("#taskCollectNum").val();
+  // var a=eval(taskNameArr);
+  // alert(taskNameArr);
+  // alert(a);
+  $(function () {
+    $.ajax({
+        type:"POST",
+        url:"{:U('/Admin/Index/orderPay')}",
+        data:{action:'collection'},
+        async: false,
+       //dataType:'json',
+        success: function(data){
+          console.log(data);
+          title = data.title;
+          num = data.num;
+          pie = data.pie;
+          },
+        error:function(data){
+            alert('加载失败')
+        }
+    });
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '订单金额统计'
+        },
+        tooltip: {},
+        legend: {
+            data:['任务名称']
+        },
+        xAxis: {
+            name : '任务名称',
+            nameRotate :45,
+            // inverse : true,
+            data: title
+        },
+        yAxis: {},
+        series: [{
+            name: '金额（元）',
+            type: 'bar',
+            data: num
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+    // ----------------------------------------饼状图------------------------------------------------
+    var myChart = echarts.init(document.getElementById('main11'));
+
+    // 指定图表的配置项和数据
+
+    var option = {
+        backgroundColor: '#2c343c',
+
+        title: {
+            text: '任务金额统计饼状图',
+            left: 'center',
+            top: 20,
+            textStyle: {
+                color: '#ccc'
+            }
+        },
+
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+
+        visualMap: {
+            show: false,
+            min: 80,
+            max: 600,
+            inRange: {
+                colorLightness: [0, 1]
+            }
+        },
+        series : [
+            {
+                name:'金额（元）',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '50%'],
+                data:pie.sort(function (a, b) { return a.value - b.value}),
+                roseType: 'angle',
+                label: {
+                    normal: {
+                        textStyle: {
+                            color: 'rgba(255, 255, 255, 0.3)'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        lineStyle: {
+                            color: 'rgba(255, 255, 255, 0.3)'
+                        },
+                        smooth: 0.2,
+                        length: 10,
+                        length2: 20
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#c23531',
+                        shadowBlur: 200,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+
+    var myChart = echarts.init(document.getElementById('pie'));
+
+    // 指定图表的配置项和数据
+
+    var option = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:title
+        },
+        series: [
+            {
+                name:'金额（元）',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:pie
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  });
+  // 基于准备好的dom，初始化echarts实例
+  
+</script>

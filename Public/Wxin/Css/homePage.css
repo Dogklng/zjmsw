@@ -1,0 +1,289 @@
+body,html,ul,li,img{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+.black{
+    margin-top: 500px;
+    height: 1px;
+}
+#app,html,body{
+    height: 100%;
+    width: 100%;
+}
+html,body{ width: 100%; height: 100%; overflow: scroll;}
+html::-webkit-scrollbar, body::-webkit-scrollbar{width:0px;height:0px;}
+body{margin:0;}
+
+/* 第一栏 */
+
+#app #scFirst .firTitle{
+    position: absolute;
+    bottom: 40%;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+}
+#app #scFirst .firTitle h2{
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    font-weight: 500;
+}
+#app #scFirst .firTitle span{
+    width: 100%;
+    font-size: 0.7rem;
+}
+#app #scFirst .firBottom{
+    position: absolute;
+    left: 0;
+    bottom: 4%;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* 第二栏 */
+#app #scScend{
+    padding-top: 60px;
+    position: relative;
+}
+#app #scScend .sePic{
+    text-align: center;
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+#app #scScend img{
+    width: 84px;
+    height: 84px;
+    display: inline-block;
+    border-radius: 84px;
+    overflow: hidden;
+    background-size: cover;
+}
+
+#app #scScend .seName{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 0.6rem;
+    padding-top: 2px;
+}
+#app #scScend .seName h3{
+    font-size: 0.9rem;
+    font-weight: 545;
+    letter-spacing: 2px;
+}
+#app #scScend .seName h4{
+    color: #9C9C9C;
+    font-weight: 400;
+    font-size: 0.8rem;
+    padding-top: 1.5rem;
+}
+#app #scScend .seName .seAdress{
+    width: 7px;
+    height: 9px;
+    display: inline-block;
+    background: url('../images/adress.png') left top no-repeat;
+    background-size: 7px 9px;
+    margin-right: 0.2rem;
+    position: relative;
+    top: 1px;
+}
+#app #scScend .atte{
+    padding: 0.5rem 1rem 0.8rem 1rem;
+    text-align: center;
+}
+#app #scScend .atte a{
+    width: 78px;
+    height: 30px;
+    background: url('../images/gz.png') center no-repeat;
+    background-size: 78px 30px;
+    display: inline-block;
+}
+#app #scScend .resumeBox{
+    padding: 1.4rem 0.75rem 0.7rem 0.75rem;
+}
+#app #scScend .resumeBox p{
+    font-size: 0.9rem;
+    color: #000;
+    line-height: 24px;
+    max-height: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+/* 第三栏 */
+#app #scThree{
+    padding-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
+}
+.selshow{
+    border-bottom:2px solid black;
+}
+#app #scThree .swiper-container{
+    height: 40px;
+    width: 100%;
+    border-bottom: 1px solid #ededed !important; 
+}
+#app #scThree .swiper-container .swiper-slide{
+    /* width:75px !important; */
+    text-align: center;
+    height:36px !important;
+    line-height: 36px;
+}
+
+/* 第四栏 */
+#app #scFour{
+    display: inline-block;
+    width: 100%;
+    margin-top:2px
+}
+#app #scFour .picList{
+    float: left;
+    width: 49%;
+    height: auto;
+    margin-left: 1px;
+    margin-top:-3px;
+}
+#app #scFour .picList .forto{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+#app #scFour .picList img{
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+#app #scFour .picList .forPrice{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    padding:0 10px
+}
+
+/* 第五屏 */
+#app #scFive .worklist{
+    width: 49%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    margin:0 1px;
+    margin-bottom: 20px;
+}
+#app #scFive img{
+    height: 100%;
+    width: 100%;
+}
+#app #scFive .workMsg{
+    color: #000;
+    font-weight: 400;
+    margin: 0;
+    padding:9px 0;
+}
+#app #scFive .workNum{
+    font-size: 0.8rem;
+    color: #555;
+    margin: 0;
+    padding: 0;
+}
+
+/* 第六屏 */
+#app #scSix{
+    width: 100%;
+    min-height: 120px;
+    float: left;
+}
+#app #scSix .sixTitle{
+    display: inline-block;
+    width: 49%;
+}
+#app #scSix a{
+    display: block;
+    width: 97%;
+    height: 100%;
+    margin-left: 10px;
+}
+#app #scSix .sixTitle h2{
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    line-height: 26px;
+    margin-top: 20px;
+    max-height: 52px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#app #scSix .sixTitle p{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #555;
+    margin-top: 12px;
+    max-height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#app #scSix a img{
+     display: inline-block;
+     height: 100%;
+     width: 40%;
+     margin-left: 15px;
+}
+
+/* 第七屏 */
+#app #scSeven .sehide .sehidepic{
+    width: 100%;
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+#app #scSeven .sehide .sehidepic p{
+    color: #9C9C9C;
+}
+
+/* 第八屏 */
+#app #scEight{
+    width: 100%;
+}
+#app #scEight .eilist{
+    display: inline-block;
+    width: 90%;
+    margin: 20px 15px;
+}
+#app #scEight .eilist .eiMouth{
+    float: left;
+    height: 100%;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+#app #scEight .eilist .eiMouth span{
+    font-size: 0.8rem;
+}
+#app #scEight .eilist .eiPic{
+    float: left;
+    margin: 8px 12px;
+}
+#app #scEight .eilist .eiPic img{
+    height: 120px;
+    width: 120px;
+    margin-top: 12px;
+}
+#app #scEight .eilist .eiPic .eiReward{
+    letter-spacing: 2px;
+    color: #686868;
+}

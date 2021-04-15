@@ -1,0 +1,139 @@
+<include file="Public:header" />
+
+<div class="ban1">
+  <div class="banner_img"> <img src="{$images.pic}"
+     alt="" /> </div>
+</div>
+
+
+<style>
+  .Schedulel{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #333;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+  }
+</style>
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Crowd-funding</p>
+    <h5>众 • 筹</h5>
+  </div>
+  <div class="main">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="mainList">
+          <div class="mainL-screen">
+            <h3 class="mainL-h3">按类目筛选<a href="#" class="mainLs-A">取消选中</a></h3>
+            <ul class="mainL-screenUl">
+              <volist name="cate" id="vo" key="k">
+                <li>
+                  <input type="checkbox" name="screenS" id='screenS+{$k+1}'
+                  <foreach name="cates" item="vv">
+                    <if condition="($vo.id eq $vv)">
+                      checked="checked"
+                      <else/>
+                    </if>
+                  </foreach>
+                         onchange="fun()" value="{$vo.id}" />
+                  <label for='screenS+{$k+1}'>{$vo.name}</label>
+                </li>
+              </volist>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9">
+        <div class="left-main">
+          <div class="event_list">
+            <ul>
+              <volist name="res" id="v">
+
+              <li>
+                <div class="pMd"> <a href="{:U('/Home/ArtCommunity/crowdFdot',array('id'=>$v['id']))}" class="image"><img src="{$v.logo_pic}" width="120px" height="120px"></a> <a href="{:U('/Home/ArtCommunity/crowdFdot',array('id'=>$v['id']))}" class="names">{$v.goods_name}</a>
+                  <div class="CrowdF"><if condition="$v.price neq ''"><i>已筹{$v.price}元</i></if> <if condition="$v.price eq ''"><i>已筹0元</i></if><if condition="$v.width neq ''"><i>完成 {$v.width}</i></if><if condition="$v.width eq ''"><i>完成 0%</i></if> <i>还剩 {$v.day}天{$v.shi}时</i></div>
+                  <span class="Schedule" ><div class="Schedulel" style="width:{$v['width']} !important;" ></div></span>
+                  <!-- <span class="Schedule"></span> <div class="" style="width:{$res.width}"><span></span></div> -->
+                  <span class="date"><span class="day">{$v.start|date="d",###}</span><span class="month">{$v.start|date="m",###}月</span><span class="year">{$v.start|date="Y",###}</span></span> <span class="count"><span class="views CrowdS">{$v.num}</span><b>点击量</b></span> </div>
+              </li>
+
+              </volist>
+            </ul>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<script>
+
+  var cate = '{$cate.}';
+  var val =cate.split(",");
+  var boxes = document.getElementsByName("screenS");
+  for(i=0;i<boxes.length;i++){
+      for(j=0;j<val.length;j++){
+          if(boxes[i].value == val[j]){
+              boxes[i].checked = true;
+              break
+          }
+      }
+  }
+  $('input[name="screenS"]').each(function () {
+      if($(this).val()==cate){
+          $(this).attr("checked",true);
+      }
+  })
+
+    function fun() {
+        var obj = document.getElementsByName("screenS");
+        check_val = [];
+        for (k in obj) {
+            if (obj[k].checked)
+                check_val.push(obj[k].value);
+        }
+        window.location.href="{:U('/Home/ArtCommunity/crowdFunding')}?cate="+check_val;
+    }
+	
+  $('.mainLs-A').click(function(){
+    window.location.href="{:U('/Home/ArtCommunity/crowdFunding')}";
+  })
+	
+  /*function get_data(){
+    var obj = document.getElementsByName("screenS");
+        check_val = [];
+        for (k in obj) {
+            if (obj[k].checked)
+                check_val.push(obj[k].value);
+        }
+    $.ajax({
+      type:"post",
+      url: "{:U('/Home/Artwork/get_data')}?cate="+check_val,
+      data:{cate:cate},
+      dataType: "json",
+      success(function(msg)){
+        if(msg.status == 1){
+          $('.event_list').html(msg);
+        }else{
+          alert(msg.info);
+        }
+      }
+    })
+  }*/
+</script>
+
+
+</body>
+</html>

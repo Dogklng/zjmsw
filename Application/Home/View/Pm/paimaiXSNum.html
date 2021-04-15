@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="__IMAGES__/dzlogo.ico" />
+<title>浙江美术网</title>
+<meta name="keywords" content="浙江美术网" />
+<meta name="description" content="浙江美术网" />
+<link rel="stylesheet" type="text/css" href="__CSS__/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/common.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/font-awesome.css">
+<link rel="stylesheet" href="__CSS__/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/index.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/css.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/style.css">
+
+<!----自适应----->
+<script src="__JS__/jquery.min.js"></script>
+<script src="__JS__/easing.js"></script>
+<script src="__JS__/jquery-ui.min.js"></script>
+<script src="__JS__/bootstrap.js"></script>
+<!----自适应----->
+
+<script src="__JS__/index.js"></script>
+<script src="__JS__/main.js"></script>
+
+<!--[if lte IE 9]>
+   <script src="__JS__/respond.min.js"></script>
+   <script src="__JS__/html5shiv.js"></script>
+<![endif]-->
+
+</head>
+
+<body style=" background:#f4f4f4;">
+
+<!----header----->
+<div class="header_box" style=" width:100%; position:fixed; z-index:999;">
+
+  <div class="sskuang">
+    <img src="__IMAGES__/close.png"  class="close"/>
+    <img src="__IMAGES__/ssb.png"  class="ssb" />
+    <div class="ss_text_a">
+      <input   onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键字';}"  value="请输入关键字"  type="text" class="ss_text" />
+      <a href="javascript:void(0);"><img src="__IMAGES__/yjt.png" class="yjt" /></a>
+    </div>
+  </div>
+  <script>
+      $(".yjt").click(function(){
+          var key = $(".ss_text").val();
+          window.location.href="/Home/Artwork/index/key/"+key;
+          <!-- $.post("{:U('Home/Index/searchKeyword')}",{key:key},function(result){ -->
+          <!-- if(result){ -->
+          <!-- } -->
+          <!-- }) -->
+
+      })
+  </script>
+  <div class="container header_box_nav" style="width:80%; padding:0;">
+    <h1 class="logo" style=" margin-left:0;"><a href="/index.html"><img src="__IMAGES__/logo.png" /></a></h1>
+    <div class="menu">
+      <ul>
+        <li><a href="/index.html"><strong><span>首页</span></strong></a> </li>
+        <li _t_nav="nav_xlcd5"><a href="/news.html"><strong><span>新闻</span></strong></a> </li>
+        <li _t_nav="nav_xlcd1"><a href="/artwork.html"><strong><span>艺术品</span></strong></a> </li>
+        <li _t_nav="nav_xlcd2"><a href="/Gallery.html"><strong><span>艺术社区</span></strong></a> </li>
+        <li _t_nav="nav_xlcd3"><a href="/auction.html"><strong><span>预售</span></strong></a> </li>
+        <li _t_nav="nav_xlcd4"><a href="/products.html"><strong><span>创意商店</span></strong></a> </li>
+        <li _t_nav="nav_xlcd6"><a href="/cloud.html"><strong><span>云推荐</span></strong></a> </li>
+        <div class="clear"></div>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <div class="headerright">
+      <eq name="member_id" value="0">
+        <a  href="/login.html"class="headerrighttb" style="margin-right:5px;">登录</a>
+        <a id="zhuce" href="/zhuce.html" class="headerrighttb" style="margin-left:5px;">注册</a>
+        <else/>
+        <span>欢迎您!</span><a  href="{:U('Home/PersonalCenter/userinfo')}" class="link" style="height: 24px;position: relative;top: 8px;line-height: 24px;border-radius: 0;text-align:center;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100px;display: inline-block;" ><if condition="$headimg.person_name neq null">{$headimg.person_name}<else/>{$headimg.telephone}</if></a>
+      </eq>
+      |<a href="/shopcar.html" class="link">购物车</a>|
+      <!--<a href="#" class="headerrighttb bdsharebuttonbox" style="margin-left:8px; width:20px; display:inline-table;"><img src="__IMAGES__/fx.png" class="bds_more" style=" background:none; margin:0; float:none;  padding-left:0; "  data-cmd="more"/ ></a>-->
+      <a  class="ss"><img src="__IMAGES__/ss.png" /></a></div>
+    <div class="navigation-down">
+      <!-- 01 -->
+      <div id="nav_xlcd1" class="nav-down-menu menu-1" style="display: none;" _t_nav="nav_xlcd1">
+        <div class="navigation-down-inner">
+          <div class="menuxl" style="width:70%; margin:0 auto;">
+            <div class="row">
+              <volist name="resh" id="vo">
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                  <div class="indexpro" data-id="{$vo.id}"  data-cstores="{$vo.cstores}"> <a href="javascript:void();"><img src="{$vo.pic}"/></a>
+                    <p>{$vo.classname}</p>
+                  </div>
+                </div>
+              </volist>
+              <script>
+                  $(function(){
+                      $('.indexpro').click(function(){
+                          //alert($(this).data('id'));return false;
+                          var sid = $(this).data('id');
+                          var cstores = $(this).data('cstores');
+                          if(cstores == 1){
+
+                              window.location.href='/products.html?id='+sid;
+                          }else{
+
+                              window.location.href='/artwork.html?id='+sid;
+                          }
+                      })
+                  })
+              </script>
+              <!-- <div class="col-lg-2 col-md-2 col-sm-2">
+                  <div class="indexpro"> <a href="/artwork.html"><img src="__IMAGES__/con1_pic2.jpg"/></a>
+                      <p>水墨•书法</p>
+                  </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                  <div class="indexpro"> <a href="/artwork.html"><img src="__IMAGES__/con1_pic3_1.jpg"/></a>
+                      <p>水彩•摄影</p>
+                  </div>
+              </div>
+
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                  <div class="indexpro"> <a href="/artwork.html"><img src="__IMAGES__/con1_pic4.jpg"/></a>
+                      <p>文玩•杂项</p>
+                  </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                  <div class="indexpro"> <a href="/artwork.html"><img src="__IMAGES__/con1_pic4_1.jpg"/></a>
+                      <p>玉器•珠宝</p>
+                  </div>
+              </div> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 01 -->
+
+      <!-- 02 -->
+      <!--<div id="nav_xlcd2" class="nav-down-menu menu-3 menu-1" style="display: none;" _t_nav="nav_xlcd2">
+        <div class="navigation-down-inner">
+          <div class="menuxl">
+            <ul>
+              <li><a href="/Gallery.html">画廊</a></li>
+
+              <li><a href="/artist.html?id=2">艺术家</a></li>
+
+              <li><a href="/artist.html?id=3">设计师</a></li>
+
+              <li><a href="/artist.html?id=4">工艺大师</a></li>
+
+              <li><a href="/artist.html?id=5">非遗传承人</a></li>
+
+              <li><a href="/association.html">美院</a></li>
+
+              <li><a href="/association.html">画院</a></li>
+
+              <li><a href="/artist.html?id=6">动漫</a></li>
+
+              <li><a href="{:U('Home/ArtCommunity/game/id/7')}">游戏</a></li>
+
+              <li><a href="/exhibition.html">展览</a></li>
+
+              <li><a href="/train.html">培训</a></li>
+
+              <li><a href="/crowdFunding.html" style="border:none;">众筹</a></li>
+
+            </ul>
+          </div>
+        </div>
+      </div>-->
+      <!-- 02 -->
+      <div id="nav_xlcd2" class="nav-down-menu menu-3 menu-1" style="display: none;" _t_nav="nav_xlcd2">
+        <div class="navigation-down-inner">
+          <div class="menuxl">
+            <ul>
+              <volist name="person" id="v">
+                <li><a target="_blank" href="/artist.html?id={$v.id}">{$v.name}</a></li>
+              </volist>
+              <volist name="organize" id="vv">
+                <li><a target="_blank" href="/Gallery.html?id={$vv.id}">{$vv.name}</a></li>
+              </volist>
+
+
+              <!--<li><a target="_blank" href="{:U('Home/ArtCommunity/game/id/7')}">游戏</a></li>-->
+
+             <!-- <li><a target="_blank" href="/exhibition.html">展览</a></li>-->
+
+              <li><a target="_blank" href="/train.html">培训</a></li>
+
+              <li><a target="_blank" href="/crowdFunding.html" >众筹</a></li>
+              <li><a target="_blank" href="/overseas.html" style="border:none;">海外交流</a></li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- 02 -->
+      <!-- 02 -->
+
+      <!-- 03 -->
+      <div id="nav_xlcd3" class="nav-down-menu menu-3 menu-1" style="display: none;" _t_nav="nav_xlcd3">
+        <div class="navigation-down-inner">
+          <div class="menuxl">
+            <ul>
+              <li><a href="/Auctionpreview.html">预展</a></li>
+              <li><a href="/Auctionresult.html">结果</a></li>
+              <li><a href="/limitedauction.html">限时预售</a></li>
+              <li><a href="/welfare.html" style="border:none;">公益</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- 03 -->
+
+      <!-- 04 -->
+      <div id="nav_xlcd4" class="nav-down-menu menu-1" style="display: none;" _t_nav="nav_xlcd4">
+        <div class="navigation-down-inner">
+          <div class="menuxl" style="width:70%; margin:0 auto;">
+            <div class="row">
+              <volist name="resc" id="vo">
+
+                <div class="indexpro_a">
+                  <div class="indexpro"  data-id="{$vo.id}"  data-cstores="{$vo.cstores}"> <a href="javascript:void();"><img src="{$vo.pic}"/></a><!--/products.html-->
+                    <p>{$vo.classname}</p>
+                  </div>
+                </div>
+              </volist>
+              <!--       <div class="indexpro_a">
+                        <div class="indexpro"> <a href="/products.html"><img src="__IMAGES__/con1_pic6.jpg"/></a>
+                            <p>设计衍生</p>
+                        </div>
+                    </div>
+                    <div class="indexpro_a">
+                        <div class="indexpro"> <a href="/products.html"><img src="__IMAGES__/con1_pic7.jpg"/></a>
+                            <p>手工•非遗</p>
+                        </div>
+                    </div>
+                    <div class="indexpro_a">
+                        <div class="indexpro"> <a href="/products.html"><img src="__IMAGES__/con1_pic8.jpg"/></a>
+                            <p>民间工艺</p>
+                        </div>
+                    </div>
+
+                    <div class="indexpro_a">
+                        <div class="indexpro"> <a href="/personality.html"><img src="__IMAGES__/con1_pic9.jpg"/></a>
+                            <p>个性•定制</p>
+                        </div>
+                    </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 04 -->
+
+      <!-- 05 -->
+      <div id="nav_xlcd5" class="nav-down-menu menu-3 menu-1" style="display: none;" _t_nav="nav_xlcd5">
+        <div class="navigation-down-inner">
+          <div class="menuxl">
+
+            <ul>
+              <volist name="newsCate" id="val">
+                <li><a href="/News.html?type={$val.id}">{$val.name}</a></li>
+              </volist>
+              <li><a href="/hall.html">3D展厅</a></li>
+              <li><a href="/contest.html">大赛征稿</a></li>
+              <li><a href="/video.html">视频</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- 05 -->
+
+    </div>
+  </div>
+</div>
+<!----header----->
+<!----移动端----->
+<header class="phone visible-xs">
+  <div class="headerbg">
+    <div class="menu_box">
+      <div class="container">
+        <div class="logo_boxlist"><a href="/index.html"> <!--<svg width="100" height="46">
+          <image xlink:href="__IMAGES__/logo.svg" src="__IMAGES__/logo.png" width="100" height="46" />
+          </svg> --></a></div>
+        <div class="containeritem">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-nav" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          </div>
+          <div class="collapse navbar-collapse" id="header-nav" >
+            <ul class="nav navbar-nav">
+              <li><a href="#">产品中心</a></li>
+              <li><a href="#">新闻中心</a></li>
+              <li><a href="#">品牌之旅</a></li>
+              <li><a href="#">绿源观点</a></li>
+              <li><a href="#">服务支持</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <nav> </nav>
+  </div>
+</header>
+<!----移动端----->
+
+<div class="ban1">
+  <div class="banner_img"> <img src="{$num['backg_pic']|default=$images['pic']}" alt="" /> </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Time taken</p>
+    <h5>限 • 时 • 预 • 售 </h5>
+  </div>
+  <div class="main">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="mainList">
+          <div class="mainL-screen">
+            <h3 class="mainL-h3">按类目筛选<a href="#" onclick="disfun()" class="mainLs-A">取消选中</a></h3>
+            <ul class="mainL-screenUl">
+              <foreach name="screens" item="v">
+                <li>
+                  <input type="checkbox" name="screenS[]" id="screenS{$key}"
+                  <foreach name="cate" item="vv">
+                    <if condition="($v.id eq $vv)">
+                      checked="checked"
+                      <else/>
+                    </if>
+                  </foreach> onchange="fun()" value="{$v.id}" />
+                  <label for="screenS{$key}">{$v.classname}</label>
+                </li>
+              </foreach>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9">
+        <div class="news">
+          <div class="news_fl">
+            <!--<div class="tab-controls">
+              &lt;!&ndash;<a href="javascript:;" <eq name="start_time" value="00:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('00:00')"</eq>>00:00</a>&ndash;&gt;
+              <a href="javascript:;" <eq name="start_time" value="1:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('1:00')"</eq>>1:00</a>
+              <a href="javascript:;" <eq name="start_time" value="2:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('2:00')"</eq>>2:00</a>
+              <a href="javascript:;" <eq name="start_time" value="3:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('3:00')"</eq>>3:00</a>
+              <a href="javascript:;" <eq name="start_time" value="4:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('4:00')"</eq>>4:00</a>
+              <a href="javascript:;" <eq name="start_time" value="5:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('5:00')"</eq>>5:00</a>
+              <a href="javascript:;" <eq name="start_time" value="6:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('6:00')"</eq>>6:00</a>
+              <a href="javascript:;" <eq name="start_time" value="7:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('7:00')"</eq>>7:00</a>
+              <a href="javascript:;" <eq name="start_time" value="8:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('8:00')"</eq>>8:00</a>
+              <a href="javascript:;" <eq name="start_time" value="9:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('9:00')"</eq>>9:00</a>
+              <a href="javascript:;" <eq name="start_time" value="10:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('10:00')"</eq>>10:00</a>
+              <a href="javascript:;" <eq name="start_time" value="11:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('11:00')"</eq>>11:00</a>
+              <a href="javascript:;" <eq name="start_time" value="12:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('12:00')"</eq>>12:00</a>
+              <a href="javascript:;" <eq name="start_time" value="13:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('13:00')"</eq>>13:00</a>
+              <a href="javascript:;" <eq name="start_time" value="14:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('14:00')"</eq>>14:00</a>
+              <a href="javascript:;" <eq name="start_time" value="15:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('15:00')"</eq>>15:00</a>
+              <a href="javascript:;" <eq name="start_time" value="16:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('16:00')"</eq>>16:00</a>
+              <a href="javascript:;" <eq name="start_time" value="17:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('17:00')"</eq> >17:00</a>
+              <a href="javascript:;" <eq name="start_time" value="18:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('18:00')"</eq> >18:00</a>
+              <a href="javascript:;" <eq name="start_time" value="19:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('19:00')"</eq> >19:00</a>
+              <a href="javascript:;" <eq name="start_time" value="20:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('20:00')"</eq> >20:00</a>
+              <a href="javascript:;" <eq name="start_time" value="21:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('21:00')"</eq> >21:00</a>
+              <a href="javascript:;" <eq name="start_time" value="22:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('22:00')"</eq> >22:00</a>
+              <a href="javascript:;" <eq name="start_time" value="23:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('23:00')"</eq> >23:00</a>
+              <a href="javascript:;" <eq name="start_time" value="24:00">class="active" style="color:#f70000; font-size:20px;"<else/>onclick="timefun('24:00')"</eq> >24:00</a>
+            </div>-->
+          </div>
+          <div class="pagebox clearfix">
+            <section class="page0 page active clearfix">
+              <div class="main">
+                <div class="promo_right">
+                  <h3 class="djstime" style="text-align:center; color:#f70000; font-size:18px; margin:0 0 20px 0;" data-endtime="{$num['end_time']}"> 距本场结束：<span id="t_d">00</span>天 <span  id="t_h">00</span>小时 <span  id="t_m">00</span>分 <span  id="t_s">00</span>秒 </h3>
+                  <div class="right_con">
+                    <div class="right_con_show">
+                      <ul class="right_con_list">
+                        <foreach name="res" item="vo">
+                          <li class="col-lg-4 col-md-4 col-sm-4"> <a href='{:U("Home/Pm/pmxq/id")}/{$vo["id"]}' target="_blank">
+                            <div class="prd_list_bg prd_list_bg1" style="left:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >
+                              <div class="prd_img" > <img src="{$vo.index_pic}" width="100%"></div>
+                              <p class="prd_link"><span>{$vo.goods_name}</span></p>
+                              <div class="price">
+                                <div class="discount"> {$vo['start']|date="M",###} /<span>{$vo['start']|date="d",###}</span> </div>
+                                <div class="act_price"> <del>一口价：￥{$v.baoliu}</del> <em><b>起拍价</b><i>￥</i>{$vo.start_price}</em> </div>
+                              </div>
+                              <div class="num">
+                                <div class="num_all">
+                                  <div class="num_sale" style="width: 170px;"></div>
+                                </div>
+                                <span>{$vo.weiguan|default=0}</span>人围观</div>
+                            </div>
+                          </a> </li>
+                        </foreach>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="promo_right" style="margin-top:50px;">
+                  <h3 class="mrjp" style="font-size:24px; margin-bottom:30px; text-align:center; color:#f70000; font-weight:bold; "><span><i class="left"></i>明日竞卖<i class="right"></i></span></h3>
+                  <div class="right_con">
+                    <div class="right_con_show">
+                      <ul class="right_con_list">
+                        <foreach name="res1" item="v">
+                          <li class="col-lg-4 col-md-4 col-sm-4"> <a href='{:U("Home/Pm/pmxq/id")}/{$v["id"]}'>
+                            <div class="prd_list_bg prd_list_bg1" style="left:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >
+                              <div class="prd_img" > <img src="{$v.index_pic}" width="100%"></div>
+                              <p class="prd_link"><span>{$v.goods_name}</span></p>
+                              <div class="price">
+                                <div class="discount"> {$v['start']|date="M",###} /<span>{$v['start']|date="d",###}</span> </div>
+                                <div class="act_price"> <del>一口价：￥{$v.baoliu}</del> <em><b>起拍价</b><i>￥</i>{$v.start_price}</em> </div>
+                              </div>
+                              <div class="num">
+                                <div class="num_all">
+                                  <div class="num_sale" style="width: 170px;"></div>
+                                </div>
+                                <span>{$v.weiguan|default=0}</span>人围观</div>
+                            </div>
+                          </a> </li>
+                        </foreach>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+$(document).ready(function(e) {
+
+	
+	
+	
+	$(".ss").click(function(e){
+		    $(".sskuang").css({"left":"0","opacity":"1"})  
+	})
+	
+	$(".close").click(function(e){
+		    $(".sskuang").css({"left":"-100%","opacity":"0"})  
+	})
+	
+  
+  
+  
+
+});
+
+function timehtml(t, obj) {
+    var times = t;
+    window.setInterval(function() {
+        var d = 0,
+            h = 0,
+            m = 0,
+            s = 0;
+
+        if (t > 0) {
+            d = Math.floor(t / (60 * 60 * 24));
+            h = Math.floor(t / (60 * 60)) - (d * 24);
+            m = Math.floor(t / 60) - (d * 24 * 60) - (h * 60);
+            s = Math.floor(t) - (d * 24 * 60 * 60) - (h * 60 * 60) - (m * 60);
+        }
+        if (d <= 9)
+            d = '0' + d;
+        if (h <= 9)
+            h = '0' + h;
+        if (m <= 9)
+            m = '0' + m;
+        if (s <= 9)
+            s = '0' + s;
+        if (t>0){
+            $(obj).html("距本场结束：<span>"+d+"</span>天 <span>"+h+"</span>小时 <span>"+m+"</span>分 <span>"+s+"</span>秒 ");
+        }else {
+            window.location.reload();
+        }
+        t--;
+    }, 1000);
+}
+$(function() {
+    $(".djstime").each(function() {
+        var endtime = $(this).attr("data-endtime");
+        //var message = $(this).attr("data-msg");
+        if(!endtime){
+            message='暂时没有竞卖';
+            $(this).html("<span style='color:#FC2233;'>"+message+"</span>");
+            $(this).find('span').css({'font-family':'宋体','font-style':'normal','font-size':'20px'});
+            return true;
+        }
+        var nowtime = new Date().getTime();
+        var time = (endtime * 1000 - nowtime) / 1000; time = time.toFixed(0);
+        if (time <= 0) {
+            //window.location.reload();
+        } else {
+            timehtml(time, this);
+        }
+    })
+});
+
+
+
+ 
+		 
+</script>
+<script>
+
+$(document).ready(function() {
+
+	$(".wx").hover(function(){
+		$(".ewm1").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm1").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	$(".sj").hover(function(){
+		$(".ewm2").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm2").stop().animate({"opacity":"0"},500);
+		    
+	})
+	/*function GetRTime(){
+	//var EndTime= new Date('2017/5/25 23:00:00');
+        var EndTime= "{$num['end_time']}";
+	var NowTime = new Date();    
+	var t =EndTime*1000 - NowTime.getTime();
+	var d=0;    
+	var h=0;    
+	var m=0;    
+	var s=0;   
+	if(t>=0){      
+		d=Math.floor(t/1000/60/60/24);      
+		h=Math.floor(t/1000/60/60%24); 
+		//h=Math.floor(t/1000/60/60);      
+		m=Math.floor(t/1000/60%60);      
+		s=Math.floor(t/1000%60);    
+	}      
+	document.getElementById("t_d").innerHTML = d;    
+	document.getElementById("t_h").innerHTML = h<10? "0"+h : h;    
+	document.getElementById("t_m").innerHTML = m<10? "0"+m : m;    
+	document.getElementById("t_s").innerHTML = s<10? "0"+s : s;  
+}  
+setInterval(GetRTime,0);*/
+	
+});
+
+
+
+
+function fun() {
+    //var start_time = $('#time').val();
+    var obj = document.getElementsByName("screenS[]");
+    check_val = [];
+    for (var k=0;k < obj.length;k++) {
+        if (obj[k].checked)
+            check_val[k] = obj[k].value;
+    }
+    var num_id = "{$num['id']}";
+    //console.log(check_val);return false;
+//        window.location.href="/Home/Auction/index/cate/"+check_val/;
+    location.href="{:U('/Home/Pm/paimaiXSNum')}?num_id="+num_id+"&cate="+check_val;
+}
+
+function disfun() {
+    var num_id = "{$num['id']}";
+    location.href="{:U('/Home/Pm/paimaiXSNum')}?num_id="+num_id+"&cate";
+}
+
+function timefun(time) {
+    var num_id = "{$num['id']}";
+    location.href="{:U('/Home/Pm/paimaiXSNum')}?num_id="+num_id+"&start_time="+time;
+}
+</script>
+</html>

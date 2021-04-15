@@ -1,0 +1,359 @@
+<include file="Public:header" />
+
+
+<link rel="stylesheet" href="/Public/admin/js/fm.selectator.jquery.css">
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="user_r">
+            <ul class="user_all">
+              <!--<li class="actived" onclick="fnTabBoxSlide(this,4,1);"><a href="javascript:;">全部</a></li>-->
+              <!--<li onclick="fnTabBoxSlide(this,4,2);"><a href="javascript:;">未租赁</a></li>-->
+              <!--<li onclick="fnTabBoxSlide(this,4,3);"><a href="javascript:;">租赁中</a></li>-->
+              <!--<li onclick="fnTabBoxSlide(this,4,4);"><a href="javascript:;">已完成</a></li>-->
+              <li class="<eq name="_GET['order_status']" value="">actived</eq> tabs_a fl"> <a href="{:U('Home/PersonalCenter/lease/tag/lease/value/1')}" >全部</a></li>
+              <li class="<eq name="_GET['order_status']" value="1">actived</eq> tabs_a fl"> <a href="{:U('Home/PersonalCenter/lease/tag/lease/order_status/1/value/1')}">未付款</a></li>
+              <li class="<eq name="_GET['order_status']" value="2">actived</eq> tabs_a fl"> <a href="{:U('Home/PersonalCenter/lease/tag/lease/order_status/2/value/1')}">未发货</a></li>
+              <li class="<eq name="_GET['order_status']" value="3">actived</eq> tabs_a fl"> <a href="{:U('Home/PersonalCenter/lease/tag/lease/order_status/3/value/1')}">已发货</a></li>
+              <li class="<eq name="_GET['order_status']" value="4">actived</eq> tabs_a fl"> <a href="{:U('Home/PersonalCenter/lease/tag/lease/order_status/4/value/1')}">已签收</a></li>
+              <li class="<eq name="_GET['order_status']" value="5">actived</eq> tabs_a fl"> <a href="{:U('Home/PersonalCenter/lease/tag/lease/order_status/5/value/1')}">已完成</a></li>
+              <li class="<eq name="_GET['order_status']" value="8">actived</eq> tabs_a fl"> <a href="{:U('Home/PersonalCenter/lease/tag/lease/order_status/8/value/1')}">归还中</a></li>
+            </ul>
+			
+            <div id="TabShow1" class="TabHide3"><!-- class="TabHide4 -->
+			
+              <volist name="res" id="vo">
+              <div class="user_r_list">
+                <h5><span>租赁时间：{$vo.order_time|date="Y-m-d H:i:s",###}</span><span>订单号：{$vo.order_no}</span></h5>
+                <table>
+                  <tr>
+                    <th class="user_r_frist" style="width:38%;">商品</th>
+                    <th style="width:10%;">单价</th>
+                    <th style="width:10%;">天数</th>
+                    <th style="width:10%;">实付</th>
+                    <th style="width:10%;">租赁人</th>
+                    <th style="width:10%;">状态</th>
+                    <th style="width:12%;">操作</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="{:U('/Home/PersonalCenter/orderDetails/tag/lease/value/1',array('id'=>$vo['id']))}"><img src="{$vo.goods_spic}" width="100"><span>{$vo.goods_name}  {$vo.goods_cap}</span></a></td>
+                    <td>¥{$vo.goods_price}</td>
+                    <td>{$vo.goods_nums}</td>
+                    <if condition="$vo.pay_price eq ''"><td>¥0.00</td></if>
+                    <if condition="$vo.pay_price neq ''"><td>¥{$vo.pay_price}</td></if>
+                    <td>{$vo.realname}</td>
+                    <if condition="$vo.order_status eq 1"><td>未付款</td></if>
+                    <if condition="$vo.order_status eq 2"><td>已付款待发货</td></if>
+                    <if condition="$vo.order_status eq 3"><td>已发货待收货</td></if>
+                    <if condition="$vo.order_status eq 4"><td>已收货</td></if>
+                    <if condition="$vo.order_status eq 5"><td>已完成</td></if>
+                    <if condition="$vo.order_status eq 6"><td>退款中</td></if>
+                    <if condition="$vo.order_status eq 7"><td>已关闭</td></if>
+                    <if condition="$vo.order_status eq 8"><td>归还中</td></if>
+                    <td>
+                  
+						
+						<switch name="vo.order_status">
+                        <case value="1">
+                          <a class="fukuan" data-id="{$vo['order_no']}" href="javascript:void();">付款</a>
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/lease/value/1',array('id'=>$vo['id']))}">查看详情</a>
+                          <a href="javascript:;" data-id="{$vo.id}" class="qxdd quxiao">取消订单</a>
+                        </case>
+                        <case value="2">
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/lease/value/1',array('id'=>$vo['id']))}">查看详情</a>
+                        </case>
+                        <case value="3">
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/lease/value/1',array('id'=>$vo['id']))}">查看详情</a>
+                          <a href="javascript:;" data-id="{$vo['id']}" class="qianshou">确认收货</a>
+                        </case>
+                        <case value="4">
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/lease/value/1',array('id'=>$vo['id']))}">查看详情</a>
+                            <a href="javascript:void(0);" class="btn gh" title="未归还" data-id="{$vo.id}">归还</a>
+                          <!--<a class="fukuan" href="{:U('/Home/PersonalCenter/goEvaluate/tag/lease')}">晒单/评价</a>-->
+                        </case>
+                        <case value="5">
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/lease/value/1',array('id'=>$vo['id']))}">查看详情</a>
+                          <a href="javascript:void(0);" class="btn" style="background: gainsboro;border-color:gainsboro" title="已归还" data-id="{$vo.id}">已归还</a>
+                          <!--<a class="fukuan" href="order1.html">退换货申请</a>-->
+                        </case>
+                        <case value="6"><a href="{:U('/Home/PersonalCenter/orderDetails/tag/lease/value/1',array('id'=>$vo['id']))}">查看详情</a></case>
+                        <case value="7"><a href="{:U('/Home/PersonalCenter/orderDetails/tag/lease/value/1',array('id'=>$vo['id']))}">查看详情</a></case>
+                        <case value="8">
+                          <a href="{:U('/Home/PersonalCenter/orderDetails/tag/lease/value/1',array('id'=>$vo['id']))}">查看详情</a>
+                          <a href="javascript:void(0);" class="btn" style="background: gainsboro;border-color:gainsboro" title="已归还" data-id="{$vo.id}">归还中</a>
+                          <!--<a class="fukuan" href="order1.html">退换货申请</a>-->
+                        </case>
+                      </switch>
+					</td>
+                  </tr>
+                </table>  
+              </div>
+              </volist>
+            </div>
+			
+          </div>
+          	<div class="pages">{$page}</div>
+        </div>
+      </div>
+    </div>      
+  </div>
+
+
+  <!--  / user  -->
+
+   <form id="orForm" action="{:U('/Home/Order/pay')}" method="post" name="orForm">
+    <input type="hidden" id="post_ord" name="order_no" value=""/>
+    </form>
+   
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task1">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <a href="javascript:void (0)" class="task_btn1_on" id="start" value="">确定</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="task" style="z-index: 9996;">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;height:500px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">归还物流信息</div>
+    <div class="task_btn">
+      <table style="line-height:30px;">
+        <tr>
+          <th><span style="color:red;">*</span>快递公司:</th>
+          <td> <select style="width: 182px;" name="express_name" id="select1">
+            <foreach name="express_list" item="vo">
+              <option value="{$vo['express_ma']}">{$vo['express_company']}</option>
+            </foreach>
+          </select>
+            <input value="activate selectator" id="activate_selectator1" type="button" style="width:70px;height:30px;float:left;margin:1px 8px 0 12px;background:rgba(255, 102, 0, 1);color: #fff;border:0;font-size: 15px;display: none;">
+          </td>
+        </tr>
+        <br/>
+        <tr>
+          <th> <span style="color:red;">*</span>快递单号:</th>
+          <td><input type="text" onKeyUp="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" class="input describe1" name="express_no" style="height:35px;width: 182px;"></td>
+        </tr>
+      </table>
+      <div class="task_btn1" style="margin-top: 73px;">
+        <a href="##" class="task_btn1_on1" id="fahuo">确定发货</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>
+      </div>
+    </div>
+  </div>
+</div>
+<input type="hidden" name="ordid" value="" id="ordid" />
+</body>
+<script src="/Public/admin/js/fm.selectator.jquery.js"></script>
+<script>
+    var $activate_selectator1 = $('#activate_selectator1');
+    $activate_selectator1.click(function () {
+        var $select1 = $('#select1');
+        if ($select1.data('selectator') === undefined) {
+            $select1.selectator({
+                labels: {
+                    search: 'Search here...'
+                }
+            });
+            $activate_selectator1.val('搜索');
+        } else {
+            $select1.selectator('destroy');
+            $activate_selectator1.val('activate selectator');
+        }
+    });
+    $activate_selectator1.trigger('click');
+</script>
+<script>
+	$(function(){
+		$(".fukuan").click(function(){
+		var order_no = $(this).data('id');
+		//alert(order_no);return false;
+			 dialog.showTips('确定租赁','firm',function(){
+
+				$.ajax({
+					url:'/Home/PersonalCenter/orderDetails',
+					type:'post',
+					data:{order_no:order_no},
+					dataType:'json',
+					success:function(g){
+						if(g.status == 1){
+						//付款
+							$('#post_ord').val(order_no);
+							$("form[name=orForm]").submit();
+						}else{
+							alert(g.info);
+						}
+					}
+					
+				})
+			 })
+		})
+	})
+</script>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.gh').click(function(){
+    console.log($(this).data('id'));
+    var ordid = $(this).data('id');
+    $("#ordid").val(ordid);
+    //console.log($("#ordid").val());
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+    $('.task').stop(true).fadeOut(1000);
+    $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+    $('.task').stop(true).fadeOut(1000);
+    $('.task_con').removeClass('task_con_on');
+})
+
+
+
+
+$('.qxdd').click(function(){
+    var id1 = $(this).attr('data-id');
+    $('#start').val(id1);
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+
+  $('.task_btn1_on').click(function () {
+    var id1 = $('#start').val();
+
+          $.ajax({
+              url: "{:U('Home/PersonalCenter/cancelOrder')}",
+              data: {order_id:id1},
+              type: 'post',
+              dataType: 'json',
+              success: function (content) {
+                  if (content.status == 1) {
+                      alert(content.info
+
+                      );
+                      window.location.reload();
+                  } else {
+                      alert(content.info
+
+                      );
+                  }
+              }
+          })
+  })
+
+
+  $('.qianshou').click(function () {
+     var id1 = $(this).attr('data-id');
+      dialog.showTips('确定签收吗','firm',function () {
+          $.ajax({
+              url: "{:U('Home/PersonalCenter/changeOrderStatus')}",
+              data: {id:id1},
+              type: 'post',
+              dataType: 'json',
+              success: function (content) {
+                  if (content.status == 1) {
+                      //alert(content.info );
+                      window.location.reload();
+                  } else {
+                      alert(content.info
+
+                      );
+                  }
+              }
+          })
+      });
+  })
+
+//发货
+$("#fahuo").click(function(){
+    var data = {};
+    data.express_name    = $.trim($("select[name=express_name]").val());
+    // data.express_fee     = $.trim($("input[name=express_fee]").val());
+    data.express_no         = $.trim($("input[name=express_no]").val());
+    if(!data.express_name){
+        alert("请选择物流公司！");return false;
+    }
+    if(!data.express_no){
+        alert("请填写快递单号！");return false;
+    }
+    data.id = $("#ordid").val() ;
+    // console.log(data);return false;
+
+    $.ajax({
+        url:"{:U('Home/PersonalCenter/express')}",
+        type:'post',
+        data :data,
+        datatype : 'json',
+        success:function(data){
+            if(data.status==1){
+                $('.wap_tanc').attr('z-index','999999');
+                $('.wap_tanc_bg').attr('z-index','999999');
+                $('.wap_tanc_con').attr('z-index','999999');
+                // alert(data.info);
+                //return false;//z-index
+                // dialog.showTips(data.info,'warn',function(){
+                window.location.reload();
+                // })
+            }else{
+                window.location.reload();
+                alert(data.info);
+            }
+        }
+    });
+});
+
+$('.gh').css('color','#ccc');
+//$('.gh').click(function(){
+//    dialog.showTips('是否归还','firm',function(){
+//
+//    })
+//})
+  $('.gh').mouseover(function(){
+      $(this).css('background','black');
+  })
+$('.gh').mouseout(function(){
+    $(this).css('background','');
+})
+
+</script>
+</html>

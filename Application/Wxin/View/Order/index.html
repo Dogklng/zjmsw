@@ -1,0 +1,439 @@
+<include file="Public:header" />
+<style>
+  .warpper2,.warpper3{
+    display: none;
+  }
+</style>
+
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:50px;">
+
+
+<!--  / user  -->
+<div class="user warpper1">
+  <div class="shopcar order_t" style="margin-top:50px;">
+    <a href="javascript:;" class="warpper2a">
+      <input type="hidden" name="address_id" value="{$address[0]['id']}" />
+      <input type="hidden" name="express_fee" value="{$express_fee}" />
+      <div class="user5_list user5_list_or clearfix" style="padding-bottom:0;">
+            <div class="user5_list1">
+              <img src="__IMAGES__/pro_more1.png" width="20">
+            </div>
+            <div class="user5_list2" id="address">
+              <p>收货人：{$address.0.consignee} <span>{$address.0.telephone}</span></p>
+              <span>{$address.0.province} {$address.0.city} {$address.0.district} {$address.0.place}</span>
+            </div>
+            <div class="user5_list3">
+              <span><i class="fa fa-angle-right"></i></span>
+            </div>
+    </div>
+     <p>亲，为送货入户，务必精确到几幢几户或几组几号哦！</p>
+    </a>                    
+  </div>  
+  
+  <div class="order_4">
+    <h5><img src="__IMAGES__/pro_inner_index.png" width="20">美术网官网商城</h5>
+    <foreach name="order_list" item="vo">
+    <div class="shopcar_list clearfix">
+      <img src="{$vo.imageSrc}" width="100">
+      <div class="shopcar_list_zi">
+        <h5>{$vo.name}</h5>
+       <!-- <p>L 布面丙烯</p>-->
+        <div class="user1_inner3_list2r" style="top:5px; right:0;">
+            <p>¥{$vo.prices}</p>
+            <!--<span>¥4,500.00</span><br/>-->
+            <!--<i>×1</i>  -->
+          </div>
+        <div class="shopcar_list_zi1 clearfix">
+          <!--<span class="pro_jian">-</span>-->
+          <span class="pro_num">{$vo.count}</span>
+          <!--<span class="pro_jia">+</span>-->
+        </div>
+      </div>         
+    </div>
+      </foreach>
+  </div>
+  
+  <div class="order_1">
+    <!--<a href="order1_2.html"><div class="order_11">
+      <h5>优惠卷<p>省100元 100元优惠券<i class="fa fa-angle-right"></i></p></h5>    
+    </div></a>-->
+   <!-- <a href="order1_2.html"><div class="order_11">
+      <h5>配送方式<p>快递 免邮</p></h5>    
+    </div></a>-->
+   <!-- <a href="order1_4.html"><div class="order_11">
+      <h5>积分抵扣(<span>可用3000积分</span>) <p>-¥30<i class="fa fa-angle-right"></i></p></h5>    
+    </div></a>-->
+  </div>
+  
+  <div class="order_1" style="margin-bottom:10px;">
+    <!--<a href="order1_3.html"><div class="order_12" style="border-bottom:1px solid #e8e8e8;">
+      <h5>发票信息 <p>电子发票-增值普票-<span>李亮</span><i class="fa fa-angle-right"></i></p></h5>      
+    </div></a> -->
+    <!--<h5 class="mjyy">买家留言<input type="text" placeholder="请输入给卖家的留言"></h5>-->
+    <h5 class="zongji"><if condition="$is_groom eq 0">租赁天数: {$count_nums}天 <elseif condition="$is_groom eq 1"/>商品数量: {$count_nums}件</if> 合计：<span>¥{$countprice}</span></h5>
+  </div>
+   
+</div>
+<!--  / user  -->
+
+  <!--  / user  -->
+  <div class="user warpper2">
+
+    <div class="user5" id="address_add">
+      <h5>收货地址</h5>
+      <foreach name="address" item="vo">
+        <div class="user5_list clearfix" data-id="{$vo.id}">
+          <a href="javascript:;" class="warpper1a" data-telephone="{$vo.telephone}" data-place="{$vo.place}" data-district="{$vo.district}" data-city="{$vo.city}" data-province="{$vo.province}" data-id="{$vo.id}" data-consignee="{$vo.consignee}"><div class="user5_list1">
+            <p>{$vo.consignee}</p>
+            <eq name="key" value="0">
+              <span>默认</span>
+            </eq>
+          </div>
+          </a>
+          <a href="javascript:;" class="warpper1a" data-telephone="{$vo.telephone}" data-place="{$vo.place}" data-district="{$vo.district}" data-city="{$vo.city}" data-province="{$vo.province}" data-id="{$vo.id}" data-consignee="{$vo.consignee}"><div class="user5_list2">
+            <p>{$vo.telephone}</p>
+            <span>{$vo.province} {$vo.city} {$vo.district} {$vo.place}</span>
+          </div>
+          </a>
+          <a href="javascript:;" class="warpper3a" data-type="1" data-telephone="{$vo.telephone}" data-place="{$vo.place}" data-district="{$vo.district}" data-city="{$vo.city}" data-province="{$vo.province}" data-id="{$vo.id}" data-consignee="{$vo.consignee}"><div class="user5_list3">
+            <img src="__IMAGES__/bianj.svg" width="30">
+          </div>
+          </a>
+        </div>
+</foreach>
+
+    </div>
+
+  </div>
+  <!--  / user  -->
+
+  <div class="allorder_top warpper3">
+    <h3 class="headH3"> <a href="javascript:;" class="warpper2a"> <i class="fa fa-angle-left"></i> 添加新地址 </a> </h3>
+  </div>
+  <div class="p_xiangqing1 warpper3">
+    <input type="hidden" name="id" value="" />
+    <div class="shop_xdz">
+      <div class="shop_xdzone">
+        <div class="shop_xdz_center">
+          收件人姓名 :<input type="text" class="consignee" /></div>
+      </div>
+
+      <div class="shop_xdzone">
+        <div class="shop_xdz_center">
+          手机号码 :<input type="text" class="telephone"/></div>
+      </div>
+
+
+      <div class="shop_xdzone shop_dz_xl">
+        <div class="shop_xdz_center">
+          省市<i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+
+
+      <div class="info">
+        <div class="info_center">
+          <select id="s_province" name="s_province"></select>  
+          <select id="s_city" name="s_city" ></select>  
+          <select id="s_county" name="s_county"></select>
+          <script class="resources library" src="__JS__/area.js" type="text/javascript"></script>
+          <script type="text/javascript">_init_area();</script>
+        </div>
+        <div id="show"></div>
+      </div>
+      <script type="text/javascript">
+        var Gid  = document.getElementById ;
+        var showArea = function(){
+          Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +
+                  Gid('s_city').value + " - 县/区" +
+                  Gid('s_county').value + "</h3>"
+        }
+        Gid('s_county').setAttribute('onchange','showArea()');
+      </script>
+
+
+      <div class="shop_xdzone">
+        <div class="shop_xdz_center">
+          <p>详细地址 :</p> <input type="text" class="place"/>
+          <div class="clear"></div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+    <div class="shop_add_tj shop_add_tj1">
+      <a href="#" class="address_add">保存</a>
+    </div>
+
+
+
+  </div>
+</div>
+<!--  / warpper  -->
+<!--  / footer  -->
+<div class="shopcar_b order_b warpper1">
+  <div class="shopcar_bon">
+    <h5>实付：¥<span id="pay_fee">{$pay_fee}</span></h5>
+    <div class="shopcar_btn">
+      <a class="makeorder" href="javascript:;">提交订单</a>
+    </div>   
+  </div>      
+</div>
+
+<div class="user5_xj warpper2" style="bottom: 0px !important;">
+  <a href="javascript:;" class="warpper3a" data-type="2" >新建</a>
+</div>
+<!--  / footer  -->
+<form action="{:U('/Wxin/Order/pay')}" method="post" name="form1">
+  <input type="hidden" name="post_data" value="" />
+</form>
+</body>
+<script>
+  $('.warpper2a').click(function(){
+    $('.warpper2').show();
+    $('.warpper1').hide();
+    $('.warpper3').hide();
+  })
+
+  $('.warpper1a').click(function(){
+    var address_id = $(this).attr('data-id');
+    $('input[name="address_id"]').val(address_id);
+
+    //选择地址 读取运费
+      var consignee = $(this).attr('data-consignee');
+      var province = $(this).attr('data-province');
+      var city = $(this).attr('data-city');
+      var district = $(this).attr('data-district');
+      var place = $(this).attr('data-place');
+      var telephone = $(this).attr('data-telephone');
+      var price = "{$countprice}";
+      var weight = "{$weight}";
+      var is_groom = "{$is_groom}";
+      var zujin = "{$zujin}";
+      var is_cart = "{$is_cart}";
+      var user_id = "{$user_id}";
+
+      var express = {$express};
+      if(!express){
+        express=0;
+      }
+      //console.log(express);return false;
+
+      $.ajax({
+        type: "POST",
+        url: "{:U('/Wxin/Order/get_expressFee')}",
+        data: {
+          weight: weight,
+          province:province,
+          is_cart:is_cart,
+          express:express,
+          user_id:user_id
+        },
+        dataType: "json",
+        success: function (g) {
+          if (g.status == 1) {
+            var zprice = "";
+            if(is_groom == 1){
+              zprice = parseFloat(price) + parseFloat(g.info);
+            }else{
+              zprice = parseFloat(price) + parseFloat(zujin) + parseFloat(g.info);
+            }
+            var cc = $(".order_shonc1 li input[name='checkbox']:checked").data('id');
+            if(cc != undefined){
+              var money = $(".order_shonc1 li input[name='checkbox']:checked").data('money');
+              zprice = parseFloat(zprice) - parseFloat(money);
+            }
+            $('input[name="express_fee"]').val(g.info);//运费
+            $("#pay_fee").text(zprice);     //付款金额
+            var str = '';
+            str += '<p>收货人：'+consignee+'<span>'+telephone+'</span></p>';
+            str += '<span>'+province+' '+city+' '+district+' '+place+'</span>';
+            $('#address').html(str);
+
+            $('.warpper1').show();
+            $('.warpper2').hide();
+            $('.warpper3').hide();
+          } else {
+            alert(g.info);
+          }
+        }
+      });
+  })
+
+  $('.warpper3a').click(function(){
+    $('.warpper3').show();
+    var type = $(this).attr('data-type');
+    if(type==1){
+      var str = '<i class="fa fa-angle-left"></i> 编辑地址';
+      $('.headH3 a').html(str);
+      var id = $(this).attr('data-id');
+      var consignee = $(this).attr('data-consignee');
+      var province = $(this).attr('data-province');
+      var city = $(this).attr('data-city');
+      var district = $(this).attr('data-district');
+      var place = $(this).attr('data-place');
+      var telephone = $(this).attr('data-telephone');
+      $('input[name="id"]').val(id);
+      $("#s_province option").each(function () {
+        if ($(this).val() == province) {
+          $(this).attr('selected', true);
+        }
+      });
+      $("#s_city option").each(function () {
+        if ($(this).val() == province) {
+          $(this).attr('selected', true);
+        }
+      });
+
+      $('#s_city').html("");
+      $('#s_county').html("");
+      var _ct = "<option value=" + city + " >" + city + "</option>";
+      var _dt = "<option value=" + district + ">" + district + "</option>";
+      $('#s_city').append(_ct);
+      $('#s_county').append(_dt);
+      $('.consignee').val(consignee);
+      $('.telephone').val(telephone);
+      $('.place').val(place);
+    }else {
+      var str = '<i class="fa fa-angle-left"></i> 添加新地址';
+      $('.headH3 a').html(str);
+      $('input[name="id"]').val('');
+      $('.consignee').val('');
+      $('.telephone').val('');
+      _init_area();
+      $('.place').val('');
+    }
+    $('.warpper1').hide();
+    $('.warpper2').hide();
+  })
+
+  $('.address_add').click(function(){
+    var post = {};
+    post.id = $('input[name="id"]').val();
+    post.consignee  = $('.consignee').val();
+    post.telephone  = $('.telephone').val();
+    post.province   = $('#s_province').val();
+    post.city       = $('#s_city').val();
+    post.district   = $('#s_county').val();
+    post.place      = $('.place').val();
+    if(post.consignee == '' || post.consignee==null){
+      alert("请输入收货人！");return false;
+      //dialog.showTips("请输入收货人","warn");return false;
+    }
+    if(!post.telephone){
+      alert("请填写手机号！");return false;
+      //dialog.showTips("请填写手机号","warn");return false;
+    }else if(!post.telephone.match(/^1[35789][0-9]{9}$/)){
+      alert("手机号码格式错误！");return false;
+      //dialog.showTips("手机号码格式错误","warn");return false;
+    }
+
+    if(post.province == '' || post.province==null){
+      alert("请选择省份！");return false;
+      //dialog.showTips("请选择省份","warn");return false;
+    }
+
+    if(post.city == '' || post.city==null){
+      alert("请选择城市！");return false;
+      //dialog.showTips("请选择城市","warn");return false;
+    }
+
+    if(post.district == '' || post.district==null){
+      var len = $('#s_county option').length;
+      if(len>1){
+        alert("请选择区县！");return false;
+        //dialog.showTips("请选择区县","warn");return false;
+      }
+    }
+
+
+    $.ajax({
+      url:"{:U('Wxin/Order/addAddress')}",
+      data:post,
+      type:'post',
+      dataType:'json',
+      success:function(content){
+        if(content.status==2){
+          $('#address_add .user5_list').each(function(){
+             var new_id = $(this).attr('data-id');
+            if(new_id==post.id){
+              for(var i=0;i<3;i++){
+                $(this).find('a').eq(i).attr('data-telephone',post.telephone);
+                $(this).find('a').eq(i).attr('data-place',post.place);
+                $(this).find('a').eq(i).attr('data-city',post.city);
+                $(this).find('a').eq(i).attr('data-district',post.district);
+                $(this).find('a').eq(i).attr('data-province',post.province);
+                $(this).find('a').eq(i).attr('data-consignee',post.consignee);
+              }
+              $(this).find('a').eq(0).find('p').html(post.consignee);
+              $(this).find('a').eq(1).find('div').find('p').html(post.telephone);
+              $(this).find('a').eq(1).find('div').find('span').html(post.province+' '+post.city+' '+post.district+' '+post.place);
+            }
+          });
+          dialog.showTips("修改成功","warn");
+          $('.warpper1').hide();
+          $('.warpper2').show();
+          $('.warpper3').hide();
+        }else if(content.status==1){
+          var html = '<div class="user5_list clearfix">';
+          html += '<div class="user5_list1"><p>'+post.consignee+'</p></div></a>';
+          html += '<a href="javascript:;" class="warpper1a" data-telephone="'+post.telephone+'"';
+          html += ' data-place="'+post.place+'" data-district="'+post.district+'" data-city="'+post.city+'" data-province="'+post.province+'"';
+          html += ' data-id="'+post.id+'" data-consignee="'+post.consignee+'">';
+          html += '<div class="user5_list2"><p>'+post.telephone+'</p> <span>'+post.province+' '+post.city+' '+post.district+' '+post.place+'</span> </div></a>';
+          html += '<a href="javascript:;" class="warpper1a" data-type="1" data-telephone="'+post.telephone+'"';
+          html += ' data-place="'+post.place+'" data-district="'+post.district+'" data-city="'+post.city+'" data-province="'+post.province+'"';
+          html += ' data-id="'+post.id+'" data-consignee="'+post.consignee+'">';
+          html += '<div class="user5_list3"> <img src="/Public/Wxin/Images/bianj.svg" width="30"> </div></a> </div>';
+          $('#address_add').append(html);
+          dialog.showTips(content.info,"warn");
+          $('.warpper1').hide();
+          $('.warpper2').show();
+          $('.warpper3').hide();
+        }else{
+          alert(content.info);
+        }
+      }
+    });
+  })
+  $(document).ready(function(e) {
+    $(".shop_dz_xl").click(function(){
+      $(".shop_xdz .info").slideToggle();
+    })
+  });
+  $(".makeorder").click(function (){
+    var post = {};
+    //var address        = get_checked_address();
+    post.address_id    = $('input[name="address_id"]').val();
+    post.express_fee   = $('input[name="express_fee"]').val();
+    if(!post.address_id){
+      //dialog.showTips("请选择收货地址！", "warn");return false;
+      alert("请选择收货地址！");
+      return false;
+    }
+    post.order_info = '{$order_info1}';
+    post.type = '{$type}';
+    post.cart_ids   = '{$cart_ids}';
+    post.total_price  = '{$countprice}';
+
+    //代金券
+    var cc = $(".order_shonc1 li input[name='checkbox']:checked").data('id');
+    if(cc != undefined){
+      var coupon = cc;
+      post.coupon  = coupon;
+    }
+    var artists_id = '{$artists_id}';
+    if(artists_id != 0){
+      post.artists_id  = artists_id;
+    }
+    var post1 = JSON.stringify(post);
+    $("input[name=post_data]").val(post1);
+    $("form[name=form1]").submit();
+
+  })
+</script>
+</html>

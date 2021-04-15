@@ -1,0 +1,144 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+<style>
+    .col-lg-2{
+        width:20%;
+    }
+</style>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:user_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+         <div class="SellerTop">
+             <div class="SellerFlower">
+             <div class="row">
+                 <div class="col-lg-4 col-md-3 col-sm-3">
+                     <div class="SellerFlist SellerFlistCurr"> <span>1</span>
+                         <h3>阅读协议<i>签署协议</i></h3>
+                     </div>
+                 </div>
+
+                 <div class="col-lg-4 col-md-3 col-sm-3">
+                     <div class="SellerFlist"> <span>2</span>
+                         <h3>提交资料<i>提交个人资料</i></h3>
+                     </div>
+                 </div>
+                 <div class="col-lg-4 col-md-3 col-sm-3">
+                     <div class="SellerFlist"> <span>3</span>
+                         <h3>审核<i>审核</i></h3>
+                     </div>
+                 </div>
+             </div>
+             </div>
+             {$content|htmlspecialchars_decode|stripslashes}
+         </div>
+            <div class="SelNoticeStyle">
+
+                <h4><a href="javascript:history.back();"  >不同意</a> <a id="next" href='javascript:;'>同意</a></h4>
+            </div>
+        </div>  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+    $('#next').click(function(){
+        $.ajax({
+            url: "{:U('/Home/PersonalCenter/crowdAgree')}",
+            type: "post",
+            dataType: "json",
+            data: {xieyi:1},
+            success:function(g){
+                if(g.status == 1){
+                    window.location.href=g.url;
+                    return false;
+                }else{
+                    window.location.reload();
+                    return false;
+                }
+            }
+        })
+    })
+</script>
+<script>
+
+    $('#agree').click(function () {
+
+        var personType = $(this).attr('data-id');
+        var is_depute  = $(this).attr('data-is_depute');
+       
+        $.ajax({
+            url: "{:U('/Home/Shop/zl')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                personType: personType,
+                is_depute:is_depute
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+               window.location.href="{:U('/Home/personalCenter/userinfo')}"
+            } else {
+                alert(g.info);
+            }
+
+        })
+
+
+    })
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+</html>

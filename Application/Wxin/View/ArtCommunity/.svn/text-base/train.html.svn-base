@@ -1,0 +1,225 @@
+<include file="Public:header" />
+<style>
+  .canzhan_form {
+    width: 90%;
+    height: auto;
+    background: #fff;
+    margin: 30% auto 0 auto;
+    position: relative;
+  }
+  .canzhan_xx {
+    padding: 0px 30px 30px 30px;
+  }
+  .canzhan_xx input {
+    float: right;
+    padding: 0 10px;
+    border: 1px #eee solid;
+    line-height: 24px;
+    width: 70%;
+  }
+</style>
+<div class="galleryClass" style="margin-top: 60px">
+  <div class="galleryScroll">
+    <volist name="person" id="v">
+      <a href="{:U('Wxin/ArtCommunity/artistList')}?id={$v.id}" >{$v.name}</a>
+    </volist>
+    <volist name="organize" id="vv">
+      <a href="{:U('Wxin/ArtCommunity/hualang')}?id={$vv.id}" >{$vv.name}</a>
+    </volist>
+
+    <a href="{:U('Wxin/ArtCommunity/train')}" class="active">培训</a>
+    <a href="{:U('Wxin/ArtCommunity/crowdFunding')}">众筹</a>
+    <a href="{:U('Wxin/ArtCommunity/overseas')}">海外交流</a>
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper1M">
+  <!-- <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">In training</p>
+    <h5>培 • 训</h5>
+  </div> -->
+  <div class="main">
+    <div class="CraCon row">
+      <!--<div class="praise_title" style="margin-bottom: 0;width: 90%;margin:auto;">
+      <h2><i></i>培训<a href="javascript:vido(0);" class="screenA">筛选</a></h2>
+      </div>-->
+      <div class="col-lg-10 col-md-10 col-sm-10" style="padding: 0;">
+        <div class="peixunRight">
+          <ul class="CraUl">
+            <volist name="res" id="v">
+            <li><a href="{:U('/Wxin/ArtCommunity/traindot',array('id'=>$v['id']))}">
+              <div class="CraUl-img"><img src="{$v.logo}" /></div>
+              <div class="CraUl-txt">
+                <h2>{$v.title}</h2>
+                <span> <i class="fa fa-clock-o"></i>时间：{$v.start|date='Y-m-d',###}——{$v.end|date='Y-m-d',###}</span> <span> <i class="fa fa-map-marker" style=" font-size:16px;"></i>地点：{$v.address}</span> </div>
+              </a>
+              <h3 class="peixunH peixunH3"><a href="{:U('/Wxin/ArtCommunity/traindot',array('id'=>$v['id']))}"><i class="fa fa-plus-square"></i>查看详情</a></h3>
+              <h4 class="peixunH peixunH4"><a href="javascript:;" id="{$v.id}" onclick="myFunction(this)"><i class="fa fa-user-plus"></i>我要报名</a></h4>
+            </li>
+              </volist>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<div class="canzhan_forma">
+  <div class="canzhan_form"> <img src="__IMAGES__/close.png" class="close canzhan_close" style="top:10px; right:10px;" />
+    <h3>培训报名</h3>
+    <div class="canzhan_xx">
+      <input type="hidden" id="train_id"/>
+      <p><span>姓名：</span>
+        <input type="text" id="name"/>
+      </p>
+      <p><span>手机号：</span>
+        <input type="text" id="tel"/>
+      </p>
+      <a href="javascript:void(0)" class="zlxxtj">提交信息</a> </div>
+  </div>
+</div>
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+
+  var p = 2;
+  // 加载刷新。
+  function refresh(refresh,loadmore) {
+    $(window).scroll(function(){
+      console.log('正在滑动f');
+
+      var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+      var scrollHeight = $(document).height();   //当前页面的总高度
+      var clientHeight = $(this).height();    //当前可视的页面高度
+      // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+      if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+        // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+        console.log('下拉');
+
+        if(loadmore){
+          loadmore();
+        }
+      }else if(scrollTop<=0){
+        //滚动条距离顶部的高度小于等于0 TODO
+        //alert("下拉刷新，要在这调用啥方法？");
+
+        console.log('上拉');
+        if(refresh){
+          refresh();
+        }
+
+      }
+
+    });
+
+  }
+  //调用
+  refresh(fn1,fn2);
+
+  function fn1(){
+    window.location.href = "{:U('Wxin/ArtCommunity/train')}";
+  }
+  function fn2(){
+    $.ajax({
+      type: "POST",
+      url: "{:U('/Wxin/ArtCommunity/get_train')}",
+      data: {
+        p: p,
+      },
+      dataType: "json",
+      success: function (g) {
+        if (g.status == 1) {
+          p++;
+          $('.CraUl').append(g.html);
+        } else {
+          //alert(g.info);
+        }
+      }
+    });
+  }
+  function myFunction(obj) {
+    var id = obj.id;
+    $('#train_id').val(id);
+  }
+
+  $('.zlxxtj').click(function () {
+    var member_id = '{$member_id}';
+    if(member_id == 0){
+      dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+      return false;
+    }
+    var name = $.trim($('#name').val());
+    var tel  = $.trim($('#tel').val());
+    var train_id   = $('#train_id').val();
+    if(name == ""){
+      alert('姓名必填');
+      return false;
+    }
+    if(tel == ''){
+      alert('手机号必填');
+      return false;
+    }
+    if(!(/^1[34578]\d{9}$/.test(tel))){
+      alert('请输入正规手机号');
+      return false;
+    }
+    $.ajax({
+      url: "{:U('/Wxin/ArtCommunity/addTrain')}",
+      type: "post",
+      dataType: "json",
+      data: {
+        name: name,
+        tel:  tel,
+        train_id:train_id
+      }
+    }).done(function (g) {
+      if (g.status == 1) {
+        alert(g.info);
+        window.location.reload();
+      } else {
+        alert(g.info);
+      }
+
+    })
+  })
+
+$(document).ready(function(){
+  
+    $('.screenFinish').click(function(){
+   $('.screenBox').animate({"right":"-80%"},100)
+   
+   });
+  
+  $('.screenA').click(function(){
+   $('.screenBox').animate({"right":"0"},100)
+  })
+  $(".screenLeft").click(function(){
+    $(".screenBox").hide();
+  });
+  
+
+  $(".screenClick1").click(function(){
+    $(".screenlist-a1").fadeToggle("slow");
+  });
+  $(".screenClick2").click(function(){
+    $(".screenlist-a2").fadeToggle("slow");
+  });
+  $(".screenClick3").click(function(){
+    $(".screenlist-a3").fadeToggle("slow");
+  });
+  $(".screenClick4").click(function(){
+    $(".screenlist-a4").fadeToggle("slow");
+  });
+  $(".screenClick5").click(function(){
+    $(".screenlist-a5").fadeToggle("slow");
+  });
+  
+  
+});
+</script>
+
+</html>

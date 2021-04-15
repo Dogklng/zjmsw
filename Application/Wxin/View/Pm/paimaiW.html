@@ -1,0 +1,356 @@
+<include file="Public:header" />
+<style>
+  .List{
+    background: #f70000 !important;
+    color: #fff !important;
+  }
+  .auction {
+    padding: 0 15px;
+    width: 100%;
+  }
+</style>
+<div class="galleryClass" style="margin-top: 60px">
+  <div class="galleryScroll">
+    <a href="{:U('Wxin/Pm/paimaiS')}">竞卖中</a>
+    <a href="{:U('Wxin/Pm/paimaiY')}">预展</a>
+    <a href="{:U('Wxin/Pm/result')}">结果</a>
+    <a href="{:U('Wxin/Pm/paimaiXS')}">限时拍</a>
+    <a href="{:U('Wxin/Pm/paimaiW')}"  class="active">公益</a>
+  </div>
+</div>
+<!-- 大家都在赞 -->
+<div class="praise artworkP">
+  <div class="praise_title">
+    <h2><i></i>公益<a href="javascript:vido(0);" class="screenA">筛选</a></h2>
+  </div>
+  <div class="banpYbox">
+      <div class="banner-info banner-status-over">
+        <div class="info-top">
+          <p class="over-flag"><!--本场竞卖进行中-->公益</p>
+        </div>
+        <div class="info-bottom">
+          <div class="infoM clearfix">
+            <p class="info-meta info-store"> <span class="meta-text">专场:</span> <span class="meta-num"><em>{$num.0.num|default=无}</em>场</span> </p>
+            <p class="info-meta info-look"> <span class="meta-text">围观:</span> <span class="meta-num"><em>{$num.0.wgcont|default=0}</em>次</span> </p>
+<!--            <p class="info-meta info-look"> <span class="meta-text">出价:</span> <span class="meta-num"><em>14</em>次</span> </p>-->
+          </div>
+          <div class="info-desc">
+            <p class="info-org"> <span>组织机构:</span><a href="{:U('/Wxin/Pm/companyDetails/id/0')}">美术网平台 &gt;</a> </p>
+          </div>
+        </div>
+        <div class="info-bottom">
+          <h3 class="sqrzH3"><a href="javascript:;">竞卖详情</a></h3>
+        </div>
+      </div>
+    </div>
+  <div class="auction">
+    <foreach name="num" item="vo">
+      <div class="left-store">
+        <div class="store"> <a href='{:U("Wxin/Pm/paimaiWNum/num_id")}/{$vo.id}'> <img src="{$vo.backg_pic}" width="100%"/></a>
+          <div class="store-det"> <a href='{:U("Wxin/Pm/paimaiWNum/num_id")}/{$vo.id}'>
+            <h3>{$vo.name}</h3>
+          </a>
+            <!--<p class="store-det-small">时间：2017-04-26</p>-->
+          <span class="action">
+          <!--<div class="sms icon tip"  > <span style="display: none;">短信提醒</span> </div>-->
+          </span> <span class="time">{$vo.start_time|date="Y年m月d日 H:i",###} - {$vo.end_time|date="Y年m月d日 H:i",###}</span>
+            <br />
+            <span class="cishu">出价次数：<b>{$vo.zcj|default=0}</b></span>
+            <span class="cishu">围观数：<b>{$vo.wgcont|default=0}</b></span>
+          </div>
+          <div class="store-mai">
+            <h2>{$vo.start_time|date="d",###}</h2>
+            <p><switch name="vo.start_time|date='m',###">
+              <case value="01">一</case>
+              <case value="02">二</case>
+              <case value="03">三</case>
+              <case value="04">四</case>
+              <case value="05">五</case>
+              <case value="06">六</case>
+              <case value="07">七</case>
+              <case value="08">八</case>
+              <case value="09">九</case>
+              <case value="10">十</case>
+              <case value="11">十一</case>
+              <case value="12">十二</case>
+            </switch>月</p>
+          </div>
+        </div>
+      </div>
+    </foreach>
+    <div class="clear"></div>
+    
+  </div>
+</div>
+<!-- 大家都在赞 -->
+
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+<!-- screen -->
+<div class="screenBox">
+  <div class="screenBoxS">
+    <div class="screenCon">
+      <h3 class="screenH3">筛选</h3>
+      <!--<div class="screenList">
+        <h4 class="screenClick1">按时间筛选<span class="fa fa-angle-down"></span> </h4>
+        <div class="screenlist-a1" style="display:block;">
+          <div id="main">
+            <div class="demo">
+              <p>请选择日期：
+                <input type="text" class="input" id="pickdate" />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>-->
+      <div class="screenList">
+        <h4 class="screenClick2">按类目筛选<span class="fa fa-angle-down"></span></h4>
+        <div class="screenlist-a2" style="display:block;">
+          <input type="hidden" value="{$_GET['cate']}" name="cate_ids">
+          <foreach name="screens" item="v">
+            <a href="javascript:vido(0);" data-id="{$v.id}" <eq name="cate" value="$v.id">class="List"</eq>>{$v.classname}</a>
+          </foreach>
+        </div>
+      </div>
+    </div>
+    <div class="screenButton">
+      <a href="#" class="screenFinish" id="screenReset" style="background: #F77B7B;">重置</a>
+      <a href="#" class="screenFinish" id="screenFinish">完成</a>
+    </div>
+    <div class="screenLeft"></div>
+  </div>
+</div>
+<!-- screen -->
+
+<div class="relation" style="display:none;">
+  <div class="relation_bg"></div>
+  <div class="relation_con" style="margin-top:-150px;overflow-y:auto;"> <img src="images/dizhi_close.png" width="24">
+    <h5>设置竞卖前提醒</h5>
+    <div class="relation_list">
+      <form action="relationForm">
+        <div class="reFormI reFormIdx"> <span>姓名：</span>
+          <input type="text" />
+        </div>
+        <div class="reFormI reFormIdx"> <span>手机号码：</span>
+          <input type="text" />
+        </div>
+        <div class="reFormB">
+          <input type="button" value="确认" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+<!--  / banner切换  -->
+
+<script type="text/javascript" src="__JS__/jedate.js"></script>
+<script>
+  var p = 2;
+  var cate = "{$_GET['cate']}";
+  $('.screenlist-a2 a').click(function(){
+    $('.screenlist-a2 a').removeClass('List');
+    $(this).addClass('List');
+    var cate_id = $(this).attr('data-id');
+    $('input[name="cate_ids"]').val(cate_id);
+  })
+
+  $('#screenReset').click(function(){
+    $('input[name="cate_ids"]').val('');
+    window.location.href = "{:U('Wxin/Pm/paimaiW')}";
+  });
+  $('#screenFinish').click(function(){
+    var cate_ids = $('input[name="cate_ids"]').val();
+    window.location.href = "{:U('Wxin/Pm/paimaiW')}?cate="+cate_ids;
+  });
+  // 加载刷新。
+  function refresh(refresh,loadmore) {
+    $(window).scroll(function(){
+      console.log('正在滑动f');
+      var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+      var scrollHeight = $(document).height();   //当前页面的总高度
+      var clientHeight = $(this).height();    //当前可视的页面高度
+      // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+      if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+        // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+        console.log('下拉');
+
+        if(loadmore){
+          loadmore();
+        }
+      }else if(scrollTop<=0){
+        //滚动条距离顶部的高度小于等于0 TODO
+        //alert("下拉刷新，要在这调用啥方法？");
+
+        console.log('上拉');
+        if(refresh){
+          refresh();
+        }
+
+      }
+
+    });
+
+  }
+  //调用
+  refresh(fn1,fn2);
+
+  function fn1(){
+    window.location.href = "{:U('Wxin/Pm/paimaiW')}?cate"+cate;
+  }
+  function fn2(){
+    $.ajax({
+      type: "POST",
+      url: "{:U('/Wxin/Pm/get_paimaiW')}",
+      data: {
+        cate: cate,
+        p: p,
+      },
+      dataType: "json",
+      success: function (g) {
+        if (g.status == 1) {
+          p++;
+          $('.auction').append(g.html);
+        } else {
+          //alert(g.info);
+        }
+      }
+    });
+  }
+ $(document).ready(function(){
+
+$(".jpxz").click(function(e){
+        $(".popBox").css({"display":"block"})
+  })
+  
+  
+$(".closejp").click(function(e){
+        $(".popBox").css({"display":"none"})
+  })
+  
+});
+
+ jeDate.skin('gray');
+ jeDate({
+    dateCell:"#dateinfo",
+    format:"YYYY年MM月DD日 hh:mm:ss",
+    isinitVal:true,
+    isTime:true, //isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+
+
+
+
+// 鼠标事件
+
+$('.store-det .icon').click(function(){
+    $('.relation').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.relation_con').addClass('relation_con_on');
+    },300)
+});
+$('.relation_con>img').click(function(){
+      $('.relation').stop(true).fadeOut(1000);
+      $('.relation_con').removeClass('relation_con_on');
+})
+$('#reI1').click(function(){
+  $('.reFormIyx').slideToggle();
+})
+$('#reI2').click(function(){
+  $('.reFormIdx').slideToggle();
+})
+  
+
+</script>
+<script src="__JS__/jquery-1.12.3.min.js"></script>
+<script src="__JS__/datedropper.min.js"></script>
+<script src="__JS__/timedropper.min.js"></script>
+<script>
+$("#pickdate").dateDropper({
+  animate: false,
+  format: 'Y-m-d',
+  maxYear: '2030'
+});
+</script>
+<script>
+$(document).ready(function(e) {
+    
+	var mySwiper1 = new Swiper('.swiper-container1',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left1').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipePrev()
+	})
+	  
+	$('.arrow-right1').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipeNext()
+	})
+	
+	
+
+});
+
+		 
+</script>
+<script>
+$(window).load(function(e) {
+	var height1 = $(".zl_pic img").height();
+	$(".swiper-container1").css("height",height1)
+
+})
+
+$(window).resize(function(e) {
+	var height1 = $(".zl_pic img").height();
+	$(".swiper-container1").css("height",height1)
+
+})
+
+ 
+  </script>
+<script>
+
+
+$(document).ready(function(){
+  
+    $('.screenFinish').click(function(){
+   $('.screenBox').animate({"right":"-80%"},100)
+   
+   });
+  
+  $('.screenA').click(function(){
+   $('.screenBox').animate({"right":"0"},100)
+  })
+  $(".screenLeft").click(function(){
+    $(".screenBox").hide();
+  });
+  
+
+  $(".screenClick1").click(function(){
+    $(".screenlist-a1").fadeToggle("slow");
+  });
+  $(".screenClick2").click(function(){
+    $(".screenlist-a2").fadeToggle("slow");
+  });
+  $(".screenClick3").click(function(){
+    $(".screenlist-a3").fadeToggle("slow");
+  });
+  $(".screenClick4").click(function(){
+    $(".screenlist-a4").fadeToggle("slow");
+  });
+  $(".screenClick5").click(function(){
+    $(".screenlist-a5").fadeToggle("slow");
+  });
+  
+  
+});
+</script>
+</html>

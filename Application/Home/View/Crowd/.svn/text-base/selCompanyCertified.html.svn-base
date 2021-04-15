@@ -1,0 +1,197 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:user_left1" />
+      </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+         <div class="SellerTop">
+          <h3>免费开店</h3>
+          <p>申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+         </div>
+         <div class="SellerFlower">
+          <div class="row">
+           <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="SellerFlist SellerFlistCurr1"> <span>1</span>
+              <h3>选择开店类型<i>个人店铺，企业店铺</i></h3>
+             </div>
+           </div> 
+           <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="SellerFlist SellerFlistCurr1"> <span>2</span>
+              <h3>阅读开店须知<i>确认自己符合个人店铺的相关规定</i></h3>
+             </div>
+           </div> 
+           <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="SellerFlist SellerFlistCurr"> <span>3</span>
+              <h3>申请开店认证<i>需要提供认证相关资料，等待审核通过</i></h3>
+             </div>
+           </div> 
+          </div>
+          <div class="SelCertCon">
+           <div class="SelCertClass">
+            <span><i>*</i>用户类型：</span>
+               <span><input type="radio" name="SelCinput" value="1" <if condition="$res['fuse_type'] eq 1">checked</if>/> 中国大陆</span>
+               <span><input type="radio" name="SelCinput" value="2" <if condition="$res['fuse_type'] eq 2">checked</if>/> 香港/澳门用户</span>
+               <span><input type="radio" name="SelCinput" value="3" <if condition="$res['fuse_type'] eq 3">checked</if>/> 台湾用户</span>
+               <span><input type="radio" name="SelCinput" value="4" <if condition="$res['fuse_type'] eq 4">checked</if>/> 外籍用户</span>
+           </div>
+           <div class="SelCertClass">
+            <span><i>*</i>是法人：</span>
+            <span><input type="radio" name="SelCinput1" value="1"<if condition="$type1 eq 1">checked</if>/> 是</span>
+            <span><input type="radio" name="SelCinput1" value="0"<if condition="$type1 eq 0">checked</if>/> 否</span>
+           </div>
+           <div class="SelCertH6">
+            <h6>抱歉，您的账号信息不够完善 <a href="{:U('Home/PersonalCenter/userInfo')}">立即完善</a></h6>
+           </div>
+           <div class="SelCertTable">
+            <table border="1">
+              <tr>
+                <th>认证名称</th>
+                <th>状态</th>
+                <th>提示</th>
+                <th>操作</th>
+              </tr>
+              <tr>
+                <td>法人代表身份实名认证</td>
+                  <if condition="$res['fa_status'] eq 0"><td>未认证</td></if>
+                  <if condition="$res['fa_status'] eq 1"><td>已认证</td></if>
+                  <if condition="$res['fa_status'] eq 3"><td>等待后台审核</td></if>
+                <td>开店需实名认证</td>
+                  <if condition="$res.fa_status eq 0"> <td><a href="{:U('Home/Crowd/SelIdentityone')}">立即认证</a></td></if>
+                  <if condition="$res.fa_status eq 3"><td style="color:green;">等待后台审核</td></if>
+                  <if condition="$res.fa_status eq 1"><td style="color:green;">已认证</td></if>
+              </tr>
+              <tr>
+                <td>证件认证</td>
+                  <if condition="$res.bus_status eq 0"><td>未认证</td></if>
+                  <if condition="$res.bus_status eq 1"><td>已认证</td></if>
+                  <if condition="$res['bus_status'] eq 3"><td>等待后台审核</td></if>
+                <td>开店需实名认证</td>
+                  <if condition="$res.bus_status eq 0"> <td><a href="{:U('Home/Crowd/SelIdentitytwo')}">立即认证</a></td></if>
+                  <if condition="$res.bus_status eq 3"><td style="color:green;">等待后台审核</td></if>
+                  <if condition="$res.bus_status eq 1"><td style="color:green;">已认证</td></if>
+              </tr>
+              <!-- <tr>
+                <td>代理人身份认证</td>
+                  <if condition="$res1.status eq 0"><td>未认证</td></if>
+                  <if condition="$res1.status eq 1"><td>已认证</td></if>
+                <td>开店需实名认证</td>
+                  <if condition="$res.status eq 0"> <td><a href="{:U('Home/Shop/SelIdentitythree')}">立即认证</a></td></if>
+                  <if condition="$res.status eq 1"><td style="color:green;">已认证</td></if>
+              </tr> -->
+              <!--<tr>
+                <td>开店认证</td>
+                <td>未认证</td>
+                <td>--</td>
+                <td><a href="#">立即认证</a></td>
+              </tr>-->
+            </table>
+           </div>
+          </div>
+          <div class="SelNoticeStyle">
+           <h4><a href="javascript:history.back();" style="background:#ccc;">上一步</a>
+               <if condition="$res.status eq 0"><a id="zc">下一步</a></if>
+               <if condition="$res.status eq 1"><a id="next" href="javascript:void(0)">下一步</a></if>
+           </h4>
+          </div>
+         </div>
+        </div>  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+
+</body>
+<script>
+	$('#zc').click(function(){
+		alert('请先完成认证！');
+		return false;
+	})
+    $('#next').click(function () {
+        var list= $('input:radio[name="SelCinput"]:checked').val();
+        if(list == undefined){
+            alert("请选择用户类型！");
+            return false;
+        }
+
+        var list1= $('input:radio[name="SelCinput1"]:checked').val();
+        if(list1 == undefined){
+            alert("请选择法人！");
+            return false;
+        }
+
+        // var zl = '{$count}';
+        // var zl1 = '{$count1}';
+        // var zl2 = '{$count2}';
+        // if(zl == 0 || zl1==0 || zl2==0){
+        //     alert("请先身份认证，再操作下一步");
+        //     return;
+        // }
+
+         var zl = '{$status}';
+        
+        if(zl != 1){
+            alert("请先身份认证，再操作下一步");
+            return;
+        }
+
+        window.location.href="{:U('/Home/Shop/selAgree/tag/selCenter')}?personType="+list+'&is_depute='+list1;
+    })
+	
+</script>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+</html>

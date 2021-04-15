@@ -1,0 +1,245 @@
+<include file="Public:head"/>
+
+<style>
+    .ftnormal {line-height: 25px!important;}
+    .btn{vertical-align: baseline;}
+    .newinput{ width:145px;}
+    .select.mini{width: 110px;}
+    .vtal-2{vertical-align: -2px;}
+	.shady{ background:#000; opacity:0.5; width:100%; height:100%; position:fixed; top:0; left:0; z-index:111111; display:none; }
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<script type="text/javascript">
+
+    J(function(){
+        J('#starttime').calendar();
+        J('#endtime').calendar();
+//    $(function(){
+//        $('#starttime').calendar({ format:'yyyy-MM-dd' });
+//        $('#endtime').calendar({ format:'yyyy-MM-dd' });
+    });
+
+</script>
+
+<div class="container">
+<div class="inner clearfix">
+    <include file="Public:distributionleft" />
+<!-- end content-left -->
+<div class="shady" id="heemu"></div>
+<img src="" id="em" style="position:fixed;width:34%;margin:auto;left:0;right:0;display:none;z-index:11111111111111;cursor:pointer;" onclick="this.style.display='none',document.getElementById('heemu').style.display='none'"/>
+<div class="content-right fl">
+
+
+    <h1 class="content-right-title">所有报单</h1>
+
+
+    <form action="" method="get">
+        <div class="tables-searchbox">
+            <input type="text" placeholder="手机号" class="input newinput" name="telephone" value="{$telephone}">
+            <input type="text" placeholder="用户昵称" class="input newinput" name="person_name" value="{$person_name}">
+            <input type="text" placeholder="输入订单号" class="input newinput" name="order_no" value="{$order_no}">
+            <input type="text"  name="starttime" id="starttime" value="{$starttime}" placeholder="订单起始时间" class="input Wdate mini" >
+            <span class="mgr5">至</span>
+            <input type="text"  name="endtime" value="{$endtime}" id="endtime" placeholder="订单结束时间" class="input Wdate mini" >
+            <!-- 0待接受 1 申请中 2 任务开始 3任务完成  4确认任务完成 5 取消任务 6退款 7任务结束 -->
+            <select value="{$orderstate}" name="orderstate" class="select mini">
+                <option value="">订单状态</option>
+                <option value="0" <eq name="orderstate" value="0">selected</eq>>未付款</option>
+                <option value="1" <eq name="orderstate" value="1">selected</eq>>已付款</option>
+                <option value="1" <eq name="is_complete" value="0">selected</eq>>未分销</option>
+                <option value="1" <eq name="is_complete" value="1">selected</eq>>已分销</option>
+            </select>
+            <button class="btn btn-primary vtal-2"><i class="gicon-search white"></i>查询</button>
+        </div>
+    </form>
+    <div class="tabs clearfix mgt15">
+        <a href="{:U('Admin/Distribution/index/')}" class="<if condition="($type eq '')">active</if> tabs_a fl">所有报单({$count1})</a>
+        <a href="{:U('Admin/Distribution/index/type/1')}" class="<eq name="type" value="1">active</eq> tabs_a fl">A计划({$count2})</a>
+        <a href="{:U('Admin/Distribution/index/type/2')}" class="<eq name="type" value="2">active</eq> tabs_a fl">B计划({$count3})</a>
+        <a href="{:U('Admin/Distribution/index/type/3')}" class="<eq name="type" value="3">active</eq> tabs_a fl">C计划({$count4})</a>
+        <!-- <a href="{:U('Admin/taskOrder/orderLists/orderstate/7')}" class="<eq name="orderstate" value="13">active</eq> tabs_a fl">订单结束({$counts_type13})</a> -->
+
+        <!--<a href="{:U('Admin/taskOrder/orderLists/pay_type/6/dealerid/')}/{$dealerid}" class="<eq name="pay_type" value="6">active</eq> tabs_a fl">已取消({$count6})</a>-->
+		<eq name="pay_type" value="2">
+		<a href="{:U('/Admin/taskOrder/excel')}/dealerid/{$dealerid}" class="btn btn-success fr">导出</a>
+		</eq>
+    </div>
+        <table class="wxtables table-order mgt20">
+            <colgroup>
+                <col width="25%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="15%">
+                <col width="10%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <td align="center">订单用户</td>
+                    <td align="center">报单类型</td>
+                    <td align="center">订单金额</td>
+                    <td align="center">实际支付</td>
+                    <td align="center">支付类型</td>
+                    <td align="center">任务进度</td>
+                    <td align="center">操作</td>
+                </tr>
+            </thead>
+        </table>
+
+
+    	<table class="wxtables table-order mgt20">
+              <colgroup>
+                <col width="25%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="15%">
+                <col width="10%">
+              </colgroup>
+
+            <volist name="cache" id="vo" empty="暂无数据">
+                <thead>
+
+                    <tr>
+                        <td colspan="8" class="ftnormal" style="background-color:#F2F8FC;">
+                            <input type="checkbox" class="checkbox table-ckbs" data-id="2137327" name="id" value="{$vo.id}">
+                            
+                            <span>订单编号：<b>{$vo.order_no}</b></span>
+                            <span class="mgl15">{$vo.create_at|date="Y-m-d H:i:s",###}</span>
+                            <!---->
+                            <span class="mgl15 colorRed">
+                                <switch name="vo.pay_status">
+                                    <case value="0">未支付</case>
+                                    <case value="1">已支付</case>
+                                </switch>
+                                <if condition="$vo['is_complete']">
+                                <switch name="vo.is_complete">
+                                    <case value="0">未分销</case>
+                                    <case value="1">已分销</case>
+                                </switch>
+                                </if>
+                            </span>
+                         </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td valign="top" class="txtCenter" style="padding-top:15px;vertical-align: inherit;">
+                            <p><b>用户：</b>{$vo.person_name}</p>
+                            <p><b>电话：</b>{$vo.telephone}</p>
+                     	</td>
+                        <td valign="top" class="txtCenter" style="padding-top:15px;vertical-align: inherit;">
+                            <p>{$vo.subject}</p>
+                        </td>
+
+                        <td valign="top" class="txtCenter" style="padding-top:15px;vertical-align: inherit;">
+                            <p><b>¥<if condition="$vo['total_fee']">{$vo.total_fee}<else />0.00</if></b></p>
+                        </td>
+
+
+                        <td valign="middle" align="center" class="txtCenter">
+                            <p><b>¥<if condition="$vo['pay_price']">{$vo.pay_price}<else />0.00</if></b></p>
+                        </td>
+                        <td valign="middle" align="center"  class="txtCenter">
+                            <notempty name="vo['pay_at']">
+                            <p><b>{$vo.pay_at|date="Y-m-d H:i:s",###}</b></p>
+                            </notempty>
+                        </td>
+
+                        <!-- 0待接受 1 申请中 2 任务开始 3任务完成  4确认任务完成 5 取消任务 6退款 7任务结束 -->
+                        <td valign="middle" align="center"  class="txtCenter">
+                            <p><b>
+                            <switch name="vo.orderstate">
+                                <case value="0">待付款</case>
+                                <case value="1">已付款</case>
+                            </switch>
+                            </b></p>
+                        </td>
+                        <td valign="middle" align="center"  class="txtCenter">
+                            <p>
+                            <switch name="vo.isdel">
+                                <case value="0"><b>已上架</b></case>
+                                <case value="1"><b style="color:red;">已下架</b></case>
+                            </switch>
+                            </p>
+                        </td>
+                        <td valign="top" style="vertical-align: inherit;">
+                            <p>
+                                <a href="{:U('Admin/Distribution/orderDetail')}/id/{$vo.id}/dealerid/{$dealerid}" class="btn btn-mini btn-primary">查看详情</a>
+                                <eq name="vo[isdel]" value="1">
+                                    <a class="btn btn-mini btn-danger xiajia" data-id="{$vo.id}">上架</a>
+                                <else />
+                                    <a class="btn btn-mini btn-warning xiajia" data-id="{$vo.id}">下架</a>
+                                </eq>
+
+                            </p>
+							
+                        </td>
+                    </tr>
+                </tbody>
+ </volist>
+
+            </table>
+
+        <!-- end wxtables -->
+        <div class="tables-btmctrl clearfix mgt10">
+            <div class="fl" style="float:none;">
+                <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                <!-- <a href="javascript:void(0)" onclick="del()" class="btn btn-danger J_batch_del">删除订单</a> -->
+            </div>
+
+            <div class="pages" style="float:none;width:100%;text-align:center;padding-top:10px;">
+                {$page}
+            </div>
+                <!-- end paginate -->
+
+        </div>        <!-- end tables-btmctrl -->
+
+
+    <form action="" method="post" id="ids">
+        <input type="hidden" name="ids" value="">
+    </form>
+
+
+</div>
+<!-- end content-right -->
+</div>
+</div>
+<!-- end container -->
+
+<!--gonggao-->
+<include file="Public:foot"/>
+
+
+<script type="text/javascript">
+
+    $(".xiajia").click(function (){
+        var str = $(this).text();
+        if(!confirm("确认"+str+"？")){
+            return false;
+        }
+        var id = $(this).attr("data-id");
+        $.post("{:U('Admin/Distribution/delOrder')}",{id:id},function (data){
+            alert(data.info)
+            if(data.status){
+                window.location.reload();
+            }
+        })
+    })
+
+	function del(){
+		obj = document.getElementsByName("id");
+		check_val = [];
+		for(k in obj){
+			if(obj[k].checked)
+				check_val.push(obj[k].value);
+		}
+		location.href="{:U('/Admin/Distribution/orderDel')}/ids/"+check_val
+	}
+	
+</script> 

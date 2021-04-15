@@ -1,0 +1,127 @@
+<include file="Public:header" />
+
+<link rel="stylesheet" href="__CSS__/exhibit.css">
+<link rel="stylesheet" href="__CSS__/iconfont.css">
+
+<div class="ban1">
+  <volist name="res" id="vo">
+  <div class="banner_img"> <img src="{$vo.pic}" alt="" /> </div>
+  </volist>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 exhibit wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">CLOUD RELEASE</p>
+    <h5>云 • 推 • 荐</h5>
+  </div>
+  <div class="yun_sm">
+    <h3>云推荐入驻：</h3>
+    <h5>1、注册浙江美术网账号（已有账号的可以略过）<a href="javascript:void();" style="color:#f70000;" id="qzc">去注册</a></h5>
+    <h6>注册流程：手机/邮箱/微信+验证码+密码+在线签订协议+完成注册（注：客户后台管理系统+流量统计系统+业务统计系统）</h6>
+    <h5>2、 推荐有礼（双层礼金）</h5>
+    <h6>第一层礼金：动动手指微信圈转发商城产品信息，发一条就有0.01元的进账；第二层礼金：产品售出，成交审核到账一周提佣（每款产品设置一定比例佣金留作注册云推荐店主）。</h6>
+    <h5>3、晋级</h5>
+    <!-- <h6>A、白金经纪人：月销售额达3件产品云推荐商，销售额度达1万，将直接晋升为白金艺术品经纪人；待遇：平台赠送300礼金券，可购买平台产品抵用；</h6> -->
+    <!-- <h6>B、黄金经纪人：月销售额达5件产品云推荐商，销售额度达1.5万，将直接晋升黄金艺术品经纪人；待遇：平台赠送600礼金券，可购买平台产品抵用；</h6> -->
+    <!-- <h6>C、黑金经纪人：月销售额达15件产品云推荐商，销售额度达5万，将直接晋升黑金艺术品经纪人；待遇：平台赠送2000礼金券，可购买平台产品抵用；</h6> -->
+    
+	<volist name="yun" id="vo">
+		<h6>{$vo.zm}、{$vo.name}经纪人：月销售额达{$vo.product}件产品云推荐商，销售额度达{$vo.salesquota}{$vo.company}，将直接晋升为{$vo.name}艺术品经纪人；待遇：平台赠送{$vo.giftcard}礼金券，可购买平台产品抵用；</h6>
+   </volist>
+	<h5>4、点击“<a href="javascript:void(0)" id="shop" style="color: red;" ;>立即加入</a>”立即分享。</h5>
+    <h6>说明：平台艺术品均为艺术家原创作品（孤品），创意产品为可复制产品。</h6>
+    <h5>5、新闻可推荐。</h5>
+    <h6>说明：新闻是多么大的诱惑。</h6>
+  </div>
+
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+    /*图片高度*/
+    function resize(){
+        var arr=[];
+        var img=document.querySelectorAll('.recommend_box .img img');
+        for(var i =0;i<img.length;i++){
+            arr.push(img[i].offsetHeight)
+        }
+        var arr=arr.sort(function(a,b){
+            return b-a;
+        });
+        $('.recommend_box .img').css({height:arr[0]})
+    }
+    $(window).load(function(){
+        resize();
+    });
+
+    $(window).resize(function(){
+        resize();
+    });
+
+    $('#shop').click(function () {
+     var member_id = '{$member_id}';
+     if(member_id == 0){
+         dialog.showTips('请先登录','firm',function () {
+             window.location.href="{:U('/Home/User/login')}";
+         });
+     }else{
+         var id = member_id;
+         $.post("{:U('Home/ArtCommunity/apply')}",{id:id},function(data) {
+             console.log(data.status);
+             if (data.status == 0) {
+                 window.location.href = "{:U('Home/Shop/seldpsy')}"
+             }
+             if(data.status == 1)
+             {
+                 window.location.href = "{:U('Home/Shop/ysjgl')}"
+             }
+             if(data.status == 2)
+             {
+                 window.location.href = "{:U('Home/Shop/selCenter')}"
+             }
+             if(data.status == 3)
+             {
+
+                 window.location.href = "{:U('Home/Shop/selAudit')}"
+             }
+             if(data.status == 4)
+            {
+
+                window.location.href = "{:U('Home/Shop/selCompanyCertified')}"
+            }
+             if(data.status == 5)
+            {
+
+                alert(1);return false;
+            }
+         })
+     }
+    })
+
+    $('#qzc').click(function(){
+          
+          dialog.showTips('是否注册！','firm',function(){
+            $.ajax({
+              url:'/Home/User/zhuce',
+              type:'get',
+              data:{},
+              dataType:'json',
+              success: function(g){
+                console.log(g);
+                if(g.status == 1){
+                  window.location.href = '/Home/User/zhuce/';
+                }
+              }
+            })
+          })
+      })
+
+</script>
+</html>

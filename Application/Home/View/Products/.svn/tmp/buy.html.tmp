@@ -1,0 +1,769 @@
+<include file="Public:header" />
+<link type="text/css" href="__CSS__/galleria.twelve.css" rel="stylesheet" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM">
+
+  <div class="buy">
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+
+
+
+
+          <div class="cp_xxjs1 col-lg-6 col-md-6 col-sm-6">
+            <div id="magnifier">
+              <div id="showmagnifier"> <img src="{$res.index_pic}">
+                <div id="smallmagnifier"></div>
+                <div id="hiddenmagnifier"> <img id="bigmagnifier" src="{$res.index_pic}"> </div>
+              </div>
+              <div id="magnifierlist">
+                <div id="magnifierLeft"></div>
+                <ul id="magnifierMiddle">
+                  <volist name="goods_slide" id="v">
+                    <li><img src="{$v.pic}"></li>
+                  </volist>
+                </ul>
+                <div id="magnifierRight"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-lg-md-6 col-sm-6">
+            <div class="buy_con_text" style=" float:left; width:90%;">
+              <div class="Img_buy">
+                <h2>{$res.goods_name}</h2>
+                <div class="buy_Price">
+                  <h3 class="Price-h3">
+                    <neq name="member_id" value="0">
+                    <span class="price">
+                    <if condition="$res.is_groom eq 0">押金：<elseif condition="$res.is_groom eq 1"/>售价：</if>
+                    <i>￥{$res.price}</i></span>
+                    </neq>
+                    <eq name="member_id" value="0">
+                      <a href="{:U('Home/User/login')}" class="price_A">登录可查看价格</a>
+                    </eq>
+                    <br><br>
+                    <if condition="$res.is_groom eq 0">
+                      <neq name="member_id" value="0">
+                      <span class="zujin">租金/天：<i>￥{$res.zujin}</i></span>
+                      </neq>
+                    </if>
+                  </h3>
+                  <h4 class="Price-h4"><if condition="$res.is_groom eq 1">市场价：<s>￥{$res.oprice}</s></if></h4>
+                  <span class="buyK"><if condition="$res.is_groom eq 1"><a href="javascript:void(0)">可推荐</a></if><if condition="$res.is_groom eq 0"><a href="javascript:void(0)">可租赁</a></if></span>
+                </div>
+                <div class="buyDel">
+                  <ul>
+                    <!--<li><b>作品的上架时间 :</b>{$res.goods_list|date="Y-m-d",###}</li>-->
+                    <li><b>编号 ：</b>{$res.goods_mel}</li>
+                    <li><b>作者 ：</b>{$res.goods_cap}</li>
+                    <li><b>材质 ：</b>{$res.goods_skin}</li>
+                    <li><b>尺寸 ：</b>{$res.goods_range}</li>
+                    <li><b>创作年代 ：</b>{$res.goods_care}年</li>
+                    <li><b>品相 ：</b>{$res.goods_com}</li>
+                   <!-- <li><b>版本 ：</b>{$res.goods_version}</li>-->
+                  </ul>
+                </div>
+                <input type="hidden" name="id" value="{$res.id}">
+                <!--<div class="Img_size clear" style=" position:relative; overflow:visible;"> <span>运费：</span>
+                  <h6 style="float:left; margin:5px 0 0 0; width:auto; line-height:30px; color:#666; font-size:14px; margin:0; display:inline-block; position:relative;"> 至
+                    <div class="xzqy" style="position:relative; display:inline-block; width:130px; padding-bottom:15px; margin-left:5px; padding-left:5px;">
+                      <iframe style="display:none;width:480px;  height:500px; position:absolute; left:0; top:-5px;   z-index:2;" allowTransparency="true" frameborder="0" scrolling="no"   width="100%" src="__XZDQ__/index.html"></iframe>
+                    </div>
+                  </h6>
+                  <h5 style="display:inline-block; color:#666; line-height:30px; margin:0; padding-left:10px; ">快递：5元</h5>
+                  <div class="clear"></div>
+                  <h6>默认顺丰，自由选择保价或不保价</h6>
+                </div>-->
+                <div class="BuyDel clear" style=" position:relative;"><span>浏览次数：</span>{$res.browser}</div>
+              </div>
+              <!--<div class="Img_size clear" style=" position:relative;"><span>材料：</span>布面丙烯</div>-->
+              <div class="Img_size clear"><span>分享：</span>
+                <div class="Like_p share_p">
+                  <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>
+                  <script>
+                      window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                  </script>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="BuyDel Buylike clear">
+                <p class="Like_p"><a href="javascript:void(0)" class="btn_like"> <i></i> <span class="status">喜欢</span></a> <a class="btn_like1"><span id="count">{$count}</span>人喜欢</a> </p>
+
+                <if condition="$res.cstore eq 1">
+                <if condition="$is_groom eq 1"><p class="Like_p"><a class="Like_T" href="javascript:void(0)"><i></i><span class="status">推荐</span></a> <a class=""><span id="count1">{$count1}</span>人推荐</a> </p><elseif condition="$is_groom eq 1"/></if>
+                </if>
+
+                <div class="clear"></div>
+              </div>
+			     <div class="ZjDay">
+                      <div class="ys4 ys4_tit clearfix"> <span><if condition="$is_groom eq 0">天数:</span> <p class="getnums"><b>1</b><span>-</span><span>+</span></p><elseif condition="$is_groom eq 1"/></if></div>
+				</div>
+              <if condition="$is_groom eq 1"><div class="buy_more"> <span class="more gmdd nowbuy" style="background:#d70000;"><a class="bu" style=" color:#fff;">立即购买 </a><i></i></span>
+                <!--判断是否是从店铺推荐过来的-->
+                <if condition="$artists_id neq 0">
+                <else />
+                <span class="more" style="background:#F77B7B;"><a href="javascript:void(0)" class="addCart" style=" color:#fff;">加入购物车 </a><i></i></span>
+                </if>
+               
+                <div class="clear"></div>
+              </div></if>
+              <if condition="$is_groom eq 0"><div class="buy_more"> <span class="more gmdd nowbuy" style="background:#d70000;"><a class="bu" style=" color:#fff;">立即租赁 </a><i></i></span>
+                <div class="clear"></div>
+              </div></if>
+              <ul class="detail_promiseUl">
+                <li class="cn_label">服务承诺：</li>
+                <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall1.qiyipic.com/mall/20170217/97/6f/mall_58a66adb14d455172028976f_1x1.png)"></i> <span class="cn_info">正品保证</span> </li>
+                <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall4.qiyipic.com/mall/20170217/79/e2/mall_58a66b1074d57953771779e2_1x1.png)"></i> <span class="cn_info">极速发货</span> </li>
+                <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall7.qiyipic.com/mall/20170217/f8/25/mall_58a66afbd2999d6b8c42f825_1x1.png)"></i> <span class="cn_info">7天无理由</span> </li>
+                <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall5.qiyipic.com/mall/20170217/9f/21/mall_58a66aed74d57953767c9f21_1x1.png)"></i> <span class="cn_info">特卖包邮</span> </li>
+              </ul>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div  class="buy_con_text2">
+          <p>{$res.goods_des}</p>
+          <div class="more_text" style="display:none;">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="buyCt buyCtLeft">
+                  <p><span>作者简介：</span></p>
+                  <p>
+                    <notempty name="res.logo_pic">
+                    <img src="{$res.logo_pic}" alt="无" />
+                    </notempty>
+                    <!--<empty name="res.logo_pic">
+                      <img src="__IMAGES__/y01.png" />
+                      <else/>
+                      <img src="{$res.logo_pic}" alt="无" />
+                    </empty>-->
+
+                    {$res.detail|htmlspecialchars_decode|stripslashes}</p>
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="buyCt buyCtRight">
+                  <p><span>相关作品：</span></p>
+                  <div class="buy-sec2-cont">
+                    <volist name="rel" id="v">
+                      <div class="col-lg-2 col-md-2 col-sm-2">
+                        <div class="nav-ft-ig"> <a href="{:U('/Home/Products/buy',array('id'=>$v['id']))}"><img src="{$v.index_pic}"></a>
+                          <div class="nav-ftxt"> <a href="{:U('/Home/Products/buy',array('id'=>$v['id']))}"><span>{$v.goods_name}</span>
+                            <p>{$v.goods_cap}</p>
+                          </a> </div>
+                        </div>
+                      </div>
+                    </volist>
+
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                     <!--  <div class="nav-ft-ig"> <a href="#"><img src="__IMAGES__/buy0M.png"></a>
+                        <div class="nav-ftxt"> <a href="#"><span>查看更多</span> </a> </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="ddgd" style="cursor:pointer;">查看更多</h3>
+        </div>
+      </div>
+    </div>
+    <div class="buy_sec">
+      <!-- <div class="row"> -->
+        <!-- <div class="col-lg-6 col-md-6 col-sm-6"> -->
+          <!-- <div class="cont_main"> -->
+            <!-- <div style="width: 100%;" id="dituContent"></div> -->
+            <!-- <div class="cont_title">我要评论</div> -->
+            <!-- <div class="row" style="margin: 0 -30px !important;"> -->
+              <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> -->
+                <!-- <div class="txt_box"> -->
+                  <!-- <input class="sub_txt" type="text" value="" id="name" placeholder="姓名"/> -->
+                <!-- </div> -->
+              <!-- </div> -->
+              <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> -->
+                <!-- <div class="txt_box"> -->
+                  <!-- <input class="sub_txt" type="text"  value="" id="email" placeholder="邮箱"/> -->
+                <!-- </div> -->
+              <!-- </div> -->
+              <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> -->
+                <!-- <div class="txt_box"> -->
+                  <!-- <input class="sub_txt" type="text"  value="" id="phone" placeholder="手机号"/> -->
+                <!-- </div> -->
+              <!-- </div> -->
+              <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> -->
+                <!-- <div class="txt_box"> -->
+                  <!-- <input class="sub_txt" type="text" value="" id="cz" placeholder="传真"/> -->
+                <!-- </div> -->
+              <!-- </div> -->
+              <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0 30px;"> -->
+                <!-- <textarea class="liuyankuang" id="content" placeholder="留言"></textarea> -->
+              <!-- </div> -->
+              <!-- <div class="clear"></div> -->
+            <!-- </div> -->
+            <!-- <span class="more" style=" background:#000; margin:30px auto 0 auto;"><a href="javascript:void(0)" style=" color:#fff;" id="discuss">提交评论 </a><i></i></span> </div> -->
+        <!-- </div> -->
+        <!-- <div class="col-lg-6 col-md-6 col-sm-6"> -->
+          <!-- <div class="biaoqian"> -->
+            <!-- <div class="buy-label"> -->
+              <!-- <div class="label-left"> -->
+                <!-- <h3>标签</h3> -->
+                <!-- <div class="lable_one"> -->
+                  <!-- <div class="label_cont" > -->
+                    <!-- <div class="left-ac"> -->
+                      <!-- <input type="text" class="label-input" id="cate" /> -->
+                      <!-- <a href="javascript:void(0)" class="button-add">添加</a> <a href="#" class="button-label">标签库</a> </div> -->
+                    <!-- <div class="sec1-text"> <span class="label-sec1-text">做个记号，方便你和其他的人查找</span> <span class="label-sec1-text">可以用英文逗号分隔</span> </div> -->
+                    <!-- <div class="clear"></div> -->
+                  <!-- </div> -->
+                  <!-- <div class="label-right"> -->
+                    <!-- <p>热门标签 <span>(点击添加)</span></p> -->
+                    <!-- <div class="label-fenlei"> -->
+                      <!-- <volist name="cate" id="cate"> -->
+                        <!-- <span>{$cate.classname}</span> -->
+                      <!-- </volist> -->
+                    <!-- </div> -->
+                    <!-- <div class="clear"></div> -->
+
+                  <!-- </div> -->
+                  <!-- <div class="clear"></div> -->
+                <!-- </div> -->
+              <!-- </div> -->
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
+        <!-- <div class="clear"></div> -->
+      <!-- </div> -->
+
+      <!-- 标签 -->
+
+      <div class="nav-ft">
+        <h3>猜你喜欢</h3>
+        <div class="row">
+          <div class="buy-sec2-cont">
+
+            <volist name="like" id="like">
+              <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="nav-ft-ig"> <a href="{:U('/Home/Products/buy',array('id'=>$like['id']))}"><img src="{$like.index_pic}"></a>
+                  <div class="nav-ft-text"> <a href="{:U('/Home/Products/buy',array('id'=>$like['id']))}">
+                    <div class="nav-ft-text2"> <span>{$like.goods_name}</span>
+                      <p>{$like.goods_cap}</p>
+                    </div>
+                  </a>
+                    <h5 class="Price-h3"><span class="price1"><if condition="$like.is_groom eq 0">押金：<elseif condition="$like.is_groom eq 1"/>售价：</if><i>￥{$like.price}</i></span> <a href="{:U('Home/User/login')}" class="price_A">登录可查看价格</a> </h5>
+                    <a href="{:U('/Home/Products/buy',array('id'=>$like['id']))}"> <div  class="htx">  查看详情  </div></a>
+                  </div>
+                </div>
+              </div>
+            </volist>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+  </div>
+</div>
+<!--  / warpper  -->
+<!--立即购买-->
+<form name="buyform" id="buyform" action="{:U('Home/Order/index')}" method="post">
+  <input type="hidden" name="goods_id"  id="goods_id" value="{$res.id}">
+  <input type="hidden" name="store"  id="kucun" value="{$res.store}">
+  <input type="hidden" name="is_groom"  id="is_groom" value="{$res.is_groom}">
+  <input type="hidden" name="zujin"  id="zujin" value="{$res.zujin}">
+  <input type="hidden" name="nums"  id="nums" value="1">
+  <input type="hidden" name="artists_id"  id="artists_id" value="">
+  <input type="hidden" name="skuid" id="skuid"  value="">
+</form>
+<!--立即购买-->
+<include file="Public/footer" />
+
+</body>
+<script>
+    $('.nowbuy').click(function(){
+        <notempty name="headimg">
+        var kucun = parseInt($('#kucun').val());
+        var is_groom = $('#is_groom').val();
+        if(is_groom == 1){
+          if(!kucun){
+              dialog.showTips("商品库存不足", "warn");
+              return false;
+          }
+        }else{
+          if(!kucun){
+              dialog.showTips("该商品已租", "warn");
+              return false;
+          }
+        }
+        
+        //判断是否有店铺的id 有就是店铺推荐产品
+        var artists_id = '{$artists_id}' ;
+        //console.log(artists_id);return false;
+        if(artists_id != 0){
+           $('#artists_id').val(artists_id);
+        }
+        $('#buyform').submit();
+        <else />
+        dialog.showTips("请登录！", "warn");
+        return false;
+            </notempty>
+    });
+</script>
+<script>
+    $('#discuss').click(function () {
+        var member_id = '{$member_id}';
+        if(member_id == 0){
+            alert("请先登录，再来评论");
+            return false;
+        }else{
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var phone = $('#phone').val();
+            var cz = $('#cz').val();
+            var content = $('#content').val();
+            if(name==""){
+                alert("姓名必填");
+                return false;
+            }
+            if(email==""){
+                alert("邮箱必填");
+                return false;
+            }
+            var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            if (!myreg.test(email)) {
+                alert("请输入有效的邮箱！");
+                return false;
+            }
+            if(phone==""){
+                alert("手机号码必填！");
+                return false;
+            }
+            if (!phone.match(/^1[345789][0-9]{9}$/)) {
+                alert("手机号码格式错误！");
+                return false;
+            }
+            if(cz==""){
+                alert("传真必填");
+                return false;
+            }
+            if(content==""){
+                alert("留言必填");
+                return false;
+            }
+            $.ajax({
+                url: "{:U('/Home/Products/addComment')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    name: name,
+                    email:  email,
+                    phone:  phone,
+                    cz:cz,
+                    content: content,
+                }
+            }).done(function (g) {
+                if (g.status == 1) {
+                    alert(g.info);
+                    window.location.reload();
+                } else {
+                    alert(g.info);
+                }
+
+            })
+        }
+
+    })
+    //收藏
+
+
+    //推荐
+
+
+
+
+    //加入购物车
+    $('.addCart').click(function () {
+        var member_id = '{$member_id}';
+        if(member_id == 0){
+            alert("请先登录！");
+            return false;
+        }
+        var goods_id = '{$res.id}';
+        var cstore = '{$res.cstore}';
+        var num = 1;
+        $.ajax({
+            url: "{:U('/Home/Products/addCart')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                goods_id:goods_id,
+                num:num,
+                cstore:cstore,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                $(".cart_count_num").text(g.cartnum);
+                dialog.showTips(g.info, "firm", function () {
+                   window.location.href=g.url;
+                });
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+
+
+    $('.button-add').click(function () {
+        var member_id = '{$member_id}';
+        if(member_id == 0){
+            alert("请先登录！");
+            return false;
+        }
+        var cate = $('#cate').val();
+        if(cate == ''){
+            alert("标签不能为空！");
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Home/Products/addCate')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                name:cate,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+<script>
+    var member_id = '{$member_id}';
+    if(member_id == 0){
+        $('.price_A').show();
+        $('.price').hide();
+        $('.price1').hide();
+        $('.zujin').hide();
+        $('.Price-h4').hide();
+    }else{
+        $('.price_A').hide();
+        $('.price').show();
+        $('.price1').show();
+        $('.zujin').show();
+        $('.Price-h4').show();
+    }
+</script>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+    $(document).ready(function(e) {
+
+
+        $('.btn_like').click(function(){
+            var member_id = '{$member_id}';
+            if(member_id == 0){
+                alert('请先登录！');
+                return false;
+            }
+            var goods_id = $('input[name=id]').val();
+            $.ajax({
+                url:"{:U('Home/Products/ajaxSc')}",
+                data:{
+                    goods_id:goods_id,
+                },
+                dataType:'json',
+                type:'post',
+                success:function(data){
+                    if(data.status == 1){
+                        var count = data.count;
+                        $('#count').html(count);
+                    }
+                }
+            })
+            var s=$(this).find('i').attr('ss');
+            if(s==1){
+                $(this).find('i').attr('ss','0').css({background: 'url(__IMAGES__/like.png) no-repeat center center'})
+            }else{
+                $(this).find('i').attr('ss','1').css({background: 'url(__IMAGES__/likes.png) no-repeat center center'})
+            }
+        })
+        $('.Like_T').click(function(){
+            var member_id = '{$member_id}';
+            if(member_id == 0){
+                alert('请先登录！');
+                return false;
+            }
+            var goods_id = $('input[name=id]').val();
+            $.ajax({
+                url:"{:U('Home/Products/ajaxSc1')}",
+                data:{
+                    goods_id:goods_id,
+                },
+                dataType:'json',
+                type:'post',
+                success:function(data){
+                    if(data.status == 1){
+                        var count1 = data.count1;
+                        $('#count1').html(count1);
+                        if($('.Like_T').find('i').attr('ss')==1){
+                            $('.Like_T').find('i').attr('ss','0').css({background: 'url(__IMAGES__/like1s.png) no-repeat center center'})
+                        }else{
+                            $('.Like_T').find('i').attr('ss','1').css({background: 'url(__IMAGES__/like1.png) no-repeat center center'})
+                        }
+                    }else{
+                      alert(data.info);
+                    }
+                }
+            })
+            
+        })
+
+
+        var like_collect = '{$like_collect}';
+        if(like_collect == 0){
+            $('.btn_like i').css({background: 'url(__IMAGES__/like.png) no-repeat center center'});
+
+        }else{
+            $('.btn_like').find('i').attr('ss','1');
+            $('.btn_like i').css({background: 'url(__IMAGES__/likes.png) no-repeat center center'});
+        }
+
+        var recommend = '{$recommend}';
+        if(recommend == 0){
+            $('.Like_T').find('i').attr('ss','1');
+            $('.Like_T i').css({background: 'url(__IMAGES__/like1.png) no-repeat center center'})
+
+        }else{
+            $('.Like_T i').css({background: 'url(__IMAGES__/like1s.png) no-repeat center center'})
+        }
+
+        $(".buy_sec1_right_out").height($(".buy_sec1_left").height())
+
+        var hbuy = $(".buy_dt img").height()+80;
+        $(".swiper-container1").css("height",hbuy);
+
+
+        $(window).load(function(e) {
+            $(".buy_sec1_right_out").height($(".buy_sec1_left").height())
+        });
+
+        var mySwiper1 = new Swiper('.swiper-container1',{
+            grabCursor: true,
+            autoplay:5000,
+            spaceBetween: 0,
+            slidesPerGroup : 1,//设置几个一切换
+            autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+        });
+        $('.arrow-left1').on('click', function(e){
+            e.preventDefault();
+            mySwiper1.swipePrev();
+        });
+        $('.arrow-right1').on('click', function(e){
+            e.preventDefault();
+            mySwiper1.swipeNext();
+        });
+
+        $('.buy_xt li').eq(0).hover(function(){
+            mySwiper1.swipeTo(0, 1000, false);
+        });
+        $('.buy_xt li').eq(1).hover(function(){
+            mySwiper1.swipeTo(1, 1000, false);
+        });
+        $('.buy_xt li').eq(2).hover(function(){
+            mySwiper1.swipeTo(2, 1000, false);
+        });
+        $('.buy_xt li').eq(3).hover(function(){
+            mySwiper1.swipeTo(3, 1000, false);
+        });
+
+
+        $(".buy2_left ul li").click(function(e) {
+            //$(this).addClass("active").siblings().removeClass("active");
+            var ind=$(this).index();
+            var scrollnum=$(".buy3_sec").eq(ind).offset().top-140;
+            $('body,html').animate({ scrollTop: scrollnum }, 200);
+        });
+        var scro_to=0;
+
+        $(window).scroll(function(e) {
+            var scrolltop=$(window).scrollTop();
+
+            var buy3_num=$(".buy3_sec").length;
+            for(i=0;i<buy3_num;i++){
+                if(scrolltop>$(".buy3_sec").eq(i).offset().top-160){
+                    scro_to=i;
+                }
+            }
+            $(".buy2_left ul li").eq(scro_to).addClass("active").siblings().removeClass("active");
+
+
+
+
+            if(scrolltop>$(".buy_sec2").offset().top-60){
+                $(".buy_sec2_in").css({"position":"fixed","top":"60px","left":"0"})
+            }else{
+                $(".buy_sec2_in").css({"position":"absolute","top":"0"})
+            }
+        });
+
+
+    });
+
+
+    $(function(){
+
+        $('.zpjs').click(function(){
+            var h=$('.buy_con_Tab1').offset().top-230;
+            $('body,html').animate({scrollTop:h},2000);
+        });
+
+        $('.wypl').click(function(){
+            var h=$('.cont_main').offset().top;
+            $('body,html').animate({scrollTop:h},2000);
+        });
+
+        $('.tjbq').click(function(){
+            var h=$('.biaoqian').offset().top;
+            $('body,html').animate({scrollTop:h},2000);
+        });
+		
+		if({$is_groom}==1){
+			$("#nums").val(1);
+		}else{
+			$("#nums").val($('.ys4 .getnums b').html());
+		
+			//天数加减
+			 $('.ys4 .getnums span').click(function() {
+				  var bignum = Number($('.ys4 .getnums b').html());
+				  var mini = '1';
+				  if ($(this).html() == '+') {
+					  $('.ys4 .getnums b').html(parseInt(bignum) + parseInt(mini))
+					  $("#nums").val(parseInt(bignum) + parseInt(mini));
+				  } else if ($(this).html() == '-' && bignum > mini) {
+					  $('.ys4 .getnums b').html(bignum - mini)
+					  $("#nums").val(bignum - mini);
+				  }
+
+				  var post = {};
+				
+				  post.price = $('.ys4 .getnums b').html();
+				  var total_price = post.price;
+				  var total_price1 = '{$res.total_price}';
+				  $('.gfzb').html('股份占比：'+ total_price/100/total_price1+ '%')
+			  })
+		}
+		
+
+    })
+
+
+</script>
+<script>
+    function add(){
+        var txt=document.getElementById("txt");
+        var a=txt.value;
+        a++;
+        txt.value=a;
+    }
+    function sub(){
+        var txt=document.getElementById("txt");
+        var a=txt.value;
+        if(a>1){
+            a--;
+            txt.value=a;
+        }else{
+            txt.value=1;
+        }
+
+    }
+
+
+</script>
+<script>
+    $(window).load(function(){
+
+        var showmagnifierimg = $('#showmagnifier>img').height();
+        console.log(showmagnifierimg);
+        $('#showmagnifier').css('height',showmagnifierimg+2);
+        $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+        //  计算装小图盒子的宽度与高度
+        var showmagnifierWidth = $("#showmagnifier").width();
+        var showmagnifierHeight= $("#showmagnifier").height();
+        console.log(showmagnifierWidth);
+        console.log(showmagnifierHeight);
+
+        //  计算装大图盒子的宽度与高度
+        var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+        var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+        console.log(hiddenmagnifierWidth);
+        console.log(hiddenmagnifierHeight);
+
+        //  大图片的宽度与高度
+        var bigmagnifierWidth = $('#bigmagnifier').width();
+        var bigmagnifierHeight = $('#bigmagnifier').height();
+        console.log(bigmagnifierWidth);
+        console.log(bigmagnifierHeight);
+
+
+        //  小黄快的宽度与高度
+        var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+        var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+        console.log(xiaohuangWidth);
+        console.log(xiaohuangHeight);
+
+        $('#smallmagnifier').css('width',xiaohuangWidth+5);
+        $('#smallmagnifier').css('height',xiaohuangHeight+5);
+
+
+    })
+
+    $(window).resize(function(){
+        var showmagnifierimg = $('#showmagnifier>img').height();
+        console.log(showmagnifierimg);
+        $('#showmagnifier').css('height',showmagnifierimg);
+        $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+        //  计算装小图盒子的宽度与高度
+        var showmagnifierWidth = $("#showmagnifier").width();
+        var showmagnifierHeight= $("#showmagnifier").height();
+        console.log(showmagnifierWidth);
+        console.log(showmagnifierHeight);
+
+        //  计算装大图盒子的宽度与高度
+        var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+        var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+        console.log(hiddenmagnifierWidth);
+        console.log(hiddenmagnifierHeight);
+
+        //  大图片的宽度与高度
+        var bigmagnifierWidth = $('#bigmagnifier').width();
+        var bigmagnifierHeight = $('#bigmagnifier').height();
+        console.log(bigmagnifierWidth);
+        console.log(bigmagnifierHeight);
+
+
+        //  小黄快的宽度与高度
+        var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+        var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+        console.log(xiaohuangWidth);
+        console.log(xiaohuangHeight);
+
+        $('#smallmagnifier').css('width',xiaohuangWidth+5);
+        $('#smallmagnifier').css('height',xiaohuangHeight+5);
+    });
+
+
+</script>
+<script src="__JS__/detail.js"></script>
+</html>

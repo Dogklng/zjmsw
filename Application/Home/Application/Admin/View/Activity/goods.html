@@ -1,0 +1,202 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">产品列表</h1>
+    <a href="{:U('/Admin/activity/activity_goods/id/')}/{$Think.get.id}" class="btn btn-success">添加产品</a>
+    <!-- <a href="{:U('/Admin/integral/sets')}" class="btn btn-success">发布新产品</a> -->
+    <form action="" method="get">
+      <div class="tables-searchbox newcearchbox">
+	  
+	  
+       <!--  <select name="cate_id" class="select small newselect">
+          <option value="" selected="">所有分类</option>
+          <foreach name="categorylist" item="vo">
+            if()
+            <option value="{$vo.id}">{$vo.classname}</option>
+            <foreach name="vo.cate" item="vo1">
+              <option value="{$vo1.id}">&nbsp;&nbsp;&nbsp;|-{$vo1.classname}</option>
+            </foreach>
+          </foreach>
+        </select> -->
+		
+		
+		
+        <input type="text" placeholder="产品名称" class="input" name="name" value="{$name}" >
+        <!-- <input type="text" placeholder="商家编码" class="input" name="goods_no" value="" > -->
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+        <!--<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>--> 
+        <!--产品导出</a>--> 
+      </div>
+      <div class="tabs clearfix mgt10"> 
+      <a href="{:U('/Admin/integral/index')}" class="<eq name="_GET['is_sale']" value="">active</eq> tabs_a fl">全部({$count})</a> 
+    <!--   <a href="{:U('/Admin/Goods/goodsList/is_sale/2')}" class="<eq name="_GET['is_sale']" value="2">active</eq> tabs_a fl">出售中({$count1})</a> 
+       <a href="{:U('/Admin/Goods/goodsList/is_sale/1')}" class="<eq name="_GET['is_sale']" value="1">active</eq> tabs_a fl">仓库中({$count2})</a>  -->
+        <!--<a href="{:U('/Admin/Goods/outstock')}" class=" tabs_a fl">已售罄(1)</a>--> 
+        <!--<a href="{:U('/Admin/Goods/warn')}" class=" tabs_a fl">警戒(0)</a>--> 
+        
+      </div>
+    </form>
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+      <col width="5%">
+      <col width="5%">
+      <col width="10%">
+      <col width="10%">
+      <col width="10%">
+      <col width="10%">
+      <col width="10%">
+      <col width="10%">
+      <col width="20%">
+      <col width="20%">
+      </colgroup>
+      <thead>
+        <tr class="po_list">
+          <td><i class="icon_check"></i></td>
+          <td>ID</td>
+          <td>产品</td>
+          <td>优惠方式</td>
+          <td>优惠值</td>
+          <td>销量</td>
+          <!--<td>购买限制</td>-->
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="goods" item="vo">
+          <tr>
+            <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+            <td>{$vo.id}</td>
+            <td><div class="goodswrap"> <a href="javascript:void(0)" class="block" target="_blank" title="{$vo['goods_name']}">
+                <div class="table-item-img"> <img src="{$vo['logo_pic']}" alt=""> </div>
+                <div class="table-item-info" style="width: 100px">
+                  <p style="height:auto">{$vo.goods_name} <br/></p>
+                  <span class="price">售价：¥{$vo.oprice}</span><br/>
+                  <!-- <span class="price">积分：{$vo.price}</span><br/> -->
+                   </div>
+                </a> </div></td>
+            <td>
+              <eq name="vo.type" value="1">
+                折扣
+              <else/>
+                积分比
+              </eq>
+            </td>
+            <td>
+              <eq name="vo.type" value="1">
+                {$vo.value}折
+              <else/>
+                {$vo.value}%
+              </eq>
+            </td>
+            <td>{$vo.volume}</td>
+            
+            <td>
+              <a href="{:U('/Admin/activity/edit_activity_goods',array('goods_id'=>$vo['id'],'id'=>I('get.id')))}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+
+             <!--  <a href="javascript:;" class="btn change-is_sale <eq name="vo['is_sale']" value="0">btn-success<else />btn-danger</eq>" data-id="{$vo.id}"  title="上架"><eq name="vo['is_sale']" value="0">上架<else />下架</eq></a>
+              
+              <a href="{:U('/Admin/Goods/setSKU/id')}/{$vo.id}" class="btn btn-success j-editClass" title="修改">sku</a> -->
+              <!-- <a href="{:U('/Admin/Goods/commentList/id')}/{$vo.id}" class="btn btn-success j-editClass" title="修改">查看评价</a> -->
+              <a href="javascript:;" class="btn j-delClass btn-warning btn_table_delAll" title="删除" data-id="{$vo.id}">删除</a>
+              </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl"> 
+        <!-- <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> 
+        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a> --> <!-- 
+        <a href="javascript:;" data-item="is_sale" class="btn btn-primary change-all-status">上架反选</a>
+        <a href="javascript:;" data-item="is_new" class="btn btn-primary change-all-status">新品反选</a>
+        <a href="javascript:;" data-item="is_show" class="btn btn-primary change-all-status">首页反选</a> 
+        <a href="javascript:;" data-item="is_good" class="btn btn-primary change-all-status">热销反选</a>
+        <a href="javascript:;" data-item="is_cuxiao" class="btn btn-primary change-all-status">促销反选</a> 
+        <a href="javascript:;" data-item="is_sku" class="btn btn-primary change-all-status">sku反选</a>  -->
+        <!-- <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>  -->
+        <div class="fr">
+          <div class="pages"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/>
+<script>
+$(".change-status").click(function (){
+  var _this= $(this)
+  var id   = $(this).attr("data-id");
+  var item = $(this).attr("data-item");
+  $.post("{:U('Admin/Goods/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status == 1){
+      _this.css({color:"#0C0"}).html("√");
+    }else if(data.status == 2){
+      _this.css({color:"#c00"}).html("×");
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".change-all-status").click(function (){
+  if(!confirm("确定改变所有选中产品的状态？")){
+    return false;
+  }
+  var ids = "";
+  var item = $(this).attr("data-item");
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Goods/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+    if(data.status){
+      window.location.reload();
+    }else{
+      alert(data.info);
+    }
+  })
+})
+$(".change-is_sale").click(function (){
+  var id   = $(this).attr("data-id");
+  var item = "is_sale";
+  $.post("{:U('Admin/Goods/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status){
+      window.location.reload()
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+$(".btn_table_delAll").click(function(){
+  if(!confirm("确定删除产品？")){
+    return false;
+  }
+  var id = $(this).attr('data-id');
+  $.ajax({
+    url:"{:U('Admin/activity/ajaxDelActivityGoods')}",
+    data:{id:id},
+    dataType:'json',
+    type:'post',
+    success:function(data){
+      alert(data.info);
+      if(data.status){
+        window.location.reload();
+      }
+    }
+  })
+})
+</script>

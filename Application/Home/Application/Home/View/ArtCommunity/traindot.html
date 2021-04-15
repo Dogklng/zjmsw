@@ -1,0 +1,103 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">In training</p>
+    <h5>培 • 训</h5>
+  </div>
+  <div class="newsdot" id="newsdot">
+    <div class="newsdot_main" style="bottom: 0px; opacity: 1;">
+      <div class="newsdot_left peixunL">
+        <h4>发布时间：<span>{$res.create_time|date="Y-m-d",###}</span></h4>
+        <h4>培训地址：<span>{$res.address}</span></h4>
+        <h4>组织人：<span>{$res.auth}</span></h4>
+        <h4>培训内容：<span>{$res.title}</span></h4>
+        <!--<a class="PeixunA" href="javascript:;" data-id="{$res.id}" onclick="myFunction(this)">我要报名</a>-->
+      </div>
+      <div class="newsdot_right">
+          <div class="newsdot_sectit">{$res.title}</div>
+          <h4>{$res.content||htmlspecialchars_decode|stripslashes}</h4>
+        <div class="newsdot_topimg"> <img src="{$res.detail_img}" width="100%" class="hidden-xs"> </div>
+        </div>
+      
+      <div class="clear"></div>
+    </div>
+    <!--<div class="newsdot_bot"> <a href="#"><strong>上一节培训课：</strong>没有了</a> <a href="#"><strong>下一节培训课：</strong>创新创意培训</a> </div>-->
+    <div class="newsdot_back" data-id="{$res.id}" onclick="myFunction(this)"> <a href="javascript:;" class="more_aa2" data-id="{$res.id}" onclick="myFunction(this)">我要报名</a> </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  --> 
+
+<div class="canzhan_forma">
+ 	
+  <div class="canzhan_form">
+  <img src="__IMAGES__/close.png" class="close canzhan_close" style="top:10px; right:10px;" />
+  	<h3>培训报名</h3>
+  	
+    <div class="canzhan_xx">
+      <input type="hidden" id="train_id"/>
+    <p><span>姓名：</span><input type="text" id="name"/></p>
+    <p><span>手机号：</span><input type="text" id="tel"/></p>
+    <a href="javascript:void(0)" class="zlxxtj">提交信息</a>
+    </div>
+  </div>
+  
+ </div>
+
+
+<include file="Public/footer" />
+
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+    function myFunction(obj) {
+        var id = $(obj).attr('data-id');
+        $('#train_id').val(id);
+        $('.canzhan_forma').show();
+    }
+
+    $('.zlxxtj').click(function () {
+        var member_id = '{$member_id}';
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+        var name = $.trim($('#name').val());
+        var tel  = $.trim($('#tel').val());
+        var train_id   = $('#train_id').val();
+        if(name == ""){
+            alert('姓名必填');
+            return false;
+        }
+        if(tel == ''){
+            alert('手机号必填');
+            return false;
+        }
+        if(!(/^1[34578]\d{9}$/.test(tel))){
+            alert('请输入正规手机号');
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Home/ArtCommunity/addTrain')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                name: name,
+                tel:  tel,
+                train_id:train_id
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+              window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+</html>

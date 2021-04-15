@@ -1,0 +1,190 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">试用产品列表</h1>
+    <a href="{:U('/Admin/Trial/addTrial')}" class="btn btn-success">添加试用产品</a>
+    <form action="" method="get">
+      <div class="tables-searchbox newcearchbox">
+        <input type="text" placeholder="商品名称" class="input" name="trial_name" value="{$Think.get.trial_name}" >
+        <button class="btn btn-primary" style="line-height:26px;" id="buttons"> <i class="gicon-search white"></i>查询 </button>
+      </div>
+    </form>
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10" style="text-align:center;">
+      <colgroup>
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="5%">
+	      <col width="5%">
+	     
+      </colgroup>
+      
+      <thead>
+        <tr class="po_list">
+        
+          <td>产品名称</td>
+          <td>产品logo</td>
+          <td>是否试用</td>
+          <td>试用数量</td>
+          <td>产品价格</td>  
+          <td>开始时间</td>
+          <td>结束时间</td>
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <foreach name="result" item="vo">
+          <tr>
+            
+         	<td>{$vo.trial_name}</td>
+         	
+            <td>
+                <div class="table-item-img"> <img src="{$vo['trial_small_img']}" alt=""> </div>
+                <div class="table-item-info" style="width: 100px"></div>
+            </td>
+            
+             <td>
+            	<if condition="($vo.is_trial eq 0)">
+            		<span class="btn btn-primary j-editClass">是
+            	<else/>
+            		<span class="btn j-delClass btn-warning">否
+            	</if>
+            </td>
+            
+            <td> {$vo.trial_num} </td>
+            <td> {$vo.trial_price} </td>
+            
+            <td class="class_name">
+              <span>{$vo.trial_start_time}</span>
+            </td>
+            
+             <td class="class_name">
+              <span>{$vo.trial_end_time}</span>
+            </td>
+           
+            <td>
+              <a href="{:U('/Admin/Trial/editTrial/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+              <a href="##" class="btn change-is_trial <eq name="vo['is_trial']" value="1"> btn-success <else /> btn-danger </eq> " data-id="{$vo.id}"  title="上架">
+              		<eq name="vo['is_trial']" value="0" >下架  <else /> 上架 </eq>
+              </a>
+              <a href="{:U('/Admin/Trial/delTrial/id')}/{$vo.id}" onclick="{if(!confirm('确定删除产品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">删除</a>
+            </td>           
+          </tr>
+        </foreach>
+        
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    
+     <div class="tables-btmctrl clearfix">
+      	<!--<div class="fl"> 
+        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> 
+        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a> 
+        <a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a> -->
+       
+        <div class="fr"><br>
+          <div class="pages"> {$page} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end container --> 
+
+<include file="Public:foot"/>
+
+<script>
+
+/* $(".change-status").click(function (){
+  var _this= $(this)
+  var id   = $(this).attr("data-id");
+  var item = $(this).attr("data-item");
+  $.post("{:U('Admin/Goods/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status == 1){
+      _this.css({color:"#0C0"}).html("√");
+    }else if(data.status == 2){
+      _this.css({color:"#c00"}).html("×");
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+}); */
+
+/* $(".change-all-status").click(function (){
+  if(!confirm("确定改变所有选中产品的状态？")){
+    return false;
+  }
+  var ids = "";
+  var item = $(this).attr("data-item");
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Goods/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+    if(data.status){
+      window.location.reload();
+    }else{
+      alert(data.info);
+    }
+  })
+}); */
+
+$("#buttons").click(function() {
+	$data = $("input[name=trial_name]").val();
+
+	$.get("{:U('Admin/Trial/trial')}", {trial_name : $data}, function(res){
+		//console.log(res);
+	});
+});
+
+
+
+$(".change-is_trial").click(function () {
+	
+  var id   = $(this).attr("data-id");
+ 
+  $.post("{:U('Admin/Trial/changeStatus')}", {id : id}, function(data){
+	  console.log(data);
+    if (data.status == 1) {
+      	window.location.reload();
+    } else {
+      alert(data.info);
+    }
+  }, "json");
+});
+
+
+/* $(".btn_table_delAll").click(function(){
+  if(!confirm("确定删除所有选中的产品？")){
+    return false;
+  }
+  var ids = "";
+  $(".table-ckbs:checked").each(function(i){
+    ids += $(this).attr("data-id")+"-"
+  })
+  if(!ids){
+    alert("请选择产品！");return false;
+  }
+  $.post("{:U('Admin/Goods/delGoods')}" ,{ids:ids}, function (data){
+    alert(data.info);
+    if(data.status){
+      window.location.reload();
+    }
+  })
+}) */
+</script>

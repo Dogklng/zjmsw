@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/msw/!svn/ver/1016/unionpay/func
+END
+db.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/msw/!svn/ver/996/unionpay/func/db.class.php
+END
+httpClient.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/msw/!svn/ver/996/unionpay/func/httpClient.php
+END
+PinBlock.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/msw/!svn/ver/996/unionpay/func/PinBlock.php
+END
+secureUtil.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/msw/!svn/ver/996/unionpay/func/secureUtil.php
+END
+log.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/msw/!svn/ver/996/unionpay/func/log.class.php
+END
+SDKConfig.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/msw/!svn/ver/1016/unionpay/func/SDKConfig.php
+END
+PublicEncrypte.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/msw/!svn/ver/996/unionpay/func/PublicEncrypte.php
+END
+common.php
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/msw/!svn/ver/996/unionpay/func/common.php
+END

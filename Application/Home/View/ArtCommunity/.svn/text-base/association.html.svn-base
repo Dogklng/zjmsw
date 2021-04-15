@@ -1,0 +1,137 @@
+<include file="Public:header" />
+
+<div class="ban1">
+  <div class="banner_img">
+    <img src="{$images.pic}" alt="" />
+  </div>
+</div>
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+    <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Academy community</p>
+    <h5>美 • 院 • 社 • 团</h5>
+  </div>
+
+<div class="index_box2">
+    <div class="index_box2_nav">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="index_box2_left_box">
+          <div class="index_box2_left">
+            
+            <div class="index_box2_left_height">
+                <div class="index_box2_left_tp"> <img src="__IMAGES__/cp1_1.jpg" width="100%" /> </div>
+                <div class="index_box2_left_wz">
+                  <h2><a href="#">Works of art</a>
+                    <div class="xian"></div>
+                  </h2>
+                  <h3>中国艺术品市场分析</h3>
+                  <p>2015年中国艺术品市场的发展表现出明显的结构性、复杂性的多元发展态势。一方面，它在一定程度上延续了2011年秋拍以来调整的发展状态，表现出鲜明的顺延性。</p>
+              
+                </div>
+            </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="index_box2_right">
+            <ul>
+              <volist name="res" id="v">
+              <li>
+              	<a href="{:U('/Home/ArtCommunity/college',array('id'=>$v['id']))}">
+                <div class="index_box2_right_list">
+                  <p>{$v.name}</p>
+                </div>
+                </a>
+              </li>
+              </volist>
+              <div class="clear"></div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+       <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>    
+          
+          
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script src="__JS__/swiper.min.js"></script>
+
+<script>
+
+// JavaScript Document
+
+$(document).ready(function(){
+
+
+    var nav_width=$('.index_box2_nav').width();
+    var left_width=(nav_width-30)/2;
+    var top=$('.index_box2').offset().top+70;
+    var Top=top-top%100;
+    var left_top=$('.index_box2_left').offset().top-top;
+    var left_left=$('.index_box2_left').offset().left;
+
+
+    $(window).scroll(function(){
+
+        if( $(".index_box2").length>0 ){
+            if($(window).scrollTop()>($(".index_box2").offset().top-($(window).height()*0.8))){
+                $(".index_box2_nav .by").delay(100).animate({"top":"0","opacity":"1"},1000);
+                $(".index_box2_left_box").delay(300).animate({"bottom":"0","opacity":"1"},1000);
+                $(".index_box2_right").delay(500).animate({"bottom":"0","opacity":"1"},1000);
+            }
+        }
+
+
+        var index_height=$('.index_box2_right').height();
+        $('.index_box2_left_box').css('height',index_height);
+        window.onresize=function(){
+            nav_width=$('.index_box2_nav').width();
+            left_width=(nav_width-30)/2;
+            $('.index_box2_left.fixed').css({'width':left_width});
+            top=$('.index_box2').offset().top+70;
+            Top=top-top%100;
+            left_left=$('.index_box2_left_box').offset().left;
+            index_height=$('.index_box2_right').height()+100;
+            $('.index_box2_left_box').css('height',index_height);
+        };
+
+
+
+        var b_num=$(".index_box2_left_box").offset().top+$(".index_box2_left_box").height()-$(".index_box2_left_height").height();
+        var tar=$(".index_box2_left_box");
+        if( $(window).scrollTop()>tar.offset().top && ($(window).scrollTop() <= b_num) ){
+            $(".index_box2_left").addClass("fixed").css({'width':left_width});;
+            $('.index_box2_left.fixed').css({'top':'0','left':left_left});
+        }
+
+        if($(window).scrollTop()<=tar.offset().top){
+            $('.index_box2_left').removeClass('fixed').css({'top':'0','left':0,'width':'100%','bottom':'auto'});
+        }
+
+        if( $(window).scrollTop() > b_num){
+            $('.index_box2_left').removeClass('fixed').css({'bottom':'0','top':'auto','left':0,'width':'100%'});
+        }
+
+
+
+    });
+
+
+
+
+})
+    
+</script>
+</html>

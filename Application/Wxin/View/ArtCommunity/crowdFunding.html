@@ -1,0 +1,215 @@
+<include file="Public:header" />
+<!--search-->
+<style>
+    .List{
+        background: #f70000 !important;
+        color: #fff !important;
+    }
+</style>
+<div class="galleryClass" style="margin-top: 60px">
+  <div class="galleryScroll">
+    <volist name="person" id="v">
+      <a href="{:U('Wxin/ArtCommunity/artistList')}?id={$v.id}" >{$v.name}</a>
+    </volist>
+    <volist name="organize" id="vv">
+      <a href="{:U('Wxin/ArtCommunity/hualang')}?id={$vv.id}" >{$vv.name}</a>
+    </volist>
+
+    <a href="{:U('Wxin/ArtCommunity/train')}">培训</a>
+    <a href="{:U('Wxin/ArtCommunity/crowdFunding')}" class="active">众筹</a>
+    <a href="{:U('Wxin/ArtCommunity/overseas')}">海外交流</a>
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="praise artworkP">
+    <div class="CraCon row">
+      <div class="praise_title" style="margin-bottom: 0;width: 90%;margin:auto;">
+        <h2><i></i>众筹<a href="javascript:vido(0);" class="screenA">筛选</a></h2>
+      </div>
+      <div class="praise_content">
+        <volist name="res" id="v">
+        <div class="pMd">
+          <div class="praise_date">
+            <span class="span_left">{$v.start|date="Y-m-d",###}</span>
+            <span class="span_right">点击量:{$v.num}</span>
+          </div>
+          <div class="praise_img">
+            <a href="{:U('/Wxin/ArtCommunity/crowdFdot',array('id'=>$v['id']))}" class="image">
+              <img src="{$v.logo_pic}">
+            </a> 
+            <a href="{:U('/Wxin/ArtCommunity/crowdFdot',array('id'=>$v['id']))}" class="names">{$v.goods_name}</a>
+          </div>
+          <div class="CrowdF">
+            <if condition="$v.price neq ''">
+              <i>已筹{$v.price}元</i>
+            </if>
+            <if condition="$v.price eq ''">
+              <i>已筹0元</i>
+            </if>
+            <if condition="$v.width neq ''">
+              <i>完成 {$v.width}</i>
+            </if>
+            <if condition="$v.width eq ''">
+              <i>完成 0%</i>
+            </if>
+            <i>还剩 {$v.day}天{$v.shi}时</i>
+          </div>
+            <span class="Schedule"><div class="Schedulel" style="width:{$v['width']} !important;" ></div></span>
+        </div>
+          </volist>
+      </div>     
+    </div>
+</div>
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="indexbottom"></div>
+<!-- screen -->
+<div class="screenBox">
+        <div class="screenBoxS">
+          <div class="screenCon">
+            <h3 class="screenH3">筛选</h3>
+            <div class="screenList">
+              <h4 class="screenClick1">按类目筛选<span class="fa fa-angle-down"></span></h4>
+              <div class="screenlist-a1" style="display:block;">
+                  <input type="hidden" name="cate_ids" value="{$_GET['cate']}" />
+                  <volist name="cate" id="vo" key="k">
+                  <a href="javascript:vido(0);" data-id="{$vo.id}">{$vo.name}</a>
+                      </volist>
+              </div>
+            </div>
+          </div>
+          <div class="screenButton">
+              <a href="#" class="screenFinish" id="screenReset" style="background: #F77B7B;">重置</a>
+              <a href="#" class="screenFinish" id="screenFinish">完成</a>
+              </div>
+          <div class="screenLeft"></div>
+        </div>
+</div>
+<!-- screen -->
+
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+    var p = 2;
+    var cate = "{$_GET['cate']}";
+
+    $('.screenlist-a1 a').click(function(){
+        if($(this).hasClass('List')){
+            $(this).removeClass('List');
+        }else {
+            $(this).addClass('List');
+        }
+
+        var cate_ids = '';
+        $('.screenlist-a1 a').each(function(){
+            if($(this).hasClass('List')){
+                var cate_id = $(this).attr('data-id');
+                cate_ids +=cate_id+',';
+            }
+        });
+        $('input[name="cate_ids"]').val(cate_ids);
+    })
+
+    $('#screenReset').click(function(){
+        $('input[name="cate_ids"]').val('');
+        window.location.href = "{:U('Wxin/ArtCommunity/crowdFunding')}";
+    });
+    $('#screenFinish').click(function(){
+        var cate_ids = $('input[name="cate_ids"]').val();
+        window.location.href = "{:U('Wxin/ArtCommunity/crowdFunding')}?cate="+cate_ids;
+    });
+    // 加载刷新。
+    function refresh(refresh,loadmore) {
+        $(window).scroll(function(){
+            console.log('正在滑动f');
+            var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+            var scrollHeight = $(document).height();   //当前页面的总高度
+            var clientHeight = $(this).height();    //当前可视的页面高度
+            // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+            if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+                // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+                console.log('下拉');
+
+                if(loadmore){
+                    loadmore();
+                }
+            }else if(scrollTop<=0){
+                //滚动条距离顶部的高度小于等于0 TODO
+                //alert("下拉刷新，要在这调用啥方法？");
+
+                console.log('上拉');
+                if(refresh){
+                    refresh();
+                }
+
+            }
+
+        });
+
+    }
+    //调用
+    refresh(fn1,fn2);
+
+    function fn1(){
+        window.location.href = "{:U('Wxin/ArtCommunity/crowdFunding')}?cate"+cate;
+    }
+    function fn2(){
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Wxin/ArtCommunity/get_crowdFunding')}",
+            data: {
+                cate: cate,
+                p: p,
+            },
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                    p++;
+                    $('.list_cont').append(g.html);
+                } else {
+                    //alert(g.info);
+                }
+            }
+        });
+    }
+
+$(document).ready(function(){
+  
+    $('.screenFinish').click(function(){
+   $('.screenBox').animate({"right":"-80%"},100)
+   
+   });
+  
+  $('.screenA').click(function(){
+   $('.screenBox').animate({"right":"0"},100)
+  })
+  $(".screenLeft").click(function(){
+    $(".screenBox").hide();
+  });
+  
+
+  $(".screenClick1").click(function(){
+    $(".screenlist-a1").fadeToggle("slow");
+  });
+  $(".screenClick2").click(function(){
+    $(".screenlist-a2").fadeToggle("slow");
+  });
+  $(".screenClick3").click(function(){
+    $(".screenlist-a3").fadeToggle("slow");
+  });
+  $(".screenClick4").click(function(){
+    $(".screenlist-a4").fadeToggle("slow");
+  });
+  $(".screenClick5").click(function(){
+    $(".screenlist-a5").fadeToggle("slow");
+  });
+  
+  
+});
+</script>
+
+</html>

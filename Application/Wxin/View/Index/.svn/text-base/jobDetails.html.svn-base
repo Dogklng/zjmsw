@@ -1,0 +1,239 @@
+<include file="Public:header" />
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">news details</p>
+    <h5>招 • 聘 • 详 • 情 </h5>
+  </div>
+  
+
+		<div class="jobdot">
+<div class="container">
+
+<div class="row">
+<div class="conceptwarp clearfix">
+<div class="col-lg-12 col-md-12 col-sm-12">
+<div class="zpxxnrbotm" style=" height:auto">
+<div class="zpxxnrtop_job">{$res.name}</div>
+<div class="zpxxnrbody">
+<div class="zpxxnrbodynr">
+<div class="zpxxnrbodynrs">
+<div class="zpxxnrbodynrsz" style=" width:45px;">年龄：</div>
+<div class="zpxxnrbodynrsy" style=" width:120px;">{$res.age}岁</div>
+<div class=" clear"></div>
+</div>
+<div class="zpxxnrbodynrs">
+<div class="zpxxnrbodynrsz">工作地点：</div>
+<div class="zpxxnrbodynrsy">{$res.workingplace}</div>
+<div class=" clear"></div>
+</div>
+</div>
+<div class="zpxxnrbodynr">
+<div class="zpxxnrbodynrs">
+<div class="zpxxnrbodynrsz">性别要求：</div>
+<div class="zpxxnrbodynrsy"><if condition="$res.sex eq 0">无<elseif condition="$res.sex eq 1"/>男<else/>女</if></div>
+<div class=" clear"></div>
+</div>
+<div class="zpxxnrbodynrs">
+<div class="zpxxnrbodynrsz">工作性质：</div>
+<div class="zpxxnrbodynrsy">{$res.worknature}</div>
+<div class=" clear"></div>
+</div>
+</div>
+<div class="zpxxnrbodynr">
+<div class="zpxxnrbodynrs">
+<div class="zpxxnrbodynrsz">工作经验：</div>
+<div class="zpxxnrbodynrsy">{$res.experience}</div>
+<div class=" clear"></div>
+</div>
+<div class="zpxxnrbodynrs">
+<div class="zpxxnrbodynrsz">工资待遇：</div>
+<div class="zpxxnrbodynrsy">{$res.salarytreatment}</div>
+<div class=" clear"></div>
+</div>
+</div>
+<div class="zpxxnrbodynr" style=" margin-right:0px; width:160px;">
+<div class="zpxxnrbodynrs">
+<div class="zpxxnrbodynrsz">学历要求：</div>
+<div class="zpxxnrbodynrsy" style=" width:65px;">{$res.education}</div>
+<div class=" clear"></div>
+</div>
+<div class="zpxxnrbodynrs" style="width:200px;">
+<div class="zpxxnrbodynrsz">招聘人数：</div>
+<div class="zpxxnrbodynrsy" style="padding-left: 12px">{$res.numbers}</div>
+<div class=" clear"></div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="row" style="margin-top:30px;">
+<div class="col-lg-12 col-md-12 col-sm-12">
+<div class="zxzpnr">
+岗位职责：<br>
+{$res.responsibility|htmlspecialchars_decode|stripslashes}
+<!-- <p>1、应往届本科毕业生，211学校优先，有海外学习背景优先； 商科背景，金融、财务专业优先；</p>
+<p>2、形象气质好，优秀的英语听说读写能力；</p>
+<p>3、语言表达清晰，沟通能力较强；</p>
+<p>4、对未来有明确的规划、能将自身规划和企业未来相融合；</p>
+<p>5、自信、肯付出、有能力和勇气接受挑战；有较强的敬业精神，能吃苦耐劳。</p> --></div>
+</div>
+
+</div>
+
+
+<div class="row" style="margin-top:30px;">
+<div class="col-lg-12 col-md-12 col-sm-12">
+<!-- <div class="zxzpnr">
+上传简历：<br>
+</div> -->
+</div>
+</div>
+
+
+<!-- <div class="row" style="margin-top:30px;">
+<div class="col-lg-12 col-md-12 col-sm-12">
+<div class="jianli">
+<div class="tjl" style="width:1000px">
+<form method="post" action="" name="form1"> -->
+ 
+    <!-- <input type="file" name="upfile" class="sc">
+    <input type="submit" value="上 传" name="submit" class="bt">           -->                             
+    
+    
+<!--     </form>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div> -->
+ <div class="zxzpnr">
+    <label class="fi-name">上传简历：</label>
+    <input type="hidden" name="zhid" id="zhid" value="{$res.id} />
+    <div class="form-controls pdt5 j-imglistPanel">
+      <div class="baotuan_showimge fl mgr10">
+      </div><!--accept="image/jpg,image/jpeg,image/png"-->
+      <div class="btnimage fl">选择文件
+        <input type="file" name="baotuan" id="baotuan" class="file" >
+      </div>
+      <div class="baotuan_progress fl mgr15" style="display:none">
+        <span class="baotuan_percent">80%</span>
+      </div>
+      <span class="fi-help-text fl lh30 mgl10">支持上传doc，docx，pdf格式的文件</span>
+    </div>
+  </div>
+<div  class="upload" style="margin-right:800px;"><a href="javascript:void();" id="tj" style=" background: black;">提交简历</a></div>
+
+<script>
+  $('#tj').click(function(){
+    var member_id = '{$Think.session.member_id}';
+    if(!member_id){
+        dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+        return false;
+    }
+    var pic = $('#join_pic').val();
+    if(pic == ''){
+      alert('请上传简历！');return false;
+    }
+    var zhid = $('#zhid').val();
+    if(!zhid){
+      alert('请先择岗位！');return false;
+    }
+    $.ajax({
+      url:'/Home/Index/jobDetails',
+      type:'post',
+      data:{zhid:zhid,pic:pic},
+      dataType:'json',
+      success:function(g){
+        console.log(g);
+        if(g.status == 1){
+          dialog.showTips(g.info,'warn',function(){
+            window.location.reload();
+          })
+        }else if(g.status == 2){
+          dialog.showTips(g.info,'warn',function(){
+            window.location.href="/Home/User/login";
+            return false;
+          })
+        }else{
+          alert(g.info);return false;
+        }
+      }
+    })
+  })
+</script>
+<div class="upload"><a href="javascript:history.back(-1);">返回</a></div>
+</div>
+</div>
+		
+          
+          <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div> 
+          
+</div>
+<!--  / warpper  -->
+
+<include file="Public:footer" />
+
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+</html>
+<script>
+  $(function(){
+      //alert()
+        var percent = $('.baotuan_percent');
+        var progress = $('.baotuan_progress');
+        $("#baotuan").wrap("<form id='baotuan1' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#baotuan").change(function(){ //选择文件doc，docx，pdf
+            var str = 'doc,docx,pdf';
+            var arr = str.split(",");
+            var fileName=$('#baotuan').val();
+            var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+            var c=false;
+            for(var k in arr){
+                if(arr[k]==fileExtension){
+                    c=true;
+                    break;
+                }
+            }
+            //console.log(arr,fileExtension);return false;
+            if(c==false){
+                alert('上传文件格式错误！');
+                return false;
+            }
+          $("#baotuan1").ajaxSubmit({
+            dataType:  'json', //数据格式为json
+            beforeSend: function() { //开始上传
+              progress.show(); //显示进度条
+              var percentVal = '0%';
+              percent.html(percentVal);
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+              var percentVal = percentComplete + '%'; //获得进度
+              percent.html(percentVal); //显示上传进度百分比
+            },
+            success: function(data) { //成功<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" >
+                //console.log(data);
+              var img = '<input type="hidden" name="join_pic" id="join_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+              $('.baotuan_showimge').html(img);
+              progress.hide();
+            },
+            error:function(xhr){ //上传失败
+              //console.log(xhr.status)
+            }
+          });
+        });
+  })
+</script>

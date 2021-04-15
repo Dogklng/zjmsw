@@ -1,0 +1,483 @@
+<include file="Public:header" />
+
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+<style>
+    .text-center span {
+        line-height: 40px;
+        background: #f5f5f5;
+        border-radius: 3px;
+        letter-spacing: 1px;
+        color: #333;
+        margin-right: 5px;
+        text-align: center;
+    }
+    .cash{
+        width:100%;
+        height:100%;
+        position:fixed; top:0; left:0;
+        z-index:999;
+        display:none;
+    }
+    .cash_bg{
+        width:100%;
+        height:100%;
+        background:#000;
+        position:absolute; top:0; left:0;
+        z-index:-1;
+        opacity:0.8;
+        filter:alpha(opacity=80);
+        -moz-opacity:0.8;
+        -khtml-opacity:0.8;
+        -webkit-opacity:0.8;
+    }
+    .cash_con{
+        width:660px;
+        height:300px;
+        position:absolute; top:50%;
+        left:50%;
+        margin-left:-330px;
+        margin-top:-210px;
+        background:#fff;
+        padding:40px;
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        transform: scale(0.8);
+        opacity:0;
+        filter:alpha(opacity=0);
+        -moz-opacity:0;
+        -khtml-opacity:0;
+        -webkit-opacity:0;
+        -webkit-transition: 0.5s ease;
+        -moz-transition: 0.5s ease;
+        -ms-transition: 0.5s ease;
+        -o-transition: 0.5s ease;
+        transition: 0.5s ease;
+    }
+    .cash_con_on{
+        opacity:1 !important;
+        filter:alpha(opacity=100) !important;
+        -moz-opacity:1 !important;
+        -khtml-opacity:1 !important;
+        -webkit-opacity:1 !important;
+        -webkit-transform: scale(1) !important;
+        -moz-transform: scale(1) !important;
+        -ms-transform: scale(1) !important;
+        -o-transform: scale(1) !important;
+        transform: scale(1) !important;
+    }
+
+    .cash_con h5{
+        font-size:16px;
+        color:#333;
+        letter-spacing:1px;
+        margin-top:0;
+        margin-bottom:30px;
+    }
+    .cash_con>img{
+        position:absolute; top:20px; right:20px;
+        cursor:pointer;
+    }
+    .cash_list{
+        width:100%;
+        margin-top:30px;
+    }
+    .cash_l{
+        width:45%;
+        float:left;
+    }
+</style>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:user_left" />
+      </div>
+      <div class="col-sm-10">
+          <div class="user_r_list user_benefit">
+        <h5><span>我的银行卡</span><a href="javascript:void(0);" class="add-card" style="float: right;margin-right: 0px;">+新建银行卡</a></h5></h5>
+              <table class="user_table">
+                  <tbody>
+                  <tr>
+                      <th>银行</th>
+                      <th>银行卡号</th>
+                      <th>开户行</th>
+                      <th>户名</th>
+                      <th>预留手机号</th>
+                      <th>操作时间</th>
+                      <th>操作</th>
+                  </tr>
+                  <volist name="res" id="vo">
+                  <tr>
+                      <td class="user_r_frist">{$vo.bank_name}</td>
+                      <td>{$vo.bank_no}</td>
+                      <td>{$vo.bank_branch}</td>
+                      <td>{$vo.username}</td>
+                      <td>{$vo.telephone}</td>
+                      <td>{$vo['create_at']|date="Y-m-d",###}</td>
+                      <td><div class="user_table_A">
+                          <a href="javascript:void(0);" class="userCard" data-id="{$vo.id}" data-bank_name="{$vo.bank_name}" data-telephone="{$vo.telephone}" data-bank_no="{$vo.bank_no}" data-username="{$vo.username}" data-bank_branch="{$vo.bank_branch}">编辑</a>
+                      </div>
+                          <div class="user_table_A">
+                              <a href="javascript:void(0)" data-id="{$vo.id}" class="cash2">提现</a>
+                          </div>
+                          <div class="user_table_A">
+                              <a href="javascript:void(0)" data-id="{$vo.id}" class="delete">删除</a>
+                          </div>
+
+                      </td>
+                  </tr>
+                  </volist>
+                  </tbody>
+              </table>
+              <div class="user_zw" style="background:#f9f9f9;">
+               <img src="__IMAGES__/card.png">
+               <h3>暂无银行卡</h3>
+               <a href="javascript:void(0);" class="add-card">去添加+</a>
+              </div>
+       </div>
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+<!-- dizhi -->
+<div class="dizhi" style="z-index: 0">
+  <div class="dizhi_bg"></div>
+  <div class="dizhi_con">
+   <img src="__IMAGES__/dizhi_close.png" width="20">
+   <div class="user_card">
+    <input type="hidden" value="" id="id1">
+    <p><span>银行卡号：</span><input type="text" value="" id="bank_no"></p>
+    <p><span>银行：</span><input type="text" value="" id="bank_name"></p>
+    <p><span>开户行：</span><input type="text" value="" id="bank_branch"></p>
+    <p><span>户名：</span><input type="text" value="" id="username"></p>
+    <p><span>预留手机号：</span><input type="text" value="" id="tel"></p>
+    <div class="user_r6_line"></div>
+    <div class="cardA text-center">
+        <a class="save" href="javascript:void();" id="save" style="background: #f4f4f3">保存</a>
+     <a class="cardD" href="{:U('Home/PersonalCenter/bank/tag/bank/value/4')}">取消</a>
+    </div>
+
+   </div>
+  </div>
+ </div>
+
+
+
+<!-- dizhi -->
+<!--tixian-->
+<div class="cash" style="z-index: 0">
+    <div class="cash_bg"></div>
+    <div class="cash_con">
+        <!--<img src="__IMAGES__/dizhi_close.png" width="20">-->
+        <div class="user_card">
+            <input type="hidden" value="" id="cash1">
+            <p><span>提现金额：</span><input type="text" value="" id="money"></p>
+            <div class="user_r6_line"></div>
+            <div class="cardA text-center">
+                <a class="save" href="javascript:void();" id="cash" style="background: #f4f4f3">保存</a>
+                <a class="cardD" href="{:U('Home/PersonalCenter/bank/tag/bank/value/4')}">取消</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+
+</body>
+<script>
+
+</script>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+<script>
+
+
+$('.add-card').click(function(){
+  $('.dizhi').stop(true).fadeIn(1000);
+  setTimeout(function(){
+	  $('.dizhi_con').addClass('dizhi_con_on');
+	  },300)
+  })
+$('.cardD').click(function(){
+	  $('.dizhi_con').removeClass('dizhi_con_on');
+	setTimeout(function(){
+		$('.dizhi').stop(true).fadeOut(1000);
+	  },300)
+})
+
+$('.userCard').click(function(){
+    $('.dizhi').stop(true).fadeIn(1000);
+    
+    $('#id1').val($(this).data('id'));
+    setTimeout(function(){
+        $('.dizhi_con').addClass('dizhi_con_on');
+    },300)
+})
+
+$('.cash2').click(function(){
+    $('.cash').stop(true).fadeIn(1000);
+
+    $('#cash1').val($(this).data('id'));
+    setTimeout(function(){
+        $('.cash_con').addClass('cash_con_on');
+    },300)
+})
+
+    $('#cash').click(function(){
+        var id = $('#cash1').val();
+        var money = $('#money').val();
+        $.ajax({
+            url:'/Home/PersonalCenter/cash',
+            data:{id:id,money:money},
+            dataType:"json",
+            type:"post",
+            success:function(data){
+                if(data.stauts==1){
+                    alert(data.info);
+                    window.location.reload();
+                    return false;
+                }else{
+                    alert(data.info);
+                    window.location.reload();
+                    return false;
+                }
+            }
+        })
+    })
+
+
+
+    $('.save').click(function () {
+        var bank_no = $.trim($('#bank_no').val());
+        var bank_name = $.trim($('#bank_name').val());
+        var bank_branch = $.trim($('#bank_branch').val());
+        var username = $.trim($('#username').val());
+        var tel = $.trim($('#tel').val());
+        var id1 = $('#id1').val();
+
+
+        if (bank_no == '')
+        {
+            alert("卡号必填！");
+            return false;
+        }
+        if(bank_no.length < 16 || bank_no.length > 19)
+        {
+//            $("#banknoInfo").html("银行卡号长度必须在16到19之间");
+            alert('银行卡号长度必须在16到19之间');
+            return false;
+        }
+        var num = /^\d*$/; //全数字
+        if(!num.exec(bank_no))
+        {
+//            $("#banknoInfo").html("银行卡号必须全为数字");
+            alert('银行卡号必须全为数字');
+            return false;
+        }
+        //开头6位
+        var strBin = "10,18,30,35,37,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,60,62,65,68,69,84,87,88,94,95,98,99";
+        if(strBin.indexOf(bank_no.substring(0, 2)) == -1)
+        {
+            alert('银行卡号开头6位不符合规范');
+//            $("#banknoInfo").html("银行卡号开头6位不符合规范");
+            return false;
+        }
+        //console.log(bank_no);return false;
+       // console(luhmCheck(bank_no)) ;//6228482098405237878
+//        var check = function(content) {
+//            var regex = /^(998801|998802|622525|622526|435744|435745|483536|528020|526855|622156|622155|356869|531659|622157|627066|627067|627068|627069)\d{10}$/;
+//            if (regex.test(content)) {
+//                return true;
+//            }
+//            return false;
+//        }
+        //console(CheckBankNo(bank_no));return false;
+//        if(!check(bank_no))
+//        {
+//            alert('银行卡格式错误！');
+//            return false;
+//        }
+        if(bank_name == ''){
+            alert('银行必填');
+            return false;
+        }
+        if(bank_branch == ''){
+            alert('开户行必填');
+            return false;
+        }
+        if(username == ''){
+            alert('用户必填');
+            return false;
+        }
+        if(tel == ''){
+            alert('手机必填');
+            return false;
+        }
+        if(!tel.match(/^1[35789][0-9]{9}$/)){
+            alert("请输入有效的手机号码！");return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Home/PersonalCenter/addBankCard')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                bank_no: bank_no,
+                bank_name:bank_name,
+                bank_branch:bank_branch,
+                username:username,
+                telephone:tel,
+                id:id1,
+            }
+        }).done(function (g) {
+            console.log(g);
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+
+
+
+
+
+$('.userCard').click(function() {
+
+    var id = $(this).attr("data-id");
+    $('#id1').val();
+    var bank_name = $(this).attr("data-bank_name");
+    $('#bank_name').val(bank_name);
+    var telephone = $(this).attr("data-telephone");
+    $('#tel').val(telephone);
+    var bank_no = $(this).attr('data-bank_no');
+    $('#bank_no').val(bank_no);
+    var bank_branch = $(this).attr('data-bank_branch');
+    $('#bank_branch').val(bank_branch);
+    var username = $(this).attr('data-username');
+    $('#username').val(username);
+
+    $("#save").attr("data-id", id);
+
+});
+
+
+var count1 = '{$count}';
+
+if(count1 == 0 ){
+    $('.user_zw').show();
+}else{
+    $('.user_zw').hide();
+}
+
+
+$(".delete").click(function () {
+    var id1  = $(this).attr('data-id');
+    dialog.showTips('确定删除吗','firm',function () {
+        $.ajax({
+            url: "{:U('Home/PersonalCenter/deleteBankCard')}",
+            data: {id:id1},
+            type: 'post',
+            dataType: 'json',
+            success: function (content) {
+                if (content.status == 1) {
+                    alert(content.info
+
+                    );
+                    window.location.reload();
+                } else {
+                    alert(content.info
+
+                    );
+                }
+            }
+        })
+    });
+
+})
+</script>
+<script type="text/javascript">
+
+    function CheckBankNo(t_bankno)
+    {
+        var bankno = $.trim(t_bankno.val());
+        if(bankno == "") {
+//            $("#banknoInfo").html("请填写银行卡号");
+            return false;
+        }
+        if(bankno.length < 16 || bankno.length > 19) {
+//            $("#banknoInfo").html("银行卡号长度必须在16到19之间");
+            return false;
+        }
+        var num = /^\d*$/; //全数字
+        if(!num.exec(bankno)) {
+//            $("#banknoInfo").html("银行卡号必须全为数字");
+            return false;
+        }
+        //开头6位
+        var strBin = "10,18,30,35,37,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,60,62,65,68,69,84,87,88,94,95,98,99";
+        if(strBin.indexOf(bankno.substring(0, 2)) == -1) {
+//            $("#banknoInfo").html("银行卡号开头6位不符合规范");
+            return false;
+        }
+        //Luhm校验（新）
+//        if(!luhmCheck(bankno)){
+//
+//            return false;
+//        }
+//        $("#banknoInfo").html("验证通过!");
+        return true;
+    }
+</script>
+</html>

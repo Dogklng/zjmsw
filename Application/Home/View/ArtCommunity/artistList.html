@@ -1,0 +1,204 @@
+<include file="Public:header" />
+<style>
+    .main_page {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+    }
+    .main_page .me {
+        background: #ff6801 !important;
+        border: 1px solid #ff6801 !important;
+        color: #fff !important;
+    }
+    .main_page span {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+        background: #fff;
+        font-size: 14px;
+        border: 1px solid #dbdbdb;
+        color: #666;
+        padding: 0 20px;
+        cursor: pointer;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+</style>
+<div class="ban1">
+  <div class="banner_img">
+    <img src="{$images.pic}" alt="" />
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  
+  
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">The artist</p>
+    <h5>{$name}</h5>
+  </div>
+  <div class="col_main">
+  
+  <h1>{$name}</h1>
+
+  <!-- <div class="topic_list">
+      <div id="topic_switcher" class="switcher" >
+          <a class="first" href="#">注册</a>
+          <a class="item" href="#">新兴</a>
+          <a class="item" href="#">成长</a>
+          <a class="item" href="#">大师</a>
+          <a class="last" href="#">分类</a>
+      </div>      
+  </div> -->
+   <div class="topic_list">
+      <div id="topic_switcher" class="switcher" >
+          <volist name="level" id="p">
+              <a class="first"
+                 href="{:U('/Home/ArtCommunity/artistList',array('id'=>$_GET['id'],'level'=>$p['id']))}"
+              <if condition="$p['id'] eq $_GET['level']">style="background:#000;color:#fff;"</if>>{$p.level_name}</a>&nbsp;
+          </volist>
+      </div>
+  </div> 
+</div>  
+  <style>
+      .acac{
+          background: #000;
+      }
+  </style>
+<div class="row">
+ <div class="ysj-cont1">
+  <volist name="res" id="v">
+    <div class="col-lg-3 col-md-3 col-sm-3">  
+      <div class="ysj_list"> <a href="{:U('/Home/ArtCommunity/artistShow',array('id'=>$v['id']))}">
+        <div class="ysj_list_wz" style="width:259px;height:305px;">
+        <h5>{$v.artist_name}</h5>
+        <p>{$v.desc|htmlspecialchars_decode|stripslashes|strip_tags}</p>
+        <i>+</i>
+      </div>
+        <img src="{$v.logo_pic}" style="width:259px;height:305px;"> </a> </div>
+    </div>
+  </volist> 
+</div>
+</div>
+
+
+
+
+
+ <div class="row">
+ <div class="rol-lg-12">
+    <div class="cont3-con">
+        {$slogan|htmlspecialchars_decode|stripslashes}
+    </div>
+ </div>
+
+
+  <div class="row">
+    <span class="more" style=" background:#000; margin:0 auto;"><a class="apply" href="javascript:void(0);" style=" color:#fff;">申请入驻</a><i></i></span>
+  </div>
+     <div class="main_page">
+         {$page}
+     </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div> 
+  
+</div>
+  </div>
+     </div>
+
+
+
+  </div>
+
+
+<!--  / warpper  --> 
+
+<include file="Public/footer" />
+
+</body>
+<script>
+    $('.main_page span').click(function () {
+        var page = $(this).attr('data-page');
+        if(!isNaN(page)){
+            window.location.href = "{:U('/Home/ArtCommunity/artistList')}?id={$_GET['id']}&level={$_GET['level']}&page="+page;
+        }
+    })
+    $(".apply").click(function(){
+        var id = "{$_SESSION['member_id']}";
+        if(id == ''){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+        $.ajax({
+            url:'/Home/Shop/apply',
+            dataType:"json",
+            type:"post",
+            data:{id:id},
+            success:function(g){
+                if(g.status==1){
+                    window.location.href=g.url;
+                    return false;
+                } else{
+                    alert(data.info);
+                    window.location.reload();
+                    return false;
+                }
+            }
+        })
+    })
+   /*$('.apply').click(function(){
+
+        var id = '{$member_id}';
+        /!*console.log(id);
+        $.ajax({
+            url: "{:U('/Home/ArtCommunity/apply')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id:id
+            }
+        }).done(function (data) {
+
+            if(data.status==0){
+                window.location.href="{:U('Home/Shop/seldpsy')}"
+            }elseif(data.status ==1){
+                window.location.href="{:U('Home/Shop/ysjgl')}"
+            }elseif(data.status==2){
+                window.location.href="{:U('Home/Shop/selCenter')}"
+            }elseif(data.status==3){
+                window.location.href="{:U('Home/Shop/selAudit')}"
+            }
+
+
+    })*!/
+   $.post("{:U('Home/ArtCommunity/apply')}",{id:id},function(data) {
+		console.log(data.status);
+       if (data.status == 0) {
+           window.location.href = "{:U('Home/Shop/seldpsy')}"
+       }
+       if(data.status == 1)
+       {
+           window.location.href = "{:U('Home/Shop/ysjgl')}"
+       }
+       if(data.status == 2)
+       {
+           window.location.href = "{:U('Home/Shop/selCenter')}"
+       }
+       if(data.status == 3)
+       {
+
+           window.location.href = "{:U('Home/Shop/selAudit')}"
+       }
+       if(data.status == 4)
+       {
+
+           window.location.href = "{:U('Home/Shop/selCompanyCertified')}"
+       }
+   })
+   })*/
+</script>
+</html>

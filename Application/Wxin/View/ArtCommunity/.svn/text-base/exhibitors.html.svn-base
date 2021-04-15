@@ -1,0 +1,213 @@
+<include file="Public:header" />
+<div class="dianpu_box">
+<div class="SellerCon">
+  <div class="SellerTop">
+    <h3>我要办展</h3>
+  </div>
+  <div class="SellerFlower">
+  	<div class="paiuncenter_one">
+      <h3>请填写以下报名表信息</h3>
+      <p class="activedp">请填写真实姓名，联系方式等信息，确保我们能及联系到您！</p>
+    </div>
+
+    <div class="pZlCon fbzp-pZlCon">
+      <form class="pZlConForm" aciton="{:U('/Wxin/ArtCommunity/exhibitors')}" enctype="multipart/form-data" method="post">
+        <div class="pZlConI clearfix">
+          <label class="pzLs">姓名：</label>
+          <input type="text" value="" maxlength="10" id="name" onblur="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" onkeyup="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" name="name">
+        </div>
+        <input type="hidden" checked name="cate" value="1">
+        <div class="pZlConI clearfix">
+          <label class="pzLs">作品类型：</label>
+          <select name="series" style="width: 400px;height: 32px">
+            <volist name="series" id="s">
+              <option value="{$s.id}">{$s.classname}</option>
+            </volist>
+          </select>
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">手机：</label>
+          <input type="text" value="" id="tel" maxlength="16" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" name="tel">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">微信：</label>
+          <input type="text" value="" id="wx" maxlength="30" name="wx">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">邮箱：</label>
+          <input type="text" value="" id="email" maxlength="30" name="email">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">个人简介：</label>
+          <textarea id="detail" maxlength="100" name="detail" rows="7" cols=""></textarea>
+        </div>
+        <div id="imgs">
+          <div class="pZlConI clearfix">
+            <div class="pZlConI-div">
+              <label class="pzLs">作品上传：</label>
+              <div class="SelIdetPic-list">
+                <div class="SelIdPic-border" id="s">
+                  <img src="__IMAGES__/SeladdPic.png">
+                  <h6>点此上传</h6>
+                  <input type="file" class="add_pic" name="upFile1" id="duoxuan">
+                  <input type="hidden" name="logo" value="">
+                </div>
+              </div>
+            </div>
+            <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+          </div>
+          <div class="duoxuan_showimge mgr10">
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="SelNoticeStyle">
+    <h4><a href="javascript:;" onclick="toVaild()" >确定提交</a></h4>
+  </div>
+</div>
+<div class="indexbottom"></div>
+</div>
+<include file="Public:header" />
+
+</body>
+</html>
+
+<script type="text/javascript" src="__JS__/jedate/jedate.js"></script>
+<script src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+  function imgs() {
+    var pic = $('input[name="pic[]"]');
+    var imgs = $(pic).length;
+    if (imgs>=6){
+      alert('图片不可大于6个！');
+      return false;;
+    }else {
+      return true;
+    }
+  }
+
+  function delImg(obj){
+    if(!confirm("删除这张图片？")){
+      return false;
+    }
+    $(obj).next("input").remove();
+    $(obj).remove();
+  }
+
+
+
+  var percent = $('.duoxuan_percent');
+  var progress = $('.duoxuan_percent');
+  $("#duoxuan").wrap("<form id='myupload' action='{:U('/Home/ArtCommunity/addImage')}' method='post' enctype='multipart/form-data'></form>");
+  $("#duoxuan").change(function(){ //选择文件
+    if (!imgs()){
+      return false;
+    }
+
+    $("#myupload").ajaxSubmit({
+      dataType:  'json', //数据格式为json
+      beforeSend: function() { //开始上传
+        progress.show(); //显示进度条
+        var percentVal = '0%';
+        percent.html(percentVal);
+      },
+      uploadProgress: function(event, position, total, percentComplete) {
+        var percentVal = percentComplete + '%'; //获得进度
+        percent.html(percentVal); //显示上传进度百分比
+      },
+      success: function(data) { //成功
+        var img = '<img onclick="delImg(this)" src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80"  class="mgr10 mgt10 " onclick="delImg(this)"><input type="hidden" name="pic[]" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+        //console.log(img);
+        $('.duoxuan_showimge').append(img);
+        progress.hide();
+      },
+      error:function(xhr){ //上传失败
+        //console.log(xhr.status)
+      }
+    });
+  });
+
+
+
+  function toVaild() {
+
+    var name = $.trim($('#name').val());
+    var val=$('input:radio[name="cate"]:checked').val();
+    //var series = $('input:radio[name="series"]:checked').val();
+    var series = $('select[name="series"]').val();
+    var tel = $.trim($('#tel').val());
+    var wx =  $.trim($('#wx').val());
+    var email = $.trim($('#email').val());
+    var detail = $.trim($('#detail').val());
+    var pic = $('#pic').val();
+    if(name==''){
+      alert("姓名必填");
+      return false;
+    }
+    /*if(val==undefined){
+     alert("参展类型必选");
+     return false;
+     }*/
+    if(series==undefined){
+      alert("作品类型必选");
+      return false;
+    }
+    if(tel==''){
+      alert("手机号必填");
+      return false;
+    }
+    var reg1 = /^1[3|4|5|7|8][0-9]{9}$/; //验证规则
+    if(!reg1.test(tel)){
+      alert("手机号码有误，请重填");
+      return false;
+    }
+    if(wx==''){
+      alert("微信必填");
+      return false;
+    }
+    if(email==''){
+      alert("邮箱必填");
+      return false;
+    }
+    var reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;//邮箱
+
+    if(!(reg.test(email))){
+      alert("请输入正确邮箱");
+      return false;
+    }
+    /*if(detail==''){
+     alert("简介必填");
+     return false;
+     }*/
+    if(pic==undefined){
+      alert("图片必选");
+      return false;
+    }
+    $.ajax({
+      url:'/Wxin/ArtCommunity/exhibitors',
+      type:'post',
+      data:$("form").serialize(),
+      dataType:'json',
+      async: false,
+      success:function(g){
+        if(g.status == 1){
+          alert(g.info);
+          setTimeout(location.href="{:U('Wxin/News/exhibition')}",5000);
+          return false;
+        }else{
+          alert(g.info);
+          return false;
+
+        }
+
+      }
+    })
+
+
+    return false;
+
+  }
+</script>

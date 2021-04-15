@@ -1,0 +1,163 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:shop_left" />
+      </div>
+      <div class="col-sm-10">
+          <div class="user_r">
+	            <ul class="user_all">
+	              <li class="actived"><a href="javascript:;">推荐的作品</a></li>
+	              
+	            </ul>
+              <volist name="goods" id="v">
+              <div class="user_r_list">
+	                <h5><span>出售中</span></h5>
+	                <table>
+                    <!-- <input type="checkbox" style="float:left; margin-top:9px; margin-right:5px;"> -->
+	                  <tbody><tr>
+	                    <th class="user_r_frist" style="width:38%;">商品名称</th>
+	                    <th style="width:10%;">价格</th>
+	                    <th style="width:10%;">喜欢</th>
+	                    <th style="width:10%;">浏览次数</th>
+	                    <th style="width:10%;">状态</th>
+	                    <th style="width:12%;">操作</th>
+	                  </tr>
+	                  <tr>
+	                    <td class="user_r_frist"><a class="user_proa" href="zpxq.html"><img src="{$v.index_pic}" width="100"><span>{$v.goods_name}  {$v.goods_cap}</span></a></td>
+	                    <td>¥{$v.price}</td>
+	                    <td>{$v.count}</td>
+	                    <td>{$v.browser}</td>
+						  <if condition="$v.is_sale eq 1"><td>出售中</td></if>
+						  <if condition="$v.is_sale eq 0"><td>下架中</td></if>
+						  <td><a class="fukuan" href="javaScript:;" data-id="{$v.id}">移除</a></td>
+	                  </tr>
+	                </tbody></table>  
+	          </div>
+			  </volist>
+          </div>
+          
+         <!--  <h3 class="zpbj" style="text-align:right; margin-top:0;">
+            	<a href="#" style="color:#333; font-size:14px; padding-right:10px;"><input type="checkbox" style="padding-top:2px; margin-right:2px; ">全选</a>
+                <a href="#" style="color:#333; font-size:14px;"><img src="__IMAGES__/shop_cloae.png" style="display:inline-block;width:16px; margin-top:-2px; margin-right:3px;">删除</a>
+            </h3> -->
+        </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <a href="##" class="task_btn1_on">确定</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1">
+        <a href="##" class="task1_btn1_on">确定</a>
+        <a href="##" class="task1_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+<script>
+	$(document).ready(function(){
+		$('.fukuan').click(function(){
+		    var id1 = $(this).attr('data-id');
+//            dialog.showTips('确定吗','firm',function () {
+                $.ajax({
+                    url: "{:U('Home/Shop/removeRec')}",
+                    data: {
+                        id:id1,
+					},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (content) {
+                        if (content.status == 1) {
+                            alert(content.info
+
+                            );
+                            window.location.reload();
+                        } else {
+                            alert(content.info
+
+                            );
+                        }
+                    }
+                })
+            });
+//			$(this).parents('.user_r_list').remove();
+		})
+		
+//	})
+</script>
+</html>

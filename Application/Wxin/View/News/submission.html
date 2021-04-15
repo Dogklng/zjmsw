@@ -1,0 +1,546 @@
+<include file="Public:header" />
+<!--  / header  -->
+<style>
+  .pZlConI h6 {
+    font-size: 12px;
+    line-height: 24px;
+    margin: 0;
+    color: #999;
+  }
+  .SelIdPic-border {
+    border: 2px dashed #ccc;
+    background: #f5f5f5;
+    text-align: center;
+    padding: 20px 0 15px;
+    position: relative;
+  }
+  .SelIdPic-border h6 {
+    font-size: 12px;
+    line-height: 24px;
+    color: #333;
+  }
+  .busapply_pic h6 {
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    margin-bottom: 20px;
+    margin: 0;
+    padding-left: 3px;
+  }
+  .product-sort a {
+    float: left;
+    font-size: 14px;
+    padding: 4px 10px;
+    color: #666;
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+  }
+  .List{
+    background: #f70000 !important;
+    color: #fff !important;
+  }
+</style>
+<div class="galleryClass" style="margin-top:60px;">
+  <div class="galleryScroll">
+    <a href="{:U('/Wxin/News/process')}">大赛流程</a>
+    <a href="{:U('/Wxin/News/processDetails')}">大赛详情</a>
+    <a href="{:U('/Wxin/News/works')}">在线作品</a>
+    <a href="{:U('/Wxin/News/win')}">获奖作品</a>
+    <a id="zggA" class="zgg active" href="javascript:void(0);" >我要投稿</a>
+  </div>
+  <input type="hidden" id="nid" name="nid" value="{$Think.session.nid}"/>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:0;">
+   <form class="warpForm" name='formw' method='post'>
+    <div class="busapply_xinxi_input">
+      <div class="busapply_xinxi_left">
+        <span class="busapply_xinxi_span1">*</span>
+        <span class="busapply_xinxi_span2">真实姓名:</span> </div>
+      <div class="busapply_xinxi_right">
+        <input type="text" name="author" maxlength="10" onblur="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" onkeyup="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" id="author" value="{$mem['realname']}" />
+      </div>
+    </div>
+    <div class="busapply_xinxi_input">
+      <div class="busapply_xinxi_left">
+        <span class="busapply_xinxi_span1">*</span>
+        <span class="busapply_xinxi_span2">身份证号:</span> </div>
+      <div class="busapply_xinxi_right">
+        <input type="text" name="sfid" maxlength="30" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" id="sfid" />
+      </div>
+    </div>
+     <div class="busapply_xinxi_input">
+       <div class="busapply_xinxi_left">
+         <span class="busapply_xinxi_span1">*</span>
+         <span class="busapply_xinxi_span2">作者简介:</span> </div>
+       <div class="busapply_xinxi_right">
+         <textarea name="person_detail" maxlength="100" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" id="person_detail" ></textarea>
+       </div>
+     </div>
+    <div class="busapply_xinxi_input">
+      <div class="busapply_xinxi_left">
+        <span class="busapply_xinxi_span1">*</span>
+        <span class="busapply_xinxi_span2">出生日期:</span> </div>
+      <div class="busapply_xinxi_right">
+        <input type="text" id="dateinfo" maxlength="30" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" name="bir"  value="{$mem['birth']}" />
+      </div>
+    </div>
+    <div class="busapply_xinxi_input">
+      <div class="busapply_xinxi_left">
+        <span class="busapply_xinxi_span1">*</span>
+        <span class="busapply_xinxi_span2">手机号码:</span> </div>
+      <div class="busapply_xinxi_right">
+        <input type="text" name="phone" maxlength="16" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" id="phone" value="{$mem['telephone']}" />
+      </div>
+    </div>
+     <div class="busapply_xinxi_input">
+       <div class="busapply_xinxi_left">
+         <span class="busapply_xinxi_span1">*</span>
+         <span class="busapply_xinxi_span2">邮箱地址:</span> </div>
+       <div class="busapply_xinxi_right">
+         <input type="text" name="email" maxlength="30" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" id="email" value="{$mem['email']}" />
+       </div>
+     </div>
+     <div class="busapply_xinxi_input">
+       <div class="busapply_xinxi_left">
+         <span class="busapply_xinxi_span1">*</span>
+         <span class="busapply_xinxi_span2">作品名称:</span> </div>
+       <div class="busapply_xinxi_right">
+         <input type="text" name="wname" maxlength="30" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" id="wname" />
+       </div>
+     </div>
+     <div class="busapply_xinxi_input">
+       <div class="busapply_xinxi_left">
+         <span class="busapply_xinxi_span1">*</span>
+         <span class="busapply_xinxi_span2">详细介绍:</span> </div>
+       <div class="busapply_xinxi_right">
+         <textarea name="zuo_detail" maxlength="200" id="zuo_detail" ></textarea>
+       </div>
+     </div>
+     <div class="busapply_xinxi_input">
+       <!--   <div class="busapply_xinxi_left"> <span class="busapply_xinxi_span1">*</span> <span class="busapply_xinxi_span2">作品类型:</span> </div> -->
+       <div class="busapply_xinxi_right">
+         <foreach name="attrList" key="k" item="val">
+           <div class="product-sort shaixuan-box">
+             <!--<div class="quality">-->
+             <div class="busapply_xinxi_left" style="width: 102px;"> <span
+                     class="busapply_xinxi_span1">*
+                          </span>
+               {$val.classname}: </div><input type="hidden" id="a3">
+             <!-- <a href="javacript:;" data-attr_id="0" class="range active">全部</a> -->
+             <div style="margin-top: 10px;width: 100%;float: left" class="attr" data-type="{$k}">
+               <volist name="val.child" id="vv">
+
+                 <a href="javascript:;" data-type="{$k}" style="float: left;margin-left: 10px;margin-top: 10px" data-attr_id="{$vv.id}" data-name="{$val.classname}" class="range"> {$vv.classname}</a>
+               </volist>
+             </div>
+             <!--</div>-->
+           </div>
+         </foreach>
+       </div><input type="hidden" name="zpbute" value="" id="zpbute"/>
+     </div>
+
+    <div class="busapply_pic">
+      <div class="busapply_xinxi_pic">
+        <span class="busapply_xinxi_span1">*</span>
+        <span class="busapply_xinxi_span2">上传作品:</span> </div>
+      <div class="busapply_xinxi_shang">
+        <div class="SelIdetPic-list">
+          <div class="SelIdPic-border" id="zs1">
+              <img src="__IMAGES__/SeladdPic.png">
+              <h6>点此上传</h6>
+              <input type="file" class="add_pic" name="upFile1" id="upFile1">
+              <input type="hidden" name="pic1" id="pic1" value="">
+          </div>
+          <p>(宽247高247)</p>
+        </div>
+        <div class="SelIdetPic-list">
+          <div class="SelIdPic-border" id="zs2">
+            <img src="__IMAGES__/SeladdPic.png">
+            <h6>点此上传</h6>
+            <input type="file" class="add_pic" name="upFile2" id="upFile2">
+            <input type="hidden" name="pic2" id="pic2" value="">
+          </div>
+          <p>(宽622高475)</p>
+        </div>
+        </div>
+      <div class="busapply_xinxi_shang">
+        <div class="SelIdetPic-list">
+          <div class="SelIdPic-border" id="zs3">
+            <img src="__IMAGES__/SeladdPic.png">
+            <h6>点此上传</h6>
+            <input type="file" class="add_pic" name="upFile3" id="upFile3">
+            <input type="hidden" name="pic3" id="pic3" value="">
+          </div>
+          <p>(宽622高475)</p>
+        </div>
+        <div class="SelIdetPic-list">
+          <div class="SelIdPic-border" id="zs4">
+            <img src="__IMAGES__/SeladdPic.png">
+            <h6>点此上传</h6>
+            <input type="file" class="add_pic" name="upFile4" id="upFile4">
+            <input type="hidden" name="pic4" id="pic4" value="">
+          </div>
+          <p>(宽622高475)</p>
+        </div>
+        </div>
+      <div class="busapply_xinxi_shang">
+        <div class="SelIdetPic-list">
+          <div class="SelIdPic-border" id="zs5">
+            <img src="__IMAGES__/SeladdPic.png">
+            <h6>点此上传</h6>
+            <input type="file" class="add_pic" name="upFile5" id="upFile5">
+            <input type="hidden" name="pic5" id="pic5" value="">
+          </div>
+          <p>(宽622高475)</p>
+        </div>
+      </div>
+    </div>
+    <a href="javascript:;" onclick="toVaild()" class="busapply_tijiao">提交</a>
+  </form>
+</div>
+<!--  / warpper  -->
+
+
+<div class="indexbottom"></div>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript" src="__JS__/jedate/jedate.js"></script>
+<include file="Public/footer" />
+<script>
+  $('.attr a').click(function(){
+    var type = $(this).attr('data-type');
+    $('.attr').each(function(){
+      var new_type = $(this).attr('data-type');
+      if(new_type==type){
+        $(this).find('a').removeClass('List');
+      }
+    })
+    $(this).addClass('List');
+  })
+
+  function toVaild(){
+    var author = $.trim($('#author').val());
+    var sfid = $.trim($('#sfid').val());
+    var phone = $.trim($('#phone').val());
+    var email = $.trim($('#email').val());
+    var wname = $.trim($('#wname').val());
+    var bir = $('#dateinfo').val();
+
+    var zuo_detail = $.trim($('#zuo_detail').val());
+    var person_detail = $.trim($('#person_detail').val());
+    var pic3 = $('#pic1').val();
+    var pic4 = $('#pic2').val();
+    var pic5 = $('#pic3').val();
+    var pic6 = $('#pic4').val();
+    var pic7 = $('#pic5').val();
+    author = author.replace(/\s+/g,"");
+    if(author==""){
+      alert('作者姓名不能为空');
+      return false;
+    }
+    sfid = sfid.replace(/\s+/g,"");
+    if(sfid==""){
+      alert('身份证不能为空且要跟真实姓名对应');
+      return false;
+    }
+
+    if(!IdentityCodeValid(sfid)){
+      return IdentityCodeValid(sfid);
+    }
+    person_detail = person_detail.replace(/\s+/g,"");
+    if(person_detail == ''){
+      alert('作者简介不能为空');
+      return false;
+    }
+    if(bir == ''){
+      alert('生日不能为空');
+      return false;
+    }
+    var bir1 = new Date(bir);
+    var b1 = bir1.getTime();
+    var time = new Date();
+    var t1 = time.getTime();
+    //console.log(bir,b1,t1);return false;
+    if(b1 > t1){
+      alert('生日不能晚于当前时间！');return false;
+    }
+    phone = phone.replace(/\s+/g,"");
+    if(phone == ''){
+      alert('手机不能为空');
+      return false;
+    }
+
+    //手机的验证
+    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    if(!mobile.test(phone)){
+
+      alert('提示\n\n请输入有效的手机号！');
+      return false;
+    }
+    email = email.replace(/\s+/g,"");
+    if(email == ''){
+      alert('邮箱不能为空');
+      return false;
+    }
+    wname = wname.replace(/\s+/g,"");
+    if(wname == ''){
+      alert('作品名称不能为空');
+      return false;
+    }
+    zuo_detail = zuo_detail.replace(/\s+/g,"");
+    if(zuo_detail == ''){
+      alert('详细介绍不能为空');
+      return false;
+    }
+
+    var ids = "";
+    $('.busapply_xinxi_right .List').each(function(){
+      var attr_id = $(this).data('attr_id');
+      ids = ids + attr_id + ",";
+    })
+    //提交ajax验证
+    //一个人一期只能投稿一次
+    var rang = $('.busapply_xinxi_right .List').length;
+    var countattr = parseInt('{$counattr}');
+    //console.log(rang,countattr);return false;
+    if(rang === '' || rang === null){
+      alert('请选择作品属性！');return false;
+    }
+    if(rang < countattr){
+      alert('请选择作品属性！');return false;
+    }
+
+    if(ids != ''){
+      $('#zpbute').val(ids);
+    }
+    if(pic3 == '' && pic4 == '' && pic5 == '' && pic6 == '' && pic7 == ''){
+      alert('至少上传一张作品图片');
+      return false;
+    }
+    $('.warpForm').submit();
+  }
+  //身份证验证
+  function IdentityCodeValid(code) {
+    var city={11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江 ",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北 ",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏 ",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外 "};
+    var tip = "";
+    var pass= true;
+
+    if(!code || !/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(code)){
+      tip = "身份证号格式错误";
+      pass = false;
+    }
+
+    else if(!city[code.substr(0,2)]){
+      tip = "地址编码错误";
+      pass = false;
+    }
+    else{
+      //18位身份证需要验证最后一位校验位
+      if(code.length == 18){
+        code = code.split('');
+        //∑(ai×Wi)(mod 11)
+        //加权因子
+        var factor = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ];
+        //校验位
+        var parity = [ 1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2 ];
+        var sum = 0;
+        var ai = 0;
+        var wi = 0;
+        for (var i = 0; i < 17; i++)
+        {
+          ai = code[i];
+          wi = factor[i];
+          sum += ai * wi;
+        }
+        var last = parity[sum % 11];
+        if(parity[sum % 11] != code[17]){
+          tip = "身份证错误";//校验位错误
+          pass =false;
+        }
+      }
+    }
+    if(!pass) alert(tip);
+    return pass;
+  }
+
+  function upFile1(){
+    var percent = $('.upFile1_percent');
+    var progress = $('.upFile1_percent');
+    $("#upFile1").wrap("<form id='upFiles1' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile1").change(function(){ //选择文件
+      $("#upFiles1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="pic1" id="pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" class="add_pic" name="upFile1" id="upFile1">';
+          //$('.xuanze_showimge').html(img);
+          $('#zs1').html(img);
+          upFile1();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+
+  function upFile2(){
+    var percent = $('.upFile2_percent');
+    var progress = $('.upFile2_percent');
+    $("#upFile2").wrap("<form id='upFiles2' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile2").change(function(){ //选择文件
+      $("#upFiles2").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="pic2" id="pic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" class="add_pic" name="upFile2" id="upFile2">';
+          //$('.xuanze_showimge').html(img);
+          $('#zs2').html(img);
+          upFile2();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+
+  function upFile3(){
+    var percent = $('.upFile3_percent');
+    var progress = $('.upFile3_percent');
+    $("#upFile3").wrap("<form id='upFiles3' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile3").change(function(){ //选择文件
+      $("#upFiles3").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="pic3" id="pic3" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" class="add_pic" name="upFile3" id="upFile3">';
+          //$('.xuanze_showimge').html(img);
+          $('#zs3').html(img);
+          upFile3();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+
+  function upFile4(){
+    var percent = $('.upFile4_percent');
+    var progress = $('.upFile4_percent');
+    $("#upFile4").wrap("<form id='upFiles4' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile4").change(function(){ //选择文件
+      $("#upFiles4").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="pic4" id="pic4" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" class="add_pic" name="upFile4" id="upFile4">';
+          //$('.xuanze_showimge').html(img);
+          $('#zs4').html(img);
+          upFile4();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+
+  function upFile5(){
+    var percent = $('.upFile5_percent');
+    var progress = $('.upFile5_percent');
+    $("#upFile5").wrap("<form id='upFiles5' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile5").change(function(){ //选择文件
+      $("#upFiles5").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="pic5" id="pic5" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" class="add_pic" name="upFile5" id="upFile5">';
+          //$('.xuanze_showimge').html(img);
+          $('#zs5').html(img);
+          upFile5();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+
+  $(function(){
+    upFile1();
+    upFile2();
+    upFile3();
+    upFile4();
+    upFile5();
+  })
+  $(window).load(function(){
+    var widthshijin = $('#dateinfo').width();
+    $('.jedatebox').width(widthshijin-2);
+
+  })
+  jeDate({
+    dateCell:"#dateinfo",
+    format:"YYYY-MM-DD",
+    isinitVal:false,
+    isTime:false, //isClear:false,
+    minDate:"1950-01-01",
+    okfun:function(val){
+      //alert(val);
+    }
+  })
+</script>
+</body>
+</html>

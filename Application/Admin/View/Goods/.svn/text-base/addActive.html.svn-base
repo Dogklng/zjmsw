@@ -1,0 +1,164 @@
+<include file="Public:head"/>
+<script src="__LAYDATE__/laydate.js"></script>
+<style>
+    .imgnav{
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .imgwrapper{
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .imgwrapper img{
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border:0;
+    }
+    .spanpd10{
+        margin:10px;
+    }
+    .wxtables.wxtables-sku.newtable{
+        width: 40%;
+        margin: 0;
+    }
+    .img-list li{
+        width: 60px;
+        height:60px;
+    }
+    .cst_h3 span{font-weight: normal;}
+    #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+    .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+    .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+    #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+    #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+    #xuanze2:hover{ background:#E6E6E6; }
+    .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<div class="container">
+    <div class="inner clearfix">
+        <include file="Public:left"/>
+        <div class="content-right fl">
+            <h1 class="content-right-title">发布活动</h1>
+            <input type="hidden" id="supplier" value="">
+            <form aciton="{:U('/Admin/Goods/addActive')}" enctype="multipart/form-data" method="post" id="myPost">
+                <div class="panel-single panel-single-light mgt20">
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed"></span>商品名称：</label>
+                        <div class="form-controls">
+
+                            <div class="radio-group">
+                                <volist name="goods_name" id="v">
+                                <label><input type="checkbox" id="goods_name"  name="goods_name[]" value="{$v.id}">{$v.goods_name}</label>
+                                </volist>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>起始时间：</label>
+                <div class="form-controls">
+                <input class="laydate-icon" id="demo2" name="start" style="padding:0px 5px;width:220px;height:28px;line-height:30px;"/>
+                <span class="fi-help-text"></span>
+                </div>
+                </div>
+                <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>结束时间：</label>
+                <div class="form-controls">
+                <input class="laydate-icon" id="demo3" name="end" style="padding:0px 5px;width:220px;height:28px;line-height:30px;"/>
+                <span class="fi-help-text"></span>
+                </div>
+                </div>
+
+                <div class="panel-single panel-single-light mgt20 txtCenter">
+                    <a href="{:U('Admin/Goods/Active')}" class="btn">取消</a>
+                    <a href="javascript:void(0)" class="btn btn-primary" id="save">保存</a>
+                </div></div>
+                    </form>
+                    </div>
+    </div>
+</div>
+<script src="__JS__/jquery-1.7.1.min.js"></script>
+<script>
+    $("#save").click(function () {
+        var checkbox = document.getElementById('goods_name');//
+        var le = $("input[name=goods_name[]]:checked").length;
+        //console.log(le);
+        if(le < 1 ){
+            alert('至少选择一样商品！');
+            return false;
+        }
+
+        var time = new Date();
+        var time1 = time.getTime();
+
+        var start = $('#demo2').val();
+        var end   = $('#demo3').val();
+
+        if(start == ''){
+            alert('请选择起始时间！');
+            return false;
+        }
+        if(end == ''){
+            alert('请选择结束时间！');
+            return false;
+        }
+        var s = new Date(start);
+        s1 = s.getTime();
+        var e = new Date(end);
+        e1 = e.getTime();
+        //console.log(s1,e1);
+        if(s1 > e1){
+
+            alert('起始时间要早于结束时间！');
+            return false;
+        }
+
+        if(e1 < time1){
+
+            alert('结束时间要晚于当前时间！');
+            return false;
+        }
+
+        $("#myPost").submit();
+    });
+</script>
+
+    <script>
+
+        ;!function(){
+            laydate({
+                elem: '#demo2',
+                format: 'YYYY-MM-DD hh:mm:ss',
+            })
+
+        }();
+
+        ;!function(){
+            laydate({
+                elem: '#demo3',
+                format: 'YYYY-MM-DD hh:mm:ss',
+            })
+
+        }();
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+

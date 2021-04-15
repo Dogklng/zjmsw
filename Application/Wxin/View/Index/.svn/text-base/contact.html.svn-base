@@ -1,0 +1,192 @@
+<include file="Public:header" />
+<style>
+    .contact_right select {
+        width: 100%;
+        height: 40px;
+        border: none;
+        background: #eee;
+        padding-left: 10px;
+        font-size: 14px;
+    }
+</style>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1">
+    <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Contact us</p>
+    <h5>联 • 系 • 我 • 们</h5>
+  </div>
+
+
+	<div class="contact_sec2">
+            <div class="container">
+            
+                <div class="row" style="bottom: 0px; opacity: 1;">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <div class="cont_l">
+                            <h2><span></span>电子邮箱</h2>
+                            <h3>{$res.email}</h3>
+                            <h2><span></span>电话</h2>
+                            <h3>
+                              <div>买家咨询：{$res.buy}</div>
+                              <div>卖家咨询：{$res.sell}</div>
+                              <div>云推荐：{$res.yun}</div>
+                            </h3>
+                            <h2><span></span>联系地址</h2>
+                            <h3 style="margin-bottom: 40px;">{$res.address}</h3>
+                            
+                            
+                            <iframe title="地图" allowTransparency="true" frameborder="0" scrolling="no" width="100%" height="350" style="background-color:transparent" allowTransparency="true" src="__MAP__/map.html"></iframe>
+                            
+                            <!--<h4 style="margin-top: 50px"><span></span>其他联系方式</h4>-->
+                            <!--<div class="cont-i">-->
+                                <!--<i class="fa fa-qq"></i>-->
+                                <!--<i class="fa fa-weixin"></i>-->
+                                <!--<i class="fa fa-weibo"></i>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                        <div class="contact_right">
+                            <h2>感谢您对浙江美术网的支持，如果您有什么疑问或是建议，欢迎您给我们留言，我们会尽快给您回复。
+                            </h2>
+                            <form>
+                                <div class="form">
+                                    <div class="form_child">
+                                        <label>姓名</label>
+                                        <input id="name" name="name" maxlength="10" onblur="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" onkeyup="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" type="text">
+                                    </div>
+                                    <div class="form_child">
+                                        <label>性别</label>
+                                        <select id="sex" name="sex">
+                                            <option value="1">男</option>
+                                            <option value="2">女</option>
+                                        </select>
+                                        <!--<input id="sex" name="sex" maxlength="6" type="text">-->
+                                    </div>
+                                    <div class="form_child">
+                                        <div class="form_left">
+                                            <label>邮箱</label>
+                                            <input id="email" name="email" maxlength="30" type="text">
+                                        </div>
+                                        <div class="form_right">
+                                            <label>电话</label>
+                                            <input id="tel" name="tel" maxlength="16" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" type="text">
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="form_child">
+                                        <label>地址</label>
+                                        <input id="dizhi" name="dizhi" maxlength="30" type="text">
+                                    </div>
+                                    <div class="form_child">
+                                        <label>内容</label>
+                                        <textarea id="text" name="text" maxlength="100" type="text"></textarea>
+                                    </div>
+                                    
+                                    <a href="javascript:void(0)" class="form_tj" onclick="toVaild()">提交</a>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>	
+          
+      <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>    
+          
+</div>
+<!--  / warpper  -->
+
+<include file="Public:footer" />
+<script>
+    function toVaild(){
+        var name = $.trim($('#name').val());
+        var sex = $.trim($('#sex').val());
+        var email = $.trim($('#email').val());
+        var tel = $.trim($('#tel').val());
+        var dizhi = $.trim($('#dizhi').val());
+        var text = $.trim($('#text').val());
+
+        if(name==''||name==null){
+            alert('请填写姓名');
+            $('#name').focus();
+            return false;
+        }
+
+        /*if(sex==''||sex==null){
+            alert('请填写性别');
+            $('#name').focus();
+            return false;
+        }
+
+        if(sex!='男'&&sex!='女'){
+            alert('性别请填写男或女');
+            $('#name').focus();
+            return false;
+        }*/
+
+        if(email==''||email==null){
+            alert('请填写邮箱');
+            $('#email').focus();
+            return false;
+        }
+
+        var reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;//邮箱
+
+        if(!(reg.test(email))){
+            alert("请输入正确邮箱");
+            return false;
+        }
+
+        if(tel==''||tel==null){
+            alert('请填写电话');
+            $('#tel').focus();
+            return false;
+        }
+
+        if(!(/^1[34578]\d{9}$/.test(tel))){
+            alert('请输入正确的电话号');
+            return false;
+        }
+        if(dizhi==''||dizhi==null){
+            alert('请填写地址');
+            $('#name').focus();
+            return false;
+        }
+        if(text==''||text==null){
+            alert('请填写内容');
+            $('#name').focus();
+            return false;
+        }
+
+
+
+        $.ajax({
+            url:'/Home/Index/addLiuyan',
+            type:'post',
+            data:$("form").serialize(),
+            dataType:'json',
+            success:function(data){
+                if(data.status == 1){
+                    alert(data.info);
+                    setTimeout(reload,1200);
+                    return false;
+                }else{
+                    alert(data.info);
+                    return false;
+
+                }
+
+            }
+        })
+    }
+    
+    function reload() {
+        location.reload();
+    }
+</script>
+</body>
+</html>

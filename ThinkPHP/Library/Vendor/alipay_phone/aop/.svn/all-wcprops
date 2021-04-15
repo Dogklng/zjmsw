@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/aop
+END
+SignData.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/aop/SignData.php
+END
+EncryptResponseData.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/aop/EncryptResponseData.php
+END
+AopClient.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/aop/AopClient.php
+END
+EncryptParseItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/aop/EncryptParseItem.php
+END
+AlipayMobilePublicMultiMediaClient.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/aop/AlipayMobilePublicMultiMediaClient.php
+END
+AlipayMobilePublicMultiMediaExecute.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/aop/AlipayMobilePublicMultiMediaExecute.php
+END
+AopEncrypt.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/msw/!svn/ver/1987/ThinkPHP/Library/Vendor/alipay_phone/aop/AopEncrypt.php
+END

@@ -1,0 +1,232 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="__CSS__/lists.css">
+
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">退保定金列表</h1>
+    <!--<a href="{:U('/Admin/Pm/addPm')}" class="btn btn-success">添加拍卖</a>-->
+    <form action="{:U('/Admin/Pm/pmTuiDJin')}" method="get">
+      <div class="tables-searchbox newcearchbox">
+
+        <input type="text" placeholder="姓名" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" class="input" name="name" value="{$title}" >
+        <!-- <input type="text" placeholder="商家编码" class="input" name="goods_no" value="" > -->
+        <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+        <!--<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>-->
+        <!--产品导出</a>-->
+      </div>
+      <div class="tabs clearfix mgt10"> 
+        <a href="{:U('/Admin/Pm/pmTuiDJin')}" class="<eq name="_GET['is_sale']" value="">active</eq> tabs_a fl">全部({$counts})</a>
+        <!--<a href="{:U('/Admin/Pm/pmList/is_sale/1')}" class="<eq name="_GET['is_sale']" value="1">active</eq> tabs_a fl">出售中({$count1})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/2')}" class="<eq name="_GET['is_sale']" value="2">active</eq> tabs_a fl">下架中({$count2})</a>-->
+        <a href="{:U('/Admin/Pm/pmTuiDJin/is_sale/2')}" class="<eq name="_GET['is_sale']" value="2">active</eq> tabs_a fl">待处理({$count2})</a>
+        <a href="{:U('/Admin/Pm/pmTuiDJin/is_sale/4')}" class="<eq name="_GET['is_sale']" value="4">active</eq> tabs_a fl">已退款({$count4})</a>
+        <a href="{:U('/Admin/Pm/pmTuiDJin/is_sale/3')}" class="<eq name="_GET['is_sale']" value="3">active</eq> tabs_a fl">已抵扣({$count3})</a>
+
+
+
+      </div>
+    </form>
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+      <thead>
+        <tr class="po_list">
+          <td>订单信息</td>
+          <!--<td>发布者</td>-->
+          <td>拍卖状态</td>
+          <td>保定金</td>
+          <td>支付方式</td>
+          <td>金额信息</td>
+          <td>状态</td>
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="res" item="vo">
+          <tr>
+            <td><div class="goodswrap"> <!--<a href="javascript:void(0)" class="block" target="_blank" title="{$vo['goods_name']}">-->
+                <!--<div class="table-item-img"> <img src="{$vo['index_pic']}" alt=""> </div>-->
+                <div class="table-item-info" >
+                  用户：{$vo.name}<br />电话：{$vo.telephone}
+                </div>
+                </a> </div></td>
+            <!--<if condition="$vo.promulgator eq 1"><td>美术网平台</td></if>-->
+            <!--<td><if condition="($vo.is_shang eq 1)"> 上架
+              <else/>
+              下架</if></td>-->
+            <td>
+              <switch name="vo['status']">
+                <case value="0">未结束</case>
+                <case value="1">出局</case>
+                <case value="2">成功拍下</case>
+              </switch>
+            </td>
+            <td> ￥{$vo.baoding} </td>
+            <td>
+              <switch name="vo['pay_way']">
+                <case value="1">支付宝</case>
+                <case value="2">银联支付</case>
+                <case value="3">微信支付</case>
+              </switch>
+            </td>
+            <td>
+              <switch name="vo['status']">
+                <case value="0"></case>
+                <case value="1">
+                  可退款：{$vo['retrievable_price']}<br/>
+                  <eq name="vo['order_status']" value="3" >
+                  退款：{$vo['refund_price']}
+                  </eq>
+                </case>
+                <case value="2">
+                  抵扣：{$vo['deductible_price']}<br/>
+                  <gt name="vo['retrievable_price']" value="0">
+                    可退款：{$vo['retrievable_price']}<br/>
+                    <eq name="vo['order_status']" value="3" >
+                      退款：{$vo['refund_price']}
+                    </eq>
+                  </gt>
+                </case>
+              </switch>
+            </td>
+<!--0：未支付，1：已支付，2：拒绝退款，3：已退款-->
+            <td>
+              <switch name="vo['status']">
+                <case value="0">未结束</case>
+                <case value="1">
+                  <eq name="vo['order_status']" value="1">待处理</eq>
+                  <eq name="vo['order_status']" value="3">已退款</eq>
+                </case>
+                <case value="2">
+                  <gt name="vo['retrievable_price']" value="0">
+                    <eq name="vo['order_status']" value="1">已抵扣/待处理</eq>
+                    <eq name="vo['order_status']" value="3">已抵扣/已退款</eq>
+                    <else/>
+                    已抵扣
+                  </gt>
+
+                </case>
+              </switch>
+            </td>
+
+            <td>
+                <neq name="vo['status']" value="0" >
+
+                <gt name="vo['retrievable_price']" value="0">
+                  <neq name="vo['order_status']" value="3" >
+                  <a href="javascript:;" data-id="{$vo.id}" data-retrievable_price="{$vo.retrievable_price}" class="btn j-editClass" style="background-color: green;border-color: green; color: white" >退款</a>
+                  </neq>
+                </gt>
+                </neq>
+              <a href="{:U('/Admin/Pm/delPmDing/id')}/{$vo.id}" onclick="{if(!confirm('确定删除作品吗?'))return false;} " class="btn btn-warning" title="删除">删除</a>
+              </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <div class="fr">
+          <div class="pages"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+</div>
+
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="height: 220px;">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">退款金额</div>
+    <a href="javascript:void(0)" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 90px;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>可退款金额：</label>
+      <div class="form-controls">
+        <input type="text" name="retrievable_price" class="input" readonly>
+        <span class="fi-help-text"></span> </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>退款金额：</label>
+      <div class="form-controls">
+        <input type="text" name="money" class="input" onkeyup="num(this)" onblur="num(this)">
+        <input type="hidden" name="id" >
+        <span class="fi-help-text"></span> </div>
+    </div>
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addcategory">确定</a><a
+          href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+  <script src="__JS__/jquery.js"></script>
+<!-- end container --> 
+<include file="Public:foot"/>
+<script>
+    function num(obj){
+        obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+    }
+
+    $(".cancle").click(function(){
+        $('.addfenlei').hide();
+        $('#albums-overlay').hide();
+    });
+
+    $(".j-editClass").click(function(){
+        var id = $(this).attr("data-id");
+        var retrievable_price = $(this).attr("data-retrievable_price");
+        $('input[name="id"]').val(id);
+        $('input[name="retrievable_price"]').val(retrievable_price);
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+
+    $("#addcategory").click(function(){
+        var id = $('input[name="id"]').val();
+        var retrievable_price = parseFloat($('input[name="retrievable_price"]').val());
+        var money = parseFloat($('input[name="money"]').val());
+        console.log('id:'+id);
+        console.log('retrievable_price:'+retrievable_price);
+        console.log('money:'+money);
+
+        if (isNaN(money)) {
+            alert("请输入退款金额");
+            return false;
+        }
+
+        if(money>retrievable_price){
+            alert("退款金额不能大于可退款金额");
+            return false;
+        }
+        var values = {
+            id:id,
+            money:money
+        };
+        $.ajax({
+            url: "{:U('/Admin/Pm/TuiDJin')}",
+            type: "post",
+            dataType: "json",
+            data: values,
+            success:function (res) {
+                if (res.status == 1) {
+                    alert(res.info);
+                    window.location.reload();
+                } else {
+                    alert(res.info);
+                }
+            }
+        });
+    });
+</script>

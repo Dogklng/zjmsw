@@ -1,0 +1,256 @@
+<include file="Public:header" />
+<style>
+    /*.screenButton a{
+        width: 100%;
+    }*/
+    .List{
+	background: #f70000 !important;
+	color: #fff !important;
+}
+</style>
+<!-- 大家都在赞 -->
+<div class="praise artworkP">
+  <div class="praise_list">
+    <div class="praise_title" style="margin-top:50px">
+      <h2><i></i><empty name="_GET['id']">全部<else/><volist name="sel" id="v"><eq name="v.id" value="$_GET['id']">{$v.classname}</eq></volist></empty><a href="javascript:vido(0);" class="screenA">筛选</a></h2>
+    </div>
+    <div class="prod_show_nav_con">
+        <foreach name="res" item="vo">
+                <div class="prod_cont">
+                    <p class="prod_cont_img"><a href="{:U('Wxin/Products/buy',array('id'=>$vo['id']))}"><img src="{$vo.index_pic}" /></a></p>
+                    <div class="prod_cont_text">
+                        <h4><span><!--<i class="left"></i>-->{$vo.goods_name}<!--<i class="right"></i>--></span></h4>
+                        <h3 class="Price-h3">
+                            <empty name="member_id">
+                                <span style="color: #999 !important;font-size: 14px !important;"><a href="{:U('Wxin/User/login')}" style="color: #333 !important;">登录</a>可查看价格</span>
+                            </empty>
+                            <notempty name="member_id">
+                                <i>￥</i>
+                                <eq name="vo.is_groom" value="1">
+                                    {$vo.price}
+                                    <else/>
+                                    {$vo.zujin}/天
+                                </eq>
+                            </notempty>
+
+                        </h3>
+                        <!--<p class="small_cont"><span>市场价：</span><i>￥</i>
+                            <a href="zulingm.html">可租赁</a> </p>-->
+                        <div class="clear"></div>
+                        <p></p>
+                        <div class="htx"> <a href="{:U('/Wxin/Products/buy',array('id'=>$vo['id']))}"> 查看详情 </a> </div>
+                    </div>
+                </div>
+            </foreach>
+    </div>
+  </div>
+</div>
+<!-- 大家都在赞 -->
+
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+
+<!--screen-->
+<div class="screenBox">
+ <div class="screenBoxS">
+   <div class="screenCon">
+    <h3 class="screenH3">筛选</h3>
+    <div class="screenList">
+     <h4 class="screenClick1">按材质浏览<span class="fa fa-angle-down"></span></h4>
+     <div class="screenlist-a1" style="display:block;">
+         <input type="hidden" value="{$_GET['id']}" name="id">
+      <a href="javascript:vido(0);" data-id="0" <empty name="_GET['id']">class="List" </empty>>全部</a>
+         <volist name="sel" id="v">
+             <a href="javascript:vido(0);" <eq name="v.id" value="$_GET['id']">class="List"</eq> data-id="{$v.id}">{$v.classname}</a>
+         </volist>
+     </div>
+    </div>
+    <!--<div class="screenList">
+     <h4 class="screenClick2">按价格<span class="fa fa-angle-down"></span></h4>
+     <div class="screenlist-a2" style="display:block;">
+     &lt;!&ndash;<div class="sereenInput">
+      <input class="low-price fleft" value="最低价" type="text" /><span class="hrSpan fleft"></span><input class="high-price fleft" value="最高价" type="text" />
+     </div>&ndash;&gt;
+    </div>
+    </div>-->
+       <input type="hidden" value="{$_GET['attr_ids']}" name="attr_ids">
+       <foreach name="attrList" key="k" item="val">
+    <div class="screenList">
+        <input type="hidden" value="" class="attr_ids" name="attr_ids{$k+2}">
+     <h4 class="screenClick{$k+2}">{$val.classname}<span class="fa fa-angle-down"></span></h4>
+     <div class="screenlist-a{$k+2}">
+     <a href="javascript:vido(0);" data-type="{$k+2}" onclick="attr_ids(this)" data-id="0" >全部</a>
+         <volist name="val.child" id="vv">
+             <a href="javascript:vido(0);" data-type="{$k+2}" onclick="attr_ids(this)" data-id="{$vv.id}">{$vv.classname}</a>
+             </volist>
+     </div>
+    </div>
+           </foreach>
+    <div class="screenList">
+        <input type="hidden" value="{$_GET['is_groom']}" name="is_groom">
+     <h4 class="screenClick5">其他<span class="fa fa-angle-down"></span></h4>
+     <div class="screenlist-a5">
+  <a href="javascript:vido(0);" data-id="2" class="is_groom <empty name="_GET['is_groom']"> List</empty><eq name="_GET['is_groom']" value="2"> List</eq>" >全部</a>
+         <a href="javascript:vido(0);" class="is_groom <eq name="_GET['is_groom']" value="3"> List</eq>" data-id="3" >租赁</a>
+         <a href="javascript:vido(0);" class="is_groom <eq name="_GET['is_groom']" value="1"> List</eq>" data-id="1" >推荐</a>
+     </div>
+    </div>
+   </div>
+   <div class="screenButton">
+    <a href="#" class="screenFinish" id="screenReset" style="background: #F77B7B;">重置</a>
+    <a href="#" class="screenFinish" id="screenFinish">完成</a>
+   </div>
+ </div>
+ <div class="screenLeft"></div>
+</div>
+<!--screen-->
+
+
+</body>
+<script>
+    $('.screenlist-a1 a').click(function(){
+        $('.screenlist-a1 a').removeClass('List');
+        $(this).addClass('List');
+        var id = $(this).attr('data-id');
+        $('input[name="id"]').val(id);
+    });
+
+    function attr_ids(obj){
+        var attr_id = $(obj).attr('data-id');
+        var type = $(obj).attr('data-type');
+        $('.screenlist-a'+type+' a').removeClass('List');
+        $(obj).addClass('List');
+        $('input[name="attr_ids'+type+'"]').val(attr_id);
+    }
+
+    $('.screenlist-a5 a').click(function(){
+        $('.screenlist-a5 a').removeClass('List');
+        $(this).addClass('List');
+        var is_groom = $(this).attr('data-id');
+        $('input[name="is_groom"]').val(is_groom);
+    });
+
+    $('#screenReset').click(function(){
+        $('input[name="id"]').val('');
+        $('.attr_ids').each(function(){
+            $(this).val('');
+        });
+        $('input[name="is_groom"]').val('');
+        $('input[name="attr_ids"]').val('');
+        window.location.href = "{:U('Wxin/Artwork/index')}";
+    });
+$('#screenFinish').click(function(){
+    renovate();
+});
+    var old_id='';
+    var old_attr_ids = '';
+    var old_is_groom = '';
+    var p = 1;
+function renovate(){
+    var id = $('input[name="id"]').val();
+    old_id = id;
+    var attr_ids = '';
+    $('.attr_ids').each(function(){
+        var attr_id = $(this).val();
+        if(attr_id){
+            attr_ids +='-'+attr_id;
+        }
+    });
+    old_attr_ids = attr_ids;
+    var is_groom = $('input[name="is_groom"]').val();
+    old_is_groom = is_groom;
+    window.location.href = "{:U('Wxin/Artwork/index')}?id="+id+"&attr_ids="+attr_ids+"&is_groom="+is_groom;
+}
+$(document).ready(function(){
+	
+	  $('.screenFinish').click(function(){
+   $('.screenBox').animate({"right":"-80%"},100)
+   
+   });
+	
+  $('.screenA').click(function(){
+   $('.screenBox').animate({"right":"0"},100)
+  })
+  $(".screenLeft").click(function(){
+    $(".screenBox").hide();
+  });
+
+
+  $(".screenClick1").click(function(){
+    $(".screenlist-a1").fadeToggle("slow");
+  });
+  $(".screenClick2").click(function(){
+    $(".screenlist-a2").fadeToggle("slow");
+  });
+  $(".screenClick3").click(function(){
+    $(".screenlist-a3").fadeToggle("slow");
+  });
+  $(".screenClick4").click(function(){
+    $(".screenlist-a4").fadeToggle("slow");
+  });
+  $(".screenClick5").click(function(){
+    $(".screenlist-a5").fadeToggle("slow");
+  });
+});
+
+    // 加载刷新。
+    function refresh(refresh,loadmore) {
+        $(window).scroll(function(){
+            console.log('正在滑动f');
+
+            var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+            var scrollHeight = $(document).height();   //当前页面的总高度
+            var clientHeight = $(this).height();    //当前可视的页面高度
+            // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+            if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+                // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+                console.log('下拉');
+
+                if(loadmore){
+                    loadmore();
+                }
+            }else if(scrollTop<=0){
+                //滚动条距离顶部的高度小于等于0 TODO
+                //alert("下拉刷新，要在这调用啥方法？");
+
+                console.log('上拉');
+                if(refresh){
+                    refresh();
+                }
+
+            }
+
+        });
+
+    }
+    //调用
+    refresh(fn1,fn2);
+
+    function fn1(){
+        renovate();
+    }
+
+    function fn2(){
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Wxin/Artwork/get_data')}",
+            data: {
+                old_id: old_id,
+                old_attr_ids: old_attr_ids,
+                old_is_groom: old_is_groom,
+                p: p,
+            },
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                    p++;
+                    $('.prod_show_nav_con').append(g.html);
+                } else {
+                    //alert(g.info);
+                }
+            }
+        });
+    }
+</script>
+</html>

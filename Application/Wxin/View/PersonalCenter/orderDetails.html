@@ -1,0 +1,63 @@
+<include file="Public:header" />
+
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 订单详情 </a> </h3>
+</div>
+<div class="p_xiangqing1">
+<div class="shop_xiad">
+ <div class="shop_xiadts">
+  <!--<div class="shop_sjr_center"><img src="images/tb01.svg" style="margin-top:8px;" width="30px" />您已关闭交易<span>交易关闭</span></div>-->
+ </div>
+ <div class="shop_xiadbh">
+  <div class="shop_sjr_center">
+   <p>订单编号：<span>{$res.order_no}</span></p>
+   <p>下单时间：<span>{$res.order_time|date="Y-m-d H:i:s",###}</span></p>
+  </div>
+ </div>
+</div>
+<div class="shop_sjr">
+ <div class="shop_sjr_center">
+  <div class="shop_sjr_left shop_sjr_fd"><img src="__IMAGES__/tb02.svg" width="34px" /></div>
+  <div class="shop_sjr_right shop_sjr_fd">
+   <p>收件人：{$res.consignee}<span>{$res.mobile}</span></p>
+   <p class="shop_sjr_top">{$res.provincee} {$res.city} {$res.district} {$res.address}<!--<span style="float:none;">39</span>号--></p>
+  </div>
+  <div class="clear"></div>
+ </div>
+</div>
+<div class="all_dingdan_one">
+ <div class="allorder_kuang">
+  <volist name="res1" id="v">
+  <div class="shop_xx">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_left shop_xx_fd"> <a href="#"><img src="{$v.goods_spic}" /></a> </div>
+     <div class="shop_xx_right shop_xx_fd">
+      <p><b>{$v.goods_name}</b><br />
+       订单号 <i>{$res.order_no}</i></p>
+      <p>付款人<i>{$res.consignee}</i><em>×{$v.goods_nums}</em></p>
+      <h3 class="shop_xx_jg"><b>下单时间</b><b>{$res.order_time|date="Y-m-d",###}</b></h3>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+  </div>
+  </volist>
+  <div class="llk_border">
+   <div class="llk_hx">
+    <div class="llk">
+     <div class="od_zongji" >实付款：<span>¥<if condition="$res.order_status eq 1">0<else/>{$res.pay_price}</if></span></div>
+    </div>
+    <div class="clear"></div>
+   </div>
+   <div class="clear"></div>
+  </div>
+ </div>
+ <!--<div class="shop_ddxq clearfix"> <a href="#">取消订单</a> <a href="shop09.html">立即付款</a> </div>-->
+</div>
+</div>
+
+<include file="Public:footer" />
+
+</body>
+</html>

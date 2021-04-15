@@ -1,0 +1,142 @@
+<include file="Public:header" />
+<style>
+    .list a {
+        display: inline-block;
+        width: 40%;
+        text-align: center;
+        margin: 3px 0;
+        color: #666;
+    }
+    .fukuan {
+        background: #000;
+        color: #fff !important;
+        line-height: 25px;
+    }
+</style>
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/Shop/shop/tag/shop/value/6"> <i class="fa fa-angle-left"></i> 仓库中的作品 </a> </h3>
+ <!--<ul class="allorderUl salingWorks_ul">
+  <li class="title_first"><a href="all_order.html">全部</a></li>
+  <li><a href="dai_fukuan.html">平台作品</a></li>
+  <li><a href="dai_fahuo.html">自传作品</a></li>
+  <div class="clear"></div>
+ </ul>-->
+</div>
+<div class="warp_box">
+ <div class="SeldpsyCon SeldpsyCon_sy">
+     <volist name="goods" id="vo">
+      <div class="user_r_list" style="
+    margin-top: 48px;
+">
+        <div class="allorder_topz">
+         <div class="allorder_topz_center">
+          <h5><span>仓库商品</span></h5>
+          <div class="allorder_topz_right publish_topz_right"><if condition="$vo.shenhe eq 1">
+              <if condition="$vo.is_sale eq 1"><td>出售</td></if>
+              <if condition="$vo.is_sale eq 0"><td>仓库中</td></if>
+          </if>
+              <if condition="$vo.shenhe eq 0"><td>审核中</td></if>
+              <if condition="$vo.shenhe eq 2"><td>审核拒绝</td></if></div>
+         </div>
+        </div>
+        <div class="allorder_kuang">
+         <div class="shop_xx_warp">
+          <div class="shop_xx_center">
+           <div class="shop_xx_left shop_xx_fd"> <a href="javascript:;"><img src="{$vo.index_pic}" width="100%" /></a> </div>
+           <div class="shop_xx_right shop_xx_fd shop_xx_revenue">
+            <p><b>{$vo.goods_name}  {$vo.goods_cap}</b><br />喜欢 <i>{$vo.collection}</i></p>
+            <p>价格<i>¥{$vo.price}</i></p>
+            <h3 class="shop_xx_jg" style="margin:0"><b>浏览次数</b><b>{$vo.browser}</b></h3>
+            <h3 class="shop_xx_jg" style="margin:0"><b>操作</b><b class="list">  <if condition="($vo.shenhe eq 2 or $vo.shenhe eq 0)"><a class="fukuan" href="{:U('Wxin/Shop/selUpload')}?id={$vo.id}">修改</a></if></b></h3>
+           </div>
+           <div class="clear"></div>
+          </div>
+         </div>
+         <!-- <div class="llk_border">
+          <div class="llk">
+           <div class="od_zongji">共<b>1</b>件商品 提成合计：<span>¥800.00</span></div>
+          </div>
+          <div class="clear"></div>
+         </div> -->
+         <!--<div class="od_button">
+          <div class="od_fukuan"><a href="fukuan01.html">删除</a></div>
+          <div class="od_quxiao"><a href="fukuan01.html">出售</a></div>
+          
+          <div class="clear"></div>
+         </div>-->
+        </div>
+      </div>
+         </volist>
+     <!-- <h3 class="zpbj" style="text-align:right; margin-top:0;"> <a href="#" style="color:#333; font-size:12px; padding-right:10px;">
+          <input type="checkbox" style="padding-top:2px; margin-right:2px;margin-bottom: 5px;">
+          全选</a> <a href="#" style="color:#333; font-size:14px;"><img src="images/shop_cloae.png" style="display:inline-block;width:16px; margin-top:-2px; margin-right:3px;">删除</a> </h3>-->
+    </div>
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+<script>
+    var p = 2;
+    // 加载刷新。
+    function refresh(refresh,loadmore) {
+        $(window).scroll(function(){
+            console.log('正在滑动f');
+
+            var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+            var scrollHeight = $(document).height();   //当前页面的总高度
+            var clientHeight = $(this).height();    //当前可视的页面高度
+            // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+            if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+                // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+                console.log('下拉');
+
+                if(loadmore){
+                    loadmore();
+                }
+            }else if(scrollTop<=0){
+                //滚动条距离顶部的高度小于等于0 TODO
+                //alert("下拉刷新，要在这调用啥方法？");
+
+                console.log('上拉');
+                if(refresh){
+                    refresh();
+                }
+
+            }
+
+        });
+
+    }
+    //调用
+    refresh(fn1,fn2);
+
+    function fn1(){
+        window.location.href = "{:U('Wxin/Shop/selWarehouse')}";
+    }
+    function fn2(){
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Wxin/Shop/get_selWarehouse')}",
+            data: {
+                p: p,
+            },
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                    p++;
+                    $('.SeldpsyCon_sy').append(g.html);
+                } else {
+                    //alert(g.info);
+                }
+            }
+        });
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<include file="Public:head"/>
+<style>
+    .btn-success {
+        margin-top: 12px;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">视频列表</h1>
+<!--            <div class="alert alert-info disable-del">
+                <h4>提示</h4>
+                删除分类会删除分类下面所有的产品 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a>
+            </div>-->
+            <form action="" method="post">
+                <div class="clearfix"> <a href="{:U('Admin/Index/setVideo')}" class="btn btn-success fl BtnAddClass">添加视频</a>
+
+                    <!--<div class="tables-searchbox fr">
+                                    <input type="text" placeholder="分类名称" class="input" name="class_name" value="">
+                                    <button class="btn"><i class="gicon-search"></i>查询</button>
+                                </div>-->
+                </div>
+            </form>
+            <table class="wxtables mgt15 table-order" id="tb_3">
+                <thead>
+                <tr>
+                    <td>视频标题</td>
+                    <td>视频路径</td>
+                     <td>排序</td>
+                     <td>分类</td>
+                    <td class="center">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="cache" item="vo" >
+                    <tr>
+                        <td>{$vo.title}</td>
+                        <td>{$vo.url}</td>
+                        <td>{$vo.sort}</td>
+                        <td>{$vo.name}</td>
+                        <!-- <td>{$vo.create_at|date="Y-m-d H:i:s",###}</td> -->
+                        <td class="center"><a href="{:U('Admin/index/setVideo',array('id'=>$vo['id']))}" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}" data-pic="{$vo.pic}" data-title="{$vo.classname}" data-renk="{$vo.sort}">编辑</a> <a href="javascript:void" class="btn btn-warning j-delClass" title="删除" data-id="{$vo.id}">删除</a>
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <!--<div class="tables-btmctrl clearfix">
+                <div class="fl"> <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                    &lt;!&ndash;<a href="javascript;" class="btn btn-primary btn_table_delAll">批量删除</a></div>&ndash;&gt;
+                    <div class="fr">
+                        &lt;!&ndash;<div class="paginate">&ndash;&gt;
+
+                        <div class="pages">
+                            &lt;!&ndash;</div>&ndash;&gt;
+                            {$page}
+                        </div>
+                        &lt;!&ndash; end paginate &ndash;&gt;
+                    </div>
+                </div>
+                &lt;!&ndash; end tables-btmctrl &ndash;&gt;
+            </div>-->
+            <!-- end content-right -->
+        </div>
+    </div>
+    <!-- end container -->
+    <include file="Public:foot"/>
+
+    <script type="text/javascript" src="__JS__/jquery-form.js"></script>
+    <script type="text/javascript">
+    $('.j-delClass').click(function(){
+        if(!confirm('确定要删除吗？')){
+            return false;
+        }
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url:"{:U('admin/index/delVideo')}",
+            data:{id:id},
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                alert(data.info);
+                if(data.status){
+                    window.location.reload();
+                }
+            }
+        })
+    })
+
+
+
+
+    </script>
+    <!--修改分类end-->

@@ -1,0 +1,428 @@
+<include file="Public:header" />
+<div class="dianpu_box">
+<div class="SellerCon">
+  <div class="SellerTop">
+    <h3>身份验证</h3>
+    <p>请上传本人身份证件，确保图片清晰，四角完整</p>
+  </div>
+  <div class="SellerFlower">
+    <div class="pZlCon">
+      <form class="pZlConForm">
+        <div class="pZlConI clearfix">
+          <label class="pzLs">姓名：</label>
+          <input type="text" value="{$res.name}" maxlength="10" onblur="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" onkeyup="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" id="name">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">电话：</label>
+          <input type="text" value="{$res.tel}" maxlength="16" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" id="tel">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">证件号：</label>
+          <input type="text" value="{$res.f_card}" maxlength="30"  id="cardid">
+        </div>
+        <div class="pZlConI clearfix">
+          <div class="pZlConI-div">
+            <label class="pzLs">证件图片：</label>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border" id="s">
+                <notempty name="res.f_zpic">
+                  <img src="__IMAGES__/SeladdPic.png">
+                  <h6>点此上传</h6>
+                  <input type="file" class="add_pic" name="xuanze" id="upFile">
+                  <input type="hidden" name="news_pic" value="">
+                  <else/>
+                  <img src="{$res.f_zpic}" style="width: 100% !important;"/>
+                  <input type="hidden" name="news_pic" value="{$info.f_zpic}">
+                  <input type="file" class="add_pic" name="xuanze" id="upFile">
+                </notempty>
+              </div>
+            </div>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border" id="ss">
+                <empty name="res.f_fpic">
+                  <img src="__IMAGES__/SeladdPic.png">
+                  <h6>点此上传</h6>
+                  <input type="file" class="add_pic" name="upFile1" id="upFile1">
+                  <input type="hidden" name="pic" value="">
+                  <else/>
+                  <img src="{$res.f_fpic}" style="width: 100% !important;"/>
+                  <input type="hidden" name="pic" value="{$info.f_fpic}">
+                  <input type="file" class="add_pic" name="upFile1" id="upFile1">
+                </empty>
+              </div>
+            </div>
+          </div>
+          <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">居住地址：</label>
+          <span>
+          <select id="s_province" name="s_province">
+          </select>
+          <select id="s_city" name="s_city">
+          </select>
+          <select id="s_county" name="s_county">
+          </select>
+          </span> <span>当前店铺经营联系人的手机，方便小二联系</span> </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">详细地址：</label>
+          <input type="text" id="address" value="{$res.address}">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">企业名：</label>
+          <input type="text" id="org_name" value="{$res.qy_name}">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">单位营业执照号：</label>
+          <input type="text" value="{$res.qy_zhi}" maxlength="30"  id="business">
+        </div>
+        
+        <div class="pZlConI clearfix">
+          <div class="pZlConI-div">
+            <label class="pzLs">单位营业执照图片：</label>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border" id="sss">
+                <empty name="res.qy_zhipic">
+                  <img src="__IMAGES__/SeladdPic.png">
+                  <h6>点此上传</h6>
+                  <input type="file" name="upFile2" id="upFile2">
+                  <input type="hidden" name="business_img" value="">
+                  <else/>
+                  <img src="{$res.qy_zhipic}" style="width: 100% !important;"/>
+                  <input type="hidden" name="business_img" value="{$info.qy_zhipic}">
+                  <input type="file" class="add_pic" name="upFile2" id="upFile2">
+                </empty>
+              </div>
+            </div>
+          </div>
+          <h5>原件照片或加盖公司公章的复印件照片，支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">组织机构代码证号：</label>
+          <input type="text" value="{$res.zhuz_jigou}" maxlength="30" id="organize">
+        </div>
+        <div class="pZlConI clearfix">
+          <div class="pZlConI-div">
+            <label class="pzLs">组织机构代码照片：</label>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border" id="ssss">
+                <empty name="res.zhuz_pic">
+                  <img src="__IMAGES__/SeladdPic.png">
+                  <h6>点此上传</h6>
+                  <input type="file" name="xuanze" id="upFile3">
+                  <input type="hidden" name="organize_img" value="">
+                  <else/>
+                  <img src="{$res.zhuz_pic}" style="width: 100% !important;"/>
+                  <input type="hidden" name="organize_img" value="{$info.zhuz_pic}">
+                  <input type="file" class="add_pic" name="xuanze" id="upFile3">
+                </empty>
+              </div>
+            </div>
+          </div>
+          <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="SelNoticeStyle">
+    <h4><!--<a href="fbzc.html">上一步</a>--> <a href="javascript:void(0)" id="btn">下一步</a></h4>
+  </div>
+</div>
+<div class="indexbottom"></div>
+</div>
+
+<include file="Public:footer" />
+
+</body>
+</html>
+<script class="resources library" src="__JS__/area.js" type="text/javascript"></script>
+<script src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">_init_area();</script>
+<script type="text/javascript">
+  function upFile(){
+    var percent = $('.xuanze_percent');
+    var progress = $('.xuanze_percent');
+    $("#upFile").wrap("<form id='upFiles' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile").change(function(){ //选择文件
+      $("#upFiles").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="news_pic" id="sfpic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" class="add_pic" name="xuanze" id="upFile">';
+          //$('.xuanze_showimge').html(img);
+          $('#s').html(img);
+          upFile();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+  function upFile1(){
+    var percent = $('.xuanze_percent');
+    var progress = $('.xuanze_percent');
+    $("#upFile1").wrap("<form id='upFiles1' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile1").change(function(){ //选择文件
+      $("#upFiles1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="pic" id="sfpic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" class="add_pic" name="upFile1" id="upFile1">';
+          //$('.xuanze_showimge').html(img);
+          $('#ss').html(img);
+          upFile1();
+          console.log(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+  function upFile2(){
+    var percent = $('.xuanze_percent');
+    var progress = $('.xuanze_percent');
+    $("#upFile2").wrap("<form id='upFiles2' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile2").change(function(){ //选择文件
+      $("#upFiles2").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="business_img" id="business_img" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" name="upFile2" id="upFile2">';
+          //$('.xuanze_showimge').html(img);
+          $('#sss').html(img);
+          upFile2();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+
+  function upFile3(){
+    var percent = $('.xuanze_percent');
+    var progress = $('.xuanze_percent');
+    $("#upFile3").wrap("<form id='upFiles3' action='{:U('/Home/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile3").change(function(){ //选择文件
+      $("#upFiles3").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="organize_img" id="organize_img" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" name="upFile3" id="upFile3">';
+          //$('.xuanze_showimge').html(img);
+          $('#ssss').html(img);
+          upFile3();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+  $(function(){
+    upFile();
+    upFile1();
+    upFile2();
+    upFile3();
+
+    var province = "{$res['s_province']}";
+    var city = "{$res['s_city']}";
+    var district = "{$res['s_county']}";
+    $("#s_province option").each(function () {
+      if ($(this).val() == province) {
+        $(this).attr('selected', true);
+      }
+    });
+    $("#s_city option").each(function () {
+      if ($(this).val() == province) {
+        $(this).attr('selected', true);
+      }
+    });
+
+    $('#s_city').html("");
+    $('#s_county').html("");
+    var _ct = "<option value=" + city + " >" + city + "</option>";
+    var _dt = "<option value=" + district + ">" + district + "</option>";
+    $('#s_city').append(_ct);
+    $('#s_county').append(_dt);
+  })
+
+  $('#btn').click(function () {
+    var province = $('select[name="s_province"]').val();
+    var city = $('select[name="s_city"]').val();
+    var district = $('select[name="s_county"]').val();
+    var name = $.trim($('#name').val());
+    var tel = $.trim($('#tel').val());
+    var cardid = $.trim($('#cardid').val());
+    var  type= $('input:radio[name="SelCinput"]:checked').val();
+
+    var ruzhu_status = "{$res.ruzhu_status}";
+
+
+    var pic1 = $('input[name="news_pic"]').val();
+    var pic2 = $('input[name="pic"]').val();
+    var business_img = $('input[name="business_img"]').val();
+    var organize_img = $('input[name="organize_img"]').val();
+    //alert(pic1);return false;
+
+
+    //console.log(pic1);return false;
+
+    var address = $.trim($('#address').val());
+    var org_name = $.trim($('#org_name').val());
+    if(name==""){
+      alert("姓名必填");
+      return false;
+    }
+    if(tel==""){
+      alert("手机必填");
+      return false;
+    }
+    if(!(/^1[34578]\d{9}$/.test(tel))){
+      alert('请输入正确的手机号');
+      $('#tel').focus();
+      return false;
+    }
+    if(cardid==""){
+      alert("身份证必填");
+      return false;
+    }
+    if(pic1 == ''){
+      alert("请上传身份证照片（正面）");
+      return false;
+    }
+    if(pic2 == ''){
+      alert("请上传身份证照片（反面）");
+      return false;
+    }
+
+    if (province == "" || province == "请选择"){
+      alert('请选择省份');
+      return false;
+    }
+    if(city == '' || city=="请选择"){
+      alert('请选择市');
+      return false;
+    }
+
+    var len = $('#county_x').find('ul').find('li').length;
+    if(len>1){
+      if(district == '' || district=="请选择"){
+        alert('请选择县');
+        return false;
+      }
+    }
+
+    if(address == ""){
+      alert("详细地址必填");
+      return false;
+    }
+
+    var  business = $('#business').val().trim();
+    business = business.replace(/\s+/g,"");
+    var organize = $('#organize').val().trim();
+    organize = organize.replace(/\s+/g,"");
+
+
+    if(org_name==""){
+      alert("机构名必填");
+      return false;
+    }
+
+    if(business==""){
+      alert("营业执照号必填");
+      return false;
+    }
+    if(organize==""){
+      alert("组织机构代码号必填");
+      return false;
+    }
+
+    /*if(pic1 == undefined){
+     alert("营业执照照片不能为空");
+     return false;
+     }*/
+
+    if(pic2 == ''){
+      alert("组织机构照片不能为空");
+      return false;
+    }
+
+    $.ajax({
+      url: "{:U('/Wxin/PersonalCenter/crowdIdentity')}",
+      type: "post",
+      dataType: "json",
+      data: {
+        name: name,
+        tel:tel,
+        cardID:cardid,
+        type:type,
+        address:address,
+        pic1:pic1,
+        pic2:pic2,
+        province:province,
+        city:city,
+        district:district,
+        org_name:org_name,
+        business: business,
+        organize:organize,
+        business_img:business_img,
+        organize_img:organize_img,
+      },
+      success:function(g){
+        if(g.status==1){
+          window.location.href=g.url;
+          return false;
+        }else{
+          alert(g.info);
+          return false;
+        }
+      }
+    })
+  })
+var Gid  = document.getElementById ;
+var showArea = function(){
+	Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" + 	
+	Gid('s_city').value + " - 县/区" + 
+	Gid('s_county').value + "</h3>"
+							}
+Gid('s_county').setAttribute('onchange','showArea()');
+</script>

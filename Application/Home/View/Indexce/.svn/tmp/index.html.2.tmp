@@ -1,0 +1,730 @@
+<include file="Public:head" />
+<body>
+<!----header---->
+<!----header---->
+<div class="header header1">
+  <div class="header_fixed_a">
+    <div class="sskuang"> <img src="__IMAGES__/close.png"  class="close"/> <img src="__IMAGES__/ssb.png"  class="ssb" />
+      <div class="ss_text_a">
+        <input   onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键字';}"  value="请输入关键字"  type="text" class="ss_text" />
+        <a href="javascript:void(0);"><img src="__IMAGES__/yjt.png" class="yjt" /></a> </div>
+    </div>
+    <script>
+        $(".yjt").click(function(){
+            var key = $(".ss_text").val();
+            window.location.href="/Home/Artwork/index/key/"+key;
+        })
+    </script>
+    <div class="header_box header_box1 container">
+      <div class="container headerbg">
+        <h1 class="logo"><a href="/index.html"><img src="__IMAGES__/logo.png" /></a></h1>
+        <div class="menu">
+          <ul>
+            <li><a href="/index.html"><strong><span>首页</span></strong></a> </li>
+            <li _t_nav="nav_xlcd1"><a href="/news.html" target="_blank"><strong><span>新闻</span></strong></a> </li>
+            <li _t_nav="nav_xlcd2"><a href="/artwork.html" target="_blank"><strong><span>艺术品</span></strong></a> </li>
+            <li _t_nav="nav_xlcd3"><a href="/Gallery.html" target="_blank"><strong><span>艺术社区</span></strong></a> </li>
+            <li _t_nav="nav_xlcd4"><a href="/auction.html" target="_blank"><strong><span>拍卖</span></strong></a> </li>
+            <li _t_nav="nav_xlcd5"><a href="/products.html" target="_blank"><strong><span>创意商店</span></strong></a> </li>
+            <li _t_nav="nav_xlcd6"><a href="/cloud.html" target="_blank"><strong><span>云推荐</span></strong></a> </li>
+            <div class="clear"></div>
+          </ul>
+        </div>
+        <div class="headerright">
+          <span>
+            <eq name="member_id" value="0">
+             <a href="/login.html" class="headerrighttb" style="margin-right:5px;">登录</a>/<a href="/zhuce.html" class="headerrighttb" style="margin-left:5px;">注册</a>
+              <else/>
+               <a href="{:U('Home/PersonalCenter/userinfo')}" class="headerrighttb" style="height: 24px;position: relative;top: 8px;line-height: 24px;border-radius: 0;text-align:center;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100px;display: inline-block;">
+              <em class="fa fa-user-circle-o"></em><if condition="$headimg.person_name neq null">{$headimg.person_name}<else/>{$headimg.telephone}</if></a>/<a href="/logout.html" class="headerrighttb">退出</a>
+            </eq>
+
+
+
+          </span> |<a href="/shopcar.html" class="link">购物车</a><b class="cart_count_num">{$cartnum|default='0'}</b>|
+          <!--<a href="#" class="headerrighttb bdsharebuttonbox" style="margin-left:8px; width:20px; display:inline-table;">
+          <img src="__IMAGES__/fx.png" class="bds_more" style=" background:none; margin:0; float:none;  padding-left:0; "  data-cmd="more"/ ></a>-->
+          <a  class="ss"><img src="__IMAGES__/ss.png" /></a>
+        </div>
+
+
+
+        <div class="clear"></div>
+        <div class="navigation-down">
+
+          <!-- 01 -->
+          <div id="nav_xlcd1" class="nav-down-menu menu-3 menu-1" style="display: none;" _t_nav="nav_xlcd1">
+            <div class="navigation-down-inner">
+              <div class="menuxl">
+                <ul>
+                  <volist name="newsCate" id="val">
+                    <li><a href="/News.html?type={$val.id}" target="_blank">{$val.name}</a></li>
+                  </volist>
+                  <li><a href="/contest.html" target="_blank">大赛征稿</a></li>
+                  <li><a href="/video.html" target="_blank">视频</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 01 -->
+
+          <!-- 02-->
+          <div id="nav_xlcd2" class="nav-down-menu menu-1" style="display: none;" _t_nav="nav_xlcd2">
+            <div class="navigation-down-inner">
+              <div class="menuxl" style="width:70%; margin:0 auto;">
+                <div class="row">
+                  <volist name="resh" id="vo">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                      <div class="indexpro" data-id="{$vo.id}"  data-cstores="{$vo.cstores}"> <a href="javascript:void();"><img src="{$vo.pic}"/></a>
+                        <p>{$vo.classname}</p>
+                      </div>
+                    </div>
+                  </volist>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script>
+              $(function(){
+                  $('.indexpro').click(function(){
+                      //alert($(this).data('id'));return false;
+                      var sid = $(this).data('id');
+                      var cstores = $(this).data('cstores');
+                      if(cstores == 1){
+
+                           window.location.href='/products.html?id='+sid;
+                      }else{
+
+                           window.location.href='/artwork.html?id='+sid;
+                      }
+                  })
+              })
+          </script>
+          <!-- 02 -->
+
+          <!-- 03 -->
+          <!--<div id="nav_xlcd3" class="nav-down-menu menu-3 menu-1" style="display: none;" _t_nav="nav_xlcd3">
+            <div class="navigation-down-inner">
+              <div class="menuxl">
+                <ul>
+                  <li><a href="/Gallery.html" target="_blank">画廊</a></li>
+                  <li><a href="/artist.html?id=2" target="_blank">艺术家</a></li>
+                  <li><a href="/artist.html?id=3" target="_blank">设计师</a></li>
+                  <li><a href="/artist.html?id=4" target="_blank">工艺大师</a></li>
+                  <li><a href="/artist.html?id=5" target="_blank">非遗传承人</a></li>
+                  <li><a href="shetuan.html" target="_blank">美院</a></li>
+                  <li><a href="shetuan.html" target="_blank">画院</a></li>
+                  <li><a href="/artist.html?id=6" target="_blank">动漫</a></li>
+                  <li><a href="{:U('Home/ArtCommunity/game/id/7')}" target="_blank">游戏</a></li>
+                  <li><a href="/exhibition.html" target="_blank">展览</a></li>
+                  <li><a href="/train.html" target="_blank">培训</a></li>
+                  <li><a target="_blank" href="/crowdFunding.html" style="border:none;">众筹</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>-->
+          <!-- 02 -->
+          <div id="nav_xlcd3" class="nav-down-menu menu-3 menu-1" style="display: none;" _t_nav="nav_xlcd3">
+            <div class="navigation-down-inner">
+              <div class="menuxl">
+                <ul>
+                  <li><a target="_blank" href="/Gallery.html">画廊</a></li>
+
+                  <li><a target="_blank" href="/artist.html?id=2">艺术家</a></li>
+
+                  <li><a target="_blank" href="/artist.html?id=3">设计师</a></li>
+
+                  <li><a target="_blank" href="/artist.html?id=4">工艺大师</a></li>
+
+                  <li><a target="_blank" href="/artist.html?id=5">非遗传承人</a></li>
+
+                  <li><a target="_blank" href="/association.html">美院</a></li>
+
+                  <li><a target="_blank" href="/association.html">画院</a></li>
+
+                  <li><a target="_blank" href="/artist.html?id=6">动漫</a></li>
+
+                  <li><a target="_blank" href="{:U('Home/ArtCommunity/game/id/7')}">游戏</a></li>
+
+                  <li><a target="_blank" href="/exhibition.html">展览</a></li>
+
+                  <li><a target="_blank" href="/train.html">培训</a></li>
+
+                  <li><a target="_blank" href="/crowdFunding.html" >众筹</a></li>
+                  <li><a target="_blank" href="/overseas.html" style="border:none;">海外交流</a></li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 02 -->
+          <!-- 03 -->
+
+          <!-- 04 -->
+          <div id="nav_xlcd4" class="nav-down-menu menu-3 menu-1" style="display: none;" _t_nav="nav_xlcd4">
+            <div class="navigation-down-inner">
+              <div class="menuxl">
+                <ul>
+                  <li><a href="/Auctionpreview.html">预展</a></li>
+                  <li><a href="/Auctionresult.html">结果</a></li>
+                  <li><a href="/limitedauction.html">限时拍</a></li>
+                  <li><a href="/welfare.html" style="border:none;">公益</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 04 -->
+
+          <!-- 05 -->
+          <div id="nav_xlcd5" class="nav-down-menu menu-1" style="display: none;" _t_nav="nav_xlcd5">
+            <div class="navigation-down-inner">
+              <div class="menuxl" style="width:70%; margin:0 auto;">
+                <div class="row">
+                  <volist name="resc" id="vo">
+
+                    <div class="indexpro_a">
+                      <div class="indexpro"  data-id="{$vo.id}"  data-cstores="{$vo.cstores}"> <a href="javascript:void();"><img src="{$vo.pic}"/></a><!--/products.html-->
+                        <p>{$vo.classname}</p>
+                      </div>
+                    </div>
+                  </volist>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 05 -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----header----->
+
+<!----移动端----->
+<header class="phone visible-xs">
+  <div class="headerbg">
+    <div class="menu_box">
+      <div class="container">
+        <div class="logo_boxlist"><a href="index.html"> <!--<svg width="100" height="46">
+          <image xlink:href="images/logo.svg" src="images/logo.png" width="100" height="46" />
+          </svg> --></a></div>
+        <div class="containeritem">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-nav" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          </div>
+          <div class="collapse navbar-collapse" id="header-nav" >
+            <ul class="nav navbar-nav">
+              <li><a href="#">产品中心</a></li>
+              <li><a href="#">新闻中心</a></li>
+              <li><a href="#">品牌之旅</a></li>
+              <li><a href="#">绿源观点</a></li>
+              <li><a href="#">服务支持</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <nav> </nav>
+  </div>
+</header>
+<!----移动端----->
+
+<!----banner----->
+<div class="banner">
+  <div class="swiper-container swiper-banner"> <a class="arrow-left arrow-left_01" href="javascript:void(0);"> </a> <a class="arrow-right arrow-right_01" href="javascript:void(0);"> </a>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide banner1 bannert">
+        <div class="banner_wz">
+          <h4>名家展厅</h4>
+          <h2>艺术精品第一门户</h2>
+          <h3>2017年3.7日10:00-2017年3.10日16:00</h3>
+          <a href="/artist.html?id=3" target="_blank"><i></i><span>了解更多</span></a> </div>
+      </div>
+      <div class="swiper-slide banner2 bannert">
+        <div class="banner_wz">
+          <h4>艺术市场</h4>
+          <h2>艺当代青年油画展</h2>
+          <h3>常年征集国画、书法、雕塑等形式艺术品！</h3>
+          <a href="/artwork.html" target="_blank"><i></i><span>了解更多</span></a> </div>
+      </div>
+      <div class="swiper-slide banner4 bannert">
+        <div class="banner_wz">
+          <h4>名家展厅</h4>
+          <h2>艺术精品第一门户</h2>
+          <h3>2017年3.7日10:00-2017年3.10日16:00</h3>
+          <a href="/Gallery.html" target="_blank"><i></i><span>了解更多</span></a> </div>
+      </div>
+    </div>
+    <div class="swiper-pagination pagination1"></div>
+  </div>
+</div>
+<!----banner-----> 
+
+<!--  / warpper  -->
+<div class="warpper"> 
+  
+  <!--  / index_sec1  -->
+  <div class="index_sec index_sec1">
+    <div class="auction container">
+      <div class="row">
+        <div class="promo_right">
+          <div class="right_tit">
+            <svg version="1.1" id="time" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+              <path d="M45.146,35.569H32.785l0-17.067c0-1.317-0.965-2.383-2.156-2.383c-1.191,0-2.158,1.066-2.158,2.383v18.998
+							c0,0.041,0.001,0.083,0.003,0.124c-0.002,0.034-0.003,0.068-0.003,0.103c0,0.582,0.255,1.11,0.669,1.497
+							c0.387,0.408,0.911,0.659,1.488,0.659c0.034,0,0.068-0.001,0.102-0.003c0.041,0.002,0.082,0.003,0.123,0.003h14.293
+							c1.317,0,2.383-0.965,2.383-2.156C47.529,36.536,46.463,35.569,45.146,35.569z M32-0.035c-17.543,0-31.763,14.22-31.763,31.763
+							S14.457,63.491,32,63.491c17.542,0,31.763-14.22,31.763-31.763S49.542-0.035,32-0.035z M32,58.785
+							c-14.943,0-27.057-12.114-27.057-27.057C4.943,16.784,17.057,4.671,32,4.671s27.057,12.113,27.057,27.057
+							C59.057,46.671,46.943,58.785,32,58.785z"/>
+            </svg>
+            <h3>限时拍卖 &nbsp; <span style="float: none">Limited-time sale</span></h3>
+            <span class="tit_word"> <em>限时拍卖 <i>每天</i>上线</em> </span> |
+            <span class="time"> 还剩 <span class="last_time"> <i class="hour" id="t_d"> </i> : <i class="min" id="t_h"> </i> : <i class="seco" id="t_m"> </i> </span> 结束 </span>
+            <div class="clear"></div>
+          </div>
+          <div class="right_con"> 
+            <!--<div class="mask" style="display: none;"> <a href="products_inner1.html" class="mask_left"> <span></span> <i></i> </a> <a href="javascript:;" class="mask_right"> <span></span> <i></i> </a> </div>-->
+            <div class="right_con_show">
+              <ul class="right_con_list">
+                <foreach name="res" item="vo">
+                  <li class="col-lg-4 col-md-4 col-sm-4"> <a target="_blank" href='{:U("Home/Pm/pmxq/id")}/{$vo["id"]}'>
+                    <div class="prd_list_bg prd_list_bg1" style="left:0; filter:alpha(opacity=100); -moz-opacity:1; -khtml-opacity:1; opacity:1;" >
+                      <div class="prd_img" > <img src="{$vo.index_pic}" width="100%"></div>
+                      <p class="prd_link"><span>{$vo.goods_name}</span></p>
+                      <div class="price">
+                        <div class="discount"> {$vo['start']|date="M",###} /<span>{$vo['start']|date="d",###}</span> </div>
+                        <div class="act_price"> <del>一口价：￥{$v.baoliu}</del> <em><b>起拍价</b><i>￥</i>{$vo.start_price}</em> </div>
+                      </div>
+                      <div class="num">
+                        <div class="num_all">
+                          <div class="num_sale" style="width: 170px;"></div>
+                        </div>
+                        <span>{$vo.weiguan|default=0}</span>人围观</div>
+                    </div>
+                  </a> </li>
+                </foreach>
+              </ul>
+            </div>
+            <div class="pro_screen">
+              <h3>人人都是收藏家</h3>
+              <h5>开拍在即，名额有限，限时抢购！ </h5>
+              <span><a href="/auction.html" target="_blank">了解更多拍卖信息 </a><i></i></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  / index_sec1  --> 
+  
+  <!--  / index_sec2  -->
+  <div class="index_sec index_sec2">
+    <div class="recommend container">
+      <div class="row">
+        <div class="rec_tit ">
+          <div class="casa-category-head">
+            <svg version="1.1" id="dz" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="200px" height="200px" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">
+              <g>
+                <g transform="scale(0.1953125, 0.1953125)">
+                  <path fill="#333333" d="M943.115,391.949H648.09c37.658-56.042,59.883-123.333,59.883-195.974c0-13.307,1.44-26.34,0-39.167
+			v-39.236C707.973,52.681,655.361,0,590.402,0S472.831,52.681,472.831,117.571v39.03
+			c-17.354,119.903-115.444,217.993-235.21,235.348c-43.283,0-78.403,35.12-78.403,78.403v470.421
+			c0,43.283,35.12,78.403,78.403,78.403h587.923c43.352,0,78.472-35.12,78.472-78.403l117.571-470.421
+			C1021.587,427.069,986.466,391.949,943.115,391.949z M825.544,901.537c0,21.676-17.492,39.236-39.167,39.236H276.788
+			c-21.676,0-39.167-17.56-39.167-39.236V467.814c163.392-18.109,295.368-147.615,313.545-311.007l0,0v-39.236
+			c0-21.607,17.56-39.167,39.167-39.167c21.676,0,39.236,17.56,39.236,39.167v39.236c0,0,0,25.723,0,39.167
+			c0,77.512-33.886,147.066-85.674,196.66h0.343c-18.315,3.224-32.239,19.275-32.239,38.55c0,21.607,17.492,39.167,39.167,39.167
+			h352.85c21.607,0,39.099,17.56,39.099,39.167L825.544,901.537z M41.647,431.185c-21.676,0-39.236,17.492-39.236,39.167v509.519
+			c0,21.676,17.56,39.236,39.236,39.236c21.607,0,39.167-17.56,39.167-39.236V470.352C80.814,448.676,63.254,431.185,41.647,431.185
+			z"/>
+                </g>
+              </g>
+            </svg>
+            <h3> 大家都在赞&nbsp; <span style="float: none">Everyone's praise</span></h3>
+            <div class="casa-category-nav">
+              <!--<ul>-->
+                <!--<li><a href="/products.html">国画</a></li>-->
+                <!--<li><a href="/products.html">油画</a></li>-->
+                <!--<li><a href="/products.html">版画</a></li>-->
+                <!--<li><a href="/products.html">雕塑</a></li>-->
+                <!--<li><a href="/products.html">书法</a></li>-->
+                <!--<li><a href="/products.html">水彩</a></li>-->
+                <!--<li><a href="/products.html">玉器</a></li>-->
+                <!--<li><a href="/products.html">陶器</a></li>-->
+                <!--<li><a href="/products.html">其他</a></li>-->
+                <!--<div class="clear"></div>-->
+              <!--</ul>-->
+              <div class="clear"></div>
+            </div>
+          </div>
+          <div> </div>
+          <div class="rec_list">
+            <div class="row">
+              <div class="swiper-container swiper-tuijian"> <a class="arrow-left arrow-left2 tuijian_left" href="javascript:void(0);"> <img src="__IMAGES__/left.png" /> </a> <a class="arrow-right arrow-right2 tuijian_right" href="javascript:void(0);"> <img src="__IMAGES__/right.png" /> </a>
+                <div class="swiper-wrapper">
+
+                  <volist name="res1" id="vv">
+                  <div class="swiper-slide">
+                    <div class="list_nav_a"> <a target="_blank" href="{:U('/Home/Products/buy')}/id/{$vv.id}">
+                      <div class="list_nav">
+                        <!--<div class="list_image"> <img src="{$vv.index_pic}" width="100%"  > </div>-->
+                        <div class="list_image"> <img src="{$vv.index_pic}" width="281" height="187" > </div>
+                        <div class="rec_text">
+                          <div class="recti">
+                            <h3>{$vv.goods_name}</h3>
+                            <p>{$vv.goods_cap}艺术作品</p>
+                          </div>
+                          <div class="name">
+                            <div class="tx"> <img src="__IMAGES__/29_avatar_small.jpg"/> </div>
+                            <p>{$vv.goods_cap}</p>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                        <div class="zz"></div>
+                      </div>
+                      </a> </div>
+                  </div>
+                  </volist>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pro_screen">
+            <h3>选择最喜欢的艺术作品</h3>
+            <h5>发现艺术、了解艺术、走进艺术</h5>
+            <span><a href="/artwork.html" target="_blank">了解更多艺术作品 </a><i></i></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  / index_sec2  --> 
+  
+  <!--  / index_sec3  -->
+  <div class="index_sec index_sec3">
+    <div class="index_sec_con">
+      <div class="casa-category-head">
+        <svg version="1.1" id="daren" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="200px" height="200px" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">
+          <g>
+            <g transform="scale(0.1953125, 0.1953125)">
+              <path fill="#272636" d="M879.367,145.374c-202.548-202.548-531.202-202.548-733.995,0c-202.548,202.548-202.548,530.954,0,733.506
+			c168.462,168.462,423.841,196.22,621.765,84.719c0,0,29.454-30.431-6.815-64.755c-12.173-11.685-30.917-13.877-63.781,6.332
+			c-161.159,75.228-358.597,47.229-491.523-85.692C35.335,649.8,35.335,374.46,205.018,204.78
+			c169.683-169.683,445.023-169.683,614.703,0c127.079,127.079,158.971,313.071,95.92,469.852c0,0-23.618,38.462,3.166,65.246
+			c16.313,16.313,42.848,16.313,59.644,0c8.036-8.036,11.928-18.503,12.173-28.726c78.147-188.185,41.628-412.887-111.253-565.772
+			L879.367,145.374z M789.778,409.997l-171.144-24.103l-76.932-154.587c-5.843-11.685-16.066-19.719-30.677-18.988
+			c-12.9,0-24.831,7.545-30.677,19.234l-75.471,154.839l-170.903,25.32c-12.9,1.946-23.618,10.951-27.51,23.371
+			c-3.896,12.414-0.49,26.049,8.766,34.814l124.16,120.022l-28.483,170.169c-2.193,12.9,3.166,25.808,13.636,33.352
+			c5.843,4.38,12.9,6.332,19.966,6.332c5.6,0,10.951-1.215,16.066-3.896l152.641-80.826l153.128,79.85
+			c11.442,6.083,25.32,4.869,36.029-2.677c10.471-7.79,15.582-20.692,13.39-33.352L686.06,588.945l123.183-120.993
+			c9.249-9.005,12.654-22.641,8.518-35.056c-4.38-12.173-15.092-21.181-27.997-22.887L789.778,409.997z M625.202,552.905
+			c-8.036,7.79-11.685,19.234-9.737,30.19L636.4,702.627L528.555,646.39c-9.98-5.113-21.91-5.113-31.646,0L389.55,703.357
+			l20.21-119.775c1.946-10.951-1.946-22.397-9.98-30.19l-87.396-84.236l120.267-17.77c11.196-1.702,20.692-8.766,25.561-18.748
+			l53.313-109.061l54.045,108.579c5.113,9.98,14.609,17.046,25.808,18.503l120.267,17.046l-86.424,85.206L625.202,552.905z"/>
+            </g>
+          </g>
+        </svg>
+        <h3> 推荐达人&nbsp; <span style="float: none">Recommended people</span></h3>
+      </div>
+      <div class="row">
+        <volist name="res2" id="vvv">
+        <div class="col-lg-3 col-md-4 col-sm-4"> <a target="_blank" href="{:U('/Home/ArtCommunity/artistShow',array('id'=>$vvv['id']))}">
+          <div class="index_sec3_list">
+            <div class="index_sec3_pic"> <img src="{$vvv.self_pic}" /> </div>
+            <div class="index_sec3_text">
+              <h2><i></i>{$vvv.artist_name}<i></i></h2>
+              <h6>{$vvv.name}</h6>
+              <h4>{$vvv.desc|htmlspecialchars_decode|stripslashes}</h4>
+            </div>
+          </div>
+          </a> </div>
+        </volist>
+      </div>
+      <div class="pro_screen">
+        <h3>我们需要您</h3>
+        <h5>选择你最喜欢的达人，为他点个赞！</h5>
+        <span><a href="/artist.html?id=2" target="_blank">了解更多优秀达人 </a><i></i></span></div>
+    </div>
+  </div>
+  <!--  / index_sec3  --> 
+  
+  <!--  / index_sec4  -->
+  <div class="index_sec index_sec4">
+    <div class="index_sec_con">
+      <div class="casa-category-head">
+        <svg version="1.1" id="news" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="200px" height="200px" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">
+          <g>
+            <g transform="scale(0.1953125, 0.1953125)">
+              <path fill="#333333" d="M922.451,831.145l-408.746,120.32L104.96,831.145c-11.947,0-20.48-8.533-23.04-18.773L8.533,797.865v9.387
+			c0,52.907,43.52,96.426,96.426,96.426l408.746,120.32l408.746-120.32c52.907,0,96.426-43.52,96.426-96.426v-6.827l-72.533,8.533
+			C945.491,821.758,935.251,831.145,922.451,831.145L922.451,831.145z M922.451,0L513.705,120.32L104.96,0
+			C52.053,0,8.533,43.52,8.533,96.426v591.358c0,52.907,43.52,96.426,96.426,96.426l408.746,120.32l408.746-120.32
+			c52.907,0,96.426-43.52,96.426-96.426V96.426C1018.877,43.52,976.211,0,922.451,0L922.451,0z M104.96,711.678
+			c-13.653,0-23.893-11.093-23.893-23.893V96.426c0-13.653,11.093-23.893,23.893-23.893l369.492,105.813v639.145L104.96,711.678z
+			 M946.344,686.932c0,13.653-11.093,23.893-23.893,23.893L553.812,817.491V178.346L923.304,72.533
+			c13.653,0,23.893,11.093,23.893,23.893L946.344,686.932L946.344,686.932L946.344,686.932z M866.984,295.253
+			c-3.413-12.8-16.213-20.48-29.013-17.067l-186.026,49.493c-12.8,3.413-20.48,16.213-17.067,29.013l5.973,23.04
+			c3.413,12.8,16.213,20.48,29.013,17.067l186.026-49.493c12.8-3.413,20.48-16.213,17.067-29.013L866.984,295.253L866.984,295.253z
+			 M866.984,511.999c-3.413-12.8-16.213-20.48-29.013-17.067l-186.026,49.493c-12.8,3.413-20.48,16.213-17.067,29.013l5.973,23.04
+			c3.413,12.8,16.213,20.48,29.013,17.067l186.026-49.493c12.8-3.413,20.48-16.213,17.067-29.013L866.984,511.999L866.984,511.999z
+			 M173.226,349.866l181.76,48.64c12.8,3.413,25.6-4.267,29.013-17.067l5.973-23.04c3.413-12.8-4.267-25.6-17.067-29.013
+			l-181.76-47.786c-12.8-3.413-25.6,4.267-29.013,17.067l-5.973,23.04C152.746,333.652,160.426,346.452,173.226,349.866
+			L173.226,349.866z M173.226,562.345l181.76,48.64c12.8,3.413,25.6-4.267,29.013-17.067l5.973-23.04
+			c3.413-12.8-4.267-25.6-17.067-29.013l-181.76-48.64c-12.8-3.413-25.6,4.267-29.013,17.067l-5.973,23.04
+			C152.746,546.132,160.426,559.785,173.226,562.345L173.226,562.345z"/>
+            </g>
+          </g>
+        </svg>
+        <h3> 新闻速递&nbsp; <span style="float: none">Newsletters</span></h3>
+      </div>
+      <div class="row">
+        <volist name="news" id="n">
+        <div class="col-lg-6 col-md-6 col-sm-6 index_sec4_left"> <a target="_blank" href="{:U('/Home/News/details',array('id'=>$n['id']))}">
+          <div class="index_sec4_list">
+            <div class="index_sec4_list_img"> <img src="{$n.news_pic}" width="100%" /> </div>
+            <div class="index_sec4_list_wz" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;course:hand; height: 150px;">
+              <h6>{$n.addtime|date="Y-m-d",###}</h6>
+              <h2>{$n.title}</h2>
+              <!--<h4 style="">{$n.content|htmlspecialchars_decode|stripslashes}</h4>-->
+
+            </div>
+            <div class="clear"></div>
+          </div>
+          </a> </div>
+        </volist>
+      </div>
+      <div class="pro_screen">
+        <h3>最新资讯，不容错过！</h3>
+        <h5>浙江美术网为您提供最新的展会信息</h5>
+        <span><a href="/news.html" target="_blank">查看更多信息</a> <i></i></span></div>
+    </div>
+  </div>
+  <!--  / index_sec4  -->
+  
+  <div class="index_sec index_sec5">
+    <div class="index_sec_con">
+      <div class="index_sec5_dt">
+        <div class="index_sec5_dt_wz">
+          <h2><a href="/cloud.html">浙江美术网云推荐</a> </h2>
+          <h3>成为浙江美术网合伙人，共享万亿艺术消费市场</h3>
+          <a href="/cloud.html" target="_blank" class="btn1"> <i></i> <span>立即加入</span></a> </div>
+        <img src="__IMAGES__/cpzs.jpg" width="100%"> </div>
+    </div>
+  </div>
+</div>
+<!--  / warpper  --> 
+
+<include file="Public/footer" />
+
+</body>
+<script type="text/javascript" src="__JEDATE__/jedate.js"></script>
+<script type="text/javascript" src="__JS__/swiper.min.js"></script>
+
+<!--  / banner切换  -->
+<script src="__JS__/swiper.min.js"></script>
+<script>
+$(document).ready(function(e) {
+    
+	var mySwiper1 = new Swiper('.swiper-banner',{
+		pagination: '.pagination1',
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left_01').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipePrev()
+	})
+	  
+	$('.arrow-right_01').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipeNext()
+	})
+	
+	var mySwiper2 = new Swiper('.swiper-tuijian',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerGroup : 1,//设置几个一切
+		slidesPerView :4,//一行几
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+
+  
+  
+
+});
+
+
+
+
+
+$(window).scroll(function ()
+{
+	
+ 
+		 	 
+	
+	 if($(window).scrollTop()>=60){ 
+		 $('.header').addClass('header_fixed');
+	 }
+	 else {
+        $('.header').removeClass('header_fixed');
+        } 
+		 
+	 
+
+	
+});		 
+		 
+</script>
+<script>
+  
+  	
+function GetRTime(){    
+//	var EndTime= new Date('2017/9/15 23:00:00');
+    var end = "{$num['end_time']}";
+	//var EndTime = new Date(end);
+	var NowTime = new Date();    
+	var t =end*1000 - NowTime.getTime();
+	var d=0;    
+	var h=0;    
+	var m=0;    
+	var s=0;   
+	if(t>=0){      
+		d=Math.floor(t/1000/60/60/24);      
+		h=Math.floor(t/1000/60/60%24); 
+		//h=Math.floor(t/1000/60/60);      
+		m=Math.floor(t/1000/60%60);      
+		s=Math.floor(t/1000%60);    
+	}      
+	document.getElementById("t_d").innerHTML = d + "天";    
+	document.getElementById("t_h").innerHTML = h<10? "0"+h : h;    
+	document.getElementById("t_m").innerHTML = m<10? "0"+m : m; 
+}  
+setInterval(GetRTime,1000);
+  
+  </script>
+
+<!--  / banner切换  -->
+
+<script>
+
+$(window).scroll(function(){
+	
+if($(window).scrollTop()>($(".index_sec1").offset().top-800)){
+$(".right_tit").delay(100).animate({"left":"0px","opacity":"1"},1000);
+$(".prd_list_bg1").delay(300).animate({"right":"0px","opacity":"1"},1000);
+$(".prd_list_bg2").delay(800).animate({"bottom":"0px","opacity":"1"},1000);
+$(".prd_list_bg3").delay(300).animate({"left":"0px","opacity":"1"},1000);
+$(".index_sec1 .pro_screen").delay(1100).animate({"bottom":"0px","opacity":"1"},1000);
+}
+
+
+if($(window).scrollTop()>($(".index_sec2").offset().top-500)){
+	$(".index_sec2 .casa-category-head").delay(100).animate({"left":"0px","opacity":"1"},1000);
+	
+var length=$(".list_nav_a").length;
+		for(i=0;i<=length;i++){
+			(function(){
+				var c=i;
+				var time=100+c*200;
+				$(".list_nav_a").eq(i).delay(time).animate({"opacity":"1","right":"0"},2000)
+			})()
+		}
+		
+$(".index_sec2 .pro_screen").delay(1100).animate({"bottom":"0px","opacity":"1"},1000);
+
+}
+
+
+if($(window).scrollTop()>($(".index_sec3").offset().top-500)){
+		
+$(".index_sec3 .casa-category-head").delay(100).animate({"left":"0px","opacity":"1"},1000);
+$(".index_sec3_list").eq(2).delay(300).animate({"left":"0px","opacity":"1"},1000);
+$(".index_sec3_list").eq(1).delay(500).animate({"left":"0px","opacity":"1"},1000);
+$(".index_sec3_list").eq(0).delay(700).animate({"left":"0px","opacity":"1"},1000);
+$(".index_sec3 .pro_screen").delay(900).animate({"bottom":"0px","opacity":"1"},1000);
+
+}
+
+
+if($(window).scrollTop()>($(".index_sec4").offset().top-600)){
+		
+$(".index_sec4 .casa-category-head").delay(100).animate({"left":"0px","opacity":"1"},1000);
+$(".index_sec4_list").eq(0).delay(100).animate({"bottom":"0px","opacity":"1"},1000);
+$(".index_sec4_list").eq(1).delay(300).animate({"bottom":"0px","opacity":"1"},1000);
+$(".index_sec4_list").eq(2).delay(500).animate({"bottom":"0px","opacity":"1"},1000);
+$(".index_sec4_list").eq(3).delay(700).animate({"bottom":"0px","opacity":"1"},1000);
+$(".index_sec4 .pro_screen").delay(900).animate({"bottom":"0px","opacity":"1"},1000);
+
+}
+
+if($(window).scrollTop()>($(".index_sec5").offset().top-800)){
+		
+$(".index_sec5_dt").addClass('active');
+
+
+}
+
+
+
+
+})
+
+</script>
+<script>
+
+
+$(document).ready(function() {
+
+	$(".wx").hover(function(){
+		$(".ewm1").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm1").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	$(".sj").hover(function(){
+		$(".ewm2").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm2").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	
+	
+});
+
+
+</script>
+<script>
+
+//window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"right","bdTop":"1.5"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+
+</script>
+</html>

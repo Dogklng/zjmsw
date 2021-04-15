@@ -1,0 +1,59 @@
+<include file="Public:header" />
+
+<div class="ban1">
+  <div class="banner_img">
+    <img src="{$images.pic}" alt="" />
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">The gallery</p>
+    <h5>画 • 廊</h5>
+  </div>
+ 
+       <div class="gallery-contant" style="margin-left:inherit;">
+       
+          <div class="row">
+              <div class="list_cont" style="margin-top:inherit;">
+                <volist name="res" id="v">
+                    <div class="col-lg-4 col-md-4 col-sm-4">                  
+                      <a href="{:U('/Home/ArtCommunity/hualang',array('id'=>$v['id']))}">
+                        <div class="contant">
+                        <div class="contant_one">
+                           <img src="{$v.half_pic}" width="100%">
+                                <div class="contant-shade">
+                                    <img src="{$v.self_pic}">
+                                </div>  
+                         </div>
+                      <div class="contant-text">
+                            <h3>{$v.artist_name}</h3>  
+                            <p>{$v.detail}</p>                
+                      </div>
+                     </div>
+                      </a>                    
+                  </div> 
+                  </volist>                              
+              </div>
+              <div class="clear"></div>                            
+          </div>
+             
+                
+   </div>
+     
+     <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+
+     </div>
+
+
+<!--  / warpper  --> 
+
+<include file="Public/footer" />
+
+<!--  / footer  -->
+
+</body>
+</html>

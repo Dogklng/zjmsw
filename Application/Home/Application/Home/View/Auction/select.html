@@ -1,0 +1,166 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+<link rel="stylesheet" href="__CSS__/paiUncenter.css" />
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="SellerCon">
+         <div class="SellerTop">
+          <h3>入驻预售美术网平台</h3>
+         </div>
+         <div class="SellerFlower">
+          <div class="row">
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist "> <span>1</span>
+              <h3 class="paiUncenter_h3">签署协议</h3>
+             </div>
+           </div> 
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist SellerFlistCurr"> <span>2</span>
+              <h3 class="paiUncenter_h3 paiCH3">账号类型<br />（个人、公司）</h3>
+             </div>
+           </div> 
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist "> <span>3</span>
+              <h3 class="paiUncenter_h3">选择类目</h3>
+             </div>
+           </div>
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist"> <span>4</span>
+              <h3 class="paiUncenter_h3">提交资料</h3>
+             </div>
+           </div> 
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist"> <span>5</span>
+              <h3 class="paiUncenter_h3">审核</i></h3>
+             </div>
+           </div>
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist"> <span>6</span>
+              <h3 class="paiUncenter_h3 paiCH3">缴纳保证金，<br />入驻成功</h3>
+             </div>
+           </div>
+          </div>
+          
+          <div class="paiuncenter_one">
+            <h3>美术网入驻预售需求</h3>
+            <p class="activedp">1.必须遵守美术网的需求</p>
+            <p>2.必须遵守美术网的需求</p>
+            <p>3.必须遵守美术网的需求</p>
+            <p>4.必须遵守美术网的需求</p>
+            <p>5.必须遵守美术网的需求</p>
+          </div>
+
+           <div class="row">
+             <div class="col-lg-6 col-md-6 col-sm-6">
+               <div class="SellerPic">
+                 <span><i class="fa fa-user-circle-o"></i></span>
+                 <h3>个人账号</h3>
+                 <h6>通过美术网账号实名认证的个人账号</h6>
+                 <a href="JavaScript:;">选择个人账号</a>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-6 col-sm-6">
+               <div class="SellerPic">
+                 <span><i class="fa fa-building-o"></i></span>
+                 <h3>企业账号</h3>
+                 <h6>通过美术网企业账号认证的企业账号</h6>
+                 <a href="JavaScript:;">选择企业账号</a>
+               </div>
+             </div>
+            </div>
+           </div>
+        </div>
+
+        <div class="SelNoticeStyle">
+          <h4><a href="{:U('/Home/Auction/center')}" style="background:#ccc;">上一步</a> <a href="{:U('/Home/Auction/category')}">下一步</a></h4>
+        </div>
+  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <a href="##" class="task_btn1_on">确定</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1">
+        <a href="##" class="task1_btn1_on">确定</a>
+        <a href="##" class="task1_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+</html>

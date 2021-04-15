@@ -1,0 +1,186 @@
+<include file="Public:header" />
+
+<div class="ban1">
+  <div class="banner_img">
+    <img src="__IMAGES__/yishushequ.jpg" alt="" />
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Cloud release</p>
+    <h5>在 • 线 • 招 • 聘</h5>
+  </div>
+  <div class="announce_box">
+  	<div class="announce_top">
+  		<h4>online</h4>
+  		<h3>recruitment</h3>
+  		<div class="announce_text">
+  			<p>浙江美术网云发布平台秉承着”连接一切艺术人“的理念,为水墨雕塑,陶瓷珠宝，<br />动漫动画,民间工艺,家居办公,个性定制等提供独立的展示和合作空间。</p>
+  		</div>
+       <div class="joinSearch">
+         <a href="/Home/Index/join">最新职位</a>
+         <div class="ss_text_a">
+            <input placeholder="职位搜索" id="z1"  type="text" class="ss_text" value = "" />
+            <a href="javascript:void();"><img src="__IMAGES__/yjt.png" class="yjt"></a>
+         </div>
+        </div>
+        <script>
+            
+        </script>
+  	</div>
+    
+  	<div class="presenting clearfix">
+      
+      <volist name="res" id="vo" offset="0" length="1">
+
+          <div class="fl_img">
+              <img src="{$vo.join_pic}"/>
+          </div>
+  		<div class="fr_cont">
+            <a href="{:U('/Home/Index/jobDetails')}/id/{$vo.id}">
+                <p class="announce_datetit">
+                    <span>{$vo.type}</span>
+                    <b>{$vo.join_time|date='Y-m-d',###}</b>
+                </p>
+                <h4>{$vo.name}</h4>
+                <p class="text">
+                     {$vo.detail|htmlspecialchars_decode|stripslashes}
+                </p>
+                <p class="presenting_btn">
+                     <span>READ MORE</span>
+                </p>
+            </a>
+  		</div>
+
+    </volist>
+    </div>
+  	<div class="announce_contlist row">
+
+
+    	<div>
+
+
+        <!--<volist name="res" id="vo" offset="1">
+            <a href="{:U('/Home/Index/jobDetails')}/id/{$vo.id}">
+  		<div class="contlist col-lg-6 col-md-6 col-sm-12" >
+        &lt;!&ndash;{:U('/Home/Index/jobDetails')}&ndash;&gt;
+  			<div class="thumbnail">
+  				<p class="announce_datetit">
+  				<span>{$vo.type}</span>
+  				<b>{$vo.join_time|date='Y-m-d',###}</b>
+	  			</p>
+	  			<h4>{$vo.name}</h4>
+	  			<p class="text">{$vo.detail|htmlspecialchars_decode|stripslashes}</p>
+		  		<p class="presenting_btn">
+                    <span>READ MORE</span>
+                </p>
+  			</div>
+
+  		</div>
+            </a>
+      </volist>-->
+
+            <volist name="res" id="vo" offset="1">
+            <div class="contlist col-lg-6 col-md-6 col-sm-12" >
+
+                    <div class="thumbnail">
+                        <a href="{:U('/Home/Index/jobDetails/id')}/{$vo.id}">
+                        <p class="announce_datetit">
+                            <span>{$vo.type}</span>
+                            <b>{$vo.join_time|date='Y-m-d',###}</b>
+                        </p>
+                        <h4>{$vo.name}</h4>
+                        <p class="text">{$vo.detail|htmlspecialchars_decode|stripslashes}</p>
+                </a>
+                        <a href="{:U('/Home/Index/jobDetails/id')}/{$vo.id}">
+                        <p class="presenting_btn">
+                            <span>READ MORE</span>
+                        </p>
+                        </a>
+                    </div>
+
+            </div>
+            </volist>
+
+		
+
+            <!-- 	<div class="contlist col-lg-6 col-md-6 col-sm-12" >
+              <a href="{:U('/Home/Index/jobDetails')}">
+                    <div class="thumbnail">
+                        <p class="announce_datetit">
+                        <span>运营</span>
+                        <b>2016-09-21</b>
+                        </p>
+                        <h4>运营专员</h4>
+                        <p class="text">1,负责网站内容的编辑、更新等；2,负责网站内容审查、屏蔽，网站用户管理等；3,负责通过各种服务途径解答用户问题。4，负责客户分析和满意度调查，建立客户档案...</p>
+                        <p class="presenting_btn">
+                          <span>READ MORE</span>
+                      </p>
+                    </div>
+              </a>
+                </div> -->
+        
+        <div class="clear"></div>
+        </div>
+        
+        
+        <div>
+  	
+        
+        <div class="clear"></div>
+        
+        </div>
+        
+        
+  	</div>
+  </div>
+  
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+  
+</div>
+
+<!--  / warpper  -->
+
+<include file="Public:footer" />
+
+</body>
+<script>
+ 	
+$(window).ready(function(){
+$(".announce_top").animate({"bottom":"0px","opacity":"1"},1000);
+})
+
+ 
+$(window).scroll(function(){ 
+
+
+if($(window).scrollTop()>($(".announce_box").offset().top-500)){
+$(".presenting").animate({"bottom":"0px","opacity":"1"},1000);
+var length=$(".contlist").length;
+		for(i=0;i<=length;i++){
+			(function(){
+				var c=i;
+				var time=100+c*200;
+				$(".contlist").eq(i).delay(time).animate({"opacity":"1","bottom":"0"},1000)
+			})()
+		}
+		
+		
+	}
+
+})
+$(function(){
+    $('.yjt').click(function(){
+        //alert(123);return false;
+        var yit1 = $('#z1').val();
+        
+        window.location.href = '/Home/Index/join/key/'+yit1;
+      })
+
+})
+    
+</script>
+</html>

@@ -1,0 +1,163 @@
+<include file="Public:head"/>
+<div class="container">
+    <div class="inner clearfix">
+        <div class="content-left fl">
+            <include file="Public:left"/>
+        </div>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">会员充值明细</h1>
+
+            <!-- <a  style="float:right;margin-right:20px;" href="javascript:void(0);" class="btn btn-warning order_export">记录导出</a>
+             <div class="chartWrap mgt15 clearfix">-->
+            <table class="wxtables data mgt15">
+                <colgroup>
+                    <col width="13%">
+                    <col width="13%">
+                    <col width="13%">
+                    <col width="13%">
+                    <col width="13%">
+                    <col width="13%">
+                    <col width="13%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <td colspan="8" class="left" style="font-size:14px;">统计
+                        <form action="{:U('Admin/Finance/moneyOrderWater')}" method="post" />
+                        <!--<input type="text" autocomplete="off" name="dayStartTime" id="dayStartTime" value="{$dayStartTime}" placeholder="起始日期" class="input Wdate" />-->
+                        <input class="laydate-icon" id="start_time" name="timegap" value="{$timegap}" style="padding:0px 5px;width:220px;height:28px;line-height:30px;"/>
+                        <input type="hidden" name="rank" value="{$rank}" style="padding:0px 5px;width:220px;height:28px;line-height:30px;"/>
+                        <button class="btn btn-primary"><i class="gicon-search white"></i>查询</button>
+                        </form>
+                        <!--<a href="javascript:;"><button class="btn btn-success car_export" style="float:right;"><i
+                                class="gicon-search white"></i>excel导出
+                        </button></a>-->
+                    </td>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><div class="dataItems">会员总数</div><div class="dataItems"> <span class="num1">{$count1|default='0'}</span> </div></td>
+                    <td><div class="dataItems">记录总数</div><div class="dataItems"> <span class="num1">{$count|default='0'}</span> </div></td>
+                </tr>
+                </tbody>
+            </table>
+            <!--当月日统计列表开始-->
+            <div class="chartWrap mgt15 clearfix">
+                <div class="tabs clearfix mgt15">
+                    <!--                        <a href="{:U('Admin/Finance/moneyOrderWater')}/timegap/{$timegap}" class="<eq name="rank" value="">active</eq> tabs_a fl">会员购物订单数排行</a>
+                                            <a href="{:U('Admin/Finance/moneyOrderWater/rank/1')}/timegap/{$timegap}" class="<eq name="rank" value="1">active</eq> tabs_a fl">购物金额排行</a>
+                                            &lt;!&ndash;<a href="{:U('Admin/Report/MemberDetail/rank/2')}" class="<eq name="_GET['rank']" value="2">active</eq> tabs_a fl">购物最大量排行</a>&ndash;&gt;
+                                        </div>-->
+                    <!--  <h1 class="content-right-title" style="color:red;">{$today}月统计列表</h1>-->
+                    <table class="wxtables table-order" style="text-align:center;" id="tb_3">
+                        <thead>
+                        <tr>
+                            <td colspan="9" class="left" style="font-size:14px;">统计列表
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">序号</td>
+                            <td align="center">用户昵称</td>
+                            <td align="center">联系电话</td>
+                            <td align="center">充值时间</td>
+                            <td align="center">支付类型</td>
+                            <td align="center">充值金额</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="data" id="vo" key="k">
+                            <tr>
+                                <td><p>{$k}</p></td>
+                                <td><p>{$vo.person_name}</p></td>
+                                <td>{$vo.telephone}</td>
+                                <td><notempty name="vo.addtime">{$vo.addtime|date="Y-m-d H:i:s",###}<else/>--</notempty></td>
+                                <td><p>
+                                    <switch name="vo.way">
+                                        <case value="1">支付宝</case>
+                                        <case value="2">银联支付</case>
+                                    </switch>
+                                </p></td>
+                                <td><p>￥{$vo.money}</p></td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+                <!--当月日统计列表结束-->
+
+                <div class="chartWrap mgt15 clearfix">
+
+                </div>
+
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fr">
+                        <div class="paginate">
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>        <!-- end tables-btmctrl -->
+            </div>
+
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+<link rel="stylesheet" type="text/css" href="__JS__/daterangepicker/bootstrap.css" />
+<script src="__JS__/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="__JS__/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<link href="__JS__/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(".car_export").click(function(){
+        var times = $("#start_time").val();
+        var starttime = times?'/time/'+times:'';
+        window.location.href='/admin/Report/MemberExport/'+starttime;
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#start_time').daterangepicker({
+            format:"YYYY-MM-DD",
+            singleDatePicker: false,
+            showDropdowns: true,
+            minDate:'2016-01-01',
+            maxDate:'2030-01-01',
+            startDate:'2016-01-01',
+            showWeekNumbers: true,
+            timePicker: false,
+            timePickerIncrement: 1,
+            timePicker12Hour: true,
+            ranges: {
+                '今天': [moment(), moment()],
+                '昨天': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                '最近7天': [moment().subtract('days', 6), moment()],
+                '最近30天': [moment().subtract('days', 29), moment()],
+                '上一个月': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            opens: 'right',
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary',
+            cancelClass: 'btn-small',
+            locale : {
+                applyLabel : '确定',
+                cancelLabel : '取消',
+                fromLabel : '起始时间',
+                toLabel : '结束时间',
+                customRangeLabel : '自定义',
+                daysOfWeek : [ '日', '一', '二', '三', '四', '五', '六' ],
+                monthNames : [ '一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月' ],
+                firstDay : 1
+            }
+        });
+    });
+</script>

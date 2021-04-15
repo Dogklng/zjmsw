@@ -1,0 +1,286 @@
+<include file="Public:header" />
+<style>
+    .dizhi_con_on {
+        opacity: 1 !important;
+        filter: alpha(opacity=100) !important;
+        -moz-opacity: 1 !important;
+        -khtml-opacity: 1 !important;
+        -webkit-opacity: 1 !important;
+        -webkit-transform: scale(1) !important;
+        -moz-transform: scale(1) !important;
+        -ms-transform: scale(1) !important;
+        -o-transform: scale(1) !important;
+        transform: scale(1) !important;
+    }
+
+    .dizhi_con {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-left: 0px;
+        margin-top: 90px;
+        background: #fff;
+        padding: 40px;
+    }
+    .cancle{
+        float: right;
+    }
+    .regionList div{
+        height: 20px;
+    }
+    .regionList input{
+         height: 11px;
+     }
+</style>
+<!--order_top-->
+<div class="allorder_top all_cz">
+ <h3 class="headH3"> <a href="/Wxin/Shop/shop/tag/shop/value/6"> <i class="fa fa-angle-left"></i> 运费配置 </a> </h3>
+</div>
+<div class="all_dingdan_one" style="margin-top: 103px">
+    <div class="allorder_topz">
+        <div class="shop_ddxq clearfix"> <a class="addcarriage" href="javascript:;">添加</a> </div>
+    </div>
+</div>
+
+
+  <div class="all_dingdan_one">
+      <foreach name="express" item="vo" key="k">
+  <div class="allorder_kuang">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_right shop_xx_fd">
+      <p>序号：<i>{$k+1}</i></p>
+      <p>地区：<i>{$vo.region_name}</i></p>
+      <p>首重（1kg）价格：<i>{$vo.first_price}元</i></p>
+      <p>续重价格：<i>{$vo.next_price}元/KG</i></p>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <div class="od_button">
+   	<div class="od_fukuan"><a data-id="{$vo.id}" data-next-price="{$vo.next_price}" data-first-price="{$vo.first_price}" class="editcarriage" href="javascript:;">修改价格</a></div>
+    <div class="od_fukuan" ><a style="margin-right: 2%;" data-id="{$vo.id}" class="modifyRegion" href="javascript:;">修改地区</a></div>
+    <div class="clear"></div>
+   </div>
+  </div>
+</foreach>
+ </div>
+
+
+
+<div class="dizhi yunfei" style="display: none">
+    <div class="dizhi_bg"></div>
+    <div class="dizhi_con yunfei_dizhi_con">
+        <img src="__IMAGES__/dizhi_close.png" class="cancle" width="20">
+        <div class="user_card" style="margin-top: 30px">
+            <div class="edit" style="display: none">
+                <p><span>原首重(1KG)价格：</span><input type="text" value="" readonly name="yuan_first_price" id="yuan_first_price"></p>
+            </div>
+
+            <input type="hidden" name="feeid" id="feeid" >
+            <p><span><span class="edit" style="display: none">现</span>首重(1KG)价格：</span><input type="text" name="first_price" onkeyup="num(this)" value="" id="first_price"></p>
+            <!--<input type="hidden" name="fregithid" id="fregithid" >-->
+            <div class="edit" style="display: none">
+                <p><span>原续重价格：</span><input type="text" value="" readonly name="yuan_next_price" id="yuan_next_price"></p>
+            </div>
+            <p><span><span class="edit" style="display: none">现</span>续重价格：</span><input type="text" name="next_price" value="" onkeyup="num(this)" id="next_price"></p>
+            <p><span> </span>注:价格为2位小数，且不能与已有规则重复!</p>
+            <!--<p><span>开户行：</span><input type="text" value="" id="bank_branch"></p>
+            <p><span>户名：</span><input type="text" value="" id="username"></p>-->
+            <div class="user_r6_line"></div>
+            <div class="cardA text-center">
+                <a class="save" href="javascript:;" id="save" style="background: #f4f4f3">保存</a>
+                <a class="cancle" href="javascript:;">取消</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 修改运费区域 -->
+<div class="dizhi diqu" style="display: none;">
+    <div class="dizhi_bg"></div>
+    <div class="dizhi_con diqu_dizhi_con">
+        <img src="__IMAGES__/dizhi_close.png" class="cancle" width="20">
+        <div>
+            <input type="hidden" name="feid">
+            <div class="regionList" style="width: 100%;height: 100%;overflow:auto;" ></div>
+            <!--<input type="hidden" name="fregithid" id="fregithid" >-->
+            <div class="user_r6_line"></div>
+            <div class="cardA text-center">
+                <a href="javascript:;" id="okRegion" style="background: #f4f4f3">保存</a>
+                <a class="cancle" href="javascript:;">取消</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+
+
+</body>
+<script>
+    function IsNum(s){
+        if (s!=null && s!="")
+        {
+            return !isNaN(s);
+        }
+        return false;
+    }
+    function num(obj){
+        obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+    }
+    $('.cancle').click(function () {
+        $('.yunfei').stop(true).fadeOut(1000);
+        $('.yunfei_dizhi_con').removeClass('dizhi_con_on');
+        $('.diqu').stop(true).fadeOut(1000);
+        $('.diqu_dizhi_con').removeClass('dizhi_con_on');
+    })
+    $('.addcarriage').click(function () {
+        $('input[name="first_price"]').val('');
+        /*$('input[name="fregithid"]').val('');*/
+        $('input[name="next_price"]').val('');
+        $('input[name="feeid"]').val('');
+        $('input[name="yuan_first_price"]').val('');
+        $('input[name="yuan_next_price"]').val('');
+        $('.edit').hide();
+        $('.yunfei').stop(true).fadeIn(1000);
+        setTimeout(function(){
+            $('.yunfei_dizhi_con').addClass('dizhi_con_on');
+        },300)
+    })
+
+    $('.editcarriage').click(function () {
+        var feeid = $(this).attr('data-id');
+        var first_price = $(this).attr('data-first-price');
+        var next_price = $(this).attr('data-next-price');
+        $('input[name="first_price"]').val('');
+        //$('input[name="fregithid"]').val('');
+        $('input[name="next_price"]').val('');
+        $('input[name="feeid"]').val(feeid);
+        $('input[name="yuan_first_price"]').val(first_price);
+        $('input[name="yuan_next_price"]').val(next_price);
+        $('.edit').show();
+        $('.yunfei').stop(true).fadeIn(1000);
+        setTimeout(function(){
+            $('.yunfei_dizhi_con').addClass('dizhi_con_on');
+        },300)
+    })
+
+    $('.save').click(function () {
+        var first_price = $('input[name="first_price"]').val();
+        /* var fregithid = $('input[name="fregithid"]').val();*/
+        var next_price = $('input[name="next_price"]').val();
+        var feeid = $('input[name="feeid"]').val();
+
+        if(feeid){
+            if(first_price ==''){
+                alert('请填现首重(1KG)价格！');return false;
+            }
+            if(!IsNum(first_price)){
+                alert('现首重(1KG)价格必须为数字！');return false;
+            }
+            first_price = Math.floor(first_price * 100) / 100;
+
+            if(next_price ==''){
+                alert('请填现续重价格！');return false;
+            }
+            if(!IsNum(next_price)){
+                alert('现续重价格必须为数字！');return false;
+            }
+            next_price = Math.floor(next_price * 100) / 100;
+        }else {
+            if(first_price ==''){
+                alert('请填首重(1KG)价格！');return false;
+            }
+            if(!IsNum(first_price)){
+                alert('首重(1KG)价格必须为数字！');return false;
+            }
+            first_price = Math.floor(first_price * 100) / 100;
+
+            if(next_price ==''){
+                alert('请填续重价格！');return false;
+            }
+            if(!IsNum(next_price)){
+                alert('续重价格必须为数字！');return false;
+            }
+            next_price = Math.floor(next_price * 100) / 100;
+        }
+
+
+
+        $.post("{:U('Wxin/PersonalCenter/addExpress')}",{first_price:first_price,next_price:next_price,feeid:feeid},
+                function(data){
+                    if(data.status==1){
+                        window.location.reload();
+                    }else{
+                        alert(data.info);return false;
+                    }
+                },"json");
+    })
+
+    $(".modifyRegion").click(function(){
+        $('.diqu').stop(true).fadeIn(1000);
+        setTimeout(function(){
+            $('.diqu_dizhi_con').addClass('dizhi_con_on');
+        },300)
+        var feid = $(this).attr('data-id');
+        $('input[name="feid"]').val(feid);
+        $.post("{:U('Wxin/PersonalCenter/regionList')}",{feeid:feid},
+                function(data){
+//            console.log(data);
+                    $('.regionList').empty();
+                    var regionList  = '';
+                    for (var i = 0; i < data.info.length; i++) {
+                        if(data.info[i].status == 1){
+                            var checkedThis = "checked='checked'";
+                        }else{
+                            var checkedThis = '';
+                        }
+                        regionList += "<div style='margin-bottom:10px;height:20px;float:left;margin-right:10px'><input type='checkbox' "+checkedThis+" name='region_id' value='"+data.info[i].id+"'>"+data.info[i].name+"</div>";
+                    }
+                    $('.regionList').html(regionList)
+                },"json");
+    });
+
+    $("#okRegion").click(function(){
+        var feid = $('input[name="feid"]').val();
+
+        var region_id = "";
+        $("input[name='region_id']").each(function(){
+            var cekd = $(this).is(":checked");
+            //console.log(cekd);
+            if(cekd){
+                region_id += $(this).val()+","
+            }
+        })
+        //alert(region_id);return;
+        region_id = region_id.substring(0,region_id.length-1);
+
+        //alert(feid);
+
+
+        $.post("{:U('Wxin/PersonalCenter/getRegionSet')}",{feeid:feid,region_id:region_id},
+                function(data){
+                    if(data.status==1){
+                        alert(data.info);
+                        window.location.reload();
+                    }else{
+                        alert(data.info);return false;
+                    }
+                },"json");
+    })
+</script>
+</html>

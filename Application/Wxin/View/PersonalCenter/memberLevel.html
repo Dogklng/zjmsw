@@ -1,0 +1,147 @@
+<include file="Public:header" />
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+  
+  <!--  / user  -->
+
+  <div class="user">
+    <div class="">
+      
+      <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          	<div class="user">
+<div class="container" style=" width:80%;">
+<div class="row">
+<div class="user_common">
+<div class="user_common_bt">
+<h2>会员等级说明</h2>
+</div>
+<div class="col-lg-5 col-md-5 col-sm-5">
+<div class="user_common_left">
+<img src="__IMAGES__/user_tx2.png" class="ghtx" style=" position:absolute; left:110px; bottom:0; z-index:2;" />
+
+
+<div class="xm xm1"><a href="{:U('Home/PersonalCenter/myOrder')}">
+<i class=" fa fa-book"></i><span>我的订单</span>
+</a></div>
+<div class="xm xm2"><a href="{:U('Home/PersonalCenter/memberLevel')}">
+<i class="fa fa-credit-card"></i><span>会员特权</span>
+</a></div>
+<div class="xm xm3"><a href="{:U('Home/PersonalCenter/favorite')}">
+<i class="fa fa-star"></i><span>我的收藏</span>
+</a></div>
+<div class="xm xm4"><a href="{:U('Home/PersonalCenter/address')}">
+<i class="fa fa-file-text"></i><span>我的收货地址</span>
+</a></div>
+<!--<div class="xm xm5"><a href="user5.html">
+<i class="fa fa-qrcode"></i><span>邀请二维码</span>
+</a></div>-->
+<div class="user_common_left_tp">
+<!--<img src="__IMAGES__/dltx.jpg">-->
+    <if condition="$headimg.person_img eq ''"><img src="__IMAGES__/dltx.jpg"></if>
+    <if condition="$headimg.person_img neq ''"><img src="{$headimg.person_img}" width="100"></if>
+    <input id="imgOne" name="imgOne" type="hidden" />
+    <input style="width: 220px;height: 200px; background: red;border-radius: 50%; position: absolute; top: 3px;left: -15px;padding: 0;z-index: 10;cursor: pointer;opacity: 0;" type="file" accept="image/jpg,image/jpeg,image/png" class="input sort" name="serial" id="xuanze1" />
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-7 col-md-7 col-sm-7">
+<div class="user_common_center">
+<ul>
+<li>
+<h2><a href="javascript:void(0)" class="yhm">{$person_name.person_name}</a>
+    <!-- <eq name="person_name.isexamine" value="1">
+        <span><a href="javascript:void(0)" style="color: green;">已认证</a></span>
+        <else/>
+        <span><a href="{:U('Home/Crowd/selCenter/tag/selCenter')}">未认证</a></span>
+    </eq> -->
+    <neq name="count11" value="0">
+        <eq name="artist_zc.status" value="0">
+            <if condition="$artist_zc['remind_type'] neq 0">
+                <if condition="($artist_fa eq 0) and ($artist_bus eq 0)"><a href="javascript:void(0)" style="color: red;">已认证</a></if>
+                <if condition="($artist_fa neq 0) or ($artist_bus neq 0)"><a href="{:U('Home/Shop/selCompanyCertified/tag/selCenter')}">未认证</a></if></if>
+            <if condition="$artist_zc['remind_type'] eq 0"><a href="javascript:void(0)" style="color: green;">正在审核中</a></if>
+             </eq>
+        <eq name="artist_zc.status" value="1"><a href="javascript:void(0)" style="color: red;">已认证</a></eq>
+        <eq name="artist_zc.status" value="2"><a href="{:U('Home/shop/SelAudit',array('id'=>$res['id']))}" style="color: green;">未认证</a></eq>
+    </neq>
+    <eq name="count11" value="0">
+        <a href="{:U('Home/Shop/selCenter/tag/selCenter')}" style="color: green;">未认证</a>
+    </eq> 
+</h2>
+</li>
+<li>
+<p>会员账号：{$person_name.telephone}</p>
+</li>
+<li>
+<p>会员等级：<a href="user8.html"><span><i class="fa fa-star"></i><switch name="result.vip">
+                <case value="1">普通会员</case>
+                <case value="2">白金经纪人</case>
+                <case value="3">黄金经纪人</case>
+                <case value="4">黑金经纪人</case>
+              </switch></span></a></p>
+</li>
+<li>
+<p>会员特权：会员特权已开启</p>
+</li>
+</ul>
+</div>
+</div>
+    
+    <div class="clear"></div>
+</div>
+
+<div class="huiyuan_dj">
+{$res.content|htmlspecialchars_decode|stripslashes}
+</div>
+</div>
+</div>
+
+</div>
+        </div>
+      </div>
+          
+    </div>      
+  </div>
+
+  <!--  / user  -->
+   
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<script src="__JS__/jquery-form.js"></script>
+<script>
+    $(function () {
+        var progress = $('.xuanze_percent');
+        $("#xuanze1").wrap("<form id='myupload2' action='{:U('/Home/PersonalCenter/headImg1')}' method='post' enctype='multipart/form-data'></form>");
+        $("#xuanze1").change(function(){ //选择文件
+            $("#myupload2").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="logo_pic" id="pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    progress.html(img);
+                    window.location.reload();
+                },
+                error:function(xhr){ //上传失败
+                }
+            });
+
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM"> 
+  <div class="buy"> 
+ 
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+
+          <include file="Public:images" />
+
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="buy_con_text pm_con_text" style=" float:left; width:90%;">
+              <h3>{$res.goods_name}</h3>
+              <input type="hidden" id="goods_id" value="{$res.id}" >
+              <div class="buyDel">
+                <ul>
+                  <li><b>作品的上架时间 :</b>{$res['shang_time']|date="Y-m-d",###}</li>
+                 <!-- <li><b>编号 :</b> {$res.goods_mel}</li>
+                  <li><b>作者 :</b> {$res.goods_cap}</li>-->
+                  <li><b>材质 ：</b>{$res.goods_skin}</li>
+                  <li><b>尺寸 ：</b> {$res.goods_range}</li>
+                  <li><b>创作年代 :</b> {$res.goods_care}年</li>
+                  <li><b>品相 ：</b>{$res.goods_com}</li>
+                  <!--<li><b>版本 ：</b>{$res.goods_version}</li>-->
+                </ul>
+              </div>
+              <h4 style="margin-bottom:20px;"><i style="background:#999;">该竞卖活动尚未开始</i></h4>
+              <div class="qpxx">
+                <p><span> 开拍提醒:</span>
+                  <input id="tel" style="border:1px #ddd solid; line-height:32px; padding:0 20px; color:#999;height: 36px" type="text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '请输入您的手机号';}" value="请输入您的手机号">
+                  <a href="#" id="btn" style="line-height:34px; display:inline-block; background:#999; color:#fff; padding:0 20px;">发送</a></p>
+                <ul class="qpxx2">
+                  <li><span>{$res.baomin|default=0}</span>人报名 </li>
+                  <li><span>{$tx|default=0}</span>人设置提醒 </li>
+                  <li><span>{$res.weiguan|default=0}</span>次围观</li>
+                  <div class="clear"></div>
+                </ul>
+                <ul class="qpxx3">
+                  <li>起拍价: <span>¥{$res.start_price}</span></li>
+                  <li>加价幅度: <span>¥{$res.fudu}</span></li>
+                  <li>保证金: <span>¥{$res.baoding}</span></li>
+                  <li>佣金: <span>{$res.yongjin}%</span></li>
+                  <!--<li>延时周期: {$res.zhouqi}天</li>-->
+                  <!--<li>保留价:<span>¥{$res.baoliu}</span></li>-->
+                  <div class="clear"></div>
+                </ul>
+                <div class="qpxx4"> 特色服务： <span>假一赔三</span> <span>拍前预展</span> </div>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <include file="Public/pmxq" />
+    </div>
+    <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+ 
+$(document).ready(function(e) {
+
+});
+
+$('#btn').click(function () {
+
+    var member_id = '{$name}';
+    if(member_id == 0){
+        dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+        return false;
+    }
+
+    var tel  = $.trim($('#tel').val());
+    var goods_id   = $('#goods_id').val();
+    if(tel == ''){
+        alert('手机号必填');
+        return false;
+    }
+    if(!(/^1[34578]\d{9}$/.test(tel))){
+        alert('请输入正规手机号');
+        return false;
+    }
+    $.ajax({
+        url: "{:U('/Home/Pm/addRemind')}",
+        type: "post",
+        dataType: "json",
+        data: {
+            tel:  tel,
+            goods_id:goods_id
+        },
+        success:function(msg){
+            //console.log(msg);
+            if (msg.status==1){
+                alert( msg.info);
+            }else{
+                alert( msg.info);
+            }
+        }
+    })
+})
+</script>
+
+
+<script>
+$(window).load(function(){
+
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  console.log(showmagnifierWidth);
+  console.log(showmagnifierHeight);
+  
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  console.log(hiddenmagnifierWidth);
+  console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  console.log(bigmagnifierWidth);
+  console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  console.log(xiaohuangWidth);
+  console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+
+
+})
+
+$(window).resize(function(){
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  console.log(showmagnifierWidth);
+  console.log(showmagnifierHeight);
+  
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  console.log(hiddenmagnifierWidth);
+  console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  console.log(bigmagnifierWidth);
+  console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  console.log(xiaohuangWidth);
+  console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+});
+
+
+</script>
+<script src="__JS__/detail.js"></script>
+</html>

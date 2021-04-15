@@ -1,0 +1,60 @@
+<include file="Public:header" />
+
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 保证金流水 </a> </h3>
+</div>
+<div class="p_xiangqing1">
+<div class="shop_xiad">
+ <div class="shop_xiadts">
+  <div class="shop_sjr_center"><b>订单：</b>{$res.order_no}</div>
+ </div>
+ <div class="shop_xiadbh">
+  <div class="shop_sjr_center">
+   <p><b>时间：</b><span>{$res['order_time']|date='Y年m月d日 H:i',###}</span></p>
+   <p><b>状态：</b><span><if condition="$res.order_status eq 0">
+    未缴纳
+    <elseif condition="$res.order_status eq 1"/>
+    已缴纳
+    <else/>
+    已退款
+   </if></span></p>
+   <p><b>金额：</b><span>￥{$res.baoding}</span></p>
+   <p><b>渠道：</b><span><switch name="res.pay_way">
+    <case value="1">支付宝支付</case>
+    <case value="2">银联支付</case>
+    <case value="3">微信支付</case>
+    <default />未知支付方式
+   </switch></span></p>
+  </div>
+ </div>
+</div>
+<div class="shop_xx">
+ <div class="shop_xx_warp">
+  <div class="shop_xx_center">
+   <div class="shop_xx_left shop_xx_fd"> <a href="{:U('/Home/Pm/pmxq/id')}/{$res.goods_id}"><img src="images/order_pro1.jpg" /></a> </div>
+   <div class="shop_xx_right shop_xx_fd">
+    <p>拍品名称： <b>{$res.goods_name}</b> <br />订单号 <i>{$res.order_no}</i></p>
+     <p>保证金金额: <i>￥{$res.baoding}</i></p>
+      <!--<h3 class="shop_xx_jg"><b>支付宝账号: </b><b>1318618829</b></h3>-->
+   </div>
+   <div class="clear"></div>
+  </div>
+ </div>
+ <ul class="buyer_ul02">
+  <h4>美术网拍卖提醒</h4>
+  <h6>1. 使用银行卡直接交保，保证金释放后会在1-5个工作日退回到银行卡，不收费。如退回银行卡失败，请您手动提现，支付宝有2万元提现免收费额度。</h6>
+  <h6>2. 先充值到余额，再缴纳保证金，释放后，会回到余额，可通过点击“原路退回”申请免费退回到银行卡。</h6>
+  <h6>3. 先转入到余额宝再缴纳保证金，释放后，会回到余额宝，退回后直接转出到银行卡即可，无需手续费。</h6>
+ </ul>
+</div>
+</div>
+<!--shop-->
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+</body>
+</html>

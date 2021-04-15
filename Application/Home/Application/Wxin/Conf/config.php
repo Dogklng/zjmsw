@@ -1,0 +1,66 @@
+<?php
+return array(
+	//'配置项'=>'配置值'
+
+        'MODULE_ALLOW_LIST' => array('wxin'),
+        'DEFAULT_MODULE'     => 'Wxin', //默认模块
+        'URL_MODEL'          => '2', //URL模式
+        'SESSION_AUTO_START' => true, //是否开启session
+        'URL_CASE_INSENSITIVE' => false,
+        // 'TMPL_CACHE_ON'      => true,
+		'URL_HTML_SUFFIX'       => '',
+        'URL_ROUTER_ON'   => true,
+        'URL_MAP_RULES'=>array(
+            'zhuce'         => 'Wxin/User/zhuce',
+            'login'         => 'Wxin/User/login',
+            'logout'        => 'Wxin/User/logout',
+            'forget'        => 'Wxin/User/forget',
+            'shopcar'       => 'Wxin/PersonalCenter/shopcar',
+            'news'          => 'Wxin/News/index',
+            'hall'          => 'Wxin/goods/hall',
+            'contest'       => 'Wxin/News/Contest',
+            'video'         => 'Wxin/News/video',
+            'recommend'     => 'Wxin/News/recommend',
+            'artwork'       => 'Wxin/Artwork/index',
+            'ArtCommunity'  => 'Wxin/ArtCommunity/index',
+            'artist'        => 'Wxin/ArtCommunity/artistList',//artist1
+            'inherit'       => 'Wxin/ArtCommunity/inherit',
+            'association'   => 'Wxin/ArtCommunity/association',
+            'comic'         => 'Wxin/ArtCommunity/comic',
+            'game'          => 'Wxin/ArtCommunity/game',
+            'exhibition'    => 'Wxin/ArtCommunity/exhibition',
+            'train'         => 'Wxin/ArtCommunity/train',
+            'crowdFunding'  => 'Wxin/ArtCommunity/crowdFunding',
+            //'auction'       => 'Wxin/Auction/index',
+            'result'        => 'Wxin/Auction/result',
+            'timeLimit'     => 'Wxin/Auction/timeLimit',
+            //'welfare'       => 'Wxin/Auction/welfare',
+            'welfare'       => 'Wxin/Pm/paimaiW',
+            'products'      => 'Wxin/Products/index',
+            'personality'   => 'Wxin/Products/personality',
+            'cloud'         => 'Wxin/Index/cloud',
+            'auction'       => 'Wxin/Pm/paimaiS',
+            'Auctionpreview'=> 'Wxin/Pm/paimaiY',
+            'Auctionresult' => 'Wxin/Pm/result',
+            'limitedauction'=> 'Wxin/Pm/paimaiXS',
+            'Gallery'       => 'Wxin/ArtCommunity/hualang',
+            'Newsdot'       => 'Wxin/News/details',
+            'overseas'      => 'Wxin/ArtCommunity/overseas',
+            'art'           => 'Wxin/Artwork/art',
+        ),
+
+        'TMPL_PARSE_STRING'  =>array(
+            '__JS__'        => '/Public/Wxin/Js',
+            '__CSS__'       => '/Public/Wxin/Css',
+            '__IMAGES__'    => '/Public/Wxin/Images',
+			'__UNOHACHA__'  => '/Public/Wxin/unohacha',
+            '__FONTS__'     => '/Public/Wxin/Fonts',
+            '__IMG__'       => '/Public/Wxin/Img_1',
+            '__JEDATE__'    => '/Public/Wxin/Jedate',
+            '__XZDQ__'      => '/Public/Wxin/xzdq',
+            '__MAP__'       => '/Public/Wxin/map',
+            '__LAYDATE__'   => '/Public/Wxin/layer',
+            '__UEDITOR__' => '/Public/Wxin/Ueditor',
+            '__LHG__' => '/Public/Wxin/lhgcalendar',
+        ),
+    );

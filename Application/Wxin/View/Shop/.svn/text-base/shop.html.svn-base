@@ -1,0 +1,70 @@
+<include file="Public:header" />
+
+<!--中间标题-->
+<div class="p_credits" style="background-image:url(__IMAGES__/useheadBj.jpg);">
+  <div class="headpic">
+    <p class="circle_pic" style="background-image:url({$headimg.person_img})"> </p>
+    <div class="headpicR"><p class="name">{$artists['zy_name']}</p>
+    <!--<p class="mumber"><img src="__IMAGES__/vip.png"/><span>会员</span></p>-->
+      <if condition="$yun eq 2">
+    <a href="/Wxin/Shop/dianpu/type/2" class="mumber">店铺预览</a>
+        <else/>
+        <a href="/Wxin/Shop/dianpu/type/1" class="mumber">店铺预览</a>
+        </if>
+    </div>
+  </div>
+</div>
+<div class="phone_usershop">
+  <!--<div class="p_myorder">
+    <ul class="p_myorder_ul clearfix">
+      <li><a href="{:U('/Wxin/Shop/selSellout/tag/selSellout')}">
+        <p><img src="__IMAGES__/myworks.png" /></p>
+        已卖出作品</a></li>
+      <li><a href="{:U('/Wxin/Shop/seldpsy/tag/seldpsy')}/detail/6">
+        <p><img src="__IMAGES__/myworks_1.png" /></p>
+        店铺收益</a></li>
+      <li><a href="{:U('/Wxin/Shop/selDeliver/tag/selDeliver')}">
+        <p><img src="__IMAGES__/myworks_2.png" /></p>
+        发货</a> </li>
+      <li><a href="{:U('/Wxin/Shop/selOnSale/tag/selOnSale')}">
+        <p><img src="__IMAGES__/myworks_3.png" /></p>
+        已评价</a></li>
+    </ul>
+  </div>-->
+  <div class="p_myinfo">
+    <if condition="$yun eq 2">
+      <p onclick="location.href='{:U('/Wxin/Shop/yunpsy/tag/yunpsy')}/detail/6'"><i> <img src="__IMAGES__/myworks_5.png" alt="" /></i><span>推荐收益</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+      <p  onclick="location.href='{:U('/Wxin/Shop/link/tag/link')}'"><i> <img src="__IMAGES__/myworks_8.png" alt="" /></i><span>我的推荐</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+      <else/>
+      <if condition="$artistsRec.art_cate neq 16">
+        <p onclick="location.href='{:U('/Wxin/Shop/seldpsy/tag/seldpsy')}/detail/6'"><i> <img src="__IMAGES__/myworks_5.png" alt="" /></i><span>店铺收益</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+        <p onclick="location.href='{:U('/Wxin/Shop/selSellout/tag/selSellout')}'"><i> <img src="__IMAGES__/myworks_6.png" alt="" /></i><span>已卖出作品</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+        <neq name="artistid" value="16">
+          <p  onclick="location.href='{:U('/Wxin/Shop/carriage_regulation/tag/carriage_regulation')}'"><i> <img src="__IMAGES__/yunfei.png" alt="" /></i><span>运费配置</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+          <p  onclick="location.href='{:U('/Wxin/Shop/selDeliver/tag/selDeliver')}'"><i> <img src="__IMAGES__/myworks_2.png" alt="" /></i><span>发货</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+        </neq>
+        <eq name="artistid" value="16">
+          <p  onclick="location.href='{:U('/Wxin/Shop/selGroom/tag/selGroom')}'"><i> <img src="__IMAGES__/myworks_7.png" alt="" /></i><span>推荐的作品</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+          <else/>
+          <p  onclick="location.href='{:U('/Wxin/Shop/selUpload/tag/selUpload')}'"><i> <img src="__IMAGES__/myworks_7.png" alt="" /></i><span>发布作品</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+          <p  onclick="location.href='{:U('/Wxin/Shop/selOnSale/tag/selOnSale')}'"><i> <img src="__IMAGES__/myworks_8.png" alt="" /></i><span>出售中的作品</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+          <p onclick="location.href='{:U('/Wxin/Shop/selWarehouse/tag/selWarehouse')}'"><i> <img src="__IMAGES__/myworks_9.png" alt="" /></i><span>仓库中的作品</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+        </eq>
+      </if>
+
+      <if condition="$artistsRec.art_cate eq 16">
+        <p onclick="location.href='{:U('/Wxin/Shop/seldpsy/tag/seldpsy')}/detail/6'"><i> <img src="__IMAGES__/myworks_5.png" alt="" /></i><span>推荐收益</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+        <p  onclick="location.href='{:U('/Wxin/Shop/selRec/tag/selRec')}'"><i> <img src="__IMAGES__/myworks_8.png" alt="" /></i><span>我的推荐</span><span class="fr_else"><i class="fa fa-angle-right"></i></span></p>
+      </if>
+    </if>
+
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<include file="Public:footer" />
+
+
+</body>
+</html>

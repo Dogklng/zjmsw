@@ -1,0 +1,110 @@
+<include file="Public:head"/>
+<style>
+.btn-success {
+	margin-top: 12px;
+}
+</style>
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">拍卖场次列表</h1>
+    <div class="alert alert-info disable-del">
+      <h4>提示</h4>
+      删除拍卖场次会删除场次下面所有的产品 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div>
+    <form action="" method="post">
+      <div class="clearfix"> <a href="{:U('/Admin/Pm/addPmNum')}" class="btn btn-success fl BtnAddClass">添加拍卖场次</a>
+        
+        <!--<div class="tables-searchbox fr">
+                        <input type="text" placeholder="分类名称" class="input" name="class_name" value="">
+                        <button class="btn"><i class="gicon-search"></i>查询</button>
+                    </div>-->
+      </div>
+    </form>
+    <table class="wxtables mgt15 table-order" id="tb_3">
+      <thead>
+        <tr>
+          <td>拍卖场次</td>
+          <td class="center">拍卖类型</td>
+          <td>排序</td>
+          <td >开始时间</td>
+          <td>结束时间</td>
+          <td class="center">操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="num" item="vo" >
+          <tr>
+            <td class="center">{$vo.num}</td>
+            <td class="center">
+              <switch name="vo.is_xs">
+                <case value="0">普通场</case>
+                <case value="1">限时场</case>
+                <case value="2">公益场</case>
+              </switch></td>
+            <!--<if condition="$vo.is_xs eq 0"><td class="center" style="color: red">-->
+            <!--  否
+            </td></if>
+            <if condition="$vo.is_xs eq 1"><td class="center" style="color: red">是</td></if>-->
+            <td class="center">{$vo.sort}</td>
+            <td>{$vo.start_time|date="Y-m-d H:i:s",###}</td>
+            <td>{$vo.end_time|date="Y-m-d H:i:s",###}</td>
+            <td class="center">
+              <a href="{:U('/Admin/Pm/editPmNum/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}"  data-title="{$vo.num}" >编辑</a>
+              <a href="{:U('/Admin/Pm/xqPmNum/id')}/{$vo.id}" class="btn btn-primary j-editClass" >查看本场拍品</a>
+              <a href="javascript:;" class="btn btn-warning j-delClass" title="删除" onclick="delNum(this)" data-id="{$vo.id}">删除</a>
+            </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+
+        <div class="fr">
+          
+          <div class="pages"> 
+            <!--</div>-->
+            {$page} 
+          </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+<include file="Public:foot"/>
+<script>
+  function delNum(obj) {
+      if (!confirm('确定要删除吗？')){
+          return false;
+      }
+      var id = $(obj).attr('data-id');
+      //alert(id);
+      $.ajax({
+          url: "{:U('/Admin/Pm/delPmNum')}",
+          type: "get",
+          dataType: "json",
+          data:{id:id},
+          success:function(msg){
+              //console.log();
+              if (msg.status==1){
+                  alert( msg.info);
+                  setTimeout(location.href="{:U('/Admin/Pm/pmNumList')}",5000);
+                  return false;
+                  //$('#add_step2').submit();
+              }else{
+                  alert( msg.info);
+                  return false;
+              }
+          }
+      })
+  }
+
+</script>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>

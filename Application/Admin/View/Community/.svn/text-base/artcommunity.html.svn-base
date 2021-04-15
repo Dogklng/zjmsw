@@ -1,0 +1,308 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">艺术家列表</h1>
+            <form action="{:U('/Admin/Community/artcommunity')}" method="get">
+                <div class="tabs clearfix mgt10">
+                    <a href="{:U('/Admin/Community/artcommunity')}" class="<eq name="_GET['shenhe']" value="">active</eq> tabs_a fl">全部({$count})</a>
+                    <a href="{:U('/Admin/Community/artcommunity/shenhe/2')}" class="<eq name="_GET['shenhe']" value="2">active</eq> tabs_a fl">未审核({$count0})</a>
+          <a href="{:U('/Admin/Community/artcommunity/shenhe/3')}" class="<eq name="_GET['shenhe']" value="3">active</eq> tabs_a fl">审核通过({$count1})</a>
+          <a href="{:U('/Admin/Community/artcommunity/shenhe/4')}" class="<eq name="_GET['shenhe']" value="4">active</eq> tabs_a fl">审核拒绝({$count2})</a>
+
+                </div>
+            </form>
+
+            <!-- end tabs -->
+
+            <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+                <thead>
+                <tr class="po_list">
+                    <td>名称</td>
+                    <td>艺术类型</td>
+                    <td>审核状态</td>
+                    <td>是否首页显示</td>
+                    <td>操作<span></span></td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res" item="vo" key="k">
+                    <tr>
+                        <td><div class="goodswrap"> <a href="{:U('/Admin/Community/rzDetail/id')}/{$vo.id}" class="block" title="{$vo['name']}">
+                            <!--<div class="table-item-img"> <img src="<neq name="vo['self_pic']" value="">{$vo['self_pic']}<else />{$vo['gallery_logo']}</neq>" alt=""> </div>-->
+                            <div class="table-item-img"> <img src="{$vo.logo_pic}" alt=""> </div>
+                            <div class="table-item-info" style="width: 100px">
+                              <p style="height:auto">{$vo.zy_name} <br/></p>
+                            </div>
+                        </a> </div>
+                        </td>
+                        <td>{$vo.cate}</td>
+                        <td><if condition="($vo.shenhe eq 1)"> 未审核</if>
+                <if condition="($vo.shenhe eq 2)"> 审核通过</if>
+                <if condition="($vo.shenhe eq 3)"> 审核拒绝</if>
+                        </td>
+                        <td class="change-status" data-id="{$vo.id}" data-item="is_show">
+                            <div class="is_show" >
+                                <a style='color:#<if condition="($vo.is_show eq 1) ">0C0<else />c00</if>;font-size:20px;text-align:center;cursor:pointer;' >
+                                    <if condition="($vo.is_show eq 1)">√<else />×</if>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- <a href="javascript:;" class="btn change-shenhe <eq name="vo['shenhe']" value="0">btn-success<else />btn-danger</eq>" data-id="{$vo.id}"  title="上架"><eq name="vo['shenhe']" value="0">上架<else />下架</eq></a> -->
+                            <if condition="$vo.shenhe eq 1">
+                                <a href="javascript:;" class="btn huifu" style="background-color: green;border-color: green; color: white" data-id="{$vo.id}">审核</a>
+                                <a href="javascript:;" class="btn btn-primary applys" data-id="{$vo.id}">退回</a>
+                            </if>
+
+                            <!--<a href="{:U('Admin/Community/communityDetail')}/id/{$vo.id}" class="btn  btn-primary">查看详情</a>-->
+                           <!--  <a href="{:U('/Admin/Community/delArtcommunity/id')}/{$vo.id}" onclick="{if(!confirm('确定删除吗?'))return false;} " class="btn j-delClass btn-warning" title="删除">删除</a> -->
+                            <a href="{:U('Admin/Community/rzDetail')}/id/{$vo.id}" class="btn btn-primary btn-detail">查看认证详情</a>
+                              <a href="javascript:;" class="btn btn-warning s_sorting" data-s_id="{$res[$k-1]['id']}" data-id="{$vo.id}">上移</a>
+                              <a href="javascript:;" class="btn btn-warning x_sorting" data-x_id="{$res[$k+1]['id']}" data-id="{$vo.id}">下移</a>
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <div class="fr">
+                        <div class="pages"> {$page} </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+<div id="albums-overlay" class="disshow"></div>
+  <div class="jbox addfenlei disshow" style="height:auto; overflow: visible;">
+    <div class="jbox-title">
+      <div class="jbox-title-txt">店铺审核</div>
+      <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 140px;overflow: visible;">
+      <div class="formitems">
+        <input type="hidden" class="input sort" name="commentId" id="commentId" >
+        <label><span class="colorRed">*</span>内容：</label>
+
+        <div class="form-controls">
+          <textarea style="width: 200px;height: 100px;margin-left: -30px;" id="content"></textarea>
+          <span class="fi-help-text"></span>
+          <span id="spaid" style="color:red;"></span>
+        </div>
+      </div>
+
+    </div>
+    <div class="jbox-buttons">
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">通过</a>
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn " id="disagree" style="background-color: red;border-color: red; color: white">拒绝</a>
+      <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+  </div>
+
+    <div class="jbox editfenlei disshow" style="height:auto; overflow: visible;">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">店铺退回</div>
+            <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <div class="jbox-container" style="height: 140px;overflow: visible;">
+            <div class="formitems">
+                <input type="hidden" class="input sort" name="id" id="id" >
+                <label><span class="colorRed">*</span>内容：</label>
+
+                <div class="form-controls">
+                    <textarea style="width: 200px;height: 100px;margin-left: -30px;" id="content_two"></textarea>
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons">
+            <a href="javascript:void(0);" class="jbox-buttons-ok btn return_applys" style="background-color: red;border-color: red; color: white">确定</a>
+            <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+    <script src="__JS__/jquery.js"></script>
+    <!-- end container -->
+    <include file="Public:foot"/>
+    <script>
+        $('.s_sorting').click(function(){
+            var s_id = $(this).attr('data-s_id');
+            var id = $(this).attr('data-id');
+            if(!s_id){
+                var new_sid = "{$s_id}";
+                if(!new_sid){
+                    alert('不可上移了！');
+                    return false;
+                }
+            }
+
+            $.ajax({
+                url: "{:U('/Admin/Community/sorting')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    s_id: s_id,
+                    id:id,
+                    type:1
+                },
+                success:function(g){
+                    if (g.status == 1) {
+                        alert(g.info);
+                        window.location.reload();
+                    } else {
+                        alert(g.info);
+                    }
+
+                }
+            })
+        })
+
+        $('.x_sorting').click(function(){
+            var s_id = $(this).attr('data-x_id');
+            var id = $(this).attr('data-id');
+            if(!s_id){
+                var new_sid = "{$x_id}";
+                if(!new_sid){
+                    alert('不可下移了！');
+                    return false;
+                }
+            }
+            $.ajax({
+                url: "{:U('/Admin/Community/sorting')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: id,
+                    s_id:s_id,
+                    type:2
+                },
+                success:function(g){
+                    if (g.status == 1) {
+                        alert(g.info);
+                        window.location.reload();
+                    } else {
+                        alert(g.info);
+                    }
+
+                }
+            })
+        })
+        $('.applys').click(function(){
+            var id = $(this).attr('data-id');
+            $('#id').val(id);
+            $('.editfenlei').show();
+            $('#albums-overlay').show();
+        })
+      $(".cancle").click(function(){
+          $(this).parent().parent('.jbox').hide();
+          $('#albums-overlay').hide();
+      })
+
+      $(".huifu").click(function(){
+          var commentId = $(this).attr('data-id');
+          $('#commentId').val(commentId);
+          $('.addfenlei').show();
+          $('#albums-overlay').show();
+      })
+
+      $('.return_applys').click(function(){
+          var id = $('#id').val();
+          var content = $('#content_two').val();
+          if(!content){
+              alert('内容必填');
+              $('#content').focus();
+              return false;
+          }
+          $.ajax({
+              url: "{:U('/Admin/Community/return_apply')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id,
+                  content:content
+              },
+              success:function(g){
+                  if (g.status == 1) {
+                      alert(g.info);
+                      window.location.reload();
+                  } else {
+                      alert(g.info);
+                  }
+
+              }
+          })
+      });
+
+      $('#agree').click(function () {
+          var id1 = $('#commentId').val();
+          $.ajax({
+              url: "{:U('/Admin/Community/communityAgree')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  alert(g.info);
+                  window.location.reload();
+              } else {
+                  alert(g.info);
+              }
+
+          })
+      })
+
+      $('#disagree').click(function () {
+          var id1 = $('#commentId').val();
+          var content = $('#content').val();
+          if(content == ''){
+              alert('内容必填');
+              $('#content').focus();
+              return false;
+          }
+
+          $.ajax({
+              url: "{:U('/Admin/Community/communityDisagree')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+                  disagree_detail:content
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  alert(g.info);
+                  window.location.reload();
+              } else {
+                  alert(g.info);
+              }
+
+          })
+      })
+  </script>
+    <script>
+        $(".change-status").click(function(){
+            var id = $(this).attr("data-id");
+            var type = $(this).attr("data-item");
+            var _this = $(this);
+            $.post("{:U('admin/Community/changeStatus')}",{id:id,type:type},function(data){
+                if(data.status == 1){
+                    var p = _this.parent().parent().parent().find(".status p");
+                    p.html(data.info);
+                    if(_this.hasClass("btn-warning")){
+                    }else{
+                    }
+                }else{
+                    alert("修改失败");
+                }
+                window.location.reload();
+            },"json")
+        })
+    </script>

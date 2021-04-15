@@ -1,0 +1,321 @@
+<include file="Public:head"/>
+
+<!-- end header -->
+<style>
+    .wxtables td .btn {
+        padding: 0px 6px;
+    }
+
+    #J_wx_fans {
+        vertical-align: -2px;
+        margin-top: 5px;
+    }
+
+    .select.mini.new {
+        width: 140px;
+    }
+
+    input.mini.Wdate {
+        width: 100px;
+    }
+</style>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="container">
+
+
+    <div class="inner clearfix">
+        <include file="Public:memberleft" />
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">申请审核身份证列表</h1>
+
+
+            <div class="alert alert-info disable-del">目前有<span style="font-size:16px;">{$count}</span> 名会员申请审核身份证。<a
+                    href="javascript:;" class="alert-delete" title="隐藏"><i class="gicon-remove"></i></a></div>
+            <!--<a href="/User/user_export" class="btn btn-warning">会员导出</a>-->
+            <div class="tablesWrap">
+                    <div class="tables-searchbox">
+                        <div class="fl">
+                            <form action="{:U('admin/member/ifexamine')}">
+                                <input type="text" class="input" name="title" id="title" value="{$title}" placeholder="真实姓名/手机号">
+
+                                <button class="btn btn-primary" id="search_m" style="vertical-align:-2px;"><i
+                                        class="gicon-search white"></i>查询
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+  
+                <!-- end tables-searchbox -->
+                <table class="wxtables" style="text-align:center;">
+                    <colgroup>
+                        <col width="1%">
+                        <col width="2%">
+                        <col width="10%">
+                        <col width="8%">
+                        <col width="6%">
+                        <col width="6%">
+                        <col width="6%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="8%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td><i class="icon_check"></i></td>
+                        <td>头像</td>
+                        <td>真实姓名/手机</td>
+                        <td>会员等级</td>
+                        <td>性别</td>
+                        <td>钱包</td>
+                        <td>星级</td>
+                        <td>注册时间</td>
+                        <td>状态</td>
+                        <td>审核状态</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="memberlist" item="vo">
+                    <tr>
+                        <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo.id}" data-name=""></td>
+                        <td><img src="{$vo.person_img}" alt="" width="50" ></td>
+                        <td><p> {$vo.realname}<br/>{$vo.telephone}</p></td>
+                        <td><p>{$vo.vip}</p></td>
+                        <td><p>
+                            <switch name="vo.sex">
+                                <case value="1">男</case>
+                                <case value="2">女</case>
+                            </switch>
+                        </p></td>
+                        <td><p>¥{$vo.wallet}</p></td>                      
+                        <td><p>{$vo.evaluate}</p></td>                      
+                        <td>{$vo.addtime}</td>
+                        <td class="status">
+                            <switch name="vo.status">
+                                <case value="0"><p>正常</p></case>
+                                <case value="1"><p style='color:red;'>冻结</p></case>
+                            </switch>
+                        </td>
+                        <td class="status">
+                            <switch name="vo.isexamine">
+                                <case value="0"><p >未审核</p></case>
+                                <case value="1"><p style='color:green;'>通过审核</p></case>
+                                <case value="2"><p style='color:red;'>审核失败</p></case>
+                                <case value="3"><p >申请审核</p></case>
+                            </switch>
+                        </td>
+                        <td>
+                            <p>
+                                <a href="{:U('/Admin/Member/detail/id')}/{$vo.id}" class="btn btn-success">查看详情</a> <a href="javascript:;"
+                                                                                            <!--class="btn j-sendLetter"-->
+                                                                                           
+                                
+                              <!--   <a href="{:U('admin/member/editMember',array('id'=>$vo['id']))}" class="btn btn-primary" title="编辑">编辑</a>
+                                <switch name="vo.status">
+                                    <case value="0">
+                                        <a href="JavaScript:void(0);" class="btn btn-warning changeStatus" title="冻结" data-id="{$vo.id}">冻结</a>
+                                    </case>
+                                    <case value="1">
+                                        <a href="JavaScript:void(0);" class="btn btn-danger changeStatus" title="解冻" data-id="{$vo.id}">解冻</a>
+                                    </case>
+                                </switch> -->
+
+                                <a href="JavaScript:void(0);" class="btn btn-success examine" title="审核" data-id="{$vo.id}" data-cardid="{$vo.card_id}" data-idcardpic1="{$vo.idcard_pic1}" data-idcardpic2="{$vo.idcard_pic2}" data-idcardpic3="{$vo.idcard_pic3}" data-isexamine="{$vo.isexamine}" data-examinemsg="{$vo.examine_msg}" data-jpush="{$vo.jpushtoken}">审核</a>
+<!-- 
+                                <a href="{:U('admin/member/friend',array('id'=>$vo['id']))}" class="btn btn-primary" title="好友">好友</a> -->
+                            </p>
+                        </td>
+                    </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fl">
+                        <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a>
+                        <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                    </div>
+                    <div class="fr">
+                        <div class="pages">
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end tablesWrap -->
+
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="width:500px">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">审核信息</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 263px;">
+    <input type="hidden" name="id">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>审核状态：</label>
+      <div class="form-controls">
+        <span class="fi-help-text isexamine"></span> 
+      </div>
+    </div>
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>身份证：</label>
+      <div class="form-controls">
+        <span class="fi-help-text cartid"></span> </div>
+    </div>
+    <div class="formitems" >
+        <label class="fi-name"><span class="colorRed"></span>身份证正面照：</label>
+        <div class="form-controls images">
+            <img width="300" src="" alt="" class="pic1">
+        </div>
+    </div>
+    <div class="formitems" >
+        <label class="fi-name"><span class="colorRed"></span>身份证背面照：</label>
+        <div class="form-controls images">
+            <img width="300" src="" alt="" class="pic2">
+        </div>
+    </div>
+    
+    <div class="formitems" >
+        <label class="fi-name"><span class="colorRed"></span>手持身份证照片：</label>
+        <div class="form-controls images">
+            <img width="300" src="" alt="" class="pic3">
+        </div>
+    </div>
+
+
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>审核情况：</label>
+      <div class="form-controls">
+        <label>
+            <input type="radio" name="isexamine" value="1"><span>通过审核</span>
+        </label>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <label>
+            <input type="radio" name="isexamine" value="2"><span>审核失败</span>
+        </label>
+        <span class="fi-help-text examinemsg"></span> </div>
+    </div>
+    
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>审核信息：</label>
+      <div class="form-controls">
+        <select name="examine_msg">
+            <option value="">——请选择——</option>          
+            <option value="无效的身份证号码">无效的身份证号码</option>          
+            <option value="身份证照片模糊">身份证照片模糊</option>          
+        </select>
+        <span class="fi-help-text examinemsg"></span> </div>
+    </div>
+
+
+    
+    
+  </div>
+  <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="examine">确定</a><a
+            href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<!-- end container -->
+<script>
+$(function(){
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    /*
+        <a href="JavaScript:void(0);" class="btn btn-success examine" title="审核" data-id="{$vo.id}" data-cardid="{$vo.card_id}" data-idcardpic1="{$vo.idcard_pic1}" data-idcardpic2="{$vo.idcard_pic2}" data-idcardpic3="{$vo.idcard_pic3}" data-isexamine="{$vo.isexamine}" data-examinemsg="{$vo.examine_msg}">审核</a>
+    */
+    $(".examine").click(function(){
+        var id            = $(this).attr("data-id")
+        var cartid        = $(this).attr("data-cardid")
+        var pic1          = $(this).attr("data-idcardpic1")
+        var pic2          = $(this).attr("data-idcardpic2")
+        var pic3          = $(this).attr("data-idcardpic3")
+        var isexamine     = $(this).attr("data-isexamine")
+        var examinemsg    = $(this).attr("data-examinemsg")
+        $(".addfenlei input[name=id]").val(id);
+        $(".addfenlei .cartid").html(cartid);
+        $(".addfenlei .pic1").attr("src",pic1);
+        $(".addfenlei .pic2").attr("src",pic2);
+        $(".addfenlei .pic3").attr("src",pic3);
+        switch(isexamine){
+            case "0":
+                var msg = "未审核";
+                break;
+            case "1":
+                var msg = "通过审核";
+                break;
+            case "2":
+                var msg = "拒绝通过审核";
+                break;
+        }
+        $(".addfenlei .isexamine").html(msg);
+        $(".addfenlei input[name=isexamine][value="+isexamine+"]").attr("checked","checked")
+        $(".addfenlei select[name=examine_msg] option[value="+examinemsg+"]").attr("selected","selected")
+        $("#albums-overlay").show()
+        $(".addfenlei").show()
+    })
+    $("#examine").click(function (){
+        var id            = $(".addfenlei input[name=id]").val()
+        var isexamine     = $(".addfenlei input[name=isexamine]:checked").val()
+        var examinemsg    = $(".addfenlei select[name=examine_msg]").val()
+        if(isexamine==2 && !examinemsg){
+            alert("请选择拒绝通过审核的原因");
+            return 
+        }
+        $.post("{:U('admin/member/examine')}",{id:id,isexamine:isexamine,examinemsg:examinemsg},function(data){
+            alert(data.info)
+            if(data.status){
+                window.location.reload()
+            }
+        },"json")
+    })
+    // $("#search_m").click(function(){
+    //     var title=$('#title').val();
+    //     var 
+    //     if(title != ''){
+    //         location.href="{:U('/Admin/Member/ifexamine')}/title/"+title;
+    //     }else{
+    //         location.href="{:U('/Admin/Member/ifexamine')}";
+    //     }
+    // })
+
+    $(".changeStatus").click(function(){
+        var id = $(this).attr("data-id");
+        var _this = $(this);
+        $.post("{:U('admin/member/changeStatus')}",{id:id},function(data){
+            if(data.status == 1){
+                var p = _this.parent().parent().parent().find(".status p");
+                p.html(data.info);
+                if(_this.hasClass("btn-warning")){
+                    _this.removeClass("btn-warning").addClass("btn-danger").html("解冻")
+                    p.css("color","red")
+                }else{
+                    _this.removeClass("btn-danger").addClass("btn-warning").html("冻结")
+                    p.css("color","black")
+                }
+            }else{
+                alert("修改失败");
+            }
+        },"json")
+    })
+})
+
+</script>
+
+<include file="Public:foot"/>

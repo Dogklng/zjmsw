@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="images/mswlogo.ico" />
+<title>美术网</title>
+<meta name="keywords" content="美术网" />
+<meta name="description" content="美术网" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen"/>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/swiper.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+
+<script type="text/javascript" src="js/jquery.1.9.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+
+<!--[if lt IE 9]>
+	<script src="lib/plugins/html5.js"></script>
+	<script src="lib/plugins/respond.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+
+<!--导航-->
+<div class="body_top">
+  <div class="body_top_up">
+    <div class="body_top_tit1"> <a href="../index.html"><img src="images/logoM.png" /></a> </div>
+    <div class="sousuo">
+    	<img src="images/search.png" />
+    </div>
+    <div class="clear"></div>
+    
+    <div class="sousuok">
+    	<input type="text" value="请输入关键词" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键词';}" />
+    </div>
+    
+  </div>
+</div>
+
+<!--导航--> 
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 我要开店 </a> </h3>
+
+</div>
+<div class="warp_box">
+  <div class="SellerTop">
+    <h3>免费开店</h3>
+    <p>申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+ </div>
+ <div class="SellerFlist SellerFlistCurr"> <span>2</span>
+  <h3>阅读开店须知<i>确认自己符合个人店铺的相关规定</i></h3>
+ </div>
+  <div class="openstore_notice_list">
+    <div class="SelNoticeTxt">
+     <h3>1、我在美术网已经开了个店了，我用别人的身份证再开一个店可以吗？</h3>
+     <h6>答：不可以。未经美术网平台同意，将本人美术网账号提供给他人作开店使用，否则由此导致相关争议、诉讼及因店铺经营中的违法违规行为导致一切人身、财产权益损害，均由本人自行承担全部民事、行政及刑事责任。</h6>
+
+     <h3>2、我可以把店铺转租给其他人吗?</h3>
+     <h6>答：不可以。未经美术网平台同意，将本人美术网账号提供给他人作开店使用，否则由此导致相关争议、诉讼及因店铺经营中的违法违规行为导致一切人身、财产权益损害，均由本人自行承担全部民事、行政及刑事责任。</h6>
+
+     <h3>3、开美术网店要收费吗?</h3>
+     <h6>答：美术网开店是免费的，不收取任何服务费用。</h6>
+
+     <h3>4、我可以开多个美术网店吗?</h3>
+     <h6>答：不可以。一张身份证（一张营业执照）只能开一个美术网店铺。如是企业店铺，开店后营业执照不得注销。</h6>
+
+     <h3>5、我已经开过美术网店，现在想要注销原来的店铺重新开店，可以吗?</h3>
+     <h6>答：不可以，美术网暂时不提供注销店铺的服务。用户一但成功开店就无法再用身份证（营业执照）另开一家美术网店铺。</h6>
+    </div>
+    <div class="SelNoticeStyle">
+     <h6>注：美术网在任何情况下都不会用QQ与您取得联系, 任何使用QQ联系您的"工作人员"都是骗子。</h6>
+     <h4><a href="openstore.html" style="background:#ccc;">上一步</a> <a href="perCertified.html">我已了解, 继续开店</a></h4>
+    </div>
+  </div>
+</div>
+<div class="ght">
+ <div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>
+</div>
+
+<!--footer-->
+<div class="footer">
+  <ul class="footer_list">
+    <li class="on"> <a href="../index.html"> <img src="images/indexha.svg" width="18px" />
+      <p>首页</p>
+      </a> </li>
+    <li> <a href="../products.html"> <img src="images/product.svg" width="18px" />
+      <p>产品</p>
+      </a> </li>
+    <li class="dz_db"> <a href="sellerCenter.html"> <img src="images/dingzhi.svg" width="18px" />
+      <p>云推荐</p>
+      </a> </li>
+    <li> <a href=""> <img src="images/cart.svg" width="18px" />
+      <p>购物车</p>
+      </a> </li>
+    <li> <a href="../use/myorder.html"> <img src="images/my.svg" width="18px" />
+      <p>我的</p>
+      </a> </li>
+    <div class="clear"></div>
+  </ul>
+</div>
+<!--footer-->
+
+</body>
+</html>

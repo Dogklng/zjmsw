@@ -1,0 +1,141 @@
+<include file="Public:header" />
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:50px;">
+
+
+<!--  / user  -->
+<div class="zhifu" style="margin-top: 60px;">
+   
+  <div class="zfje clearfix">
+    <h6>商品名称<span>{$res.name}</span></h6>
+  </div>
+  <div class="zfje clearfix">
+    <h6>订单价格<span>¥{$res.price}</span></h6>
+  </div>
+
+  <ul class="zffs" style="margin-bottom:10px;">
+    <li class="zffs_title"><h5>请选择支付方式</h5></li>
+
+      <li class="clearfix">
+        <h5><img src="__IMAGES__/zfbzf.png" alt="">支付宝<span class="zfxz zfxzclick" data-pay_way="1"><img src="__IMAGES__/zfxz1.png" alt=""></span></h5>
+      </li>
+
+  <!--  <li class="clearfix">
+      <h5><img src="__IMAGES__/wxzf.png" alt="">微信支付<span class="zfxz zfxzclick" data-pay_way="3"><img src="__IMAGES__/zfxz2.png" alt=""></span></h5>
+      
+    </li>-->
+    <li class="clearfix">
+      <h5><img src="__IMAGES__/ylzf.png" alt="">银联支付<span class="zfxz zfxzclick" data-pay_way="2"><img src="__IMAGES__/zfxz2.png" alt=""></span></h5>
+    </li>
+    <input type="hidden" name="pay_way" value="2" />
+    <li class="hbzf">
+      <h5><img src="__IMAGES__/hbzf.png" alt="">余额<span class="zfxz zfxzclick" data-pay_way="4"><img src="__IMAGES__/zfxz1.png" alt=""></span></h5>
+
+    </li>
+    <div class="dizhi wxzf-box" style="display: none;float: left;z-index: 999999;background-color: #ccc;width: 100%;height: 100%">
+      <div class="dizhi_bg"></div>
+      <div class="dizhi_con dizhi_con_weixin" style="width:320px;height:auto;margin:0px;top:30%;left:40%;">
+
+        <div class="ewm text-center" style="margin-left: 20%">
+          <h5 style="margin-bottom:16px;">打开微信扫码支付</h5>
+          <img src="{:IMG_URL}example/qrcode.php?data=weixin://wxpay/bizpayurl?pr=uTOfaKy" id="weixin_erweima" width="150" title="打开微信扫一扫支付"/>
+          <h6>浙江美术网全心全意为您服务，<br />让您省心放心，扫码即可支付！</h6>
+        </div>
+      </div>
+    </div>
+
+  </ul>
+   <a href="#"  class="wd_zf_btn pay-order">去支付</a>
+</div>
+<!--  / user  -->
+
+
+</div>
+<!--  / warpper  -->
+
+
+</body>
+<script>
+
+  function num(obj){
+    obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+    obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+    obj.value = obj.value.replace(/\.{3,}/g,"."); //只保留第一个, 清除多余的
+    obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d\d).*$/,'$1$2.$2'); //只能输入两个小数
+  }
+
+  $(".pay-order").click(function (){
+    var post = {};
+    post.pay_way = $('input[name="pay_way"]').val();
+    //console.log(post);return false;
+    if(!post.pay_way){
+      dialog.showTips("请选择支付方式", "warn");return false;
+    }
+
+    if(post.pay_way==3){
+      alert("微信支付暂未开");
+      return false;
+    }
+    post.order_no = "{$res['order_no']}";
+    post.id = "{$res['id']}";
+    post.user_id  = "{$_SESSION['member_id']}";
+    post.total_fee    = "{$res['price']}";
+    console.log(post);
+    $.ajax({
+      type: "POST",
+      url: "{:U('/Wxin/Index/PayOrder')}",
+      data:post,
+      dataType: "json",
+      success: function (g) {
+        if (g.status == 1) {
+            if("{$is_weixin}"=='1'){
+                window.location.href="{:U('/Wxin/Index/weixinpay')}?url=http://{$_SERVER['HTTP_HOST']}"+g.url;
+            }else {
+                window.location.href=g.url;
+            }
+        } else if(g.status == 2) {
+          //dialog.showTips(g.info, "firm", function () {
+          window.location.href=g.url;
+          //});
+        }else if(g.status == 4) {
+          //dialog.showTips(g.info, "firm", function () {
+          window.location.href=g.info;
+          //});
+        }else if(g.status == 3){
+          order_id = g.order_id;
+          $('#weixin_erweima').attr('src', g.url);
+          $('.wxzf-box').stop(true).fadeIn(1000);
+          setTimeout(function () {
+            $('.dizhi_con_weixin').addClass('dizhi_con_on');
+          }, 200)
+          int = setInterval(function () {
+            $.post("{:U('Wxin/Index/order_status')}", {order_id: order_id},
+                    function (g) {
+                      if (g.status == 1) {
+                        window.location.href = g.url;
+                      }
+                    })
+          }, 1000);
+        } else {
+          dialog.showTips(g.info, "warn");
+        }
+      }
+    });
+  });
+$(function(){
+  $(".zfxzclick").click(function(){
+    var pay_way = $(this).attr('data-pay_way');
+    $(".zfxzclick").each(function(){
+      var way = $(this).attr('data-pay_way');
+      if(way==pay_way){
+        $('input[name="pay_way"]').val(pay_way);
+        $(this).find("img").attr("src","__IMAGES__/zfxz2.png")
+      }else {
+        $(this).find("img").attr("src","__IMAGES__/zfxz1.png")
+      }
+    });
+  })
+})
+</script>
+</html>

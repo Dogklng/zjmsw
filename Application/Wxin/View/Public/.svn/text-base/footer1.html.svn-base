@@ -1,0 +1,56 @@
+<!--footer-->
+<div class="footer">
+    <ul class="footer_list">
+        <li <eq name="on" value="1" >class="on" </eq>> <a href="{:U('Wxin/Index/index')}"> <img src="__IMAGES__/indexha.svg" width="18px" />
+            <p>首页</p>
+        </a> </li>
+        <li <eq name="on" value="2" >class="on" </eq>> <a href="{:U('Wxin/Artwork/index')}"> <img src="__IMAGES__/product.svg" width="18px" />
+            <p>产品</p>
+        </a> </li>
+        <li class="dz_db"> <a href="{:U('Wxin/Index/cloud')}"> <img src="__IMAGES__/dingzhi.svg" width="18px" />
+            <p>云推荐</p>
+        </a> </li>
+        <li <eq name="on" value="4" >class="on" </eq>> <a href="{:U('Wxin/PersonalCenter/shopcar')}"> <img src="__IMAGES__/cart.svg" width="18px" />
+            <p>购物车</p>
+        </a> </li>
+        <li <eq name="on" value="5" >class="on" </eq>> <a href="{:U('Wxin/PersonalCenter/user')}"> <img src="__IMAGES__/my.svg" width="18px" />
+            <p>我的</p>
+        </a> </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<!--footer-->
+<script>
+    $(function(){
+
+        //ZQJ检测 是否登录，是否选择大赛期数，是否上传头像，
+        $('.zgg').click(function(){
+            var nid = $('#nid').val();
+            $.ajax({
+                url:'/Wxin/News/buttonRelease',
+                type:'post',
+                data:{},
+                dataType:'json',
+                success:function(g){
+                    if(g.status == 1){
+                        //dialog.showTips(g.info, "warn", function(){ window.location.href = g.url;});
+                        window.location.href = g.url;
+                        return false;
+                    }else{
+                        if(g.url != undefined){
+
+                            dialog.showTips(g.info, "warn", function () { window.location.href = g.url;});
+                            return false;
+
+                        }else{
+                            alert(g.info);
+                            return false;
+                        }
+                    }
+
+                }
+
+            })
+        })
+    })
+</script>

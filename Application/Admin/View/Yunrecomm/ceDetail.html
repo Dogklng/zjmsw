@@ -1,0 +1,627 @@
+<include file="Public:head"/>
+<style>
+	.imgnav{
+		max-height: 30px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.imgwrapper{
+		display: block;
+		width: 78px;
+		height: 78px;
+		overflow: hidden;
+	}
+	.imgwrapper img{
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border:0;
+	}
+	.spanpd10{
+		margin:10px;
+	}
+	.wxtables.wxtables-sku.newtable{
+		width: 40%;
+		margin: 0;
+	}
+	.img-list li{
+		width: 60px;
+		height:60px;
+	}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">法人详情</h1>
+      <input type="hidden" id="j-isSid" value="0">
+      <!-- 是否选择了淘宝类目 -->
+      <input type="hidden" id="j-hasNorms" value="1">
+      <!-- 淘宝类目下是否有属性 -->
+      <input type="hidden" id="supplier" value="">
+      <form aciton="{:U('/Admin/Callforpaper/editPrize')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">
+        <!-- end 基本信息 -->
+		<input type='hidden' name='id' value='{$number['id']}'/>
+        <div class="panel-single panel-single-light mgt20">
+         
+		<h3 class="cst_h3 mgb20">作者信息</h3>
+		  
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>营业执照号：</label>
+            <div class="form-controls">
+              <input type="text" class="input xxlarge" name="title" id="title" value="{$res['business']}" readonly>
+              <span class="fi-help-text"></span> 
+            </div>
+          </div>
+		<div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>营业执照：</label>
+            <div class="form-controls">
+             <a href="{$res.business_img}"> <img src="{$res.business_img}" width="80" height="80" /></a>
+              <span class="fi-help-text"></span>
+            </div>
+          </div>
+	 <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>组织机构代码证号：</label>
+            <div class="form-controls">
+              <input type="text" class="input xxlarge" name="title" id="title" value="{$res['organize']}" readonly>
+              <span class="fi-help-text"></span> 
+            </div>
+          </div>
+    <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>组织机构代码证图片：</label>
+            <div class="form-controls">
+             <a href="{$res.organize_img}"> <img src="{$res.organize_img}" width="80" height="80" /></a>
+              <span class="fi-help-text"></span>
+            </div>
+          </div>
+		
+
+			
+	
+		<if condition="$res['fa_status'] eq 2">
+			<div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>拒绝审核备注：</label>
+            <div class="form-controls">
+              <input type="text" class="input xxlarge" name="theme" id="theme" value="{$res['detail']}" readonly>
+              <span class="fi-help-text"></span>
+            </div>
+          </div>
+		  <elseif condition="$res['fa_status'] eq 1"/>
+			<div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>审核通过备注：</label>
+            <div class="form-controls">
+              <input type="text" class="input xxlarge" name="theme" id="theme" value="{$res['detail']}" readonly>
+              <span class="fi-help-text"></span>
+            </div>
+          </div>
+		  </if>
+			
+			  
+      </div>
+  
+    
+     
+      </div>
+  
+
+    <!-- end 详情及其它 -->
+
+    <div class="panel-single panel-single-light mgt20 txtCenter">
+      <a href="{:U('Admin/Yunrecomm/legal')}" class="btn">取消</a>
+      <!-- <input type="submit" class="btn btn-primary" value="审核"> -->
+	  
+	  <if condition="$res['fa_status'] eq 1">
+		<a href="javascript:;" disabled="disabled" class="btn " style="background-color: green;border-color: green; color: white" data-id="{$res.id}">  审核通过 </a>
+	  <elseif condition="$res['fa_status'] eq 2"/>
+	  	<a href="javascript:;" disabled="disabled" class="btn " style="background-color: green;border-color: green; color: white" data-id="{$res.id}">  审核拒绝 </a>
+	  <else />
+		<a href="javascript:;" class="btn huifu" style="background-color: green;border-color: green; color: white" data-id="{$res.id}">  审核 </a>
+	  </if>
+	  
+	 
+
+    </div>
+	  </div>
+  </form>
+</div>
+
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="height:auto; overflow: visible;">
+<div class="jbox-title">
+  <div class="jbox-title-txt">回复评论</div>
+  <a href="javascript:;" class="jbox-close cancle"></a></div>
+<div class="jbox-container" style="height: 140px;overflow: visible;">
+  <div class="formitems">
+	<input type="hidden" class="input sort" name="commentId" id="commentId" >
+	<label><span class="colorRed">*</span>内容：</label>
+
+	<div class="form-controls">
+	  <textarea style="width: 200px;height: 100px;margin-left: -30px;" id="content"></textarea>
+	  <span class="fi-help-text"></span>
+	  <span class="fi-help-text1" style="color:red;"></span>
+	</div>
+  </div>
+
+</div>
+<div class="jbox-buttons">
+  <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">通过</a>
+  <a href="javascript:void(0);" class="jbox-buttons-ok btn " id="disagree" style="background-color: red;border-color: red; color: white">拒绝</a>
+  <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+  <script src="__JS__/jquery.js"></script>
+  <script>
+      $(".huifu").click(function(){
+          $('.addfenlei').show();
+          $('#albums-overlay').show();
+      })
+
+      $(".cancle").click(function(){
+          $(this).parent().parent('.jbox').hide();
+          $('#albums-overlay').hide();
+      })
+
+      $(".huifu").click(function(){
+          var commentId = $(this).attr('data-id');
+          $('#commentId').val(commentId);
+		 // alert(commentId);
+      })
+
+      $('#agree').click(function () {
+          var id1 = $('#commentId').val();
+          var content = $('#content').val();
+		  
+		  if(content == ''){
+				$('.fi-help-text1').text('评论内容不能为空！');
+              $('#content').focus();
+			
+              return false;
+          }
+          $.ajax({
+              url: 'Admin/Yunrecomm/leAgree',
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+				          disagree_detail:content
+              },
+			  success:function(g){
+				 if (g.status == 1) {
+					  alert(g.info);
+					  window.location.reload();
+				  } else {
+					  alert(g.info);
+				  }
+
+				}
+          })
+      })
+
+      $('#disagree').click(function () {
+          var id1 = $('#commentId').val();
+          var content = $('#content').val();
+          if(content == ''){
+				$('.fi-help-text1').text('评论内容不能为空！');
+              $('#content').focus();
+              return false;
+          }
+
+          $.ajax({
+              url: '/Admin/Yunrecomm/leDisagree',
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+                  disagree_detail:content
+              },
+			  success:function(g){
+				 if (g.status == 1) {
+					  alert(g.info);
+					  window.location.reload();
+				  } else {
+					  alert(g.info);
+				  }
+
+				}
+          })
+      })
+  </script>
+ <script type="text/javascript">
+
+
+  $("#j-select_category_id").click(function(){
+    $('.select-fenlei').show();
+    /*$('#albums-overlay').show();*/
+  });
+  $(".cancle").click(function(){
+    $(this).parent().parent('.jbox').hide();
+    /*$('#albums-overlay').hide();*/
+  });
+
+  $("#select_class").click(function(){
+    var clssid=$("#select_class_id  option:selected").val();
+    var classname=$("#select_class_id option:selected" ).text();
+    $('#class_id').val(clssid);
+    $('#class_name').val(classname);
+    $(this).parent().parent('.jbox').hide();
+    /*$('#albums-overlay').hide();*/
+  });
+
+  $("#j-select_series_id").click(function(){
+    $('.select-series').show();
+    $('#albums-overlay1').show();
+  });
+  $(".cancle").click(function(){
+    $(this).parent().parent('.jbox').hide();
+    $('#albums-overlay1').hide();
+  });
+
+  $("#select_series").click(function(){
+    var seriesid=$("#select_series_id  option:selected").val();
+    var seriesname=$("#select_series_id option:selected" ).text();
+    $('#series_id').val(seriesid);
+    $('#series_name').val(seriesname);
+    $(this).parent().parent('.jbox').hide();
+    $('#albums-overlay1').hide();
+  });
+
+
+
+
+
+  UE.getEditor('editor',{
+    toolbars: [
+
+    ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+
+    ],
+
+    autoHeightEnabled: false,
+    autoFloatEnabled: true,
+    elementPathEnabled:false,
+    enableContextMenu:false,
+    wordCount:false,
+
+  });
+
+</script>
+
+
+  <script type="text/javascript">
+    function toVaild(){
+        var title = $('#title').val();
+      
+        var starttime = $('#starttime').val();
+        var endtime = $('#endtime').val();
+      
+        var pic = $('#pic2').val();
+        var content = $('#content').val();
+
+        if(title==""){
+            alert('期数不能为空');
+            return false;
+        }
+
+        
+        if(starttime == ''){
+            alert('开始日期不能为空');
+            return false;
+        }
+        if(endtime == ''){
+            alert('结束日期不能为空');
+            return false;
+        }
+       
+		
+		if(first_name == ''){
+            alert('一等奖名字不能为空');
+            return false;
+        }
+        if(second_name == ''){
+            alert('二等奖名字不能为空');
+            return false;
+        }
+        if(third_name == ''){
+            alert('三等奖名字不能为空');
+            return false;
+        }
+        if(pic3 == undefined){
+            alert('一等奖图片不能为空');
+            return false;
+        }
+        if(pic4 == undefined){
+            alert('二等奖图片不能为空');
+            return false;
+        }
+        if(pic5 == undefined){
+            alert('三等奖图片不能为空');
+            return false;
+        }
+        <!-- if(news_pic ==undefined){ -->
+            <!-- alert('图片不能为空'); -->
+            <!-- return false; -->
+        <!-- } -->
+        <!-- if(pic == undefined){ -->
+            <!-- alert('图片不能为空'); -->
+            <!-- return false; -->
+        <!-- } -->
+
+
+}
+</script>
+<!--提交表单前验证end-->
+
+<!--上传图片-->
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+
+  function delImg(obj){
+    if(!confirm("删除这张图片？")){
+      return false;
+    }
+    var id = $(obj).attr("data-id");
+    if(id){
+      alert(1);
+      return false;
+    }
+    $(obj).next("input").remove();
+    $(obj).remove();
+  }
+  $(function () {
+    var percent = $('.xuanze_percent');
+    var progress = $('.xuanze_percent');
+    $("#xuanze").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+		$("#xuanze").change(function(){ //选择文件
+			$("#myupload1").ajaxSubmit({
+				dataType:  'json', //数据格式为json
+				beforeSend: function() { //开始上传
+					progress.show(); //显示进度条
+					var percentVal = '0%';
+					percent.html(percentVal);
+				},
+				uploadProgress: function(event, position, total, percentComplete) {
+					var percentVal = percentComplete + '%'; //获得进度
+					percent.html(percentVal); //显示上传进度百分比
+				},
+				success: function(data) { //成功
+					var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="news_pic" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+					$('.xuanze_showimge').html(img);
+					progress.hide();
+				},
+				error:function(xhr){ //上传失败
+					//console.log(xhr.status)
+				}
+			});
+		});
+
+
+		var percent = $('.duoxuan_percent');
+		var progress = $('.duoxuan_percent');
+		$("#duoxuan").wrap("<form id='myupload' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+		$("#duoxuan").change(function(){ //选择文件
+			$("#myupload").ajaxSubmit({
+				dataType:  'json', //数据格式为json
+				beforeSend: function() { //开始上传
+					progress.show(); //显示进度条
+					var percentVal = '0%';
+					percent.html(percentVal);
+				},
+				uploadProgress: function(event, position, total, percentComplete) {
+					var percentVal = percentComplete + '%'; //获得进度
+					percent.html(percentVal); //显示上传进度百分比
+				},
+				success: function(data) { //成功
+					var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80"  class="mgr10 mgt10 " onclick="delImg(this)"><input type="hidden" name="pic1[]" id="pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+					console.log(img);
+					$('.duoxuan_showimge').append(img);
+					progress.hide();
+				},
+				error:function(xhr){ //上传失败
+					//console.log(xhr.status)
+				}
+			});
+		});
+
+		var percent = $('.baotuan_percent');
+    var progress = $('.baotuan_percent');
+    $("#baotuan").wrap("<form id='baotuan1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#baotuan").change(function(){ //选择文件
+      $("#baotuan1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="pic" id="pic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.baotuan_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+	
+	//first_prize
+	var percent = $('.first_prize');
+    var progress = $('.first_prize');
+    $("#first").wrap("<form id='first1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#first").change(function(){ //选择文件
+      $("#first1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="pic3" id="pic3" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.first_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+	
+	//second_prize
+	var percent = $('.second_prize');
+    var progress = $('.second_prize');
+    $("#second").wrap("<form id='second1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#second").change(function(){ //选择文件
+      $("#second1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="pic4" id="pic4" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.second_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+	
+	//third_prize
+	var percent = $('.third_prize');
+    var progress = $('.third_prize');
+    $("#third").wrap("<form id='third1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#third").change(function(){ //选择文件
+      $("#third1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="pic5" id="pic5" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.third_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+	
+	//create_prize
+	var percent = $('.create_prize');
+    var progress = $('.create_prize');
+    $("#create").wrap("<form id='create1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#create").change(function(){ //选择文件
+      $("#create1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="pic6" id="pic6" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.create_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+	
+	//全选
+	if($("input[name='judges[]']").length == $("input[name='judges[]']:checked").length){
+		$('#c1').attr('checked',true);
+	}else{
+		$('#c1').removeAttr('checked');
+	}
+	$("input[name='judges[]']").click(function(){
+		if($("input[name='judges[]']").length == $("input[name='judges[]']:checked").length){
+			$('#c1').attr('checked',true);
+		}else{
+			$('#c1').removeAttr('checked');
+		}
+	})
+	$('#c1').click(function(){
+	//alert();
+		//alert(123);
+		//console.log($(this).attr("checked"));
+		if($(this).attr("checked")){
+			
+			$("input[name='judges[]']").attr("checked","true"); 
+		}else{
+			$("input[name='judges[]']").removeAttr("checked"); 
+		}
+		
+	})
+	
+	});
+	
+  function add_re(r){
+   $('#restriction'+r).show();
+ }
+ function del_re(r){
+   $('#restriction'+r).hide();
+ }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

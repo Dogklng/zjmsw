@@ -1,0 +1,111 @@
+@charset "utf-8";
+/* CSS Document */
+
+.ind_nr3 {
+	overflow: hidden;
+}
+.ind_nr3_left {
+	width: 33.333%;
+	float: left;
+	position: relative;
+	opacity: 0;
+	left: -100px;
+	overflow: hidden;
+}
+.ind_nr3_mid {
+	width: 60%;
+	float: left;
+	position: relative;
+	opacity: 0;
+	bottom: -100px;
+	overflow: hidden;
+}
+.ind_nr3_mid_img {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 1;
+}
+.ind_nr3_mid_img_list {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.ind_nr3_right {
+	width: 40%;
+	float: left;
+	position: relative;
+	opacity: 0;
+	right: -100px;
+	overflow: hidden;
+}
+.ind_nr3_cha4 {
+	padding: 0 6%;
+	text-align: center;
+}
+.ind_nr3_cha4>ul>li>a>span {
+	padding-right: 10px;
+	padding-bottom: 2px;
+}
+.ind3_tit h2 {
+	color: #333;
+	font-size: 32px;
+	margin: 10% 0;
+	text-align: center;
+}
+.ind_nr3_cha4>ul>li {
+	width: 33%;
+	padding-right: 0.3%;
+	float: left;
+}
+.ind_nr3_cha4>ul>li a {
+	color: #333;
+	font-size: 14px;
+	line-height: 36px;
+	border-bottom: 1px solid #e2e2e2;
+}
+.ind_nr3_cha4>ul>li:hover a {
+	text-decoration: none;
+	color: #009AA3;
+}
+.ind3_mr {
+	border: 3px solid #009AA3 !important;
+	color: #009AA3 !important;
+}
+.ind_nr3_btn {
+	background: #020202;
+	padding: 2%;
+	line-height: 28px;
+	border-radius: 10px;
+	margin-top: 5%;
+}
+.ind_nr3_btn>p>a {
+	color: #fff;
+}
+.ind_nr3_btn>p:hover a {
+	text-decoration: none;
+	color: #c6a76b;
+}
+ @media (max-width: 768px) {
+	 .ind_nr3_mid {
+	width: 100%;
+}
+
+.ind_nr3_right {
+	width: 100%;
+}
+.ind3_tit h2 {
+	font-size:20px;
+}
+.ind_nr3_cha4 {
+    padding: 0 0%;
+    text-align: center;
+}
+
+
+
+
+}

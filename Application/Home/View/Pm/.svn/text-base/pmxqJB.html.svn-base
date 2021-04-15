@@ -1,0 +1,285 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM"> 
+  <div class="buy"> 
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+          <include file="Public:images" />
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="buy_con_text pm_con_text" style=" float:left; width:90%;">
+              <h3>{$res.goods_name}</h3>
+              <div class="buyDel">
+                <ul>
+                  <li><b>作品的上架时间 :</b>{$res['shang_time']|date="Y-m-d",###}</li>
+                  <!--<li><b>编号 :</b> {$res.goods_mel}</li>
+                  <li><b>作者 :</b> {$res.goods_cap}</li>-->
+                  <li><b>材质 ：</b>{$res.goods_skin}</li>
+                  <li><b>尺寸 ：</b> {$res.goods_range}</li>
+                  <li><b>创作年代 :</b> {$res.goods_care}年</li>
+                  <li><b>品相 ：</b>{$res.goods_com}</li>
+
+                </ul>
+              </div>
+              <h4 class="djstime" data-endtime="{$res['end']}" ><i>正在拍卖</i> 距结束： <span></span>天<span></span>小时 <span></span>分 <span></span>秒</h4>
+             
+              <div class="qpxx">
+                <div class="qpxx1" style="padding-left:50px;">
+                  <h6 class="tw">当前价：<span id="dangqian" style="font-size:24px;">¥{$res.dangqian}</span></h6>
+                  <h6>起拍价：<span style="font-size:26px;">¥{$res.start_price}</span></h6>
+                </div>
+                <a  class="jpxz">报名交保证金</a>
+                <ul class="qpxx2">
+                  <li><span>{$res.baomin|default=0}</span>人报名 </li>
+                  <li><span>{$tx|default=0}</span>人设置提醒 </li>
+                  <li><span>{$res.weiguan|default=0}</span>次围观</li>
+                  <div class="clear"></div>
+                </ul>
+                <ul class="qpxx3">
+                  <li>起拍价: <span>¥{$res.start_price}</span></li>
+                  <li>加价幅度: <span>¥{$res.fudu}</span></li>
+                  <li>保证金: <span>¥{$res.baoding}</span></li>
+                  <li>佣金: <span>{$res.yongjin}%</span></li>
+                  <!--<li>延时周期: {$res.zhouqi}天</li>-->
+                  <!--<li>保留价:<span>¥{$res.baoliu}</span></li>-->
+                  <div class="clear"></div>
+                  <input type="hidden" id="goods_id" value="{$res.id}">
+                </ul>
+                <div class="qpxx4"> 特色服务： <span>假一赔三</span> <span>拍前预展</span> </div>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    
+    
+    <div class="popBox pmxqBox">
+    	<img src="__IMAGES__/gb.png" class="close closejp" />
+        <h1>您将缴纳{$res.baoding}元作为参拍保障金</h1>
+        <a href="javascript:;" class="closePop"></a>
+        <div class="popService pmxqBC">
+          <p>{$peizhi.content|htmlspecialchars_decode|stripslashes}</p>
+          <!--<h2>1、若竞拍不成功,保证金自动退回；</h2>
+          <h2>2、若竞拍成功后,保证金转货款,您需支付剩余货款。</h2>-->
+          <div class="inspection_agree">
+            <input type="checkbox" id="inagree" value="">
+            <label for="inagree">我同意</label><!--<a class="jpxz1" href="javascript:;">-->《竞拍协议》<!--</a>-->，通过美术网平台进行支付。 并且理解了<!--<a class="jpxz2" href="javascript:;">-->《保证金详细规则》<!--</a>-->及<!--<a class="jpxz3" href="javascript:;">-->《使用银行卡缴纳保证金须知》<!--</a>-->，因拍品性质特殊，不支持7天无理由退货，请谨慎参拍。</div>
+          <div class="pmxqDiv">
+           <h6>该标的物需缴纳保证金{$res.baoding}元，建议您使用<span>银行卡快捷支付、信用卡、网银、支付宝、微信，</span></h6>
+          </div>
+          <div class="pmxqBut">
+           <a class="pmxqBt" onclick="return tongyi()" href='{:U("/Home/Pm/pmxq_bzj/id")}/{$res["id"]}'>确定</a>
+           <a class="pmxqBq" href="javascript:;">取消</a>
+          </div>
+        </div>
+    </div>
+
+
+      <!--<div class="popBox pmxqBox1">
+        <img src="__IMAGES__/gb.png" class="close closejp1" />
+        <h1>竞拍协议</h1>
+        <a href="javascript:;" class="closePop"></a>
+        <div class="popService pmxqBC">
+          <h2>1、若竞拍不成功,保证金自动退回；</h2>
+          <h2>2、若竞拍成功后,保证金转货款,您需支付剩余货款。</h2>
+        </div>
+      </div>-->
+
+     <!-- <div class="popBox pmxqBox2">
+        <img src="__IMAGES__/gb.png" class="close closejp2" />
+        <h1>《保证金详细规则》</h1>
+        <a href="javascript:;" class="closePop"></a>
+        <div class="popService pmxqBC">
+          <h2>1、若竞拍不成功,保证金自动退回；</h2>
+          <h2>2、若竞拍成功后,保证金转货款,您需支付剩余货款。</h2>
+        </div>
+      </div>-->
+
+      <!--<div class="popBox pmxqBox3">
+        <img src="__IMAGES__/gb.png" class="close closejp3" />
+        <h1>《使用银行卡缴纳保证金须知》</h1>
+        <a href="javascript:;" class="closePop"></a>
+        <div class="popService pmxqBC">
+          <h2>1、若竞拍不成功,保证金自动退回；</h2>
+          <h2>2、若竞拍成功后,保证金转货款,您需支付剩余货款。</h2>
+        </div>
+      </div>-->
+
+
+
+
+      <include file="Public/pmxq" />
+    </div>
+    <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+
+
+$(document).ready(function(){
+
+$(".jpxz").click(function(e){
+		    $(".pmxqBox").css({"display":"block"})
+	})
+	
+	
+$(".closejp,.pmxqBq").click(function(e){
+		    $(".pmxqBox").css({"display":"none"})
+	})
+
+
+
+    $(".jpxz1").click(function(e){
+        $(".pmxqBox1").css({"display":"block"})
+    })
+
+
+    $(".closejp1").click(function(e){
+        $(".pmxqBox1").css({"display":"none"})
+    })
+
+    $(".jpxz2").click(function(e){
+        $(".pmxqBox2").css({"display":"block"})
+    })
+
+
+    $(".closejp2").click(function(e){
+        $(".pmxqBox2").css({"display":"none"})
+    })
+
+    $(".jpxz3").click(function(e){
+        $(".pmxqBox3").css({"display":"block"})
+    })
+
+
+    $(".closejp3").click(function(e){
+        $(".pmxqBox3").css({"display":"none"})
+    })
+	
+});
+</script>
+
+<script>
+function GetRTime(){    
+	var EndTime= "{$res['end']}";
+	var NowTime = new Date();    
+	var t =EndTime*1000 - NowTime.getTime();
+	var h=0;    
+	var m=0;    
+	var s=0;   
+	if(t>=0){      
+		d=Math.floor(t/1000/60/60/24);      
+		h=Math.floor(t/1000/60/60%24);
+		console.log(h) 
+		//h=Math.floor(t/1000/60/60);      
+		m=Math.floor(t/1000/60%60);      
+		s=Math.floor(t/1000%60);    
+	}        
+	document.getElementById("t_h").innerHTML = h<10? "0"+h : h;    
+	document.getElementById("t_m").innerHTML = m<10? "0"+m : m;    
+	document.getElementById("t_s").innerHTML = s<10? "0"+s : s;  
+}  
+setInterval(GetRTime,0);
+
+
+function tongyi() {
+    var obj = document.getElementById("inagree");
+    //var inagree = $('#inagree');
+    var i=obj.checked;
+    //console.log(i);
+    if (!obj.checked){
+        alert('请勾选同意！');
+        return false;
+    }
+    //return false;
+}
+</script>
+
+
+<script>
+$(window).load(function(){
+
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  console.log(showmagnifierWidth);
+  console.log(showmagnifierHeight);
+  
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  console.log(hiddenmagnifierWidth);
+  console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  console.log(bigmagnifierWidth);
+  console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  console.log(xiaohuangWidth);
+  console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+
+
+})
+
+$(window).resize(function(){
+  var showmagnifierimg = $('#showmagnifier>img').height();
+  console.log(showmagnifierimg);
+  $('#showmagnifier').css('height',showmagnifierimg);
+  $('#hiddenmagnifier').css('height',showmagnifierimg);
+
+  //  计算装小图盒子的宽度与高度
+  var showmagnifierWidth = $("#showmagnifier").width();
+  var showmagnifierHeight= $("#showmagnifier").height();
+  console.log(showmagnifierWidth);
+  console.log(showmagnifierHeight);
+  
+  //  计算装大图盒子的宽度与高度
+  var hiddenmagnifierWidth = $("#hiddenmagnifier").width();
+  var hiddenmagnifierHeight= $("#hiddenmagnifier").height();
+  console.log(hiddenmagnifierWidth);
+  console.log(hiddenmagnifierHeight);
+
+  //  大图片的宽度与高度
+  var bigmagnifierWidth = $('#bigmagnifier').width();
+  var bigmagnifierHeight = $('#bigmagnifier').height();
+  console.log(bigmagnifierWidth);
+  console.log(bigmagnifierHeight);
+
+
+  //  小黄快的宽度与高度
+  var xiaohuangWidth = hiddenmagnifierWidth*showmagnifierWidth/bigmagnifierWidth;
+  var xiaohuangHeight = hiddenmagnifierHeight*showmagnifierHeight/bigmagnifierHeight;
+
+  console.log(xiaohuangWidth);
+  console.log(xiaohuangHeight);
+
+  $('#smallmagnifier').css('width',xiaohuangWidth+5);
+  $('#smallmagnifier').css('height',xiaohuangHeight+5);
+});
+
+
+</script>
+<script src="__JS__/detail.js"></script>
+</html>

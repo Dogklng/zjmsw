@@ -1,0 +1,116 @@
+<include file="Public:header" />
+
+   <script type="text/javascript" src="__JS__/butAdd.js"></script> 
+<div class="ban1">
+  <div class="banner_img"> <img src="__IMAGES__/xinwen.jpg" alt="" /> </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="zhenggLcTitle">
+    <h3>{$theme['theme']}主题大赛征稿<span><if condition = "$timed gt $time['end_time']">已经结束<elseif condition = "$timed lt $time['start_time']"/>还未开始<elseif condition = "$timed gt $time['collectiontime'] and $timed elt $time['selectiontime']"/>评选中<elseif condition="$timed gt $time['selectiontime'] and $timed elt $time['end_time']"/>公布结果中<else />进行中</if>...</span></h3>
+    <div class="zggLcNav"> <a href="{:U('/Home/News/process')}">大赛流程</a> <a href="{:U('/Home/News/processDetails')}" class="zggLcNavCur">大赛详情</a>  <a href="{:U('/Home/News/works')}">在线作品</a> <a href="{:U('/Home/News/win')}">获奖作品</a><div class="zggA"> <a id="buZgga"	href="javascript:void();">我要投稿</a></div></div>
+  </div>
+  <div class="zhenggLcCon">
+    <div class="zggLcPlate">
+      <h3>参赛须知</h3>
+      {$cansai['content']|htmlspecialchars_decode|stripslashes}
+    </div>
+    <div class="zggLcPlate">
+      <h3>获奖须知</h3>
+      {$prize['content']|htmlspecialchars_decode|stripslashes}
+    </div>
+    <div class="zggLcPlate">
+      <h3>承办方</h3>
+      <ul class="zggLcUlJx">
+          <notempty name="time.contractor1">
+              <li><img src="{$time.piccon1}" /><!--__IMAGES__/user_tx.jpg-->
+                  <div class="zggLcJx">
+                      <h5>{$time.contractor1}</h5>
+                  </div>
+              </li>
+          </notempty>
+          <notempty name="time.contractor2">
+              <li><img src="{$time.piccon2}" /><!--__IMAGES__/user_tx.jpg-->
+                  <div class="zggLcJx">
+                      <h5>{$time.contractor2}</h5>
+                  </div>
+              </li>
+          </notempty>
+
+        <!-- <li><img src="__IMAGES__/user_tx.jpg" /> -->
+          <!-- <div class="zggLcJx"> -->
+            <!-- <h5>美术网</h5> -->
+          <!-- </div> -->
+        <!-- </li> -->
+      </ul>
+        <div class="zggA"> <a href="javascript:void();">我要投稿</a></div>
+		<!-- {:U('/Home/News/submission')} -->
+     </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+   $('.product-sort a').click(function(){
+      // alert($(this).parent().find('a').length)
+      $(this).parent().find('a').removeClass('active')
+      $(this).addClass('active')
+    })
+	
+</script>
+<!--  / banner切换  -->
+<script src="__JS__/swiper.min.js"></script>
+<script>	
+	$(".ss").click(function(e){
+		    $(".sskuang").css({"left":"0","opacity":"1"})  
+	});
+	
+	$(".close").click(function(e){
+		    $(".sskuang").css({"left":"-100%","opacity":"0"})  
+	});
+    
+
+$(window).scroll(function ()
+{
+
+	 if($(window).scrollTop()>=60){ 
+		 $('.header').addClass('header_fixed');
+	 }
+	 else {
+        $('.header').removeClass('header_fixed');
+        } 
+		 
+});		 
+		 
+</script>
+
+<!--  / banner切换  -->
+
+<script>
+
+$(document).ready(function() {
+
+	$(".wx").hover(function(){
+		$(".ewm1").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm1").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	$(".sj").hover(function(){
+		$(".ewm2").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm2").stop().animate({"opacity":"0"},500);
+		    
+	})
+});
+
+</script>
+</html>

@@ -1,0 +1,227 @@
+<include file="Public:head"/>
+<style>
+    .imgnav{
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .imgwrapper{
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .imgwrapper img{
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border:0;
+    }
+    .spanpd10{
+        margin:10px;
+    }
+    .wxtables.wxtables-sku.newtable{
+        width: 40%;
+        margin: 0;
+    }
+    .img-list li{
+        width: 60px;
+        height:60px;
+    }
+    textarea {
+        resize: both;
+    }
+    .cst_h3 span{font-weight: normal;}
+    #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+    .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+    .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+    #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+    #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+    #xuanze2:hover{ background:#E6E6E6; }
+    .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+    </style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<div class="container">
+  <div class="inner clearfix"> <include file="Public:left"/> 
+    <!-- end content-left -->
+    
+    <div class="content-right fl">
+      <h1 class="content-right-title">网站配置</h1>
+      <form aciton="{:U('/Admin/Goods/editGoods')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">
+      <input type="hidden" name="id" value="{$cache['id']}">
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">基本信息</h3>
+
+            <!--<div class="formitems">-->
+                <!--<label class="fi-name"><span class="colorRed">*</span>公司名称：</label>-->
+                <!--<div class="form-controls">-->
+                    <!--<input type="text" class="input gs" value="{$cache.gs}"/>-->
+                <!--</div>-->
+            <!--</div>-->
+             <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>地址：</label>
+                <div class="form-controls">
+                    <input type="text" class="input address" value="{$cache.address}"/>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>电子邮箱：</label>
+                <div class="form-controls">
+                    <input type="text" class="input email" value="{$cache.email}"/>
+                </div>
+            </div>
+             <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>买家联系方式：</label>
+                <div class="form-controls">
+                    <input type="text" class="input buy" value="{$cache.buy}"/>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>卖家联系方式：</label>
+                <div class="form-controls">
+                    <input type="text" class="input sell" value="{$cache.sell}"/>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>云推荐联系方式：</label>
+                <div class="form-controls">
+                    <input type="text" class="input yun" value="{$cache.yun}"/>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>客服电话：</label>
+                <div class="form-controls">
+                    <input type="text" class="input service" value="{$cache.service}"/>
+                </div>
+            </div>
+           
+
+        <!-- end 详情及其它 -->
+        <div class="panel-single panel-single-light mgt20 txtCenter"> 
+          <a href="{:U('Admin/Index/contact')}" class="btn">取消</a>
+          <a id="submit" class="btn btn-primary" >保存</a>
+        </div>
+      </form>
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+
+<include file="Public:foot"/>
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(function () { 
+        var percent = $('.xuanze_percent'); 
+        var progress = $('.xuanze_percent');
+        $("#xuanze").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>"); 
+        $("#xuanze").change(function(){ //选择文件 
+            $("#myupload1").ajaxSubmit({ 
+                dataType:  'json', //数据格式为json 
+                beforeSend: function() { //开始上传 
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent.html(percentVal);   
+                }, 
+                uploadProgress: function(event, position, total, percentComplete) { 
+                    var percentVal = percentComplete + '%'; //获得进度 
+                    percent.html(percentVal); //显示上传进度百分比 
+                }, 
+                success: function(data) { //成功 
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="300" ><input type="hidden" name="logo_pic" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.xuanze_showimge').html(img);
+                    progress.hide();
+                }, 
+                error:function(xhr){ //上传失败 
+                    //console.log(xhr.status)
+                } 
+            }); 
+        }); 
+    });
+    $(function () { 
+        var percent = $('.xuanze_percent1'); 
+        var progress = $('.xuanze_percent1');
+        $("#xuanze1").wrap("<form id='myupload' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>"); 
+        $("#xuanze1").change(function(){ //选择文件 
+            $("#myupload").ajaxSubmit({ 
+                dataType:  'json', //数据格式为json 
+                beforeSend: function() { //开始上传 
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent.html(percentVal);   
+                }, 
+                uploadProgress: function(event, position, total, percentComplete) { 
+                    var percentVal = percentComplete + '%'; //获得进度 
+                    percent.html(percentVal); //显示上传进度百分比 
+                }, 
+                success: function(data) { //成功 
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" width="80" ><input type="hidden" name="logo_pic1" id="pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.xuanze_showimge1').html(img);
+                    progress.hide();
+                }, 
+                error:function(xhr){ //上传失败 
+                    //console.log(xhr.status)
+                } 
+            }); 
+        }); 
+    });
+
+$("#submit").click(function (){
+    var post = {};
+//    post.gs         = $.trim($(".gs").val());
+//    post.touch        = $.trim($(".touch").val());
+    post.address        = $.trim($(".address").val());
+    post.service       = $.trim($(".service").val());
+    post.buy    = $.trim($(".buy").val());
+    post.sell    = $.trim($(".sell").val());
+    post.yun    = $.trim($(".yun").val());
+    post.email    = $.trim($(".email").val());
+//    if(!post.gs){
+//        alert("请填写公司名称");return false;
+//    }
+    if(!post.address){
+        alert("请填写公司地址");return false;
+    }
+
+    if(!post.email){
+        alert("请填写邮箱联系方式");return false;
+    }
+    var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    if(!myreg.test(post.email))
+    {
+        alert('提示请输入有效的E_mail！');
+        return false;
+    }
+//    if(!post.touch){
+//        alert("请填写联系方式");return false;
+//        alert("请填写客服电话");return false;
+//    }
+    if(!post.buy){
+        alert("请填写买家联系方式");return false;
+    }
+    if(!post.sell){
+        alert("请填写卖家联系方式");return false;
+    }
+    if(!post.yun){
+        alert("请填写云推荐联系方式");return false;
+    }
+    if(!post.service){
+        alert("请填写客服电话");return false;
+    }
+    $.post("{:U('Admin/Index/contact')}", post, function (data){
+        //console.log(data);
+        alert(data.info);
+    }, "json")
+    return false;
+})
+</script>
+<!--上传图片-end->
+
+

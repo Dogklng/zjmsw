@@ -1,0 +1,473 @@
+<include file="Public:header" />
+<style>
+  _citys {
+    display: none;
+  }
+</style>
+<link rel="stylesheet" type="text/css" href="__CSS__/laydate.css">
+<script src="__JS__/laydate.js"></script>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM">
+  <div class="login_con gmtc zlxx"> <img src="__IMAGES__/close.png" class="gmtc_gb" />
+    <h5>个人信息</h5>
+    <div class="zl_con">
+      <h4>姓名：</h4>
+      <input type="text" />
+      <h4>手机号：</h4>
+      <input type="text" />
+      <h4>租赁要求：</h4>
+      <textarea style="resize: none;"></textarea>
+      <a href="#" class="zlxxtj">提交信息</a> </div>
+  </div>
+  <div class="zlxy"> <img src="__IMAGES__/close.png" class="close zlxyclose" />
+    <h3>租赁协议</h3>
+    <div class="zlxy_text">
+      <h4> 【合同终止】 </h4>
+      <h6> 1、经双方协商可以终止本合同。 </h6>
+      <h6>2、本合同未到期需要终止时，双方办理产品和押金的相互移交手续，由提出    终止合同一方承担租金计算期内壹个月的租金作为违约金。 </h6>
+    </div>
+    <div  class="zlxy_text">
+      <h4>【违约责任】</h4>
+      <h6>1、合同到期后因甲方原因未能办理产品移交手续，超出时间部分的租金按同    期租金的双倍计算支付给乙方，但双方在15日内续约的情况除外。</h6>
+      <h6>2、合同到期后因乙方原因未能办理产品移交手续，超出时间部分乙方按同期    租金双倍赔偿给甲方，但双方在15日内续约的情况除外。 </h6>
+      <h6> 3、双方应诚实守信，任何一方违反本合同的相关规定，均应承担相应的责    任，责任的认定双方可以进行友好协商，协商不成时，可以通过法院解决。</h6>
+    </div>
+  </div>
+  <div class="buy">
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+          <div class="cp_xxjs1  col-lg-6 col-md-6 col-sm-6"> 
+            <!------cp_xxjs1_js------>
+            <div id=preview>
+              <div class=jqzoom id=spec-n1 onClick="window.open('#')"><IMG height="auto"
+                                src="__IMAGES__/img01.jpg" jqimg="__IMAGES__/img01.jpg" width="100%"> </div>
+              <div id="spec-n5">
+                <div class="control" id="spec-left"> <img src="__IMAGES__/left.gif" /> </div>
+                <div id="spec-list">
+                  <ul class=list-h>
+                    <li><img src="__IMAGES__/img01.jpg"> </li>
+                    <li><img src="__IMAGES__/img02.jpg"> </li>
+                    <li><img src="__IMAGES__/img03.jpg"> </li>
+                    <li><img src="__IMAGES__/img04.jpg"> </li>
+                  </ul>
+                </div>
+                <div class=control id=spec-right> <img src="__IMAGES__/right.gif" /> </div>
+              </div>
+            </div>
+            <!------cp_xxjs1_js------> 
+          </div>
+          <div class="col-lg-6 col-lg-md-6 col-sm-6">
+            <div class="buy_con_text" style=" float:left; width:90%;">
+              <div class="Img_buy">
+                <h2>众象不可说</h2>
+                <div class="buy_Price">
+                  <h3 class="Price-h3"> 价格：<i>￥296 </i> 天 </h3>
+                  
+                  <!--<h3 class="Price-h3">
+               市场价：￥88888
+               </h3>--> 
+                  
+                </div>
+                <div class="Img_size clear"> <span>规格：</span>
+                  <div class="Img_sizeA"> <a class="cur_buy" href="#">L|100</a> <a href="#">M|80</a> <a href="#">S|60</a> </div>
+                  <div class="clear"></div>
+                </div>
+                <div class="Img_size clear"> <span>数量：</span>
+                  <input class="numbe_i" value="1" id="txt" />
+                  <h6 class="slkz">
+                    <input class="zjsl"  type="button" onclick="add()">
+                    <input class="jssl"  type="button"  onclick="sub()">
+                    </i> </h6>
+                  <h6 class="kcsl">库存1005件 （每人限购1件）</h6>
+                  <div class="clear"></div>
+                </div>
+                <div class="Img_size clear" style=" position:relative; overflow:visible;"> <span>运费：</span>
+                  <h6 style="float:left; margin:5px 0 0 0; width:auto; line-height:30px; color:#666; font-size:14px; margin:0; display:inline-block; position:relative;"> 至
+                    <div class="xzqy" style="position:relative; display:inline-block; width:130px; padding-bottom:15px; margin-left:5px; padding-left:5px;">
+                      <iframe style="width:480px;  height:500px; position:absolute; left:0; top:-5px;   z-index:2;" allowTransparency="true" frameborder="0" scrolling="no"   width="100%" src="__XZDQ__/index.html"></iframe>
+                    </div>
+                  </h6>
+                  <h5 style="display:inline-block; color:#666; line-height:30px; margin:0; padding-left:10px; ">快递：5元</h5>
+                  <div class="clear"></div>
+                </div>
+                <div class="Img_size clear" style=" position:relative;"><span>材料：</span>布面丙烯</div>
+                <div class="Img_size clear" style=" position:relative;"><span>浏览次数：</span>259</div>
+                <div class="Img_size clear"><span>分享：</span>
+                  <div class="Like_p share_p">
+                    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>
+                    <script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script> 
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <div class="zldate laydate_body"> 租赁时间：&nbsp; &nbsp; &nbsp; &nbsp;起租日期：
+                  <input onClick="laydate()" style=" padding:0 10px; width:100px; line-height:24px;">
+                  &nbsp; &nbsp; 结束日期：
+                  <input id="demo" style=" padding:0 10px; width:100px; line-height:24px;">
+                </div>
+                <div class="qdzlxy">
+                  <input type="checkbox" class="j_checkbox" style="margin-left:0 !important;" />
+                  我同意<i class="zlxydd" style="color:#d70000; font-style:normal; cursor:pointer;">租赁签订协议</i></div>
+              </div>
+              <div class="buy_more"> <span class="more gmdd" style="background:#d70000;"><a class="bu" style=" color:#fff;">立即租赁 </a><i></i></span> <span class="more" style="background:#F77B7B;"><a href="/shopcar.html" class="bu" style=" color:#fff;">加入购物车 </a><i></i></span>
+                <div class="clear"></div>
+              </div>
+              <ul class="detail_promiseUl">
+                <li class="cn_label">服务承诺：</li>
+                <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall1.qiyipic.com/mall/20170217/97/6f/mall_58a66adb14d455172028976f_1x1.png)"></i> <span class="cn_info">正品保证</span> </li>
+                <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall4.qiyipic.com/mall/20170217/79/e2/mall_58a66b1074d57953771779e2_1x1.png)"></i> <span class="cn_info">极速发货</span> </li>
+                <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall7.qiyipic.com/mall/20170217/f8/25/mall_58a66afbd2999d6b8c42f825_1x1.png)"></i> <span class="cn_info">7天无理由</span> </li>
+                <li> <i class="cn_icon cn_iconTMBY" style="background-image:url(http://mall5.qiyipic.com/mall/20170217/9f/21/mall_58a66aed74d57953767c9f21_1x1.png)"></i> <span class="cn_info">特卖包邮</span> </li>
+              </ul>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div  class="buy_con_text2">
+          <p><span>作品简介：</span> o八那年，在三尚艺术北京空间的那次展览是我们三人第一次的合作，题为《三人同行》。当时的意图比较简单，就是曾经的同窗在经过二十多年的岁月后，一起做个呈现，是偶然念头下的一段因缘。当时就说好要再同行的，如果说那时只是心系艺术的话，现在却是在感悟艺术与各自生命的关系；感悟艺术创作的意义和对生命的态度，而不仅仅局限于对艺术本身的语言探索。 </p>
+          <div class="more_text" style="display:none;">
+            <p> o八那年，在三尚艺术北京空间的那次展览是我们三人第一次的合作，题为《三人同行》。当时的意图比较简单，就是曾经的同窗在经过二十多年的岁月后，一起做个呈现，是偶然念头下的一段因缘。当时就说好要再同行的，如果说那时只是心系艺术的话，现在却是在感悟艺术与各自生命的关系；感悟艺术创作的意义和对生命的态度，而不仅仅局限于对艺术本身的语言探索。 </p>
+          </div>
+          <h3 class="ddgd" style="cursor:pointer;">查看更多</h3>
+        </div>
+      </div>
+    </div>
+    <div class="buy_sec">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="cont_main">
+            <div style="width: 100%;" id="dituContent"></div>
+            <div class="cont_title">我要评论</div>
+            <div class="row" style="margin: 0 -30px !important;">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="txt_box">
+                  <input class="sub_txt" type="text"  onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '姓名';}"  value="姓名" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="txt_box">
+                  <input class="sub_txt" type="text"  onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '邮箱';}"  value="邮箱" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="txt_box">
+                  <input class="sub_txt" type="text"  onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '电话';}"  value="电话" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="txt_box">
+                  <input class="sub_txt" type="text"  onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '传真';}"  value="传真" />
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0 30px;">
+                <textarea class="liuyankuang" onfocus="if(this.value=='请输入您的留言') {this.value='';}this.style.color='#999';" onblur="if(this.value=='') {this.value='请输入您的留言';this.style.color='#999';}" style="resize: none;">请输入您的留言</textarea>
+              </div>
+              <div class="clear"></div>
+            </div>
+            <span class="more" style=" background:#000; margin:30px auto 0 auto;"><a href="/zhuce.html" style=" color:#fff;">提交评论 </a><i></i></span> </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="biaoqian">
+            <div class="buy-label">
+              <div class="label-left">
+                <h3>标签</h3>
+                <div class="lable_one">
+                  <div class="label_cont" >
+                    <div class="left-ac">
+                      <input type="text" class="label-input">
+                      <a href="#" class="button-add">添加</a> <a href="#" class="button-label">标签库</a> </div>
+                    <div class="sec1-text"> <span class="label-sec1-text">做个记号，方便你和其他的人查找</span> <span class="label-sec1-text">可以用英文逗号分隔</span> </div>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="label-right">
+                    <p>热门标签 <span>(点击添加)</span></p>
+                    <div class="label-fenlei"> <span>人物</span> <span>风景</span><span>绿</span><span>灰</span> <span>黄</span><span>白</span><span>红</span><span>写意</span> <span>树</span> <span>写意</span> <span>树</span> </div>
+                    <div class="clear"></div>
+                    <div class="label-fenlei"> <span>动物</span><span>植物</span><span>山水</span> <span>数目</span><span>花</span><span>房屋</span><span>2017</span> <span>房屋</span><span>2017</span> </div>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      
+      <!-- 标签 -->
+      
+      <div class="nav-ft">
+        <h3>猜你喜欢</h3>
+        <div class="row">
+          <div class="buy-sec2-cont">
+            <div class="col-lg-3 col-md-3 col-sm-3"> <a href="/products.html">
+              <div class="nav-ft-ig" style="width:100%"> <img src="__IMAGES__/buy01.png" style="width:100%">
+                <div class="nav-ft-text">
+                  <div class="nav-ft-text2"> <span>恣意的泼笔</span>
+                    <p>蓝正辉</p>
+                    <h6>¥99,00</h6>
+                  </div>
+                </div>
+              </div>
+              </a> </div>
+            <div class="col-lg-3 col-md-3 col-sm-3"> <a href="/products.html">
+              <div class="nav-ft-ig" style="width:100%" > <img src="__IMAGES__/buy02.png" style="width:100%">
+                <div class="nav-ft-text">
+                  <div class="nav-ft-text2"> <span> 刘阳画展 </span>
+                    <p> 刘阳 </p>
+                    <h6>¥99,00</h6>
+                  </div>
+                </div>
+              </div>
+              </a> </div>
+            <div class="col-lg-3 col-md-3 col-sm-3"> <a href="/products.html">
+              <div class="nav-ft-ig"> <img src="__IMAGES__/buy03.png" style="width:100%">
+                <div class="nav-ft-text">
+                  <div class="nav-ft-text2"> <span> 马科书法作品 </span>
+                    <p>马科 </p>
+                    <h6>¥254,00 </h6>
+                  </div>
+                </div>
+              </div>
+              </a> </div>
+            <div class="col-lg-3 col-md-3 col-sm-3"> <a href="/products.html">
+              <div class="nav-ft-ig"> <img src="__IMAGES__/buy04.png" style="width:100%">
+                <div class="nav-ft-text">
+                  <div class="nav-ft-text2" style="width:100%"> <span>陈法军雕塑作品展</span>
+                    <p> 陈法军 </p>
+                    <h6>¥199,00</h6>
+                  </div>
+                </div>
+              </div>
+              </a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script src="__JS__/swiper.min.js"></script>
+<script>
+  
+
+  
+$(document).ready(function(e) {
+    $(".buy_sec1_right_out").height($(".buy_sec1_left").height())
+	
+	var hbuy = $(".buy_dt img").height()+80;
+    $(".swiper-container1").css("height",hbuy);
+	
+	
+	$(window).load(function(e) {
+        $(".buy_sec1_right_out").height($(".buy_sec1_left").height())
+    });
+	
+	
+	
+	 
+	
+	
+	  var mySwiper1 = new Swiper('.swiper-container1',{
+    grabCursor: true,
+	autoplay:5000, 
+	spaceBetween: 0,
+	slidesPerGroup : 1,//设置几个一切换
+	autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+  })
+  $('.arrow-left1').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipePrev()
+	})
+	$('.arrow-right1').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipeNext()
+	})
+  
+  $('.buy_xt li').eq(0).hover(function(){
+mySwiper1.swipeTo(0, 1000, false);
+})
+$('.buy_xt li').eq(1).hover(function(){
+mySwiper1.swipeTo(1, 1000, false);
+})
+$('.buy_xt li').eq(2).hover(function(){
+mySwiper1.swipeTo(2, 1000, false);
+})
+$('.buy_xt li').eq(3).hover(function(){
+mySwiper1.swipeTo(3, 1000, false);
+})
+  
+
+$(".buy2_left ul li").click(function(e) {
+	//$(this).addClass("active").siblings().removeClass("active");
+    var ind=$(this).index();
+	var scrollnum=$(".buy3_sec").eq(ind).offset().top-140;
+	$('body,html').animate({ scrollTop: scrollnum }, 200);
+});
+var scro_to=0;
+
+$(window).scroll(function(e) {
+	var scrolltop=$(window).scrollTop();
+	
+	var buy3_num=$(".buy3_sec").length;
+	for(i=0;i<buy3_num;i++){
+		if(scrolltop>$(".buy3_sec").eq(i).offset().top-160){
+			scro_to=i;
+		}
+	}
+	$(".buy2_left ul li").eq(scro_to).addClass("active").siblings().removeClass("active");
+	
+	
+	
+	
+    if(scrolltop>$(".buy_sec2").offset().top-60){
+		$(".buy_sec2_in").css({"position":"fixed","top":"60px","left":"0"})
+	}else{
+		$(".buy_sec2_in").css({"position":"absolute","top":"0"})
+	}
+});
+
+
+});
+ 
+	
+	$(function(){
+
+       $('.zpjs').click(function(){
+                var h=$('.buy_con_Tab1').offset().top-230;
+                $('body,html').animate({scrollTop:h},2000)
+            })
+			
+		$('.wypl').click(function(){
+                var h=$('.cont_main').offset().top;
+                $('body,html').animate({scrollTop:h},2000)
+            })
+			
+		$('.tjbq').click(function(){
+                var h=$('.biaoqian').offset().top;
+                $('body,html').animate({scrollTop:h},2000)
+            })
+       
+    })
+	
+ 
+  </script>
+
+<!------cp_xxjs1_js------>
+<SCRIPT src="__JS__/jquery-1.2.6.pack.js" type=text/javascript></SCRIPT>
+<SCRIPT src="__JS__/base.js" type=text/javascript></SCRIPT>
+<SCRIPT type=text/javascript>
+	$(function(){			
+	   $(".jqzoom").jqueryzoom({
+			xzoom:420,
+			yzoom:400,
+			offset:10,
+			position:"right",
+			preload:1,
+			lens:1
+		});
+		$("#spec-list").jdMarquee({
+			deriction:"left",
+			width:420,
+			height:70,
+			step:2,
+			speed:4,
+			delay:10,
+			control:true,
+			_front:"#spec-right",
+			_back:"#spec-left"
+		});
+		$("#spec-list img").bind("mouseover",function(){
+			var src=$(this).attr("src");
+			$("#spec-n1 img").eq(0).attr({
+				src:src.replace("\/n5\/","\/n1\/"),
+				jqimg:src.replace("\/n5\/","\/n0\/")
+			});
+			$(this).css({
+				"border":"2px solid #6d79df",
+				"padding":"1px"
+			});
+		}).bind("mouseout",function(){
+			$(this).css({
+				"border":"1px solid #ccc",
+				"padding":"2px"
+			});
+		});				
+	})
+	</SCRIPT>
+<SCRIPT src="__JS__/lib.js" type=text/javascript></SCRIPT>
+<SCRIPT src="__JS__/163css.js" type=text/javascript></SCRIPT>
+<!------cp_xxjs1_js------>
+
+<script>
+  
+  	  $(document).ready(function(){
+  
+   var show = false
+	 $(".ddgd").click(function(){
+		 //$(".more_gs").slideToggle();
+		 if(show==false){
+			 $(".more_text").slideDown();
+		 	$(".ddgd").text("点击收回")
+			
+			 show=true;
+			 }else{
+				  $(".more_text").slideUp();
+				  $(".ddgd").text("查看更多+")
+				  show=false;
+				
+				 }
+        })
+	$(".ddgd").click(
+		 function(event){event.stopPropagation();}
+		)
+		
+		  
+   $('.j_checkbox').click(function(){
+	   $(this).toggleClass('j_checkbox_on')
+	   })	
+	
+
+})
+  
+  
+  </script>
+<script>
+    function add(){
+        var txt=document.getElementById("txt");
+        var a=txt.value;
+        a++;
+        txt.value=a;
+    }
+    function sub(){
+        var txt=document.getElementById("txt");
+        var a=txt.value;
+        if(a>1){
+            a--;
+            txt.value=a;
+        }else{
+            txt.value=1;
+        }
+        
+    }
+</script>
+<script>
+         ;!function(){
+           laydate({
+           elem: '#demo'
+           })
+           }();
+					
+					
+				
+ </script>
+</html>

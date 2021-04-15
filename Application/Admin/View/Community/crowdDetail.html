@@ -1,0 +1,374 @@
+<include file="Public:head"/>
+
+<style>
+        .imgnav{
+            max-height: 30px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .imgwrapper{
+            display: block;
+            width: 78px;
+            height: 78px;
+            overflow: hidden;
+        }
+        .imgwrapper img{
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border:0;
+        }
+				#l-map{height:300px;width:100%;}
+        .spanpd10{
+            margin:10px;
+        }
+        .wxtables.wxtables-sku.newtable{
+            width: 40%;
+            margin: 0;
+        }
+        .img-list li{
+            width: 60px;
+            height:60px;
+        }
+        .cst_h3 span{font-weight: normal;}
+    </style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=A607d61b18d43a1ff27abf4ac67da83c"></script>
+
+<div class="container">
+<div class="inner clearfix">
+        <include file="Public:left" />
+<!-- end content-left -->
+
+<div class="content-right fl">
+ 
+
+    <h1 class="content-right-title">查看详情</h1>
+    
+    
+<input type="hidden" id="j-isSid" value="0"><!-- 是否选择了淘宝类目 -->
+<input type="hidden" id="j-hasNorms" value="1"><!-- 淘宝类目下是否有属性 -->
+<input type="hidden" id="supplier" value="">
+
+    <!--<eq name="res.remind_type" value="0">
+<div class="panel-single panel-single-light mgt20" id="rz1">
+    <h3 class="cst_h3 mgb20">个人信息</h3>
+    <div>
+        <div class="formitems">
+            <label class="fi-name">姓名：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$res.name}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems" style="padding-top:-5px">
+            <label class="fi-name">手机号：</label>
+            <div class="form-controls" style="padding-top:-5px">{$res.tel}<span class="fi-help-text"></span></div>
+        </div>
+
+        <div class="formitems">
+            <label class="fi-name">身份证号：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$res.f_card}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">地址：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$res.s_province}{$res.s_city}{$res.s_county}{$res.address}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">身份证(正面)：</label>
+            <div class="form-controls" style="padding-top:-5px"><img onclick="imgs(this)" src="{$res.f_zpic}" width="50" alt=""></div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">身份证(反面)：</label>
+            <div class="form-controls" style="padding-top:-5px"><img onclick="imgs(this)" src="{$res.f_fpic}" width="50" alt=""></div>
+        </div>  
+	</div>
+</div>
+    </eq>-->
+        <div class="panel-single panel-single-light mgt20" id="'rz2">
+            <h3 class="cst_h3 mgb20">个人信息</h3>
+            <div>
+                <div class="formitems">
+                    <label class="fi-name">姓名：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        {$res.name}
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems" style="padding-top:-5px">
+                    <label class="fi-name">手机号：</label>
+                    <div class="form-controls" style="padding-top:-5px">{$res.tel}<span class="fi-help-text"></span></div>
+                </div>
+                <!--<div class="formitems">
+                    <label class="fi-name">证件类型：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        <if condition="$res2.type eq 0">二代身份证</if>
+                        <if condition="$res2.type eq 1">临时身份证</if>
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>-->
+                <div class="formitems">
+                    <label class="fi-name">身份证号：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        {$res.f_card}
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">地址：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        {$res.s_province}{$res.s_city}{$res.s_county}{$res.address}
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">身份证(正面)：</label>
+                    <div class="form-controls" style="padding-top:-5px"><img onclick="imgs(this)" src="{$res.f_zpic}" width="50" alt=""></div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">身份证(反面)：</label>
+                    <div class="form-controls" style="padding-top:-5px"><img onclick="imgs(this)" src="{$res.f_fpic}" width="50" alt=""></div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">企业名：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        {$res.qy_name}
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">单位营业执照号：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        {$res.qy_zhi}
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">单位营业执照图片：</label>
+                    <div class="form-controls" style="padding-top:-5px"><img onclick="imgs(this)" src="{$res.qy_zhipic}" width="50" alt=""></div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">组织机构代码证号：</label>
+                    <div class="form-controls" style="padding-top:-5px">
+                        {$res.zhuz_jigou}
+                        <span class="fi-help-text"></span>
+                    </div>
+                </div>
+                <div class="formitems">
+                    <label class="fi-name">组织机构代码证图片：</label>
+                    <div class="form-controls" style="padding-top:-5px"><img onclick="imgs(this)" src="{$res.zhuz_pic}" width="50" alt=""></div>
+                </div>
+            </div>
+        </div>
+
+    <!--<div class="panel-single panel-single-light mgt20" id="'rz2">
+        <h3 class="cst_h3 mgb20">入驻信息</h3>
+        <div>
+            <div class="formitems">
+                <label class="fi-name">机构名：</label>
+                <div class="form-controls" style="padding-top:-5px">
+                    {$res.org_name}
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name">口号：</label>
+                <div class="form-controls" style="padding-top:-5px">
+                    {$res.detail}
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name">logo：</label>
+                <div class="form-controls" style="padding-top:-5px"><img onclick="imgs(this)" src="{$res.logo_pic}" width="50" alt=""></div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name">机构背景图：</label>
+                <div class="form-controls" style="padding-top:-5px"><img onclick="imgs(this)" src="{$res.gallery_index}" width="50" alt=""></div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name">机构大图：</label>
+                <div class="form-controls" style="padding-top:-5px"><img onclick="imgs(this)" src="{$res.index_pic}" width="50" alt=""></div>
+            </div>
+            <div class="formitems">
+                <label class="fi-name">成立时间：</label>
+                <div class="form-controls" style="padding-top:-5px">
+                    {$res.shop_at} 年
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+            <if condition="$res.style neq 0">
+            <div class="formitems">
+                <label class="fi-name">类别：</label>
+                <div class="form-controls" style="padding-top:-5px">
+                    <switch name="res.style">
+                        <case value="1">传统</case>
+                        <case value="2">当代</case>
+                        <case value="3">其他</case>
+                    </switch>
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+            </if>
+            <div class="formitems">
+                <label class="fi-name">简介：</label>
+                <div class="form-controls" style="padding-top:-5px">
+                    {$res.desc|htmlspecialchars_decode|stripslashes}
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>-->
+
+
+<!-- end 基本信息 -->
+
+
+<!-- end 详情及其它 -->
+
+
+<div class="panel-single panel-single-light mgt20 txtCenter">
+    <if condition="$res.ruzhu_status lt 4">
+    <a href="javascript:;" class="btn btn-primary huifu" id="btn" data-id="{$res.id}">审核</a></if>
+    <a href="javascript:history.back();" class="btn">返回</a>
+
+
+</div>
+
+
+
+</div>
+<!-- end content-right -->
+</div>
+</div>
+
+
+<div class="jbox1 editfenlei disshow" style=" width:700px; left: 40%;top: 35%; height:auto; overflow: visible;">
+    <!--<span style="color: red">点击图片隐藏</span>-->
+    <img onclick="cancle()" id="img" src="" width="100%" height="100%">
+</div>
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="height:auto; overflow: visible;">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">店铺审核</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 140px;overflow: visible;">
+        <div class="formitems">
+            <input type="hidden" class="input sort" name="commentId" id="commentId" >
+            <label><span class="colorRed">*</span>内容：</label>
+
+            <div class="form-controls">
+                <textarea style="width: 200px;height: 100px;margin-left: -30px;" id="content"></textarea>
+                <span class="fi-help-text"></span>
+                <span id="spaid" style="color:red;"></span>
+            </div>
+        </div>
+
+    </div>
+    <div class="jbox-buttons">
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">通过</a>
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn " id="disagree" style="background-color: red;border-color: red; color: white">拒绝</a>
+        <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+<script type="text/JavaScript">
+    function imgs(obj) {
+        var image = $(obj).attr('src');
+        $('.jbox1').show();
+        $('#img').attr('src',image);
+    }
+
+    function cancle() {
+        $('.jbox1').hide();
+    }
+
+
+</script>
+<!-- end container -->
+
+<include file="Public:foot"/>
+<script>
+    var rz = "{$res['remind_type']}";
+    if(rz = 0){
+        $('#rz1').attr('hidden',true);
+        $('#rz2').attr('hidden',false);
+    }else{
+        $('#rz1').attr('hidden',false);
+        $('#rz2').attr('hidden',true);
+    }
+
+    $(".huifu").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(".huifu").click(function(){
+        var commentId = $(this).attr('data-id');
+        $('#commentId').val(commentId);
+        console.log(commentId);
+    })
+
+
+    $('#agree').click(function () {
+        var id1 = $('#commentId').val();
+        var content = $('#content').val();
+        $.ajax({
+            url: "{:U('/Admin/Community/communityAgree')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id: id1,
+                content:content
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+                return false;
+            } else {
+                alert(g.info);
+                return false;
+            }
+
+        })
+    })
+
+    $('#disagree').click(function () {
+        var id1 = $('#commentId').val();
+        var content = $('#content').val();
+        $.ajax({
+            url: "{:U('/Admin/Community/crowdDisagree')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id: id1,
+                content:content
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+                return false;
+            } else {
+                alert(g.info);
+                return false;
+            }
+
+        })
+    })
+</script>
+

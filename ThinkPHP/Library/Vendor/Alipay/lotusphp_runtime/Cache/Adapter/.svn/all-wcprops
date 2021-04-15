@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/lotusphp_runtime/Cache/Adapter
+END
+CacheAdapterMemcached.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/lotusphp_runtime/Cache/Adapter/CacheAdapterMemcached.php
+END
+CacheAdapterEAccelerator.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/lotusphp_runtime/Cache/Adapter/CacheAdapterEAccelerator.php
+END
+CacheAdapterPhps.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/lotusphp_runtime/Cache/Adapter/CacheAdapterPhps.php
+END
+CacheAdapterXcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/lotusphp_runtime/Cache/Adapter/CacheAdapterXcache.php
+END
+CacheAdapter.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/lotusphp_runtime/Cache/Adapter/CacheAdapter.php
+END
+CacheAdapterFile.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/lotusphp_runtime/Cache/Adapter/CacheAdapterFile.php
+END
+CacheAdapterMemcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/lotusphp_runtime/Cache/Adapter/CacheAdapterMemcache.php
+END
+CacheAdapterApc.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/Alipay/lotusphp_runtime/Cache/Adapter/CacheAdapterApc.php
+END

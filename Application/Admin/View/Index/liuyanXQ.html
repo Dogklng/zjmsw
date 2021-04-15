@@ -1,0 +1,203 @@
+<include file="Public:head"/>
+<script src="__LAYDATE__/laydate.js"></script>
+<style>
+	.imgnav{
+		max-height: 30px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.imgwrapper{
+		display: block;
+		width: 78px;
+		height: 78px;
+		overflow: hidden;
+	}
+	.imgwrapper img{
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border:0;
+	}
+	.spanpd10{
+		margin:10px;
+	}
+	.wxtables.wxtables-sku.newtable{
+		width: 40%;
+		margin: 0;
+	}
+    .input{
+        height: 30px;
+    }
+    #edui1,#edui95{
+        width: 800px !important;
+    }
+	.img-list li{
+		width: 60px;
+		height:60px;
+	}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+
+<script type="text/javascript" src="__C_JS__/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="__JEDATE__/jedate.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+    });
+
+
+</script>
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">留言详情</h1>
+      <input type="hidden" id="j-isSid" value="0">
+      <!-- 是否选择了淘宝类目 -->
+      <input type="hidden" id="j-hasNorms" value="1">
+      <!-- 淘宝类目下是否有属性 -->
+      <input type="hidden" id="supplier" value="">
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">基本信息</h3>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>姓名：</label>
+            <div class="form-controls">
+                <input name="start" style="padding:0px 5px;width:220px;height:28px;line-height:30px;" readonly value="{$res.name}"/>
+              <span class="fi-help-text error"></span> </div>
+          </div>
+
+          <div class="formitems">
+              <label class="fi-name"><span class="colorRed"></span>性别：</label>
+              <div class="form-controls">
+                <input readonly name="start" style="padding:0px 5px;width:220px;height:28px;line-height:30px;" value="<if condition='$res.sex eq 1'>男<else/>女</if>"/>
+                <span class="fi-help-text"></span>
+              </div>
+            </div>
+
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>手机：</label>
+            <div class="form-controls">
+              <input type="text" class="input" readonly style="padding:0px 5px;width:220px;height:28px;line-height:30px;" id="baoding" name="baoding" value='{$res.tel}' >
+            </div>
+          </div>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>E-mail：</label>
+            <div class="form-controls">
+              <input type="text" class="input" readonly style="padding:0px 5px;width:220px;height:28px;line-height:30px;" id="start_price" name="start_price" value='{$res.email}'>
+            </div>
+          </div>
+
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>地址：</label>
+            <div class="form-controls">
+              <input type="text" class="input" readonly style="padding:0px 5px;width:220px;height:28px;line-height:30px;" id="fudu" name="fudu" value='{$res.dizhi}'>
+            </div>
+          </div>
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>内容：</label>
+                <div class="form-controls">
+                    <textarea class="input" readonly style="width: 300px;height: 80px">{$res.text}</textarea>
+                </div>
+            </div>
+        </div>
+        <!-- end 基本信息 -->
+
+                <!-- end 详情及其它 -->
+          <div class="clearfix">
+              <ul class="cache-statistics fr">
+                  <li class="txtCenter" style="text-align:right;margin-right:10px;">
+                      <a href="javascript:history.back(-1);" data-id="2197883" class="btn btn-primary" id="j-order-close">返回</a>
+                  </li>
+              </ul>
+          </div>
+                    </div>
+                    <!-- end content-right -->
+                    </div>
+                    </div>
+                    <!-- end container -->
+
+                    <include file="Public:foot"/>
+
+
+
+
+
+
+
+                    <!--选择分类-->
+                    <script type="text/javascript">
+
+                        var type = '{$res.type}';
+                        if(type == 1){
+                            document.getElementById('qiye').style.display="block";
+
+                        }else{
+                            document.getElementById('geren').style.display="block";
+                        }
+                $(".cancle").click(function(){
+                    $(this).parent().parent('.jbox').hide();
+                    $('#albums-overlay').hide();
+                });
+
+                $("#select_class").click(function(){
+                    var clssid=$("#select_class_id  option:selected").val();
+                    var classname=$("#select_class_id option:selected" ).text();
+                    $('#class_id').val(clssid);
+                    $('#class_name').val(classname);
+                    $(this).parent().parent('.jbox').hide();
+                    $('#albums-overlay').hide();
+                });
+                $("#j-select_series_id").click(function(){
+                    $('.select-series').show();
+                    $('#albums-overlay1').show();
+                });
+                $(".cancle").click(function(){
+                    $(this).parent().parent('.jbox').hide();
+                    $('#albums-overlay1').hide();
+                });
+
+                $("#select_series").click(function(){
+                    var seriesid=$("#select_series_id  option:selected").val();
+                    var seriesname=$("#select_series_id option:selected" ).text();
+                    $('#series_id').val(seriesid);
+                    $('#series_name').val(seriesname);
+                    $(this).parent().parent('.jbox').hide();
+                    $('#albums-overlay1').hide();
+                });
+
+              </script>
+
+              <!--提交表单前验证end-->
+
+              <!--上传图片-->
+
+              <script type="text/javascript" src="__JS__/jquery.js"></script>
+              <script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

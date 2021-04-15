@@ -1,0 +1,85 @@
+<include file="Public:header" />
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  
+  <!--  / user  -->
+
+  <div class="user">
+    <div class="">
+      
+      <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="user_r8">
+            <div class="user_r">
+
+              <div class="buyerXia_sec1_li">
+                <h5><span>浙江美术网</span></h5>
+              </div>
+            <volist name="res" id="vv">
+            <div class="user_r_list user_r8_list">
+              <table>
+                <tr>
+                  <th class="user_r_frist" style="width:50%;">商品</th>
+                  <th style="width:15%;">单价</th>
+                  <th style="width:15%;">数量</th>
+                  <th style="width:20%;">操作</th>
+                </tr>
+                <tr>
+                  <td class="user_r_frist"><img src="{$vv.index_pic}" width="100"><span style=" padding-top:25px;">{$vv.goods_name}  {$vv.goods_cap}</span></td>
+                  <td>¥{$vv.price}</td>
+                  <td>1</td>
+                  <td><span class="soucang" data-id="{$vv.id}">移除</span></td>
+                </tr>
+              </table>  
+            </div>
+            </volist>
+              
+          </div>  
+          </div>
+        </div>
+      </div>
+          
+    </div>      
+  </div>
+
+  <!--  / user  -->
+   
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<script>
+  $('.soucang').click(function () {
+      var collect = $(this).attr('data-id');
+
+      dialog.showTips('确定删除吗','firm',function () {
+          $.ajax({
+              url: "{:U('Home/PersonalCenter/delCollect')}",
+              data: {id:collect},
+              type: 'post',
+              dataType: 'json',
+              success: function (content) {
+                  if (content.status == 1) {
+                      alert(content.info
+
+                      );
+                      window.location.reload();
+                  } else {
+                      alert(content.info
+
+                      );
+                  }
+              }
+          })
+      });
+
+  })
+</script>
+</body>
+</html>

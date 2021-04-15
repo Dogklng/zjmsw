@@ -1,0 +1,136 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 我的竞卖 </a> </h3>
+ <ul class="allorderUl myleaseUl">
+  <li><a href="{:U('Wxin/PersonalCenter/buyerCan/tag/buyerCan/value/2')}">参拍宝贝</a></li>
+  <li><a href="{:U('Wxin/PersonalCenter/buyerXia/tag/buyerXia/value/2')}">已拍下</a></li>
+  <li><a href="{:U('Wxin/PersonalCenter/buyerJin/tag/buyerJin/value/2')}">保证金</a></li>
+  <li class="title_first"><a href="{:U('Wxin/PersonalCenter/buyerMy/tag/buyerMy/value/2')}">我的提醒</a></li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<div class="warp_box">
+ <div class="warpNav">
+  <a class="warpNavA" onclick="fnTabBoxSlide(this,2,1);" href="{:U('Wxin/PersonalCenter/buyerMy/tag/buyerMy/value/2')}">拍品提醒</a>
+  <a onclick="fnTabBoxSlide(this,2,2);" href="javascript:;">专场提醒</a>
+ </div>
+ <volist name="res" id="vo">
+ <div id="TabShow1" class="TabShow1">
+  <div class="all_dingdan_one">
+   <div class="allorder_topz">
+    <div class="allorder_topz_center">
+     <span class="allTime"><b>恣意的泼笔</b></span>
+     <div class="allorder_topz_right">
+      <if condition="($vo.start gt $now_time)">
+       未开始
+       <elseif condition="($vo.end gt $now_time)"/>
+       进行时
+       <else/>
+       已结束
+      </if>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <div class="allorder_kuang">
+    <div class="shop_xx_warp">
+     <div class="shop_xx_center">
+      <div class="shop_xx_left shop_xx_fd"> <a href="#"><img src="{$vo.logo_pic}" width="100%" /></a> </div>
+      <div class="shop_xx_right shop_xx_fd">
+       <p><b>{$vo.goods_name} {$vo.goods_cap}</b><!--<br />订单号： <i>1234567</i>--></p>
+       <p>当前价格：<i>¥{$vo.dangqian|default=0}</i></p>
+       <p>结束时间：<i>{$vo['end']|date="Y年m月d日",###}</i></p>
+      </div>
+      <div class="clear"></div>
+     </div>
+    </div>
+    <div class="od_button">
+     <div class="od_fukuan"><a onclick="remindDel(this)" data-id="{$vo.id}" href="javascript:;">删除</a></div>
+     <div class="clear"></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</volist>
+ <div id="TabShow2" class="TabShow2">
+  <volist name="res1" id="v">
+   <div class="all_dingdan_one">
+    <div class="allorder_topz">
+     <div class="allorder_topz_center">
+      <div class="allorder_topz_right">
+       <if condition="($v.start gt $now_time)">
+        未开始
+        <elseif condition="($v.end gt $now_time)"/>
+        正在进行
+        <else/>
+        已结束
+       </if>
+      </div>
+      <div class="clear"></div>
+     </div>
+    </div>
+    <div class="allorder_kuang">
+     <div class="shop_xx_warp">
+      <div class="shop_xx_center">
+       <div class="shop_xx_left shop_xx_fd"> <a href="#"><img src="__IMAGES__/order_pro1.jpg" width="100%" /></a> </div>
+       <div class="shop_xx_right shop_xx_fd">
+        <p><b>恣意的泼笔</b><br /> <i>{$v.zcj|default=0}人出价</i></p>
+        <br />
+        <div class="myaucIMg"><img src="__IMAGES__/buyerMy_clock.png">结束时间 <span>{$v['end']|date="Y-m-d",###}</span></div>
+       </div>
+       <div class="clear"></div>
+      </div>
+     </div>
+     <div class="od_button">
+      <div class="od_fukuan"><a onclick="remindDel(this)" data-id="{$v.id}">删除</a></div>
+      <div class="clear"></div>
+     </div>
+    </div>
+   </div>
+   </volist>
+ </div>
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+<script>
+ function fnTabBoxSlide(Focus,Hide,Show){
+  $(Focus).siblings().removeClass("warpNavA");
+  $(Focus).addClass("warpNavA");
+  $(".TabHide"+Hide).hide();
+  $("#TabShow"+Show).slideDown("fast");
+ };
+ function remindDel(obj) {
+  if(!confirm('确定删除吗?')){
+   return false;
+  }
+
+  var id = $(obj).attr('data-id');
+  $.ajax({
+   url: "{:U('/Home/PersonalCenter/remindDel')}",
+   type: "post",
+   dataType: "json",
+   data: {
+    id: id
+   },
+   success:function(msg){
+    if (msg.status==1){
+     alert( msg.info);
+     location.reload();
+    }else{
+     alert( msg.info);
+    }
+   }
+  })
+
+
+ }
+</script>
+</body>
+</html>

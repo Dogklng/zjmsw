@@ -1,0 +1,116 @@
+<include file="Public:header" />
+<div class="dianpu_box">
+  <div class="SellerCon">
+    <div class="SellerTop">
+      <h3>创建店铺</h3>
+    </div>
+    <div class="SellerFlower">
+      <div class="paiuncenter_one">
+        <h3>免费入驻</h3>
+        <p class="activedp">申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+      </div>
+      <div class="SellerFlist SellerFlistCurr"> <span>3</span>
+        <h3 class="paiUncenter_h3">阅读协议</h3>
+      </div>
+      <div class="clear"></div>
+      <div class="SellerCon" style="padding:20px 0">
+      <div class="SellerTop" >
+        {$content|htmlspecialchars_decode|stripslashes}
+        <div class="SelNoticeStyle">
+          <h6>注：本人同意将身份认证材料授权浙江美术网开店使用；本人同意认证材料用于本店铺的对外披露。</h6>
+          <h4><a href="javascript:history.go(-1);" style="background:#ccc;">不同意</a> <a id="next" href='javascript:;'>同意</a></h4>
+        </div>
+      </div>
+    </div>
+     
+    </div>
+  </div>
+</div>
+
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+<script>
+  $('#next').click(function(){
+    $.ajax({
+      url: "{:U('/Wxin/Shop/selAgree')}",
+      type: "post",
+      dataType: "json",
+      data: {xieyi:1},
+      success:function(g){
+        if(g.status == 1){
+          window.location.href=g.url;
+          return false;
+        }else{
+          window.location.reload();
+          return false;
+        }
+      }
+    })
+  })
+</script>
+<script>
+
+  $('#agree').click(function () {
+
+    var personType = $(this).attr('data-id');
+    var is_depute  = $(this).attr('data-is_depute');
+
+    $.ajax({
+      url: "{:U('/Home/Shop/zl')}",
+      type: "post",
+      dataType: "json",
+      data: {
+        personType: personType,
+        is_depute:is_depute
+      }
+    }).done(function (g) {
+      if (g.status == 1) {
+        window.location.href="{:U('/Wxin/personalCenter/userinfo')}"
+      } else {
+        alert(g.info);
+      }
+
+    })
+
+
+  })
+  function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+  };
+  $('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+      $('.task_con').addClass('task_con_on');
+    },300)
+  })
+  $('.task_con>img').click(function(){
+    $('.task').stop(true).fadeOut(1000);
+    $('.task_con').removeClass('task_con_on');
+  })
+  $('.task_btn1_quxiao').click(function(){
+    $('.task').stop(true).fadeOut(1000);
+    $('.task_con').removeClass('task_con_on');
+  })
+
+  $('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+      $('.task1_con').addClass('task1_con_on');
+    },300)
+  })
+  $('.task1_con>img').click(function(){
+    $('.task1').stop(true).fadeOut(1000);
+    $('.task1_con').removeClass('task1_con_on');
+  })
+  $('.task1_btn1_quxiao').click(function(){
+    $('.task1').stop(true).fadeOut(1000);
+    $('.task1_con').removeClass('task1_con_on');
+  })
+
+</script>
+</body>
+</html>

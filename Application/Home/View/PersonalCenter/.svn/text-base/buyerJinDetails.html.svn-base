@@ -1,0 +1,104 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+          <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="buyerJinDetails">
+            <div class="buyerJinDetails_list">
+
+              <div class="buyerJinDetails_sec1">
+                  <h2>保证金流水</h2>
+                  <div class="buyerJinDetails_sec1_li">
+                    <h5>
+                      <if condition="$vo.promulgator eq 1">
+                        <span>浙江美术网</span>
+                        <else/>
+                        <span>个人</span>
+                      </if>
+                    </h5>
+                    <table>
+                      <tr>
+                        <th style="width:40%;">时间</th>
+                        <th style="width:15%;">状态</th>
+                        <th style="width:15%;">金额</th>
+                        <th style="width:15%;">渠道</th>
+                        <th style="width:15%;">操作</th>
+                      </tr>
+                      <tr>
+                        <td>{$res['order_time']|date='Y年m月d日 H:i',###}</td>
+                        <td><if condition="$res.order_status eq 0">
+                          未缴纳
+                          <elseif condition="$res.order_status eq 1"/>
+                          已缴纳
+                          <else/>
+                          已退款
+                        </if></td>
+                        <td>{$res.baoding}</td>
+                        <td><switch name="res.pay_way">
+                          <case value="1">支付宝支付</case>
+                          <case value="2">银联支付</case>
+                          <case value="3">微信支付</case>
+                          <default />未知支付方式
+                        </switch></td>
+                        <td></td>
+                      </tr>
+                    </table>  
+                  </div>  
+                </div> 
+
+                
+                <div class="buyerJinDetails_sec2">
+                  <h2>订单信息</h2>
+                  <ul class="buyerJinDetails_sec2_ul01">
+                    <li><i>拍品名称:</i>  <a href="{:U('/Home/Pm/pmxq/id')}/{$res.goods_id}">{$res.goods_name}</a></li>
+                    <li><i>保证金金额:</i> <span href="#">{$res.baoding}元</span></li>
+                    <!--<li><i>支付宝账号:</i> <span href="#">{$res.pay_hao}</span></li>-->
+                  </ul>
+                  <ul class="buyerJinDetails_sec2_ul02">
+                    <h4>美术网拍卖提醒</h4>
+                    <li>1. 使用银行卡直接交保，保证金释放后会在1-5个工作日退回到银行卡，不收费。如退回银行卡失败，请您手动提现，支付宝有2万元提现免收费额度。</li>
+                    <li>2. 先充值到余额，再缴纳保证金，释放后，会回到余额，可通过点击“原路退回”申请免费退回到银行卡。</li>
+                    <li>3. 先转入到余额宝再缴纳保证金，释放后，会回到余额宝，退回后直接转出到银行卡即可，无需手续费。</li>
+                  </ul>
+                </div>
+
+              <div><a href="javascript:history.back(-1);">返回</a></div>
+              <!--<script type="text/javascript">
+                  $('#backid').click(function(){
+                      location.href='/Home/PersonalCenter/myOrder/tag/myOrder';
+                  })
+              </script>-->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--  / user  --> 
+  
+</div>
+<!--  / warpper  -->
+<include file="Public/footer" />
+
+</body>
+<script>
+  function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+
+</script>
+</html>

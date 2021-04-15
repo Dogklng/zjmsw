@@ -1,0 +1,127 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+<link rel="stylesheet" href="__CSS__/paiUncenter.css" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="SellerCon">
+          <div class="SellerTop">
+            <h3>入驻拍卖美术网平台</h3>
+          </div>
+          <div class="SellerFlower">
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>1</span>
+                  <h3 class="paiUncenter_h3">签署协议</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>2</span>
+                  <h3 class="paiUncenter_h3 paiCH3">账号类型<br />（个人、公司）</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>3</span>
+                  <h3 class="paiUncenter_h3">选择类目</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>4</span>
+                  <h3 class="paiUncenter_h3">提交资料</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist SellerFlistCurr"> <span>5</span>
+                  <h3 class="paiUncenter_h3">审核</i></h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>6</span>
+                  <h3 class="paiUncenter_h3 paiCH3">缴纳保证金，<br />入驻成功</h3>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="pZlCon">
+              <div class="SelAudCon">
+              <div class="SelAudPic SelAudPic1">
+               <img src="__IMAGES__/SelAudPic2.png">
+              </div>
+              <div class="SelAudTxt">
+               <div class="SellerTop SelIdTop">
+                <p>亲爱的曹帅家，您的身份</p>
+                <h3>已通过认证</h3>
+               </div>
+               <h6>根据《网络交易管理办法》的规定，美术网将定期或不定期复核您的身份信息。请确保您账号绑定的身份信息真实有效，并确保账号为本人使用，请勿向他人转让、出租和借用账号。</h6>
+              </div>
+             </div>
+            </div>
+          </div>
+        </div>
+        <div class="SelAud1Info clearfix">
+          <h2>请先缴纳保证金：<a href="{:U('/Home/Auction/pay')}">立即缴纳</a></h2>
+         </div>
+        <!--<div class="SelAud1Info clearfix">
+          <h2>您可以：<a href="/auction.html">去拍卖专场看看</a></h2>
+          <div class="SelAud1Txt">
+            <h3>上次认证信息：</h3>
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="SelAud1list">
+                  <h3>姓名：*帅家</h3>
+                  <h3>证件号码：3****************Z</h3>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="SelAud1list">
+                  <h3>电话：158****1234</h3>
+                  <h3>认证通过时间：2017年5月15日20：46：00</h3>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="SelAud1list">
+                  <h3>居住地址：浙江杭州西湖区...文三路255号</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;"> <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1"> <a href="##" class="task_btn1_on">确定</a> <a href="##" class="task_btn1_quxiao">取消</a> </div>
+    </div>
+  </div>
+</div>
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;"> <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1"> <a href="##" class="task1_btn1_on">确定</a> <a href="##" class="task1_btn1_quxiao">取消</a> </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

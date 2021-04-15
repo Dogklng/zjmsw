@@ -1,0 +1,65 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 我的拍卖 </a> </h3>
+ <ul class="allorderUl myleaseUl">
+  <li><a href="{:U('Wxin/PersonalCenter/buyerCan/tag/buyerCan/value/2')}">参拍宝贝</a></li>
+  <li><a href="{:U('Wxin/PersonalCenter/buyerXia/tag/buyerXia/value/2')}">已拍下</a></li>
+  <li class="title_first"><a href="{:U('Wxin/PersonalCenter/buyerJin/tag/buyerJin/value/2')}">保证金</a></li>
+  <li><a href="{:U('Wxin/PersonalCenter/buyerMy/tag/buyerMy/value/2')}">我的提醒</a></li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<div class="warp_box">
+ <volist name="pm" id="v">
+ <div class="all_dingdan_one">
+  <div class="allorder_topz">
+   <div class="allorder_topz_center">
+    <span class="allTime"><!--参与时间：2016-09-05 18:13:59--></span>
+    <div class="allorder_topz_right">
+     <if condition="$v.order_status eq 0">
+     未缴纳
+     <elseif condition="$v.order_status eq 1"/>
+     已缴纳
+     <else/>
+     已退款
+    </if>
+    </div>
+    <div class="clear"></div>
+   </div>
+  </div>
+  <div class="allorder_kuang">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_left shop_xx_fd"> <a href="{:U('/Home/Pm/pmxq/id')}/{$v.goods_id}"><img src="{$v.logo_pic}" width="100%" /></a> </div>
+     <div class="shop_xx_right shop_xx_fd">
+      <p><b>{$v.goods_name}</b><br />订单号 <i>{$v.order_no}</i></p>
+      <p>保证金: <i>￥{$v.baoding}</i></p>
+      <h3 class="shop_xx_jg"><b>合计: </b><b>￥{$v.baoding}</b></h3>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <div class="od_button">
+    <div class="od_fukuan"><a href="{:U('/Wxin/PersonalCenter/buyerJinDetails/tag/buyerJin/baoding')}/{$v['id']}/value/2">查看保证金</a></div>
+    <if condition="$v.order_status eq 0">
+     <div class="od_fukuan"><a href="{:U('/Wxin/Pm/pmxq_bzjT/dingid')}/{$v['id']}/value/2">立即付款</a></div>
+    </if>
+
+    <div class="clear"></div>
+   </div>
+  </div>
+ </div>
+ </volist>
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+
+</body>
+</html>

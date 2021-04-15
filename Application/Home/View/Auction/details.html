@@ -1,0 +1,188 @@
+<include file="Public:header" />
+
+<div class="ban1">
+  <div class="banner_img"> <img src="__IMAGES__/paimai.jpg" alt="" />
+    <div class="banpY">
+      <div class="banpYbox">
+        <div class="banner-info banner-status-over">
+          <div class="info-top">
+            <div class="time-soon meta-time">
+              <p class="time-text">预售时间</p>
+              <p class="time-num">07月13日 10:00</p>
+            </div>
+            <div class="time-now meta-time pmp-banner-countdown" data-itemid="202363316" data-now="1500082978248" data-timetoend="-128278248" data-timetostart="-171778248" data-end="1499954700000" data-start="1499911200000">
+              <p class="time-text">距结束</p>
+              <p class="time-num J_TimeLeft"></p>
+            </div>
+            <p class="over-flag">本专场预展</p>
+          </div>
+          <div class="info-bottom"> 
+            <!-- <p class="over-amount">
+            <span class="amount-text">成交总金额</span>
+            <span class="amount-num">¥<em> 748</em></span>
+          </p>-->
+            <div class="infoM clearfix">
+              <p class="info-meta info-store"> <span class="meta-text">预售品:</span> <span class="meta-num"><em>{$count}</em>件</span> </p>
+              <p class="info-meta info-look"> <span class="meta-text">围观:</span> <span class="meta-num"><em>{$weiguan}</em>次</span> </p>
+              <p class="info-meta info-look"> <span class="meta-text">出价:</span> <span class="meta-num"><em>14</em>次</span> </p>
+            </div>
+            <div class="info-desc">
+              <p class="info-org"> <span>送拍机构:</span><a target="_blank" href="#">某某机构 &gt;</a> </p>
+              <a class="moress" target="_blank" href="#">专场更多信息 &gt;</a> </div>
+            <!--<div class="info-desc"><span class="action">短信提醒 <a href="javascript:eventRemind(1047,'sms');" class="sms icon tip"  ><img src="__IMAGES__/remind_sms.gif" /></a> </span></div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Auction preview</p>
+    <h5>预 • 售 • 前 • 展 • 示</h5>
+  </div>
+  <div class="main">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="big_auction_board">
+          <div class="big_auction_board_img"><img src="__IMAGES__/auction_64.gif" alt="" /></div>
+          <p class="status">距离开始还有</p>
+          <div class="pre_start bargain_time">
+            <div class="end_time is-countdown" time="1500278400" timezone="-8" onexpiry="refreshPage">
+              <span class="countdown-row countdown-show3">
+                <span class="countdown-section"><span class="countdown-amount hour">14</span>
+                <span class="countdown-period">时</span></span><span class="countdown-section"><span class="countdown-amount minute">22</span>
+                <span class="countdown-period">分</span></span>
+                <span class="countdown-section"><span class="countdown-amount second">6</span><span class="countdown-period">秒</span></span>
+              </span></div>
+          </div>
+
+        </div>
+        <div class="left-main">
+          <volist name="res" id="vo">
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="left-store"> <a href="{:U('/Home/Auction/buy',array('id'=>$vo['id']))}">
+              <div class="store"> <img src="{$vo.index_pic}"/>
+                <div class="store-det">
+                  <h3>{$vo.goods_name}</h3>
+                  <h4><b>当前价格</b>￥{$vo.start_price}</h4>
+                  <span class="cishu">出价次数：<b>0</b></span> <span class="cishu">围观数：<b>{$vo.count}</b></span> </div>
+                
+              </div>
+              </a> </div>
+          </div>
+          </volist>
+
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  --> 
+
+
+<!-- 关联计划弹框 -->
+<div class="relation">
+  <div class="relation_bg"></div>
+  <div class="relation_con" style="margin-top:-150px;overflow-y:auto;"> <img src="__IMAGES__/dizhi_close.png" width="24">
+    <h5>设置预售前提醒</h5>
+    <div class="relation_list">
+      <form action="relationForm">
+        <div class="reFormI reFormIdx"> <span>姓名：</span>
+          <input type="text" />
+        </div>
+        <div class="reFormI reFormIdx"> <span>手机号码：</span>
+          <input type="text" />
+        </div>
+        <div class="reFormB">
+          <input type="button" value="确认" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- 关联计划弹框 -->
+
+
+<include file="Public/footer" />
+
+</body>
+<script type="text/javascript" src="__JEDATE__/jedate.js"></script>
+<script type="text/javascript" src="__JS__/swiper.min.js"></script>
+<script>
+    $(document).ready(function(e) {
+
+        function GetRTime(){
+            var end = '{$end}';
+            var EndTime= new Date(end);
+            var NowTime = new Date();
+            var t =EndTime.getTime() - NowTime.getTime();
+            var d=0;
+            var h=0;
+            var m=0;
+            var s=0;
+            if(t>=0){
+                //d=Math.floor(t/1000/60/60/24);
+                //h=Math.floor(t/1000/60/60%24);
+                h=Math.floor(t/1000/60/60);
+                m=Math.floor(t/1000/60%60);
+                s=Math.floor(t/1000%60);
+            }
+            //document.getElementById("t_d").innerHTML = d + "天";
+            //document.getElementById("t_h").innerHTML = h<10? "0"+h : h;
+            $('.bargain_time .hour').text(h<10? "0"+h : h );
+            $(".bargain_time .minute").text(m<10? "0"+m : m );
+            $(".bargain_time .second").text(s<10? "0"+s : s ) ;
+        }
+        setInterval(GetRTime,1000);
+
+
+
+
+
+    });
+</script>
+<script>
+
+$(document).ready(function(){
+
+$(".jpxz").click(function(e){
+		    $(".popBox").css({"display":"block"})
+	})
+	
+	
+$(".closejp").click(function(e){
+		    $(".popBox").css({"display":"none"})
+	})
+	
+});
+
+$('.action  a').click(function(){
+    $('.relation').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.relation_con').addClass('relation_con_on');
+    },300)
+});
+$('.relation_con>img').click(function(){
+      $('.relation').stop(true).fadeOut(1000);
+      $('.relation_con').removeClass('relation_con_on');
+})
+ jeDate.skin('gray');
+ jeDate({
+		dateCell:"#dateinfo",
+		format:"YYYY年MM月DD日 hh:mm:ss",
+		isinitVal:true,
+		isTime:true, //isClear:false,
+		minDate:"2014-09-19 00:00:00",
+		okfun:function(val){alert(val)}
+	})
+
+</script>
+</html>

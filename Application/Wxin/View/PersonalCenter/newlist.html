@@ -1,0 +1,62 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 我的投稿 </a> </h3>
+
+</div>
+<div class="all_dingdan_one"  style="margin-top:103px">
+ <div class="allorder_topz">
+
+    <div class="shop_ddxq clearfix"> <a href="{:U('/Wxin/PersonalCenter/user_vote')}">我要投稿</a> </div>
+
+
+ </div>
+</div>
+<foreach name="res" item="vo">
+ <eq name="key" value="0">
+  <div class="all_dingdan_one"  style="margin-top:30px">
+   <else/>
+   <div class="all_dingdan_one"  style="margin-top:30px">
+ </eq>
+  <div class="allorder_topz">
+   <div class="allorder_topz_center">
+    <div class="allorder_topz_right">
+     <if condition="$vo.shenhe eq 0"><td style="color: #3bb4f2">待审核</td><elseif condition="$vo.shenhe eq 1"/><td style="color: green">审核通过</td><else/><td style="color: red">审核拒绝</td></if>
+    </div>
+    <div class="clear"></div>
+   </div>
+  </div>
+  <div class="allorder_kuang">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_left shop_xx_fd"> <a href="#"><img src="{$vo.news_pic}" width="100%" /></a> </div>
+     <div class="shop_xx_right shop_xx_fd">
+      <p><b>标题：</b>{$vo.title}</p>
+      <p>信息：<i><if condition="$vo.shenhe eq 2">{$vo.shenhe_detail}</if></i></p>
+      <h3 class="shop_xx_jg"><b>发布时间：</b><b>{$vo['addtime']|date="Y-m-d",###}</b></h3>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <div class="od_button">
+    <neq name="$vo.shenhe" value="1">
+     <div class="od_fukuan"><a href="{:U('/Wxin/PersonalCenter/edituser_vote/id')}/{$vo.id}/tag/newlist/value/8">修改</a></div>
+    </neq>
+
+    <div class="clear"></div>
+   </div>
+  </div>
+ </div>
+</foreach>
+
+<div class="ght">
+<!-- <div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+
+</body>
+</html>

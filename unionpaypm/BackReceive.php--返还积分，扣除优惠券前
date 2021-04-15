@@ -1,0 +1,107 @@
+<?php
+error_reporting(0);
+//数据库连接
+include_once './func/db.class.php';
+include_once $_SERVER ['DOCUMENT_ROOT'] . '/unionpay/func/common.php';
+include_once $_SERVER ['DOCUMENT_ROOT'] . '/unionpay/func/secureUtil.php';
+file_put_contents('./post.txt',var_export($_POST,true));
+//订单编号
+
+
+
+$order_sn=$_POST['orderId'];
+
+$total_fee=$_POST['txnAmt']/100;
+
+// 判断是否支付成功
+
+$respCode = $_POST ['respCode']; //判断respCode=00或A6即可认为交易成功
+
+if($respCode!="00" && $respCode!="A6"){
+	//  进入表示支付失败
+	
+	die();
+}
+
+
+// $order_sn="AUX20161015094107703";
+
+
+$db=new Connection();
+$query=$db->query("select * from `twotree_order_info` where order_sn='$order_sn'");
+$order=$db->get_one($query);
+
+// var_dump($query);
+// var_dump($order);
+
+//file_put_contents('sql1.txt',"select * from `twotree_order_info` where order_sn='$order_sn'");
+
+$time=time();
+//付款金额【单位元】
+
+// $total_fee=1;
+
+//更新订单信息
+$db->query("update `twotree_order_info` set is_valid=1,pay_way=4,pay_status=1,pay_time=$time,pay_money=$total_fee where order_sn='$order_sn'");
+
+
+$_SESSION['service_id'] = 4;
+
+
+$isSecure = false;
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+	$isSecure = true;
+}
+elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+	$isSecure = true;
+}
+$REQUEST_PROTOCOL = $isSecure ? 'https' : 'http';
+
+$res = file_get_contents($REQUEST_PROTOCOL.'://'.$_SERVER['HTTP_HOST'].':'.$_SERVER['SERVER_PORT'].'/index.php?g=Service&m=Order&a=autoShipment&order_sn='.$out_trade_no);
+
+//file_put_contents('sql2.txt',"update `twotree_order_info` set pay_way=3,pay_status=1,pay_time=$time,pay_money=$total_fee where order_sn='$order_sn'");
+?>
+<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>响应页面</title>
+
+<style type="text/css">
+body table tr td {
+	font-size: 14px;
+	word-wrap: break-word;
+	word-break: break-all;
+	empty-cells: show;
+}
+</style>
+</head>
+<body>
+	<table width="800px" border="1" align="center">
+		<tr>
+			<th colspan="2" align="center">响应结果</th>
+		</tr>
+	
+			<?php
+			foreach ( $_POST as $key => $val ) {
+				?>
+			<tr>
+			<td width='30%'><?php echo isset($mpi_arr[$key]) ?$mpi_arr[$key] : $key ;?></td>
+			<td><?php echo $val ;?></td>
+		</tr>
+			<?php }?>
+			<tr>
+			<td width='30%'>验证签名</td>
+			<td><?php			
+			if (isset ( $_POST ['signature'] )) {
+				
+				echo verify ( $_POST ) ? '验签成功' : '验签失败';
+				$orderId = $_POST ['orderId']; //其他字段也可用类似方式获取
+			} else {
+				echo '签名为空';
+			}
+			?></td>
+		</tr>
+	</table>
+</body>
+</html>

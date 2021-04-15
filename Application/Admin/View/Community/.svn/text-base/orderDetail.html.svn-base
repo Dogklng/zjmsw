@@ -1,0 +1,135 @@
+<include file="Public:head"/>
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">订单详情</h1>
+      <div class="panel-single panel-single-light">订单编号： <span class="order-title">{$cache.order_no}</span></div>
+
+      <ul class="wizard">
+      <li class="wizard-item <egt name="cache.pay_status" value="0">complete</egt>" >
+      <dl class="wizard-item-content">
+      <dt class="wizard-ic-step">
+      <span class="wizard-icstp-num">1</span>
+      <span class="wizard-icstp-title">待付款</span>
+      <span class="wizard-icstp-date">{$cache.order_time|date="Y-m-d H:i:s",###}</span>
+      </dt>
+      <dd class="wizard-ic-desc" style="width:100px;"></dd>
+      </dl>
+      </li>
+      <li class="wizard-item <eq name="cache.pay_status" value="1">complete</eq>">
+      <dl class="wizard-item-content">
+      <dt class="wizard-ic-step">
+      <span class="wizard-icstp-num">4</span>
+      <span class="wizard-icstp-title">已付款</span>
+      <span class="wizard-icstp-date"><neq name="cache.receive_time" value="0"><if condition="$cache.pay_status eq '0'"></if><if condition="$cache.pay_status eq '1'">{$cache.pay_time|date="Y-m-d H:i:s",###}</if></neq></span>
+      <eq name="cache.order_status" value="5">
+      </dt>
+      <dd class="wizard-ic-desc" style="width:100px;"></dd>
+      </dl>
+      </li>
+      <li class="wizard-item <eq name="cache.order_status" value="5">complete</eq>">
+      <dl class="wizard-item-content">
+      <dt class="wizard-ic-step">
+      <span class="wizard-icstp-num">5</span>
+      <span class="wizard-icstp-title">退款？</span>
+      <span class="wizard-icstp-date"></span>
+      </dt>
+       </eq>
+      </dl>
+      </li>
+
+      </ul>
+
+      <div class="chartBox mgt30">
+        <div class="cb-title">订单信息</div>
+        <div class="cb-contain">
+          <ul class="info-table mgl15">
+            <li class="long"> <span class="bold">订单状态：</span> <span> <span class="colorRed">
+              <!-- 0待接受 1 申请中 2 任务开始 3任务完成  4确认任务完成 5 取消任务 6退款 7任务结束 -->
+              <switch name="cache.pay_status">
+                <case value="0">待支付</case>
+              	<case value="1">已支付</case>
+                <default />
+                未知 </switch>
+              </span> </span>
+            </li>
+            <li class="long"> <span class="bold">用户姓名：</span> <span><a href="{:U('Admin/Member/detail',array('id'=>$cache['user_id']))}"> {$cache.user.realname}</a> </span> </li>
+            <li class="long"> <span class="bold">用户昵称：</span> <span><a href="{:U('Admin/Member/detail',array('id'=>$cache['user_id']))}"> {$cache.user.person_name}</a> </span> </li>
+            <li class="long"> <span class="bold">联系方式：</span> <span><a href="javascript:void(0);"> {$cache.user.telephone}</a> </span> </li>
+            <li class="long"> <span class="bold">支付类型：</span> <span><a href="javascript:void(0);">
+            <!-- 1支付宝支付，2银联支付，3微信支付， 4余额支付 -->
+            <switch name="cache.pay_way">
+              <case value="1">支付宝支付</case>
+              <case value="2">银联支付</case>
+              <case value="3">微信支付</case>
+              <case value="4">余额支付</case>             
+              <default />未知支付方式
+            </switch>
+            </a> </span> </li>          
+          </ul>
+        </div>
+
+        
+      </div>
+
+      <table class="wxtables mgt15">
+        <colgroup>
+        <col width="55%">
+        <col width="10%">
+        <col width="15%">
+        <col width="10%">
+        <col width="15%">
+        </colgroup>
+        <thead class="cb-title">
+          <tr>
+            <td>商品名</td>
+            <td>目标价格</td>
+          </tr>
+        </thead>
+        <tbody>
+          <foreach name="cache[goods]" item="vo">
+            <tr>
+              <td><a href="javascript:void(0)" class="block" title="">
+                <div class="table-item-img"> <img src="{$vo.logo_pic}" alt=""></a> </div>
+                <div class="table-item-info">
+                  <p>商品名称：{$vo.goods_name}</p>                  
+                   </div>
+                </a></td>
+              <td>¥{$vo.total_price}万元</td>            
+            </tr>
+            
+          </foreach>
+        </tbody>
+      </table>
+
+
+
+
+
+      <div class="clearfix">
+        <ul class="cache-statistics fr">
+          <li class="formitems" style="text-align:right">
+            <div class="form-controls" style="text-align:right;margin-right:10px;">
+            <b>订单金额： </b>¥{$cache['total_fee']}</div>
+          </li>
+          <li class="formitems" style="text-align:right">
+
+            <div class="form-controls" style="text-align:right;margin-right:10px;">
+            <b>支付金额： </b>￥{$cache.total_fee}</div>
+          </li>
+          <li class="txtCenter" style="text-align:right;margin-right:10px;">
+            <a href="javascript:;" data-id="2197883" class="btn btn-primary" style=" visibility:hidden" id="j-order-modify">修改价格</a>
+            <a href="javascript:history.back(-1);" data-id="2197883" class="btn btn-primary" id="j-order-close">返回</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- end content-right -->
+  </div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>

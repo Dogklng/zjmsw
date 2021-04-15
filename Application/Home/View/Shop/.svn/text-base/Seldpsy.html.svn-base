@@ -1,0 +1,383 @@
+<include file="Public:header"/>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  <link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+       <include file="Public:shop_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="user_r">
+          <div class="SeldpsyCon">
+            <if condition="$detail eq 6"><h3>店铺收益</h3>
+              <elseif condition="$detail eq 7"/><h3>推荐收益</h3>
+              <else />
+            </if>
+            <div class="SeldpsyUl" style="text-align:center;">
+              
+              <ul>
+                <if condition="$detail neq null">
+                <li>
+                  <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI1.png" /></div>
+                  <div class="SeldpsyUl_right">
+                    <h3><if condition="$detail eq 6">总收益<elseif condition="$detail eq 7"/>抽佣 <else />
+            </if></h3>
+                    <h6> <if condition="$detail eq 6"><b>{$summoney|default=0}</b>元<elseif condition="$detail eq 7"/><b>{$jyun|default=0}</b>元</if></h6>
+          <!--<b>{$jyun|default=0}</b>代金券-->
+                  </div>
+                </li>
+                 <else/>
+                   <li>
+                  <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI1.png" /></div>
+                  <div class="SeldpsyUl_right">
+                    <h3>收益</h3>
+                    <h6><b>{$summoney|default=0}</b>元</h6>
+                  </div>
+                </li>
+                 </if>
+                <li>
+                  <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI2.png" /></div>
+                  <div class="SeldpsyUl_right">
+                    <h3>总订单</h3>
+                    <h6><b>{$count|default=0}</b>单</h6>
+
+
+                  </div>
+                </li>
+                <li>
+                  <div class="SeldpsyUl_left"><img src="__IMAGES__/dpsyI3.png" /></div>
+                  <div class="SeldpsyUl_right">
+                    <h3>总访客</h3>
+                    <h6><b>{$artists['browser']|default=0}</b>次</h6>
+                  </div>
+                </li>
+              </ul>
+             
+            </div>
+          </div>
+          <div class="user_r" style="width:1150px;margin-left:65px;">
+           <!-- <ul class="user_all"> -->
+             <!--  <li <eq name="_GET['status']" value=""></eq> ><a href="{:U('Home/Gallery/seldpsy',array('t'=>'seldpsy1'))}">全部订单</a></li>
+              <li <eq name="_GET['detail']" value="6">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/6/status/{$status}">店铺订单</a></li> -->
+              <!-- <li <eq name="_GET['detail']" value="7">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/7/status/{$status}">推荐订单</a></li> -->
+              <!-- <li <eq name="_GET['status']" value="1">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/{$detail}/status/1">待付款</a></li>
+              <li <eq name="_GET['status']" value="2">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/{$detail}/status/2">待发货</a></li>
+              <li <eq name="_GET['status']" value="3">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/{$detail}/status/3">待收货</a></li>
+              <li <eq name="_GET['status']" value="4">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/{$detail}/status/4">待评价</a></li>
+              <li <eq name="_GET['status']" value="5">class="actived"</eq> ><a href="{:U('Home/Gallery/seldpsy')}/detail/{$detail}/status/5">已完成</a></li> -->
+           <!--  </ul> -->
+          </div>
+
+          <div class="SeldpsyCon">
+            <if condition="$order neq null"><h3>收益明细</h3>
+                <!--<div style="margin-bottom: 40px;">
+                    <span style="float: left;text-align: center;margin-top:5px;">
+                        <input type="checkbox" class="tx" id="tx1" name="tx" value="" style="width: 20px;height: 18px;"/></span>
+                <a href="javascript:void();" id="vvv" class="fukuan"
+                   style="display: block;width: 70px;height: 25px;text-align: center;float: left;">提现</a></div>-->
+            </if>
+            <volist name="order" id="vo">
+            <div class="user_r_list">
+              <h5><span>时间：{$vo.order_time|date='Y-m-d H:i:s',###}</span><span>订单号：{$vo.order_no}</span></h5>
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:40%;">商品名称&nbsp
+
+                     <!-- <if condition="$vo.tj_status eq 1">
+                        <if condition="$vo.is_handle eq 1">
+                          <elseif condition="$vo.is_handle eq 2"/><else/> <input type="checkbox" class="tx[]" name="tx[]" value="{$vo.id}"/></th>
+                        </if>
+                        <else />  
+                        <if condition="$vo.is_handshop eq 1">
+                          <elseif condition="$vo.is_handshop eq 2"/><else/> <input type="checkbox" class="tx[]" name="tx[]" value="{$vo.id}"/></th>
+                        </if>
+                    </if>-->
+
+
+      
+                     
+                    <th style="width:12%;"><if condition="$vo.is_recommend eq 1">数量<else />租赁天数</if></th>
+                    <th style="width:12%;"><if condition="$vo.is_recommend eq 1">出售价格<else />押金</if></th>
+                    <!-- <th style="width:12%;">运费</th> -->
+                    <th style="width:12%;"><if condition="$detail eq 6">收益<elseif condition="$detail eq 7"/>佣金 <else />
+            </if></th>
+                    <th style="width:12%;">状态</th>
+                    <!--<th style="width:12%;">操作</th>-->
+
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="{$vo.index_pic}" target = "_bank"><img src="{$vo.index_pic}" width="100"><span>{$vo.index_name}</span></a></td>
+                    <td>{$vo.goods_nums}</td>
+                    <td>¥{$vo.price}</td>
+                    <!-- <td>¥{$vo.express_fee}</td> -->
+                    <td>¥<if condition="$detail eq 6">{$vo.sub_tree|default='0'}<elseif condition="$detail eq 7"/>{$vo.yong_fee|default='0'} <else />
+            </if></td>
+                      <td>
+                      <switch name="vo.order_status">
+                        <case value="1">未付款</br>(付款时间24小时)</case>
+                        <case value="2">已付款待发货</case>
+                        <case value="3">已发货待收货</case>
+                        <case value="4">已签收</case>
+                        <case value="5">已完成</case>
+                        <case value="6">退款中</case>
+                        <case value="7">已关闭</case>
+                      </switch>
+                    </td>
+                 <!-- <td>
+                    <if condition="$vo.tj_status eq 1">
+                        <if condition="$vo.is_handle eq 1">提现成功
+                          <elseif condition="$vo.is_handle eq 2"/>待审核<else/><a class="fukuan" data-id="{$vo.id}" href="javascript:void();">提现</a>
+                        </if>
+                        <else />  
+                        <if condition="$vo.is_handshop eq 1">提现成功
+                          <elseif condition="$vo.is_handshop eq 2"/>待审核<else/><a class="fukuan" data-id="{$vo.id}" href="javascript:void();">提现</a>
+                        </if>
+                    </if>
+                  </td>-->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </volist>
+            <script>
+                $(function(){ 
+                   
+
+                })
+               
+            </script>
+          <!--   <div class="user_r_list">
+              <h5><span>时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:40%;">商品名称</th>
+                    <th style="width:12%;">数量</th>
+                    <th style="width:12%;">出售价格</th>
+                    <th style="width:12%;">提成收益</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="#"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>¥800.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="user_r_list">
+              <h5><span>时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:40%;">商品名称</th>
+                    <th style="width:12%;">数量</th>
+                    <th style="width:12%;">出售价格</th>
+                    <th style="width:12%;">提成收益</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="#"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>¥800.00</td>
+                  </tr>
+                </tbody>
+              </table> -->
+           <!--  </div>
+            <div class="user_r_list">
+              <h5><span>时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:40%;">商品名称</th>
+                    <th style="width:12%;">数量</th>
+                    <th style="width:12%;">出售价格</th>
+                    <th style="width:12%;">提成收益</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="#"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>¥800.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+        <!--     <div class="user_r_list">
+              <h5><span>时间：2016-09-05 18:13:59</span><span>订单号：2532742</span></h5>
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="user_r_frist" style="width:40%;">商品名称</th>
+                    <th style="width:12%;">数量</th>
+                    <th style="width:12%;">出售价格</th>
+                    <th style="width:12%;">提成收益</th>
+                  </tr>
+                  <tr>
+                    <td class="user_r_frist"><a class="user_proa" href="#"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></a></td>
+                    <td>1</td>
+                    <td>¥4,000.00</td>
+                    <td>¥800.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+      <div  class="pages">{$page}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="__CSS__/jbox-min.css">
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">选择银行卡</div>
+    <div class="task_btn">
+      <table style="line-height:30px;">
+        <tr>
+     <th><span style="color:red;">*</span>银行卡信息:</th>
+     <td> <select name="express_name" id="bankId">
+                <foreach name="res" item="vo">
+                    <option value="{$vo['id']}">{$vo['bank_no']}</option>
+                </foreach>
+            </select></td>
+    </tr>
+    <br/>
+     <!-- <tr>
+      <th> <span style="color:red;">*</span>快递单号:</th>
+      <td><input type="text" onKeyUp="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" class="input describe1" name="express_no" style="height:25px;"></td>
+      </tr> -->
+      </table>
+      <div class="task_btn1" style="margin-top: 10px;">
+        <a href="##" class="task_btn1_on" id="fahuo">确定提现</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+<input type="hidden" name="ordid" value="" id="ordid"/>
+<!--  / user  --> 
+
+<!--  / warpper  --> 
+
+<!--  / footer  -->
+<include file="Public/footer" />
+
+<!--  / footer  -->
+
+</body>
+<script type="text/javascript">
+  $(function(){
+    $('.fukuan').click(function(){
+      //console.log($(this).data('id'));
+    var ordid = $(this).data('id');
+      if(ordid == undefined){
+        //获取复选框的订单id
+        if($("input[name='tx[]']:checked").length < 1){
+          alert('没有提现订单');return false;
+        }
+        var ordid = '';
+        $("input[name='tx[]']:checked").each(function(){
+            ordid = ordid + $(this).val() + ",";
+        })
+        console.log(ordid);
+      }
+      $("#ordid").val(ordid);
+      //console.log($("#ordid").val());
+      $('.task').stop(true).fadeIn(1000);
+      setTimeout(function(){
+          $('.task_con').addClass('task_con_on');
+      },300)
+  })
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+    
+    $('#fahuo').click(function(){
+       var bid = $('#bankId').val();
+       var oid = $('#ordid').val();
+        console.log(bid,oid);
+     //dialog.showTips('是否提现','firm',function(){
+       
+        $.ajax({
+          url:'/Home/Shop/withd/',
+          type:'post',
+          data:{oid:oid,bid:bid},
+          dataType:'json',
+          success:function(g){
+              //console.log(g);return false;
+              $('.task').stop(true).fadeOut(1000);
+              $('.task_con').removeClass('task_con_on');
+              $('.wap_tanc_con').css('z-index','9999');
+              if(g.status == 1){
+                dialog.showTips(g.info,'warn',function(){
+                  window.location.reload();
+                })
+              }else{
+                alert(g.info);
+              }
+          }
+        })
+     //})
+    })
+    var txleng = $("input[name='tx[]']:checked").length;
+        var tx = $("input[name='tx[]']").length;
+        console.log(txleng,tx);
+    if(tx == 0){
+      $('#tx1').attr('disabled',true);
+      $('#vvv').removeClass('fukuan');
+      $('#vvv').attr('disabled',true);
+    }
+    if(txleng < tx){
+       $('#tx1').prop('checked',false);
+    }else{
+      $('#tx1').prop('checked',true);
+    }
+    $("input[name='tx[]']").click(function(){
+        var txleng = $("input[name='tx[]']:checked").length;
+        var tx = $("input[name='tx[]']").length;
+        console.log(txleng,tx);
+        if(txleng < tx){
+           $('#tx1').prop('checked',false);
+        }else{
+          $('#tx1').prop('checked',true);
+        }
+    })
+    
+      $('#tx1').click(function(){
+
+        
+        //var a = $('#tx').attr('checked');
+        //console.log(a);
+        //alert(a);
+        //console.log(this.checked);
+        if($(this).is(':checked')){
+          $("input[name='tx[]']").each(function(){
+              $(this).prop("checked",true);  
+          });
+        }else{
+           $("input[name='tx[]']").each(function(){
+              $(this).prop("checked",false);  
+          });
+        }
+      
+      })
+
+    
+
+
+  })
+</script>
+</html>

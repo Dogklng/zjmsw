@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+@font-face{
+	font-family:"arm";
+	src:url('font/webfont/AritaSans-Medium.eot');
+	src:url('font/webfont/AritaSans-Medium.eot?#iefix') format('embedded-opentype'),
+	url('../font/AritaSansM.woff') format('woff');
+	/*url('font/webfont/AritaSansM.ttf') format('truetype');*/
+	src:local("※"), url('../font/AritaSansM.woff') format('woff');
+}
+
+@font-face{
+	font-family:"arb";
+	src:url('font/webfont/AritaSans-SemiBold.eot');
+	src:url('font/webfont/AritaSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+	url('../font/AritaSansSB.woff') format('woff');
+	/*url('font/webfont/AritaSansSB.ttf') format('truetype');*/
+	src:local("※"), url('../font/AritaSansSB.woff') format('woff');
+}
+
+@font-face{
+	font-family:"ygm";
+	src:url('font/webfont/YoonGothicPro740.eot');
+	src:url('font/webfont/YoonGothicPro740.eot?#iefix') format('embedded-opentype'),
+	url('../font/YoonGothicPro740.woff') format('woff');
+	src:local("※"), url('../font/YoonGothicPro740.woff') format('woff');
+}
+
+@font-face{
+	font-family:"ygb";
+	src:url('font/webfont/YoonGothicPro760.eot');
+	src:url('font/webfont/YoonGothicPro760.eot?#iefix') format('embedded-opentype'),
+	url('../font/YoonGothicPro760.woff') format('woff');
+	src:local("※"), url('../font/YoonGothicPro760.woff') format('woff');
+}
+
+
+
+
+body {font-family:arm, ygm, AppleGothic, sans-serif;}
+input {font-family: arm, ygm, AppleGothic, sans-serif;}
+select, textarea, button {font-family:arm, ygm, AppleGothic, sans-serif;}
+
+

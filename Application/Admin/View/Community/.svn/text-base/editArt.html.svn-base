@@ -1,0 +1,478 @@
+<include file="Public:head"/>
+<style>
+	.imgnav{
+		max-height: 30px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.imgwrapper{
+		display: block;
+		width: 78px;
+		height: 78px;
+		overflow: hidden;
+	}
+	.imgwrapper img{
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border:0;
+	}
+	.spanpd10{
+		margin:10px;
+	}
+	.wxtables.wxtables-sku.newtable{
+		width: 40%;
+		margin: 0;
+	}
+	.img-list li{
+		width: 60px;
+		height:60px;
+	}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+	</style>
+<div class="container">
+  <div class="inner clearfix"> <include file="Public:left"/> 
+    <!-- end content-left -->
+    
+    <div class="content-right fl">
+      <h1 class="content-right-title">编辑艺术列表</h1>
+      <form aciton="{:U('/Admin/Goods/editArt')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">
+      <input type="hidden" name="id" value="{$res['id']}">
+        <!-- end 基本信息 -->
+        
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">作品信息</h3>
+          <!--<div class="formitems">-->
+            <!--<label class="fi-name"><span class="colorRed">*</span>作品名称：</label>-->
+            <!--<div class="form-controls">-->
+              <!--<input type="text" class="input xxlarge" name="title" id="title" value="{$res['title']}">-->
+              <!--<span class="fi-help-text"></span> </div>-->
+          <!--</div>-->
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>分类：</label>
+                <div class="form-controls">
+                    <select style="width: 150px;height: 30px;" name="art_cate" id="sel" onchange="fun()">
+                        <volist name="art_cate" id="v">
+                            <option value="{$v.id}" <?php if(strpos($res['art_cate'],$v['id']) !== false){
+                    echo selected;
+                  }?>>{$v.name}</option>
+                        </volist>
+                    </select>
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>学院分类：</label>
+                <div class="form-controls">
+                    <select style="width: 150px;height: 30px;" name="school_cate">
+                        <volist name="school_cate" id="vo">
+                            <option value="{$vo.id}" <?php if(strpos($res['school_cate'],$vo['id']) !== false){
+                    echo selected;
+                  }?>>{$vo.name}</option>
+                        </volist>
+                    </select>
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>人物分类：</label>
+                <div class="form-controls">
+                    <select style="width: 150px;height: 30px;" name="person_cate">
+                        <volist name="person_cate" id="vv">
+                            <option value="{$vv.id}" <?php if(strpos($res['person_cate'],$vv['id']) !== false){
+                    echo selected;
+                  }?>>{$vv.name}</option>
+                        </volist>
+                    </select>
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+
+          <!--<div class="formitems" id="detail1">-->
+            <!--<label class="fi-name"><span class="colorRed">*</span>作品描述：</label>-->
+            <!--<div class="form-controls">-->
+                <!--<textarea class="input xxlarge" name="title" id="title" style="width:420px;height: 100px;">{$res['title']}</textarea>-->
+              <!--<span class="fi-help-text"></span> </div>-->
+          <!--</div>-->
+            <!--<div class="formitems" id="time1" style="display: none">-->
+                <!--<label class="fi-name"><span class="colorRed">*</span>成立时间：</label>-->
+                <!--<div class="form-controls">-->
+                    <!--<input type="text" class="input" name="addtime" id="addtime" value="{$res['addtime']}">-->
+                    <!--<span class="fi-help-text"></span> </div>-->
+            <!--</div>-->
+          <div class="formitems" id="auth1" style="display: block">
+            <label class="fi-name"><span class="colorRed">*</span>作者：</label>
+            <div class="form-controls">
+              <input type="text" class="input" name="auth" id="auth" value="{$res['auth']}">
+              <span class="fi-help-text"></span> </div>
+          </div>
+
+            <div class="formitems" id="auth1_name" style="display: block">
+                <label class="fi-name"><span class="colorRed">*</span>作家名称：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" name="auth_name" id="auth_name" value="{$res['auth_name']}">
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+            <div class="formitems" id="detail1">
+                <label class="fi-name"><span class="colorRed">*</span>作家描述：</label>
+                <div class="form-controls">
+                    <textarea name="detail" id="detail" style="width:420px;height: 100px;">{$res.detail}</textarea>
+                    <span class="fi-help-text"></span>
+                </div>
+            </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>排序：</label>
+                <div class="form-controls">
+                    <input type="text" class="input " name="sort" id="sort" value="{$res['sort']}">
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>logo图片：</label>
+                <div class="form-controls pdt5 j-imglistPanel">
+                    <div class="xuanze_showimge1 fl mgr10">
+                        <img src="{$res['index_pic2']}" height="80">
+                    </div>
+                    <div class="btnimage fl">选择图片
+                        <input type="file"  accept="image/jpg,image/jpeg,image/png" name="index_pic2" id="xuanze1" class="file" >
+                    </div>
+                    <div class="xuanze_progress1 fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" /><span class="xuanze_percent1">80%</span>
+                    </div>
+                    <span class="fi-help-text fl lh30 mgl10">建议大小（（343*243））</span>
+                </div>
+            </div>
+
+
+         <div class="formitems"  id="img1" style="display: block">
+            <label class="fi-name"><span class="colorRed">*</span>作品展示图片(大)：</label>
+            <div class="form-controls pdt5 j-imglistPanel">
+              <div class="baotuan_showimge fl mgr10">
+                <img src="{$res['detail_img']}" height="80">
+              </div>
+                <div class="btnimage fl">选择图片
+                    <input type="file"  accept="image/jpg,image/jpeg,image/png" name="detail_img" id="baotuan" class="file" >
+                </div>
+                <div class="baotuan_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" /><span class="baotuan_percent">80%</span></div>
+                <span class="fi-help-text fl lh30 mgl10">建议大小（宽622px高475px）</span>
+            </div>
+        </div>
+
+		</div>
+        
+        <div class="panel-single panel-single-light mgt20 j-showinhyd" style="display: block;">
+          <h3 class="cst_h3 mgb20">详情</h3>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>作品简介：</label>
+            <div class="form-controls"> 
+              <script id="editor" name="content" type="text/plain" style="width:200px;height:500px;">
+                {$res['content']|htmlspecialchars_decode|stripslashes}
+              </script>
+            </div>
+          </div>
+        </div>
+
+        <!-- end 详情及其它 -->
+        <div class="panel-single panel-single-light mgt20 txtCenter"> 
+          <a href="{:U('Admin/Community/art')}" class="btn">取消</a>
+          <input type="submit" class="btn btn-primary" value="保存">
+        </div>
+      </form>
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+<!-- end container --> 
+
+<include file="Public:foot"/>
+
+
+
+
+
+
+<!--选择分类--> 
+<script type="text/javascript">
+
+  $('input[name=buylimit]').click(function(){
+    if($(this).val()==3){
+      $('input[name=recommend_g]').eq(1).attr('checked','checked');
+      $('input[name=recommend_g]').eq(0).attr('disabled','disabled');
+    }else{
+      $('input[name=recommend_g]').eq(0).removeAttr('disabled','disabled');
+    }
+  });
+
+  $("#j-select_category_id").click(function(){
+      $('.select-fenlei').show();
+      $('#albums-overlay').show();
+  });
+  $(".cancle").click(function(){
+      $(this).parent().parent('.jbox').hide();
+      $('#albums-overlay').hide();
+  });
+
+  $("#select_class").click(function(){
+      var clssid=$("#select_class_id  option:selected").val();
+      var classname=$("#select_class_id option:selected" ).text();
+     $('#class_id').val(clssid);
+     $('#class_name').val(classname);
+      $(this).parent().parent('.jbox').hide();
+      $('#albums-overlay').hide();
+  });
+			
+			
+	UE.getEditor('editor',{
+		toolbars: [
+	
+      ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+	
+		],
+	
+		autoHeightEnabled: false,
+		autoFloatEnabled: true,
+		elementPathEnabled:false,
+		enableContextMenu:false,
+		wordCount:false,
+	
+	});
+
+        $("#j-select_series_id").click(function(){
+            $('.select-series').show();
+            $('#albums-overlay1').show();
+        });
+        $(".cancle").click(function(){
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay1').hide();
+        });
+
+        $("#select_series").click(function(){
+            var seriesid=$("#select_series_id  option:selected").val();
+            var seriesname=$("#select_series_id option:selected" ).text();
+            $('#series_id').val(seriesid);
+            $('#series_name').val(seriesname);
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay1').hide();
+        });
+
+
+</script> 
+
+<script type="text/javascript">
+    function toVaild(){
+//        var title = $('#title').val();
+//        var detail = $('#detail').val();
+//        var addtime = $('#addtime').val();
+//        var auth = $('#auth').val();
+//
+//        if(title==""){
+//            alert('标题不能为空');
+//            return false;
+//        }
+//
+//        if(detail == ''){
+//            alert('描述不能为空');
+//            return false;
+//        }
+//        if(addtime == ''){
+//            alert('日期不能为空');
+//            return false;
+//        }
+//        if(auth == ''){
+//            alert('作者不能为空');
+//            return false;
+//        }
+
+    }
+</script> 
+<!--提交表单前验证end--> 
+
+<!--上传图片--> 
+
+<script type="text/javascript" src="__JS__/jquery.js"></script> 
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script> 
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+
+	$(function () { 
+		var percent = $('.xuanze_percent'); 
+		var progress = $('.xuanze_percent');
+		$("#xuanze").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>"); 
+		$("#xuanze").change(function(){ //选择文件 
+			$("#myupload1").ajaxSubmit({ 
+				dataType:  'json', //数据格式为json 
+				beforeSend: function() { //开始上传 
+					progress.show(); //显示进度条
+					var percentVal = '0%';
+					percent.html(percentVal);	
+				}, 
+				uploadProgress: function(event, position, total, percentComplete) { 
+					var percentVal = percentComplete + '%'; //获得进度 
+					percent.html(percentVal); //显示上传进度百分比 
+				}, 
+				success: function(data) { //成功 
+					var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="index_pic1" id="index_pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+					$('.xuanze_showimge').html(img);
+					progress.hide();
+				}, 
+				error:function(xhr){ //上传失败 
+					//console.log(xhr.status)
+				} 
+			}); 
+		});
+
+
+        var percent1 = $('.xuanze_percent1');
+        var progress1 = $('.xuanze_percent1');
+        $("#xuanze1").wrap("<form id='myupload12' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#xuanze1").change(function(){ //选择文件
+            $("#myupload12").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress1.show(); //显示进度条
+                    var percentVal1 = '0%';
+                    percent1.html(percentVal1);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="index_pic2" id="index_pic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.xuanze_showimge1').html(img);
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+
+
+        var percent = $('.duoxuan_percent');
+		var progress = $('.duoxuan_percent');
+		$("#duoxuan").wrap("<form id='myupload' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>"); 
+		$("#duoxuan").change(function(){ //选择文件 
+			$("#myupload").ajaxSubmit({ 
+				dataType:  'json', //数据格式为json 
+				beforeSend: function() { //开始上传 
+					progress.show(); //显示进度条
+					var percentVal = '0%';
+					percent.html(percentVal);	
+				}, 
+				uploadProgress: function(event, position, total, percentComplete) { 
+					var percentVal = percentComplete + '%'; //获得进度 
+					percent.html(percentVal); //显示上传进度百分比 
+				}, 
+				success: function(data) { //成功 
+					var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80"  class="mgr10 mgt10 " onclick="delImg(this)"><input type="hidden" name="pic1[]" id="pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+					console.log(img);
+					$('.duoxuan_showimge').append(img);
+					progress.hide();
+				}, 
+				error:function(xhr){ //上传失败 
+					//console.log(xhr.status)
+				} 
+			}); 
+		}); 
+		
+		var percent = $('.baotuan_percent'); 
+    var progress = $('.baotuan_percent');
+    $("#baotuan").wrap("<form id='baotuan1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>"); 
+    $("#baotuan").change(function(){ //选择文件 
+      $("#baotuan1").ajaxSubmit({ 
+        dataType:  'json', //数据格式为json 
+        beforeSend: function() { //开始上传 
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal); 
+        }, 
+        uploadProgress: function(event, position, total, percentComplete) { 
+          var percentVal = percentComplete + '%'; //获得进度 
+          percent.html(percentVal); //显示上传进度百分比 
+        }, 
+        success: function(data) { //成功 
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="detail_img" id="detail_img" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.baotuan_showimge').html(img);
+          progress.hide();
+        }, 
+        error:function(xhr){ //上传失败 
+          //console.log(xhr.status)
+        } 
+      }); 
+    }); 
+		
+	}); 
+    function add_re(r){
+        $('#restriction'+r).show();
+        }
+    function del_re(r){
+        $('#restriction'+r).hide();
+        }
+</script>
+<script>
+        ;!function(){
+            laydate({
+                elem: '#demo1',
+                format: 'YYYY',
+            })
+
+        }();
+
+        ;!function(){
+            laydate({
+                elem: '#demo',
+                format: 'YYYY-MM-DD',
+            })
+
+        }();
+</script>
+                <script>
+                    function fun() {
+                        var art_cate = document.getElementById("sel").value;
+                        if(art_cate == 1){
+                            document.getElementById('detail1').style.display = "block";
+                            document.getElementById('time1').style.display = "block";
+                            document.getElementById('pic1').style.display = "block";
+                            document.getElementById('img1').style.display = "block";
+                        }else{
+                            document.getElementById('detail1').style.display = "none";
+                            document.getElementById('time1').style.display = "none";
+                            document.getElementById('pic1').style.display = "none";
+                            document.getElementById('img1').style.display = "none";
+                        }
+                    }
+
+                    var art_cate = document.getElementById("sel").value;
+                    if(art_cate == 1){
+                        document.getElementById('detail1').style.display = "block";
+                        document.getElementById('time1').style.display = "block";
+                        document.getElementById('pic1').style.display = "block";
+                        document.getElementById('img1').style.display = "block";
+                    }
+
+                    if(art_cate == 7){
+                        document.getElementById('auth1').style.display = "none";
+                        document.getElementById('auth1_name').style.display = "none";
+                    }else{
+                        document.getElementById('auth1').style.display = "block";
+                        document.getElementById('auth1_name').style.display = "block";
+                    }
+
+                </script>

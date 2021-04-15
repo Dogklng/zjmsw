@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="images/mswlogo.ico" />
+<title>美术网</title>
+<meta name="keywords" content="美术网" />
+<meta name="description" content="美术网" />
+<link href="css/reset.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link href="css/swiper.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="css/font-awesome.css" />
+
+<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/css1.css" />
+<link rel="stylesheet" href="css/user.css" />
+
+<script type="text/javascript" src="js/jquery.1.9.1.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+<!--[if lt IE 9]>
+  <script src="lib/plugins/html5.js"></script>
+  <script src="lib/plugins/respond.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+<!--search-->
+<div class="body_top">
+  <div class="body_top_up">
+    <div class="body_top_tit1"> <a href="index.html"><img src="images/logoM.png" /></a> </div>
+    <div class="sousuo"> <img src="images/search.png" /> </div>
+    <div class="clear"></div>
+    <div class="sousuok">
+      <input type="text" value="请输入关键词" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键词';}" />
+    </div>
+  </div>
+</div>
+<div class="dianpu_box">
+<div class="SellerCon">
+  <div class="SellerTop">
+    <h3>我要办展</h3>
+  </div>
+  <div class="SellerFlower">
+  	<div class="paiuncenter_one">
+      <h3>请填写以下报名表信息</h3>
+      <p class="activedp">请填写真实姓名，联系方式等信息，确保我们能及联系到您！</p>
+    </div>
+
+    <div class="pZlCon fbzp-pZlCon">
+      <form class="pZlConForm">
+        <div class="pZlConI clearfix">
+          <label class="pzLs">作者：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">手机：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">微信：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">邮箱：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">标题：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+            <div class="pzLs">
+              <label class="pzLs">起始时间：</label>
+            </div>
+            <div class="hlCnr">
+              <input type="text" id="dateinfo">
+            </div>
+          </div>
+          <div class="pZlConI clearfix">
+            <div class="pzLs">
+              <label class="pzLs">结束时间：</label>
+            </div>
+            <div class="hlCnr">
+              <input type="text" id="dateinfo1">
+            </div>
+          </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">办展地点：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <div class="pZlConI-div">
+            <label class="pzLs">logo图片：</label>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border"> <img src="images/SeladdPic.png">
+                <h6>点此上传</h6>
+                <input type="file">
+              </div>
+            </div>
+          </div>
+          <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+        </div>
+        <div class="pZlConI clearfix">
+          <div class="pZlConI-div">
+            <label class="pzLs">作品展示图片：</label>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border"> <img src="images/SeladdPic.png">
+                <h6>点此上传</h6>
+                <input type="file">
+              </div>
+            </div>
+          </div>
+          <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">作品简介：</label>
+          <textarea name="zpms" rows="7" cols=""></textarea>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+  <div class="SelNoticeStyle">
+    <h4><a href="javascript:;" >确定提交</a></h4>
+  </div>
+</div>
+<div class="indexbottom"></div>
+</div>
+<!--footer-->
+<div class="footer">
+  <ul class="footer_list">
+    <li class="on"> <a href="../index.html"> <img src="images/indexha.svg" width="18px" />
+      <p>首页</p>
+      </a> </li>
+    <li> <a href="../products.html"> <img src="images/product.svg" width="18px" />
+      <p>产品</p>
+      </a> </li>
+    <li class="dz_db"> <a href="../groom.html"> <img src="images/dingzhi.svg" width="18px" />
+      <p>云推荐</p>
+      </a> </li>
+    <li> <a href=""> <img src="images/cart.svg" width="18px" />
+      <p>购物车</p>
+      </a> </li>
+    <li> <a href="myorder.html"> <img src="images/my.svg" width="18px" />
+      <p>我的</p>
+      </a> </li>
+    <div class="clear"></div>
+  </ul>
+</div>
+<!--footer-->
+
+</body>
+</html>
+
+<script type="text/javascript" src="../js/jeDate/jedate.js"></script>
+<script type="text/javascript">
+	
+$(window).load(function(){
+  var widthshijin = $('#dateinfo').width();
+  $('.jedatebox').width(widthshijin-2);
+})
+jeDate({
+    dateCell:"#dateinfo",
+    format:"YYYY年MM月DD日",
+    isinitVal:true,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+
+jeDate({
+    dateCell:"#dateinfo1",
+    format:"YYYY年MM月DD日",
+    isinitVal:true,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+ })
+  
+  jeDate({
+    dateCell:"#dateinfo3",
+    format:"YYYY年MM月DD日",
+    isinitVal:true,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+  
+</script>

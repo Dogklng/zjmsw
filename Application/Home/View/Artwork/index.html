@@ -1,0 +1,261 @@
+<include file="Public:header" />
+<style>
+  .main_page {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .main_page .me {
+    background: #ff6801 !important;
+    border: 1px solid #ff6801 !important;
+    color: #fff !important;
+  }
+  .main_page span {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 30px;
+    background: #fff;
+    font-size: 14px;
+    border: 1px solid #dbdbdb;
+    color: #666;
+    padding: 0 20px;
+    cursor: pointer;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+  .col-lg-3 ,.col-md-3,.col-sm-4{
+     display:inline-block;
+	 float:none;
+  }
+  .prod_cont_img img{
+    width: 270px;
+    height:270px;
+    object-fit: contain;
+  }
+</style>
+<div class="ban1">
+  <volist name="art" id="vo">
+  <div class="banner_img"> <img src="{$vo.pic}" alt="" /> </div>
+  </volist>
+</div>
+
+<!--  / warpper  -->
+<div id="miaodian" class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Works of art</p>
+    <h5>艺 • 术 • 品</h5>
+  </div>
+  <div class="product">
+    <div class="product-sort first-product">
+      <div class="quality">
+        <p class="prod_tit"> 按艺术品分类浏览 </p><input type="hidden" id="a1">
+        <a href="javascript:;" data-id="0" class='shaixuan <if condition="$_GET['id'] eq null">active</if>'>全部</a>
+        <volist name="sel" id="v">
+        <a href="javascript:;" class='shaixuan <eq name="v.id" value="$_GET['id']">active</eq>' data-id="{$v.id}">{$v.classname}</a>
+        </volist>
+      </div>
+   <!-- <div class="product-sort">
+      <div class="quality">
+        <p class="prod_tit"> 价格 </p><input type="hidden" id="a2">
+        <a href="javascript:;" class="price active">全部</a> <a href="javascript:;" class="price" data-id="<5,000 "> &lt;5,000 RMB</a> <a href="javascript:;"class="price" data-id="5,000 RMB - 10,000 RMB ">5,000 RMB - 10,000 RMB</a> <a href="javascript:;"class="price" data-id="10,000 RMB - 50,000 RMB">10,000 RMB - 50,000 RMB</a> <a href="javascript:;"class="price" data-id="50,000 RMB - 100,000 RMB">50,000 RMB - 100,000 RMB</a> <a href="javascript:;" class="price" id=">100,000">&gt; 100,000</a>
+      </div>
+    </div>-->
+    </div>
+    <volist name="attrList" id="val">
+    <div class="product-sort shaixuan-box">
+      <div class="quality">
+        <p class="prod_tit"> {$val.classname} </p><input type="hidden" id="a3">
+        <a href="javascript:;" data-attr_id="0" class="range active">全部</a>
+        <volist name="val.child" id="vv">
+        <a href="javascript:;" data-attr_id="{$vv.id}" class="range"> {$vv.classname}</a>
+        </volist>
+      </div>
+    </div>
+    </volist>
+
+    <div class="product-sort">
+      <div class="quality is-zulin">
+        <p class="prod_tit"> 其他 </p>
+        <a href="javascript:;" data-id="2" class="is_groom active">全部</a>
+        <a href="javascript:;" class="is_groom" data-id="0">租赁</a>
+        <a href="javascript:;" class="is_groom" data-id="1">购买</a> </div>
+    </div>
+    <section class="prod_show">
+      <div class="prod_show_nav">
+        <div class="row">
+          <div id="goodlist" class="prod_show_nav_con">
+            <volist name="res" id="vo">
+              <div class='col-lg-3 col-md-3 col-sm-4'>
+                <div class="prod_cont">
+                  <p class="prod_cont_img"><a target="_blank" href="{:U('/Home/Products/buy',array('id'=>$vo['id']))}"><img src="{$vo.index_pic}"></a></p>
+                  <div class="prod_cont_text">
+                    <h4><span><i class="left"></i>{$vo.goods_name}<i class="right"></i></span></h4>
+                    <h3 class="Price-h3"><span class="login"><a href="{:U('Home/User/login')}" >登录</a>可查看价格</span><i class="price">￥</i>
+                      <span class="price" style="font-size: 24px !important;color:#f70000!important">
+                        <eq name="vo.is_groom" value="1">
+                          {$vo.price}
+                          <else/>
+                          {$vo.zujin}/天
+                        </eq>
+                      </span>
+                    </h3>
+                    <!--<p class="small_cont">
+                      <if condition="$vo.is_groom eq 1"><a href="javascript:;">可推荐</a></if>
+                      <if condition="$vo.is_groom eq 0"><a href="javascript:;">可租赁</a></if>
+                    <div class="clear"></div>
+                    </p>-->
+                    <a href="{:U('/Home/Products/buy',array('id'=>$vo['id']))}"><div class="htx">查看详情</div></a>
+                  </div>
+                </div>
+              </div>
+            </volist>
+          </div>
+        </div>
+      </div>
+
+      <div class="main_page">
+        {$page}
+      </div>
+    </section>
+  </div>
+  <div class="top">
+    <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a>
+  </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<script>
+    order_page();
+
+    function gotoTop(){
+        $('html,body').animate({'scrollTop':0},600); //滚回顶部的时间，越小滚的速度越快~
+    }
+
+    var member_id = '{$member_id}';
+    $('.shaixuan').click(function () {
+        var series_id = $(this).attr('data-id');
+        $('.shaixuan').removeClass('active');
+        $(this).addClass("active");
+        var attr_ids = "";
+        $('.shaixuan-box .active').each(function(){
+            attr_ids += $(this).data('attr_id')+'-';
+        });
+        var is_groom = $(".is-zulin").find('.active').data('id');
+        get_data(series_id,attr_ids,is_groom);
+    });
+    $('.is_groom').click(function () {
+        $('.is_groom').removeClass('active');
+        $(this).addClass("active");
+        var is_groom = $(this).data('id');
+        var series_id = $('.first-product').find('.active').attr('data-id');
+        var attr_ids = "";
+        $('.shaixuan-box .active').each(function(){
+            attr_ids += $(this).data('attr_id')+'-';
+        });
+        get_data(series_id,attr_ids,is_groom);
+    });
+    $('.range').click(function () {
+        $(this).parents('.product-sort').find('.range').removeClass('active');
+        $(this).addClass("active");
+        var series_id = $('.first-product').find('.active').attr('data-id');
+        var attr_ids = "";
+        $('.shaixuan-box .active').each(function(){
+            attr_ids += $(this).data('attr_id')+'-';
+        });
+        var is_groom = $(".is-zulin").find('.active').data('id');
+        get_data(series_id,attr_ids,is_groom);
+    });
+    function get_data(series_id,attr_ids,is_groom,page) {
+        if (page == undefined) {
+            page = 1;
+        }
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Home/Artwork/get_data')}",
+            data: {
+                series_id: series_id,
+                attr_ids: attr_ids,
+                is_groom:is_groom,
+                page: page,
+            },
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                    show_data(g.data);
+                } else {
+                    alert(g.info);
+                }
+            }
+        });
+    }
+    function show_data(data) {
+        var page = data.page;
+        var goods = data.goods;
+        delete data.page;
+        $(".main_page").html(page);
+        $("#goodlist").html('');
+        $.each(goods,function (i,n) {
+            if(n.is_groom == 1){
+                var name = '可推荐';
+                var price = n.price;
+            }else{
+                var name = '可租赁';
+                var price = n.zujin+'/天';
+            }
+            if(member_id !=0){
+                var dataStr = '<div class="col-lg-3 col-md-3 col-sm-4"><div class="prod_cont"><p class="prod_cont_img">' +
+                    '<a target="_blank" href="/Home/Products/buy/id/'+n.id+'">'+
+                    '<img src="'+n.index_pic+'"></a></p><div class="prod_cont_text">' +
+                    '<h4><span><i class="left"></i>'+n.goods_name+'<i class="right"></i></span></h4> '+
+                    '<h3 class="Price-h3"><i>￥</i>' +
+                    '<span class="price" style="font-size: 24px !important;color:#f70000!important">'+price+'</span></h3> ' +
+                    '<div class="htx"> <a href="/Home/Products/buy/id/'+n.id+'"> 查看详情 </a> </div> </div> </div> </div>';
+            }else{
+                var dataStr = '<div class="col-lg-3 col-md-3 col-sm-4"><div class="prod_cont"><p class="prod_cont_img">' +
+                    '<a target="_blank" href="/Home/Products/buy/id/'+n.id+'">'+
+                    '<img src="'+n.index_pic+'"></a></p><div class="prod_cont_text">' +
+                    '<h4><span><i class="left"></i>'+n.goods_name+'<i class="right"></i></span></h4> '+
+                    '<h3 class="Price-h3"><span class="login"><a href="/Home/User/login" >登录</a>可查看价格</span>' +
+                    '</h3> ' +
+                    '<div class="htx"> <a href="/Home/Products/buy/id/'+n.id+'"> 查看详情 </a> </div> </div> </div> </div>';
+            }
+
+            $("#goodlist").append(dataStr);
+        });
+        order_page();
+        gotoTop();
+    }
+
+    function order_page() {
+        var series_id = $('.first-product').find('.active').attr('data-id');
+        var attr_ids = "";
+        $('.shaixuan-box .active').each(function(){
+            attr_ids += $(this).data('attr_id')+'-';
+        });
+        var is_groom = $(".is-zulin").find('.active').data('id');
+
+        var order_page = $(".main_page").children("span[data-page]");
+        order_page.each(function () {
+            $(this).click(function () {
+                var page_id = $(this).attr('data-page');
+                get_data(series_id,attr_ids,is_groom,page_id);
+            })
+        })
+    }
+</script>
+<script>
+  if(member_id == 0){
+      $('.login').show();
+      $('.price').hide();
+  }else{
+      $('.login').hide();
+      $('.price').show();
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<include file="Public:head"/>
+<style>
+    .imgnav{
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .imgwrapper{
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .imgwrapper img{
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border:0;
+    }
+    .spanpd10{
+        margin:10px;
+    }
+    .wxtables.wxtables-sku.newtable{
+        width: 40%;
+        margin: 0;
+    }
+    .img-list li{
+        width: 60px;
+        height:60px;
+    }
+    textarea {
+        resize: both;
+    }
+    .cst_h3 span{font-weight: normal;}
+    #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+    .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+    .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+    #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+    #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+    #xuanze2:hover{ background:#E6E6E6; }
+    .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+<script type="text/javascript" src="__JS__/datepicker/WdatePicker.js"></script>
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">积分兑换比例</h1>
+            <form aciton="{:U('/Admin/Integral/integralMoney')}" enctype="multipart/form-data" method="post"  onsubmit="return toVaild()">
+                <div class="panel-single panel-single-light mgt20">
+                    <h3 class="cst_h3 mgb20">积分兑换比例</h3>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>兑换比例：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input gs" name="proportion" value="{$info.proportion}" onkeyup='num(this)'/>%
+                        </div>
+                    </div>
+                    <!-- end 详情及其它 -->
+                    <div class="panel-single panel-single-light mgt20 txtCenter">
+                        <a href="{:U('Admin/Integral/integralMoney')}" class="btn">取消</a>
+                        <input type="submit" class="btn btn-primary" value="保存">
+                    </div>
+            </form>
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var toVaild=function(){
+             var proportion=$("input[name='proportion']").val();
+             if(!proportion){
+                alert('请填写兑换比例');return false;
+            }
+        }
+    });
+
+
+
+
+</script>
+
+<script>
+function num(obj){
+  obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+  obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+  obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+  obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+  obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+}
+</script>
+

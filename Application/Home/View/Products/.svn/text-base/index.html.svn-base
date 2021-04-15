@@ -1,0 +1,199 @@
+<include file="Public:header" />
+<style>
+  .main_page {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .main_page .me {
+    background: #ff6801 !important;
+    border: 1px solid #ff6801 !important;
+    color: #fff !important;
+  }
+  .main_page span {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 30px;
+    background: #fff;
+    font-size: 14px;
+    border: 1px solid #dbdbdb;
+    color: #666;
+    padding: 0 20px;
+    cursor: pointer;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
+  }
+</style>
+<div class="ban1">
+  <div class="banner_img">
+    <volist name="res" id="vo">
+    <img src="{$vo.pic}" alt="" />
+    </volist>
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  
+    <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Creative shop</p>
+    <h5>创 • 意 • 商 • 店</h5>
+  </div>
+  
+  
+  <div class="product">
+    <div class="product-sort first-product">
+      <div class="quality">
+        <p class="prod_tit"> 按艺术品分类浏览 </p><input type="hidden" id="a1">
+        <a href="javascript:;" data-id="0" class="shaixuan <if condition="$_GET['id'] eq null">active</if>">全部</a>
+        <volist name="sel" id="v">
+          <a href="javascript:;" class='shaixuan <eq name="v.id" value="$_GET['id']">active</eq>' data-id="{$v.id}">{$v.classname}</a>
+        </volist>
+      </div>
+    </div>
+    <volist name="attrList" id="val">
+      <div class="product-sort shaixuan-box">
+        <div class="quality">
+          <p class="prod_tit"> {$val.classname} </p><input type="hidden" id="a3">
+          <a href="javascript:;" data-attr_id="0" class="range active">全部</a>
+          <volist name="val.child" id="vv">
+            <a href="javascript:;" data-attr_id="{$vv.id}" class="range"> {$vv.classname}</a>
+          </volist>
+        </div>
+      </div>
+    </volist>
+
+  <section class="prod_show">
+    <div class="prod_show_nav">
+      <div class="row">
+
+      	<div class="prod_show_nav_con" id="goodlist">
+          <volist name="rews" id="s">
+
+            <div class="col-lg-3 col-md-3 col-sm-4">
+              <div class="prod_cont">
+
+                <a target="_blank" href="{:U('/Home/Products/products_dot',array('id'=>$s['id']))}">
+                  <p class="prod_cont_img"><img src="{$s.index_pic}"></p>
+
+                  <div class="prod_cont_text">
+                    <h4><span><i class="left"></i>{$s.goods_name}<i class="right"></i></span></h4>
+                    <p class="small_cont"  style="font-size: 24px !important;color:#f70000!important;">￥{$s.price}</p>
+                    <div class="htx">
+                      <span href="{:U('/Home/Products/products_dot',array('id'=>$s['id']))}"> 立即购买 </span>
+                    </div>
+                  </div>
+                </a>
+
+
+              </div>
+            </div>
+          </volist>
+
+
+        </div>
+
+      </div>
+    </div>
+    <div class="main_page">
+      {$page}
+    </div>
+  </section>
+
+  </div>
+  
+  
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div> 
+  
+
+ 
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<script>
+    order_page();
+    $('.shaixuan').click(function () {
+        var series_id = $(this).attr('data-id');
+        $('.shaixuan').removeClass('active');
+        $(this).addClass("active");
+        var attr_ids = "";
+        $('.shaixuan-box .active').each(function(){
+            attr_ids += $(this).data('attr_id')+'-';
+        });
+        get_data(series_id,attr_ids);
+    });
+    $('.range').click(function () {
+        $(this).parents('.product-sort').find('.range').removeClass('active');
+        $(this).addClass("active");
+        var series_id = $('.first-product').find('.active').attr('data-id');
+        var attr_ids = "";
+        $('.shaixuan-box .active').each(function(){
+            attr_ids += $(this).data('attr_id')+'-';
+        });
+        get_data(series_id,attr_ids);
+    });
+    function get_data(series_id,attr_ids,page) {
+        if (page == undefined) {
+            page = 1;
+        }
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Home/Products/get_data')}",
+            data: {
+                series_id: series_id,
+                attr_ids: attr_ids,
+                page: page,
+            },
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                    show_data(g.data);
+                } else {
+                    alert(g.info);
+                }
+            }
+        });
+    }
+
+        function show_data(data) {
+            var page = data.page;
+            var goods = data.goods;
+            delete data.page;
+            $(".main_page").html(page);
+            $("#goodlist").html('');
+            $.each(goods,function (i,n) {
+                var dataStr = '<div class="col-lg-3 col-md-3 col-sm-4"><div class="prod_cont"><p class="prod_cont_img">' +
+                    '<a target="_blank" href="/Home/Products/products_dot/id/'+n.id+'">'+
+                    '<img src="'+n.index_pic+'"></a></p><div class="prod_cont_text">' +
+                    '<h4><span><i class="left"></i>'+n.goods_name+'<i class="right"></i></span></h4> '+
+                    '<h3 class="Price-h3"><i>￥</i>' +
+                    '<span class="price" style="font-size: 24px !important;color:#f70000!important;">'+n.price+'</span></h3> <p class="small_cont">' +
+                    '<a href="/Home/Products/lease/id/'+n.id+'">'+name+'</a><div class="clear"></div></p>' +
+                    '<div class="htx"> <a href="/Home/Products/buy/id/'+n.id+'"> 查看详情 </a> </div> </div> </div> </div>';
+
+                $("#goodlist").append(dataStr);
+            });
+            order_page();
+    }
+    function order_page() {
+        var series_id = $('.first-product').find('.active').attr('data-id');
+        var attr_ids = "";
+        $('.shaixuan-box .active').each(function(){
+            attr_ids += $(this).data('attr_id')+'-';
+        });
+        var order_page = $(".main_page").children("span[data-page]");
+        order_page.each(function () {
+            $(this).click(function () {
+                var page_id = $(this).attr('data-page');
+                get_data(series_id,attr_ids,page_id);
+            })
+        })
+    }
+</script>
+</body>
+</html>

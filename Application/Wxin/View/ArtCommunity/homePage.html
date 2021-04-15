@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人产品主页</title>
+    <link rel="stylesheet" href="__CSS__/homePage.css">
+    <link rel="stylesheet" href="__CSS__/swiper.min.css">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="__JS__/jquery-1.10.1.min.js"></script>
+<script src="__JS__/swiper.min.js"></script>
+<style>
+#app #scFirst{
+position: relative;
+height: 100%;
+background: url($iamge) no-repeat;
+background-position: center center;
+background-size: 100% 100%;
+left: 0;
+top: 0;
+right: 0;
+bottom: 0;
+z-index: 10;
+background-attachment: scroll;
+margin-top: 48px;
+}
+#app #scFirst .firBottom .gobottom{
+    display: inline-block;
+    width: 14px;
+    height: 8px;
+    background: url('__IMAGES__/bottom.png') no-repeat;
+    background-size: 14px 8px;
+}
+#app #scScend .sign{
+    display: inline-block;
+    bottom: 0;
+    height: 20px;
+    position: relative;
+    right: 30px;
+    width: 20px;
+    top: inherit;
+    background: url('__IMAGES__/qian1.png') no-repeat;
+    background-size: cover;
+}
+#app #scScend .seName .seAdress{
+    width: 7px;
+    height: 9px;
+    display: inline-block;
+    background: url('__IMAGES__/adress.png') left top no-repeat;
+    background-size: 7px 9px;
+    margin-right: 0.2rem;
+    position: relative;
+    top: 1px;
+}
+#app #scScend .atte a{
+    width: 78px;
+    height: 30px;
+    background: url('__IMAGES__/gz.png') center no-repeat;
+    background-size: 78px 30px;
+    display: inline-block;
+}
+#app #scSeven .sehide .sehidepic .seicon{
+    width: 108px;
+    height: 108px;
+    display: inline-block;
+    background: url('__IMAGES__/shoucang.png') no-repeat;
+    background-size: 108px 108px;
+}
+</style>
+<body>
+    <include file="Public:header" />
+    <div id="app">
+        <!-- 第一屏 -->
+        <div id="scFirst" @click='screendow'>
+            <div class="firTitle">
+                <h2>周文清</h2>
+                <span>www.baidu.com/qwdqdqwd</span>
+            </div>
+            <div class="firBottom">
+                <i class="gobottom"></i>
+            </div>
+        </div>
+        <!-- 第二屏 -->
+        <div id="scScend">
+            <div class="sePic">
+                <a href="">
+                    <img src="__IMAGES__/eg1.JPG" alt="">
+                </a>
+                <span class="sign"></span>
+            </div>
+            <div class="seName">
+                <h3>周文清</h3>
+                <h4>199件作品&nbsp&nbsp11小时前来过&nbsp&nbsp<i class="seAdress"></i>杭州</h4>
+            </div>
+            <!-- 关注 -->
+            <div class="atte">
+                <a href="" @click.prevent="attePic" class="attePic"></a>
+            </div>
+            <div class="resumeBox">
+                <p>{{msg}}</p>
+                <a href="{:U('Wxin/ArtCommunity/detailPage')}">[详情]</a>
+            </div>
+        </div>
+        <!-- 第三屏 -->
+        <div id="scThree">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide selshow">作品</div>
+                    <div class="swiper-slide">出售中</div>
+                    <div class="swiper-slide">新闻</div>
+                    <div class="swiper-slide">文章</div>
+                    <div class="swiper-slide">动态</div>
+                </div>
+            </div>
+        </div>
+        <!-- 组件 -->
+        <div id="scView"></div>
+        <div class="black"></div>
+    </div>
+</body>
+
+</html>
+<!-- <script src="__JS__/homePage.js"></script> -->
+<script>
+    var artist_info = {$artist_info};
+    console.log(12);
+    console.log(artist_info);
+    new Vue({
+        el:'#app',
+        data:{
+            // 要通关请求来判断是否关注,关注true未关注false
+            tag:true,
+            msg:'湖州人 祖籍江苏太湖西山,国家一级美术师。擅长书法、中国画和雕塑,追求并探索中国现代书画艺术的创新和发展;其作品多次入展并获奖;荣获“世界书画艺术名人”等称号。'
+        },
+        methods:{
+            screendow(){
+                $('html,body').animate({scrollTop:$('#scScend').offset().top-48},500);
+            },
+            attePic(){
+                if(!this.tag){
+                    $('.attePic').css({
+                       'background':"'url('__IMAGES__/ygz.png+')center no-repeat'",'background-size':'cover'
+                    })
+                }else{
+                    $('.attePic').css({
+                        'background':"'url('__IMAGES__/ygz.png')center no-repeat'",'background-size':'cover'
+                    })
+                }
+
+            }
+        },
+    });
+
+    //作品
+const newArt = {
+  template: `<div>
+                  <div id="scFour">
+                  <div class="picList" v-for="(four,index) in fourPics" :key=index>
+                      <a :href="four.msgurl" class="forto">
+                          <span class="forPrice">￥{{four.price}}</span>
+                          <img :src="four.imgurl" alt="">
+                      </a>
+                  </div>
+                </div>
+            </div>`,
+    data(){
+        return {
+               // 后台拉取数据替换
+            fourPics:[
+                {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'},
+                {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'},
+                {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'},
+                {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'},
+                {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'},
+                {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'}
+            ]
+        }
+     
+    },
+    mounted(){
+        // 发起请求拿数据赋值
+    }
+};
+// 出售中
+const selling = { 
+  template: `<div>
+                <div id="scFour">
+                <volist ></volist>
+                    <div class="picList" v-for="(five,index) in fivePics" :key=index>
+                        <a :href="five.msgurl" class="forto">
+                            <span class="forPrice">￥{{five.price}}</span>
+                            <img :src="five.imgurl" alt="">
+                        </a>
+                    </div>
+                </div>
+             </div>`,
+   data(){
+       return {
+              // 后台拉取数据替换
+        fivePics:[
+            {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'},
+            {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'},
+            {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'},
+            {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'},
+            {msgurl:'#',price:'156161165.000',imgurl:'__IMAGES__/eg1.JPG'}
+        ]
+       }
+   } ,
+   mounted(){
+       // 发起请求拿数据赋值
+       fivePics: $res
+   }         
+};
+// 新闻
+const work = { 
+  template: `<div>
+                <div id="scFive">
+                    <div class="worklist" v-for='(fivePic,index) in fivePics' :key='index'>
+                        <a :href="fivePic.msgUrl">
+                            <img :src="fivePic.imgUrl" alt="">
+                            <h4 class="workMsg">{{fivePic.title}}</h4>
+                            <p class="workNum">{{fivePic.num}}件作品</p>
+                        </a>
+                    </div>
+                </div>
+            </div>`,
+    data(){
+        return {
+               // 后台拉取数据替换
+            fivePics:[
+                {msgUrl:'#',imgUrl:'__IMAGES__/fivepic.jpg',title:'还未整理的作品',num:'111'}
+            ]
+        }
+    }
+};
+// 文章
+const art = { 
+  template:  `<div>
+                  <div id="scSix">
+                    <div class="sixList" v-for="(six,index) in sixlist" :key='index'>
+                        <a :href="six.msgUrl">
+                            <div class="sixTitle">
+                                <h2>{{six.title}}</h2>
+                                <p>
+                                    {{six.content}}
+                                </p>
+                            </div>
+                            <img :src="six.imgUrl" alt="">
+                        </a>
+                    </div>
+                  </div>
+              </div>` ,
+    data(){
+        console.log
+        return {
+
+               // 后台拉取数据替换
+            sixlist:[
+                {
+                    msgUrl:'#',
+                    title:'长久的静',
+                    content:'长久的静坐，也会乱了人的心绪。画画的人总会有一些感叹，弄墨望云，守着自己的一方月圆。面对创作的困扰，或者激动，夜深也不能让人一下困眠。纯真和执着应该相近，都有肆意任性狂妄的感觉。画作是六年多前的作品，',
+                    imgUrl:'__IMAGES__/six1.jpg'
+                },
+                {
+                    msgUrl:'#',
+                    title:'长久的静',
+                    content:'长久的静坐，也会乱了人的心绪。画画的人总会有一些感叹，弄墨望云，守着自己的一方月圆。面对创作的困扰，或者激动，夜深也不能让人一下困眠。纯真和执着应该相近，都有肆意任性狂妄的感觉。画作是六年多前的作品，',
+                    imgUrl:'__IMAGES__/six1.jpg'
+                },
+                {
+                    msgUrl:'#',
+                    title:'长久的静',
+                    content:'长久的静坐，也会乱了人的心绪。画画的人总会有一些感叹，弄墨望云，守着自己的一方月圆。面对创作的困扰，或者激动，夜深也不能让人一下困眠。纯真和执着应该相近，都有肆意任性狂妄的感觉。画作是六年多前的作品，',
+                    imgUrl:'__IMAGES__/six1.jpg'
+                },
+                {
+                    msgUrl:'#',
+                    title:'长久的静',
+                    content:'长久的静坐，也会乱了人的心绪。画画的人总会有一些感叹，弄墨望云，守着自己的一方月圆。面对创作的困扰，或者激动，夜深也不能让人一下困眠。纯真和执着应该相近，都有肆意任性狂妄的感觉。画作是六年多前的作品，',
+                    imgUrl:'__IMAGES__/six1.jpg'
+                },
+                {
+                    msgUrl:'#',
+                    title:'长久的静',
+                    content:'长久的静坐，也会乱了人的心绪。画画的人总会有一些感叹，弄墨望云，守着自己的一方月圆。面对创作的困扰，或者激动，夜深也不能让人一下困眠。纯真和执着应该相近，都有肆意任性狂妄的感觉。画作是六年多前的作品，',
+                    imgUrl:'__IMAGES__/six1.jpg'
+                }
+            ]
+        }
+    }
+};
+
+// 动态
+const dynamic = {
+  template:`<div>
+                <div id="scEight">
+                    <div class="eilist" v-for='(eight,index) in eightList' :key="index">
+                        <div class="eiMouth">
+                            {{eight.num}} <span>{{eight.mouth}}月</span>
+                        </div>
+                        <div class="eiPic">
+                            <div class="eiReward">打赏了{{eight.ge}}件商品</div>
+                            <a :href="eight.msgUrl"><img :src="eight.imgUrl" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>`,
+    data(){
+        return {
+            // 后台拉取数据替换
+            eightList:[
+                {num:'12',mouth:'2',ge:'1',imgUrl:'__IMAGES__/six1.jpg',msgUrl:'#'},
+                {num:'12',mouth:'2',ge:'1',imgUrl:'__IMAGES__/six1.jpg',msgUrl:'#'},
+                {num:'12',mouth:'2',ge:'1',imgUrl:'__IMAGES__/six1.jpg',msgUrl:'#'},
+                {num:'12',mouth:'2',ge:'1',imgUrl:'__IMAGES__/six1.jpg',msgUrl:'#'}
+            ]
+        }
+    }
+}
+
+const routes = {
+  "/newArt": newArt,
+  "/selling": selling,
+  "/work": work,
+  "/art": art,
+  "/dynamic":dynamic
+};
+
+new Vue({
+    el: "#scView",
+    data: {
+      currentRoute: "/newArt",
+    },
+    computed: {
+      ViewComponent() {
+        return routes[this.currentRoute] || NotFound;
+      },
+    },
+    mounted() {
+        // 导航栏切换
+      let li = document.getElementsByClassName("swiper-slide");
+      for (let i = 0; i < li.length; i++) {
+        li[i].onclick = () => {
+          for (let j = 0; j < li.length; j++) {
+            li[j].style.border = "none";
+          }
+          li[i].style.borderBottom = "2px solid black";
+          switch (li[i].innerText) {
+            case "作品":
+              this.currentRoute = "/newArt";
+              break;
+            case "出售中":
+              this.currentRoute = "/selling";
+              break;
+            case "新闻":
+              this.currentRoute = "/work";
+              break;
+            case "文章":
+              this.currentRoute = "/art";
+              break;
+            case "动态":
+              this.currentRoute = "/dynamic";
+              break;
+          }
+        };
+      }
+    },
+    render (h) { return h(this.ViewComponent) }
+  });
+
+
+var mySwiper = new Swiper('.swiper-container', {
+    spaceBetween:1,
+    slidesPerView: 5,
+    direction: 'horizontal',
+})
+
+    
+</script>

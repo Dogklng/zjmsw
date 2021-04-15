@@ -1,0 +1,141 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-2">
+          <include file="Public:shop_left" />
+      </div>
+      <div class="col-sm-10">
+        <div class="SellerCon">
+         <div class="SellerTop">
+          <h3>免费开店</h3>
+          <p>申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+         </div>
+         <div class="SellerFlower">
+          <div class="row">
+           <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="SellerFlist SellerFlistCurr1"> <span>1</span>
+              <h3>选择开店类型<i>个人店铺，企业店铺</i></h3>
+             </div>
+           </div> 
+           <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="SellerFlist SellerFlistCurr"> <span>2</span>
+              <h3>阅读开店须知<i>确认自己符合个人店铺的相关规定</i></h3>
+             </div>
+           </div> 
+           <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="SellerFlist"> <span>3</span>
+              <h3>申请开店认证<i>需要提供认证相关资料，等待审核通过</i></h3>
+             </div>
+           </div> 
+          </div>
+          <div class="SelNoticeTxt">
+           <h3>1、我在美术网已经开了个店了，我用别人的身份证再开一个店可以吗？</h3>
+           <h6>答：不可以。未经美术网平台同意，将本人美术网账号提供给他人作开店使用，否则由此导致相关争议、诉讼及因店铺经营中的违法违规行为导致一切人身、财产权益损害，均由本人自行承担全部民事、行政及刑事责任。</h6>
+
+           <h3>2、我可以把店铺转租给其他人吗?</h3>
+           <h6>答：不可以。未经美术网平台同意，将本人美术网账号提供给他人作开店使用，否则由此导致相关争议、诉讼及因店铺经营中的违法违规行为导致一切人身、财产权益损害，均由本人自行承担全部民事、行政及刑事责任。</h6>
+
+           <h3>3、开美术网店要收费吗?</h3>
+           <h6>答：美术网开店是免费的，不收取任何服务费用。</h6>
+
+           <h3>4、我可以开多个美术网店吗?</h3>
+           <h6>答：不可以。一张身份证（一张营业执照）只能开一个美术网店铺。如是企业店铺，开店后营业执照不得注销。</h6>
+
+           <h3>5、我已经开过美术网店，现在想要注销原来的店铺重新开店，可以吗?</h3>
+           <h6>答：不可以，美术网暂时不提供注销店铺的服务。用户一但成功开店就无法再用身份证（营业执照）另开一家美术网店铺。</h6>
+          </div>
+          <div class="SelNoticeStyle">
+           <h6>注：美术网在任何情况下都不会用QQ与您取得联系, 任何使用QQ联系您的"工作人员"都是骗子。</h6>
+           <h4><a href="{:U('/Home/Gallery/selCenter/tag/selCenter')}" style="background:#ccc;">上一步</a> <a href="{:U('/Home/Gallery/selCertified/tag/selCertified')}">我已了解, 继续开店</a></h4>
+          </div>
+         </div>
+        </div>  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<div class="task">
+  <div class="task_bg"></div>
+  <div class="task_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要取消订单？</div>
+    <div class="task_btn">
+      <div class="task_btn1">
+        <a href="##" class="task_btn1_on">确定</a>
+        <a href="##" class="task_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task1">
+  <div class="task1_bg"></div>
+  <div class="task1_con" style="margin-top:-300px;">
+    <img src="__IMAGES__/dizhi_close.png" width="24">
+    <div class="fenxiang">你确定要删除订单？</div>
+    <div class="task1_btn">
+      <div class="task1_btn1">
+        <a href="##" class="task1_btn1_on">确定</a>
+        <a href="##" class="task1_btn1_quxiao">取消</a>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+$('.quxiao').click(function(){
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+
+$('.delete').click(function(){
+    $('.task1').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task1_con').addClass('task1_con_on');
+    },300)
+})
+$('.task1_con>img').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+$('.task1_btn1_quxiao').click(function(){
+      $('.task1').stop(true).fadeOut(1000);
+      $('.task1_con').removeClass('task1_con_on');
+})
+
+</script>
+</html>

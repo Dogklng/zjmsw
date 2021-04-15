@@ -1,0 +1,28 @@
+<include file="Public:header" />
+<!--banner-->
+
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+    <div class="order1">
+        <div class="order1_yh">
+            <div class="order1_tall1">
+                <!--<img src="__IMAGES__/fksb.png" width="100%" >-->
+                <textarea name="liuyan" readonly style="resize: none;font-size: 18px;">{$msg}</textarea>
+                <a href="/Wxin/Index/index" style="color:blue;">返回首页</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+    <!--nav-->
+
+
+    <!--nav-->
+
+
+
+
+
+<include file="Public/footer" />
+</body>
+</html>

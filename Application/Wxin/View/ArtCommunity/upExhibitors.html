@@ -1,0 +1,133 @@
+<include file="Public:header" />
+<div class="dianpu_box">
+<div class="SellerCon">
+  <div class="SellerTop">
+    <h3>我要办展</h3>
+  </div>
+  <div class="SellerFlower">
+  	<div class="paiuncenter_one">
+      <h3>请填写以下报名表信息</h3>
+      <p class="activedp">请填写真实姓名，联系方式等信息，确保我们能及联系到您！</p>
+    </div>
+
+    <div class="pZlCon fbzp-pZlCon">
+      <form class="pZlConForm">
+        <div class="pZlConI clearfix">
+          <label class="pzLs">作者：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">手机：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">微信：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">邮箱：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">标题：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+            <div class="pzLs">
+              <label class="pzLs">起始时间：</label>
+            </div>
+            <div class="hlCnr">
+              <input type="text" id="dateinfo">
+            </div>
+          </div>
+          <div class="pZlConI clearfix">
+            <div class="pzLs">
+              <label class="pzLs">结束时间：</label>
+            </div>
+            <div class="hlCnr">
+              <input type="text" id="dateinfo1">
+            </div>
+          </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">办展地点：</label>
+          <input type="text" value="">
+        </div>
+        <div class="pZlConI clearfix">
+          <div class="pZlConI-div">
+            <label class="pzLs">logo图片：</label>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border"> <img src="images/SeladdPic.png">
+                <h6>点此上传</h6>
+                <input type="file">
+              </div>
+            </div>
+          </div>
+          <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+        </div>
+        <div class="pZlConI clearfix">
+          <div class="pZlConI-div">
+            <label class="pzLs">作品展示图片：</label>
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border"> <img src="images/SeladdPic.png">
+                <h6>点此上传</h6>
+                <input type="file">
+              </div>
+            </div>
+          </div>
+          <h5>支持上传jpg，png，jpeg格式的图片，大小不超过5M，图片不能含二维码</h5>
+        </div>
+        <div class="pZlConI clearfix">
+          <label class="pzLs">作品简介：</label>
+          <textarea name="zpms" rows="7" cols=""></textarea>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+  <div class="SelNoticeStyle">
+    <h4><a href="javascript:;" >确定提交</a></h4>
+  </div>
+</div>
+<div class="indexbottom"></div>
+</div>
+<include file="Public:header" />
+
+</body>
+</html>
+
+<script type="text/javascript" src="__JS__/jeDate/jedate.js"></script>
+<script type="text/javascript">
+	
+$(window).load(function(){
+  var widthshijin = $('#dateinfo').width();
+  $('.jedatebox').width(widthshijin-2);
+})
+jeDate({
+    dateCell:"#dateinfo",
+    format:"YYYY年MM月DD日",
+    isinitVal:true,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+
+jeDate({
+    dateCell:"#dateinfo1",
+    format:"YYYY年MM月DD日",
+    isinitVal:true,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+ })
+  
+  jeDate({
+    dateCell:"#dateinfo3",
+    format:"YYYY年MM月DD日",
+    isinitVal:true,
+    isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){alert(val)}
+  })
+  
+</script>

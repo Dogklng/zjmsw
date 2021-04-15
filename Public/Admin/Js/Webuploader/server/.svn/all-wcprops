@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/msw/!svn/ver/2/Public/Admin/Js/Webuploader/server
+END
+crossdomain.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/msw/!svn/ver/2/Public/Admin/Js/Webuploader/server/crossdomain.xml
+END
+preview.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/msw/!svn/ver/2/Public/Admin/Js/Webuploader/server/preview.php
+END
+fileupload.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/msw/!svn/ver/2/Public/Admin/Js/Webuploader/server/fileupload.php
+END
+fileupload2.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/msw/!svn/ver/2/Public/Admin/Js/Webuploader/server/fileupload2.php
+END

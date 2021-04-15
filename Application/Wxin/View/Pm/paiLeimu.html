@@ -1,0 +1,283 @@
+<include file="Public:header" />
+<style>
+  dd{
+    padding-top: 40px !important;
+  }
+  dt{
+    padding-top: 10px !important;
+  }
+  /*dt dd label{
+    float: left;
+    display: inline;
+  }
+  dt dd label input{
+    float: left;
+    display: inline;
+  }*/
+</style>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="SellerCon">
+          <div class="SellerTop">
+            <h3>入驻竞卖美术网平台</h3>
+          </div>
+          <div class="SellerFlower">
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>1</span>
+                  <h3 class="paiUncenter_h3">签署协议</h3>
+                </div>
+              </div>
+              <!--<div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist "> <span>2</span>
+                  <h3 class="paiUncenter_h3">账号类型</h3>
+                </div>
+              </div>-->
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist SellerFlistCurr"> <span>2</span>
+                  <h3 class="paiUncenter_h3">选择类目</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>3</span>
+                  <h3 class="paiUncenter_h3">提交资料</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>4</span>
+                  <h3 class="paiUncenter_h3">审核</i></h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>5</span>
+                  <h3 class="paiUncenter_h3 paiCH3">缴纳保证金，<br />
+                    入驻成功</h3>
+                </div>
+              </div>
+            </div>
+            <div class="located-select">
+              <h2>选择主营类目</h2>
+              <form action="{:U('Home/Pm/paiLeimu/ruzhu_id')}/{$ruzhu_id}" method="post" id="form">
+                <div class="bd">
+                  <ul class="first clearfix">
+                    <foreach name="cate" item="vo">
+                      <li class="levels">
+                        <dl class="clearfix">
+                          <dt>
+                            <label>
+                              <input
+                              <foreach name="pids" item="vv">
+                                <eq name="vv" value="$vo['id']">checked</eq>
+                              </foreach>
+                                      type="checkbox" name="Cates" data-price="{$vo.price}" data-tech_price="{$vo.tech_price}" value="{$vo.id}" class="Cates">
+                              {$vo.classname}</label>
+                          </dt>
+                          <foreach name="vo.data" item="v">
+                            <dd style="margin-left: 50px;float: left;display: none" class="two_Cates{$vo.id}">
+                              <label>
+                                <input
+                                <foreach name="catexz" item="vvs">
+                                  <eq name="vvs" value="$v['id']">checked</eq>
+                                </foreach>
+                                        type="checkbox" data-pid="{$vo.id}" value="{$v.id}" name="two_Cates" class="two_Cates">
+                                {$v.classname}
+                              </label>
+                            </dd>
+                          </foreach>
+                        </dl>
+                      </li>
+                    </foreach>
+
+                    <!---->
+
+                    <!--<li class="levels">
+                      <dl class="clearfix">
+                        <foreach name="screens" item="vo">
+                          <dd>
+                            <label for="pL{$key}">
+                              <input type="checkbox" name="screens[]" id="pL{$key}" value="{$vo.id}">
+                              {$vo.classname}</label>
+                          </dd>
+                        </foreach>
+                      </dl>
+                    </li>-->
+                  </ul>
+                </div>
+              </form>
+
+              <div class="ft"> <b>缴纳经营保证金：</b> <b class="money J_guaranty" id="prices">0.00元</b> </div>
+              <div class="ft"> <b>缴纳上拍技术服务费保证金：</b> <b class="money J_service" id="tech_prices">0.00元</b> <a href="" target="_blank">美术网竞卖保证金规则</a> </div>
+            </div>
+            <div class="located-tips"> 入驻成功后将在您的账号内<span id="J_freezen">锁定</span>：经营保证金 <span class="J_guaranty" id="prices_two">0.00元</span> ，上拍技术服务费保证金 <span class="J_service" id="tech_prices_two">0.00元</span> ，共计 <span class="J_total">0.00元</span> </div>
+            <div class="SelNoticeStyle">
+              <h4><a href="{:U('Home/Pm/paimaiRuzhu/tui/0')}" >上一步</a> <a href='javascript:;' onclick="submit()">下一步</a></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+
+  $(function () {
+      $('input[name="Cates"]').each(function () {
+          var ched = $(this).is(':checked');
+          if(ched){
+              $(this).parent().parent().parent().find('dd').each(function () {
+                  $(this).show();
+              })
+          }
+      })
+
+      new_price();
+  })
+
+  function new_price(){
+      var prices=0;
+      var tech_prices=0;
+      $('.Cates').each(function () {
+          var cked = $(this).is(':checked');
+          if(cked){
+              var price = $(this).attr('data-price');
+              var tech_price = $(this).attr('data-tech_price');
+              prices += parseFloat(price);
+              tech_prices += parseFloat(tech_price);
+          }
+      })
+
+      $('#prices').html(prices.toFixed(2)+"元");
+      $('#prices_two').html(prices.toFixed(2)+"元");
+      $('#tech_prices').html(tech_prices.toFixed(2)+"元");
+      $('#tech_prices_two').html(tech_prices.toFixed(2)+"元");
+      //var J_service = "{$ms_ruzhu.jishu_price}";
+      var J_total = prices + tech_prices;
+      $('.J_total').html(J_total.toFixed(2))
+
+      var price = new Array();
+      price['prices'] = prices;
+      price['tech_prices'] = tech_prices;
+      return price;
+  }
+
+  $('.Cates').click(function () {
+      var id = $(this).val();
+      var cked  = $(this).is(':checked');
+      if(cked){
+          $('.two_Cates'+id).each(function () {
+              $(this).show();
+              $(this).find('input').attr('checked',true);
+          })
+      }else {
+          //console.log(cked);
+          $('.two_Cates'+id).each(function () {
+              $(this).hide();
+          })
+      }
+
+      new_price();
+  })
+
+  $('.two_Cates').click(function () {
+      var id = $(this).attr('data-pid');
+      var a=1;
+      $('.two_Cates'+id).each(function () {
+          var cked = $(this).find('input').is(':checked');
+          if(cked){
+              a=0;
+              return false;
+          }
+      })
+
+      if(a==0){
+          $(this).parent().parent().parent().find('dd').each(function () {
+              $(this).show();
+          })
+      }else {
+          $(this).parent().parent().parent().find('dt').find('input').attr('checked',false);
+          $(this).parent().parent().parent().find('dd').each(function () {
+              $(this).hide();
+          })
+      }
+
+      new_price();
+  })
+
+  function submit() {
+      var ids='';
+      var pids = '';
+      $('input[name="Cates"]').each(function () {
+          var id = $(this).val();
+          var cked = $(this).is(':checked');
+          if(cked){
+              pids+=id+',';
+              $('.two_Cates'+id).each(function () {
+                  var cked = $(this).find('input').is(':checked');
+                  if(cked){
+                      var id = $(this).find('input').val();
+                      ids += id+',';
+                  }
+              })
+          }
+      })
+
+
+      if(!ids){
+          alert('类目必选！');
+          return false;
+      }
+
+      var price = new_price();
+      //var J_service = "{$ms_ruzhu.jishu_price}";
+      var J_total = price.prices + price.tech_prices;
+      //console.log(check_val);return false;
+
+      $.ajax({
+          url: "{:U('/Home/Pm/paiLeimu')}",
+          type: "post",
+          dataType: "json",
+          data: {
+              pids:pids,
+              ids:ids,
+              prices:price.prices,
+              service:price.tech_prices,
+              price:J_total,
+          },
+          success:function(msg){
+              if (msg.status==1){
+                  alert( msg.info);
+                  //console.log(info);
+                  location.href="{:U('Home/Pm/paimaiRuzhu')}";
+              }else{
+                  alert( msg.info);
+              }
+          }
+      })
+  }
+
+/*$('.bd dl dt .J_category').change(function(){
+  if( $('.bd dl dt .J_category').is(':checked')){
+      var id = $(this).val();
+    $(this).parent().parent().parent().find('dd:input[class="two_Cates'+id+'"]').css('display','block');
+    //console.log($(this).parent().parent().siblings());
+  }else{
+    console.log($(this).parent().parent().siblings());
+    $(this).parent().parent().siblings().css('display','none');
+  }
+
+});*/
+</script>
+</html>

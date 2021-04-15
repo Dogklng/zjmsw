@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="images/mswlogo.ico" />
+<title>美术网</title>
+<meta name="keywords" content="美术网" />
+<meta name="description" content="美术网" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link href="css/swiper.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+
+<script type="text/javascript" src="js/jquery.1.9.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</head>
+
+<body>
+<!--导航-->
+<div class="body_top">
+  <div class="body_top_up">
+    <div class="body_top_tit1"> <a href="../index.html"><img src="images/logoM.png" /></a> </div>
+    <div class="sousuo">
+    	<img src="images/search.png" />
+    </div>
+    <div class="clear"></div>
+    
+    <div class="sousuok">
+    	<input type="text" value="请输入关键词" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键词';}" />
+    </div>
+    
+  </div>
+</div>
+
+<!--导航-->
+
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 订单详情 </a> </h3>
+</div>
+
+<!--  center  -->
+<div class="p_xiangqing1">
+ <div class="center_box tuikuanxq">
+  <div class="tkxq_lc">
+   <ul>
+    <li class="one on"> <img src="images/images/tk.svg" />
+     <p>退款申请中</p>
+    </li>
+    <li class="two"> <img src="images/images/tk02.svg" />
+     <p>退货完成</p>
+    </li>
+    <li class="three"> <img src="images/images/tk01.svg" />
+     <p>退款成功</p>
+    </li>
+    <div class="clear"></div>
+    <div class="bg2"></div>
+   </ul>
+   <div class="tkqk">
+    <div class="tkqk_center">
+     <p>请您在收到货<span><b style="">30</b>天内</span>将货品邮寄到总仓</p>
+     <p>邮寄后请填写快递单号，方便我们尽快为您办理退款</p>
+     <p>您的邮寄费用自理</p>
+    </div>
+   </div>
+   <div class="tknr">
+    <div class="tknr_in">
+     <div class="tkqk_center">
+      <h3>退款单号</h3>
+      <p>8794561335544999999595</p>
+      <div class="clear"></div>
+     </div>
+    </div>
+    <div class="tknr_in">
+     <div class="tkqk_center">
+      <h3>退款金额</h3>
+      <p><span>¥720</span><a class="tkqk_xq" href="javascript:void(0);">详情<i class="fa fa-angle-down"></i></a></p>
+      <div class="clear"></div>
+     </div>
+    </div>
+   </div>
+   <div class="je_xq" style="display:none;">
+    <div class="je_xq_in">
+     <div class="tkqk_center">
+      <h3>退回支付</h3>
+      <p>¥360</p>
+      <div class="clear"></div>
+     </div>
+    </div>
+    <div class="je_xq_in">
+     <div class="tkqk_center">
+      <h3>退还微信券</h3>
+      <p>¥20</p>
+      <div class="clear"></div>
+     </div>
+    </div>
+   </div>
+   <div class="thdz_add">
+    <div class="tkqk_center">
+     <h3>退货地址</h3>
+     <p><b>收  件 人：</b>江南布衣（微信商城）</p>
+     <p><b>总仓地址：</b>浙江省杭州市萧山区鸿达路<span>350</span>号</p>
+     <p><b>邮编：</b><span>310000</span></p>
+     <p><b>联系电话：</b><span>0571-82686019</span></p>
+    </div>
+   </div>
+  </div>
+ 
+ <div class="txwl clearfix"> <a href="tianxie_wuliu.html">填写退货物流</a> </div>
+ <div class="foot_queren"><a href="#">取消退款</a></div>
+ </div>
+</div>
+ 
+ <!--  center  -->
+
+<!--footer-->
+<div class="footer">
+ <ul class="footer_list">
+  <li class="on"> <a href="../index.html"> <img src="images/indexha.svg" width="18px" />
+   <p>首页</p>
+   </a> </li>
+  <li> <a href="../products.html"> <img src="images/product.svg" width="18px" />
+      <p>产品</p>
+      </a> </li>
+  <li class="dz_db"> <a href="../groom.html"> <img src="images/dingzhi.svg" width="18px" />
+   <p>云推荐</p>
+   </a> </li>
+  <li> <a href=""> <img src="images/cart.svg" width="18px" />
+   <p>购物车</p>
+   </a> </li>
+  <li> <a href="myorder.html"> <img src="images/my.svg" width="18px" />
+   <p>我的</p>
+   </a> </li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<!--footer-->
+
+</body>
+<script>
+$(document).ready(function(e) {
+	var rotate=180;
+    $(".tkqk_xq").click(function(){
+		$(this).find("i").css("transform",'rotateZ('+rotate+'deg)');
+		rotate+=180;
+		$(".je_xq").slideToggle();
+	})
+});
+</script>
+</html>

@@ -1,0 +1,509 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+
+<script type="text/javascript" src="__C_JS__/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="__JEDATE__/jedate.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        jeDate.skin('gray');
+        jeDate({
+            dateCell:"#demo",
+            format:"YYYY-MM-DD hh:00:00",
+            isinitVal:false,
+            isTime:true, //isClear:false,
+            minDate:"2014-09-19 00:00:00",
+            okfun:function(val){alert(val)}
+        })
+
+        jeDate({
+            dateCell:"#demo1",
+            format:"YYYY-MM-DD hh:00:00",
+            isinitVal:false,
+            isTime:true, //isClear:false,
+            minDate:"2014-09-19 00:00:00",
+            okfun:function(val){alert(val)}
+        })
+
+    });
+
+
+</script>
+<style>
+  .addfenlei{
+    height:360px!important;
+    z-index:998!important;
+  }
+  .jbox-container{
+    height:220px!important;
+  }
+  a.next{
+    width:60px;
+  }
+  a.prev{
+    width:60px;
+  }
+</style>
+<div class="container">
+<div class="inner clearfix"> <include file="Public:left"/> 
+  <!-- end content-left -->
+  
+  <div class="content-right fl">
+    <h1 class="content-right-title">拍卖列表</h1>
+    <a href="{:U('/Admin/Pm/addPm')}" class="btn btn-success">添加拍卖</a>
+    <form action="{:U('/Admin/Pm/pmList')}" method="get">
+      <div class="tables-searchbox newcearchbox">
+        <div>
+          <input type="text" placeholder="产品名称" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" class="input" name="name" value="{$title}" >
+          <input type="text" placeholder="输入场次数字" onblur="value=value.replace(/\D/g,'')" onkeyup="value=value.replace(/\D/g,'')" class="input" name="num_num" value="{$_GET['num_num']}" >
+          <!-- <input type="text" placeholder="商家编码" class="input" name="goods_no" value="" > -->
+          <button class="btn btn-primary" style="line-height:20px;"> <i class="gicon-search white"></i>查询 </button>
+        </div>
+
+
+      </div>
+      <div class="tabs clearfix mgt10"> 
+        <a href="{:U('/Admin/Pm/pmList')}?name={$title}&num_num={$_GET['num_num']}" class="<eq name="_GET['is_sale']" value="">active</eq> tabs_a fl">全部({$counts})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/1')}?name={$title}&num_num={$_GET['num_num']}" class="<eq name="_GET['is_sale']" value="1">active</eq> tabs_a fl">拍卖中({$count1})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/2')}?name={$title}&num_num={$_GET['num_num']}" class="<eq name="_GET['is_sale']" value="2">active</eq> tabs_a fl">下架中({$count2})</a>
+        <!--<a href="{:U('/Admin/Pm/pmList/is_sale/3')}" class="<eq name="_GET['is_sale']" value="3">active</eq> tabs_a fl">待审核({$count3})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/4')}" class="<eq name="_GET['is_sale']" value="4">active</eq> tabs_a fl">审核通过({$count4})</a>
+        <a href="{:U('/Admin/Pm/pmList/is_sale/5')}" class="<eq name="_GET['is_sale']" value="5">active</eq> tabs_a fl">审核拒绝({$count5})</a>-->
+        <a href="{:U('/Admin/Pm/indexPmList')}?is_sale={$_GET['is_sale']}&name={$title}&num_num={$_GET['num_num']}" class="btn btn-success fr">导出</a>
+
+
+      </div>
+    </form>
+    <!-- end tabs -->
+    
+    <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+      <thead>
+        <tr class="po_list">
+          <td>产品</td>
+          <!--<td>发布者</td>-->
+          <td>场次信息</td>
+          <td>是否上架</td>
+          <td>时间段</td>
+          <td>状态</td>
+          <td>操作<span></span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach name="cache" item="vo">
+          <tr>
+            <td><div class="goodswrap"> <a href="javascript:void(0)" class="block" target="_blank" title="{$vo['goods_name']}">
+                <div class="table-item-img"> <img src="{$vo['index_pic']}" alt=""> </div><br/>
+                <div class="table-item-info" style="width: 100px">{$vo.goods_name}</div>
+                </a> </div></td>
+            <!--<if condition="$vo.promulgator eq 0"><td>美术网平台</td></if>-->
+            <td><notempty name="vo.num_num">第{$vo.num_num}场<br/>{$vo.num_name}<else/>未关联场次</notempty></td>
+            <td><if condition="($vo.is_shang eq 1)"> 上架
+              <else/>
+              下架</if></td>
+            <td><notempty name="vo.start"> 开始：{$vo.start|date="Y-m-d H:i:s",###}<br/>结束：{$vo.end|date="Y-m-d H:i:s",###}</notempty></td><!--0：未开始，1：正在拍卖，2：流拍,3:拍卖成功'-->
+            <eq name="vo['is_shang']" value="1">
+              <if condition="$vo.paimai_zt eq 0"><td>未开始</td></if>
+              <if condition="$vo.paimai_zt eq 1"><td style="color:rebeccapurple">正在拍卖</td></if>
+              <if condition="$vo.paimai_zt eq 2"><td style="color: red">流拍</td></if>
+              <if condition="$vo.paimai_zt eq 3"><td style="color: blue">拍卖成功</td></if>
+              <else/>
+              <td>未上架</td>
+            </eq>
+
+
+            <td>
+              <a href="{:U('/Admin/Pm/editPm/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+                <a href="javascript:;" data-id="{$vo.id}" class="btn <eq name="vo['is_shang']" value="0">btn-success  shang<else />btn-danger change-is_xia</eq>" data-id="{$vo.id}"><eq name="vo['is_shang']" value="0">上架<else />下架</eq></a>
+
+              <a href="{:U('/Admin/Pm/delPm/id')}/{$vo.id}" onclick="{if(!confirm('确定删除作品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除">删除</a>
+              <a href="{:U('/Admin/Pm/Pmoffer/id')}/{$vo.id}" class="btn btn-primary" title="出价列表">出价列表</a>
+              <!--<if condition="$vo.shenhe eq 0"><a href="javascript:;" class="btn huifu" style="background-color: green;border-color: green; color: white" data-id="{$vo.id}">审核</a></if>-->
+              </td>
+          </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <!-- end wxtables -->
+    <div class="tables-btmctrl clearfix">
+      <div class="fl">
+        <div class="fr">
+          <div class="pages"> {$page} </div>
+          <!-- end paginate --> 
+        </div>
+      </div>
+      <!-- end tables-btmctrl --> 
+      
+    </div>
+    <!-- end content-right --> 
+  </div>
+</div>
+
+
+  <!--<div id="albums-overlay" class="disshow"></div>
+  <div class="jbox addfenlei disshow" style="height:auto; overflow: visible;">
+    <div class="jbox-title">
+      <div class="jbox-title-txt">关联场次</div>
+      <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 140px;overflow: visible;">
+      <div class="formitems">
+        <label><span class="colorRed">*</span>选择场次类型：</label>
+
+        <div class="form-controls">
+          <input type="hidden" class="input sort" name="commentId" id="commentId" >
+          <input type="radio" name="type" checked="checked" onclick="lx(this)" value="0" />普通场
+          <input type="radio" name="type" value="1" onclick="lx(this)"/>限时场
+          <span class="fi-help-text"></span>
+        </div>
+      </div>
+      <div class="formitems pt disshow">
+        <select name="num_id0" id="num_id0">
+          <option value="">请选择拍卖场次</option>
+          <foreach name="num" item="vo" >
+            <eq name="vo['is_xs']" value="0"><option value="{$vo.id}">第{$vo.num}场 开始时间:{$vo['start_time']|date='Y-m-d H:i:s',###}</option></eq>
+          </foreach>
+        </select>
+        &lt;!&ndash;时间:{$vo['start_time']|date='Y-m-d H:i:s',###}-{$vo['end_time']|date='Y-m-d H:i:s',###}&ndash;&gt;
+          <span class="fi-help-text" id="times0"></span>
+        </div>
+
+      <div class="formitems xs disshow">
+        <select name="num_id1" id="num_id1">
+          <option value="">请选择拍卖场次</option>
+          <foreach name="num" item="vo" >
+            <eq name="vo['is_xs']" value="1"><option value="{$vo.id}">第{$vo.num}场 开始时间:{$vo['start_time']|date='Y-m-d H:i:s',###}</option></eq>
+          </foreach>
+        </select>
+        &lt;!&ndash;时间:{$vo['start_time']|date='Y-m-d H:i:s',###}-{$vo['end_time']|date='Y-m-d H:i:s',###}&ndash;&gt;
+        <span class="fi-help-text" id="times"></span>
+      </div>
+      </div>
+    <div class="jbox-buttons">
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">确定</a>
+      <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+
+  </div>-->
+
+
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="height:auto; overflow: visible; height: 300px">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">关联场次</div>
+    <a href="javascript:;" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 160px;overflow: visible;">
+    <div class="formitems">
+      <label><span class="colorRed">*</span>选择场次类型：</label>
+
+      <div class="form-controls">
+        <input type="hidden" class="input sort" name="commentId" id="commentId" >
+        <input type="radio" name="type" checked="checked" onclick="lx(this)" value="0" />普通场
+        <input type="radio" name="type" value="1" onclick="lx(this)"/>限时场
+        <input type="radio" name="type" value="2" onclick="lx(this)"/>公益场
+        <span class="fi-help-text"></span>
+      </div>
+    </div>
+    <div class="formitems">
+
+      <label><span class="colorRed">*</span>请选择拍卖场次：</label>
+
+      <div class="form-controls  pt disshow">
+        <select name="num_id0" id="num_id0">
+          <option value="">--请选择--</option>
+          <foreach name="num" item="vo" >
+            <eq name="vo['is_xs']" value="0"><option value="{$vo.id}">第{$vo.num}场</option></eq>
+          </foreach>
+        </select>
+        <span class="fi-help-text ccxq0"></span>
+      </div>
+
+      <div class="form-controls  xs disshow">
+        <select name="num_id1" id="num_id1">
+          <option value="">--请选择--</option>
+          <foreach name="num" item="vo" >
+            <eq name="vo['is_xs']" value="1"><option value="{$vo.id}">第{$vo.num}场</option></eq>
+          </foreach>
+        </select>
+        <span class="fi-help-text"></span>
+      </div>
+      <div class="form-controls  gy disshow">
+        <select name="num_id2" id="num_id2">
+          <option value="">--请选择--</option>
+          <foreach name="num" item="vo" >
+            <eq name="vo['is_xs']" value="2"><option value="{$vo.id}">第{$vo.num}场</option></eq>
+          </foreach>
+        </select>
+        <span class="fi-help-text ccxq2"></span>
+      </div>
+    </div>
+    <div class="formitems date disshow">
+      <label class="fi-name"><span class="colorRed">*</span>起始时间：</label>
+      <div class="form-controls">
+        <input class="laydate-icon" id="demo" name="start" style="padding:0px 5px;width:220px;height:28px;line-height:30px;"/>
+        <span class="fi-help-text"></span>
+      </div>
+
+      <label class="fi-name"><span class="colorRed">*</span>结束时间：</label>
+      <div class="form-controls">
+        <input class="laydate-icon" id="demo1" name="end" style="padding:0px 5px;width:220px;height:28px;line-height:30px;"/>
+        <span class="fi-help-text"></span>
+      </div>
+    </div>
+   <!-- <div class="formitems  date disshow">
+      <label><span class="colorRed">*</span>开始时间：</label>
+      <select name="date" id="date">
+        <option value="">&#45;&#45;请选择&#45;&#45;</option>
+      </select>
+      <select name="xiaoshi" id="xiaoshi">
+        <option value="">&#45;&#45;请选择&#45;&#45;</option>
+        <option value="10:00:00">10:00</option>
+        <option value="12:00:00">12:00</option>
+        <option value="14:00:00">14:00</option>
+        <option value="15:00:00">15:00</option>
+        <option value="17:00:00">17:00</option>
+        <option value="19:00:00">19:00</option>
+      </select>
+        <span class="fi-help-text  "></span>
+
+
+      <label><span class="colorRed">*</span>结束时间：</label>
+      <select name="date1" id="date1">
+        <option value="">&#45;&#45;请选择&#45;&#45;</option>
+      </select>
+      <select name="xiaoshi1" id="xiaoshi1">
+        <option value="">&#45;&#45;请选择&#45;&#45;</option>
+        <option value="10:00:00">10:00</option>
+        <option value="12:00:00">12:00</option>
+        <option value="14:00:00">14:00</option>
+        <option value="15:00:00">15:00</option>
+        <option value="17:00:00">17:00</option>
+        <option value="19:00:00">19:00</option>
+      </select>
+      <span class="fi-help-text  ccxq1"></span>
+
+    </div>
+-->
+   <!-- <div class="formitems  date disshow">
+      <label><span class="colorRed">*</span>结束时间：</label>
+      <select name="date" id="date1">
+        <option value="">&#45;&#45;请选择&#45;&#45;</option>
+      </select>
+      <select name="xiaoshi" id="xiaoshi1">
+        <option value="">&#45;&#45;请选择&#45;&#45;</option>
+        <option value="10:00:00">10:00</option>
+        <option value="12:00:00">12:00</option>
+        <option value="14:00:00">14:00</option>
+        <option value="15:00:00">15:00</option>
+        <option value="17:00:00">17:00</option>
+        <option value="19:00:00">19:00</option>
+      </select>
+      <span class="fi-help-text  ccxq1"></span>
+    </div>-->
+  </div>
+  <div class="jbox-buttons">
+    <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">确定</a>
+    <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+
+</div>
+  <script src="__JS__/jquery.js"></script>
+<script src="__LAYDATE__/laydate.js"></script>
+  <script>
+
+    function lx(obj) {
+        var type = $(obj).val();
+        if (type==0){
+            $('.xs').hide();
+            $('.gy').hide();
+            $('.ccxq2').html('');
+            $('select[name="num_id2"]').val('');
+            $('select[name="num_id1"]').val('');
+            $('.date').hide();
+            $('.pt').show();
+        }else if(type==2) {
+            $('.ccxq0').html('');
+            $('select[name="num_id0"]').val('');
+            $('select[name="num_id1"]').val('');
+            $('.xs').hide();
+            $('.pt').hide();
+            $('.date').hide();
+            $('.gy').show();
+        }else {
+            $('.ccxq2').html('');
+            $('.ccxq0').html('');
+            $('select[name="num_id0"]').val('');
+            $('select[name="num_id2"]').val('');
+            $('.gy').hide();
+            $('.pt').hide();
+            $('.xs').show();
+        }
+    }
+      $(".shang").click(function(){
+          $('.addfenlei').show();
+          $('.pt').show();
+          $('#albums-overlay').show();
+      })
+
+      $(".cancle").click(function(){
+          $(this).parent().parent('.jbox').hide();
+          $('#albums-overlay').hide();
+      })
+
+      $(".shang").click(function(){
+          var commentId = $(this).attr('data-id');
+          $('#commentId').val(commentId);
+      })
+
+      $('#agree').click(function () {
+          var id1 = $('#commentId').val();
+          var type = $("input[name='type']:checked").val();
+          //var date = $('#date').val();
+          //var date1 = $('#date1').val();
+          var start = $('#demo').val();
+          var end = $('#demo1').val();
+          //console.log(start);return false;
+          //var xiaoshi1 = $('#xiaoshi1').val();
+          //var xiaoshi = $('#xiaoshi').val();
+          //console.log(type);
+          if (type==0){
+              var num_id = $('#num_id0').val();
+              if (num_id==''||num_id==null){
+                  alert('场次必选');
+                  return false;
+              }
+          }else if(type==2){
+              var num_id = $('#num_id2').val();
+              if (num_id==''||num_id==null){
+                  alert('场次必选');
+                  return false;
+              }
+          }else {
+              var num_id = $('#num_id1').val();
+              if (num_id==''||num_id==null){
+                  alert('场次必选');
+                  return false;
+              }
+
+              if (start==''||start==null){
+                  alert('开始时间必选');
+                  return false;
+              }
+
+              if (end==''||end==null){
+                  alert('结束时间必选');
+                  return false;
+              }
+
+
+
+              /*if (date==''||date==null){
+                  alert('开始时间必选');
+                  return false;
+              }
+
+
+              if (xiaoshi==''||xiaoshi==null){
+                  alert('开始时间小时必选');
+                  return false;
+              }
+
+
+              if (date1==''||date1==null){
+                  alert('结束时间必选');
+                  return false;
+              }
+
+
+              if (xiaoshi1==''||xiaoshi1==null){
+                  alert('结束时间小时必选');
+                  return false;
+              }*/
+          }
+          $.ajax({
+              url: "{:U('/Admin/Pm/glnum')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+                  num_id: num_id,
+                  type: type,
+                  start:start,
+                  end:end
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  alert(g.info);
+                  window.location.reload();
+              } else {
+                  //$(".cancle").parent().parent('.jbox').hide();
+                  //$('#albums-overlay').hide();
+                  alert(g.info);
+              }
+
+          })
+      })
+  </script>
+<!-- end container --> 
+<include file="Public:foot"/>
+<script>
+$(".change-is_xia").click(function (){
+  var id   = $(this).attr("data-id");
+  var item = "is_shang";
+  $.post("{:U('Admin/Pm/changeStatus')}", {id:id,item:item}, function(data){
+    if(data.status){
+      window.location.reload()
+    }else{
+      alert(data.info);
+    }
+  }, "json")
+})
+
+
+  $('#num_id0').change(function () {
+      var num_id = $('select[name="num_id0"]').val();
+      $.post("{:U('Admin/Pm/numDetail')}", {num_id:num_id}, function(data){
+          if(data.status){
+              var str = "开始时间："+data.info.start_time+"<br />结束时间："+data.info.end_time;
+              $('.ccxq0').html(str);
+              //console.log(data.info);
+          }else{
+              alert(data.info);
+          }
+      }, "json")
+  })
+
+$('#num_id2').change(function () {
+    var num_id = $('select[name="num_id2"]').val();
+    $.post("{:U('Admin/Pm/numDetail')}", {num_id:num_id}, function(data){
+        if(data.status){
+            var str = "开始时间："+data.info.start_time+"<br />结束时间："+data.info.end_time;
+            $('.ccxq2').html(str);
+            //console.log(data.info);
+        }else{
+            alert(data.info);
+        }
+    }, "json")
+})
+
+$('#num_id1').change(function () {
+    var num_id = $('select[name="num_id1"]').val();
+    $.post("{:U('Admin/Pm/numDetail')}", {num_id:num_id}, function(data){
+        if(data.status==1){
+            $('.date').show();
+            var str = "开始时间："+data.info.start_time+"<br />结束时间："+data.info.end_time;
+            $('.ccxq1').html(str);
+            var date = '<option value="">--请选择--</option>';
+            for (var k in data.date){
+                date+='<option value="'+data.date[k]['date']+'">'+data.date[k]['date']+'</option>';
+            }
+            $('#date').html(date);
+            $('#date1').html(date);
+            //console.log(data.info);
+        }else{
+            alert(data.info);
+        }
+    }, "json")
+})
+</script>

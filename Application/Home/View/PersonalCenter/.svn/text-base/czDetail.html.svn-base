@@ -1,0 +1,80 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+  <!--  / user  -->
+
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+
+            <div class="user_r_list wlxx">
+              <h5>详情</h5>
+              <div class="wlxx_con">姓名： {$res["name"]}</div>
+              <div class="wlxx_con">类型： {$series.classname}</div>
+              <div class="wlxx_con">参展类型： <if condition="$res.cate eq 0">个展<else/>群展</if></div>
+              <div class="wlxx_con">手机号： {$res["tel"]}</div>
+              <div class="wlxx_con">微信： {$res["wx"]}</div>
+              <div class="wlxx_con">E-mail： {$res["email"]}</div>
+              <div class="wlxx_con">个人简介： {$res["detail"]}</div>
+              <div class="wlxx_con">作品图片：
+                <foreach name="img" item="v">
+                  <a href="{$v['pic']}" target="_blank"><img class="mgr10 mgt10"  src="{$v['pic']}" height="80"></a>
+                </foreach>
+              </div>
+
+
+            </div>
+            <div><a href="javascript:void();" id="backid">返回</a></div>
+            <script type="text/javascript">
+                $('#backid').click(function(){
+                  location.href='/Home/PersonalCenter/canzhan/tag/canzhan/value/3';
+                })
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>      
+  </div>
+  <div class="task">
+  <div class="task_bg"></div>
+</div>
+<script> 
+function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+
+$('.qxdd').click(function(){
+    var id1 = $(this).attr('data-id');
+    $('#start').val(id1);
+    $('.task').stop(true).fadeIn(1000);
+    setTimeout(function(){
+        $('.task_con').addClass('task_con_on');
+    },300)
+})
+$('.task_con>img').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+$('.task_btn1_quxiao').click(function(){
+      $('.task').stop(true).fadeOut(1000);
+      $('.task_con').removeClass('task_con_on');
+})
+</script>
+  <!--  / user  -->
+   
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+</html>

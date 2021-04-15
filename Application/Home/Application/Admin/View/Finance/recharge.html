@@ -1,0 +1,92 @@
+<include file="Public:head"/>
+
+<div class="container">
+    <div class="inner clearfix">
+        <div class="content-left fl">
+            <include file="Public:left"/>
+        </div>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+
+
+            <h1 class="content-right-title">充值记录</h1>
+
+            <!--<a  style="float:left;margin-right:20px;" href="{:U('Admin/finance/export')}" class="btn btn-warning">记录导出</a>-->
+            <div class="tablesWrap">
+                <!-- end tables-searchbox -->
+
+                <table class="wxtables data mgt15">
+                    <colgroup>
+                        <col width="2%">
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="10%">
+                        <col width="14%">
+                        <col width="14%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                    </colgroup>
+
+                    <thead>
+                    <tr class="po_list">
+                        <td><i class="icon_check"></i></td>
+                        <td>流水账号</td>
+                        <td>用户名/手机号</td>
+                        <td>充值方式</td>
+                        <td>充值时间</td>
+                        <td>支付时间</td>
+                        <td>充值金额</td>
+                        <td>账户余额</td>
+                        <td>状态</td>
+                    </tr>
+                    </thead>
+                    
+                    <tbody>
+                    <volist name="rechargeData" id="vo">
+                        <tr>
+                            <td><input type="checkbox" class="checkbox table-ckbs" data-id="{$vo['id']}"></td>
+                            <td>{$vo.account}</td>
+                            <td>{$vo.realname}<br />{$vo.telephone}</td>
+                            <td>
+                                <switch name="vo.type">
+                                    <case value="1">银行卡</case>
+                                    <case value="2">支付宝</case>
+                                    <case value="3">微信</case>
+                                </switch>
+                            </td>
+                            <td>{$vo.create_at}</td>
+                            <td>{$vo.pay_time}</td>
+                            <td>{$vo.amount}</td>
+                            <td>{$vo.balance}</td>
+                            <td>
+                                <switch name="vo.status">
+                                    <case value="0">充值中</case>
+                                    <case value="1">已到账</case>
+                                    <case value="2">失败</case>
+                                </switch>
+                            </td>
+                        </tr>
+                    </volist>
+
+                    </tbody>
+                </table>
+          <div class="chartWrap mgt15 clearfix"> </div>
+            <div class="chartWrap mgt15 clearfix"></div>
+
+                <!-- end wxtables -->
+                <div class="tables-btmctrl clearfix">
+                    <div class="fr">
+                        <div class="pages"> {$page} </div>
+                    </div>
+                </div> <!-- end tables-btmctrl -->
+            </div>
+        </div>
+        <!-- end content-right -->
+    </div>
+</div>
+
+<!-- end container -->
+
+<include file="Public:foot"/>

@@ -1,0 +1,188 @@
+<include file="Public:header" />
+
+<div class="galleryClass" style="margin-top: 60px">
+  <div class="galleryScroll">
+    <volist name="person" id="v">
+      <a href="{:U('Wxin/ArtCommunity/artistList')}?id={$v.id}" <eq name="_GET['id']" value="$v.id">class="active"</eq> >{$v.name}</a>
+    </volist>
+    <volist name="organize" id="vv">
+      <a href="{:U('Wxin/ArtCommunity/hualang')}?id={$vv.id}" <eq name="_GET['id']" value="$vv.id">class="active"</eq> >{$vv.name}</a>
+    </volist>
+
+    <a href="{:U('Wxin/ArtCommunity/train')}">培训</a>
+    <a href="{:U('Wxin/ArtCommunity/crowdFunding')}">众筹</a>
+    <a href="{:U('Wxin/ArtCommunity/overseas')}">海外交流</a>
+  </div>
+</div>
+
+<!-- 大家都在赞 -->
+<div class="praise artworkP">
+  <div class="praise_list">
+    <div id="topic_switcher" class="switcher">
+      <if condition="$_GET['id'] eq 13">
+        <a class="first"
+           href="{:U('/Wxin/ArtCommunity/hualang',array('id'=>$_GET['id'],'style'=>1))}"
+        <if condition="$_GET['style'] eq 1">style="background:#000;color:#fff;"</if>>传统</a>&nbsp;
+        <a class="first"
+           href="{:U('/Wxin/ArtCommunity/hualang',array('id'=>$_GET['id'],'style'=>2))}"
+        <if condition="$_GET['style'] eq 2">style="background:#000;color:#fff;"</if>>当代</a>&nbsp;
+        <a class="first"
+           href="{:U('/Wxin/ArtCommunity/hualang',array('id'=>$_GET['id'],'style'=>3))}"
+        <if condition="$_GET['style'] eq 3">style="background:#000;color:#fff;"</if>>其他</a>&nbsp;
+      </if>
+    </div>
+  </div>
+  <div class="gallery-contant gallery">
+    <div class="list_cont">
+
+      <volist name="res" id="v">
+      <div class="list_cont_item"> <a href="{:U('/Wxin/ArtCommunity/hualangList',array('id'=>$v['id'],'type'=>$_GET['id']))}">
+        <div class="contant">
+          <div class="contant_one"> <img src="{$v.gallery_index}" width="100%" />
+            <div class="contant-shade"> <img src="{$v.logo_pic}" /> </div>
+          </div>
+          <div class="contant-text">
+            <h3>{$v.artist_name}</h3>
+            <p>{$v.detail|htmlspecialchars_decode|stripslashes}</p>
+          </div>
+        </div>
+        </a> </div>
+      </volist>
+
+      <div class="clear"></div>
+      <div class="ysj-txt">
+        {$slogan|htmlspecialchars_decode|stripslashes}
+        <div class="ysj-tbtn">
+          <a class="apply" href="javascript:void(0);">申请入驻</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 大家都在赞 -->
+
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+
+</body>
+<script>
+  var p = 2;
+  var id = "{$_GET['id']}";
+  var style = "{$_GET['style']}";
+  // 加载刷新。
+  function refresh(refresh,loadmore) {
+    $(window).scroll(function(){
+      console.log('正在滑动f');
+
+      var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+      var scrollHeight = $(document).height();   //当前页面的总高度
+      var clientHeight = $(this).height();    //当前可视的页面高度
+      // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+      if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+        // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+        console.log('下拉');
+
+        if(loadmore){
+          loadmore();
+        }
+      }else if(scrollTop<=0){
+        //滚动条距离顶部的高度小于等于0 TODO
+        //alert("下拉刷新，要在这调用啥方法？");
+
+        console.log('上拉');
+        if(refresh){
+          refresh();
+        }
+
+      }
+
+    });
+
+  }
+  //调用
+  refresh(fn1,fn2);
+
+  function fn1(){
+    window.location.href = "{:U('Wxin/ArtCommunity/hualang')}?id="+id+"&style"+style;
+  }
+  function fn2(){
+    $.ajax({
+      type: "POST",
+      url: "{:U('/Wxin/ArtCommunity/get_hualang')}",
+      data: {
+        id: id,
+        style: style,
+        p: p,
+      },
+      dataType: "json",
+      success: function (g) {
+        if (g.status == 1) {
+          p++;
+          $('.list_cont').append(g.html);
+        } else {
+          //alert(g.info);
+        }
+      }
+    });
+  }
+  $(".apply").click(function(){
+    var id = "{$_SESSION['member_id']}";
+    if(id == ''){
+      dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+      return false;
+    }
+    $.ajax({
+      url:'/Wxin/Shop/apply',
+      dataType:"json",
+      type:"post",
+      data:{id:id},
+      success:function(g){
+        if(g.status==1){
+          window.location.href=g.url;
+          return false;
+        } else if(g.status == 2){
+          alert("您已入驻");
+          window.location.href=g.url;
+          return false;
+        }else{
+          alert(data.info);
+          window.location.reload();
+          return false;
+        }
+      }
+    })
+  })
+$(document).ready(function(){
+	
+  $('.screenA').click(function(){
+   $('.screenBox').stop(true).fadeIn(1000);
+   setTimeout(function(){
+	 $('.screenBox').addClass('screenBox_on');
+   },300)
+  })
+  $(".screenLeft").click(function(){
+    $(".screenBox").hide();
+  });
+	
+
+  $(".screenClick1").click(function(){
+    $(".screenlist-a1").fadeToggle("slow");
+  });
+  $(".screenClick2").click(function(){
+    $(".screenlist-a2").fadeToggle("slow");
+  });
+  $(".screenClick3").click(function(){
+    $(".screenlist-a3").fadeToggle("slow");
+  });
+  $(".screenClick4").click(function(){
+    $(".screenlist-a4").fadeToggle("slow");
+  });
+  $(".screenClick5").click(function(){
+    $(".screenlist-a5").fadeToggle("slow");
+  });
+  
+  
+});
+</script>
+</html>

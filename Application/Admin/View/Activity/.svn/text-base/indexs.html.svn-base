@@ -1,0 +1,144 @@
+<include file="Public:head"/>
+
+
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">活动管理</h1>
+            <a href="{:U('/Admin/Activity/activitys')}" class="btn btn-success">添加活动</a>
+            <form action="" method="get">
+                <div class="tables-searchbox newcearchbox">
+                    <input type="text" placeholder="活动名称" class="input mini" name="title" value="{$title}" >
+                    <!--<input type="text" placeholder="面值" class="input mini" name="price" value="{$price}" >-->
+                    <!--<input type="text" placeholder="满减" class="input mini" name="is_order_price" value="{$is_order_price}" >-->
+                    <!--<input type="text" placeholder="需兑换积分" class="input mini" name="integral" value="{$integral}" >-->
+                    <input type="text" autocomplete="off" name="starttime" id="starttime" value="{$starttime}" readonly placeholder="活动开始日期" class="input Wdate" >
+                    <input type="text" autocomplete="off" name="endtime" id="endtime" value="{$endtime}" readonly placeholder="兑换结束日期" class="input Wdate" >
+                    <!--<select name="is_show" class="select" >-->
+                    <!--<option value="0">是否显示</option>-->
+                    <!--<option value="2" <eq name="is_show" value="2">selected</eq>>显示</option>-->
+                    <!--<option value="1" <eq name="is_show" value="1">selected</eq>>不显示</option>-->
+                    <!--&lt;!&ndash;<option value="2">已失效</option>&ndash;&gt;-->
+                    <!--</select>-->
+                    <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+
+                    <!--<a href="/Item/item_export" class="btn btn-warning"><i class="gicon-share white"></i>-->
+                    <!--产品导出</a>-->
+                </div>
+                <!--<div class="tabs clearfix mgt10"> -->
+                <!--<a href="{:U('/Admin/Marketing/index/is_show/1')}" class="<eq name="is_show" value="1">active</eq> tabs_a fl">优惠券({$count1})</a> -->
+                <!--<a href="{:U('/Admin/Marketing/index/is_show/2')}" class="<eq name="is_show" value="2">active</eq> tabs_a fl">作废优惠券({$count2})</a>-->
+                <!--<a href="{:U('/Admin/Goods/warn')}" class=" tabs_a fl">警戒(0)</a>-->
+
+                <!--</div>-->
+            </form>
+            <!-- end tabs -->
+
+            <table class="wxtables mgt10">
+                <colgroup>
+                    <!--<col width="2%">-->
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="13%">
+                    <col width="10%">
+                    <!--<col width="25%">-->
+                    <!--<col width="10%">-->
+                    <!--<col width="15%">-->
+                    <!--<col width="25%">-->
+                </colgroup>
+                <thead>
+                <tr class="po_list" align="center">
+                    <!--<td><i class="icon_check"></i></td>-->
+                    <td>活动名称<span></span></td>
+                    <td>logo图<span></span></td>
+                    <!--<td>面值</td>-->
+                    <!--<td>满减</td>-->
+                    <!--<td>需兑换积分</td>-->
+                    <td>活动时间段<span></span></td>
+                    <!-- <td>剩余<span></span></td> -->
+                    <!-- <td>已领取<span></span></td>
+                    <td>已使用</td> -->
+                    <!--<td>是否显示</td>-->
+                    <td>操作<span></span></td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="activity_list" item="vo">
+                    <tr align="center">
+                        <!--<td><input type="checkbox" class="checkbox table-ckbs" data-id=""></td>-->
+                        <td>{$vo.title}</td>
+                        <td><img src="{$vo.logo_pic}" alt="" width="80"></td>
+                        <!--<td>￥{$vo.price}</td>-->
+                        <!--<td>满{$vo.is_order_price}</td>-->
+                        <!--<td>{$vo.integral}</td>-->
+                        <td>{$vo.start_time}至{$vo.end_time}</td>
+                        <!--<td>-->
+                        <!--<div class="serialwrap">-->
+                        <!--<span style='color:#<if condition="($vo.is_show eq 0) ">0C0<else />c00</if>;font-size:20px;text-align:center;cursor:pointer;' class="change-status" data-item="is_show" data-id="{$vo.id}">-->
+                        <!--<if condition="($vo.is_show eq 0) ">√<else />×</if>-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!-- <td>{$vo.kucun}</td>
+                        <td>{$vo.receive}</td>
+                        <td>{$vo.use}</td> -->
+                        <td>
+                            <a href="{:U('/Admin/Activity/editactivity/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+                            <a href="{:U('/Admin/Activity/goods/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">商品管理</a>
+                            <!--<eq name="is_show" value="2">-->
+                            <!--<a href="{:U('/Admin/Marketing/delmarketing/ids')}/{$vo.id}" onclick="{if(confirm('确定删除优惠券吗?')){this.document.formname.submit();return true;}return false;} " class="btn j-delClass btn-warning" title="删除" data-id="2151938">删除</a></eq>-->
+                            <!--<neq name="is_show" value="2">-->
+                            <!--<a href="{:U('/Admin/Marketing/delmarketing/id')}/{$vo.id}" onclick="{if(confirm('确定作废优惠券吗?')){this.document.formname.submit();return true;}return false;} " class="btn j-delClass btn-warning" title="作废" data-id="2151938">作废</a>-->
+                            <!--</neq>-->
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl"> <a href="javascript:;" class="btn btn-primary btn_table_selectAll">全选</a> <a href="javascript:;" class="btn btn-primary btn_table_Cancle">取消</a>
+                    <!--<a href="javascript:;" class="btn btn-primary btn_table_offshelf">下架</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary btn_table_delAll">删除</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary btn_table_groupAll">分组</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary btn_table_setLevel">开/关折扣</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary j_alibaba">导入1688</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary j_postfee">运费</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary batch_update_price">修改价格</a>-->
+                    <!--<a href="javascript:;" class="btn btn-primary batch_update_class">分类</a></div>-->
+
+                    <div class="fr">
+                        <div class="pages"> {$page} </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+    <!-- end container -->
+    <include file="Public:foot"/>
+    <script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+    <script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+    <script type="text/javascript">
+
+        J(function(){
+            J('#starttime').calendar();
+            J('#endtime').calendar();
+        });
+    </script>
+    <script type="text/javascript">
+
+
+        J(function(){
+
+            J('#baoxianendtime').calendar();
+
+        });
+
+    </script>

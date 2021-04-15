@@ -1,0 +1,601 @@
+<include file="Public:header" />
+
+	<link rel="stylesheet" type="text/css" href="__CSS__/style.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/banner.css">
+	<link rel="stylesheet" href="__CSS__/idangerous.swiper.css"/>
+	<link rel="stylesheet" type="text/css" href="__CSS__/common.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/bootstrap.css">
+
+	<link href="__CSS__/city-picker.css" rel="stylesheet">
+
+	<script src="__JS__/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="__JS__/jquery-2.1.4.min.js"></script>
+	<script src="__JS__/easing.js"></script>
+	<script src="__JS__/bootstrap.js"></script>
+	<script src="__JS__/index.js"></script>
+	<script src="__JS__/main.js"></script>
+
+	<!--[if lte IE 9]>
+	<script src="__JS__/respond.min.js"></script>
+	<script src="__JS__/html5shiv.js"></script>
+	<![endif]-->
+
+
+	<div class="inner_t">
+		<div class="container1">
+			<div class="inner_ton">
+				<a href="{:U('Home/Index/index')}"><h5>首页</h5></a><i class="fa fa-angle-right"></i>
+				<p>购物车</p>
+			</div>
+		</div>
+	</div>
+<empty name="data">
+    <div class="user_no">
+        <div class="user_no_con">
+            <img src="__IMAGES__/user_no.png" width="120">
+            <p>您还没有任何购物商品 <a href="{:U('Home/Products/products')}">去购物</a></p>
+        </div>
+    </div>
+    <else/>
+	<!--  / warpper  -->
+	<div class="warpper width100" style="padding-bottom:60px; background:#f5f5f5; overflow:hidden;">
+		<div class="container1">
+
+			<div class="shopcar_con">
+				<table style="margin-bottom:20px;">
+					<tr class="shopcar_1">
+						<th class="shopcar_frist" style="width:30%;">
+							<input type="checkbox" class="j_checkbox j_checkbox_on check_all" id="selectAll" checked>
+							<span>全选</span> <b>商品名称</b>
+						</th>
+					
+						<th style="width:10%;">单价</th>
+						<th style="width:15%;">数量</th>
+						<th style="width:10%;">小计(元)</th>
+						<th style="width:15%;">操作</th>
+					</tr>
+				</table>
+				<table style="border:1px solid #e8e8e8;">
+					<foreach name="data" item="vo" >
+
+						<tr class="cart_parent" data-id="{$vo.id}">
+							<td style="width:30%;" class="shopcar_sec">
+								<a href="{:U('/Home/Products/products_inner',array('id'=>$vo.goodsinfo.id))}">
+									<input type="checkbox" class="j_checkbox j_checkbox_on checkbox_one" checked>
+									<img src="{$vo['logo_pic']}" width="100">
+									<!--<span>{$vo.goods_name}</span>-->
+									<div class="user_r_frist_con">
+									<div>{$vo.goods_name}</div>
+									<p>{$vo.shopcar}</p>
+									</div>
+								</a>
+							</td>
+							<!--<td  style="width:15%;">{$vo['goodsinfo']['sku_info']}</td>-->
+							<!--<td style="width:10%;">{$vo['goodsinfo']['integal']}</td>-->
+							<td style="width:10%;">¥{$vo['price']}</td>
+							<td style="width:15%;">
+								<div class="shopcar_nums cart_add_subtract">
+									<span class="pro_jian">-</span>
+									<span class="pro_num">{$vo['num']}</span>
+									<span class="pro_jia">+</span>
+								</div>
+							</td>
+							<td style="width:10%;" class="allprice_one">¥{$vo['allprice']}</td>
+							<td style="width:15%;"><span class="shopcar_close cart_del" >
+								<img src="__IMAGES__/shop_cloae.png" width="24"></span>
+							</td>
+							<input type="hidden" class="cart_info"
+								   data-id="{$vo.id}"
+								   data-cart_info-id="{$vo.cart_info_id}"
+								   data-num="{$vo.num}"
+								   data-type="{$vo.type}"
+								   data-allprice="{$vo.allprice}"
+								   value="1"
+							>
+						</tr>
+
+					</foreach>
+				</table>
+
+				<div class="shopcar_btn clearfix">
+					<!--<a class="shopcar_btn1" href="{:U('/Home/Products/productsInner')}">继续购物</a>-->
+					<a class="shopcar_btn2 cart_empty" href="javascript:;">清空购物车</a>
+					<a class="shopcar_btn2" href="javascript:void(0)" onclick="location.reload();">刷新购物车</a>
+				</div>
+
+				<div class="shopcar_zj">
+					<p><input type="checkbox" class="j_checkbox j_checkbox_on">已选择<span class="checked_num">{$checked_num}</span>件商品</p>
+					<!--todo lincss 2017.07.17 -->
+					<!--<div class="sjf">-->
+						<!--<h5>您可获得以下赠品:</h5>-->
+						<!--<p><span>积分</br><b class="heji_all_integal">{$all_integal}分</b></span></p>-->
+					<!--</div>-->
+					<div class="shopcar_zjs">
+						<p>商品合计：<span class="heji_all_price">¥{$heji_all_price}</span></p>
+						<br>
+						<br>
+						<br>
+
+						<!--<p>活动优惠：¥0.00</p>-->
+						<!--<p>折扣优惠：¥1200.00</p>-->
+						<div class="shopcar_zjs_btn">
+							<p>商品数量: <span class="all_num">{$all_num}</span>个 &nbsp; &nbsp; &nbsp; 付款金额：<b class="heji_all_price2">{$heji_all_price}</b>元</p>
+							<a href="javascript:;" class="go_pay">下单</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<form action="{:U('/Home/Order/order')}" method="post" name="form_go_pay">
+				<input type="hidden" name="cart_ids" class="cart_ids" value="" />
+				<input type="hidden" name="type"  value="2" />
+			</form>
+			<!--<div class="shopcar_con">-->
+				<!--<table style="margin-bottom:20px;">-->
+					<!--<tr class="shopcar_1">-->
+						<!--<th class="shopcar_frist" style="width:40%;">-->
+							<!--<input type="checkbox" class="j_checkbox j_checkbox_on">-->
+							<!--<span>全选</span>-->
+							<!--<b>商品名称</b>-->
+						<!--</th>-->
+						<!--<th style="width:15%;">单价</th>-->
+						<!--<th style="width:15%;">数量</th>-->
+						<!--<th style="width:15%;">金额(元)</th>-->
+						<!--<th style="width:15%;">操作</th>-->
+					<!--</tr>-->
+				<!--</table>-->
+				<!--<table style="border:1px solid #e8e8e8;">-->
+					<!--<tr>-->
+						<!--<td style="width:40%;" class="shopcar_sec">-->
+							<!--<a style="text-align:left;" href="{:U('Home/Products/products_inner')}">-->
+								<!--<input type="checkbox" class="j_checkbox j_checkbox_on">-->
+								<!--<img src="__IMAGES__/order_pro2.jpg" width="100">-->
+								<!--<div class="user_r_frist_con">-->
+									<!--<div>手提纸箱</div>-->
+									<!--<p>尺寸：2号|350*140*250mm-->
+										<!--材质：牛皮</p>-->
+								<!--</div>-->
+							<!--</a>-->
+						<!--</td>-->
+						<!--<td style="width:15%;">¥238.00</td>-->
+						<!--<td style="width:15%;">-->
+							<!--<div class="shopcar_nums">-->
+								<!--<span class="pro_jian">-</span>-->
+								<!--<span class="pro_num">1</span>-->
+								<!--<span class="pro_jia">+</span>-->
+							<!--</div>-->
+						<!--</td>-->
+						<!--<td style="width:15%;">¥238.00</td>-->
+						<!--<td style="width:15%;"><span class="shopcar_close"><img src="__IMAGES__/shop_cloae.png" width="24"></span>-->
+						<!--</td>-->
+					<!--</tr>-->
+					<!--<tr>-->
+						<!--<td style="width:40%;" class="shopcar_sec">-->
+							<!--<a style="text-align:left;" href="{:U('Home/Products/products_inner')}">-->
+								<!--<input type="checkbox" class="j_checkbox j_checkbox_on">-->
+								<!--<img src="__IMAGES__/order_pro2.jpg" width="100">-->
+								<!--<div class="user_r_frist_con">-->
+									<!--<div>手提纸箱</div>-->
+									<!--<p>尺寸：2号|350*140*250mm-->
+										<!--材质：牛皮</p>-->
+								<!--</div>-->
+							<!--</a>-->
+						<!--</td>-->
+						<!--<td style="width:15%;">¥238.00</td>-->
+						<!--<td style="width:15%;">-->
+							<!--<div class="shopcar_nums">-->
+								<!--<span class="pro_jian">-</span>-->
+								<!--<span class="pro_num">1</span>-->
+								<!--<span class="pro_jia">+</span>-->
+							<!--</div>-->
+						<!--</td>-->
+						<!--<td style="width:15%;">¥238.00</td>-->
+						<!--<td style="width:15%;"><span class="shopcar_close"><img src="__IMAGES__/shop_cloae.png" width="24"></span>-->
+						<!--</td>-->
+					<!--</tr>-->
+					<!--<tr>-->
+						<!--<td style="width:40%;" class="shopcar_sec">-->
+							<!--<a style="text-align:left;" href="{:U('Home/Products/products_inner')}">-->
+								<!--<input type="checkbox" class="j_checkbox j_checkbox_on">-->
+								<!--<img src="__IMAGES__/order_pro2.jpg" width="100">-->
+								<!--<div class="user_r_frist_con">-->
+									<!--<div>手提纸箱</div>-->
+									<!--<p>尺寸：2号|350*140*250mm-->
+										<!--材质：牛皮</p>-->
+								<!--</div>-->
+							<!--</a>-->
+						<!--</td>-->
+						<!--<td style="width:15%;">¥238.00</td>-->
+						<!--<td style="width:15%;">-->
+							<!--<div class="shopcar_nums">-->
+								<!--<span class="pro_jian">-</span>-->
+								<!--<span class="pro_num">1</span>-->
+								<!--<span class="pro_jia">+</span>-->
+							<!--</div>-->
+						<!--</td>-->
+						<!--<td style="width:15%;">¥238.00</td>-->
+						<!--<td style="width:15%;"><span class="shopcar_close"><img src="__IMAGES__/shop_cloae.png" width="24"></span>-->
+						<!--</td>-->
+					<!--</tr>-->
+					<!--<tr>-->
+						<!--<td style="width:40%;" class="shopcar_sec">-->
+							<!--<a style="text-align:left;" href="{:U('Home/Products/products_inner')}">-->
+								<!--<input type="checkbox" class="j_checkbox j_checkbox_on">-->
+								<!--<img src="__IMAGES__/order_pro2.jpg" width="100">-->
+								<!--<div class="user_r_frist_con">-->
+									<!--<div>手提纸箱</div>-->
+									<!--<p>尺寸：2号|350*140*250mm-->
+										<!--材质：牛皮</p>-->
+								<!--</div>-->
+							<!--</a>-->
+						<!--</td>-->
+						<!--<td style="width:15%;">¥238.00</td>-->
+						<!--<td style="width:15%;">-->
+							<!--<div class="shopcar_nums">-->
+								<!--<span class="pro_jian">-</span>-->
+								<!--<span class="pro_num">1</span>-->
+								<!--<span class="pro_jia">+</span>-->
+							<!--</div>-->
+						<!--</td>-->
+						<!--<td style="width:15%;">¥238.00</td>-->
+						<!--<td style="width:15%;"><span class="shopcar_close"><img src="__IMAGES__/shop_cloae.png" width="24"></span>-->
+						<!--</td>-->
+					<!--</tr>-->
+				<!--</table>-->
+
+				<!--<div class="shopcar_btn clearfix">-->
+					<!--<a class="shopcar_btn1" href="{:U('Home/Products/products')}">继续购物</a>-->
+					<!--<a class="shopcar_btn2" href="##">清空购物车</a>-->
+					<!--<a class="shopcar_btn2" href="##">刷新购物车</a>-->
+				<!--</div>-->
+
+				<!--<div class="shopcar_zj">-->
+					<!--<p><input type="checkbox" class="j_checkbox j_checkbox_on">已选择<span>4</span>件商品</p>-->
+					<!--<div class="sjf">-->
+						<!--<p><span>您可获得积分:<b>3000分</b></span></p>-->
+					<!--</div>-->
+					<!--<div class="shopcar_zjs">-->
+						<!--<p>商品合计：¥1428.00</p>-->
+						<!--<p>活动优惠：¥0.00</p>-->
+						<!--<p>折扣优惠：¥28.00</p>-->
+						<!--<div class="shopcar_zjs_btn">-->
+							<!--<p>商品数量: <span>4</span>个 &nbsp; &nbsp; &nbsp; 付款金额：<b>1400.00</b>元</p>-->
+							<!--<a href="{:U('Home/Order/order1')}">下单</a>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+
+			<!--</div>-->
+		</div>
+
+
+
+
+
+
+
+	</div>
+
+
+</empty>
+	<!--  / warpper  -->
+
+	<div class="jg"></div>
+
+	<include file="Public:footer" />
+
+</body>
+<!--购物加减-->
+<script>
+    $(function () {
+        $(".cart_add_subtract span").click(function(){
+            var _this = $(this);
+            var change = 0;
+            var id = get_cart_single(_this,'id');
+            var num_span = _this.html();
+            var num = parseInt(get_cart_single(_this,'num'));
+            var type = parseInt(get_cart_single(_this,'type'));
+            if(num_span == '-'){
+                if(num == 100){
+                    dialog.showTips('再减商品就删除了',"firm",function () {
+                        var id = get_cart_single(_this,'id');
+                        $.ajax({
+                            type: "POST",
+                            url: "{:U('/Home/Car/cart_del')}",
+                            data: {
+                                id:id
+                            },
+                            dataType: "json",
+                            success: function(g){
+                                if(g.status == 1){
+                                    _this.parents('.cart_parent').remove();
+                                    imputed_price();
+                                }else{
+                                    alert(g.info);
+                                }
+                            }
+                        });
+                    });
+                    return false;
+                }
+                change = 2;
+            }else if(num_span == '+'){
+                change = 1;
+                var store = parseInt(get_cart_single(_this,'store'));
+                if(num > store){
+                    alert('库存不足');
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "{:U('/Home/Car/cart_edit')}",
+                data: {
+                    id:id,
+                    change:change
+                },
+                dataType: "json",
+                success: function(g){
+                    if(g.status == 1){
+                        set_cart_single(_this,'num',g.num);
+//                        console.log(g.num);
+//                        var price = parseFloat(get_cart_single(_this,'price'))*100;
+                        set_cart_single(_this,'allprice',g.all_cost);
+//                        console.log(g.all_cost);
+                        var allprice_one =  toDecimal2(g.all_cost);
+                        _this.siblings('.pro_num').html(g.num);
+                        _this.parents('.cart_parent').find('.allprice_one').html('¥'+allprice_one);
+                        imputed_price();
+                    }else{
+                        alert(g.info);
+                    }
+                }
+            });
+        })
+    });
+</script>
+
+<!--全选方法-->
+<script>
+    $(function () {
+        $('#selectAll').click(function(){
+            if ($(this).is(':checked')) {
+                $('.checkbox_one').prop('checked',true);
+                $('.checkbox_one').addClass('j_checkbox_on');
+                $(this).prop('checked',true);
+                $(this).addClass('j_checkbox_on');
+            } else {
+                $('.checkbox_one').prop('checked',false);
+                $('.checkbox_one').removeClass('j_checkbox_on');
+                $(this).prop('checked',false);
+                $(this).removeClass('j_checkbox_on');
+//           _this.removeAttr("checked");
+            }
+            imputed_price();
+        });
+    })
+</script>
+<!--单选-->
+<script>
+    $(function () {
+        $('.checkbox_one,.checkbox_one_sj').click(function(){
+            var _this = $(this);
+            if(_this.is(':checked')){
+                _this.addClass('j_checkbox_on');
+                _this.prop('checked',true);
+            }else{
+                _this.removeClass('j_checkbox_on');
+                _this.prop('checked',false);
+            }
+            imputed_price();
+        });
+    })
+	/*  $('.checkbox_one_sj').click(function(){
+	 var _this = $(this);
+	 if(_this.is(':checked')){
+	 _this.addClass('j_checkbox_on');
+	 }else{
+	 _this.removeClass('j_checkbox_on');
+	 }
+
+	 imputed_price();
+	 })*/
+</script>
+<!--删除某个商品-->
+<script>
+    $('.cart_del').click(function(){
+        var _this = $(this);
+        dialog.showTips('真的要删除此商品',"firm",function () {
+            var id = get_cart_single(_this,'id');
+            $.ajax({
+                type: "POST",
+                url: "{:U('/Home/Car/cart_del')}",
+                data: {
+                    id:id
+                },
+                dataType: "json",
+                success: function(g){
+                    if(g.status == 1){
+                        _this.parents('.cart_parent').remove();
+                        imputed_price();
+                    }else{
+                        alert(g.info);
+                    }
+                }
+            });
+        });
+
+    })
+</script>
+<!--清空购物车-->
+<script>
+    $('.cart_empty').click(function(){
+        dialog.showTips('真的要删除此商品',"firm",function () {
+            $.ajax({
+                type: "POST",
+                url: "{:U('/Home/Car/cart_empty')}",
+                data: {},
+                dataType: "json",
+                success: function(g){
+                    if(g.status == 1){
+                        dialog.showTips(g.info,"",'1');
+//                        alert(g.info);
+//                        window.location.reload();
+                    }else{
+                        alert(g.info);
+                    }
+                }
+            });
+        });
+
+    })
+</script>
+<!--下单-->
+<script>
+    //组合cart id 成 cart_ids
+    $('.go_pay').click(function(){
+        var cart_ids = '';
+        if(document.body.clientWidth<=768){
+            $('.checkbox_one_sj').each(function(){
+                var _this = $(this);
+                //获取选中cart_id
+                if(_this.is(':checked')){
+                    var cart_id = parseInt(get_cart_single(_this,'id'));
+                    if(!cart_ids){
+                        cart_ids = cart_id;
+                    }else{
+                        cart_ids += '-'+cart_id;
+                    }
+                }
+            });
+//            console.log(2);
+        }else{
+            $('.checkbox_one').each(function(){
+                var _this = $(this);
+                //获取选中cart_id
+                if(_this.is(':checked')){
+                    var cart_id = parseInt(get_cart_single(_this,'id'));
+                    if(!cart_ids){
+                        cart_ids = cart_id;
+                    }else{
+                        cart_ids += '-'+cart_id;
+                    }
+                }
+            });
+//            console.log(1);
+        }
+//        console.log(cart_ids);return false;
+        if(cart_ids == '' || cart_ids == null){
+            alert('请选择商品');
+            return false;
+        }
+        $(".cart_ids").val(cart_ids);
+        $("form[name=form_go_pay]").submit();
+//      alert(cart_ids);
+    })
+
+</script>
+<!--获取 设置 cart_info某个数据-->
+<script>
+    //todo 父级
+    function get_cart_single(_this,name){
+        var cart_info = _this.parents('.cart_parent').find('.cart_info');
+        return cart_info.attr('data-'+name);
+    }
+    function set_cart_single(_this,name,val){
+        var cart_info = _this.parents('.cart_parent').find('.cart_info');
+        cart_info.attr('data-'+name,val);
+//        console.log('val'+val);
+//        console.log(cart_info.attr('data-'+name));
+    }
+</script>
+<!--购物计算价格方法-->
+<script>
+    function imputed_price(){
+        //计算价格
+        var all_price = 0;
+//        var all_integal = 0;
+        var is_all = true;
+        var checked_num = 0;
+        var all_num = 0;
+        if(document.body.clientWidth<=768){
+            $('.checkbox_one_sj').each(function(){
+                var _this = $(this);
+                //获取选中cart_id
+                if(_this.is(':checked')){
+                    //如果选中
+                    var num = parseInt(get_cart_single(_this,'num'));
+//                    console.log(num);
+//                    var price = parseFloat(get_cart_single(_this,'price')) *100;
+//                    var integal = parseFloat(get_cart_single(_this,'integal'));
+                    all_price = parseFloat(all_price) + parseFloat(get_cart_single(_this,'all_price')*100);
+//                    all_integal = parseInt(all_integal) + parseInt(num*integal);
+                    all_num += num;
+                    checked_num +=1;
+                }else{
+                    is_all = false;
+                }
+            });
+        }else{
+            $('.checkbox_one').each(function(){
+                var _this = $(this);
+                //获取选中cart_id
+                if(_this.is(':checked')){
+                    //如果选中
+                    var num = parseInt(get_cart_single(_this,'num'));
+//                    console.log(num);
+//                    var price = parseFloat(get_cart_single(_this,'price')) *100;
+//                    var integal = parseFloat(get_cart_single(_this,'integal'));
+                    all_price = parseFloat(all_price) + parseFloat(get_cart_single(_this,'allprice'))*100;
+//                    all_integal = parseInt(all_integal) + parseInt(num*integal);
+                    all_num += num;
+                    checked_num +=1;
+                }else{
+                    is_all = false;
+                }
+            });
+        }
+
+
+        var heji_all_price = toDecimal2(all_price/100);
+//        console.log(heji_all_price);
+        $('.checked_num').html(checked_num);
+        $('.all_num').html(all_num);
+        $('.heji_all_price').html('¥'+heji_all_price);
+        $('.heji_all_price2').html(heji_all_price);
+//        $('.heji_all_integal').html(all_integal+"分");
+        if(!is_all){
+//            console.log(is_all);
+            $('.check_all').prop('checked',false);
+            $('.check_all').removeClass('j_checkbox_on');
+        }else{
+            $('.check_all').prop('checked',true);
+            $('.check_all').addClass('j_checkbox_on');
+        }
+    }
+</script>
+<!--数字保留两位小数-->
+<script>
+    function toDecimal2(x) {
+        var f = parseFloat(x);
+        if (isNaN(f)) {
+            return false;
+        }
+        var f = Math.round(x*100)/100;
+        var s = f.toString();
+        var rs = s.indexOf('.');
+        if (rs < 0) {
+            rs = s.length;
+            s += '.';
+        }
+        while (s.length <= rs + 2) {
+            s += '0';
+        }
+        return s;
+    }
+</script>
+</html>

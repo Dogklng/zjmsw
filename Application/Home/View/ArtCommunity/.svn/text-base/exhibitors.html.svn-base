@@ -1,0 +1,336 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sellerCss.css">
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">我要参展</p>
+  </div>
+  <div class="buy">
+    <div class="Exhibitors">
+      <div class="SellerTop SelIdTop">
+        <h3>请填写以下报名表信息</h3>
+        <p>请填写真实姓名，联系方式等信息，确保我们能及联系到您！</p>
+      </div>
+      <form aciton="{:U('/Home/ArtCommunity/exhibitors')}" enctype="multipart/form-data" method="post" id="add_step2">
+      <div class="SelIdentCon">
+        <input type="hidden" name="show_id" value="{$_GET['id']}" >
+        <div class="SelCertName"> <span> 姓名：<b style="color: red">*</b></span><input type="text" value="" maxlength="10" id="name" onblur="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" onkeyup="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" name="name"></div>
+        <input type="hidden" checked name="cate" value="1">
+        <!--<div class="SelCertClass"> <span>参展类型：<b style="color: red">*</b></span>
+          <input type="radio" checked name="cate" value="0" id="sel1"><label for="sel1">个展</label>
+          <input type="radio" name="cate" value="1" id="sel2"><label for="sel2">群展</label></div>-->
+        <div class="SelCertName"> <span>作品类型：<b style="color: red">*</b></span>
+          <div>
+            <select name="series" style="width: 400px;height: 32px">
+              <volist name="series" id="s">
+                <option value="{$s.id}">{$s.classname}</option>
+                <!--<eq name="key" value="9"><br /></eq>-->
+                <!--<input type="radio" name="series" id="sel{$key+4}" value="{$s.id}"><label for="sel{$key+4}">{$s.classname}</label>-->
+              </volist>
+            </select>
+          </div>
+        </div>
+        <div class="SelCertName"> <span>手机：<b style="color: red">*</b></span>  <input type="text" value="" id="tel" maxlength="16" onblur="value=value.replace(/[^0-9]/g,'')" onkeyup="value=value.replace(/[^0-9]/g,'')" name="tel"></div>
+        <div class="SelCertName"> <span>微信：<b style="color: red">*</b></span>   <input type="text" value="" id="wx" maxlength="30" name="wx"></div>
+        <div class="SelCertName"> <span>邮箱：<b style="color: red">*</b></span>   <input type="text" value="" id="email" maxlength="30" name="email"></div>
+        <div class="SelIdentTime"> <span>个人简介：</span> <textarea style="resize: none;" id="detail" maxlength="100" name="detail"></textarea></div>
+        <div class="SelIdentAddPic"> <span>作品上传:<b style="color: red">*</b> </span>
+          <!--<span class="duoxuan_percent">上传图片最多6张，点击图片可删除</span>-->
+          <div class="SelIdentPic">
+            <div class="SelIdetPic-list">
+              <div class="SelIdPic-border"> <img src="__IMAGES__/SeladdPic.png">
+                <h6>点此上传</h6>
+                <input type="file" accept="image/jpg,image/jpeg,image/png" name="pic" id="duoxuan" class="file">
+                <span class="duoxuan_percent"></span>
+                <span style="margin-top:13px;margin-right:-10px;width:100px;word-break:keep-all;white-space:nowrap; ">
+                  (点击图片可以删除图片)</span>
+              </div>
+            </div>
+            <!--<div class="SelIdetPic-list">-->
+              <!--<div class="SelIdPic-border"> <img src="__IMAGES__/SeladdPic.png">-->
+                <!--<h6>点此上传</h6>-->
+                <!--<input type="file">-->
+              <!--</div>-->
+            <!--</div>-->
+          </div>
+
+          <div class="duoxuan_showimge mgr10">
+          </div>
+
+        </div>
+        <!--<div class="SelIdentTime"><span>提示：</span><span class="duoxuan_percent">上传图片最多6张，点击图片可删除</span></div>-->
+        <div class="SelNoticeStyle">
+          <h4><input type="button" class="btn" onclick="toVaild()" style="text-align: center;width: 150px;margin-left: 13%;" value="提交"></h4>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script>
+  function imgs() {
+      var pic = $('input[name="pic[]"]');
+      var imgs = $(pic).length;
+      if (imgs>=6){
+          alert('图片不可大于6个！');
+          return false;;
+      }else {
+          return true;
+      }
+  }
+
+    function delImg(obj){
+        if(!confirm("删除这张图片？")){
+            return false;
+        }
+        $(obj).next("input").remove();
+        $(obj).remove();
+    }
+
+
+
+    var percent = $('.duoxuan_percent');
+    var progress = $('.duoxuan_percent');
+    $("#duoxuan").wrap("<form id='myupload' action='{:U('/Home/ArtCommunity/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#duoxuan").change(function(){ //选择文件
+        if (!imgs()){
+            return false;
+        }
+
+        $("#myupload").ajaxSubmit({
+            dataType:  'json', //数据格式为json
+            beforeSend: function() { //开始上传
+                progress.show(); //显示进度条
+                var percentVal = '0%';
+                percent.html(percentVal);
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+                var percentVal = percentComplete + '%'; //获得进度
+                percent.html(percentVal); //显示上传进度百分比
+            },
+            success: function(data) { //成功
+                var img = '<img onclick="delImg(this)" src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80"  class="mgr10 mgt10 " onclick="delImg(this)"><input type="hidden" name="pic[]" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                //console.log(img);
+                $('.duoxuan_showimge').append(img);
+                progress.hide();
+            },
+            error:function(xhr){ //上传失败
+                //console.log(xhr.status)
+            }
+        });
+    });
+
+
+
+ function toVaild() {
+
+     var name = $.trim($('#name').val());
+     var val=$('input:radio[name="cate"]:checked').val();
+     //var series = $('input:radio[name="series"]:checked').val();
+     var series = $('select[name="series"]').val();
+     var tel = $.trim($('#tel').val());
+     var wx =  $.trim($('#wx').val());
+     var email = $.trim($('#email').val());
+     var detail = $.trim($('#detail').val());
+     var pic = $('#pic').val();
+     if(name==''){
+         alert("姓名必填");
+         return false;
+     }
+     /*if(val==undefined){
+         alert("参展类型必选");
+         return false;
+     }*/
+     if(series==undefined){
+         alert("作品类型必选");
+         return false;
+     }
+     if(tel==''){
+         alert("手机号必填");
+         return false;
+     }
+     var reg1 = /^1[3|4|5|7|8][0-9]{9}$/; //验证规则
+     if(!reg1.test(tel)){
+         alert("手机号码有误，请重填");
+         return false;
+     }
+     if(wx==''){
+         alert("微信必填");
+         return false;
+     }
+     if(email==''){
+         alert("邮箱必填");
+         return false;
+     }
+     var reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;//邮箱
+
+     if(!(reg.test(email))){
+         alert("请输入正确邮箱");
+         return false;
+     }
+     /*if(detail==''){
+         alert("简介必填");
+         return false;
+     }*/
+     if(pic==undefined){
+         alert("图片必选");
+         return false;
+     }
+     $.ajax({
+         url:'/Home/ArtCommunity/exhibitors',
+         type:'post',
+         data:$("form").serialize(),
+         dataType:'json',
+         async: false,
+         success:function(g){
+             if(g.status == 1){
+                 alert(g.info);
+                 setTimeout(location.href="{:U('Home/News/exhibition')}",5000);
+                 return false;
+             }else{
+                 alert(g.info);
+                 return false;
+
+             }
+
+         }
+     })
+
+
+     return false;
+
+ }
+
+
+
+
+
+
+
+
+    $('.product-sort a').click(function(){
+      // alert($(this).parent().find('a').length)
+      $(this).parent().find('a').removeClass('active')
+      $(this).addClass('active')
+    })
+</script>
+<!--  / banner切换  -->
+<script src="__JS__/swiper.min.js"></script>
+<script>
+$(document).ready(function(e) {
+    
+	var mySwiper1 = new Swiper('.swiper-banner',{
+		pagination: '.pagination1',
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left_01').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipePrev()
+	})
+	  
+	$('.arrow-right_01').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipeNext()
+	})
+	
+	var mySwiper2 = new Swiper('.swiper-tuijian',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerGroup : 1,//设置几个一切
+		slidesPerView :4,//一行几
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+	
+	$(".ss").click(function(e){
+		    $(".sskuang").css({"left":"0","opacity":"1"})  
+	})
+	
+	$(".close").click(function(e){
+		    $(".sskuang").css({"left":"-100%","opacity":"0"})  
+	})
+	
+  
+  
+  
+
+});
+
+
+
+
+
+$(window).scroll(function ()
+{
+	
+ 
+		 	 
+	
+	 if($(window).scrollTop()>=60){ 
+		 $('.header').addClass('header_fixed');
+	 }
+	 else {
+        $('.header').removeClass('header_fixed');
+        } 
+		 
+	 
+
+	
+});		 
+		 
+</script>
+
+<!--  / banner切换  -->
+
+<script>
+
+$(document).ready(function() {
+
+	$(".wx").hover(function(){
+		$(".ewm1").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm1").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	$(".sj").hover(function(){
+		$(".ewm2").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm2").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	
+	
+});
+
+</script>
+</html>

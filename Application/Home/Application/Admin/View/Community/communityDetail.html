@@ -1,0 +1,355 @@
+<include file="Public:head"/>
+
+<style>
+        .imgnav{
+            max-height: 30px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .imgwrapper{
+            display: block;
+            width: 78px;
+            height: 78px;
+            overflow: hidden;
+        }
+        .imgwrapper img{
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border:0;
+        }
+				#l-map{height:300px;width:100%;}
+        .spanpd10{
+            margin:10px;
+        }
+        .wxtables.wxtables-sku.newtable{
+            width: 40%;
+            margin: 0;
+        }
+        .img-list li{
+            width: 60px;
+            height:60px;
+        }
+        .cst_h3 span{font-weight: normal;}
+    </style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=A607d61b18d43a1ff27abf4ac67da83c"></script>
+
+<div class="container">
+<div class="inner clearfix">
+        <include file="Public:left" />
+<!-- end content-left -->
+
+<div class="content-right fl">
+ 
+
+    <h1 class="content-right-title">查看详情</h1>
+    
+    
+<input type="hidden" id="j-isSid" value="0"><!-- 是否选择了淘宝类目 -->
+<input type="hidden" id="j-hasNorms" value="1"><!-- 淘宝类目下是否有属性 -->
+<input type="hidden" id="supplier" value="">
+
+<form aciton="{:U('/Admin/Member/edit')}" method="post" id="add_step2" onsubmit="return toVaild()">
+<div class="panel-single panel-single-light mgt20">
+    <h3 class="cst_h3 mgb20">个人信息</h3>
+    <div>
+        <div class="formitems">
+            <label class="fi-name">用户名：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$res1.person_name}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">真实姓名：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$res1.realname}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems" style="padding-top:-5px">
+            <label class="fi-name">手机号：</label>
+            <div class="form-controls" style="padding-top:-5px">{$res1.telephone}<span class="fi-help-text"></span></div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">性别：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                <switch name="res1.sex">
+                    <case value="1">男</case>
+                    <case value="2">女</case>
+                </switch>
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">地址：</label>
+            <div class="form-controls" style="padding-top:-5px">{$res1.province}{$res1.city}{$res1.district}{$res1.address}<span class="fi-help-text"></span></div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">生日：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$res1.birth}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">邮箱：</label>
+            <div class="form-controls" style="padding-top:-5px">
+                {$res1.email}
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name">注册时间：</label>
+            <div class="form-controls" style="padding-top:-5px">{$res1.addtime}<span class="fi-help-text"></span></div>
+        </div>
+        <div class="formitems">
+            <label class="fi-name" >会员等级：</label>
+            <div class="form-controls" >{$res1.vip}<span class="fi-help-text"></span></div>
+        </div>
+	</div>
+</div>
+<!-- end 基本信息 -->
+<div class="panel-single panel-single-light mgt20">
+    <h3 class="cst_h3 mgb20">艺术家信息</h3>
+    <div class="formitems" >
+        <label class="fi-name">类别：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$art_cate}
+            <span class="fi-help-text"></span>
+        </div>
+    </div> 
+    <div class="formitems" id="artist1" hidden="hidden">
+        <label class="fi-name">主页名称:</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$res.zy_name}
+            <span class="fi-help-text"></span>
+        </div>
+    </div> 
+    <div class="formitems">
+        <label class="fi-name"><span class="colorRed"></span>加入时间：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$res.create_at|date="Y-m-d H:i:s",###}
+            <span class="fi-help-text"></span>
+        </div>
+    </div>      
+    <div class="formitems"  id="artist2" hidden="hidden">
+        <label class="fi-name">等级：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$artist_level}
+            <span class="fi-help-text"></span>
+        </div>
+    </div>
+    <div class="formitems" id="artist3" hidden="hidden">
+        <label class="fi-name">毕业院校：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$school_cate}
+            <span class="fi-help-text"></span>
+        </div>
+    </div>
+    <div class="formitems">
+        <label class="fi-name">简介：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$res.desc|htmlspecialchars_decode|stripslashes}
+            <span class="fi-help-text"></span>
+        </div>
+    </div>
+    <div class="formitems" id="hualang1">
+        <label class="fi-name">画廊口号：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$res.detail|htmlspecialchars_decode|stripslashes}
+            <span class="fi-help-text"></span>
+        </div>
+    </div>
+    <div class="formitems" id="hualang2">
+        <label class="fi-name">画廊成立时间：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            {$res.shop_at}
+            <span class="fi-help-text"></span>
+        </div>
+    </div>
+    <div class="formitems" id="artist4" hidden="hidden">
+        <label class="fi-name">个人图片：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            <a href="{$res['self_pic']}" target="_blank"><img src="{$res.self_pic}" width="50" alt=""></div>
+    </div>
+    <div class="formitems" id="artist5" hidden="hidden">
+        <label class="fi-name">半身照：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            <a href="{$res['half_pic']}" target="_blank"><img src="{$res.half_pic}" width="50" alt=""></div>
+    </div>
+    <div class="formitems" id="hualang3">
+        <label class="fi-name">画廊logo：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            <a href="{$res['gallery_logo']}" target="_blank"><img src="{$res.gallery_logo}" width="50" alt=""></div>
+    </div>
+    <div class="formitems" id="hualang4">
+        <label class="fi-name">背景图片：</label>
+        <div class="form-controls" style="padding-top:-5px">
+            <a href="{$res['gallery_index']}" target="_blank"><img src="{$res.gallery_index}" width="50" alt=""></div>
+    </div>
+</div>
+
+<!-- end 详情及其它 -->
+
+
+<div class="panel-single panel-single-light mgt20 txtCenter">
+    <a href="javascript:history.back(-1)" class="btn">返回</a>
+
+</div>
+</form>
+
+</div>
+<!-- end content-right -->
+</div>
+</div>
+
+
+<div class="jbox editfenlei disshow" style=" width:700px; left: 40%;top: 35%; height:auto; overflow: visible;">
+    <!--<span style="color: red">点击图片隐藏</span>-->
+    <img onclick="cancle()" id="img" src="" width="100%" height="100%">
+</div>
+<script type="text/JavaScript">
+    function imgs(obj) {
+        var image = $(obj).attr('src');
+        $('.jbox').show();
+        $('#img').attr('src',image);
+    }
+
+    function cancle() {
+        $('.jbox').hide();
+    }
+</script>
+<!-- end container -->
+
+<include file="Public:foot"/>
+<script type="text/javascript">
+var art_cate = '{$res.art_cate}';
+
+var artist1 = document.getElementById('artist1');
+    var artist2 = document.getElementById('artist2');
+    var artist3 = document.getElementById('artist3');
+    var artist4 = document.getElementById('artist4');
+    var artist5 = document.getElementById('artist5');
+    var hualang1 = document.getElementById('hualang1');
+    var hualang2 = document.getElementById('hualang2');
+    var hualang3 = document.getElementById('hualang3');
+    var hualang4 = document.getElementById('hualang4');
+
+     if(art_cate == 13){
+        artist1.style.display="none";
+        artist2.style.display="none";
+        artist3.style.display="none";
+        artist4.style.display="none";
+        artist5.style.display="none";
+        hualang1.style.display="";
+        hualang2.style.display="";
+        hualang3.style.display="";
+        hualang4.style.display="";
+    
+    }else{
+        artist1.style.display="";
+        artist2.style.display="";
+        artist3.style.display="";
+        artist4.style.display="";
+        artist5.style.display="";
+        hualang1.style.display="none";
+        hualang2.style.display="none";
+        hualang3.style.display="none";
+        hualang4.style.display="none";
+    }
+
+    if(art_cate == 14){
+        artist1.style.display="none";
+        artist2.style.display="none";
+        artist3.style.display="none";
+        hualang3.style.display="none";
+        hualang4.style.display="none";
+    }
+       /* $('#artist3').style('display:none');
+        $('#artist1').style('display:none');
+        $('#artist2').style('display:none');
+        $('#artist4').style('display:none');
+        $('#artist5').style('display:none');
+        $('#hualang1').style('display:block');
+        $('#hualang2').style('display:block');
+        $('#hualang3').style('display:block');
+        $('#hualang4').style('display:block');
+        /*$('#artist3').attr('hidden',true);
+        $('#artist1').attr('hidden',true);
+        $('#artist2').attr('hidden',true);
+        $('#artist4').attr('hidden',true);
+        $('#artist5').attr('hidden',true);
+        $('#hualang1').attr('hidden',false);
+        $('#hualang2').attr('hidden',false);
+        $('#hualang3').attr('hidden',false);
+        $('#hualang4').attr('hidden',false);*/
+      /*else{
+        $('#artist3').attr('hidden',false);
+        $('#artist1').attr('hidden',false);
+        $('#artist2').attr('hidden',false);
+        $('#artist4').attr('hidden',false);
+        $('#artist5').attr('hidden',false);
+        $('#hualang1').attr('hidden',true);
+        $('#hualang2').attr('hidden',true);
+        $('#hualang3').attr('hidden',true);
+        $('#hualang4').attr('hidden',true);
+      }
+       if(art_cate == 14){
+        $('#artist3').attr('hidden',true);
+        $('#artist1').attr('hidden',true);
+        $('#artist2').attr('hidden',true);
+      }
+
+/*$(function(){
+    
+    //alert(art_cate);return false;
+    
+    if(art_cate == 13){
+        /*artist1.style.display="none";
+        artist2.style.display="none";
+        artist3.style.display="none";
+        artist4.style.display="none";
+        artist5.style.display="none";
+        hualang1.style.display="";
+        hualang2.style.display="";
+        hualang3.style.display="";
+        hualang4.style.display="";*/
+       /* $('#artist3').style('display:none');
+        $('#artist1').style('display:none');
+        $('#artist2').style('display:none');
+        $('#artist4').style('display:none');
+        $('#artist5').style('display:none');
+        $('#hualang1').style('display:block');
+        $('#hualang2').style('display:block');
+        $('#hualang3').style('display:block');
+        $('#hualang4').style('display:block');
+        /*$('#artist3').attr('hidden',true);
+        $('#artist1').attr('hidden',true);
+        $('#artist2').attr('hidden',true);
+        $('#artist4').attr('hidden',true);
+        $('#artist5').attr('hidden',true);
+        $('#hualang1').attr('hidden',false);
+        $('#hualang2').attr('hidden',false);
+        $('#hualang3').attr('hidden',false);
+        $('#hualang4').attr('hidden',false);*/
+      /*}else{
+        $('#artist3').attr('hidden',false);
+        $('#artist1').attr('hidden',false);
+        $('#artist2').attr('hidden',false);
+        $('#artist4').attr('hidden',false);
+        $('#artist5').attr('hidden',false);
+        $('#hualang1').attr('hidden',true);
+        $('#hualang2').attr('hidden',true);
+        $('#hualang3').attr('hidden',true);
+        $('#hualang4').attr('hidden',true);
+      }
+      if(art_cate == 14){
+        $('#artist3').attr('hidden',true);
+        $('#artist1').attr('hidden',true);
+        $('#artist2').attr('hidden',true);
+      }
+  })*/
+</script>
+

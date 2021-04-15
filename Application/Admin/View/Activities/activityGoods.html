@@ -1,0 +1,106 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">活动商品列表</h1>
+
+            <a href="{:U('/Admin/Activities/addActivityGoods/id')}/{$_GET['id']}" class="btn btn-success">添加商品</a>
+            <!-- end tabs -->
+
+            <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+                <thead>
+                <tr class="po_list">
+                    <td>产品</td>
+                    <td>库存</td>
+                    <td>销量</td>
+                    <!--<td>时间段</td>-->
+                    <!--<td>状态</td>-->
+                    <td>操作<span></span></td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res" item="vo">
+                    <tr>
+                        <td><div class="goodswrap"> <a href="javascript:void(0)" class="block" target="_blank" title="{$vo['goods_name']}">
+                            <div class="table-item-img"> <img src="{$vo['index_pic']}" alt=""> </div>
+                            <div class="table-item-info" style="width: 100px">{$vo.goods_name}</div>
+                        </a> </div></td>
+
+                        <td> {$vo.store}</td>
+                        <td> {$vo.volume}</td>
+
+                        <td>
+                            <a href="{:U('/Admin/Activities/editActivityGoods/id')}/{$vo.id}/activity_id/{$vo.activity_id}" class="btn btn-primary j-editClass">编辑</a>
+                            <!-- <a href="javascript:;" data-id="{$vo.id}" class="btn <eq name="vo['is_shang']" value="0">btn-success  shang<else />btn-danger change-is_xia</eq>" data-id="{$vo.id}"><eq name="vo['is_shang']" value="0">上架<else />下架</eq></a>-->
+
+                            <a href="{:U('/Admin/Activities/delActivityGoods/id')}/{$vo.id}" onclick="{if(!confirm('确定删除作品吗?'))return false;} " class="btn j-delClass btn-warning" title="删除">删除</a>
+                            <!--<if condition="$vo.shenhe eq 0"><a href="javascript:;" class="btn huifu" style="background-color: green;border-color: green; color: white" data-id="{$vo.id}">审核</a></if>-->
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <div class="fr">
+                        <div class="pages"> {$page} </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+</div>
+<script src="__JS__/jquery.js"></script>
+<script>
+    $(".shang").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    })
+
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(".shang").click(function(){
+        var commentId = $(this).attr('data-id');
+        $('#commentId').val(commentId);
+    })
+
+    $('#agree').click(function () {
+        var id1 = $('#commentId').val();
+        var num_id = $('#num_id').val();
+        if (num_id==''||num_id==null){
+            alert('场次必选')
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Admin/Pm/glnum')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id: id1,
+                num_id: num_id,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>
+<!-- end container -->
+<include file="Public:foot"/>

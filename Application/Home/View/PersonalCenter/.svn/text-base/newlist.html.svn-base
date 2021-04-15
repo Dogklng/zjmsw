@@ -1,0 +1,103 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+          <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="buyerXia">
+
+            <div class="buyerXia_list">
+              <div class="buyerXia_sec1">
+
+                <div class="buyerXia_sec1_li">
+                  <h5><span>浙江美术网</span></h5>
+                </div>
+                <volist name="res" id="vo" empty="暂无数据">
+                  <div class="buyerXia_sec1_li">
+                    <table>
+                      <tr>
+                        <!--<th class="buyerXia_sec1_li_frist" style="width:16%;">参展类型</th>-->
+                        <th style="width:16%;">标题</th>
+                        <th style="width:16%;">审核状态</th>
+                        <th style="width:16%;">信息</th>
+                        <th style="width:26%;">发布时间</th>
+                        <th style="width:26%;">操作</th>
+                      </tr>
+                      <tr>
+                        <!--<td><if condition="$vo.cate eq 0">个展<else/>群展</if></td>-->
+                        <td>{$vo.title}</td>
+                        <if condition="$vo.shenhe eq 0"><td style="color: #3bb4f2">待审核</td><elseif condition="$vo.shenhe eq 1"/><td style="color: green">审核通过</td><else/><td style="color: red">审核拒绝</td></if>
+                        <td><if condition="$vo.shenhe eq 2">{$vo.shenhe_detail}</if></td>
+                        <td>{$vo['addtime']|date="Y-m-d",###}</td>
+                        <td>
+                          <!--<a href="{:U('/Home/PersonalCenter/bzDetail/tag/banzhan/id')}/{$vo.id}" class="btn btn-primary j-editClass">查看详情</a>-->
+                          <neq name="$vo.shenhe" value="1">
+                          <a href="{:U('/Home/PersonalCenter/edituser_vote/id')}/{$vo.id}/tag/newlist/value/8" class="btn btn-primary">修改</a>
+                          </neq>
+                          <!--<a href="ajaxscript:;" data-id="{$vo.id}" onclick="banzhanDel(this)" class="btn btn-primary j-editClass">删除</a>-->
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </volist>
+              </div>  
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--  / user  --> 
+  
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+<script>
+
+  function banzhanDel(obj) {
+      if(!confirm('确定删除吗?')){
+          return false;
+      }
+
+      var id = $(obj).attr('data-id');
+      $.ajax({
+          url: "{:U('/Home/PersonalCenter/banzhanDel')}",
+          type: "post",
+          dataType: "json",
+          data: {
+              id: id
+          },
+          success:function(msg){
+              if (msg.status==1){
+                  alert( msg.info);
+                  location.reload();
+              }else{
+                  alert( msg.info);
+              }
+          }
+      })
+
+
+  }
+
+  function fnTabBoxSlide(Focus,Hide,Show){
+    $(Focus).siblings().removeClass("actived");
+    $(Focus).addClass("actived");
+    $(".TabHide"+Hide).hide();
+    $("#TabShow"+Show).slideDown("fast");
+};
+</script>
+</html>

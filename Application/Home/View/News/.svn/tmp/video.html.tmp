@@ -1,0 +1,191 @@
+<include file="Public:header" />
+<style>
+  /*   video  */
+  .video_fl{ margin-top:60px; width:100%; max-width:180px;  border:1px #eee solid;}
+  .video_fl h3{ color:#fff; background:#333; line-height:50px; text-align:center; font-size:16px; margin:0;}
+  .video_fl li{ line-height:40px;   border-top:1px #eee solid; text-align:center; position:relative;}
+  .video_fl li i{ position:absolute; width:8px; height:2px; background:#ddd; top:19px;}
+  .video_fl li i.left{ left:0;}
+  .video_fl li i.right{ right:0;}
+  .video_fl li a{ color:#666; font-size:14px; }
+
+  .video_box{ cursor:pointer;
+  }
+  .video_box p{
+    margin:0;
+  }
+  .video_list h3{
+    margin-bottom:10px;
+    font-size:20px;
+    font-weight:bold;
+    margin-top: 50px;
+  }
+  .video_list h3 i{ margin-right:5px;}
+  .video_text {
+    line-height:24px;
+
+    color:#666;
+  }
+  .video_text span{
+    float:left;
+    font-size:14px;
+    margin-bottom:20px;
+  }
+  .video_text span+span{
+    margin-left:60px;
+  }
+  .video_cont img{
+    width:100%;
+  }
+
+  .videoBox {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    display: none;
+  }
+  .videoBox_bg {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -moz-opacity: 0.65;
+    -khtml-opacity: 0.65;
+    -webkit-opacity: 0.65;
+    -webkit-transition: 0.8s ease;
+    -moz-transition: 0.8s ease;
+    -ms-transition: 0.8s ease;
+    -o-transition: 0.8s ease;
+    transition: 0.8s ease;
+  }
+  .videoBoxCon_on {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+    -moz-opacity: 1 !important;
+    -khtml-opacity: 1 !important;
+    -webkit-opacity: 1 !important;
+    -webkit-transform: scale(1) !important;
+    -moz-transform: scale(1) !important;
+    -ms-transform: scale(1) !important;
+    -o-transform: scale(1) !important;
+    transform: scale(1) !important;
+  }
+  .colse {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 9;
+  }
+  .videoBoxCon {
+    position: absolute;
+    top: 11%;
+    left: 17%;
+    width: 66%;
+    z-index: 999;
+    overflow: hidden;
+    background: rgba(0,0,0,0.5);
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    -webkit-opacity: 0;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+    transition: 0.5s ease;
+  }
+  .Box-padding {
+    margin: 15px;
+  }
+  .videoBoxCon-main video{ width: 100%;}
+
+</style>
+<!----移动端----->
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">video</p>
+    <h5>视 • 频</h5>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3">
+      <ul class="video_fl">
+        <h3>视频分类</h3>
+        <li><i class="left"></i><i class="right"></i><a href="#">拍卖视频</a></li>
+        <li><a href="#">展会视频</a></li>
+        <li><a href="#">工艺视频</a></li>
+        <li><a href="#">最新视频</a></li>
+      </ul>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-9">
+      <div class="video_box">
+        <volist name="res" id="vv">
+        <div class="video_list">
+          <h3><i class="fa fa-camera"></i>{$vv.title}</h3>
+          <p class="video_text"><span>{$vv.detail}</span> </p>
+          <div class="video_cont videoA" data-url="{$vv.url}"> <img src="__IMAGES__/video1.jpg" alt="" /> </div>
+        </div>
+
+        </volist>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  -->
+<div class="videoBox">
+  <div class="videoBoxCon">
+    <div class="Box-padding"> <img class="colse" src="__IMAGES__/dizhi_close.png" width="20">
+      <div class="videoBoxCon-main">
+<<<<<<< .mine
+		<video class="video-js vjs-default-skin mobes" loop="loop" autoplay="autoplay" data-setup="{}">
+		<source src="/Uploads/video/2017-09-18/WU_FILE_0_.mp4" type="video/mp4">
+		<ideo>
+=======
+        <video controls="controls" autoplay="autoplay" >
+          <source src="	" type="video/mp4" id="a"/>
+        </video>
+>>>>>>> .r125
+      </div>
+    </div>
+  </div>
+  <div class="videoBox_bg"></div>
+</div>
+<script>
+
+    $('.videoA').click(function(){
+       var url = $(this).attr('data-url');
+        $('#a').attr('src',url);
+        $('.videoBoxCon').addClass('videoBoxCon_on');
+       $('.videoBox').show();
+
+    })
+
+    $('.colse').click(function(){
+        $('.videoBox').stop(true).fadeOut(300);
+        $('.videoBoxCon').removeClass('videoBoxCon_on');
+    })
+
+</script>
+
+<include file="Public/footer" />
+
+</body>
+</html>

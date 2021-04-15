@@ -1,0 +1,109 @@
+<include file="Public:header" />
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 收货地址 </a> </h3>
+</div>
+
+<!--shop-->
+
+<div class="p_xiangqing1">
+
+		<div class="shop_add_warp">
+			<div class="shop_add_one shop_add_dzgl_one">
+				<volist name="result" id="vo">
+				<div class="shop_add_dzgl">
+					<div class="shop_add_center">
+						<p class="shop_add_mz">{$vo.consignee}<span>{$vo.telephone}</span></p>
+						<p class="shop_add_dz">{$vo.province} {$vo.city} {$vo.district} {$vo.place}</p>
+					</div>
+				</div>
+
+				<div class="shop_add_tjdz">
+					<div class="shop_add_center">
+						<p class="shop_add_tjdz_left checkbox_xuanze">
+							<span style="float:left;position:relative; margin-top:-3px;">
+								<eq name="vo.default" value="1">
+									<img src="__IMAGES__/yq-1.svg"  style="width:24px; height:24px;" />
+									<else />
+									<img src="__IMAGES__/yq.svg" style="width:24px; height:24px;" data-id="{$vo.id}" class="address_do"/>
+								</eq>
+</span>
+							<span style="float:left; margin-left:5px;">默认地址</span>
+						</p>
+						<p class="shop_add_tjdz_right">
+							<a href="{:U('Wxin/PersonalCenter/address_add/tag/address_add/value/5')}?id={$vo.id}">编辑</a>
+							<a href="#" class="address_del" data-id="{$vo.id}">删除</a>
+						</p>
+						<div class="clear"></div>
+					</div>
+				</div>
+                </volist>
+			</div>
+		</div>
+
+		<div class="shop_add_tj">
+			<a href="{:U('Wxin/PersonalCenter/address_add/tag/address_add/value/5')}">添加新地址</a>
+		</div>
+		</div>
+		<!--shop-->
+<include file="Public/footer" />
+
+
+	</body>
+
+	<script>
+		$('.address_do').click(function() {
+			var id = $(this).attr("data-id");
+			$.post("{:U('Wxin/PersonalCenter/address_do')}", {id:id}, function(data){
+				if (data.status==1) {
+					dialog.showTips(data.info,'warn',function(){
+						window.location.reload();
+					});
+				} else {
+					alert(data.info);
+				}
+			})
+		})
+		$('.address_del').click(function() {
+			var id = $(this).attr("data-id");
+			dialog.showTips('确定删除地址吗','firm',function () {
+				$.ajax({
+					url: "{:U('Home/PersonalCenter/address_del')}",
+					data: {id:id},
+					type: 'post',
+					dataType: 'json',
+					success: function (content) {
+						if (content.status == 1) {
+							alert(content.info
+
+							);
+							window.location.reload();
+						} else {
+							alert(content.info
+
+							);
+						}
+					}
+				})
+			});
+		});
+		$(document).ready(function(e) {
+			var no_two = $(".checkbox_xuanze .no_two").length;
+			for (i = 0; i < no_two; i++) {
+				(function() {
+					var k = i;
+					$(".checkbox_xuanze").eq(i).click(function() {
+						for (x = 0; x < no_two; x++) {
+							if (x != k) {
+								$(".checkbox_xuanze .no_two").eq(x).fadeOut();
+							}
+						}
+
+						$(this).find(".no_two").fadeToggle();
+					})
+				})()
+			}
+
+		});
+	</script>
+
+</html>

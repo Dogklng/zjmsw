@@ -1,0 +1,571 @@
+<include file='Public:header'/>
+</head>
+
+<body>
+
+  <!--导航-->
+  <include file='Public:top'/>
+  <div class="navigator-index" style="border-bottom:2px solid #CA151D;">
+    <div class="w clearfix">
+
+      <!----商品分类--->
+
+      <!----商品分类--->
+
+      <!----导航--->
+
+<include file='Public:menu2'/>
+      <!----导航--->
+
+    </div>
+  </div>
+  <!--导航-->
+
+  <!--内容-->
+
+  <div class="user_content">
+    <div class="w">
+      <div class="confirm">
+        <div class="shop_top">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="shop_top_con">我的购物车</div>
+            </div>
+            <div class="col-sm-3">
+              <div class="shop_top_con on">确认订单信息</div>
+            </div>
+            <div class="col-sm-3">
+              <div class="shop_top_con">选择支付方式</div>
+            </div>
+            <div class="col-sm-3">
+              <div class="shop_top_con">完成</div>
+            </div>
+          </div>
+        </div>
+        <div class="confirm_cont">
+          <div class="shop_con">
+            <ul class="shop_con_top clearfix">
+              <li>商品</li>
+              <li class="tx1">商品信息</li>
+              <li class="tx2">单价</li>
+              <li class="tx2">数量</li>
+            </ul>
+        <foreach name="order_list" item="v">
+            <ul class="shop_con_tx clearfix">
+              <li><a href="{:U('Home/Goods/details',array('id'=>$v['goods_id']))}"><img src="{$v.goods_img}" alt=""></a></li>
+              <li class="text tx1">
+                <div class="shop_tx">
+                  <a href="##">{$v.goods_title}</a>
+                  <div class="tx">{$v.sku_info}</div>
+                </div>
+
+              </li>
+              <li class="text tx2">
+                <div class="shop_tx">￥{$v.oprice}</div>
+              </li>
+              <li class="text sum tx2">
+                <div class="shop_tx">{$v.num}</div>
+              </li>
+            </ul>
+          </foreach>
+
+
+          </div>
+
+          <!--送货地址-->
+          <div class="confirm_con">
+            <div class="confirm_title"><img src="__IMAGES__/icon_1.png" alt="">让我们为你送到哪里？</div>
+            <div id="userAddrs">
+              <div class="shop_add_xx user_sh_add">
+                <ul>
+
+                  <!--<li class="shop_add_last">
+                    <a class="shop_add_tj" href="javascript:void(0)">+</a>
+                    <h4>添加新地址</h4>
+                  </li>-->
+                <foreach name="address" item="vo">
+                  <input type="hidden" name="id" />
+                  <li class="last <eq name="vo.default" value="1">shop_add_xx_active</eq>" data-id="{$vo.id}">
+                    <h3>{$vo.consignee}</h3>
+                    <h4>{$vo.telephone}</h4>
+                    <h5>{$vo.province}/{$vo.city}/{$vo.district}<br>
+                      {$vo.place}
+                    </h5>
+                    <div class="user_show">
+                      <a href="javascript:;" class="shop_x" data-id="{$vo.id}" data-consignee="{$vo.consignee}" data-telephone="{$vo.telephone}" data-province="{$vo.province}" data-city="{$vo.city}" data-district="{$vo.district}" data-place="{$vo.place}" data-default="{$vo.default}">修改</a>
+                      <a href="javascript:;" clas="del" data-id="{$vo.id}">删除</a>
+                    </div>
+                    <div class="default_add">
+                      <eq name="vo.default" value="1"><p style="color: red">默认地址</p></eq>
+                    </div>
+                  </li>
+                </foreach>
+                  <div class="clear"></div>
+                </ul>
+              </div>
+              <!--<div class="address-box address-default">
+                <div class="address-text">
+                  <i>1</i>
+                  <i class="default_text">（默认）</i>：<span id="ga_address">浙江 杭州 西湖区文三路</span>/<span>收货人：<i>谭斌丽</i></span>/<span>15657191782</span>
+                </div>
+                <div class="address-icon"></div>
+              </div>-->
+            </div>
+            <h4 class="add-address">添加新的收货地址</h4>
+          </div>
+          <!--送货地址-->
+
+          <!--配送方式-->
+          <div class="confirm_con">
+            <div class="confirm_title"><img src="__IMAGES__/icon_11.png" alt="">配送方式</div>
+            <div class="dis_con clearfix">
+              <div class="left">快递发货</div>
+              <div class="right">
+                <span><input type="radio" name="delivery">快递发货</span><span><input type="radio"name="delivery">物流送货 </span>
+              </div>
+            </div>
+            <div class="dis_con clearfix">
+              <div class="left">送货日期</div>
+              <div class="right">
+                <span><input type="radio" name="date">周一至周五</span>
+                <span><input type="radio" name="date">周末 </span>
+              </div>
+            </div>
+            <div class="dis_con clearfix">
+              <div class="left">运费共计</div>
+              <div class="right text">￥{$express_fee}元</div>
+            </div>
+          </div>
+          <!--配送方式-->
+
+          <!--发票信息-->
+          <div class="confirm_con">
+            <div class="confirm_title"><img src="__IMAGES__/icon_14.png" alt="">发票信息</div>
+            <div class="dis_con clearfix">
+                <div class="left">发票类型</div>
+                <div class="right invoice">
+                  <span><input type="radio" name="invoice" class="dis_con3" data-type="1">不开发票</span>
+                  <span><input type="radio" name="invoice" class="dis_con1" data-type="2">普通发票 </span>
+                  <span><input type="radio" name="invoice" class="dis_con1" data-type="3">增值税发票</span>
+                </div>
+            </div>
+
+            <div class="dis_con clearfix dis_con2">
+              <div class="left">发票抬头</div>
+              <div class="right invoice1">
+                <div style="margin-bottom: 5px;">
+                  <input type="radio" name="invoice1" class="dis_l" datatype="个人">个人<input type="text" value="" class="dis_r" style="display: inline-block;">
+                </div>
+                <div class="">
+                  <input type="radio" name="invoice1" class="dis_l" datatype="单位">单位<input type="text" class="dis_r">
+                </div>
+              </div>
+            </div>
+
+            <div class="dis_con clearfix dis_con2">
+              <div class="left">发票抬头</div>
+              <div class="right invoice2" >
+                <div style="margin-bottom: 5px;">
+                  <input type="radio" name="invoice2" class="dis_l" datatype="个人">个人<input type="text" value="谭斌丽" class="dis_r " style="display: inline-block;">
+                </div>
+                <div class="">
+                  <input type="radio" name="invoice2" class="dis_l" datatype="单位">单位<input type="text" class="dis_r">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--发票信息-->
+
+          <!--备注-->
+          <div class="confirm_con">
+            <div class="confirm_title"><img src="__IMAGES__/icon_13.png" alt="">还有什么需要我们知道的备注？</div>
+            <textarea onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '在此处添加备注';}" class="remark_text">在此处添加备注</textarea>
+          </div>
+          <!--备注-->
+
+          <!--优惠信息-->
+          <div class="confirm_con" style="border-bottom: none;">
+            <div class="shop_bot">
+              <div class="text"><div class="left">您享受的优惠信息：</div><div>商品数量总计: <span>{$count_nums}</span> 件</div><div>商品金额（不含运费）:  ￥<span>{$countoprice}</span></div></div>
+              <div class="text"><div>运费：￥<span class="express_fee">{$express_fee}</span></div></div>
+              <!-- <div class="text"><div>代金券折扣金额：￥<span>-100.00</span></div></div> -->
+              <div class="shop_bot_mon">合计：<span>￥{$count_oprice}</span></div>
+
+              <div class="shop_bot_hr">
+                <a href="javascript:history.go(-1);" class="btn_white">返回</a>
+                <a href="javascript:;" class="btn_gray makeorder" >提交订单</a>
+              </div>
+            </div>
+          </div>
+          <!--优惠信息-->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--内容-->
+  <div class="address_bg">
+      <div class="address-pop">
+        <h4>添加收货地址</h4>
+        <p>以下均为必填项，请认真填写，避免收货时发生意外</p>
+        <div id="storeTopDetail">
+          <br/>
+          <div>
+            <select id="s_province" name="s_province">省份</select>
+          </div>
+
+          <div>
+            <select id="s_city" name="s_city">城市</select>
+          </div>
+
+          <div>
+            <select id="s_county" name="s_county">地区</select>
+          </div>
+        </div>
+        <div class="form-box">
+          <input type="text" id="place" value="详细地址" class="address-input"  onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '详细地址';}"/>
+        </div>
+        <h4 id="second">添加收货人信息</h4>
+        <div class="form-box">
+          <input type="text" id="consignee" placeholder="收货人姓名"/>
+          <input type="text" id="telephone" placeholder="收货人手机号码"/>
+        </div>
+        <div class="form-box">
+          <div class="radiopop" default='1'>设置为默认收货地址</div>
+          <div class="greenbg-btn new-address-btn" id="confirm_addr">确认</div>
+        </div>
+        <div class="xubox_setwin"></div>
+      </div>
+  </div>
+
+  <div class="shop_bottom">
+    <div class="w">
+      <div class="clearfix shop_bottom_con">
+        <div class="">合计：<span>￥{$count_oprice}</span></div>
+        <!-- <a href="javascript:;" class="btn_white">继续购物</a> -->
+        <a href="javascript:;" class="btn_gray makeorder">下一步</a>
+      </div>
+    </div>
+  </div>
+
+<form action="{:U('Home/Order/makeOrder')}" method="post" name="form1">
+  <!-- <input type="hidden" name="order_info" value='{$order_info}' />
+  <input type="hidden" name="cart_ids"  value="{$cart_ids}" />
+  <input type="hidden" name="content" />
+  <input type="hidden" name="address_id" />
+  <input type="hidden" name="countintegral" value="{$countintegral}" />
+  <input type="hidden" name="counts_integral" value="{$counts_integral}" />
+  <input type="hidden" name="countintegral_limit" value="{$countintegral_limit}" />
+  <input type="hidden" name="pay_fee" value="{$pay_fee}" />
+  <input type="hidden" name="express_fee" value="{$express_fee}" /> -->
+  <input type="hidden" name="post_data" value="" />
+</form>
+
+  <!-- Start Footer -->
+<include file='Public:footer'/>
+
+  <!--地区-->
+  <script class="resources library" src="__JS__/area.js" type="text/javascript"></script>
+  <script type="text/javascript">_init_area();</script>
+  <script type="text/javascript">
+  var Gid = document.getElementById;
+  var showArea = function()
+  {
+    Gid( 'show' ).innerHTML = "<h3>省" +
+                  Gid( 's_province' ).value + " - 市" +
+                  Gid( 's_city' ).value + " - 县/区"
+  }
+  Gid( 's_county' ).setAttribute( 'onchange', 'showArea()' );
+  </script>
+  <!--地区-->
+
+</body>
+</html>
+
+
+<script>
+function get_checked_receipt(){
+    var that = $(".invoice input:checked");
+    var re = that.attr("data-type");
+    return re;
+}
+
+function get_checked_invoice_title(){
+    var post = {};
+
+    var that = $(".invoice1 input:checked");
+    var company_or_personal = that.attr('datatype');//个人或者单位
+    var title = that.siblings('input[class=dis_r]').val();//抬头
+
+    var that1 = $(".invoice2 input:checked");
+    var company_or_personal1 = that1.attr('datatype');
+    var title1 = that.siblings('input[class=dis_r]').val();
+    if(title){
+      post.title = title;
+    }
+    if(title1){
+      post.title = title1;
+    }
+    if(company_or_personal){
+       post.company_or_personal = company_or_personal;
+    }
+    if(company_or_personal1){
+       post.company_or_personal = company_or_personal1;
+    }
+    return post;
+}
+
+
+function get_checked_address(){
+    var id = $(".shop_add_xx_active").attr("data-id");
+    return {address_id:id};
+}
+
+
+$(".makeorder").click(function (){
+  var post = {};
+  var receipt        = get_checked_receipt(); //获取发票类型
+  post.invoice_type  = receipt;
+  var re  = get_checked_invoice_title();//获取发票抬头
+  post.invoice_title = re.title;
+  post.company_or_personal = re.company_or_personal;
+  //post.receipt_id    = receipt.receipt_id;
+  var address        = get_checked_address();
+  post.address_id    = address.address_id;
+  post.express_fee   = $(".express_fee").html();
+  var content        = $(".remark_text").val()
+  post.content       = content;
+  //console.log(post.remark_text);
+  if(!post.address_id){
+    dialog.showTips("请选择收货地址！", "warn");return false;
+  }
+
+  if(post.invoice_type == 3 || post.invoice_type == 2){
+    if(!post.company_or_personal){
+      dialog.showTips("请选择个人或者单位", "warn");return false;
+    }
+    if(!$.trim(post.invoice_title)){
+      dialog.showTips("请填写发票抬头", "warn");return false;
+    }
+  }
+  if(!post.invoice_type){
+    dialog.showTips("请选择发票", "warn");return false;
+  }
+  post.order_info = '{$order_info}';
+  post.cart_ids   = '{$cart_ids}';
+  post.total_fee  = '{$count_oprice}';
+  var post1 = JSON.stringify(post);
+  //console.log(post1);
+  $("input[name=post_data]").val(post1);
+  $("form[name=form1]").submit();
+
+})
+
+
+$('#confirm_addr').click(function(){
+    var post = {};
+    post.id           = $('input[name=id]').val();
+    post.province     = $.trim($('#s_province').val());
+    post.city         = $.trim($('#s_city').val());
+    post.district     = $.trim($('#s_county').val());
+    post.place        = $.trim($('#place').val());
+    post.consignee    = $.trim($('#consignee').val());
+    post.telephone    = $.trim($('#telephone').val());
+    post.is_default   = $.trim($('.radio-click').attr('default'));
+      if(post['province']=="省份"){
+          alert("请选择省！", "warn");return false;
+      }
+      if(post['city']=="地级市") {
+          dialog.showTips("请选择城市！", "warn");return false;
+      }
+      if(post['district']=="市、县级市") {
+          dialog.showTips("请选择区域！", "warn");return false;
+      }
+      if(!post['place']) {
+          dialog.showTips("请填写详细地址！", "warn");return false;
+      }
+    if(!post['consignee']) {
+        dialog.showTips("请填写联系人！", "warn");return false;
+    }
+    if(!post['telephone']) {
+          dialog.showTips("请填写联系电话！", "warn");return false;
+      }
+      if(post['telephone'] && !post['telephone'].match(/^1[3|4|5|7|8][0-9]\d{8}$/)) {
+          dialog.showTips("手机号码格式错误！", "warn");return false;
+      }
+    $.post("{:U('Home/Ucenter/addAddress')}",post,function(data){
+      if(data.status==1){
+        dialog.showTips(data.info,'warn',function(){
+          location.reload();
+        });
+
+      }else{
+        alert(data.info);
+      }
+    })
+  })
+
+$(".shop_x").click(function(){
+  $(".address_bg").fadeIn('fast');
+
+    var id        = $(this).attr("data-id");
+    var consignee = $(this).attr("data-consignee");
+    var province  = $(this).attr("data-province");
+    var city      = $(this).attr("data-city");
+    var district  = $(this).attr("data-district");
+    var place     = $(this).attr("data-place");
+    var telephone = $(this).attr("data-telephone");
+    var def       = $(this).attr("data-default");
+
+
+    $("option").each(function(){
+      if($(this).val()==province){
+        $(this).attr('selected',true);
+      }
+    });
+//    $("option").each(function(){
+//        if($(this).val()==city){
+//            $(this).attr('selected',true);
+//        }
+//    })
+//    $("option").each(function(){
+//        if($(this).val()==district){
+//            $(this).attr('selected',true);
+//        }
+//    })
+    $('#s_city').html("");
+    $('#s_county').html("");
+    var _ct = "<option value="+city+">"+city+"</option>";
+    var _dt = "<option value="+district+">"+district+"</option>";
+//    $('#sel-provance').append(province);
+    $('#s_city').append(_ct);
+    $('#s_county').append(_dt);
+    $('#place').val(place);
+    $('#consignee').val(consignee);
+    $('#telephone').val(telephone);
+    $('input[name=id]').val(id);
+    if(def==1){
+      $(".radiopop").addClass("radio-click").prop("checked", true);
+    }else{
+      $('.radiopop').removeClass("radio-click").prop("checked", false);
+    }
+
+})
+
+$(".shop_add_tj").click(function (){
+    $('#s_provance').val("")
+    $('#s_city').val("")
+    $('#s_county').val("")
+    $('#place').val("")
+    $('#consignee').val("")
+    $('#telephone').val("")
+    $('.radiopop').removeClass("radio-click").prop("checked", false);
+
+    $(".city-select.province .active").removeClass('active');
+})
+//删除收货地址
+$(".del").click(function(){
+  if(confirm("确定删除吗？")){
+    var id = $(this).attr('data-id');
+  $.post("{:U('Home/Ucenter/delAddress')}",{id:id},function(data){
+      if(data.status==1){
+        dialog.showTips(data.info,'warn',function(){
+          location.reload();
+        });
+
+      }else{
+        alert(data.info);
+      }
+    })
+  }
+
+})
+</script>
+
+<script>
+$( document ).ready( function()
+{
+
+  $( window ).load( function()
+  {
+    $(".shop_con_tx .text" ).height($(".shop_con_tx img" ).height() )
+  } )
+  $( window ).resize( function()
+  {
+    $(".shop_con_tx .text" ).height($(".shop_con_tx img" ).height() )
+  } )
+
+  $( window ).load( function()
+  {
+    $( ".nav_cont li" ).mouseenter( function()
+    {
+      var now = $( this ).index()
+      $( this ).addClass( "on" )
+      $( this ).siblings( "li" ).removeClass( "on" )
+      $( ".menuBox" ).css( "display", "none" )
+      $( ".menuBox" ).eq( now ).css( "display", "block" )
+    } )
+
+    $(".radiopop" ).click(function(){
+      if($(this ).hasClass("radio-click")){
+        $(this ).removeClass("radio-click")
+      }
+      else{
+        $(this ).addClass("radio-click");
+      }
+
+    })
+    $(".xubox_setwin" ).click(function(){
+      $(".address_bg" ).hide()
+    })
+    $(".add-address").click(function(){
+      $(".address_bg" ).fadeIn("fast");
+    })
+
+    $(".dis_l" ).click(function(){
+      $(".dis_r" ).fadeOut("fast")
+      $(this ).siblings(".dis_r" ).fadeIn("fast");
+    })
+    $(".dis_con1" ).click(function(){
+      var now=$(this ).index();
+      $(".dis_con2" ).fadeOut("fast")
+      $(".dis_con2" ).eq(now).fadeIn("fast");
+
+    })
+    $(".dis_con3" ).click(function(){
+      $(".dis_con2" ).fadeOut("fast")
+    })
+
+
+
+  } )
+
+  $(window ).scroll(function(){
+    if($(window ).scrollTop()>$(".shop_bot" ).offset().top-$(window ).height()){
+      $(".shop_bottom" ).fadeOut("fast")
+    }
+    else{
+      $(".shop_bottom" ).fadeIn("fast")
+    }
+  })
+
+} )
+
+$(function(){
+  var items = $(".shop_add_xx ul li");
+  items.each(function(i) {
+    var t = $(this);
+    t.click(function(){
+      t.addClass("shop_add_xx_active");
+      t.find(".default_add").css("display", "block");
+      t.siblings().removeClass();
+      t.siblings().find(".default_add").css("display", "none");
+    });
+  });
+});
+
+</script>
+
+
+
+

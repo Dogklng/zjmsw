@@ -1,0 +1,453 @@
+<include file="Public:head"/>
+<style>
+    .imgnav{
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .imgwrapper{
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+    .imgwrapper img{
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border:0;
+    }
+    .spanpd10{
+        margin:10px;
+    }
+    .wxtables.wxtables-sku.newtable{
+        width: 40%;
+        margin: 0;
+    }
+    .img-list li{
+        width: 60px;
+        height:60px;
+    }
+    .cst_h3 span{font-weight: normal;}
+    #imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+    .btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+    .file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+    #xuanze{ width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0 }
+    #xuanze:hover{ background:#E6E6E6; }
+    #imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+    #xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+    #xuanze2:hover{ background:#E6E6E6; }
+    .huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+    .youhui{ clear:both; margin:20px 0 0 110px; max-width:600px; padding:10px; }
+    .youhui span{ border:1px solid #d9d9d9; padding:2px 5px; }
+    .querygoods{ border:1px solid #d9d9d9;float:left;margin:10px;text-align:center;border-radius:5px;cursor:pointer; }
+    .youhui1 span {
+        border: 1px solid #d9d9d9;
+        padding: 2px 5px;
+    }
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<script type="text/javascript">
+
+    J(function(){
+        J('#start_time').calendar();
+        J('#end_time').calendar();
+//    $(function(){
+//        $('#starttime').calendar({ format:'yyyy-MM-dd' });
+//        $('#endtime').calendar({ format:'yyyy-MM-dd' });
+    });
+
+</script>
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">抽奖规则详情</h1>
+                <div class="panel-single panel-single-light mgt20">
+                    <h3 class="cst_h3 mgb20">规则信息</h3>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>活动名称：</label>
+                        <div class="form-controls">
+                            <input type="text" class="input" name="title" id="title" value="{$luck.title}" readonly>
+                            <span class="fi-help-text"></span> </div>
+                    </div>
+                    <div class="formitems">
+                        <label class="fi-name"><span class="colorRed">*</span>抽奖大转盘logo图片：</label>
+                        <div class="form-controls pdt5 j-imglistPanel">
+                            <div class="xuanze_showimge fl mgr10">
+                                <img src="{$luck.img}" height="80">
+                            </div>
+                        </div>
+                    </div>
+
+                    <volist name="detail" id="val" key="k">
+                        <label class="fi-name"><span class="colorRed">*</span>奖项{$k}：</label>
+                    <eq name="val.luck_class" value="1">
+                        <div class="formitems">
+                            <label class="fi-name"><span class="colorRed">*</span>赠送积分：</label>
+                            <div class="form-controls">
+                                <input type="text" class="input max" name="start_time" readonly value="{$val.integral}">
+                                <span class="fi-help-text"></span>
+                            </div>
+                        </div>
+                    <else/>
+                            <div class="formitems">
+                                <div class="formitems">
+                                    <label class="fi-name"><span class="colorRed">*</span>产品名称：</label>
+                                    <div class="form-controls">
+                                        <input type="text" class="input max" name="start_time" readonly value="{$val.goods_name}">
+                                        <span class="fi-help-text"></span> </div>
+                                </div>
+                                <div class="form-controls pdt5 j-imglistPanel">
+                                    <div class="xuanze_showimge fl mgr10">
+                                        <img src="{$val.goods_pic}" height="80">
+                                    </div>
+                                </div>
+                            </div>
+                    </eq>
+                        <div class="formitems">
+                            <label class="fi-name">中奖概率：</label>
+                            <div class="form-controls">
+                                <input type="text" class="input activity_name max" value="{$val.probability}" readonly>%
+                                <span class="lh30 mgl10"></span>
+                            </div>
+                        </div>
+                    </volist>
+
+                </div>
+                <!-- end 产品信息 -->
+
+                <!-- end 库存/规格 -->
+                <!-- <button id="test">show sku</button> -->
+
+
+
+                <!-- end 详情及其它 -->
+
+                <div class="panel-single panel-single-light mgt20 txtCenter"> <a href="javascript:history.back(-1);" class="btn">返回</a>
+                </div>
+
+                <div class="jbox addfenlei disshow" style="width:900px;margin-left:-450px;">
+                    <div class="jbox-title">
+                        <div class="jbox-title-txt">选择商品</div>
+                        <a href="javascript:;" class="jbox-close cancle quxiao"></a></div>
+                    <div class="jbox-container" style="height: 263px;">
+                        <foreach name="goods" item="vo" >
+                            <label><div class="querygoods" <?php if(in_array($vo['id'],$editmarketing['goods_ids'])){ ?>style="border-color:red;"<?php } ?>>
+                                <br/>
+                                <img src="{$vo.logo_pic}" style="max-width:120px;max_height:80px;"><br/>
+                                <input type="checkbox" name="goodsid[]" <?php if(in_array($vo['id'],$editmarketing['goods_ids'])){ ?>checked<?php } ?> value="{$vo.id}" valname="{$vo.goods_name}">{$vo.goods_name}<br/><br/>
+                    </div></label>
+                    </foreach>
+
+
+                </div>
+                <div class="jbox-buttons">
+                    <a href="javascript:void(0);" style="float:left;" id="quanxuan" class="btn btn-primary btn_table_selectAll">全选</a>
+                    <a href="javascript:void(0);" style="float:left;" id="quanbuxuan" class="jbox-buttons-ok btn">取消全选</a>
+                    <a href="javascript:void(0);" class="jbox-buttons-ok btn cancle btn-primary">确定</a>
+                    <a href="javascript:void (0);" class="jbox-buttons-ok btn quxiao">取消</a>
+                </div>
+        </div>
+
+
+        <div class="jbox addfenlei1 disshow" style="width:900px;margin-left:-450px;
+        position: fixed;
+    height: 388px;
+    left: 50%;
+    top: 50%;
+    margin-top: -194px;
+    z-index: 999998;">
+            <div class="jbox-title">
+                <div class="jbox-title-txt">选择优惠卷</div>
+                <a href="javascript:;" class="jbox-close cancle quxiao"></a></div>
+            <div class="jbox-container1" style="height: 263px;">
+                <foreach name="coupon" item="vo" >
+                    <label><div class="querygoods1">
+                        <br/>
+                        <!--<img src="{$vo.logo_pic}" style="max-width:120px;max_height:80px;"><br/>-->
+                        <input type="checkbox" name="couponid[]" <?php if(in_array($vo['id'],$editmarketing['coupon_ids'])){ ?>checked<?php } ?> value="{$vo.id}" valname="{$vo.title}">{$vo.title}<br/><br/>
+                    </div></label>
+                </foreach>
+
+
+            </div>
+            <div class="jbox-buttons">
+                <a href="javascript:void(0);" style="float:left;" id="quanxuan1" class="btn btn-primary btn_table_selectAll">全选</a>
+                <a href="javascript:void(0);" style="float:left;" id="quanbuxuan1" class="jbox-buttons-ok btn">取消全选</a>
+                <a href="javascript:void(0);" class="jbox-buttons-ok btn cancle1 btn-primary">确定</a>
+                <a href="javascript:void (0);" class="jbox-buttons-ok btn quxiao1">取消</a>
+            </div>
+        </div>
+        </form>
+    </div>
+    <!-- end content-right -->
+</div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<!--选择分类-->
+
+
+<!--选择分类-end->
+
+
+<!--提交表单前验证-->
+<script type="text/javascript">
+
+    function toVaild(){
+        return true;
+        var kucun=$('#kucun').val();
+        var title=$('#title').val();
+        var price=$('#price').val();
+        if(title==''||title==null){
+            alert('优惠券名称必填');
+            return false;
+        }
+        if(price==''||price==0){
+            alert('面值必填');
+            $('#price').focus();
+            return false;
+        }
+
+
+    }
+    function is_order_show(){
+        $('#is_order_price').show();
+    }
+    function is_order_hide(){
+        $('#is_order_price').hide();
+    }
+</script>
+
+<!--提交表单前验证end-->
+
+<!--上传图片-->
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+<script>
+    function add_div(){
+        var num=$('.add_div').children().length+1;
+        $('.add_div').append('<div class="form-controls" id="div'+num+'">规格：<input type="text" class="input mini" name="guige'+num+'" style="width:200px">现价：<input type="text" class="input mini" name="guige_price'+num+'" value="0" > 元&nbsp;&nbsp;&nbsp;&nbsp;团购价：<input type="text" class="input mini" name="guige_groupprice'+num+'" value="0" > 元&nbsp;&nbsp;&nbsp;&nbsp;<input style="background-color: #3071a9;border-color: #285e8e;color:#fff;padding:7px 10px;border:none;margin-bottom:20px;border-radius: 2px;" onclick="del_div('+num+')" type="button" value="删除"></div>');
+        $("#nums").val(num);
+    }
+    function del_div(e){
+        $("#div"+e).remove();
+        var num=$('.add_div').children().length;
+        $("#nums").val(num);
+    }
+</script>
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    var goodsel = Array(),goodselnam = Array();
+    $(".BtnAddClass").click(function(){
+        $('.jbox-container input[type=checkbox]').each(function(i){
+            if($(this).attr('checked')){
+                goodsel[i] = true;
+                goodselnam[i] = $(this).attr('valname');
+                $(this).parent().css('border-color','red');
+            }else{
+                goodsel[i] = false;
+                $(this).parent().css('border-color','#d9d9d9');
+            }
+        });
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+    });
+    $(".cancle").click(function(){
+        var string = "";
+        $('.jbox-container input[type=checkbox]').each(function(){
+            if($(this).attr('checked')){
+                string += " <span>"+$(this).attr('valname')+"</span> ";
+            }
+        });
+        $('.youhui').html(string);
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    });
+    $('.quxiao').click(function(){
+        for(var i=0;i<goodsel.length;i++){
+            if(goodsel[i]){
+                $('.jbox-container input[type=checkbox]:eq('+i+')').attr('checked',true);
+            }else{
+                $('.jbox-container input[type=checkbox]:eq('+i+')').attr('checked',false);
+            }
+        }
+        var string = "";
+        $('.jbox-container input[type=checkbox]').each(function(){
+            if($(this).attr('checked')){
+                string += " <span>"+$(this).attr('valname')+"</span> ";
+            }
+        });
+        $('.youhui').html(string);
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    });
+    $('.querygoods input[type=checkbox]').click(function(){
+        if($(this).attr('checked')){
+            $(this).parent().css('border-color','red');
+        }else{
+            $(this).parent().css('border-color','#d9d9d9');
+        }
+    });
+    $('#quanxuan').click(function(){
+        $('.querygoods input[type=checkbox]').attr('checked',true).parent().css('border-color','red');
+    });
+    $('#quanbuxuan').click(function(){
+        $('.querygoods input[type=checkbox]').attr('checked',false).parent().css('border-color','#d9d9d9');
+    });
+
+    $(function () {
+        var percent = $('.xuanze_percent');
+        var progress = $('.xuanze_percent');
+        $("#xuanze").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#xuanze").change(function(){ //选择文件
+            console.log(1);
+            $("#myupload1").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="logo_pic" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.xuanze_showimge').html(img);
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+        var percent = $('.xuanze_percent');
+        var progress = $('.xuanze_percent');
+        $("#xuanze1").wrap("<form id='myupload2' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#xuanze1").change(function(){ //选择文件
+            console.log(1);
+            $("#myupload2").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="index_pic" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.xuanze_showimge1').html(img);
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+        var percent = $('.xuanze_percent');
+        var progress = $('.xuanze_percent');
+        $("#xuanze2").wrap("<form id='myupload3' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+        $("#xuanze2").change(function(){ //选择文件
+            console.log(1);
+            $("#myupload3").ajaxSubmit({
+                dataType:  'json', //数据格式为json
+                beforeSend: function() { //开始上传
+                    progress.show(); //显示进度条
+                    var percentVal = '0%';
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%'; //获得进度
+                    percent.html(percentVal); //显示上传进度百分比
+                },
+                success: function(data) { //成功
+                    var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="tel_pic" id="tel_pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+                    $('.xuanze_showimge2').html(img);
+                    progress.hide();
+                },
+                error:function(xhr){ //上传失败
+                    //console.log(xhr.status)
+                }
+            });
+        });
+    });
+
+
+</script>
+<script>
+    var goodsel = Array(),goodselnam = Array();
+    $(".BtnAddClass1").click(function(){
+        $('.jbox-container1 input[type=checkbox]').each(function(i){
+            if($(this).attr('checked')){
+                goodsel[i] = true;
+                goodselnam[i] = $(this).attr('valname');
+                $(this).parent().css('border-color','red');
+            }else{
+                goodsel[i] = false;
+                $(this).parent().css('border-color','#d9d9d9');
+            }
+        });
+        $('.addfenlei1').show();
+        $('#albums-overlay1').show();
+    });
+    $(".cancle1").click(function(){
+        var string = "";
+        $('.jbox-container1 input[type=checkbox]').each(function(){
+            if($(this).attr('checked')){
+                string += " <span>"+$(this).attr('valname')+"</span> ";
+            }
+        });
+        $('.youhui1').html(string);
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay1').hide();
+    });
+    $('.quxiao1').click(function(){
+        for(var i=0;i<goodsel.length;i++){
+            if(goodsel[i]){
+                $('.jbox-container input[type=checkbox]:eq('+i+')').attr('checked',true);
+            }else{
+                $('.jbox-container input[type=checkbox]:eq('+i+')').attr('checked',false);
+            }
+        }
+        var string = "";
+        $('.jbox-container1 input[type=checkbox]').each(function(){
+            if($(this).attr('checked')){
+                string += " <span>"+$(this).attr('valname')+"</span> ";
+            }
+        });
+        $('.youhui1').html(string);
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay1').hide();
+    });
+    $('.querygoods1 input[type=checkbox]').click(function(){
+        if($(this).attr('checked')){
+            $(this).parent().css('border-color','red');
+        }else{
+            $(this).parent().css('border-color','#d9d9d9');
+        }
+    });
+    $('#quanxuan1').click(function(){
+        $('.querygoods1 input[type=checkbox]').attr('checked',true).parent().css('border-color','red');
+    });
+    $('#quanbuxuan1').click(function(){
+        $('.querygoods1 input[type=checkbox]').attr('checked',false).parent().css('border-color','#d9d9d9');
+    });
+</script>
+<!--上传图片-end->
+
+

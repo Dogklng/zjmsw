@@ -1,0 +1,231 @@
+<include file="Public:head"/>
+<style>
+    .btn-success {
+        margin-top: 12px;
+    }
+</style>
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">学院分类列表</h1>
+            <div class="alert alert-info disable-del">
+                <h4>提示</h4>
+                删除分类会删除分类下面所有的产品 <a href="javascript:;" class="alert-delete" title="隐藏"> <i class="gicon-remove"></i></a></div>
+            <form action="{:U('/Admin/Community/SchoolCate')}" method="get">
+                <div class="clearfix"> <a href="javascript:;" class="btn btn-success fl BtnAddClass">添加学院分类</a>
+                </div>
+                <div class="tables-searchbox newcearchbox">
+
+                    <input type="text" placeholder="分类名称" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" class="input" name="name" value="{$title}" >
+                    <button class="btn btn-primary" style="line-height:26px;"> <i class="gicon-search white"></i>查询 </button>
+                </div>
+            </form>
+            <table class="wxtables mgt15 table-order" id="tb_3">
+                <thead>
+                <tr>
+                    <td>分类名称</td>
+                    <td>排序</td>
+                    <td >创建时间</td>
+                    <td class="center">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res" item="vo" >
+                    <tr>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.sort}</td>
+                        <td>{$vo.create_at|date="Y-m-d H:i:s",###}</td>
+                        <td class="center"><a href="javascript:void(0);" class="btn btn-primary j-editClass" title="编辑" data-id="{$vo.id}"  data-title="{$vo.name}" data-renk="{$vo.sort}">编辑</a>  <a href="{:U('/Admin/Community/delSchoolCate/id')}/{$vo.id}" class="btn btn-warning j-delClass" title="删除" onclick="return confirm('确定要删除吗？')" data-id="{$vo.id}">删除</a>
+                          </td>
+                    </tr>
+
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <!--<a href="javascript;" class="btn btn-primary btn_table_delAll">批量删除</a></div>-->
+                    <div class="fr">
+                        <!--<div class="paginate">-->
+
+                        <div class="pages">
+                            <!--</div>-->
+                            {$page}
+                        </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+    <!-- end container -->
+    <include file="Public:foot"/>
+    <div id="albums-overlay" class="disshow"></div>
+    <div class="jbox addfenlei disshow">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">添加艺术分类</div>
+            <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <div class="jbox-container" style="height: 263px;">
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>分类名称：</label>
+                <div class="form-controls">
+                    <input type="text" class="input name" maxlength="12" name="name" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>分类排序：</label>
+                <div class="form-controls">
+                    <input type="text" class="input" id="sort" name="sort" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+
+        </div>
+        <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="addbannertypegory">确定</a><a
+                href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+    <div class="jbox editfenlei disshow">
+        <div class="jbox-title">
+            <div class="jbox-title-txt">修改艺术分类</div>
+            <a href="javascript:;" class="jbox-close cancle"></a></div>
+        <div class="jbox-container" style="height: 263px;">
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>分类名称：</label>
+                <div class="form-controls">
+                    <input type="text" class="input classname" maxlength="12" name="classname" id="editclassname">
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>分类排序：</label>
+                <div class="form-controls">
+                    <input type="text" class="input sort" name="serial" id="editsort" >
+                    <input type="hidden" class="input sort" name="serial" id="bannertypegoryid" >
+                    <span class="fi-help-text"></span> </div>
+            </div>
+
+        </div>
+        <div class="jbox-buttons"><a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="editbannertypegory">确定</a><a
+                href="javascript:;" class="jbox-buttons-ok btn cancle">取消</a></div>
+    </div>
+
+    <script type="text/javascript" src="__JS__/jquery-form.js"></script>
+    <script type="text/javascript">
+        $(".cancle").click(function(){
+            $(this).parent().parent('.jbox').hide();
+            $('#albums-overlay').hide();
+        })
+    </script>
+
+    <!--添加分类-->
+
+    <script type="text/javascript">
+        $(".BtnAddClass").click(function(){
+            $('.addfenlei').show();
+            $('#albums-overlay').show();
+        })
+    </script>
+    <script type="text/javascript">
+        $("#addbannertypegory").click(function(){
+            var name = $.trim($('.name').val());  //分类名称
+            var sort = $('#sort').val();           //排序
+
+            if (name == '') {
+                alert("分类名称必填！");
+                return false;
+            }
+
+            if(!sort.match(/^[0-9]*$/)){
+                alert("请填写正确的排序！");
+                return false;
+            }
+
+            $.ajax({
+                url: "{:U('/Admin/Community/addSchoolCate')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    name: name,
+                    sort:      sort
+                }
+            }).done(function (g) {
+                if (g.status == 1) {
+                    alert(g.info);
+                    window.location.reload();
+                } else {
+                    alert(g.info);
+                }
+
+            })
+        })
+    </script>
+    <!--添加分类end-->
+
+    <!--修改分类-->
+    <script type="text/javascript">
+        var bannertypegoryid;
+        $(".j-editClass").click(function(){
+            $('.editfenlei').show();
+            $('#albums-overlay').show();
+            var bannertypegoryname=$(this).attr('data-title');
+            var bannertypegoryid=$(this).attr('data-id');
+            var pic=$(this).attr('data-pic');
+            var sort=$(this).attr('data-renk');
+
+            $('#editclassname').val(bannertypegoryname);
+            $('#editsort').val(sort);
+            $('#bannertypegoryid').val(bannertypegoryid);
+            if(pic!=""){
+
+                var img = '<img src="'+pic+'" width="80" height="56" style="margin-top:-28px;"><input type="hidden" name="pic" id="editpic" value="'+pic+'"></input>';
+                $('.showimgedit').html(img);
+
+            }else{
+                $('.showimgedit').html('');
+            }
+
+
+
+
+        })
+
+        $("#editbannertypegory").click(function(){
+            var classname = $.trim($('#editclassname').val());  //分类名称
+            var sort = $('#editsort').val();           //排序
+            var bannertypegoryid = $('#bannertypegoryid').val();           //排序
+
+//alert(bannertypegoryid);
+            if (classname == '') {
+                alert("分类名称必填！");
+                return false;
+            }
+            $.ajax({
+                url: "{:U('/Admin/Community/editSchoolCate')}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    name: classname,
+                    sort: sort,
+                    id:bannertypegoryid
+                }
+            }).done(function (g) {
+                if (g.status == 1) {
+                    alert(g.info);
+                    window.location.reload();
+                } else {
+                    alert(g.info);
+                }
+
+            })
+        })
+    </script>
+    <!--修改分类end-->

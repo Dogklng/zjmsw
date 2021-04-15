@@ -1,0 +1,439 @@
+<include file="Public:head"/>
+
+<style>
+	.imgnav{max-height: 30px;overflow: hidden;cursor: pointer;}
+	.imgwrapper{display: block;width: 78px;height: 78px;overflow: hidden;}
+	.imgwrapper img{display: block;width: 100%;padding: 0;margin: 0;border:0;}
+	.spanpd10{margin:10px;}
+	.wxtables.wxtables-sku.newtable{width: 40%;margin: 0;}
+	.img-list li{width: 60px;height:60px;}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+</style>
+	
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+<script type="text/javascript" src="__JS__/datepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+
+    J(function(){
+        J('#starttime').calendar();
+        J('#endtime').calendar();
+    });
+
+</script>
+	
+
+<div class="container">
+  <div class="inner clearfix"> <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">添加试用产品</h1>
+      <input type="hidden" id="j-isSid" value="0">
+      
+      <!-- 是否选择了淘宝类目 -->
+      <input type="hidden" id="j-hasNorms" value="1">
+      
+      <!-- 淘宝类目下是否有属性 -->
+      <input type="hidden" id="supplier" value="">
+      <form aciton="{:U('/Admin/Trial/addTrial')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">
+      
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">基本信息</h3>
+          
+         <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>商品名称：</label>
+            <div class="form-controls"> <a href="javascript:void(0)" class="btn btn-primary" id="j-select_category_id"> <i class="gicon-edit white"></i> 选择商品 </a>
+              <input type="text" value="" id="class_name" style="border: 1px solid #fff;width: 500px;background-color:#fff;" disabled="">
+               <input type="hidden" value="" name="trial_name" id="trial_name">
+               <input type="hidden" value="" name="good_id" id="goods_id">
+              <span class="fi-help-text error"></span> </div>
+          </div>
+          
+          <!--  <form action="" method="get">
+      			<div class="tables-searchbox newcearchbox">
+        			<input type="text" placeholder="商品名称" class="input" name="trial_name" value="" >
+        			<button class="btn btn-primary" style="line-height:26px;" id="buttons"> <i class="gicon-search white"></i>查询 </button>
+      			</div>
+    	   </form>
+           -->
+           <div class="formitems">
+            	<label class="fi-name"><span class="colorRed"></span>添加数量：</label>
+           		<div class="form-controls">
+              		<input type="text" class="input mini" name="trial_num"  onkeyup='this.value=this.value.replace(/\D/gi,"")'>
+            	</div>
+          </div>
+			
+		  <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>价格：</label>
+            <div class="form-controls">
+              <input type="text" class="input mini" name="trial_price" id="oprice" value="" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
+              <span class="fi-help-text"></span> </div>
+          </div>
+          
+           <div class="formitems">
+               <label class="fi-name"><span class="colorRed">*</span>试用开始时间：</label>
+               <div class="form-controls">
+               	   <!-- <input type="text"  name="trial_start_time" class="input" value=""  id="starttime"> -->
+                 <input type="text" class="input" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="trial_start_time"   value=""  >
+               </div>
+           </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed">*</span>试用结束时间：</label>
+                <div class="form-controls">
+                   <input type="text" class="input"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="trial_end_time"    value=""  >
+                	<!-- <input type="text" class="input" name="trial_end_time"    value=""  id="endtime"> -->
+                </div>
+            </div>
+
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed"></span>排序：</label>
+            <div class="form-controls">
+              <input type="text" class="input mini" name="sort" value="0">
+            </div>
+          </div>
+
+            <div class="formitems">
+                <label class="fi-name"><span class="colorRed"></span>是否包邮：</label>
+                <div class="form-controls">
+                    <input type="radio" name="is_free" value="0" checked>否
+                    <input type="radio" name="is_free" value="1">是
+                </div>
+            </div>
+        </div>
+
+<!-- 
+        end 基本信息
+
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">商品信息</h3>
+
+         
+          
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>	logo图片(小)：</label>
+            <div class="form-controls pdt5 j-imglistPanel">
+            	<div class="xuanze_showimge fl mgr10"></div>
+                <div class="btnimage fl">选择图片
+                    <input type="file"  accept="image/jpg,image/jpeg,image/png" name="trial_small_img" id="xuanze" class="file" >
+                </div>
+                <div class="xuanze_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" /><span class="xuanze_percent">80%</span></div>
+                <span class="fi-help-text fl lh30 mgl10">建议大小（宽254px高236px）</span>
+            </div>
+     	    </div>
+
+
+         <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>首页展示图片(大)：</label>
+            <div class="form-controls pdt5 j-imglistPanel">
+              <div class="baotuan_showimge fl mgr10"></div>
+                <div class="btnimage fl">选择图片
+                    <input type="file"  accept="image/jpg,image/jpeg,image/png" name="trial_big_img" id="baotuan" class="file" >
+                </div>
+                <div class="baotuan_progress fl mgr15" style="display:none"><img src="__IMAGES__/loadings.gif" width="30" /><span class="baotuan_percent">80%</span></div>
+                <span class="fi-help-text fl lh30 mgl10">建议大小（宽667px高483px）</span>
+            </div>
+        </div>    
+	</div> -->
+
+        <!-- end 详情及其它 -->
+
+        <div class="panel-single panel-single-light mgt20 txtCenter">
+          <a href="{:U('Admin/Trial/trial')}" class="btn">取消</a>
+          <input type="submit" class="btn btn-primary" value="保存">
+        </div>
+      </form>
+    </div>
+    <!-- end content-right -->
+    
+  </div>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+<div id="albums-overlay" style="display: none;"></div>
+<div class="jbox fenlei select-fenlei disshow">
+  <div class="jbox-title">
+    <div class="jbox-title-txt">请选择商品</div>
+    <a href="javascript:void(0);" class="jbox-close cancle"></a></div>
+  <div class="jbox-container" style="height: 75px;">
+    <div class="formitems">
+      <label class="fi-name"><span class="colorRed"></span>选择商品：</label>
+      <div class="form-controls">
+        <select  id="select_series_id" class="select">
+        	<foreach name="result" item="vo" >
+            	<option value="{$vo.id}"> {$vo.goods_name} </option>
+            </foreach>
+        </select>    
+        <span class="fi-help-text"></span></div>
+    </div>
+  </div>
+  <div class="jbox-buttons"> <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="select_class">确定</a> <a href="javascript:void(0);" class="jbox-buttons-ok btn cancle">取消</a> </div>
+</div>
+
+
+<!--选择分类-->
+<script type="text/javascript">
+
+  $("#j-select_category_id").click(function(){
+      $('.select-fenlei').show();
+      /*$('#albums-overlay').show();*/
+  })
+  $(".cancle").click(function(){
+      $(this).parent().parent('.jbox').hide();
+      /*$('#albums-overlay').hide();*/
+  })
+
+  //点击确认
+  $("#select_class").click(function(){
+      var res	   = $("#select_series_id  option:selected").text();
+      var goods_id = $("#select_series_id  option:selected").val();
+ 
+      $("#trial_name").val(res);
+      $("#class_name").val(res);
+      $("#goods_id").val(goods_id);
+      
+      $(this).parent().parent('.jbox').hide();
+ 
+  });
+  
+
+  $("#j-select_series_id").click(function(){
+      $('.select-series').show();
+      $('#albums-overlay1').show();
+  })
+  $(".cancle").click(function(){
+      $(this).parent().parent('.jbox').hide();
+      $('#albums-overlay1').hide();
+  })
+
+  
+  //获取商品名称
+  $("#select_series_id").click(function(){
+      var res = $("#select_series_id  option:selected").text();
+      $("#trial_name").val(res);
+      $("#class_name").val(res);
+  })
+
+	UE.getEditor('editor',{
+		toolbars: [
+
+      ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+
+		],
+
+		autoHeightEnabled: false,
+		autoFloatEnabled: true,
+		elementPathEnabled:false,
+		enableContextMenu:false,
+		wordCount:false,
+
+	});
+
+		UE.getEditor('editor2',{
+    toolbars: [
+
+      ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+
+    ],
+
+    autoHeightEnabled: false,
+    autoFloatEnabled: true,
+    elementPathEnabled:false,
+    enableContextMenu:false,
+    wordCount:false,
+
+  });
+</script>
+<!--选择分类-end->
+
+
+<!--提交表单前验证-->
+<script type="text/javascript">
+
+    function toVaild() {
+
+        var goods_name 		 = $('#trial_name').val();
+        
+    	var trial_num  		 = $("input[name=trial_num]").val();
+    	var trial_start_time = $("input[name=trial_start_time]").val();
+    	var trial_end_time   = $("input[name=trial_end_time]").val();
+    	var trial_price      = $("input[name=trial_price]").val();
+    	//var trial_small_img  = $("input[name=trial_small_img]").val();
+    	//var trial_big_img    = $("input[name=trial_big_img]").val();
+    	
+
+        if(goods_name=='' || goods_name==null){
+            alert('商品名称必选');
+            return false;
+        }
+        if(trial_num=='' || trial_num==null){
+            alert('商品数量不能为空');
+            return false;
+        }
+        
+        if(trial_start_time==''|| trial_start_time==null){
+            alert('开始时间不能为空');   
+            return false;
+        }
+        if(trial_end_time==''|| trial_end_time==null){
+        	alert('结束时间不能为空');	      
+            return false;
+        }
+        if(trial_price==''|| trial_price==null){
+            alert('商品价格不能为空');	   
+            return false;
+        }
+        
+      /*   if(trial_small_img==''|| trial_small_img==null){
+            alert('logo图片不能为空');	 
+            return false;
+        }
+        if(trial_big_img==''|| trial_big_img==null){
+            alert('大图不能为空');	  
+            return false;
+        } */
+    }
+</script>
+<!--提交表单前验证end-->
+
+<!--上传图片-->
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="__JS__/uploadPreview.min.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+
+  function delImg(obj){
+    if(!confirm("删除这张图片？")){
+      return false;
+    }
+    var id = $(obj).attr("data-id")
+    if(id){
+      alert(1);
+      return false;
+    }
+    $(obj).next("input").remove();
+    $(obj).remove();
+  }
+	$(function () {
+		var percent = $('.xuanze_percent');
+		var progress = $('.xuanze_percent');
+		$("#xuanze").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+		$("#xuanze").change(function(){   //选择文件
+			$("#myupload1").ajaxSubmit({
+				dataType:  'json',        //数据格式为json
+				beforeSend: function() {  //开始上传
+					progress.show();      //显示进度条
+					var percentVal = '0%';
+					percent.html(percentVal);
+				},
+				uploadProgress: function(event, position, total, percentComplete) {
+					var percentVal = percentComplete + '%'; //获得进度
+					percent.html(percentVal); //显示上传进度百分比
+				},
+				success: function(data) { //成功
+					var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="trial_small_img" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+					$('.xuanze_showimge').html(img);
+					progress.hide();
+				},
+				error:function(xhr){ //上传失败
+					//console.log(xhr.status)
+				}
+			});
+		});
+
+
+		var percent = $('.duoxuan_percent');
+		var progress = $('.duoxuan_percent');
+		$("#duoxuan").wrap("<form id='myupload' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+		$("#duoxuan").change(function(){ //选择文件
+			$("#myupload").ajaxSubmit({
+				dataType:  'json', //数据格式为json
+				beforeSend: function() { //开始上传
+					progress.show(); //显示进度条
+					var percentVal = '0%';
+					percent.html(percentVal);
+				},
+				uploadProgress: function(event, position, total, percentComplete) {
+					var percentVal = percentComplete + '%'; //获得进度
+					percent.html(percentVal); //显示上传进度百分比
+				},
+				success: function(data) { //成功
+					var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80"  class="mgr10 mgt10 " onclick="delImg(this)"><input type="hidden" name="pic1[]" id="pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+					console.log(img);
+					$('.duoxuan_showimge').append(img);
+					progress.hide();
+				},
+				error:function(xhr){ //上传失败
+					//console.log(xhr.status)
+				}
+			});
+		});
+
+	var percent = $('.baotuan_percent');
+    var progress = $('.baotuan_percent');
+    $("#baotuan").wrap("<form id='baotuan1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#baotuan").change(function(){ //选择文件
+      $("#baotuan1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="trial_big_img" id="pic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+          $('.baotuan_showimge').html(img);
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+
+	});
+	
+	function num(obj) {
+		obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+		obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+		obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+		obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+		obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+	}
+	
+function add_re(r){
+	$('#restriction'+r).show();
+	}
+function del_re(r){
+	$('#restriction'+r).hide();
+	}
+</script>
+<!--上传图片-end->
+
+
+
+
+
+
+
+
+
+
+
+

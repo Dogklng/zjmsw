@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="images/mswlogo.ico" />
+<title>美术网</title>
+<meta name="keywords" content="美术网" />
+<meta name="description" content="美术网" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen"/>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/swiper.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+
+<script type="text/javascript" src="js/jquery.1.9.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+
+<!--[if lt IE 9]>
+	<script src="lib/plugins/html5.js"></script>
+	<script src="lib/plugins/respond.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+
+<!--导航-->
+<div class="body_top">
+  <div class="body_top_up">
+    <div class="body_top_tit1"> <a href="../index.html"><img src="images/logoM.png" /></a> </div>
+    <div class="sousuo">
+    	<img src="images/search.png" />
+    </div>
+    <div class="clear"></div>
+    
+    <div class="sousuok">
+    	<input type="text" value="请输入关键词" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键词';}" />
+    </div>
+    
+  </div>
+</div>
+
+<!--导航--> 
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 我要开店 </a> </h3>
+
+</div>
+<div class="warp_box">
+  <div class="SellerTop">
+    <h3>免费开店</h3>
+    <p>申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+ </div>
+ <div class="SellerFlist SellerFlistCurr"> <span>3</span>
+  <h3>申请开店认证<i>需要提供认证相关资料，等待审核通过</i></h3>
+ </div>
+  <div class="openstore_certifiel_info">
+    <div class="SelCertCon">
+     <div class="SelCertClass SelCertClass1">
+      <h6><i>*</i>用户类型：</h6>
+      <span><input type="radio" name="SelCinput" /> 中国大陆</span>
+      <span><input type="radio" name="SelCinput" /> 香港/澳门用户</span>
+      <span><input type="radio" name="SelCinput" /> 台湾用户</span>
+      <span><input type="radio" name="SelCinput" /> 外籍用户</span>
+     </div>
+     <div class="SelCertTable">
+      <ul>
+        <li><h6><span>认证名称:</span><span>身份实名认证</span></h6></li>
+        <li><h6><span>状态:</span><span class="certified_pass">通过</span></h6></li>
+        <li><h6><span>提示:</span><span>认证成功</span></h6></li>
+        <li><h6><span>操作:</span><span><a href="SelIdentity.html">查看</a></span></h6></li>
+      </ul>
+     </div>
+    </div>
+    <div class="SelNoticeStyle">
+     <h4><a href="SelNotice.html" style="background:#ccc;">上一步</a> <a href="SelAgree.html">下一步</a></h4>
+    </div>
+  </div>
+
+</div>
+<div class="ght">
+ <div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>
+</div>
+
+<!--footer-->
+<div class="footer">
+  <ul class="footer_list">
+    <li class="on"> <a href="../index.html"> <img src="images/indexha.svg" width="18px" />
+      <p>首页</p>
+      </a> </li>
+    <li> <a href="../products.html"> <img src="images/product.svg" width="18px" />
+      <p>产品</p>
+      </a> </li>
+    <li class="dz_db"> <a href="sellerCenter.html"> <img src="images/dingzhi.svg" width="18px" />
+      <p>云推荐</p>
+      </a> </li>
+    <li> <a href=""> <img src="images/cart.svg" width="18px" />
+      <p>购物车</p>
+      </a> </li>
+    <li> <a href="../use/myorder.html"> <img src="images/my.svg" width="18px" />
+      <p>我的</p>
+      </a> </li>
+    <div class="clear"></div>
+  </ul>
+</div>
+<!--footer-->
+
+</body>
+</html>

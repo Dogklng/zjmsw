@@ -1,0 +1,73 @@
+<include file="Public:header" />
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+  <!--  / user  -->
+
+  <div class="user">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-2">
+            <include file="Public:user_left" />
+        </div>
+        <div class="col-sm-10">
+          <div class="user_r_inner">
+            <div class="user_inner">
+              <h5 class="clearfix">
+              <p>添加时间：<span>2016-09-05 17:05:57</span></p>
+              </h5>
+              <div class="user_inner_con clearfix">
+                <div class="user_inner_con1">
+                  <p>收货人：<span>李亮</span></p>
+                  <p>联系方式：<span>18674001723</span></p>
+                </div>
+                <div class="user_inner_con1">
+                  <p>商品合计：<span>¥4,000.00</span></p>
+                  <p>运费：<span>¥10.00</span></p>  
+                </div> 
+                
+
+                   
+              </div>    
+            </div> 
+            
+            <div class="user_r_list">
+              <table>
+                <tr>
+                  <th class="user_r_frist" style="width:40%;">商品</th>
+                  <th style="width:12%;">单价</th>
+                  <th style="width:12%;">数量</th>
+
+                  <th style="width:12%;">状态</th>
+                </tr>
+                <tr>
+                  <td class="user_r_frist"><img src="__IMAGES__/order_pro1.jpg" width="100"><span>恣意的泼笔  蓝正辉</span></td>
+                  <td>¥4,000.00</td>
+                  <td>1</td>
+                  <td>已付款<a href="##" class="myshare">分享</a></td>
+                </tr>
+              </table>  
+            </div>
+            
+            
+            
+            
+          </div>
+        </div>
+      </div>
+          
+    </div>      
+  </div>
+
+
+  <!--  / user  -->
+   
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+</html>

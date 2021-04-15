@@ -1,0 +1,393 @@
+<include file="Public:header"/>
+<div class="dianpu_box">
+  <div class="SellerCon">
+    <div class="SellerTop">
+      <h3>创建店铺</h3>
+    </div>
+    <div class="SellerFlower">
+      <div class="paiuncenter_one">
+        <h3>免费入驻</h3>
+        <p class="activedp">申请的店铺完全免费，一个账号一个身份只能开一家店；申请到正式开通预计需要1~3个工作日。</p>
+      </div>
+      <div class="SellerFlist SellerFlistCurr"> <span>5</span>
+        <h3 class="paiUncenter_h3">身份验证</h3>
+      </div>
+      <div class="clear"></div>
+       <div class="SellerTop" style="margin-top:20px">
+        <h3>身份验证</h3>
+        <p>请上传本人身份证件，确保图片清晰，四角完整</p>
+         <notempty name="res.return">
+           <p style="color: red">退回原因：{$res.return}</p>
+         </notempty>
+        </div>
+      <div class="pZlCon">
+        <form class="pZlConForm">
+          <div class="pZlConI clearfix">
+            <label class="pzLs">机构名：</label>
+            <input type="text" value="{$res.qy_name}" maxlength="10"  name="org_name" id="org_name">
+           </div>
+
+          <if condition="$type eq 1">
+            <div class="pZlConI clearfix">
+              <label class="pzLs">您的类别：</label>
+              <select name="style" id="style">
+                <option value="1" <eq name="res.style" value="1">selected</eq>>传统</option>
+                <option value="2" <eq name="res.style" value="2">selected</eq>>当代</option>
+                <option value="3" <eq name="res.style" value="3">selected</eq>>其他</option>
+
+              </select>
+            </div>
+           </if>
+
+
+          <div class="pZlConI clearfix">
+            <label class="pzLs">成立时间：</label>
+            <input type="text" value="{$res.shop_at}" maxlength="30" name="shop_at" id="addtime">
+          </div>
+
+
+          <div class="pZlConI clearfix">
+            <label class="pzLs">口号：</label>
+            <input type="text" value="{$res.detail}" maxlength="30" name="detail" id="detail" onfocus="this.value=''" placeholder="一句话的事">
+          </div>
+           <div class="pZlConI clearfix">
+            <div class="pZlConI-div">
+              <label class="pzLs">logo：</label>
+              <div class="SelIdetPic-list">
+                <div class="SelIdPic-border" id="s">
+                  <empty name="res.logo_pic">
+                    <img src="__IMAGES__/SeladdPic.png">
+                    <h6>点此上传</h6>
+                    <input type="hidden" name="pic1" id="pic1" value=""/>
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="logo_pic" id="upFile">
+                    <else/>
+                    <img src="{$res.logo_pic}" style="width: 100% !important;">
+                    <input type="hidden" name="pic1" id="pic1" value="{$res.logo_pic}"/>
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="logo_pic" id="upFile">
+                  </empty>
+                </div>
+              </div>
+              
+            </div>
+            <h5>建议大小（宽182px 高119px）</h5>
+          </div>
+          <div class="pZlConI clearfix">
+            <div class="pZlConI-div">
+              <label class="pzLs">背景图片：</label>
+              <div class="SelIdetPic-list">
+                <div class="SelIdPic-border" id="ss">
+                  <empty name="res.gallery_index">
+                    <img src="__IMAGES__/SeladdPic.png">
+                    <h6>点此上传</h6>
+                    <input type="hidden" name="pic2" id="pic2" value=""/>
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="index_pic" id="upFile1">
+                    <else/>
+                    <img src="{$res.gallery_index}" style="width: 100% !important;">
+                    <input type="hidden" name="pic2" id="pic2" value="{$res.gallery_index}"/>
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="index_pic" id="upFile1">
+                  </empty>
+
+                </div>
+              </div>
+              
+            </div>
+            <h5>建议大小（宽473px 高154px）</h5>
+          </div>
+          <div class="pZlConI clearfix">
+            <div class="pZlConI-div">
+              <label class="pzLs">背景大图：</label>
+              <div class="SelIdetPic-list">
+                <div class="SelIdPic-border" id="sss">
+                  <empty name="res.index_pic">
+                    <img src="__IMAGES__/SeladdPic.png">
+                    <h6>点此上传</h6>
+                    <input type="hidden" name="pic3" id="pic3" value=""/>
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="upFile2" id="upFile2">
+                    <else/>
+                    <img src="{$res.index_pic}" style="width: 100% !important;">
+                    <input type="hidden" name="pic3" id="pic3" value="{$res.index_pic}"/>
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="upFile2" id="upFile2">
+                  </empty>
+
+                </div>
+              </div>
+              
+            </div>
+            <h5>建议大小（宽622px 高475px）</h5>
+          </div>
+          
+           <div class="pZlConI clearfix">
+            <label class="pzLs">简介：</label>
+            <textarea name="desc" id="desc" rows="5" cols="30" style="width:100%">{$res.desc}</textarea>
+          </div>
+
+        </form>
+        <div class="SelNoticeStyle">
+          
+          <h4><a href="javascript:void(0)" id="btn">确定提交</a></h4>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<div class="indexbottom"></div>
+
+<include file="Public:footer" />
+<script src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+  function upFile2(){
+    var percent = $('.baotuan_percent');
+    var progress = $('.baotuan_percent');
+    $("#upFile2").wrap("<form id='baotuan1' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile2").change(function(){ //选择文件
+      $("#baotuan1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          progress.show(); //显示进度条
+          var percentVal = '0%';
+          percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="goods_cap_pic" id="pic3" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" accept="image/jpg,image/jpeg,image/png" name="serial" id="baotuan">';
+          $('#sss').html(img);
+          upFile2();
+          progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+
+  function upFile1(){
+    $("#upFile1").wrap("<form id='formupFiles1' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile1").change(function(){ //选择文件
+      $("#formupFiles1").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          // progress.show(); //显示进度条
+          var percentVal = '0%';
+          // percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          //percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="index_pic" id="pic2" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" accept="image/jpg,image/jpeg,image/png" name="index_pic" id="upFile1">';
+          //$('.xuanze_showimge').html(img);
+          $('#ss').html(img);
+          upFile1();
+          //progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+
+  function upFile(){
+    $("#upFile").wrap("<form id='formupFiles' action='{:U('/Wxin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+    $("#upFile").change(function(){ //选择文件
+      $("#formupFiles").ajaxSubmit({
+        dataType:  'json', //数据格式为json
+        beforeSend: function() { //开始上传
+          //progress.show(); //显示进度条
+          var percentVal = '0%';
+          //percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+          var percentVal = percentComplete + '%'; //获得进度
+          //percent.html(percentVal); //显示上传进度百分比
+        },
+        success: function(data) { //成功
+          var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" style="width: 100% !important;" ><input type="hidden" name="logo_pic" id="pic1" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"/><input type="file" accept="image/jpg,image/jpeg,image/png" name="logo_pic" id="upFile">';
+          //$('.xuanze_showimge').html(img);
+          $('#s').html(img);
+          upFile();
+          //progress.hide();
+        },
+        error:function(xhr){ //上传失败
+          //console.log(xhr.status)
+        }
+      });
+    });
+  }
+  $(function () {
+    upFile();
+    upFile1();
+    upFile2();
+  });
+  $('#btn').click(function(){
+    var xuanze2 = $('#pic1').val();
+    var index_pic = $('#pic3').val();
+    var gallery_index = $('#pic2').val();
+    var org_name = $.trim($('#org_name').val());
+    var detail = $.trim($('#detail').val());
+    var addtime = $.trim($('#addtime').val());
+    var desc = $.trim($('#desc').val());
+    var style = $('#style option:selected').val();
+    var art = $('#art_cate').val();
+    if(org_name == ''){
+      alert('机构名称不能为空 ！');
+      return false;
+    }
+
+    if(addtime == ''){
+      alert('成立时间不能为空！');
+      return false;
+    }
+    var date=new Date;
+    var year=date.getFullYear();
+
+
+    if(addtime>year){
+      alert('成立时间不能晚于当前时间！');
+      return false;
+    }
+
+    if(detail == ''){
+      alert('口号不能为空！');
+      return false;
+    }
+
+
+    if(xuanze2 == ''){
+      alert('主页logo片必须上传！');
+      return false;
+    }
+
+    if(index_pic == ''){
+      alert('背景大图必须上传！');
+      return false;
+    }
+
+    if(gallery_index == ''){
+      alert('背景图片必须上传！');
+      return false;
+    }
+
+    if(desc == ''){
+      alert('简介不能为空 ！');
+      return false;
+    }
+
+    $.ajax({
+      url:"/Home/Shop/ysjgl",
+      dataType:"json",
+      type:"post",
+      data:{
+        logo_pic:xuanze2,
+        index_pic:index_pic,
+        gallery_index:gallery_index,
+        org_name:org_name,
+        detail:detail,
+        desc:desc,
+        style:style,
+        shop_at:addtime
+      },
+      success:function(data){
+        if(data.status==1){
+          alert(data.info);
+          window.location.href="/Wxin/Shop/selAudit";
+          return false;
+        }else{
+          alert(data.info);
+          window.location.reload();
+          return false;
+        }
+      }
+    })
+  })
+  function toVaild(){
+    var xuanze2 = $('#pic1').val();
+    //console.log(xuanze2);return false;
+    var index_pic = $('#pic2').val();
+    var gallery_index = $('#pic3').val();
+    // console.log(index_pic);return false;
+    //var xuanze2 = $('#logo_pic').val();
+    var org_name = $.trim($('#org_name').val());
+    var artist_name = $.trim($('#artist_name').val());
+    //var xuanze1 = $('#goods_cap_pic').val();
+    var detail = $.trim($('#detail').val());
+    var addtime = $.trim($('#addtime').val());
+    var desc = $.trim($('#desc').val());
+    var style = $('#style option:selected').val();
+    //console.log(style);return false;
+    //alert(zy_name);return false;
+
+    var art = $('#art_cate').val();
+    if(org_name == ''){
+      alert('机构名称不能为空 ！');
+      return false;
+    }
+    /*if(art != 13){
+     if(zy_name == ''){
+     alert('主页名称不能为空 ！');
+     return false;
+     }
+
+
+     }*/
+    /*if(artist_name == ''){
+     alert('姓名不能为空 ！');
+     return false;
+     }*/
+
+    if(art == 13){
+      if(addtime == ''){
+        alert('成立时间不能为空！');
+        return false;
+      }
+      var date=new Date;
+      var year=date.getFullYear();
+
+
+      if(addtime>year){
+        alert('成立时间不能晚于当前时间！');
+        return false;
+      }
+
+      if(detail == ''){
+        alert('口号不能为空！');
+        return false;
+      }
+
+    }
+    if(xuanze2 == undefined){
+      alert('主页logo片必须上传！');
+      return false;
+    }
+
+    if(index_pic == undefined){
+      alert('背景大图必须上传！');
+      return false;
+    }
+
+    if(gallery_index == undefined){
+      alert('背景图片必须上传！');
+      return false;
+    }
+
+    if(desc == ''){
+      alert('简介不能为空 ！');
+      return false;
+    }
+    /*
+
+     */
+
+
+
+  }
+</script>
+</body>
+</html>

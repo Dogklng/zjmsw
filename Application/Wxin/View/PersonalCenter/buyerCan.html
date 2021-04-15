@@ -1,0 +1,102 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 我的竞卖 </a> </h3>
+ <ul class="allorderUl myleaseUl">
+  <li class="title_first"><a href="{:U('Wxin/PersonalCenter/buyerCan/tag/buyerCan/value/2')}">参拍宝贝</a></li>
+  <li><a href="{:U('Wxin/PersonalCenter/buyerXia/tag/buyerXia/value/2')}">已拍下</a></li>
+  <li><a href="{:U('Wxin/PersonalCenter/buyerJin/tag/buyerJin/value/2')}">保证金</a></li>
+  <li><a href="{:U('Wxin/PersonalCenter/buyerMy/tag/buyerMy/value/2')}">我的提醒</a></li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<div class="warp_box">
+ <volist name="res" id="vo">
+ <div class="all_dingdan_one">
+  <div class="allorder_topz">
+   <div class="allorder_topz_center">
+    <span class="allTime"><!--参与时间：2016-09-05 18:13:59--></span>
+    <div class="allorder_topz_right">
+     <if condition="$vo.zt eq 1">
+      领先
+      <else/>
+      出局
+     </if>
+    </div>
+    <div class="clear"></div>
+   </div>
+  </div>
+  <div class="allorder_kuang">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_left shop_xx_fd"> <a href="{:U('/Wxin/Pm/pmxq/id')}/{$vo.goods_id}"><img src="{$vo.logo_pic}" width="100%" /></a> </div>
+     <div class="shop_xx_right shop_xx_fd">
+      <p><b>{$vo.goods_name}  {$vo.goods_cap}</b></p>
+      <h3 class="shop_xx_jg"><b>当前价格</b><b>¥{$vo.dangqian}</b></h3>
+      <div class="myaucIMg"><img src="__IMAGES__/buyerMy_clock.png" />距结束 <span class="djstime" data-endtime="{$vo['end']}"></span></div>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <div class="od_button">
+    <div class="od_fukuan"><a href="{:U('/Wxin/Pm/pmxq/id')}/{$vo.goods_id}">立即出价</a></div>
+    <div class="clear"></div>
+   </div>
+  </div>
+ </div>
+  </volist>
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+<script>
+ function timehtml(t, obj) {
+  window.setInterval(function() {
+   var d = 0,
+           h = 0,
+           m = 0,
+           s = 0;
+   if (t > 0) {
+    d = Math.floor(t / (60 * 60 * 24));
+    h = Math.floor(t / (60 * 60)) - (d * 24);
+    m = Math.floor(t / 60) - (d * 24 * 60) - (h * 60);
+    s = Math.floor(t) - (d * 24 * 60 * 60) - (h * 60 * 60) - (m * 60);
+   }
+   if (d <= 9)
+    d = '0' + d;
+   if (h <= 9)
+    h = '0' + h;
+   if (m <= 9)
+    m = '0' + m;
+   if (s <= 9)
+    s = '0' + s;
+   $(obj).html(d + " 天" + h + " 时" + m + " 分" + s + "秒");
+   t--;
+  }, 1000);
+ }
+ $(function() {
+  $(".djstime").each(function() {
+   var endtime = $(this).attr("data-endtime");
+   var message = $(this).attr("data-msg");
+   if(message==''||message==undefined){
+    message='竞卖结束';
+   }
+   var nowtime = new Date().getTime();
+   var time = (endtime * 1000 - nowtime) / 1000; time = time.toFixed(0);
+   if (time <= 0) {
+    $(this).html("<div></div><span style='color:#FC2233;'>"+message+"</span>");
+    $(this).find('i').css({'font-family':'宋体','font-style':'normal','font-size':'14px'});
+    return true;
+   } else {
+    timehtml(time, this);
+   }
+  })
+ });
+</script>
+</body>
+</html>

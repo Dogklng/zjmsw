@@ -1,0 +1,120 @@
+<include file="Public:header" />
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+
+  
+  <!--  / user  -->
+
+          <div class="user">
+            <div class="">
+              <div class="row">
+                <div class="col-sm-2">
+                    <include file="Public:user_left" />
+                </div>
+                <div class="col-sm-10">
+                  <div class="user_r3">
+                    <div class="user_r3_con">
+                      <h5>我的增值税发票</h5>
+                      <div class="order1_yh_con" style="padding-top:0">
+              <div class="order1_yh_con1" >
+                <h5 style="padding-left:0;background:transparent">发票类型</h5>
+                <ul class="clearfix">
+                  <li class="order1_yhon"><span></span>电子发票-增值普票</li>
+                  <li class=""><span></span>纸质发票-增值普票</li>
+                  
+                </ul>
+                
+                 <div class="order1_yh_l">
+                   <div class="order1_yh_list" style="display: block;">
+                     <span>发票抬头</span>
+                     <input type="text" placeholder="填写需要开票的个人或个人信息">
+                     <div class="order1_yh_lista">
+                       <p>浙江美术网开具的电子发票均为真实有效的合法发票，与传统纸质发票具有同等法律效力，可作为用户维权、保修、报销的有效凭据。</p>
+                       <p>电子发票会在确认收货后15天内，将发票代码和发票号码以短信方式发送到收货人手机上。</p>
+                       <p>开具成功后，您可登录电子发票查询系统<span><a style="color:red" href="http://imv.auxshop.cn/fppt-web/fppt/public/lookup.html" target="_bank">http://imv.auxshop.cn/fppt-web/fppt/public/lookup.html</a></span>下载电子发票</p>
+                     </div>
+                   </div>  
+                   <div class="order1_yh_list" style="display: none;">
+                     <span>发票抬头</span>
+                     <input type="text" placeholder="填写需要开票的个人或个人信息">
+                   </div>  
+                   <div class="order1_yh_list order1_yh_list1">
+                     <ul>
+                       <li><input type="checkbox" class="j_checkbox j_checkbox_on">吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 浙江省杭州西湖区文三路 &nbsp;&nbsp; 杭州银行 &nbsp;&nbsp; 654126541235038</li>
+                       <li><input type="checkbox" class="j_checkbox">吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 浙江省杭州西湖区文三路 &nbsp;&nbsp; 杭州银行 &nbsp;&nbsp; 654126541235038</li>
+                       <li><input type="checkbox" class="j_checkbox">吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 浙江省杭州西湖区文三路 &nbsp;&nbsp; 杭州银行 &nbsp;&nbsp; 654126541235038</li>
+                       <li><input type="checkbox" class="j_checkbox j_checkbox_xz">新增增值税发票</li>
+                     </ul>
+                     <div class="user8_con2">
+                <p><span>单位名称：</span><input type="text" value="13429614578"></p>  
+                <p><span>纳税人识别号：</span><input type="text" value="李亮"></p>  
+                <p><span>注册地址：</span><input type="text" value=""></p>  
+                <p><span>注册电话：</span><input type="text" value=""></p>  
+                <p><span>开户银行：</span><input type="text" value=""></p>
+                <p><span>银行账户：</span><input type="text" value=""></p>
+                <div class="user_r6_line"></div>
+                <a href="##">保存</a>  
+              </div>
+                   </div>  
+                 </div>
+                
+              </div>   
+            </div>     
+                    </div> 
+                  </div>
+                </div>
+              </div>
+                  
+            </div>      
+          </div>
+
+
+          <div class="dizhi">
+            <div class="dizhi_bg"></div>
+            <div class="dizhi_con">
+              <img src="__IMAGES__/dizhi_close.png" width="24">
+              <h5>新建地址</h5>
+              <div class="dizhi_list clearfix">
+                <p class="dizhi_l">收货人：<input type="text"></p>
+                <p class="dizhi_r">手机号码：<input type="text"></p>
+              </div>  
+              <div class="dizhi_list clearfix">
+                <span>所在地区:</span>
+                <div class="dizhi_list_city clearfix">
+                      <select name="province" id="province">
+                      </select>
+                      <select name="city" id="city">
+                      </select>
+                      <select name="county" id="county">
+                      </select>
+                  </div>  
+              </div>
+              <div class="dizhi_list clearfix">
+                <span>详细地址：</span>  
+                <textarea name="adress"></textarea>
+              </div>
+              
+              <div class="dizhi_btn clearfix">
+                <div class="w_chkbox"><input type="checkbox" name="dft" class="j_checkbox"><span>设为默认</span></div>  
+                <div class="dizhi_btn1">
+                  <a href="##" class="dizhi_btn1_on">确定</a>
+                  <a href="##">取消</a>    
+                </div>
+              </div>
+              
+            </div>  
+          </div>
+
+
+          <!--  / user  -->
+  
+   
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+</html>

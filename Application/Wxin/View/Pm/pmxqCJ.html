@@ -1,0 +1,336 @@
+<include file="Public:header" />
+<!--  / warpper  -->
+<style>
+  .pm_con_text .jpxz{ margin:20px 0;}
+  .pmxqBox{ background:#f5f5f5;}
+  .pmxqBox h1{ padding-top:50px !important; font-size:20px; color:#333;}
+  .pmxqBC{ padding:20px 60px;}
+  .pmxqBC h2{ font-size:18px; color:#333; margin:10px auto 0;}
+  .inspection_agree{ font-size:14px; line-height:24px; color:#666; margin:20px auto;}
+  .inspection_agree label{ font-weight:normal;}
+  .inspection_agree input{width: 14px;
+    height: 14px;
+    position: relative;
+    top: 2px;
+    margin-right:3px;
+  }
+  .inspection_agree a{ color:#f00;}
+  .pmxqDiv{ border-top:1px solid #ccc; padding-top:10px;}
+  .pmxqDiv h6{ font-size:14px; color:#666; line-height:24px; margin-top:10px;}
+  .pmxqBut{ text-align:center; margin:30px auto;}
+  .pmxqBut a{ display:inline-block; padding:5px 30px;  font-size:14px; line-height:24px; margin:0 10px; color:#fff;}
+  .pmxqBt{ background:#f00;}
+  .pmxqBq{ background:#999;}
+
+
+  .jpxz_bao{
+    width:100%;
+    background:#f6f6f6;
+    padding:20px 10px;
+    overflow: hidden;
+  }
+  .arounddetails_person{
+    width:100px;
+    background:#fff;
+    float: left;
+  }
+  .arounddetails_person .num2 {
+    display: inline-block;
+    width: 120px;
+    height: 30px;
+    position: relative;
+  }
+  .arounddetails_person .num_l {
+    width: 30px;
+    cursor: pointer;
+    height: 30px;
+    font-size: 21px;
+    line-height: 20px;
+    float: left;
+    text-align: center;
+    color: #000;
+    background: #e6e6e6;
+    border: solid 1px #000;
+    box-sizing: border-box;
+  }
+  .arounddetails_person  .num_c {
+    width: 60px;
+    height: 30px;
+    overflow: hidden;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+    border-top: solid 1px #000;
+    border-bottom: solid 1px #000;
+    box-sizing: border-box;
+    color: #000;
+    line-height: 24px;
+  }
+  .arounddetails_person .gm_num_txt {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+  }
+
+  .jpxz_right{
+    float: right;
+    width:100px;
+    height:30px;
+    background: #000;
+  }
+  .jpxz_right h5{
+    width:60px;
+    height:30px;
+    color:#fff;
+    text-align: center;
+    line-height: 25px;
+    position: relative;
+    padding-left: 24px;
+    margin:0 auto;
+    cursor: pointer;
+  }
+  .jpxz_right h5 i{
+    display: block;
+    position: absolute;
+    top:3px;
+    left:0;
+    width:24px;
+    height:24px;
+  }
+  .jpxz_right h5 i img{
+    display:block;
+    width:100%;
+    height:100%;
+  }
+</style>
+<div class="warpper" style="padding-bottom:30px;">
+  <div class="products_inner" style="margin-top: 60px;">
+    <include file="Public:images" />
+
+    <div class="products_inner_zi">
+      <div class="buy_con_text pm_con_text" style="padding-top: 15px; width:100%;">
+        <h3>{$res.goods_name}</h3>
+        <input type="hidden" id="goods_id" value="{$res.id}" >
+        <div class="buyDel">
+          <ul>
+            <li><b>作品的上架时间 :</b>{$res['shang_time']|date="Y-m-d",###}</li>
+            <li><b>材质 ：</b>{$res.goods_skin}</li>
+            <li><b>尺寸 ：</b> {$res.goods_range}</li>
+            <li><b>创作年代 :</b> {$res.goods_care}年</li>
+            <li><b>品相 ：</b>{$res.goods_com}</li>
+          </ul>
+        </div>
+        <h4 class="djstime" data-endtime="{$res['end']}"><i>正在竞卖</i> 距结束： <span></span>天<span></span>小时 <span></span>分 <span></span>秒</h4>
+        <div class="qpxx">
+          <!--<p><span> 开拍提醒:</span>
+            <input style="border:1px #ddd solid; line-height:32px; padding:0 20px; color:#999;" id="tel" type="text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '请输入您的邮箱或者手机号';}" value="请输入您的邮箱或者手机号">
+            <a href="#" id="btn" style="line-height:34px; display:inline-block; background:#999; color:#fff; padding:0 20px;">发送</a></p>-->
+          <div class="qpxx1" style="padding-left:50px;">
+            <h6 class="tw">当前价：<span class="dangqian" id="dangqian" style="font-size:24px;">¥{$res.dangqian}</span></h6>
+            <h6>起拍价：<span style="font-size:26px;">¥{$res.start_price}</span></h6>
+          </div>
+          <div class="jpxz_bao">
+            <div class="arounddetails_person">
+              <div class="num2">
+                <div class="num_l jian">-</div>
+                <div class="num_c">
+                  <input type="text" value="{$res.dangqian}" readonly class="gm_num_txt">
+                </div>
+                <div class="num_l jia">+</div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="jpxz_right">
+              <h5><i><img src="__IMAGES__/jing_chujia.png"></i>出价</h5>
+            </div>
+          </div>
+          <ul class="qpxx2">
+            <li><span>{$res.baomin|default=0}</span>人报名 </li>
+            <li><span>{$tx|default=0}</span>人设置提醒 </li>
+            <li><span>{$res.weiguan|default=0}</span>次围观</li>
+            <div class="clear"></div>
+          </ul>
+          <ul class="qpxx3">
+            <li>起拍价: <span>¥{$res.start_price}</span></li>
+            <li>加价幅度: <span>¥{$res.fudu}</span></li>
+            <li>保证金: <span>¥{$res.baoding}</span></li>
+            <li>佣金: <span>{$res.yongjin}%</span></li>
+            <div class="clear"></div>
+          </ul>
+          <div class="qpxx4"> 特色服务： <span>假一赔三</span> <span>拍前预展</span> </div>
+        </div>
+      </div>
+    </div>
+  <include file="Public/pmxq" />
+  </div>
+</div>
+<!--  / warpper  -->
+<!--  / footer  -->
+
+<!--  / footer  -->
+
+</body>
+
+
+<script language="javascript">
+  $(".jpxz").click(function(e){
+    $(".artworkP").show();
+    $('.products_inner').hide();
+  })
+$(document).ready(function(){
+	
+	  
+  var mySwiper = new Swiper('.swiper-container1',{
+    pagination: '.pagination1',
+    loop:true,
+    grabCursor: true,
+	autoplay:5000, 
+	spaceBetween: 0,
+	slidesPerGroup : 1,//设置几个一切换
+	centeredSlides : true, //当前居中
+    paginationClickable: true,
+	autoplayDisableOnInteraction : false    //用户操作点的时候  停止自动切换
+  })
+   
+	
+
+$(window).scroll(function(){
+  
+  if($(window).scrollTop()>($('.products_inner_con').offset().top-60)){  
+      $('.proinner_nav').addClass('proinner_navon');
+      }else{
+		  $('.proinner_nav').removeClass('proinner_navon');
+		  }
+	  	   	
+})
+    $(".jian").click(function () {
+        var gm_num = $(this).next().find("input").val();
+        var fd = parseInt("{$res.fudu}");
+        /*if(gm_num <= 0){
+         gm_num=1;
+         $(this).next().find("input").val(gm_num);
+         }
+         if (gm_num >= 1) {
+         gm_num-=1;
+         if(gm_num <= 0){
+         gm_num=1;
+         }
+
+         $(this).next().find("input").val(gm_num);
+         }*/
+
+        if (fd!=0) {
+            if (gm_num <= 1) {
+                gm_num = 1;
+                $(this).next().find("input").val(gm_num);
+            }
+
+            if (gm_num > fd) {
+                gm_num -= fd;
+                if (gm_num <= fd) {
+                    gm_num = 1;
+                }
+                $(this).next().find("input").val(gm_num);
+            } else {
+                if (gm_num <= 0) {
+                    gm_num = 1;
+                    $(this).next().find("input").val(gm_num);
+                }
+                if (gm_num >= 1) {
+                    gm_num -= 1;
+                    if (gm_num <= 0) {
+                        gm_num = 1;
+                    }
+
+                    $(this).next().find("input").val(gm_num);
+                }
+            }
+        }
+
+    })
+    $(".jia").click(function () {
+        var gm_num2 = parseInt($(this).prev().find("input").val());
+        /*if(gm_num2 < 1000){
+            gm_num2 += 100;
+            $(this).prev().find("input").val(gm_num2);
+        }
+        if(gm_num2 >= 1000){
+            gm_num2 += 10;
+            $(this).prev().find("input").val(gm_num2);
+        }*/
+        var fd = parseInt("{$res.fudu}");
+        if (fd!=0){
+            gm_num2 += fd;
+        }else {
+            if(gm_num2 < 1000){
+                gm_num2 += 100;
+                $(this).prev().find("input").val(gm_num2);
+            }
+            if(gm_num2 >= 1000){
+                gm_num2 += 10;
+                $(this).prev().find("input").val(gm_num2);
+            }
+        }
+
+        $(this).prev().find("input").val(gm_num2);
+    })
+
+$('.show_xzd1').click(function(){
+	$('.load_dh').stop(true).fadeIn(600);
+	
+	setTimeout(function(){
+		$('.load_dh').stop(true).fadeOut(600);
+		},4000)
+	
+	})
+
+
+})
+
+
+$(window).load(function(e) {
+	var height1 = $(".device img").height();
+	$(".swiper-container1").css("height",height1)
+
+})
+
+$(window).resize(function(e) {
+	var height1 = $(".device img").height();
+	$(".swiper-container1").css("height",height1)
+})
+
+$(document).ready(function(e) {
+	var height1 = $(".device img").height();
+	$(".swiper-container1").css("height",height1)
+
+})
+  $(".jpxz_right").click(function () {
+      var member_id = '{$name}';
+      if(member_id == 0){
+          dialog.showTips("请先注册，若有账号，请先登录！", "",'/Wxin/User/login');
+          return false;
+      }
+      var chujia = $(".gm_num_txt").val();
+      var id = "{$res.id}";
+      $.ajax({
+          type: "post",
+          url: "{:U('/Wxin/Pm/chuJia')}",
+          data: {"jiage":chujia,'goods_id':id},//提交表单，相当于CheckCorpID.ashx?ID=XXX
+          success: function(msg){
+              if (msg.status==2){
+                  alert( msg.info );
+                  location.reload();
+              }else{
+                  $('.dangqian').text("¥"+ msg.info.dangqian);
+                  alert( msg.info.err);
+              }
+          }
+      });
+
+  })
+
+</script>
+<script src="__JS__/detail.js"></script>
+</html>

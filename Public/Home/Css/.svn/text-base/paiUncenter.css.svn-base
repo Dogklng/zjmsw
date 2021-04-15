@@ -1,0 +1,102 @@
+
+
+
+/* paiCenter.html */
+.paiuncenter_one{
+	width:100%;
+	margin-top: 20px;
+}
+.paiuncenter_one h3{
+	font-size: 16px;
+	font-weight: bolder;
+	color:#333;
+}
+.paiuncenter_one p{
+	font-size: 14px;
+	margin-top: 5px;
+	margin-bottom: 0;
+	color:#333;
+	letter-spacing: 1px;
+}
+.paiuncenter_one p.activedp{
+	margin-top: 10px;
+}
+.SellerFlist .paiUncenter_h3{
+	line-height: 40px;
+}
+
+
+
+
+/* paileimu */
+.located-select{border-bottom: 1px solid #B3B3B3;}
+.located-select .bd {
+    border: 1px solid #B3B3B3;
+    border-bottom: 0 none;
+    padding: 0 15px;
+    margin-top: 10px;
+}
+.located-select .bd ul.first {
+   /* border-bottom: 1px dotted #bbb;*/
+}
+.account-select .bd li, .located-select .bd li {
+    float: left;
+    margin-right: 50px;
+    padding: 15px 0;
+    width:100%;
+}
+.account-select .bd dt, .located-select .bd dt {
+    margin-bottom: 15px;
+}
+.located-select .bd dd {
+    float: left;
+    display: none;
+    margin-left: 4em; margin-bottom:5px;
+}
+.located-select .ft {
+    background: #F6F6F6;
+    border: 1px solid #B3B3B3;
+    border-bottom:none;
+    padding: 15px 20px;
+}
+.located-tips {
+    text-align: center;
+    background: #FFE6D5;
+    padding: 10px;
+    margin-top: 30px;
+}
+.levels dl{ margin-bottom:0;}
+.levels input{ float:left; margin:2px 5px 0 0;}
+
+
+
+/*paiZiliao*/
+.pZlCon{ overflow:hidden; margin-top:30px;}
+.pZlConI{ overflow:hidden; margin-bottom:20px; line-height:30px;}
+.pZlConI .pzLs{ float:left; margin-right:20px; width:160px;}
+.pZlConI input[type="text"]{ float:left; width:260px; height:30px; text-indent:10px; margin-right:20px;}
+.pZlConI input[type="radio"]{ float:left; width:15px; height:15px; margin-top:8px;}
+.pZlConI span{ float:left; margin-right:20px;}
+.pZlConI i{ font-style:normal;}
+.pZlConI-div{ overflow:hidden; margin-bottom:20px;}
+.pZlConI h5{ margin-left:180px; margin-bottom:10px;}
+.pZlConI a{ display:block; margin-left:180px; font-size:14px; color:#333; text-decoration:underline;}
+.pZlConI select{ height:30px; line-height:30px; width:100px; border:1px solid #ccc; background:#fff;}
+
+
+/*paiBaozj*/
+.pBH5{ font-size:18px; margin:20px auto;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

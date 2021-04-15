@@ -1,0 +1,177 @@
+<include file="Public:header" />
+
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 我的拍卖 </a> </h3>
+ <ul class="allorderUl myleaseUl">
+  <li><a href="{:U('Wxin/PersonalCenter/buyerCan/tag/buyerCan/value/2')}">参拍宝贝</a></li>
+  <li class="title_first"><a href="{:U('Wxin/PersonalCenter/buyerXia/tag/buyerXia/value/2')}">已拍下</a></li>
+  <li><a href="{:U('Wxin/PersonalCenter/buyerJin/tag/buyerJin/value/2')}">保证金</a></li>
+  <li><a href="{:U('Wxin/PersonalCenter/buyerMy/tag/buyerMy/value/2')}">我的提醒</a></li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<div class="warp_box">
+
+ <volist name="res" id="vo">
+ <div class="all_dingdan_one">
+  <div class="allorder_topz">
+   <div class="allorder_topz_center">
+    <span class="allTime"><!--参与时间：2016-09-05 18:13:59--></span>
+    <div class="allorder_topz_right">
+     <switch name="vo.order_status">
+      <case value="0">
+       已取消
+      </case>
+      <case value="1">
+       待付款
+      </case>
+      <case value="2">
+       待发货
+      </case>
+      <case value="3">
+       待收货
+      </case>
+      <case value="4">
+      已完成
+      </case>
+     </switch>
+    </div>
+    <div class="clear"></div>
+   </div>
+  </div>
+  <div class="allorder_kuang">
+   <div class="shop_xx_warp">
+    <div class="shop_xx_center">
+     <div class="shop_xx_left shop_xx_fd myL"> <a href="javascript:;"><img src="{$vo.logo_pic}" width="100%" /></a> </div>
+     <div class="shop_xx_right shop_xx_fd myR">
+      <p><b>{$vo.goods_name} {$vo.goods_cap}</b><br />订单号: <i>{$vo.order_no}</i></p>
+      <p>成交价: <i>￥{$vo.chengjiao}</i></p>
+      <p>运费: <i>￥{$vo.express_fee|default=0}</i></p>
+      <h3 class="shop_xx_jg"><b>合计: </b><b>￥{$vo.heji}</b></h3>
+     </div>
+     <div class="clear"></div>
+    </div>
+   </div>
+   <div class="llk_border myLl">
+    <if condition="$vo.pay_status eq 1">
+    <div class="od_zongji">已支付 <span>￥{$vo.heji}</span></div>
+     <else/>
+     <div class="od_zongji">已支付：<b>￥{$vo.baoding}(保证金)</b> 还需支付：<span>￥{$vo.total_fee}</span></div>
+     </if>
+    <div class="clear"></div>
+   </div>
+   <div class="od_button">
+    <switch name="vo.order_status">
+     <case value="1">
+      <div class="od_fukuan"><a data-id='{$vo.id}' href="javascript:;" class="buyerXia_sec1_fukuan">立即付款</a></div>
+     </case>
+     <case value="3">
+      <div class="od_fukuan"><a data-id='{$vo.id}' href="javascript:;" class="fukuan qianshou">确认收货</a></div>
+     </case>
+    </switch>
+    <div class="od_fukuan"><a href="{:U('/Wxin/PersonalCenter/buyerJinDetails/tag/buyerXia/baoding')}/{$vo.ding}/value/2">查看保证金</a></div>
+    <div class="od_quxiao"><a href="{:U('/Wxin/PersonalCenter/orderPmDetails/tag/buyerXia/id')}/{$vo.id}/value/2">查看订单</a></div>
+    <div class="clear"></div>
+    <if condition="$vo.pay_status eq 0">
+     <h6 class="myH6">距交易超时还剩 <b class="djstime" data-endtime="{$vo['end']}"><!--72小时 00分 00秒--></b></h6>
+    </if>
+   </div>
+  </div>
+ </div>
+  </volist>
+</div>
+<div class="ght">
+<!-- <div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+
+<include file="Public:footer" />
+<script>
+ function timehtml(t, obj) {
+  var times = t;
+  window.setInterval(function() {
+   var d = 0,
+           h = 0,
+           m = 0,
+           s = 0;
+
+   if (t > 0) {
+    d = Math.floor(t / (60 * 60 * 24));
+    h = Math.floor(t / (60 * 60)) - (d * 24);
+    m = Math.floor(t / 60) - (d * 24 * 60) - (h * 60);
+    s = Math.floor(t) - (d * 24 * 60 * 60) - (h * 60 * 60) - (m * 60);
+   }
+   if (d <= 9)
+    d = '0' + d;
+   if (h <= 9)
+    h = '0' + h;
+   if (m <= 9)
+    m = '0' + m;
+   if (s <= 9)
+    s = '0' + s;
+   if (t>0){
+    $(obj).html(d+"天"+h+"小时"+m+"分"+s+"秒");
+   }else {
+    window.location.reload();
+   }
+   t--;
+  }, 1000);
+ }
+ $(function() {
+  $(".djstime").each(function() {
+   var endtime = $(this).attr("data-endtime");
+   //var message = $(this).attr("data-msg");
+   /*if(!endtime){
+    message='暂时没有拍卖';
+    $(this).html("<span style='color:#FC2233;'>"+message+"</span>");
+    $(this).find('span').css({'font-family':'宋体','font-style':'normal','font-size':'20px'});
+    return true;
+    }*/
+   var nowtime = new Date().getTime();
+   var time = (endtime * 1000 - nowtime) / 1000; time = time.toFixed(0);
+   if (time <= 0) {
+    //window.location.reload();
+   } else {
+    timehtml(time, this);
+   }
+  })
+ });
+
+ $(function(){
+  $('.buyerXia_sec1_fukuan').click(function(){
+
+   //alert($(this).data("id"));
+   var id = $(this).data("id");
+   window.location.href = '/Wxin/Pm/buy/id/'+id;
+
+  })
+
+
+ })
+
+
+ $('.qianshou').click(function () {
+  var id1 = $(this).attr('data-id');
+  //console.log(id1);return false;
+  dialog.showTips('确定签收吗','firm',function () {
+   $.ajax({
+    url: "{:U('Wxin/PersonalCenter/changePmOrderStatus')}",
+    data: {id:id1},
+    type: 'post',
+    dataType: 'json',
+    success: function (content) {
+     if (content.status == 1) {
+      //alert(content.info );
+      window.location.reload();
+     } else {
+      alert(content.info);
+     }
+    }
+   })
+  });
+ })
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">展览列表</h1>
+            <a href="{:U('/Admin/Community/addShow')}" class="btn btn-success">发布展览品</a>
+            <form action="{:U('/Admin/Community/show')}" method="get">
+                <div class="tabs clearfix mgt10">
+                    <a href="{:U('/Admin/Community/show')}" class="<eq name="_GET['is_sale']" value="">active</eq> tabs_a fl">全部({$count})</a>
+                    <a href="{:U('/Admin/Community/show/is_sale/2')}" class="<eq name="_GET['is_sale']" value="2">active</eq> tabs_a fl">出售中({$count1})</a>
+                    <a href="{:U('/Admin/Community/show/is_sale/1')}" class="<eq name="_GET['is_sale']" value="1">active</eq> tabs_a fl">下架中({$count2})</a>
+                    <a href="{:U('/Admin/Community/indexshow')}?is_sale={$_GET['is_sale']}" class="btn btn-success fr">导出</a>
+                </div>
+            </form>
+            <!-- end tabs -->
+
+            <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+                <thead>
+                <tr class="po_list">
+                    <td>展览信息</td>
+                    <td>是否上架</td>
+                    <td>排序</td>
+                    <td>地点</td>
+                    <td>状态</td>
+                    <td>展览状态</td>
+                    <td>操作<span></span></td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res" item="vo">
+                    <tr>
+                        <td><div class="goodswrap"> <a href="javascript:void(0)" class="block" target="_blank" title="">
+                            <div class="table-item-img"> <img src="{$vo['logo']}" alt=""> </div><br/>
+                            <div class="table-item-info" style="width: 100px">
+                                <p style="height:auto">{$vo.title} <br/></p>
+                            </div>
+                        </a> </div></td>
+                        <td><if condition="($vo.is_sale eq 1)"> 上架
+                            <else/>
+                            下架</if></td>
+
+                        <td> {$vo.sort} </td>
+                        <td>{$vo.address}</td>
+                        <td><switch name="vo.status">
+                            <case value="1">待审核</case>
+                            <case value="2"><span style="color: green;">审核通过</span></case>
+                            <case value="3"><span style="color: red;">审核拒绝</span></case>
+                        </switch></td>
+                        <td><switch name="vo.now_status">
+                            <case value="0">筹备中</case>
+                            <case value="1"><span style="color: green;">进行中</span></case>
+                            <case value="2"><span style="color: red;">已过期</span></case>
+                        </switch></td>
+                        <td>
+                            <a href="{:U('/Admin/Community/editShow/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+
+                            <a href="javascript:;" class="btn change-is_sale <eq name="vo['is_sale']" value="0">btn-success<else />btn-danger</eq>" data-id="{$vo.id}"  title="上架"><eq name="vo['is_sale']" value="0">上架<else />下架</eq></a>
+                            <if condition="$vo.status eq 1"><a href="javascript:;" class="btn huifu" style="background-color: green;border-color: green; color: white" data-id="{$vo.id}">审核</a></if>
+                            <a href="{:U('/Admin/Community/delShow/id')}/{$vo.id}" onclick="{if(!confirm('确定删除吗?'))return false;} " class="btn j-delClass btn-warning" title="删除">删除</a>
+                            <a href="{:U('/Admin/Community/showlist/id')}/{$vo.id}" class="btn btn-primary" title="查看参展">查看参展</a>
+                            <a href="{:U('/Admin/Community/exhibition/id')}/{$vo.id}" class="btn btn-primary" title="查看观展">查看观展</a>
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <div class="fr">
+                        <div class="pages"> {$page} </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+</div>
+    <!-- end container -->
+    <include file="Public:foot"/>
+<div id="albums-overlay" class="disshow"></div>
+<div class="jbox addfenlei disshow" style="height:auto; overflow: visible;z-index: 999;">
+    <div class="jbox-title">
+        <div class="jbox-title-txt">回复评论</div>
+        <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 140px;overflow: visible;">
+        <div class="formitems">
+            <input type="hidden" class="input sort" name="commentId" id="commentId" >
+            <label><span class="colorRed">*</span>内容：</label>
+
+            <div class="form-controls">
+                <textarea style="width: 200px;height: 100px;margin-left: -30px;" id="content"></textarea>
+                <span class="fi-help-text"></span>
+            </div>
+        </div>
+
+    </div>
+    <div class="jbox-buttons">
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">通过</a>
+        <a href="javascript:void(0);" class="jbox-buttons-ok btn " id="disagree" style="background-color: red;border-color: red; color: white">拒绝</a>
+        <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+</div>
+    <script>
+        $(".change-is_sale").click(function (){
+            var id   = $(this).attr("data-id");
+            var item = "is_sale";
+            $.post("{:U('Admin/Community/changeStatus2')}", {id:id,item:item}, function(data){
+                if(data.status){
+                    window.location.reload()
+                }else{
+                    alert(data.info);
+                }
+            }, "json")
+        })
+    </script>
+<script src="__JS__/jquery-1.7.1.min.js"></script>
+<script>
+
+    $(".cancle").click(function(){
+        $(this).parent().parent('.jbox').hide();
+        $('#albums-overlay').hide();
+    })
+
+    $(".huifu").click(function(){
+        $('.addfenlei').show();
+        $('#albums-overlay').show();
+        var commentId = $(this).attr('data-id');
+        $('#commentId').val(commentId);
+    })
+
+    $('#agree').click(function () {
+        var id1 = $('#commentId').val();
+        $.ajax({
+            url: "{:U('/Admin/Community/agreeOne')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id: id1,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+
+    $('#disagree').click(function () {
+        var id1 = $('#commentId').val();
+        var content = $('#content').val();
+        if(content == ''){
+            alert('内容必填');
+            $('#content').focus();
+            return false;
+        }
+
+        $.ajax({
+            url: "{:U('/Admin/Community/disagreeOne')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                id: id1,
+                disagree_detail:content
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                window.location.reload();
+            } else {
+                alert(g.info);
+            }
+
+        })
+    })
+</script>

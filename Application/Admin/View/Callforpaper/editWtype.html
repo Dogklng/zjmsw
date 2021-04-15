@@ -1,0 +1,247 @@
+<include file="Public:head"/>
+<style>
+	.imgnav{
+		max-height: 30px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.imgwrapper{
+		display: block;
+		width: 78px;
+		height: 78px;
+		overflow: hidden;
+	}
+	.imgwrapper img{
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border:0;
+	}
+	.spanpd10{
+		margin:10px;
+	}
+	.wxtables.wxtables-sku.newtable{
+		width: 40%;
+		margin: 0;
+	}
+	.img-list li{
+		width: 60px;
+		height:60px;
+	}
+	.cst_h3 span{font-weight: normal;}
+	#imgdiv img{ max-width:190px; max-height:190px; display:none; margin:5px;}
+	.btnimage{width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; position:relative; text-align:center; line-height:31px;}
+	.file{ position:absolute; top:0px; left:0; width:80px; height:30px; background:white; border:1px solid #d9d9d9;cursor:pointer; opacity:0}
+	#imgdiv2 img{ max-width:88px; max-height:88px; display:none; margin:5px;}
+	#xuanze2{ width:60px; height:30px; background:white; border:1px solid #d9d9d9; }
+	#xuanze2:hover{ background:#E6E6E6; }
+	.huase{display:none; width:86px; height:30px; margin:5px; text-indent:5px;}
+
+</style>
+<script type="text/javascript" src="__LHG__/lhgcore.min.js"></script>
+<script type="text/javascript" src="__LHG__/lhgcalendar.min.js"></script>
+
+<div class="container">
+  <div class="inner clearfix">
+    <include file="Public:left"/>
+    <!-- end content-left -->
+
+    <div class="content-right fl">
+      <h1 class="content-right-title">编辑类型</h1>
+      <input type="hidden" id="j-isSid" value="0">
+      <!-- 是否选择了淘宝类目 -->
+      <input type="hidden" id="j-hasNorms" value="1">
+      <!-- 淘宝类目下是否有属性 -->
+      <input type="hidden" id="supplier" value="">
+      <form aciton="{:U('/Admin/Callforpaper/editWtype')}" enctype="multipart/form-data" method="post" id="add_step2" onsubmit="return toVaild()">
+        <!-- end 基本信息 -->
+
+        <div class="panel-single panel-single-light mgt20">
+          <h3 class="cst_h3 mgb20">类型信息</h3>
+          <div class="formitems">
+            <label class="fi-name"><span class="colorRed">*</span>类型：</label>
+            <div class="form-controls">
+              <input type="text" class="input xxlarge" name="wtype" id="wtype" value="{$wtype['wtype']}">
+              <span class="fi-help-text"></span> 
+            </div>
+          </div>
+
+      </div>
+
+     <input type="hidden" name="eid" value="{$wtype['id']}" id="eid"/>
+		<div class="panel-single panel-single-light mgt20 txtCenter">
+		  <a href="{:U('Admin/Callforpaper/wtype')}" class="btn">取消</a>
+		  <input type="button" class="btn btn-primary" value="保存">
+		</div>
+    </div>
+
+    <!-- end 详情及其它 -->
+  </form>
+</div>
+<!-- end container -->
+
+<include file="Public:foot"/>
+
+                <script type="text/javascript">
+
+
+  $("#j-select_category_id").click(function(){
+    $('.select-fenlei').show();
+    /*$('#albums-overlay').show();*/
+  });
+  $(".cancle").click(function(){
+    $(this).parent().parent('.jbox').hide();
+    /*$('#albums-overlay').hide();*/
+  });
+
+  $("#select_class").click(function(){
+    var clssid=$("#select_class_id  option:selected").val();
+    var classname=$("#select_class_id option:selected" ).text();
+    $('#class_id').val(clssid);
+    $('#class_name').val(classname);
+    $(this).parent().parent('.jbox').hide();
+    /*$('#albums-overlay').hide();*/
+  });
+
+  $("#j-select_series_id").click(function(){
+    $('.select-series').show();
+    $('#albums-overlay1').show();
+  });
+  $(".cancle").click(function(){
+    $(this).parent().parent('.jbox').hide();
+    $('#albums-overlay1').hide();
+  });
+
+  $("#select_series").click(function(){
+    var seriesid=$("#select_series_id  option:selected").val();
+    var seriesname=$("#select_series_id option:selected" ).text();
+    $('#series_id').val(seriesid);
+    $('#series_name').val(seriesname);
+    $(this).parent().parent('.jbox').hide();
+    $('#albums-overlay1').hide();
+  });
+
+
+
+
+
+  UE.getEditor('editor',{
+    toolbars: [
+
+    ['source', 'fontfamily','fontsize','bold','italic', 'underline','forecolor','redo','undo','insertunorderedlist','insertorderedlist','cleardoc', 'justifyleft','justifyright','justifycenter','justifyjustify','insertimage','inserttable','insertrow','insertcol', "mergeright", "mergedown", "deleterow", "deletecol", "splittorows", "splittocols", "splittocells", "deletecaption",  'inserttitle', 'mergecells', 'deletetable','cleardoc','insertparagraphbeforetable', 'edittable', 'edittd']
+
+    ],
+
+    autoHeightEnabled: false,
+    autoFloatEnabled: true,
+    elementPathEnabled:false,
+    enableContextMenu:false,
+    wordCount:false,
+
+  });
+
+</script>
+
+
+  <script type="text/javascript">
+    function toVaild(){
+        var wtype = $('#wtype').val();
+
+		wtype = wtype.replace(/\s+/g,"");
+        if(wtype==""){
+            alert('类型不能为空');
+            return false;
+        }
+	return true;
+
+
+}
+</script>
+<!--提交表单前验证end-->
+
+<!--上传图片-->
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+<script type="text/javascript" src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+
+  function delImg(obj){
+    if(!confirm("删除这张图片？")){
+      return false;
+    }
+    var id = $(obj).attr("data-id");
+    if(id){
+      alert(1);
+      return false;
+    }
+    $(obj).next("input").remove();
+    $(obj).remove();
+  }
+  $(function () {
+    var percent = $('.xuanze_percent');
+    var progress = $('.xuanze_percent');
+    $("#xuanze").wrap("<form id='myupload1' action='{:U('/Admin/Index/addImage')}' method='post' enctype='multipart/form-data'></form>");
+		$("#xuanze").change(function(){ //选择文件
+			$("#myupload1").ajaxSubmit({
+				dataType:  'json', //数据格式为json
+				beforeSend: function() { //开始上传
+					progress.show(); //显示进度条
+					var percentVal = '0%';
+					percent.html(percentVal);
+				},
+				uploadProgress: function(event, position, total, percentComplete) {
+					var percentVal = percentComplete + '%'; //获得进度
+					percent.html(percentVal); //显示上传进度百分比
+				},
+				success: function(data) { //成功
+					var img = '<img src="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'" height="80" ><input type="hidden" name="news_pic" id="pic" value="'+data[0]["savepath"].substr(1)+data[0]["savename"]+'"></input>';
+					$('.xuanze_showimge').html(img);
+					progress.hide();
+				},
+				error:function(xhr){ //上传失败
+					//console.log(xhr.status)
+				}
+			});
+		});
+$('.btn-primary').click(function(){
+		$.ajax({
+			url:'/Admin/Callforpaper/editWtype/',
+			type:'get',
+			data:$('form').serialize(),
+			dataType:'json',
+			success:function(g){
+				if(g.status == 1){
+					if(toVaild()){
+						$('#add_step2').submit();
+					}else{
+						return toVaild();
+					}
+				}else{
+					alert(g.info);
+				}
+			}
+		})
+	})
+  });
+  function add_re(r){
+   $('#restriction'+r).show();
+ }
+ function del_re(r){
+   $('#restriction'+r).hide();
+ }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

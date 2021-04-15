@@ -1,0 +1,42 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/css1.css">
+
+<div class="ban1">
+  <div class="banner_img"> <img src="{$images.pic}" alt="" /> </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Games</p>
+    <h5>游 • 戏</h5>
+  </div>
+  <div class="gallery-contant" style="margin-left:inherit;">
+    <div class="row">
+      <div class="list_cont" style="margin-top:inherit;">
+        <volist name="game" id="v">
+        <div class="col-lg-3 col-md-3 col-sm-3"> <a href="{$v.url}">
+          <div class="contant">
+            <div class="contant_one"> <img src="{$v.pic}" width="100%"> </div>
+            <div class="contant-text" style="margin-top:30px;">
+              <h3>{$v.name}</h3>
+              <p>{$v.detail}</p>
+            </div>
+          </div>
+          </a> </div>
+        </volist>
+
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+</html>

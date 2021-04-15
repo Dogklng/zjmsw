@@ -1,0 +1,365 @@
+<include file="Public:header" />
+<style>
+    .imgnav {
+        max-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .imgwrapper {
+        display: block;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+    }
+
+    .imgwrapper img {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+
+    .spanpd10 {
+        margin: 10px;
+    }
+
+    .wxtables.wxtables-sku.newtable {
+        width: 40%;
+        margin: 0;
+    }
+
+    .img-list li {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cst_h3 span {
+        font-weight: normal;
+    }
+
+    #imgdiv img {
+        max-width: 190px;
+        max-height: 190px;
+        display: none;
+        margin: 5px;
+    }
+
+    .btnimage {
+        width: 80px;
+        height: 30px;
+        background: white;
+        border: 1px solid #d9d9d9;
+        cursor: pointer;
+        position: relative;
+        text-align: center;
+        line-height: 31px;
+    }
+
+    .file {
+        position: absolute;
+        top: 0px;
+        left: 0;
+        width: 80px;
+        height: 30px;
+        background: white;
+        border: 1px solid #d9d9d9;
+        cursor: pointer;
+        opacity: 0
+    }
+
+    #imgdiv2 img {
+        max-width: 88px;
+        max-height: 88px;
+        display: none;
+        margin: 5px;
+    }
+
+    #xuanze2 {
+        width: 60px;
+        height: 30px;
+        background: white;
+        border: 1px solid #d9d9d9;
+    }
+
+    #xuanze2:hover {
+        background: #E6E6E6;
+    }
+
+    .huase {
+        display: none;
+        width: 86px;
+        height: 30px;
+        margin: 5px;
+        text-indent: 5px;
+    }
+
+    .mar-left {
+        margin-left: 130px;
+    }
+
+    .fi-zj {
+        float: left;
+        color: #333;
+    }
+
+    .fl_left {
+        float: left;
+    }
+
+    .mar-top {
+        margin-top: 10px;
+    }
+    .jieselect{
+        background-color: #dada18!important;
+    }
+    .panel-single.panel-single-light {
+        background: #FCFCFC;
+        border: 1px solid #E8E8E8;
+    }
+    .wxtables td {
+        padding: 8px 10px;
+        font-size: 12px;
+        line-height: 1.5em;
+        border-bottom: 1px solid #eee;
+        color: #333;
+    }
+    .dizhi_con {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 10%;
+        left: 0%;
+        /*margin-left: -330px;
+        margin-top: -210px;*/
+        background: #fff;
+        padding: 40px;
+        /*-webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        transform: scale(0.8);
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        -webkit-transition: 0.5s ease;
+        -moz-transition: 0.5s ease;
+        -ms-transition: 0.5s ease;
+        -o-transition: 0.5s ease;
+        transition: 0.5s ease;
+        transform: scale(1) !important;*/
+    }
+    .cancle{
+        float: right;
+    }
+    #shoushuo{
+        float: right;
+    }
+    .user_card{
+        margin-top: 40px;
+    }
+</style>
+<!--order_top-->
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 推荐的作品 </a> </h3>
+ <!--<ul class="allorderUl salingWorks_ul">
+  <li><a href="all_order.html">全部</a></li>
+  <li class="title_first"><a href="dai_fukuan.html">平台作品</a></li>
+  <li><a href="dai_fahuo.html">自传作品</a></li>
+  <div class="clear"></div>
+ </ul>-->
+</div>
+<div class="warp_box">
+ <div class="SeldpsyCon SeldpsyCon_sy">
+
+
+     <div class="link_right">
+         <div class="link_right_top">
+             <h3 class="link_right_h3">猜你喜欢<!--<span class="link_right_top_sx ">刷新</span>--></h3>
+             <ul class="link_right_ul">
+                 <volist name="goods" id="vo" >
+                     <li>
+                         <div class="link_li_img"><img src="{$vo.index_pic}"/></div>
+                         <h5 class="link_right_li_h5"> - {$vo.goods_name}  - </h5>
+                         <p class="link_right_li_price"><span>￥</span>{$vo.price}</p>
+                         <p class="link_right_li_viewDetails"><a href="{:U('/Home/Products/products_dot',array('id'=>$vo.id))}">查看详情</a></p>
+                     </li>
+                 </volist>
+             </ul>
+         </div>
+         <div class="link_right_bottom">
+             <h3 class="link_right_h3">推荐作品</h3>
+             <ul class="link_right_bottom_ul">
+                 <volist name="res1" id="v">
+                     <li>
+                         <div class="add_recommend_particulars">
+                             <div class="link_li_img"><img src="{$v.index_pic}"/></div>
+                             <h5 class="link_right_li_h5"> - {$v.goods_name}  - </h5>
+                             <p class="link_right_li_price"><span>￥</span>{$v.price} </p>
+                             <p class="link_right_li_viewDetails"><a href="{:U('/Home/Products/products_dot',array('id'=>$vo.good_id))}">查看详情</a></p>
+                         </div>
+                     </li>
+                 </volist>
+                 <li>
+                     <div class="add_recommend_particulars add_recommend">
+                         <div class="link_li_img"><img src="__IMAGES__/link_right_jh.png"/></div>
+                     </div>
+                 </li>
+             </ul>
+         </div>
+     </div>
+ </div>
+</div>
+
+<div class="dizhi" style="display: none;background-color: #ccc">
+    <div class="dizhi_bg"></div>
+    <div class="dizhi_con">
+        <img src="__IMAGES__/dizhi_close.png" class="cancle" width="20">
+        <div style="height: 40px">选择产品<input type="text" onblur="value=value.replace(/\s/g,'')" onkeyup="value=value.replace(/\s/g,'')" name="goods_name" id="goods_name" value="" placeholder="产品名称" style="width: 180px;height: 30px;margin-left: 100px"> <button id="shoushuo" class="btn btn-primary">搜索</button></div>
+        <div class="user_card">
+            <div id="choosecoupons" class="panel-single panel-single-light mgt20 j-showinhyd"style="height:265px;overflow-y:scroll; ">
+
+                <input type="hidden" name="k" id="k"/>
+                <table class="wxtables mgt15" id="checkgoodsid" style="margin-bottom: 10px;width: 100%">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="30%">
+                        <col width="30%">
+                        <col width="30%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <!--<td><i class="icon_check"></i></td>-->
+                        <td align="center">ID</td>
+                        <td align="center">图片</td>
+                        <td align="center">商品名</td>
+                        <td align="center">价格（元）</td>
+                    </tr>
+                    </thead>
+                    <tbody id="goods_list">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="user_r6_line"></div>
+            <div class="cardA text-center">
+                <a class="save" href="javascript:;" style="background: #f4f4f3">确认</a>
+                <a class="cancle" href="javascript:;">取消</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="ght">
+ <!--<div class="ght_line"></div>
+ <div class="dibu_wz">已经到底啦</div>
+ <div class="ght_line"></div>-->
+</div>
+<include file="Public:footer" />
+<script>
+    $('.btn-primary').click(function () {
+        var goods_name = $('input[name="goods_name"]').val();
+        goodslist(goods_name);
+    })
+    function goodslist(goods_name) {
+        $.ajax({
+            url: "{:U('/Wxin/Shop/goodslist')}",
+            type: "post",
+            dataType: "json",
+            data: {goods_name:goods_name},
+            success:function(msg){
+                //console.log(msg);
+                if (msg.status==1){
+                    var len = msg.info.length;
+                    var str = '';
+                    console.log(msg.info);
+                    for(var i=0;i<len;i++){
+                        str+='<tr class="xuanze"><input type="hidden" name="check_goodsid" data-goods_name="';
+                        str+=msg.info[i]['goods_name'];
+                        str+='data-logo_pic="';
+                        str+=msg.info[i]['logo_pic'];
+                        str+='" class="checkbox table-ckbs checkids" value="';
+                        str+=msg.info[i]['id'];
+                        str+='"><td align="center">';
+                        str+=msg.info[i]['id'];
+                        str+='</td><td align="center"><img src="';
+                        str+=msg.info[i]['logo_pic'];
+                        str+='" width="50" alt=""></td><td align="center"><p>';
+                        str+=msg.info[i]['goods_name'];
+                        str+='</p> </td> <td align="center">¥';
+                        str+=msg.info[i]['price'];
+                        str+='</td></tr>';
+                    }
+                    $('#goods_list').html(str);
+                    xuanze();
+                }else{
+                    alert( msg.info);
+                }
+            }
+        })
+    }
+    $('.add_recommend').click(function () {
+        var goods_name='';
+        goodslist(goods_name);
+        $('.dizhi').show();
+        $('.dizhi_con').show();
+    });
+
+    function xuanze() {
+        $(".xuanze").click(function(){
+            //$('.xuanze').children('td').removeClass('jieselect');
+
+            if ($(this).hasClass('ischecked')) {
+                $(this).removeClass('ischecked');
+                $(this).children('td').removeClass('jieselect');
+            } else {
+                $(this).children('td').addClass('jieselect');
+                //$(this).parents('tbody').find('.xuanze').removeClass('ischecked');
+                $(this).addClass('ischecked');
+            }
+        });
+    }
+    $('.save').click(function () {
+        var goods_ids = '';
+        $('.ischecked').each(function () {
+            var goods_id = $(this).find('input').val();
+            goods_ids += goods_id+',';
+        })
+
+        if(!goods_ids){
+            alert('请选择商品');
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Wxin/Shop/addrecommend')}",
+            type: "post",
+            dataType: "json",
+            data: {goods_ids:goods_ids},
+            success:function(msg){
+                //console.log(msg);
+                if (msg.status==1){
+                    window.location.reload();
+                    alert( msg.info);
+                }else{
+                    alert( msg.info);
+                }
+            }
+        })
+    })
+    $('.cancle').click(function () {
+        $('.dizhi').hide();
+        $('.dizhi_con').hide();
+        $('.dizhi_con').hide();
+    })
+    $(window).load(function(){
+        var widthshijin = $('#dateinfo').width();
+        $('.jedatebox').width(widthshijin-2);
+
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<include file="Public:header" />
+<!--  / header  -->
+<div class="galleryClass" style="margin-top:60px;">
+  <div class="galleryScroll">
+    <a href="{:U('/Wxin/News/process')}">大赛流程</a>
+    <a href="{:U('/Wxin/News/processDetails')}">大赛详情</a>
+    <a href="{:U('/Wxin/News/works')}">在线作品</a>
+    <a href="{:U('/Wxin/News/win')}" class="active">获奖作品</a>
+    <a id="zggA" class="zgg" href="javascript:void(0);" >我要投稿</a>
+  </div>
+  <input type="hidden" id="nid" name="nid" value="{$Think.session.nid}"/>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper" style="padding-bottom:0;">
+   <div class="zhenggLcCon">
+     <if condition = "$number['selectiontime'] lt $timed">
+
+    <div class="zggLcPlate zggHjPlate">
+      <h3>一等奖</h3>
+      <volist name="paper_list1" id="vo">
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="zggHjItem"> 
+          <a href="{:U('/Wxin/News/worksDetails/pid')}/{$vo.id}">
+            <div class="zggHjItem-img"> 
+              <img src="{$vo.picp}" />
+            </div>
+            <div class="zggHjItemT">
+              <h3>{$vo.wname}</h3>
+              <h4>by:{$vo.author}</h4>
+              <div class="zggHjItem-txt">
+              <h6>{$vo.person_detail}</h6>
+            </div>
+            </div>
+            
+          </a> 
+        </div>
+      </div>
+        </volist>
+    </div>
+    <div class="zggLcPlate zggHjPlate">
+      <h3>二等奖</h3>
+      <volist name="paper_list2" id="vo">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="zggHjItem">
+            <a href="{:U('/Wxin/News/worksDetails/pid')}/{$vo.id}">
+              <div class="zggHjItem-img">
+                <img src="{$vo.picp}" />
+              </div>
+              <div class="zggHjItemT">
+                <h3>{$vo.wname}</h3>
+                <h4>by:{$vo.author}</h4>
+                <div class="zggHjItem-txt">
+                  <h6>{$vo.person_detail}</h6>
+                </div>
+              </div>
+
+            </a>
+          </div>
+        </div>
+        </volist>
+    <div class="zggLcPlate zggHjPlate">
+      <h3>三等奖</h3>
+      <volist name="paper_list3" id="vo">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="zggHjItem">
+            <a href="{:U('/Wxin/News/worksDetails/pid')}/{$vo.id}">
+              <div class="zggHjItem-img">
+                <img src="{$vo.picp}" />
+              </div>
+              <div class="zggHjItemT">
+                <h3>{$vo.wname}</h3>
+                <h4>by:{$vo.author}</h4>
+                <div class="zggHjItem-txt">
+                  <h6>{$vo.person_detail}</h6>
+                </div>
+              </div>
+
+            </a>
+          </div>
+        </div>
+      </volist>
+    </div>
+       <elseif condition = "$number['start_time'] gt $timed"/>
+
+       <h3 style="text-align:center">还未开始</h3>
+       <elseif condition = "$number['collectiontime'] elt $timed and $timed elt $number['selectiontime']"/>
+       <h3  style="text-align:center;">评选中</h3>
+       <else />
+       <h3  style="text-align:center;">进行中</h3>
+
+
+     </if>
+  </div>
+</div>
+<!--  / warpper  -->
+
+
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+
+</body>
+</html>

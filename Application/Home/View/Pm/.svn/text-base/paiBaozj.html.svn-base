@@ -1,0 +1,157 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="SellerCon">
+          <div class="SellerTop">
+            <h3>入驻拍卖美术网平台</h3>
+          </div>
+          <div class="SellerFlower">
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>1</span>
+                  <h3 class="paiUncenter_h3">签署协议</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>2</span>
+                  <h3 class="paiUncenter_h3">账号类型</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>3</span>
+                  <h3 class="paiUncenter_h3">选择类目</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>4</span>
+                  <h3 class="paiUncenter_h3">提交资料</h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist"> <span>5</span>
+                  <h3 class="paiUncenter_h3">审核</i></h3>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="SellerFlist SellerFlistCurr"> <span>6</span>
+                  <h3 class="paiUncenter_h3 paiCH3">缴纳保证金，<br />入驻成功</h3>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="pZlCon">
+              <div class="order_sh">
+                <h5>支付方式</h5>
+                <div class="order_shon clearfix">
+                  <div class="order_shona pro_xz">
+                    <img src="__IMAGES__/zffs1.jpg" width="100%">
+                    <input type="hidden" name="pay_type" value="1" >
+                  </div>
+                  <div class="order_shona">
+                    <img src="__IMAGES__/zffs2.jpg" width="100%">
+                    <input type="hidden" name="pay_type" value="2" >
+                  </div>
+                  <div class="order_shona">
+                    <img src="__IMAGES__/zffs3.png" width="100%">
+                    <input type="hidden" name="pay_type" value="3" >
+                  </div>
+                  <div class="order_shona">
+                    <img src="__IMAGES__/zffs4.png" width="100%">
+                    <input type="hidden" name="pay_type" value="4" >
+                  </div>
+                </div>    
+              </div>
+              <div class="order1_tall">
+
+                <div class="shopcar_zj clearfix">
+                  <div class="shopcar_zjs_btn">
+                      <h5 class="pBH5"><span>拍卖入驻保证金：￥{$res.price}</span></h5>
+                        <a href="#" id="payZ">支付</a>
+                      </div> 
+                </div>
+                    
+             </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<div class="dizhi wxzf-box">
+  <div class="dizhi_bg"></div>
+  <div class="dizhi_con dizhi_con_weixin" style="width:320px;height:auto;margin:0px;top:30%;left:40%;">
+
+    <div class="ewm text-center">
+      <h5 style="margin-bottom:16px;">打开微信扫码支付</h5>
+      <img src="" id="weixin_erweima" width="150" title="打开微信扫一扫支付"/>
+      <h6>浙江美术网全心全意为您服务，让您省心放心，扫码即可支付！</h6>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
+<script>
+	$(document).ready(function(){
+		
+		$('#payZ').click(function(){
+			
+			var pay_type = $(".order_sh .pro_xz input[name='pay_type']").val();
+			$.ajax({
+				url:'/Home/Pm/paiBaozj',
+				type:'post',
+				data:{type:pay_type},
+				dataType:'json',
+				success: function(g){
+					//console.log(g);
+					if(g.status == 1){
+						dialog.showTips("是否支付", "firm",function(){
+							window.location.href = g.url;
+						});
+					} else if(g.status == 2) {
+                        //dialog.showTips(g.info, "firm", function () {
+                        window.location.href=g.url;
+                        //});
+                    }else if(g.status == 3){
+                        order_id = g.order_id;
+                        //console.log(g.url);
+                        $('#weixin_erweima').attr('src', g.url);
+                        $('.wxzf-box').stop(true).fadeIn(1000);
+                        setTimeout(function () {
+                            $('.dizhi_con_weixin').addClass('dizhi_con_on');
+                        }, 200)
+                        int = setInterval(function () {
+                            $.post("{:U('Home/Pm/order_status')}", {order_id: order_id,type:2},
+                                function (g) {
+                                    if (g.status == 1) {
+                                        window.location.href = g.url;
+                                    }
+                                })
+                        }, 1000);
+                    }else if(g.status == 4){
+                        window.location.href=g.info;
+                    }else{
+						alert(g.info);
+						return false;
+					}
+				}
+				
+			})
+		})
+	})
+</script>

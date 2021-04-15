@@ -1,0 +1,188 @@
+<include file="Public:header" />
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  --> 
+  
+  <!--  / order1  -->
+  <div class="order1">
+    <div class="order_sh">
+      <h5>支付方式</h5>
+      <div class="order_shon clearfix">
+        <div data-pay_way="1" class="order_shona pro_xz">
+          <img src="__IMAGES__/zffs1.jpg" width="100%">
+        </div>
+        <div class="order_shona " data-pay_way="2">
+          <img src="__IMAGES__/weixin1.jpg" width="100%">
+        </div>
+        <div data-pay_way="3" class="order_shona">
+          <img src="__IMAGES__/zffs2.jpg" width="100%">
+        </div>
+
+        <div data-pay_way="4" class="order_shona"><!--余额-->
+          <img src="__IMAGES__/zffs4.png" width="100%">
+        </div>
+      </div>
+    </div>
+    <div class="order1_yh">
+      <h5>发票/优惠信息 </h5>
+      <div class="order1_yh_con">
+        <div class="order1_yh_con1">
+          <h5>发票类型</h5>
+          <ul class="clearfix">
+            <li data-invoice_type="5" <eq name='invoice_type' value='5'>class="order1_yhon"</eq> ><span></span>电子发票-增值普票</li>
+            <li data-invoice_type="3" <eq name='invoice_type' value='3'>class="order1_yhon"</eq> ><span></span>纸质发票-增值普票</li>
+          </ul>
+          <div class="order1_yh_l">
+            <div class="order1_yh_list" <if condition='($invoice_type eq 5 or $invoice_type eq null)'>style="display:block;"</if> > <span>发票抬头</span>
+              <input type="text" name="invoice_title" <eq name='invoice_type' value='5'>value="{$invoice_title}"</eq> id="invoice_title" placeholder="填写需要开票的个人或个人信息">
+              <div class="order1_yh_lista">
+                <p>浙江美术网开具的电子发票均为真实有效的合法发票，与传统纸质发票具有同等法律效力，可作为用户维权、保修、报销的有效凭据。</p>
+                <p>电子发票会在确认收货后15天内，将发票代码和发票号码以短信方式发送到收货人手机上。</p>
+                <p>开具成功后，您可登录电子发票查询系统<span>http://imv.auxshop.cn/fppt-web/fppt/public/lookup.html</span>下载电子发票</p>
+              </div>
+            </div>
+            <div class="order1_yh_list" <eq name='invoice_type' value='3'>style='display:block;'</eq> > <span>发票抬头</span>
+              <input type="text" name="invoice_title1" <eq name='invoice_type' value='3'>value="{$invoice_title}"</eq> id="invoice_title1" placeholder="填写需要开票的个人或个人信息">
+            </div>
+            <div class="order1_yh_list order1_yh_list1">
+              <ul>
+                <li>
+                  <input type="checkbox" class="j_checkbox j_checkbox_on">
+                  吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 浙江省杭州西湖区文三路 &nbsp;&nbsp; 杭州银行 &nbsp;&nbsp; 654126541235038</li>
+                <li>
+                  <input type="checkbox" class="j_checkbox">
+                  吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 浙江省杭州西湖区文三路 &nbsp;&nbsp; 杭州银行 &nbsp;&nbsp; 654126541235038</li>
+                <li>
+                  <input type="checkbox" class="j_checkbox">
+                  吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 浙江省杭州西湖区文三路 &nbsp;&nbsp; 杭州银行 &nbsp;&nbsp; 654126541235038</li>
+                <li>
+                  <input type="checkbox" class="j_checkbox j_checkbox_xz">
+                  新增增值税发票</li>
+              </ul>
+              <div class="user8_con2">
+                <p><span>单位名称：</span>
+                  <input type="text" value="13429614578">
+                </p>
+                <p><span>纳税人识别号：</span>
+                  <input type="text" value="李亮">
+                </p>
+                <p><span>注册地址：</span>
+                  <input type="text" value="">
+                </p>
+                <p><span>注册电话：</span>
+                  <input type="text" value="">
+                </p>
+                <p><span>开户银行：</span>
+                  <input type="text" value="">
+                </p>
+                <p><span>银行账户：</span>
+                  <input type="text" value="">
+                </p>
+                <div class="user_r6_line"></div>
+                <a href="##">保存</a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="order1_tall1">
+        <h5>买家留言</h5>
+        <textarea name="liuyan" id="liuyan" style="resize: none;">{$liuyan}</textarea>
+      </div>
+    </div>
+    <div class="order1_tall">
+        <div class="shopcar_zj clearfix">
+          <div class="shopcar_zjs">
+            <div class="shopcar_zjs_btn">
+              <a class="pay-order" href="javascript:;">付款</a> </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!--  / order1  --> 
+  
+  <!--  / user  --> 
+  
+</div>
+<!--  / warpper  -->
+<div class="dizhi wxzf-box">
+  <div class="dizhi_bg"></div>
+  <div class="dizhi_con dizhi_con_weixin" style="width:320px;height:auto;margin:0px;top:30%;left:40%;">
+
+    <div class="ewm text-center">
+      <h5 style="margin-bottom:16px;">打开微信扫码支付</h5>
+      <img src="" id="weixin_erweima" width="150" title="打开微信扫一扫支付"/>
+      <h6>浙江美术网全心全意为您服务，让您省心放心，扫码即可支付！</h6>
+    </div>
+  </div>
+</div>
+
+<include file="Public/footer" />
+<script>
+    $(".pay-order").click(function (){
+        var post = {};
+        post.pay_way = $(".pro_xz").data('pay_way');
+        if(!post.pay_way){
+            dialog.showTips("支付方式", "warn");return false;
+        }
+        post.invoice_type  = get_checked_receipt();
+        //console.log();
+        post.invoice_title = get_checked_invoice_title();
+        post.liuyan       = $("#liuyan").val();
+        post.order_no = '{$order_no}';
+        $.ajax({
+            type: "POST",
+            url: "{:U('/Home/Order/PayOrder')}",
+            data:post,
+            dataType: "json",
+            success: function (g) {
+                if (g.status == 1) {
+                    window.location.href=g.url;
+                } else if(g.status == 3) {
+                    //dialog.showTips(g.info, "firm", function () {
+                        window.location.href=g.url;
+                    //});
+                }else if(g.status == 4) {
+                    //dialog.showTips(g.info, "firm", function () {
+                    window.location.href=g.info;
+                    //});
+                }else if(g.status == 2){
+                    order_id = g.order_id;
+                    $('#weixin_erweima').attr('src', g.url);
+                    $('.wxzf-box').stop(true).fadeIn(1000);
+                    setTimeout(function () {
+                        $('.dizhi_con_weixin').addClass('dizhi_con_on');
+                    }, 200)
+                    int = setInterval(function () {
+                        $.post("{:U('Home/Order/order_status')}", {order_id: order_id},
+                            function (g) {
+                                if (g.status == 1) {
+                                    window.location.href = g.url;
+                                }
+                            })
+                    }, 1000);
+                } else {
+                    dialog.showTips(g.info, "warn");
+                }
+            }
+        });
+    });
+	//发票类型
+    function get_checked_receipt(){
+        var that = $(".order1_yhon");
+        var re = that.data("invoice_type");
+        return re;
+    }
+    function get_checked_invoice_title(){
+        var type = get_checked_receipt();
+       var title = $("#invoice_title").val();
+        var title1 = $("#invoice_title1").val();
+        if(type == 5){
+            return title;
+        }else{
+            return title1;
+        }
+    }
+</script>
+</body>
+</html>

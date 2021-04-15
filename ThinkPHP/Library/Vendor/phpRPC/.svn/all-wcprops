@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/phpRPC
+END
+phprpc_date.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/phpRPC/phprpc_date.php
+END
+xxtea.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/phpRPC/xxtea.php
+END
+phprpc_client.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/phpRPC/phprpc_client.php
+END
+bigint.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/phpRPC/bigint.php
+END
+dhparams.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/phpRPC/dhparams.php
+END
+phprpc_server.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/phpRPC/phprpc_server.php
+END
+compat.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/msw/!svn/ver/2/ThinkPHP/Library/Vendor/phpRPC/compat.php
+END

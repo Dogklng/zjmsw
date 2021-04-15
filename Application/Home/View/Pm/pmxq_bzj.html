@@ -1,0 +1,134 @@
+<include file="Public:header" />
+<style>
+  /*.SelCertName1 label{
+    float:left;
+    margin-right:20px;
+    font-size:14px;
+    line-height:30px;
+    width:12%;
+  }*/
+</style>
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;"> 
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="order_sh">
+      <h5>填写竞卖人信息</h5>
+      <div class="order_shon clearfix">
+        <form class="pZlConForm">
+          <div class="pZlConI clearfix">
+            <label class="pzLs">真实姓名：</label>
+            <input type="text" maxlength="30" id="name" value="">
+            <span>请填写您的真实姓名</span> </div>
+          <div class="pZlConI clearfix ">
+            <label class="pzLs">联系手机：</label>
+            <input type="text" maxlength="30" id="telephone" value="">
+            <span>请填写正确的手机号码，方便我们与您联系</span> </div>
+          <!--                <div class="pZlConI clearfix">
+                  <label class="pzLs">证件号码：</label>
+                  <input type="text" value="">
+                  <span>身份证或者护照</span>
+                </div>-->
+          <div class="pZlConI clearfix">
+            <label class="pzLs">联系地址：</label>
+            <span>
+            <select id="s_province" name="s_province">
+              <option value="省份">省份</option>
+            </select>
+            &nbsp;&nbsp;
+            <select id="s_city" name="s_city">
+              <option value="地级市">地级市</option>
+            </select>
+            &nbsp;&nbsp;
+            <select id="s_county" name="s_county">
+              <option value="市、县级市">市、县级市</option>
+            </select>
+            </span> <span>请填写正确的地址</span> </div>
+          <div class="pZlConI clearfix ">
+            <label class="pzLs">详细地址：</label>
+            <input type="text" maxlength="30" id="address" value="">
+            <span></span> </div>
+        </form>
+      </div>
+    </div>
+    <div class="shopcar_zjs_btn" style="text-align:center;"> <a href='javascript:;' onclick="doBao()">下一步</a> </div>
+  </div>
+</div>
+
+<!--  / user  --> 
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+</body>
+</html>
+<script type="text/javascript" src="__JS__/area.js"></script>
+<script type="text/javascript">_init_area();</script>
+<script type="text/javascript">
+var Gid  = document.getElementById ;
+var showArea = function(){
+	Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" + 	
+	Gid('s_city').value + " - 县/区" + 
+	Gid('s_county').value + "</h3>"
+							}
+Gid('s_county').setAttribute('onchange','showArea()');
+
+function doBao() {
+    var s_province = $('#s_province').val();
+    var s_city = $('#s_city').val();
+    var s_county = $('#s_county').val();
+    var name = $.trim($('#name').val());
+    var telephone = $.trim($('#telephone').val());
+    var address = $.trim($('#address').val());
+    if (name==''||name==null){
+        alert('姓名必填');
+        $('#name').focus();
+        return false;
+    }
+    if (telephone==''||telephone==null){
+        alert('手机号必填');
+        $('#telephone').focus();
+        return false;
+    }
+    if(!(/^1[34578]\d{9}$/.test(telephone))){
+        alert('请输入正确的手机号');
+        return false;
+    }
+    if (s_province=='省份'){
+        alert('省份必选');
+        $('#s_province').focus();
+        return false;
+    }
+    if (s_city=='地级市'){
+        alert('地级市必选');
+        $('#s_city').focus();
+        return false;
+    }
+
+    var len = $('#s_county option').length;
+    if(len>1){
+        if (s_county=='市、县级市'){
+            alert('市、县级市必选');
+            $('#s_county').focus();
+            return false;
+        }
+    }
+    var id="{$id}";
+    $.ajax({
+        type: "post",
+        url: "{:U('/Home/Pm/pmxq_bzj')}",
+        data: {"s_province":s_province,'s_city':s_city,'s_county':s_county,'name':name,'telephone':telephone,'goods_id':id,'address':address},//提交表单，相当于CheckCorpID.ashx?ID=XXX
+        success: function(msg){
+            alert();
+            if (msg.status==1){
+                alert( msg.info.err);
+                location.href="{:U('/Home/Pm/pmxq_bzjT/dingid')}/"+msg.info.dingid;
+            }else{
+                alert( msg.info);
+            }
+        }
+    });
+}
+</script>

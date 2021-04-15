@@ -1,0 +1,267 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">会员认证列表</h1>
+            <form action="{:U('/Admin/Member/authentication')}" method="get">
+                <div class="tabs clearfix mgt10">
+          <a href="{:U('/Admin/Member/authentication')}" class="<eq name="_GET['status']" value="">active</eq> tabs_a fl">全部({$count3})</a>
+          <a href="{:U('/Admin/Member/authentication/status/1')}" class="<eq name="_GET['status']" value="1">active</eq> tabs_a fl">未审核({$count0})</a>
+          <a href="{:U('/Admin/Member/authentication/status/2')}" class="<eq name="_GET['status']" value="2">active</eq> tabs_a fl">审核通过({$count1})</a>
+         <!--  <a href="{:U('/Admin/Member/authentication/status/3')}" class="<eq name="_GET['status']" value="3">active</eq> tabs_a fl">审核拒绝({$count2})</a> -->
+
+                </div>
+            </form>
+            <!-- end tabs -->
+
+            <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:csenter;">
+                <thead>
+                <tr class="po_list">
+                    <td>会员昵称</td>
+                        <td>用户姓名</td>
+                        <td>电话</td>
+                        <td>证件类型</td>
+                        <td>证件号</td>
+                        <td>认证名称</td>
+                        <td>注册时间</td>
+                        <td>状态</td>
+                        <td>操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res" item="vo">
+                    <tr>
+                      <td><p> {$vo.person_name}</p></td>
+                        <td><p> {$vo.name}</p></td>
+                             <td><p>{$vo.tel}</p></td>
+                            <td><p>
+                                <switch name="vo.type">
+                                    <case value="0">二代身份证</case>
+                                    <case value="1">临时身份证</case>
+                                </switch>
+                            </p></td>
+                            <td><p>{$vo.cardid}</p></td>
+                            <td><p>
+                                <switch name="vo.remind_type">
+                                    <case value="0">个人实名认证</case>
+                                    <case value="1">法人代表身份实名认证</case>
+                                    <case value="2">证件认证</case>
+                                    <case value="3">代理人认证</case>
+                                </switch>
+                            </p></td>
+                            <td><p>{$vo.addtime|date="Y-m-d",###}</p></td>
+                            <td class="status">
+                                
+                                <if condition="$vo.remind_type eq 0">
+                                    <switch name="vo.status">
+                                    <case value="0"><p style='color:red;'>未认证</p></case>
+                                    <case value="1"><p style='color:green;'>已认证</p></case>
+                                    <case value="2"><p style='color:red;'>认证拒绝</p></case> </switch>
+                                </if>
+                                <if condition="$vo.remind_type eq 1">
+                                    <switch name="vo.fa_status">
+                                    <case value="3"><p style='color:red;'>未认证</p></case>
+                                    <case value="1"><p style='color:green;'>已认证</p></case>
+                                    <case value="2"><p style='color:red;'>认证拒绝</p></case> </switch>
+                                </if>
+                                <if condition="$vo.remind_type eq 2">
+                                    <switch name="vo.bus_status">
+                                    <case value="3"><p style='color:red;'>未认证</p></case>
+                                    <case value="1"><p style='color:green;'>已认证</p></case>
+                                    <case value="2"><p style='color:red;'>认证拒绝</p></case> </switch>
+                                </if>
+                                    
+                               
+                            </td>
+                        
+                        <td>
+                            <!-- <a href="javascript:;" class="btn change-shenhe <eq name="vo['status']" value="0">btn-success<else />btn-danger</eq>" data-id="{$vo.id}"  title="上架"><eq name="vo['status']" value="0">上架<else />下架</eq></a> -->
+               
+                <if condition="$vo.remind_type eq 0">
+                  <if condition="$vo.status eq 0">
+                  <a href="javascript:;" class="btn huifu" style="background-color: green;border-color: green; color: white" data-id="{$vo.id}">审核</a></if></if>
+                <if condition="$vo.remind_type eq 1">
+                  <if condition="$vo.fa_status eq 3">
+                  <a href="javascript:;" class="btn huifu" style="background-color: green;border-color: green; color: white" data-id="{$vo.id}">审核</a></if></if>
+                <if condition="$vo.remind_type eq 2">
+                  <if condition="$vo.bus_status eq 3">
+                  <a href="javascript:;" class="btn huifu" style="background-color: green;border-color: green; color: white" data-id="{$vo.id}">审核</a></if></if>
+
+
+               <a href="{:U('/Admin/Member/authenticationDetail')}/id/{$vo.id}" class="btn btn-success btn-primary">查看详情</a>
+                           <!--  <a href="{:U('/Admin/Community/delArtcommunity/id')}/{$vo.id}" onclick="{if(!confirm('确定删除吗?'))return false;} " class="btn j-delClass btn-warning" title="删除">删除</a> -->
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <div class="fr">
+                        <div class="pages"> {$page} </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+<div id="albums-overlay" class="disshow"></div>
+  <div class="jbox addfenlei disshow" style="height:auto; overflow: visible;">
+    <div class="jbox-title">
+      <div class="jbox-title-txt">回复评论</div>
+      <a href="javascript:;" class="jbox-close cancle"></a></div>
+    <div class="jbox-container" style="height: 140px;overflow: visible;">
+      <div class="formitems">
+        <input type="hidden" class="input sort" name="commentId" id="commentId" >
+        <label><span class="colorRed">*</span>内容：</label>
+
+        <div class="form-controls">
+          <textarea style="width: 200px;height: 100px;margin-left: -30px;" id="content"></textarea>
+          <span class="fi-help-text"></span>
+          <span id="spaid" style="color:red;"></span>
+        </div>
+      </div>
+
+    </div>
+    <div class="jbox-buttons">
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn btn-primary" id="agree">通过</a>
+      <a href="javascript:void(0);" class="jbox-buttons-ok btn " id="disagree" style="background-color: red;border-color: red; color: white">拒绝</a>
+      <a href="javascript:void (0);" class="jbox-buttons-ok btn cancle">取消</a></div>
+  </div>
+    <script src="__JS__/jquery.js"></script>
+    <!-- end container -->
+    <include file="Public:foot"/>
+    <script>
+      /*$(".huifu").click(function(){
+          $('.addfenlei').show();
+          $('#albums-overlay').show();
+      })
+
+      $(".cancle").click(function(){
+          $(this).parent().parent('.jbox').hide();
+          $('#albums-overlay').hide();
+      })
+
+      $(".huifu").click(function(){
+          var commentId = $(this).attr('data-id');
+          $('#commentId').val(commentId);
+      })
+
+      $('#agree').click(function () {
+          var id1 = $('#commentId').val();
+          $.ajax({
+              url: "{:U('/Admin/Community/galleryAgree')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  alert(g.info);
+                  window.location.reload();
+              } else {
+                  alert(g.info);
+              }
+
+          })
+      })
+
+      $('#disagree').click(function () {
+          var id1 = $('#commentId').val();
+          var content = $('#content').val();
+          if(content == ''){
+              alert('内容必填');
+              $('#content').focus();
+              return false;
+          }
+
+          $.ajax({
+              url: "{:U('/Admin/Community/galleryDisagree')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+                  disagree_detail:content
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  alert(g.info);
+                  window.location.reload();
+              } else {
+                  alert(g.info);
+              }
+
+          })
+      })*/
+ $(".huifu").click(function(){
+          $('.addfenlei').show();
+          $('#albums-overlay').show();
+      })
+
+      $(".cancle").click(function(){
+          $(this).parent().parent('.jbox').hide();
+          $('#albums-overlay').hide();
+      })
+
+      $(".huifu").click(function(){
+          var commentId = $(this).attr('data-id');
+          $('#commentId').val(commentId);
+      })
+
+      $('#agree').click(function () {
+          var id1 = $('#commentId').val();
+          $.ajax({
+              url: "{:U('/Admin/Member/authenticationAgree')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  alert(g.info);
+                  window.location.reload();
+              } else {
+                  alert(g.info);
+              }
+
+          })
+      })
+
+      $('#disagree').click(function () {
+          var id1 = $('#commentId').val();
+          var content = $('#content').val();
+          if(content == ''){
+              alert('内容必填');
+              $('#content').focus();
+              return false;
+          }
+
+          $.ajax({
+              url: "{:U('/Admin/Member/authenticationDisagree')}",
+              type: "post",
+              dataType: "json",
+              data: {
+                  id: id1,
+                  disagree_detail:content
+              }
+          }).done(function (g) {
+              if (g.status == 1) {
+                  alert(g.info);
+                  window.location.reload();
+              } else {
+                  alert(g.info);
+              }
+
+          })
+      })
+  </script>

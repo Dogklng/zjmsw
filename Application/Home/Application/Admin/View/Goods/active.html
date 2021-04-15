@@ -1,0 +1,121 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">活动列表</h1>
+            <a href="{:U('/Admin/Goods/addActive')}" class="btn btn-success">添加活动</a>
+            <!-- end tabs -->
+
+            <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+                <thead>
+                <tr class="po_list">
+                    <td>产品</td>
+                    <td>起始时间</td>
+                    <td>结束时间</td>
+                    <td>操作<span></span></td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res" item="vo">
+                    <tr>
+                        <td> {$vo.goods_name} </td>
+                        <td class="class_name">
+                            <span>{$vo.start|date="Y-m-d H:i:s",###}</span>
+                        </td>
+                        <td class="class_name">
+                            <span>{$vo.end|date="Y-m-d H:i:s",###}</span>
+                        </td>
+
+                        <td>
+                            <a href="{:U('/Admin/Goods/editActive/id')}/{$vo.id}" class="btn btn-primary j-editClass" title="修改">编辑</a>
+                            <a href="{:U('/Admin/Goods/delActive/id')}/{$vo.id}" onclick="{if(!confirm('确定删除吗?'))return false;} " class="btn j-delClass btn-warning" title="删除">删除</a>
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <div class="fr">
+                        <div class="pages"> {$page} </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+    <!-- end container -->
+    <include file="Public:foot"/>
+    <script>
+        $(".change-status").click(function (){
+            var _this= $(this)
+            var id   = $(this).attr("data-id");
+            var item = $(this).attr("data-item");
+            $.post("{:U('Admin/Goods/changeStatus')}", {id:id,item:item}, function(data){
+                if(data.status == 1){
+                    _this.css({color:"#0C0"}).html("√");
+                }else if(data.status == 2){
+                    _this.css({color:"#c00"}).html("×");
+                }else{
+                    alert(data.info);
+                }
+            }, "json")
+        })
+        $(".change-all-status").click(function (){
+            if(!confirm("确定改变所有选中产品的状态？")){
+                return false;
+            }
+            var ids = "";
+            var item = $(this).attr("data-item");
+            $(".table-ckbs:checked").each(function(i){
+                ids += $(this).attr("data-id")+"-"
+            })
+            if(!ids){
+                alert("请选择产品！");return false;
+            }
+            $.post("{:U('Admin/Goods/changeAllStatus')}" ,{ids:ids,item:item}, function (data){
+                if(data.status){
+                    window.location.reload();
+                }else{
+                    alert(data.info);
+                }
+            })
+        })
+        $(".change-is_sale").click(function (){
+            var id   = $(this).attr("data-id");
+            var item = "is_sale";
+            $.post("{:U('Admin/Goods/changeStatus')}", {id:id,item:item}, function(data){
+                if(data.status){
+                    window.location.reload()
+                }else{
+                    alert(data.info);
+                }
+            }, "json")
+        })
+        $(".btn_table_delAll").click(function(){
+            if(!confirm("确定删除所有选中的产品？")){
+                return false;
+            }
+            var ids = "";
+            $(".table-ckbs:checked").each(function(i){
+                ids += $(this).attr("data-id")+"-"
+            })
+            if(!ids){
+                alert("请选择产品！");return false;
+            }
+            $.post("{:U('Admin/Goods/delGoods')}" ,{ids:ids}, function (data){
+                alert(data.info);
+                if(data.status){
+                    window.location.reload();
+                }
+            })
+        })
+    </script>

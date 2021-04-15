@@ -1,0 +1,141 @@
+<include file="Public:header" />
+
+
+
+<!--  / warpper  -->
+<div class="warpper wrapper1" style="margin: 150px auto 80px;">
+  
+  <!--  / user  -->
+  <div class="Selleruser">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="SellerCon">
+         <div class="SellerTop">
+          <h3>入驻预售美术网平台</h3>
+         </div>
+         <div class="SellerFlower">
+          <div class="row">
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist "> <span>1</span>
+              <h3 class="paiUncenter_h3">签署协议</h3>
+             </div>
+           </div> 
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist SellerFlistCurr"> <span>2</span>
+              <h3 class="paiUncenter_h3">账号类型</h3>
+             </div>
+           </div> 
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist "> <span>3</span>
+              <h3 class="paiUncenter_h3">选择类目</h3>
+             </div>
+           </div>
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist"> <span>4</span>
+              <h3 class="paiUncenter_h3">提交资料</h3>
+             </div>
+           </div> 
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist"> <span>5</span>
+              <h3 class="paiUncenter_h3">审核</i></h3>
+             </div>
+           </div>
+           <div class="col-lg-2 col-md-2 col-sm-2">
+             <div class="SellerFlist"> <span>6</span>
+              <h3 class="paiUncenter_h3 paiCH3">缴纳保证金，<br />入驻成功</h3>
+             </div>
+           </div>
+          </div>
+          
+          <div class="paiuncenter_one">
+            <h3>美术网入驻预售需求</h3>
+            <p class="activedp">1.必须遵守美术网的需求</p>
+            <p>2.必须遵守美术网的需求</p>
+            <p>3.必须遵守美术网的需求</p>
+            <p>4.必须遵守美术网的需求</p>
+            <p>5.必须遵守美术网的需求</p>
+          </div>
+
+           <div class="row">
+             <div class="col-lg-6 col-md-6 col-sm-6">
+               <div class="SellerPic">
+                 <span><i class="fa fa-user-circle-o"></i></span>
+                 <h3>个人账号</h3>
+                 <h6>通过美术网账号实名认证的个人账号</h6>
+                 <a href="JavaScript:;" id="gr">选择个人账号</a>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-6 col-sm-6">
+               <div class="SellerPic">
+                 <span><i class="fa fa-building-o"></i></span>
+                 <h3>企业账号</h3>
+                 <h6>通过美术网企业账号认证的企业账号</h6>
+                 <a href="JavaScript:;" id="qiye">选择企业账号</a>
+               </div>
+             </div>
+            </div>
+           </div>
+        </div>
+
+        <div class="SelNoticeStyle">
+            <input type="hidden" id="leixin" value="" >
+          <h4><a href="{:U('Home/Pm/paimaiRuzhu/tui/0')}" >上一步</a> <a href='javascript:;' onclick="xiayibu()">下一步</a></h4>
+        </div>
+  
+      </div>
+    </div>
+          
+   </div>      
+</div>
+
+
+  <!--  / user  -->
+
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+
+<style>
+    .leixin{
+        background-color: red !important;
+    }
+</style>
+<script>
+
+    $('#gr').click(function () {
+        $('#gr').addClass('leixin');
+        $('#qiye').removeClass('leixin');
+        $('#leixin').val('0');
+    })
+
+    $('#qiye').click(function () {
+        $('#qiye').addClass('leixin');
+        $('#gr').removeClass('leixin');
+        $('#leixin').val('1');
+    })
+    function xiayibu() {
+        var leixin = $('#leixin').val();
+        if (leixin=='' || leixin==null){
+            alert('账号类型必选');
+            return false;
+        }
+        $.ajax({
+            url: "{:U('/Home/Pm/paiSelect')}",
+            type: "get",
+            dataType: "json",
+            data: {'leixin':leixin},
+            success:function(msg){
+                if (msg.status==1){
+                    alert( msg.info);
+                    location.href="{:U('Home/Pm/paimaiRuzhu')}";
+                }else{
+                    alert( msg.info);
+                }
+            }
+        })
+    }
+</script>
+
+</body>
+
+</html>

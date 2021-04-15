@@ -1,0 +1,184 @@
+<include file="Public:header" />
+<style>
+    .main_page {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+    }
+    .main_page .me {
+        background: #ff6801 !important;
+        border: 1px solid #ff6801 !important;
+        color: #fff !important;
+    }
+    .main_page span {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+        background: #fff;
+        font-size: 14px;
+        border: 1px solid #dbdbdb;
+        color: #666;
+        padding: 0 20px;
+        cursor: pointer;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+    /*.nr a{
+        align: center;
+    }*/
+</style>
+<link rel="stylesheet" href="__CSS__/cloud.css">
+
+<div class="ban1">
+  <div class="banner_img">
+    <img src="{$images.pic}" alt="" />
+  </div>
+</div>
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 zhanlan2 wrapper_s1">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1">Cloud release</p>
+    <h5>展 • 览</h5>
+  </div>
+  
+  <div class="tops">
+        <ul>
+        	<!--<li><a href="#" class="active">个展</a></li>-->
+           <!--<li ><a href="#">群展</a></li>-->
+            <!--<li><a href="#" class="btnx1">参展</a></li>-->
+            <!--<li><a href="#" class="btnx2">办展</a></li>-->
+            
+            <div style="clear: both"></div>
+        </ul>
+    </div>
+ 
+ <div class="canzhan_forma">
+ 	
+  <div class="canzhan_form">
+  <img src="__IMAGES__/close.png" class="close canzhan_close" style="top:10px; right:10px;" />
+  	<h3>参展信息</h3>
+  	
+    <div class="canzhan_xx">
+    <span>姓名：</span><input type="text" /><br />
+    <span>手机号：</span><input type="text" /><br />
+    <span>微信：</span><input type="text" /><br />
+    <span>展会名称：</span><input type="text" /><br />
+    <span>展会时间：</span><input type="text" /><br />
+    <span>展会地点：</span><input type="text" /><br />
+    
+    <a href="#" class="zlxxtj">提交信息</a>
+    </div>
+  </div>
+  
+ </div>  
+  
+  
+   <div class="banzhan_forma">
+ 	
+  <div class="canzhan_form">
+  <img src="__IMAGES__/close.png" class="close banzhan_close" style="top:10px; right:10px;" />
+  	<h3>办展信息</h3>
+  	
+    <div class="canzhan_xx">
+    <span>姓名：</span><input type="text" /><br />
+    <span>手机号：</span><input type="text" /><br />
+    <span>微信：</span><input type="text" /><br />
+    <span>展会名称：</span><input type="text" /><br />
+    <span>办展时间：</span><input type="text" /><br />
+    <span>办展地点：</span><input type="text" /><br />
+    <a href="#" class="zlxxtj">提交信息</a>
+    </div>
+  </div>
+  
+ </div>  
+  
+  
+  
+  <div class="main">
+    <div class="CraImg_nav">
+      <div class="CraImg"> <img src="__IMAGES__/Cra1.png" width="100%" /> </div>
+        <notempty name="res">
+            <div class="CraImg-txt CraUl-txt" style="height: 300px;">
+                <!--<a href="{:U('/Home/News/details')}">-->
+                <a href="{:U('/Home/ArtCommunity/detail',array('id'=>$res['id']))}">
+                    <h1>{$res.title}</h1>
+                    <span> <i class="fa fa-clock-o"></i>{$res.start|date='Y-m-d',###} 至 {$res.end|date='Y-m-d',###}</span> <span> <i class="fa fa-map-marker" style=" font-size:16px;"></i>地点：{$res.address}</span>
+                </a>
+            </div>
+        </notempty>
+
+    </div>
+    <div class="CraCon">
+      <ul class="CraUl">
+          <volist name="show" id="v">
+        <li><a href="{:U('/Home/ArtCommunity/detail',array('id'=>$v['id']))}">
+          <div class="CraUl-img"><img src="{$v.logo}" /></div>
+          <div class="CraUl-txt">
+            <h2>{$v.title}</h2>
+            <span> <i class="fa fa-clock-o"></i>时间：{$v.start|date='Y-m-d',###}——{$v.end|date='Y-m-d',###}</span> <span> <i class="fa fa-map-marker" style=" font-size:16px;"></i>地点：{$v.address}</span> </div>
+          </a></li>
+          </volist>
+
+      </ul>
+    </div>
+    
+    
+    
+    
+  </div>
+  
+  <div class="cloud_sec3">
+            <div class="inlet">
+                <div class="nr" align="center">
+                    <div class="title_bottom"><span>为您提供最新的展览信息</span> </div>
+                    <div class="title_nr">如您需要办展或参加展会，您可点击下方按钮将相应信息提供给我们，我们将第一时间回复您！</div>
+                    <div style="text-align:center; width:100px; margin:0 auto;">
+
+                    <a href="javascript:;" data-id="2" class="btnx" style="margin-right:0; cursor:pointer;align:center!important;" onclick="zhan(this);">我要办展</a>
+                    <div style="clear: both"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    <div class="main_page">
+        {$page}
+    </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div> 
+  
+</div>
+<!--  / warpper  -->
+
+<include file="Public/footer" />
+<script>
+    $('.main_page span').click(function () {
+        var page = $(this).attr('data-page');
+        if(!isNaN(page)){
+            window.location.href = "{:U('/Home/ArtCommunity/exhibition')}?page="+page;
+        }
+    })
+    function zhan(obj) {
+        var member_id = '{$name}';
+        var val = $(obj).attr('data-id');
+        if(member_id == 0){
+            dialog.showTips("请先注册，若有账号，请先登录！", "",'/Home/User/login');
+            return false;
+        }
+
+        if (val==1){
+            //alert(val);
+            window.location.href="{:U('/Home/ArtCommunity/exhibitors')}";
+        }else {
+            //alert(val);
+            window.location.href="{:U('/Home/ArtCommunity/upExhibitors')}";
+        }
+
+    }
+</script>
+</body>
+</html>

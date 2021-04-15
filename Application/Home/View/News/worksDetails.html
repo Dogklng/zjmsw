@@ -1,0 +1,201 @@
+<include file="Public:header" />
+
+<!--  / warpper  -->
+<div class="warpper wrapper1 wrapperM">
+  <div class="title">
+    <div class="line"></div>
+    <p class="font_tit1"><a href="#">第{$num}期艺术主题大赛征稿</a></p>
+  </div>
+  <div class="buy">
+    <div class="buy_con"> </div>
+    <div class="buy_con_Tab1">
+      <div class="buy_conTab1_1">
+        <div class="row">
+          <div class="col-lg-9 col-md-9 col-sm-9">
+            <div class="zpjj">
+              <h3>作品简介</h3>
+              <!-- <h6>有幸生长在大时代，如果不选择画画，我必将消失在平庸里。在画室过着隐居的日子，使我有意无意间与社会保持了距离，因此没那么容易轻信与盲从，不去膜拜也不去狂热。总有太多曾经的真实成为了现在的泡沫，谁也不知道最后还会剩下什么，所以人们在不安中放弃了对神灵的敬畏、对精神家园的坚守，开始慢慢的习惯于失去信仰的生活。失去信仰的我是茫然的，也是自由的。日复一日画气泡便成为我用以净心的修行，每一个气泡都是生命与时代，无论大小，破裂后它们都无踪无影。</h6> -->
+              <!-- <h6>每次当我感到茫然时，真希望有神灵存在并得到指引，但他们却像是传说，使我不能轻易怀疑，也不能轻易相信。我这种既怀疑神灵存在与否，又渴望得到神灵宽容与救赎的人注定矛盾纠结，不如索性埋头继续画。如果真有神灵，也许他们也会在画中存在着，不管能不能永恒不灭，至少希望他们可以在我的泡沫中无穷的轮回。</h6> -->
+              <h6>{$paper_list['zuo_detail']}</h6>
+			  <div class="zpjjImg"> <img src="{$paper_list['wpic1']}" style="width:100%"> </div>
+              <div class="zpjjImg"> <img src="{$paper_list['wpic2']}" style="width:100%"> </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-5 col-sm-5">
+            <div class="buy_con_text"> <span>【参赛】</span>
+              <div class="buy_con_text2">
+                <div class="zggZp_div"><a href="{:U('Home/PersonalCenter/userinfo')}">
+                  <div class="user_tx_img"> <img src="{$paper_list['person_img']}" width="100"> </div>
+                  <span class="zggZpname">{$paper_list['author']}</span></a> </div>
+                <h2 class="con_title "> {$paper_list['wname']} <span>{$number}</span></h2>
+                <div class="zggZp_div clearfix"><span>作者简介：</span>{$paper_list['person_detail']}</div>
+              </div>
+
+				
+			  </p>
+              <volist name="attrList" id="val" empty="暂无属性">
+                <p> <span>{$val.classname}:</span>
+                  <volist name="val.child" id="v">
+                      {$v.classname}
+                </volist>
+              </volist></p>
+              </volist>
+              <!--<p> <span>作品尺寸:</span>{$paper_list['sname']}  ({$paper_list['minrange']}~{$paper_list['maxrange']}CM)-->
+               <!--<p> <span>材质:</span>{$paper_list['wmaterial']} </p>-->
+              <!--<p> <span>类型:</span>{$paper_list['wtype']} </p>-->
+              <p><span> 访问量:</span> {$paper_list['visits']} </p>
+              <p><span> 喜欢:</span> {$paper_list['likes']} </p>
+              <h6 class="zggZpdot_H6"><span> 得票数:</span>{$paper_list['counts']} </h6>
+              <a href="javascript:vote();" id="addVote" class="zggZpTp"><i class="fa fa-thumbs-o-up"></i>投他一票</a> </div>
+				<input type="hidden" name="vote1" value="{$paper_list['id']}" id="vote1"/>
+		  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="top"> <a class="top_a" href="javascript:goTop();"> <img src="__IMAGES__/top.png"> </a> </div>
+</div>
+<!--  / warpper  --> 
+<include file="Public/footer" />
+
+</body>
+<script>
+   $('.product-sort a').click(function(){
+      // alert($(this).parent().find('a').length)
+      $(this).parent().find('a').removeClass('active')
+      $(this).addClass('active')
+    })
+</script>
+<!--  / banner切换  -->
+<script src="__JS__/swiper.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#addVote').click(function(){
+		//
+			var vo =$("#vote1").val();
+			$.ajax({
+				type:'post',
+				url:"{:U('/Home/News/addvote')}",
+				data:{id:vo},
+				dataType:'json',
+				success: function(e){
+					if(!e.status){
+						alert(e.info);
+					}else{
+						alert(e.info);
+						window.location.reload();
+					}
+				}
+			})
+		})
+	})
+</script>
+<script>
+$(document).ready(function(e) {
+    
+	var mySwiper1 = new Swiper('.swiper-banner',{
+		pagination: '.pagination1',
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left_01').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipePrev()
+	})
+	  
+	$('.arrow-right_01').on('click', function(e){
+		e.preventDefault()
+		mySwiper1.swipeNext()
+	})
+	
+	var mySwiper2 = new Swiper('.swiper-tuijian',{
+		loop:true,
+		autoplay:5000, 
+		spaceBetween: 0,
+		slidesPerGroup : 1,//设置几个一切
+		slidesPerView :4,//一行几
+		paginationClickable: true,
+		autopalyDisableOnInteraction:false,
+	})
+	$('.arrow-left2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipePrev()
+	})
+	  
+	$('.arrow-right2').on('click', function(e){
+		e.preventDefault()
+		mySwiper2.swipeNext()
+	})
+	
+	
+	
+	
+	$(".ss").click(function(e){
+		    $(".sskuang").css({"left":"0","opacity":"1"})  
+	})
+	
+	$(".close").click(function(e){
+		    $(".sskuang").css({"left":"-100%","opacity":"0"})  
+	})
+	
+  
+  
+  
+
+});
+
+
+
+
+
+$(window).scroll(function ()
+{
+	
+ 
+		 	 
+	
+	 if($(window).scrollTop()>=60){ 
+		 $('.header').addClass('header_fixed');
+	 }
+	 else {
+        $('.header').removeClass('header_fixed');
+        } 
+		 
+	 
+
+	
+});		 
+		 
+</script>
+
+<!--  / banner切换  -->
+
+<script>
+
+$(document).ready(function() {
+
+	$(".wx").hover(function(){
+		$(".ewm1").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm1").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	$(".sj").hover(function(){
+		$(".ewm2").stop().animate({"opacity":"1"},500);
+		    
+	},function(){
+		$(".ewm2").stop().animate({"opacity":"0"},500);
+		    
+	})
+	
+	
+	
+});
+
+</script>
+</html>

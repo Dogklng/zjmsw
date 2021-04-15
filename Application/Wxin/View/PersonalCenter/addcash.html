@@ -1,0 +1,50 @@
+<include file="Public:header" />
+<div class="allorder_top">
+    <h3 class="headH3"> <a href="/Wxin/PersonalCenter/bank/tag/bank/value/4"> <i class="fa fa-angle-left"></i> 我的提现 </a> </h3>
+</div>
+<div class="addband_dizhi">
+  <div class="dizhi_con">
+   <div class="user_card">
+       <input type="hidden" value="{$id}" id="cash1">
+    <p><span>提现金额：</span><input type="text" value="" id="money"></p>
+    <div class="user_r6_line"></div>
+    <div class="cardA text-center">
+     <a class="cardS save" id="cash" href="javascript:void();">保存</a>
+     <a class="cardD" href="{:U('Wxin/PersonalCenter/bank/tag/bank/value/4')}">取消</a>
+    </div>                
+   </div>
+  </div>
+ </div>
+
+<!--shop-->
+<include file="Public/footer" />
+<script>
+    $('#cash').click(function(){
+        var id = $('#cash1').val();
+        var money = $.trim($('#money').val());
+        if(!money){
+            alert('请输入提现金额');
+            return false;
+        }
+        $.ajax({
+            url:'/Wxin/PersonalCenter/cash',
+            data:{id:id,money:money},
+            dataType:"json",
+            type:"post",
+            success:function(data){
+                if(data.stauts==1){
+                    alert(data.info);
+                    window.location.href = "{:U('Wxin/PersonalCenter/bank/tag/bank/value/4')}";
+                    return false;
+                }else{
+                    alert(data.info);
+                    window.location.href = "{:U('Wxin/PersonalCenter/bank/tag/bank/value/4')}";
+                    return false;
+                }
+            }
+        })
+    })
+</script>
+</body>
+
+</html>

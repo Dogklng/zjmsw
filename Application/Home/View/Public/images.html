@@ -1,0 +1,17 @@
+<div class="cp_xxjs1  col-lg-6 col-md-6 col-sm-6">
+    <div id="magnifier">
+        <div id="showmagnifier"> <img src="{$image.0.pic}">
+            <div id="smallmagnifier"></div>
+            <div id="hiddenmagnifier"> <img id="bigmagnifier" src="{$image.0.pic}"> </div>
+        </div>
+        <div id="magnifierlist">
+            <div id="magnifierLeft"></div>
+            <ul id="magnifierMiddle">
+                <foreach name="image" item="vo">
+                    <li><img src="{$vo.pic}"></li>
+                </foreach>
+            </ul>
+            <div id="magnifierRight"></div>
+        </div>
+    </div>
+</div>

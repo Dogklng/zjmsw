@@ -1,0 +1,84 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="../css/lists.css">
+
+<div class="container">
+    <div class="inner clearfix"> <include file="Public:left"/>
+        <!-- end content-left -->
+
+        <div class="content-right fl">
+            <h1 class="content-right-title">培训报名列表</h1>
+            <!--<a href="{:U('/Admin/Community/addOverseas')}" class="btn btn-success">发布海外交流</a>-->
+            <form action="" method="get">
+                <div class="tables-searchbox newcearchbox">
+                    <div>
+                        <input type="text" placeholder="姓名/手机号" class="input" name="title" value="{$title}" >
+                        <button class="btn btn-primary" style="line-height:20px;"> <i class="gicon-search white"></i>查询 </button>
+                    </div>
+                </div>
+            </form>
+            <!-- end tabs -->
+
+            <table class="wxtables mgt10 table-order" id="tb_3" style="text-align:center;">
+                <thead>
+                <tr class="po_list">
+                    <td>ID</td>
+                    <td>姓名</td>
+                    <td>电话</td>
+                    <td>人数</td>
+                    <td>付费状态</td>
+                    <td>报名时间</td>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="res" item="vo">
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.name}</td>
+
+                        <td> {$vo.tel} </td>
+                        <td> {$vo.num} </td>
+                        <td>
+                            <if condition="($vo.pay_status eq 0)"> 待支付</if>
+                            <if condition="($vo.pay_status eq 1)"> 已支付</if>
+                            <if condition="($vo.pay_status eq 2)"> 申请退款</if>
+                        </td>
+                        <td>{$vo.addtime|date='Y-m-d H:i:s',###}</td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <!-- end wxtables -->
+            <div class="tables-btmctrl clearfix">
+                <div class="fl">
+                    <div class="fr">
+                        <div class="pages"> {$page} </div>
+                        <!-- end paginate -->
+                    </div>
+                </div>
+                <!-- end tables-btmctrl -->
+                <div class="clearfix">
+                    <ul class="cache-statistics fr">
+                        <li class="txtCenter" style="text-align:right;margin-right:10px;">
+                            <a href="javascript:history.back(-1);" data-id="2197883" class="btn btn-primary" id="j-order-close">返回</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end content-right -->
+        </div>
+    </div>
+    <!-- end container -->
+    <include file="Public:foot"/>
+    <script>
+        $(".change-is_sale").click(function (){
+            var id   = $(this).attr("data-id");
+            var item = "is_sale";
+            $.post("{:U('Admin/Community/changeStatush')}", {id:id,item:item}, function(data){
+                if(data.status){
+                    window.location.reload()
+                }else{
+                    alert(data.info);
+                }
+            }, "json")
+        })
+    </script>

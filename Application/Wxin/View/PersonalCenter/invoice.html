@@ -1,0 +1,107 @@
+<include file="Public:header" />
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 我的增值税发票 </a> </h3>
+</div>
+
+<!--shop-->
+
+<div class="user_r3">
+  <div class="user_r3_con">
+    <div class="order1_yh_con" style="padding:0">
+      <div class="order1_yh_con1" >
+        <h5 style="padding-left:15px;background:transparent">发票类型</h5>
+        <ul class="clearfix">
+          <li class="order1_yhon"><span></span>电子发票-增值普票</li>
+          <li class=""><span></span>纸质发票-增值普票</li>
+          <!--<li class=""><span></span>纸质发票-增值专票</li>-->
+        </ul>
+        <div class="order1_yh_l">
+          <div class="order1_yh_list" style="display: block;margin-bottom: 50px"> <span>发票抬头</span>
+            <input type="text" value="填写需要开票的个人或个人信息">
+            <div class="order1_yh_lista">
+              <p>浙江美术网开具的电子发票均为真实有效的合法发票，与传统纸质发票具有同等法律效力，可作为用户维权、保修、报销的有效凭据。</p>
+              <p>电子发票会在确认收货后15天内，将发票代码和发票号码以短信方式发送到收货人手机上。</p>
+              <p>开具成功后，您可登录电子发票查询系统<span>http://imv.auxshop.cn/fppt-web/fppt/public/lookup.html</span>下载电子发票</p>
+            </div>
+          </div>
+          <div class="order1_yh_list" style="display: none;"> <span>发票抬头</span>
+            <input type="text" value="填写需要开票的个人或个人信息">
+          </div>
+          <div class="order1_yh_list order1_yh_list1">
+            <ul>
+              <li>
+                <input type="checkbox" class="j_checkbox j_checkbox_on">
+                吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 654126541235038 </li>
+              <li>
+                <input type="checkbox" class="j_checkbox">
+                吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 654126541235038</li>
+              <li>
+                <input type="checkbox" class="j_checkbox">
+                吾诺瀚卓 &nbsp;&nbsp; 李亮 &nbsp;&nbsp; 654126541235038</li>
+              <li>
+                <input type="checkbox" class="j_checkbox j_checkbox_xz">
+                新增增值税发票</li>
+            </ul>
+            <div class="user8_con2">
+              <p><span>单位名称：</span>
+                <input type="text" value="13429614578">
+              </p>
+              <p><span>纳税人识别号：</span>
+                <input type="text" value="李亮">
+              </p>
+              <p><span>注册地址：</span>
+                <input type="text" value="">
+              </p>
+              <p><span>注册电话：</span>
+                <input type="text" value="">
+              </p>
+              <p><span>开户银行：</span>
+                <input type="text" value="">
+              </p>
+              <p><span>银行账户：</span>
+                <input type="text" value="">
+              </p>
+              <div class="user_r6_line"></div>
+              <a href="##">保存</a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--shop-->
+<include file="Public/footer" />
+
+</body>
+<script>
+  $('.order1_yh_con1>ul li').click(function(){
+
+  var or=$(this).index();
+  $('.order1_yh_con1 ul li').removeClass('order1_yhon');
+  $(this).addClass('order1_yhon');
+  
+  $('.order1_yh_list').stop(true,true).fadeOut(0);  
+  $('.order1_yh_list').eq(or).stop(true,true).fadeIn(300);  
+  
+})
+
+
+
+$('.order1_yh_list1>ul>li>input').click(function(){
+  $('.order1_yh_list1>ul>li>input').removeClass('j_checkbox_on');
+    $(this).addClass('j_checkbox_on');
+    $('.order1_yh_list1 .user8_con2').slideUp();
+  })
+
+$('.j_checkbox_xz').click(function(){
+  $('.order1_yh_list1 .user8_con2').slideDown();
+  })  
+
+
+
+$('.j_checkbox').click(function(){
+     $(this).toggleClass('j_checkbox_on')
+     })
+</script>
+</html>

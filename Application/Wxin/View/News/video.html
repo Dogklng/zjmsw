@@ -1,0 +1,260 @@
+<include file="Public:header" />
+<style>
+  /*   video  */
+  .video_fl{ margin-top:60px; width:100%; max-width:180px;  border:1px #eee solid;}
+  .video_fl h3{ color:#fff; background:#333; line-height:50px; text-align:center; font-size:16px; margin:0;}
+  .video_fl li{ line-height:40px;   border-top:1px #eee solid; text-align:center; position:relative;}
+  .video_fl li i{ position:absolute; width:8px; height:2px; background:#ddd; top:19px;}
+  .video_fl li i.left{ left:1;background: black;widows: 10px;height: 5px;}
+  .video_fl li i.right{ right:1;background: black;widows: 10px;height: 5px;}
+  .video_fl li a{ color:#666; font-size:14px; }
+
+  .video_box{ cursor:pointer;
+  }
+  .video_box p{
+    margin:0;
+  }
+  .video_list h3{
+    margin-bottom:10px;
+    font-size:20px;
+    font-weight:bold;
+    margin-top: 50px;
+  }
+  .video_list h3 i{ margin-right:5px;}
+  .video_text {
+    line-height:24px;
+
+    color:#666;
+  }
+  .video_text span{
+    float:left;
+    font-size:14px;
+    margin-bottom:20px;
+  }
+  .video_text span+span{
+    margin-left:60px;
+  }
+  .video_cont img{
+    width:100%;
+  }
+
+  .videoBox {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    display: none;
+  }
+  .videoBox_bg {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -moz-opacity: 0.65;
+    -khtml-opacity: 0.65;
+    -webkit-opacity: 0.65;
+    -webkit-transition: 0.8s ease;
+    -moz-transition: 0.8s ease;
+    -ms-transition: 0.8s ease;
+    -o-transition: 0.8s ease;
+    transition: 0.8s ease;
+  }
+  .videoBoxCon_on {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+    -moz-opacity: 1 !important;
+    -khtml-opacity: 1 !important;
+    -webkit-opacity: 1 !important;
+    -webkit-transform: scale(1) !important;
+    -moz-transform: scale(1) !important;
+    -ms-transform: scale(1) !important;
+    -o-transform: scale(1) !important;
+    transform: scale(1) !important;
+  }
+  .colse {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 9;
+  }
+  .videoBoxCon {
+    position: absolute;
+    top: 28%;
+    left: 1%;
+    width: 98%;
+    z-index: 999;
+    overflow: hidden;
+    background: rgba(0,0,0,0.5);
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    -webkit-opacity: 0;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+    transition: 0.5s ease;
+  }
+  .Box-padding {
+    margin: 15px;
+  }
+  .videoBoxCon-main video{ width: 100%;}
+
+</style>
+<div class="galleryClass" style="margin-top:60px">
+  <div class="galleryScroll">
+    <volist name="newsCate" id="val">
+      <a href="{:U('Wxin/News/index')}?type={$val.id}" class="<eq name="_GET['type']" value="$val.id">active</eq> tabs_a fl">{$val.name}</a>
+    </volist>
+
+    <a href="{:U('/Wxin/News/exhibition')}">展览展讯</a>
+    <a href="{:U('/Wxin/Goods/hall')}">3D展厅</a>
+    <a href="{:U('/Wxin/News/contest')}">大赛征稿</a></li>
+    <a href="{:U('/Wxin/News/video')}" class="active">视频</a></li>
+  </div>
+</div>
+<style>
+  .switcher_hover {
+    background: #333 !important;
+    color: #fff !important;
+  }
+</style>
+<!-- 大家都在赞 -->
+<div class="praise artworkP">
+  <div class="praise_list">
+    
+    <div id="topic_switcher" class="switcher">
+      <volist name="video" id="v">
+          <a href="/Wxin/News/video/cate/{$v.id}" class='item <eq name="v.id" value="$cate">switcher_hover</eq>' >{$v.name}</a>
+      </volist>
+    </div>
+  </div>
+  <div class="video_box">
+    <volist name="res" id="vv">
+    <div class="video_list">
+      <h3><i class="fa fa-camera"></i>{$vv.title}</h3>
+      <p class="video_text"><span>{$vv.detail}</span> </p>
+      <div class="video_cont videoA" onclick="videoA(this)" data-ty="video/{$vv.num}" data-url="{$vv.url}">
+        <img src="{$vv.pic}" alt="" />
+      </div>
+    </div>
+      </volist>
+  </div>
+</div>
+<!-- 大家都在赞 -->
+<div class="videoBox" style="display: none">
+  <div class="videoBoxCon">
+    <div class="Box-padding"> <img class="colse" src="__IMAGES__/dizhi_close.png" width="20">
+      <div class="videoBoxCon-main">
+        <video controls="controls" autoplay="autoplay">
+          <!--<source src="$res[0]['url']" type="video/mp4" id="a" class='video11'/>-->
+        </video>
+      </div>
+    </div>
+  </div>
+  <div class="videoBox_bg"></div>
+</div>
+<div class="indexbottom"></div>
+
+<include file="Public/footer" />
+<script>
+  $('.colse').click(function(){
+    $('.videoBox').hide();
+  })
+  function videoA(obj){
+    var url = $(obj).attr('data-url');
+    var type = $(obj).attr('data-ty');
+    console.log(url,type);
+//        $('.videoBoxCon-main source').prop("src",url);
+//        $('.videoBoxCon-main source').prop("type",type);
+
+    sourceDom = $("<source type=\""+ type +"\" src=\""+ url +"\">");
+    $(".videoBoxCon-main video").html('');
+    $(".videoBoxCon-main video").html(sourceDom);
+    $(".videoBoxCon-main video").load();
+//然后在判断是否可以播放了,在播放即:
+
+    $('.videoBoxCon').addClass('videoBoxCon_on');
+    $('.videoBox').show();
+//        $('.videoBox').stop(true).fadeIn(300);
+//        setTimeout(function(){
+//            $('.videoBoxCon').addClass('videoBoxCon_on');
+//        },100)
+  }
+
+  var p = 2;
+  var cate = "{$cate}";
+  // 加载刷新。
+  function refresh(refresh,loadmore) {
+    $(window).scroll(function(){
+      console.log('正在滑动f');
+
+      var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+      var scrollHeight = $(document).height();   //当前页面的总高度
+      var clientHeight = $(this).height();    //当前可视的页面高度
+      // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+      if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;         //每次滑动count加1
+        // filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+        console.log('下拉');
+
+        if(loadmore){
+          loadmore();
+        }
+      }else if(scrollTop<=0){
+        //滚动条距离顶部的高度小于等于0 TODO
+        //alert("下拉刷新，要在这调用啥方法？");
+
+        console.log('上拉');
+        if(refresh){
+          refresh();
+        }
+
+      }
+
+    });
+
+  }
+  //调用
+  refresh(fn1,fn2);
+
+  function fn1(){
+    window.location.href = "{:U('Wxin/News/video')}?cate="+cate;
+  }
+  function fn2(){
+    $.ajax({
+      type: "POST",
+      url: "{:U('/Wxin/News/get_video')}",
+      data: {
+        cate: cate,
+        p: p,
+      },
+      dataType: "json",
+      success: function (g) {
+        if (g.status == 1) {
+          p++;
+          $('.video_box').append(g.html);
+        } else {
+          //alert(g.info);
+        }
+      }
+    });
+  }
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="images/mswlogo.ico" />
+<title>美术网</title>
+<meta name="keywords" content="美术网" />
+<meta name="description" content="美术网" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link href="css/swiper.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+
+<script type="text/javascript" src="js/jquery.1.9.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</head>
+
+<body>
+<!--导航-->
+<div class="body_top">
+  <div class="body_top_up">
+    <div class="body_top_tit1"> <a href="../index.html"><img src="images/logoM.png" /></a> </div>
+    <div class="sousuo">
+    	<img src="images/search.png" />
+    </div>
+    <div class="clear"></div>
+    
+    <div class="sousuok">
+    	<input type="text" value="请输入关键词" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键词';}" />
+    </div>
+    
+  </div>
+</div>
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="javascript:history.go(-1);"> <i class="fa fa-angle-left"></i> 地址管理 </a> </h3>
+</div>
+
+<!--shop-->
+
+<div class="p_xiangqing1">
+
+<div class="shop_add_warp">
+<div class="shop_add_one">
+<div class="shop_add_center">
+<div class="shop_add_left shop_add_fd">
+<div class="checkbox_xuanze">
+<img src="images/yq.svg" class="no_one" style="width:24px; height:24px;" />
+<img src="images/yq-1.svg" class="no_two"  style="width:24px; height:24px;" />
+</div>
+</div>
+<div class="shop_add_right shop_add_fd">
+<p class="shop_add_mz">王小丫<span>18296547821</span></p>
+<p class="shop_add_dz"><span>【默认地址】</span> 浙江省杭州市西湖区益乐路</p>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+
+
+<div class="shop_add_one">
+<div class="shop_add_center">
+<div class="shop_add_left shop_add_fd">
+<div class="checkbox_xuanze">
+<img src="images/yq.svg" class="no_one" style="width:24px; height:24px;" />
+<img src="images/yq-1.svg" class="no_two"  style="width:24px; height:24px;" />
+</div>
+</div>
+<div class="shop_add_right shop_add_fd">
+<p class="shop_add_mz">王小丫<span>18296547821</span></p>
+<p class="shop_add_dz">浙江省杭州市西湖区益乐路<span>39</span>号</p>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="shop_add_tj">
+<a href="shop06.html">添加新地址</a>
+<a href="shop05.html">编辑地址</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!--shop-->
+
+<!--footer-->
+<div class="footer">
+ <ul class="footer_list">
+  <li class="on"> <a href="../index.html"> <img src="images/indexha.svg" width="18px" />
+   <p>首页</p>
+   </a> </li>
+  <li> <a href="../products.html"> <img src="images/product.svg" width="18px" />
+      <p>产品</p>
+      </a> </li>
+  <li class="dz_db"> <a href="../groom.html"> <img src="images/dingzhi.svg" width="18px" />
+   <p>云推荐</p>
+   </a> </li>
+  <li> <a href=""> <img src="images/cart.svg" width="18px" />
+   <p>购物车</p>
+   </a> </li>
+  <li> <a href="myorder.html"> <img src="images/my.svg" width="18px" />
+   <p>我的</p>
+   </a> </li>
+  <div class="clear"></div>
+ </ul>
+</div>
+<!--footer-->
+
+
+</div></body>
+
+
+
+<script>
+$(document).ready(function(e) {
+	var no_two=$(".checkbox_xuanze .no_two").length;
+	for(i=0;i<no_two;i++){
+		(function(){
+			var k=i;
+			$(".checkbox_xuanze").eq(i).click(function(){
+				for(x=0;x<no_two;x++){
+					if(x!=k){
+						$(".checkbox_xuanze .no_two").eq(x).fadeOut();
+					}
+				}
+				
+			
+				$(this).find(".no_two").fadeIn();
+			})
+		})()
+	}
+    
+});
+</script>
+
+
+
+</html>

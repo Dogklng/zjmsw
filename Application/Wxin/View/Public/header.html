@@ -1,0 +1,44 @@
+<include file="Public:head" />
+<body>
+<style>
+    .index_login a{
+        font-size: 15px;color: #666; margin-top: 8px; font-weight: normal;
+    }
+</style>
+<!--search-->
+<div class="body_top">
+    <div class="body_top_up">
+        <div class="body_top_tit1">
+            <a href="{:U('Wxin/Index/index')}"><img src="__IMAGES__/logoM.png" /></a>
+        </div>
+        <div class="sousuo">
+            <img src="__IMAGES__/search.png" />
+        </div>
+        <div class="index_login" style="float: right;margin-right: 6%;margin-top: 5px">
+            <eq name="member_id" value="0">
+                <a  href="/Wxin/User/login.html">登录</a>
+				<span style="width: 1px;height: 11px;display: inline-block;background-color: #999;margin: 0 2px;"></span>
+                <a href="/Wxin/User/zhuce.html">注册</a>
+                <else/>
+                <a  href="{:U('Wxin/PersonalCenter/user')}">个人中心</a>
+                /
+                <a href="/Wxin/User/logout.html">退出</a>
+            </eq>
+        </div>
+        <div class="clear"></div>
+
+        <div class="sousuok">
+            <input type="text" class="ss_text" value="请输入关键词" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键词';}" />
+        </div>
+
+    </div>
+</div>
+<script>
+    $(".ss_text").blur(function(){
+        var key = $(".ss_text").val();
+        if(key){
+            window.location.href="/Wxin/Artwork/index/key/"+key;
+        }
+    })
+</script>
+<!--search-->

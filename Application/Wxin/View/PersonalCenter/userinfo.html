@@ -1,0 +1,178 @@
+<include file="Public:header" />
+
+<div class="allorder_top">
+ <h3 class="headH3"> <a href="/Wxin/PersonalCenter/user"> <i class="fa fa-angle-left"></i> 我的资料 </a> </h3>
+</div>
+<!--  center  -->
+<div class="p_xiangqing1">
+<div class="center">
+	
+    <div class="grxx">
+    	<div class="grxx_box">
+         <div class="grxx_con">
+        	<h3>头像</h3>
+            <p class="fwmd"><img src="{$headimg.person_img}" /></p>
+         </div>
+        </div>
+
+
+
+
+        <div class="grxx_box">
+        <div class="grxx_con">
+        	<h3>用户名</h3>
+            <p class="fwmd"><input type="text" value="{$result.telephone}" disabled /></p>
+           
+        </div>
+        </div>
+
+        <div class="grxx_box">
+            <div class="grxx_con">
+                <h3>姓名</h3>
+                <p class="fwmd"><input type="text" value="{$result.realname}" maxlength="10" onblur="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" onkeyup="value=value.replace(/[^\u4e00-\u9fa5]/g,'')" id="real_name" /></p>
+
+            </div>
+        </div>
+
+        <div class="grxx_box">
+            <div class="grxx_con">
+                <h3>昵称nickname</h3>
+                <p class="fwmd"><input type="text" value="{$result.person_name}" maxlength="16" id="person_name" /></p>
+
+            </div>
+        </div>
+
+        <div class="grxx_box">
+        <div class="grxx_con">
+        	<h3>性别</h3>
+            <p class="fwmd">
+                <span>
+                     <select style="margin-top: 5px;width: 120px;height: 30px" id="sex">
+                         <option value="1" <eq name="result['sex']" value="1"> selected="selected"</eq> >男</option>
+                         <option value="2" <eq name="result['sex']" value="2"> selected="selected"</eq>>女</option>
+                     </select>
+                </span>
+                </p>
+           
+        </div>
+        </div>
+        
+        
+        <div class="grxx_box">
+        <div class="grxx_con">
+        	<h3>生日</
+            <p class="fwmd"><input type="date" value="{$result.birth}" id="birth"></p>
+           
+        </div>
+        </div>
+
+        <div class="grxx_box">
+        <div class="grxx_con">zaa
+        	<h3>手机号码</h3>
+            <p class="fwmd"><input type="text" value="{$result.telephone}" id="telephone" disabled></p>
+           
+        </div>
+        </div>
+
+        <div class="grxx_box">
+            <div class="grxx_con">
+                <h3>邮箱</h3>
+                <p class="fwmd"><input type="text" value="{$result.email}" id="email"></p>
+
+            </div>
+        </div>
+        
+        <div class="grxx_box">
+        <div class="grxx_con">
+        	<h3 style="width: 55px">我的地址address</h3>
+            <p class="fwmd"><input style="width:240px;" type="text" maxlength="30" placeholder="官网给会员不定期寄送礼品，务必填写准确哦！" value="{$result.country}" id="country"></p>
+        </div>
+        </div>
+        <div class="grxx_box"> <a href="#" id="save">保存</a> </div>
+    </div>
+</div>    
+
+</div>
+<!--  center  -->
+
+<include file="Public/footer" />
+
+<script>
+    $('#save').click(function () {
+        var realname=$.trim($('#real_name').val());
+        var person_name=$.trim($('#person_name').val());
+        var sex = $.trim($("#sex").val());
+        var birth=$.trim($('#birth').val());
+        var telephone=$.trim($('#telephone').val());
+        var email=$.trim($('#email').val());
+        var country=$.trim($('#country').val());
+        birth1 = new Date(birth);
+        var time = new Date();
+        var b1 = birth1.getTime();
+        var t1 = time.getTime();
+        if(b1>t1){
+            dialog.showTips('生日不能晚于当前时间','warn');return false;
+        }
+
+        if(nowpass == ''){
+
+        }else{
+            if (!newpass.match(/^.{6,24}$/)) {
+                dialog.showTips("新密码长度必须是6-24位！","warn");
+                return false;
+            }
+            if(newpass==""){
+                dialog.showTips("确认密码不能为空", "warn");
+                return false;
+            }
+
+            if (!password.match(/^.{6,24}$/)) {
+                dialog.showTips("确定密码长度必须是6-24位！","warn");
+                return false;
+            }
+
+            if(newpass!=password){
+                dialog.showTips("两次密码不一致", "warn");
+                return false;
+            }
+        }
+        if(email != "") {
+
+            var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            if (!myreg.test(email)) {
+                alert("请输入有效的邮箱！");
+                return false;
+            }
+        }
+        $.ajax({
+            url: "{:U('/Wxin/personalCenter/editCenter')}",
+            type: "post",
+            dataType: "json",
+            data: {
+                realname:realname,
+                person_name:person_name,
+                sex:sex,
+                birth:birth,
+                telephone:telephone,
+                email:email,
+                country:country,
+            }
+        }).done(function (g) {
+            if (g.status == 1) {
+                alert(g.info);
+                dialog.showTips(g.info,"warn",function () {
+                    window.location.reload();
+                });
+                return false;
+            } else {
+                alert(g.info);return false;
+            }
+
+        })
+
+    })
+</script>
+</body>
+
+</html>
+
