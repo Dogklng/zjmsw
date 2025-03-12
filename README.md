@@ -12,5 +12,5 @@
 #Hello dadies,I'm a complete beginner, just graduated and started my internship as a full-stack developer. I wasn’t familiar with Git version control before, and I've accidentally crashed the website three times. Today, I finally managed to upload the project, only to find that it was already hosted on the previous developer’s Gitee account.
 If any experts have some free time, I would really appreciate it if you could take a look at my code and share any valuable feedback or suggestions. Thanks so much for your support!
 
-
+The project is still under continuous updates
  
